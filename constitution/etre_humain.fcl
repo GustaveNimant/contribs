@@ -1,0 +1,16 @@
+open "basics";;
+
+species Etre_humain_S =
+
+  signature nom : string;
+
+  signature prenom : string;
+
+  signature age : int;
+
+  signature est_francais : Self -> bool;
+
+  signature liberte_expression : Self -> bool;
+end
+;;
+

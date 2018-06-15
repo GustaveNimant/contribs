@@ -1,0 +1,19 @@
+open "basics";;
+open "elu";;
+
+type parlementaire_t =
+  | Depute_t
+  | Senateur_t
+;;
+
+species Parlementaire_S = 
+
+  inherit Elu_S;
+
+  representation = parlementaire_t;
+
+  signature redige_la_loi : Self -> bool;
+
+  signature vote_la_loi : Self -> bool;
+
+end;;

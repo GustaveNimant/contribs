@@ -1,0 +1,8 @@
+open "basics";;
+open "etre_humain";;
+
+species Circonscription_S = 
+
+signature electeurs : list (int);
+
+end;;

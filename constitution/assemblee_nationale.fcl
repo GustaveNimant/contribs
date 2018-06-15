@@ -1,0 +1,10 @@
+open "basics";;
+open "sets";;
+
+species Assemblee_nationale = 
+
+inherit Setoid;
+
+
+
+end;;

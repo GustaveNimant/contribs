@@ -1,0 +1,12 @@
+open "basics";;
+open "etre_humain";;
+
+species Elu_S = 
+
+  inherit Etre_humain_S; 
+
+  signature est_eligible : bool;
+
+  signature est_elu : bool;
+
+end;;

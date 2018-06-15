@@ -1,0 +1,15 @@
+open "basics";;
+open "depute";;
+open "electeur";;
+open "parlementaire";;
+
+species President_republique_S =
+
+  inherit Elu_S;
+
+  signature exerce_souverainete : E -> bool;
+
+(* Le Président de la République est élu pour cinq ans au suffrage universel direct.*)
+  property  : all p : E, E!liberte_expression (p);
+end;;
+

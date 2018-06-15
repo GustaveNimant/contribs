@@ -1,0 +1,10 @@
+open "basics";;
+open "parlementaire";;
+
+species Depute_S = 
+
+  inherit Parlementaire_S; 
+
+  signature controle_decision_gouvernement : bool;
+  
+end;;

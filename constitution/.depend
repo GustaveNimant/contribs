@@ -1,0 +1,225 @@
+addition_specification.cmo :
+addition_specification.cmx :
+and_or.cmo :
+and_or.cmx :
+circonscription.cmo :
+circonscription.cmx :
+diff_comps.cmo :
+diff_comps.cmx :
+diff_comps2.cmo :
+diff_comps2.cmx :
+elu.cmo :
+elu.cmx :
+ex_implications.cmo :
+ex_implications.cmx :
+ex_implications2.cmo :
+ex_implications2.cmx :
+francais.cmo :
+francais.cmx :
+full.cmo :
+full.cmx :
+lemmas.cmo :
+lemmas.cmx :
+lemmas1.cmo :
+lemmas1.cmx :
+lemmas2.cmo :
+lemmas2.cmx :
+lemmas2_1.cmo :
+lemmas2_1.cmx :
+lemmas3.cmo :
+lemmas3.cmx :
+lemmas4.cmo :
+lemmas4.cmx :
+lemmas5.cmo :
+lemmas5.cmx :
+lemmas5_2.cmo :
+lemmas5_2.cmx :
+manual_page_12.cmo :
+manual_page_12.cmx :
+manual_page_14.cmo :
+manual_page_14.cmx :
+manual_page_15.cmo :
+manual_page_15.cmx :
+nations.cmo :
+nations.cmx :
+num_capteur.cmo :
+num_capteur.cmx :
+or_id_com.cmo :
+or_id_com.cmx :
+or_id_com1.cmo :
+or_id_com1.cmx :
+or_id_com2.cmo :
+or_id_com2.cmx :
+or_id_com3.cmo :
+or_id_com3.cmx :
+or_id_com_good.cmo :
+or_id_com_good.cmx :
+or_id_com_shortest.cmo :
+or_id_com_shortest.cmx :
+parlement.cmo :
+parlement.cmx :
+parlementaire.cmo :
+parlementaire.cmx :
+same_comps.cmo :
+same_comps.cmx :
+signal1.cmo :
+signal1.cmx :
+signal2.cmo :
+signal2.cmx :
+signal3.cmo :
+signal3.cmx :
+tree_mirror1.cmo :
+tree_mirror1.cmx :
+age.fo:
+age.ml:
+age.zv:
+age.v:
+age.sk:
+age.cmo:
+age.cmx:
+age.dko: age.sk
+age.cmx:
+assemblee_nationale.fo:
+assemblee_nationale.ml:
+assemblee_nationale.zv:
+assemblee_nationale.v:
+assemblee_nationale.sk:
+assemblee_nationale.cmo:
+assemblee_nationale.cmx:
+assemblee_nationale.dko: assemblee_nationale.sk
+assemblee_nationale.cmx:
+circonscription.fo: etre_humain.fo
+circonscription.ml: etre_humain.ml
+circonscription.zv: etre_humain.zv
+circonscription.v: etre_humain.v
+circonscription.sk: etre_humain.sk
+circonscription.cmo: etre_humain.cmo
+circonscription.cmx: etre_humain.cmx
+circonscription.dko: circonscription.sk etre_humain.dko
+circonscription.cmx: etre_humain.cmx
+depute.fo: parlementaire.fo
+depute.ml: parlementaire.ml
+depute.zv: parlementaire.zv
+depute.v: parlementaire.v
+depute.sk: parlementaire.sk
+depute.cmo: parlementaire.cmo
+depute.cmx: parlementaire.cmx
+depute.dko: depute.sk parlementaire.dko
+depute.cmx: parlementaire.cmx
+electeur.fo: depute.fo etre_humain.fo scrutin.fo
+electeur.ml: depute.ml etre_humain.ml scrutin.ml
+electeur.zv: depute.zv etre_humain.zv scrutin.zv
+electeur.v: depute.v etre_humain.v scrutin.v
+electeur.sk: depute.sk etre_humain.sk scrutin.sk
+electeur.cmo: depute.cmo etre_humain.cmo scrutin.cmo
+electeur.cmx: depute.cmx etre_humain.cmx scrutin.cmx
+electeur.dko: electeur.sk depute.dko etre_humain.dko scrutin.dko
+electeur.cmx: depute.cmx etre_humain.cmx scrutin.cmx
+elu.fo: etre_humain.fo
+elu.ml: etre_humain.ml
+elu.zv: etre_humain.zv
+elu.v: etre_humain.v
+elu.sk: etre_humain.sk
+elu.cmo: etre_humain.cmo
+elu.cmx: etre_humain.cmx
+elu.dko: elu.sk etre_humain.dko
+elu.cmx: etre_humain.cmx
+etat_vote.fo:
+etat_vote.ml:
+etat_vote.zv:
+etat_vote.v:
+etat_vote.sk:
+etat_vote.cmo:
+etat_vote.cmx:
+etat_vote.dko: etat_vote.sk
+etat_vote.cmx:
+etre_humain.fo:
+etre_humain.ml:
+etre_humain.zv:
+etre_humain.v:
+etre_humain.sk:
+etre_humain.cmo:
+etre_humain.cmx:
+etre_humain.dko: etre_humain.sk
+etre_humain.cmx:
+francais.fo: etre_humain.fo nations.fo
+francais.ml: etre_humain.ml nations.ml
+francais.zv: etre_humain.zv nations.zv
+francais.v: etre_humain.v nations.v
+francais.sk: etre_humain.sk nations.sk
+francais.cmo: etre_humain.cmo nations.cmo
+francais.cmx: etre_humain.cmx nations.cmx
+francais.dko: francais.sk etre_humain.dko nations.dko
+francais.cmx: etre_humain.cmx nations.cmx
+main.fo:
+main.ml:
+main.zv:
+main.v:
+main.sk:
+main.cmo:
+main.cmx:
+main.dko: main.sk
+main.cmx:
+nationalite.fo:
+nationalite.ml:
+nationalite.zv:
+nationalite.v:
+nationalite.sk:
+nationalite.cmo:
+nationalite.cmx:
+nationalite.dko: nationalite.sk
+nationalite.cmx:
+nations.fo:
+nations.ml:
+nations.zv:
+nations.v:
+nations.sk:
+nations.cmo:
+nations.cmx:
+nations.dko: nations.sk
+nations.cmx:
+parlement.fo:
+parlement.ml:
+parlement.zv:
+parlement.v:
+parlement.sk:
+parlement.cmo:
+parlement.cmx:
+parlement.dko: parlement.sk
+parlement.cmx:
+parlementaire.fo: elu.fo
+parlementaire.ml: elu.ml
+parlementaire.zv: elu.zv
+parlementaire.v: elu.v
+parlementaire.sk: elu.sk
+parlementaire.cmo: elu.cmo
+parlementaire.cmx: elu.cmx
+parlementaire.dko: parlementaire.sk elu.dko
+parlementaire.cmx: elu.cmx
+peuple_francais.fo: depute.fo electeur.fo parlementaire.fo scrutin.fo
+peuple_francais.ml: depute.ml electeur.ml parlementaire.ml scrutin.ml
+peuple_francais.zv: depute.zv electeur.zv parlementaire.zv scrutin.zv
+peuple_francais.v: depute.v electeur.v parlementaire.v scrutin.v
+peuple_francais.sk: depute.sk electeur.sk parlementaire.sk scrutin.sk
+peuple_francais.cmo: depute.cmo electeur.cmo parlementaire.cmo scrutin.cmo
+peuple_francais.cmx: depute.cmx electeur.cmx parlementaire.cmx scrutin.cmx
+peuple_francais.dko: peuple_francais.sk depute.dko electeur.dko parlementaire.dko scrutin.dko
+peuple_francais.cmx: depute.cmx electeur.cmx parlementaire.cmx scrutin.cmx
+president_republique.fo: depute.fo electeur.fo parlementaire.fo
+president_republique.ml: depute.ml electeur.ml parlementaire.ml
+president_republique.zv: depute.zv electeur.zv parlementaire.zv
+president_republique.v: depute.v electeur.v parlementaire.v
+president_republique.sk: depute.sk electeur.sk parlementaire.sk
+president_republique.cmo: depute.cmo electeur.cmo parlementaire.cmo
+president_republique.cmx: depute.cmx electeur.cmx parlementaire.cmx
+president_republique.dko: president_republique.sk depute.dko electeur.dko parlementaire.dko
+president_republique.cmx: depute.cmx electeur.cmx parlementaire.cmx
+scrutin.fo:
+scrutin.ml:
+scrutin.zv:
+scrutin.v:
+scrutin.sk:
+scrutin.cmo:
+scrutin.cmx:
+scrutin.dko: scrutin.sk
+scrutin.cmx:

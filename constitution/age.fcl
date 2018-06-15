@@ -1,0 +1,59 @@
+open "basics";;
+open "sets";;
+
+species AgeSpecies = 
+
+  representation = int ;
+
+  let get_age (p:Self) : int = p;
+
+  let set_age (p : Self, i : int) =
+     i;
+
+  let print (p : Self) =
+    let a = "( " in
+    let b = string_of_int (get_age (p)) in
+    let c = ")" in
+    (a ^ b ^ c);
+
+  let newAge (i : int) =
+   i;
+
+  let equal ( p : Self, q : Self) =
+     (get_age (p) = get_age (q)) ;
+
+  theorem equal_reflexive :
+      all t : Self, !equal(t, t)
+    proof = assumed;
+
+  theorem equal_symmetric :
+      all t1 t2 : Self, !equal(t1, t2) -> !equal(t2, t1)
+    proof = assumed;
+
+  theorem equal_transitive :
+      all t1 t2 t3 : Self,
+        !equal(t1, t2) -> !equal(t2, t3) -> !equal(t1, t3)
+    proof = assumed;
+
+end;;
+
+species Age_constraints =
+
+   inherit AgeSpecies;
+
+   property invariant_Age_1 : all p : Self,
+     (get_age(p) <= 150) /\ (get_age(p) > 0);
+
+end ;;
+
+collection Age_collection =
+   implement AgeSpecies;
+end ;;
+
+basics#print_string("\n") ;;
+basics#print_string("Age :\n") ;;
+basics#print_string("---------------------\n") ;;
+
+let carl = Age_collection!newAge (55);;
+
+Age_collection!print (carl);;

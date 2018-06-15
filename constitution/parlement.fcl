@@ -1,0 +1,9 @@
+open "basics";;
+open "sets";;
+
+species Parlement = 
+
+inherit Setoid;	  
+
+
+end;;

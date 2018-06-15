@@ -1,0 +1,18 @@
+(***********************************************************************)
+(*                                                                     *)
+(*            Constitution                                             *)
+(*                                                                     *)
+(*            Gustave Nimant                                           *)
+(*            Champagne                                                *)
+(*                                                                     *)
+(*  Copyright 2018 -                                                   *)
+(*  Distributed only by permission.                                    *)
+(*                                                                     *)
+(***********************************************************************)
+
+open "basics";;
+open "sets";;
+open "nations";;
+open "etre_humain";;
+
+

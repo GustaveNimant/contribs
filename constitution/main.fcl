@@ -1,0 +1,69 @@
+(***********************************************************************)
+(*                                                                     *)
+(*            Constitution                                             *)
+(***********************************************************************)
+
+open "basics";;
+open "sets";;
+
+species Age_int =
+  inherit Setoid;
+
+  representation = int;
+
+  let leq(x : Self, y : Self) : bool = x <= y;
+  let lt (x : Self, y : Self) : bool = x < y;
+  let geq(x : Self, y : Self) : bool = x >= y;
+  let gt (x : Self, y : Self) : bool = x > y;
+
+  let zero : Self = 0;
+
+  (* The setoid methods *)
+  let equal(x : Self, y : Self) : bool = x =0x y;
+  let element = !zero;
+  let parse = basics#int_of_string;
+  let print : Self -> string = basics#string_of_int;
+
+
+  let from_int (x : int) : Self = x;
+  let to_int (x : Self) : Self = x;
+
+  let est_adulte (x : Self) : bool = to_int (x)  >=  18;
+ 
+  let min (x : Self, y : Self) : Self = int_min (x, y);
+  let max (x : Self, y : Self) : Self = int_max (x, y);
+
+  theorem equal_reflexive :
+      all t : Self, !equal(t, t)
+    proof = assumed;
+
+  theorem equal_symmetric :
+      all t1 t2 : Self, !equal(t1, t2) -> !equal(t2, t1)
+    proof = assumed;
+
+  theorem equal_transitive :
+      all t1 t2 t3 : Self,
+        !equal(t1, t2) -> !equal(t2, t3) -> !equal(t1, t3)
+    proof = assumed;
+
+end
+;;
+
+species Adulte (Age is Age_int) =
+
+end
+;;
+
+collection Age_collection =
+
+  implement Age_int;
+
+end
+;;
+
+collection Adulte_collection =
+
+  implement Adulte (Age_collection);
+
+end
+;;

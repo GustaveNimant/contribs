@@ -1,0 +1,15 @@
+open "basics";;
+
+type scrutin_t =
+  | Presidentiel
+  | Legislatif
+  | Europeen
+  | Municipal
+;;
+
+species Scrutin_S =
+
+  representation = scrutin_t;
+
+end;;
+
