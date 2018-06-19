@@ -1,15 +1,17 @@
 open "basics";;
-open "depute";;
+open "elu";;
 open "electeur";;
-open "parlementaire";;
+open "scrutin";;
 
-species President_republique_S =
+species President_republique_S (S is Scrutin_S) =
 
-  inherit Elu_S;
+  inherit Elu_S (S);
 
-  signature exerce_souverainete : E -> bool;
+  signature exerce_souverainete : Self -> bool;
 
-(* Le Président de la République est élu pour cinq ans au suffrage universel direct.*)
-  property  : all p : E, E!liberte_expression (p);
+  let election = S!election_presidentielle;
+
+   (* Article 6 a - Le Président de la République est élu [ pour cinq ans ] au suffrage universel direct.*)
+
 end;;
 

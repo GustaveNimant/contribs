@@ -1,0 +1,29 @@
+open "basics";;
+open "scrutin";;
+open "elu";;
+open "electeur";;
+open "parlementaire";;
+
+species Electorat_S (S is Scrutin_S, R is Elu_S (S), E is Electeur_S (R, S)) =
+
+  representation = list (E);
+
+  signature vote_referendum : E -> bool;
+
+  property participe_au_referendum : all e : E, (vote_referendum (e));
+
+  property souverainete_nationale : !participe_au_referendum \/ !parlementaire_redige_la_loi;
+
+(* Art 3 b Aucune section du peuple ni aucun individu ne peut s'en attribuer l'exercice.*)
+(*  property exercice_par_tous : all e : E,(exerce_souverainete (e)); *)
+
+(* Art 3 c Le suffrage ... est toujours universel, égal et secret*)
+  property suffrage_universel : all e : E, (E!participe_au_scrutin (e));
+
+  property suffrage_direct : Scrutin_S!est_scrutin_direct; 
+
+(* Art 4 La loi garantit les expressions pluralistes des opinions ... *)
+
+  property liberte_expression : all p : E, E!liberte_expression (p);
+end;;
+

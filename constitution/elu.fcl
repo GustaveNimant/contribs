@@ -1,12 +1,15 @@
 open "basics";;
 open "etre_humain";;
+open "scrutin";;
 
-species Elu_S = 
+species Elu_S (S is Scrutin_S) = 
 
   inherit Etre_humain_S; 
 
-  signature est_eligible : bool;
+  signature est_eligible_par_scrutin : S -> bool;
 
-  signature est_elu : bool;
+  signature est_elu_par_scrutin : S -> bool;
+
+  signature exerce_souverainete : Self -> bool;
 
 end;;

@@ -1,19 +1,39 @@
 open "basics";;
 open "elu";;
+open "scrutin";;
 
 type parlementaire_t =
   | Depute_t
   | Senateur_t
 ;;
 
-species Parlementaire_S = 
+species Parlementaire_S (S is Scrutin_S) = 
 
-  inherit Elu_S;
+  inherit Elu_S (S);
 
   representation = parlementaire_t;
-
+ 
   signature redige_la_loi : Self -> bool;
 
   signature vote_la_loi : Self -> bool;
+
+  let est_depute (p : Self) =
+    match p with
+      | Depute_t -> true
+      | Senateur_t -> false
+  ;
+
+  let est_senateur (p : Self) =
+    match p with
+      | Depute_t -> false
+      | Senateur_t -> true
+  ;
+
+  let exerce_souverainete (p : Self ) =
+      (redige_la_loi (p))
+      &&
+      (vote_la_loi (p))
+  ;
+
 
 end;;

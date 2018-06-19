@@ -8,8 +8,6 @@ species Etre_humain_S =
 
   signature age : int;
 
-  signature est_francais : Self -> bool;
-
   signature liberte_expression : Self -> bool;
 end
 ;;

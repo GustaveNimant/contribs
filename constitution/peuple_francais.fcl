@@ -1,32 +1,9 @@
 open "basics";;
-open "scrutin";;
-open "depute";;
-open "electeur";;
-open "parlementaire";;
+open "francais";;
 
-species Peuple_francais (D is Depute_S, S is Scrutin_S, E is Electeur_S (D, S)) =
+species Peuple_francais_S (F is Francais_S) =
 
-  representation = list (E);
+  representation = list (F);
 
-  signature exerce_souverainete : E -> bool;
-
-  signature vote_referendum : E -> bool;
-
-  property peuple_souverain : all e : E, (vote_referendum (e)) \/
-                                     (D!redige_la_loi (E!est_represente_par (e))) ;
-
-(* Art 3 b Aucune section du peuple ni aucun individu ne peut s'en attribuer l'exercice.*)
-  property exercice_par_tous : (all e : E,(exerce_souverainete (e)))
-                             /\
-                            (ex e : E, ~(exerce_souverainete (e)))
-  ; 
-
-
-(* Art 3 c Le suffrage ... est toujours universel, égal et secret*)
-  property suffrage_universel : (all e : E, (E!est_electeur (e)));
-
-(* Art 4 La loi garantit les expressions pluralistes des opinions ... *)
-
-  property liberte_expression : all p : E, E!liberte_expression (p);
 end;;
 

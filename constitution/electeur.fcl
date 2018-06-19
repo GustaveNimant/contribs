@@ -1,25 +1,24 @@
 open "basics";;
 open "etre_humain";;
-open "depute";;
+open "elu";;
+open "francais";;
 open "scrutin";;
 
-species Electeur_S (D is Depute_S, S is Scrutin_S) =
+species Electeur_S (S is Scrutin_S, E is Elu_S (S)) =
 
-  inherit Etre_humain_S;	
+  inherit Francais_S;	
   
   signature est_adulte : Self -> bool;
 
   signature numero_carte_electeur : int;
 
-  signature est_represente_par : Self -> D;
+  signature est_represente_par : Self -> E ;
 
   signature participe_au_scrutin : Self -> S -> bool;
 
-  logical let est_electeur (e : Self) =
-    est_adulte (e) /\ est_francais (e)
-  ; 
+  let est_electeur (e : Self) = est_adulte (e); 
 
-  property a_le_droit_de_vote : all e : Self, est_electeur (e);
+  property ont_le_droit_de_vote : all e : Self, est_electeur (e);
 
 end
 ;;

@@ -1,4 +1,0 @@
-module Parlement =
-  struct
-  end ;;
-

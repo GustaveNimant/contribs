@@ -1,18 +1,11 @@
-(***********************************************************************)
-(*                                                                     *)
-(*            Constitution                                             *)
-(*                                                                     *)
-(*            Gustave Nimant                                           *)
-(*            Champagne                                                *)
-(*                                                                     *)
-(*  Copyright 2018 -                                                   *)
-(*  Distributed only by permission.                                    *)
-(*                                                                     *)
-(***********************************************************************)
-
 open "basics";;
-open "sets";;
-open "nations";;
 open "etre_humain";;
 
+species Francais_S =
+
+  inherit Etre_humain_S;
+
+  let est_francais (s : Self) = true;
+
+end;;
 

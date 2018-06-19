@@ -1,15 +1,49 @@
 open "basics";;
 
-type scrutin_t =
+type scrutin_direct_t =
   | Presidentiel
   | Legislatif
   | Europeen
   | Municipal
+  | Regional
+  | Cantonal
+  | Referendum
+;;
+
+type scrutin_t =
+  | Scrutin_direct ( scrutin_direct_t )
+  | Scrutin_indirect 
 ;;
 
 species Scrutin_S =
 
   representation = scrutin_t;
+
+  let election_presidentielle = Presidentiel;
+
+  let election_europeenne = Europeen;
+
+  let election_legislative = Legislatif;
+
+  let election_municipale = Municipal;
+
+  let election_regionale = Regional;
+
+  let election_cantonale = Cantonal;
+
+  let election_senatoriale = Municipal;
+
+  let est_scrutin_direct (s : Self) =
+    match s with
+      | Scrutin_direct (_) -> true
+      | Scrutin_indirect -> false
+  ;
+
+  let est_scrutin_indirect (s : Self) =
+    match s with
+      | Scrutin_direct (_) -> false
+      | Scrutin_indirect -> true 
+  ;
 
 end;;
 

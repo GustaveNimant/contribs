@@ -1,9 +1,12 @@
 open "basics";;
-open "sets";;
+open "parlementaire";;
+open "scrutin";;
 
-species Parlement = 
+species Parlement_S (S is Scrutin_S, P is Parlementaire_S (S)) = 
 
-inherit Setoid;	  
+  representation = list (P);
+
+  property parlementaire_redige_la_loi : all p : P, P!redige_la_loi(p);
 
 
 end;;
