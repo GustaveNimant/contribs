@@ -4,6 +4,6 @@ FOCALIZE_SRC=\
   scrutin.fcl \
   electeur.fcl \
   membre_executif.fcl \
+  executif.fcl \
   president_republique.fcl \
-  electorat.fcl \
 

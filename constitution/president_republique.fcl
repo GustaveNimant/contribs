@@ -2,12 +2,16 @@ open "basics";;
 open "scrutin";;
 open "elu";;
 open "membre_executif";;
+open "executif";;
 
-species President_republique_S (S is Scrutin_S) =
+species President_republique_S (Scr is Scrutin_S,
+                                Mex is Membre_executif_S,
+                                Exe is Executif_S(Mex) 
+                                )=
 
-  inherit Elu_S (S);
+  inherit Elu_S (Scr);
 
-  representation = membre_executif#membre_executif_t;
+  representation = Mex;
 
   signature exerce_souverainete : Self -> bool;
 
@@ -19,5 +23,12 @@ species President_republique_S (S is Scrutin_S) =
 
    property propriete_article_12_a : all p : Self, peut_dissoudre_assemblee (p) -> consulte_premier_ministre_avant_dissolution (p);
 
+  (* Article 8 a - Le Président de la République nomme le Premier ministre. *)
+
+   signature nomme_premier_ministre : Self -> Mex -> bool;
+
+  (* Article 8 b - ...Il met fin à ses fonctions sur la présentation par celui-ci de la démission du Gouvernement. *)
+
+   signature demissionne_gouvernement : Self -> Exe -> bool;
 end;;
 
