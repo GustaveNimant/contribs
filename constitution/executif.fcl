@@ -5,4 +5,8 @@ species Executif_S (Me is Membre_executif_S) =
 
   representation = list (Me);
 
+  signature premier_ministre : Self -> Me;
+
+  signature premier_ministre_demissionne : Self -> bool;
+   
 end;;

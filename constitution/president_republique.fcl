@@ -3,10 +3,16 @@ open "scrutin";;
 open "elu";;
 open "membre_executif";;
 open "executif";;
+open "loi";;
+open "lois";;
+open "ordonnance";;
 
 species President_republique_S (Scr is Scrutin_S,
                                 Mex is Membre_executif_S,
-                                Exe is Executif_S(Mex) 
+                                Exe is Executif_S(Mex),
+                                Ord is Ordonnance_S (Mex, Exe), 
+                                Loi is Loi_S (Mex, Exe), 
+                                Loi_set is Lois_S (Mex, Exe, Loi)
                                 )=
 
   inherit Elu_S (Scr);
@@ -15,7 +21,23 @@ species President_republique_S (Scr is Scrutin_S,
 
   signature exerce_souverainete : Self -> bool;
 
-  (* Article 12 a - Le Président de la République peut, après consultation du Premier ministre et des présidents des assemblées, prononcer la dissolution de l'Assemblée nationale. *)
+-- Article 8 a - Le Président de la République nomme le Premier ministre. 
+
+   signature nomme_premier_ministre : Self -> Mex -> bool;
+
+-- Article 8 b - ...Il met fin à ses fonctions sur la présentation par celui-ci de la démission du Gouvernement. 
+
+   signature demissionne_gouvernement : Self -> Exe -> bool;
+
+   property demission_premier_ministre : all p : Self, all g : Exe, demissionne_gouvernement (p, g) -> Exe!premier_ministre_demissionne (g);
+
+-- Article 10 a - Le Président de la République promulgue les lois dans les quinze jours qui suivent la transmission au Gouvernement de la loi définitivement adoptée. 
+
+   signature promulge_une_loi : Self -> Loi -> bool;
+
+   property promulge_les_lois : all p : Self, all l : Loi, promulge_une_loi (p, l);
+
+-- Article 12 a - Le Président de la République peut, après consultation du Premier ministre et des présidents des assemblées, prononcer la dissolution de l'Assemblée nationale.
 
    signature consulte_premier_ministre_avant_dissolution : Self -> bool;
 
@@ -23,12 +45,12 @@ species President_republique_S (Scr is Scrutin_S,
 
    property propriete_article_12_a : all p : Self, peut_dissoudre_assemblee (p) -> consulte_premier_ministre_avant_dissolution (p);
 
-  (* Article 8 a - Le Président de la République nomme le Premier ministre. *)
+-- Article 13 a - Le Président de la République signe les ordonnances et les décrets délibérés en conseil des ministres. 
 
-   signature nomme_premier_ministre : Self -> Mex -> bool;
+   signature signe_une_ordonnance : Self -> Ord -> bool;
 
-  (* Article 8 b - ...Il met fin à ses fonctions sur la présentation par celui-ci de la démission du Gouvernement. *)
+   property signe_les_ordonnances : all p : Self, all o : Ord, signe_une_ordonnance (p, o);
 
-   signature demissionne_gouvernement : Self -> Exe -> bool;
+
 end;;
 

@@ -15,20 +15,20 @@ species Membre_executif_S =
 
   representation = membre_executif_t;
  
-  let est_le_president (me : Self) = 
-    match me with 
+  let est_le_president (mex : Self) = 
+    match mex with 
       | President -> true
       | Membre_du_gouvernement (_) -> false 
   ;
 
-  let est_un_membre_du_gouvernement (me : Self) = 
-    match me with 
+  let est_un_membre_du_gouvernement (mex : Self) = 
+    match mex with 
       | President -> false
       | Membre_du_gouvernement (_) -> true
   ;
 
-  let est_premier_ministre (me : Self) =
-    match me with 
+  let est_premier_ministre (mex : Self) =
+    match mex with 
       | President -> false
       | Membre_du_gouvernement (g) -> 
         match g with 
@@ -36,13 +36,15 @@ species Membre_executif_S =
           | Ministre (_) -> false
   ;
 
-  let est_un_ministre (me : Self) = 
-    match me with 
+  let est_un_ministre (mex : Self) = 
+    match mex with 
       | President -> false
       | Membre_du_gouvernement (g) -> 
         match g with 
           | Premier_ministre -> false
           | Ministre (_) -> true
   ;
+
+
 
 end;;

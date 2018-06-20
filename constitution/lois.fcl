@@ -1,0 +1,14 @@
+open "basics";;
+open "executif";;
+open "membre_executif";;
+open "loi";;
+
+species Lois_S (
+                Mex is Membre_executif_S, 
+                Exe is Executif_S (Mex),
+                Loi is Loi_S (Mex, Exe)
+               ) = 
+
+  representation = list (Loi);
+
+end;;
