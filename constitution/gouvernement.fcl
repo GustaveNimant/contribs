@@ -1,0 +1,8 @@
+open "basics";;
+open "ministre";;
+
+species Gouvernement_S (M is Ministre_S) = 
+
+  representation = list (M);
+ 
+end;;

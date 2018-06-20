@@ -1,0 +1,27 @@
+open "basics";;
+open "francais";;
+
+type ministre_t =
+  | Premier_ministre
+  | Ministre
+;;
+
+species Ministre_S = 
+
+  inherit Francais_S;
+
+  representation = ministre_t;
+
+  let est_premier_ministre (p : Self) =
+    match p with
+      | Premier_ministre -> true
+      | Ministre -> false
+  ;
+
+  let est_ministre (p : Self) =
+    match p with
+      | Premier_ministre -> false
+      | Ministre -> true
+  ;
+
+end;;

@@ -1,0 +1,25 @@
+open "basics";;
+open "scrutin";;
+open "elu";;
+open "electeur";;
+open "parlement";;
+
+species Souverainete_Nationale_S (S is Scrutin_S, 
+                     R is Elu_S (S), 
+                     E is Electeur_S (R, S)
+                     ) =
+
+  (* Article 3 a - La souveraineté nationale appartient au peuple qui l'exerce par ses représentants et par la voie du référendum. *)
+
+  signature vote_referendum : E -> bool;
+
+  property participe_au_referendum : all e : E, (vote_referendum (e));
+
+  property souverainete_nationale : !participe_au_referendum \/ parlement#parlement_est_souverain;
+
+  (* Article 3 b - Aucune section du peuple ni aucun individu ne peut s'en attribuer l'exercice.*)
+
+  (*  property exercice_par_tous : all e : E,(exerce_souverainete (e)); *)
+
+end;;
+

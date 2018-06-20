@@ -3,8 +3,8 @@ open "elu";;
 open "scrutin";;
 
 type parlementaire_t =
-  | Depute_t
-  | Senateur_t
+  | Depute
+  | Senateur
 ;;
 
 species Parlementaire_S (S is Scrutin_S) = 
@@ -19,14 +19,14 @@ species Parlementaire_S (S is Scrutin_S) =
 
   let est_depute (p : Self) =
     match p with
-      | Depute_t -> true
-      | Senateur_t -> false
+      | Depute -> true
+      | Senateur -> false
   ;
 
   let est_senateur (p : Self) =
     match p with
-      | Depute_t -> false
-      | Senateur_t -> true
+      | Depute -> false
+      | Senateur -> true
   ;
 
   let exerce_souverainete (p : Self ) =
@@ -34,6 +34,5 @@ species Parlementaire_S (S is Scrutin_S) =
       &&
       (vote_la_loi (p))
   ;
-
 
 end;;

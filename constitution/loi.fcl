@@ -1,0 +1,17 @@
+open "basics";;
+open "executif";;
+open "membre_executif";;
+
+species Loi_S (M is Membre_executif (E), E is Executif_S) = 
+
+  signature est_deliberee : Self -> bool;
+
+  signature projet_de_loi_est_soumis : Self -> M -> bool;
+
+  (* Article 10 a - Le Président de la République promulgue les lois dans les quinze jours qui suivent la transmission au Gouvernement de la loi définitivement adoptée. *)
+
+  signature loi_est_promulguee_par : Self -> M -> bool;
+
+  property propriete_article_10_a : all m : M, M!est_le_president (m);
+
+end;;

@@ -1,0 +1,19 @@
+open "basics";;
+open "executif";;
+open "membre_executif";;
+
+species Ordonnance_S (M is Membre_executif (E), E is Executif_S) = 
+
+  signature est_deliberee_par : Self -> M -> bool;
+
+  signature est_signee_par : Self -> M -> bool;
+
+  signature est_prise_par : Self -> M -> bool;
+
+  (* Article 13 a - Le Président de la République signe les ordonnances et les décrets délibérés en conseil des ministres. *)
+
+  property propriete_article_13_a : 
+           all s : Self, all m : M, 
+           est_signee_par (s, m) -> M!est_le_president (m);
+
+end;;

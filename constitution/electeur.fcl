@@ -1,5 +1,4 @@
 open "basics";;
-open "etre_humain";;
 open "elu";;
 open "francais";;
 open "scrutin";;

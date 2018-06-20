@@ -8,5 +8,6 @@ species Parlement_S (S is Scrutin_S, P is Parlementaire_S (S)) =
 
   property parlementaire_redige_la_loi : all p : P, P!redige_la_loi(p);
 
+  property parlement_est_souverain : all p : P, P!exerce_souverainete (p);
 
 end;;
