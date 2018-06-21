@@ -1,8 +1,8 @@
 open "basics";;
 open "parlementaire";;
-open "scrutin";;
+open "un_scrutin";;
 
-species Parlement_S (S is Scrutin_S, P is Parlementaire_S (S)) = 
+species Parlement_S (S is Un_Scrutin_S, P is Un_Parlementaire_S (S)) = 
 
   representation = list (P);
 

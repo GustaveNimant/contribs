@@ -1,11 +1,11 @@
 FOCALIZE_SRC=\
-  etre_humain.fcl \
-  francais.fcl \
-  scrutin.fcl \
-  electeur.fcl \
-  membre_executif.fcl \
-  loi.fcl \
-  lois.fcl \
-  ordonnance.fcl \
+  un_etre_humain.fcl \
+  un_francais.fcl \
+  un_scrutin.fcl \
+  un_electeur.fcl \
+  un_membre_de_l_executif.fcl \
+  une_loi.fcl \
+  les_lois.fcl \
+  une_ordonnance.fcl \
   president_republique.fcl \
 

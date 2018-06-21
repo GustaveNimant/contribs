@@ -1,6 +1,6 @@
 open "basics";;
 
-species Etre_humain_S =
+species Un_Etre_Humain_S =
 
   signature nom : string;
 

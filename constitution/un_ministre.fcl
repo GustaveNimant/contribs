@@ -1,12 +1,12 @@
 open "basics";;
-open "francais";;
+open "un_francais";;
 
 type ministre_t =
   | Premier_ministre
   | Ministre
 ;;
 
-species Ministre_S = 
+species Un_Ministre_S = 
 
   inherit Francais_S;
 

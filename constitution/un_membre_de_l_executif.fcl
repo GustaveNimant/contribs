@@ -1,5 +1,5 @@
 open "basics";;
-open "ministre";;
+open "un_ministre";;
 
 type membre_du_gouvernement_t =
   | Premier_ministre 
@@ -11,7 +11,7 @@ type membre_executif_t =
   | Membre_du_gouvernement (membre_du_gouvernement_t) 
 ;;
 
-species Membre_executif_S = 
+species Un_Membre_de_l_executif_S = 
 
   representation = membre_executif_t;
  

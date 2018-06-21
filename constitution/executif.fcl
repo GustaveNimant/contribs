@@ -1,7 +1,7 @@
 open "basics";;
-open "membre_executif";;
+open "un_membre_de_l_executif";;
 
-species Executif_S (Me is Membre_executif_S) = 
+species Executif_S (Me is Un_Membre_de_l_executif_S) = 
 
   representation = list (Me);
 

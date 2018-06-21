@@ -1,10 +1,10 @@
 open "basics";;
-open "etre_humain";;
-open "scrutin";;
+open "un_etre_humain";;
+open "un_scrutin";;
 
-species Elu_S (S is Scrutin_S) = 
+species Elu_S (S is Un_Scrutin_S) = 
 
-  inherit Etre_humain_S; 
+  inherit Un_Etre_Humain_S; 
 
   signature est_eligible_par_scrutin : S -> bool;
 

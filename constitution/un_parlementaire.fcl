@@ -1,13 +1,13 @@
 open "basics";;
-open "elu";;
-open "scrutin";;
+open "un_elu";;
+open "un_scrutin";;
 
 type parlementaire_t =
   | Depute
   | Senateur
 ;;
 
-species Parlementaire_S (S is Scrutin_S) = 
+species Un_Parlementaire_S (S is Un_Scrutin_S) = 
 
   inherit Elu_S (S);
 

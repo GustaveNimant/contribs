@@ -15,7 +15,7 @@ type scrutin_t =
   | Scrutin_indirect 
 ;;
 
-species Scrutin_S =
+species Un_Scrutin_S =
 
   representation = scrutin_t;
 

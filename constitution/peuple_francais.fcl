@@ -1,5 +1,5 @@
 open "basics";;
-open "francais";;
+open "un_francais";;
 
 species Peuple_francais_S (F is Francais_S) =
 

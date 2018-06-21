@@ -1,0 +1,13 @@
+open "basics";;
+open "un_etre_humain";;
+
+species Francais_S =
+
+  inherit Un_Etre_Humain_S;
+
+  let est_francais (s : Self) = true;
+
+  let est_adulte (s : Self) = true;
+
+end;;
+

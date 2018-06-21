@@ -1,8 +1,8 @@
 open "basics";;
-open "membre_executif";;
+open "un_membre_de_l_executif";;
 open "executif";;
 
-species Ordonnance_S (Mex is Membre_executif_S, 
+species Ordonnance_S (Mex is Un_Membre_de_l_executif_S, 
                       Exe is Executif_S (Mex)
                       ) = 
 

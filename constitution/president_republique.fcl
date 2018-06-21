@@ -1,18 +1,18 @@
 open "basics";;
-open "scrutin";;
-open "elu";;
-open "membre_executif";;
+open "un_scrutin";;
+open "un_elu";;
+open "un_membre_de_l_executif";;
 open "executif";;
-open "loi";;
-open "lois";;
-open "ordonnance";;
+open "une_loi";;
+open "les_lois";;
+open "une_ordonnance";;
 
-species President_republique_S (Scr is Scrutin_S,
-                                Mex is Membre_executif_S,
+species President_republique_S (Scr is Un_Scrutin_S,
+                                Mex is Un_Membre_de_l_executif_S,
                                 Exe is Executif_S(Mex),
                                 Ord is Ordonnance_S (Mex, Exe), 
                                 Loi is Loi_S (Mex, Exe), 
-                                Loi_set is Lois_S (Mex, Exe, Loi)
+                                Loi_set is Les_Lois_S (Mex, Exe, Loi)
                                 )=
 
   inherit Elu_S (Scr);
@@ -21,7 +21,7 @@ species President_republique_S (Scr is Scrutin_S,
 
   signature exerce_souverainete : Self -> bool;
 
--- Article 8 a - Le Président de la République nomme le Premier ministre. 
+-- Article 8 a - Le Président de la République nomme le Premier un_ministre. 
 
    signature nomme_premier_ministre : Self -> Mex -> bool;
 
@@ -31,13 +31,13 @@ species President_republique_S (Scr is Scrutin_S,
 
    property demission_premier_ministre : all p : Self, all g : Exe, demissionne_gouvernement (p, g) -> Exe!premier_ministre_demissionne (g);
 
--- Article 10 a - Le Président de la République promulgue les lois dans les quinze jours qui suivent la transmission au Gouvernement de la loi définitivement adoptée. 
+-- Article 10 a - Le Président de la République promulgue les les_lois dans les quinze jours qui suivent la transmission au Gouvernement de la une_loi définitivement adoptée. 
 
    signature promulge_une_loi : Self -> Loi -> bool;
 
    property promulge_les_lois : all p : Self, all l : Loi, promulge_une_loi (p, l);
 
--- Article 12 a - Le Président de la République peut, après consultation du Premier ministre et des présidents des assemblées, prononcer la dissolution de l'Assemblée nationale.
+-- Article 12 a - Le Président de la République peut, après consultation du Premier un_ministre et des présidents des assemblées, prononcer la dissolution de l'Assemblée nationale.
 
    signature consulte_premier_ministre_avant_dissolution : Self -> bool;
 

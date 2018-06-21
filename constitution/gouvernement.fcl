@@ -1,7 +1,7 @@
 open "basics";;
-open "ministre";;
+open "un_ministre";;
 
-species Gouvernement_S (M is Ministre_S) = 
+species Gouvernement_S (M is Un_Ministre_S) = 
 
   representation = list (M);
  

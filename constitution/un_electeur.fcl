@@ -1,0 +1,24 @@
+open "basics";;
+open "un_elu";;
+open "un_francais";;
+open "un_scrutin";;
+
+species Electeur_S (Scr is Un_Scrutin_S, 
+                    Elu is Elu_S (Scr)
+                    ) =
+
+  inherit Francais_S;	
+  
+  signature numero_carte_electeur : int;
+
+  signature est_represente_par : Self -> Elu ;
+
+  signature participe_au_scrutin : Self -> Scr -> bool;
+
+  let est_electeur (e : Self) = est_adulte (e); 
+
+  property a_le_droit_de_vote : all e : Self, est_electeur (e);
+
+end
+;;
+

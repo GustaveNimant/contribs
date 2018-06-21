@@ -1,10 +1,10 @@
 open "basics";;
 open "executif";;
-open "membre_executif";;
-open "loi";;
+open "un_membre_de_l_executif";;
+open "une_loi";;
 
-species Lois_S (
-                Mex is Membre_executif_S, 
+species Les_Lois_S (
+                Mex is Un_Membre_de_l_executif_S, 
                 Exe is Executif_S (Mex),
                 Loi is Loi_S (Mex, Exe)
                ) = 

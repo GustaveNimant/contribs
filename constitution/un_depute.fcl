@@ -3,7 +3,7 @@ open "parlementaire";;
 
 species Depute_S = 
 
-  inherit Parlementaire_S; 
+  inherit Un_Parlementaire_S; 
 
   signature controle_decision_gouvernement : bool;
   

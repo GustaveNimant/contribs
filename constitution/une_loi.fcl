@@ -1,8 +1,8 @@
 open "basics";;
 open "executif";;
-open "membre_executif";;
+open "un_membre_de_l_executif";;
 
-species Loi_S (Mex is Membre_executif_S, 
+species Loi_S (Mex is Un_Membre_de_l_executif_S, 
                Exe is Executif_S (Mex)
                ) = 
 
@@ -10,7 +10,7 @@ species Loi_S (Mex is Membre_executif_S,
 
   signature projet_de_loi_est_soumis : Self -> Mex -> bool;
 
-  (* Article 10 a - Le Président de la République promulgue les lois dans les quinze jours qui suivent la transmission au Gouvernement de la loi définitivement adoptée. *)
+  (* Article 10 a - Le Président de la République promulgue les les_lois dans les quinze jours qui suivent la transmission au Gouvernement de la une_loi définitivement adoptée. *)
 
   signature loi_est_promulguee_par : Self -> Mex -> bool;
 
