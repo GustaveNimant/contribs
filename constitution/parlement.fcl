@@ -1,8 +1,11 @@
 open "basics";;
 open "parlementaire";;
 open "un_scrutin";;
+open "un_organe_deliberant";;
 
 species Parlement_S (S is Un_Scrutin_S, P is Un_Parlementaire_S (S)) = 
+
+  inherit Un_Organe_deliberant_S;
 
   representation = list (P);
 

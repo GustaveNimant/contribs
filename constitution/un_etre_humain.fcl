@@ -1,4 +1,5 @@
 open "basics";;
+open "les_nations";;
 
 species Un_Etre_Humain_S =
 
@@ -6,9 +7,23 @@ species Un_Etre_Humain_S =
 
   signature prenom : string;
 
+  signature date_de_naissance : int * (string * int) ; -- annee mois jour
+
   signature age : int;
 
-  signature liberte_expression : Self -> bool;
+  signature est_adulte : Self -> bool;
+
+  signature est_un_homme : Self -> bool;
+
+  signature est_une_femme : Self -> bool;
+
+  signature est_un_enfant : Self -> bool;
+
+  signature appartient_a_la_nation : Self -> les_nations#nation; 
+
+  let est_francais (s : Self) : bool =
+    appartient_a_la_nation (s) = les_nations#France;
+    
 end
 ;;
 

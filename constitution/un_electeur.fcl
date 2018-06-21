@@ -7,7 +7,7 @@ species Electeur_S (Scr is Un_Scrutin_S,
                     Elu is Elu_S (Scr)
                     ) =
 
-  inherit Francais_S;	
+  inherit Un_Francais_S;	
   
   signature numero_carte_electeur : int;
 

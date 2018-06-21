@@ -1,19 +1,22 @@
 open "basics";;
 open "executif";;
 open "un_membre_de_l_executif";;
+open "un_texte_legislatif";;
 
-species Loi_S (Mex is Un_Membre_de_l_executif_S, 
-               Exe is Executif_S (Mex)
+species Loi_S (UMe is Un_Membre_de_l_executif_S, 
+               Exe is Executif_S (UMe)
                ) = 
 
-  signature est_deliberee : Self -> bool;
+  inherit Un_Texte_legislatif_S (Exe);
 
-  signature projet_de_loi_est_soumis : Self -> Mex -> bool;
+  signature est_objet_de_deliberation_par : Self -> Exe -> bool;
+
+  signature projet_de_loi_est_soumis : Self -> UMe -> bool;
 
   (* Article 10 a - Le Président de la République promulgue les les_lois dans les quinze jours qui suivent la transmission au Gouvernement de la une_loi définitivement adoptée. *)
 
-  signature loi_est_promulguee_par : Self -> Mex -> bool;
+  signature loi_est_promulguee_par : Self -> UMe -> bool;
 
-  property article_10_a : all mex : Mex, Mex!est_le_president (mex);
+  property article_10_a : all mex : UMe, UMe!est_le_president (mex);
 
 end;;

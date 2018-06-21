@@ -1,7 +1,10 @@
 open "basics";;
 open "un_ministre";;
+open "un_organe_deliberant";;
 
 species Gouvernement_S (M is Un_Ministre_S) = 
+
+  inherit Un_Organe_deliberant_S;
 
   representation = list (M);
  

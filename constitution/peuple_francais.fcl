@@ -1,7 +1,7 @@
 open "basics";;
 open "un_francais";;
 
-species Peuple_francais_S (F is Francais_S) =
+species Peuple_francais_S (F is Un_Francais_S) =
 
   representation = list (F);
 

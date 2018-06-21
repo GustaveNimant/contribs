@@ -1,21 +1,24 @@
 open "basics";;
 open "un_membre_de_l_executif";;
 open "executif";;
+open "un_texte_legislatif";;
 
-species Ordonnance_S (Mex is Un_Membre_de_l_executif_S, 
-                      Exe is Executif_S (Mex)
+species Ordonnance_S (UMe is Un_Membre_de_l_executif_S, 
+                      Exe is Executif_S (UMe)
                       ) = 
 
-  signature est_deliberee_par : Self -> Mex -> bool;
+  inherit Un_Texte_legislatif_S (Exe) ;
 
-  signature est_signee_par : Self -> Mex -> bool;
+  signature est_objet_deliberation_par : Self -> Exe -> bool;
 
-  signature est_prise_par : Self -> Mex -> bool;
+  signature est_prise_par : Self -> UMe -> bool;
 
   (* Article 13 a - Le Président de la République signe les ordonnances et les décrets délibérés en conseil des ministres. *)
 
+  signature est_signee_par : Self -> UMe -> bool;
+
   property propriete_article_13_a : 
-           all s : Self, all m : Mex, 
-           est_signee_par (s, m) -> Mex!est_le_president (m);
+           all s : Self, all m : UMe, 
+           est_signee_par (s, m) -> UMe!est_le_president (m);
 
 end;;

@@ -4,9 +4,9 @@ open "un_membre_de_l_executif";;
 open "une_loi";;
 
 species Les_Lois_S (
-                Mex is Un_Membre_de_l_executif_S, 
-                Exe is Executif_S (Mex),
-                Loi is Loi_S (Mex, Exe)
+                UMe is Un_Membre_de_l_executif_S, 
+                Exe is Executif_S (UMe),
+                Loi is Loi_S (UMe, Exe)
                ) = 
 
   representation = list (Loi);

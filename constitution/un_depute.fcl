@@ -1,7 +1,7 @@
 open "basics";;
 open "parlementaire";;
 
-species Depute_S = 
+species Un_Depute_S = 
 
   inherit Un_Parlementaire_S; 
 

@@ -1,7 +1,10 @@
 open "basics";;
 open "un_membre_de_l_executif";;
+open "un_organe_deliberant";;
 
 species Executif_S (Me is Un_Membre_de_l_executif_S) = 
+
+  inherit Un_Organe_deliberant_S;
 
   representation = list (Me);
 

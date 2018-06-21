@@ -1,0 +1,7 @@
+open "basics";;
+
+species Un_Organe_deliberant_S =
+
+  signature delibere : Self -> bool;
+
+end;;

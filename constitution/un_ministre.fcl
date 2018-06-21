@@ -8,7 +8,7 @@ type ministre_t =
 
 species Un_Ministre_S = 
 
-  inherit Francais_S;
+  inherit Un_Francais_S;
 
   representation = ministre_t;
 

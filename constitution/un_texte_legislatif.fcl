@@ -1,0 +1,7 @@
+open "basics";;
+open "un_organe_deliberant";;
+
+species Un_Texte_legislatif_S (UOd is Un_Organe_deliberant_S) =
+
+  signature est_objet_de_deliberation_par : Self -> UOd -> bool;
+end;;
