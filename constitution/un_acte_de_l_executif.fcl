@@ -1,0 +1,24 @@
+open "basics";;
+
+type acte_de_l_executif_t =
+  | Decret 
+  | Ordonnance 
+;;
+
+species Un_Acte_de_l_executif_S =
+
+  representation = acte_de_l_executif_t;
+
+  let est_un_decret (s : Self) =
+    match s with
+      | Decret -> true
+      | Ordonnance -> false
+  ;
+
+  let est_une_ordonnance (s : Self) =
+    match s with
+      | Decret -> false
+      | Ordonnance -> true
+  ;
+
+end;;

@@ -1,14 +1,5 @@
 open "basics";;
-open "un_membre_de_l_executif";;
-open "executif";;
-open "un_texte_legislatif";;
 
-species Un_Decret_S (UMe is Un_Membre_de_l_executif_S, 
-                     Exe is Executif_S (UMe)
-                     ) = 
-
-  inherit Un_Texte_legislatif_S (Exe) ;
-
-  signature est_signe_par : Self -> UMe -> bool;
+species Un_Decret_S =
 
 end;;

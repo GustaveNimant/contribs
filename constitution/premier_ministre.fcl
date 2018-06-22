@@ -1,0 +1,15 @@
+open "basics";;
+
+type premier_ministre_t =
+  | Premier_Ministre
+;;
+
+species Premier_Ministre_S = 
+
+  representation = premier_ministre_t;
+
+  let est_premier_ministre (p : Self) = true;
+
+  let est_un_ministre (p : Self) = false;
+
+end;;

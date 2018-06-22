@@ -1,14 +1,10 @@
 open "basics";;
-open "executif";;
-open "un_membre_de_l_executif";;
 open "une_loi";;
 
 species Les_Lois_S (
-                UMe is Un_Membre_de_l_executif_S, 
-                Exe is Executif_S (UMe),
-                Loi is Loi_S (UMe, Exe)
+                ULo is Une_Loi_S
                ) = 
 
-  representation = list (Loi);
+  representation = list (ULo);
 
 end;;

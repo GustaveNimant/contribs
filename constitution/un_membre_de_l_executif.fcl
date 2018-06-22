@@ -1,19 +1,15 @@
 open "basics";;
 open "un_ministre";;
+open "un_membre_du_gouvernement";;
 
-type membre_du_gouvernement_t =
-  | Premier_ministre 
-  | Ministre (ministre_t)
-;;
-
-type membre_executif_t =
+type un_membre_de_l_executif_t =
   | President 
-  | Membre_du_gouvernement (membre_du_gouvernement_t) 
+  | Membre_du_gouvernement (un_membre_du_gouvernement_t) 
 ;;
 
 species Un_Membre_de_l_executif_S = 
 
-  representation = membre_executif_t;
+  representation = un_membre_de_l_executif_t;
  
   let est_le_president (mex : Self) = 
     match mex with 
@@ -26,25 +22,5 @@ species Un_Membre_de_l_executif_S =
       | President -> false
       | Membre_du_gouvernement (_) -> true
   ;
-
-  let est_premier_ministre (mex : Self) =
-    match mex with 
-      | President -> false
-      | Membre_du_gouvernement (g) -> 
-        match g with 
-          | Premier_ministre -> true
-          | Ministre (_) -> false
-  ;
-
-  let est_un_ministre (mex : Self) = 
-    match mex with 
-      | President -> false
-      | Membre_du_gouvernement (g) -> 
-        match g with 
-          | Premier_ministre -> false
-          | Ministre (_) -> true
-  ;
-
-
 
 end;;

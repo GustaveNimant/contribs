@@ -1,41 +1,41 @@
 open "basics";;
 open "un_scrutin";;
 open "un_elu";;
-open "un_membre_de_l_executif";;
-open "executif";;
+open "un_membre_du_gouvernement";;
+open "gouvernement";;
 open "une_loi";;
 open "les_lois";;
-open "une_ordonnance";;
+open "un_acte_de_l_executif";;
 
 species President_republique_S (Scr is Un_Scrutin_S,
-                                UMe is Un_Membre_de_l_executif_S,
-                                Exe is Executif_S(UMe),
-                                Ord is Ordonnance_S (UMe, Exe), 
-                                Loi is Loi_S (UMe, Exe), 
-                                Loi_set is Les_Lois_S (UMe, Exe, Loi)
+                                Umg is Un_Membre_du_gouvernement_S,
+                                Gou is Gouvernement_S(Umg),
+                                UAe is Un_Acte_de_l_executif_S,
+                                ULo is Une_Loi_S, 
+                                LLo is Les_Lois_S (ULo)
                                 )=
 
   inherit Elu_S (Scr);
 
-  representation = UMe;
+  representation = Umg;
 
   signature exerce_souverainete : Self -> bool;
 
 -- Article 8 a - Le Président de la République nomme le Premier ministre. 
 
-  signature nomme_le_premier_ministre : Self -> UMe -> bool;
+  signature nomme_le_premier_ministre : Self ->  -> bool;
 
 -- Article 8 b - ...Il met fin à ses fonctions sur la présentation par celui-ci de la démission du Gouvernement. 
 
-  signature demissionne_gouvernement : Self -> Exe -> bool;
+  signature demissionne_gouvernement : Self -> Gou -> bool;
 
   property demission_premier_ministre : all p : Self, all g : Exe, demissionne_gouvernement (p, g) -> Exe!premier_ministre_demissionne (g);
 
 -- Article 10 a - Le Président de la République promulgue les les_lois dans les quinze jours qui suivent la transmission au Gouvernement de la une_loi définitivement adoptée. 
 
-  signature promulge_une_loi : Self -> Loi -> bool;
+  signature promulge_une_loi : Self -> ULo -> bool;
 
-  property promulge_les_lois : all p : Self, all l : Loi, promulge_une_loi (p, l);
+  property promulge_les_lois : all p : Self, all l : ULo, promulge_une_loi (p, l);
 
 -- Article 12 a - Le Président de la République peut, après consultation du Premier ministre et des présidents des assemblées, prononcer la dissolution de l'Assemblée nationale.
 
@@ -47,9 +47,9 @@ species President_republique_S (Scr is Un_Scrutin_S,
 
 -- Article 13 a - Le Président de la République signe les ordonnances et les décrets délibérés en conseil des ministres. 
 
-  signature signe_une_ordonnance : Self -> Ord -> bool;
+  signature signe_un_acte_de_l_executif : Self -> UAe -> bool;
 
-  property signe_les_ordonnances : all p : Self, all o : Ord, signe_une_ordonnance (p, o);
+  property article_13_a : all p : Self, all o : UAe , all e : UOr, signe_un_acte_de_l_executif (p, o) -> Exe!delibere_sur (o, e);
 
 end;;
 

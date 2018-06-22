@@ -1,11 +1,11 @@
 open "basics";;
-open "un_ministre";;
+open "un_membre_du_gouvernement";;
 open "un_organe_deliberant";;
 
-species Gouvernement_S (M is Un_Ministre_S) = 
+species Gouvernement_S (UMg is Un_Membre_du_gouvernement_S) = 
 
   inherit Un_Organe_deliberant_S;
 
-  representation = list (M);
+  representation = list (UMg);
  
 end;;

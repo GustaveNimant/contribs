@@ -1,27 +1,15 @@
 open "basics";;
-open "un_francais";;
 
-type ministre_t =
-  | Premier_ministre
+type un_ministre_t =
   | Ministre
 ;;
 
 species Un_Ministre_S = 
 
-  inherit Un_Francais_S;
-
   representation = ministre_t;
 
-  let est_premier_ministre (p : Self) =
-    match p with
-      | Premier_ministre -> true
-      | Ministre -> false
-  ;
+  let est_premier_ministre (p : Self) = false;;
 
-  let est_ministre (p : Self) =
-    match p with
-      | Premier_ministre -> false
-      | Ministre -> true
-  ;
+  let est_un_ministre (p : Self) = true;;
 
 end;;

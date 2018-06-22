@@ -1,0 +1,26 @@
+open "basics";;
+open "premier_ministre";;
+open "un_ministre";;
+
+type un_membre_du_gouvernement_t =
+  | Premier_ministre (premier_ministre_t) 
+  | Ministre (ministre_t)
+;;
+
+species Un_Membre_du_gouvernement_S = 
+
+  representation = un_membre_du_gouvernement_t;
+ 
+  let est_premier_ministre (umg : Self) =
+    match umg with 
+      | Premier_ministre -> true
+      | Ministre (_) -> false
+  ;
+
+  let est_un_ministre (umg : Self) = 
+    match umg with 
+      | Premier_ministre -> false
+      | Ministre (_) -> true
+  ;
+
+end;;
