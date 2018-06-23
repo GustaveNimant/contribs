@@ -3,8 +3,8 @@ open "un_elu";;
 open "un_francais";;
 open "un_scrutin";;
 
-species Un_Electeur_S (Scr is Un_Scrutin_S, 
-                       UEl is Un_Elu_S (Scr)
+species Un_Electeur_S (USc is Un_Scrutin_S, 
+                       UEl is Un_Elu_S (USc)
                        ) =
 
   inherit Un_Francais_S;	
@@ -13,7 +13,7 @@ species Un_Electeur_S (Scr is Un_Scrutin_S,
 
   signature est_represente_par : Self -> UEl ;
 
-  signature participe_au_scrutin : Self -> Scr -> bool;
+  signature participe_au_scrutin : Self -> USc -> bool;
 
   let est_electeur (e : Self) = est_adulte (e); 
 

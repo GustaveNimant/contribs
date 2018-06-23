@@ -1,6 +1,9 @@
 open "basics";;
+open "sets";;
 
 species Un_Membre_de_l_executif_S = 
+
+  inherit Setoid;
 
   signature est_le_president : Self -> bool;
 

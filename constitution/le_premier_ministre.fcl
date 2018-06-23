@@ -1,7 +1,7 @@
 open "basics";;
 open "un_membre_du_gouvernement";;
 
-species Premier_ministre_S = 
+species Le_Premier_ministre_S = 
 
   inherit Un_Membre_du_gouvernement_S;
 

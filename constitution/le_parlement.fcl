@@ -1,0 +1,20 @@
+open "basics";;
+open "basic_sets";;
+open "un_scrutin";;
+open "un_organe_deliberant";;
+open "un_parlementaire";;
+open "un_acte_de_l_executif";;
+
+species Le_Parlement_S (USc is Un_Scrutin_S, 
+                        UAe is Un_Acte_de_l_executif_S,
+                        UPa is Un_Parlementaire_S (USc, UAe),
+                        LPa is Finite_set (UPa) 
+                        ) = 
+
+  inherit Un_Organe_deliberant_S;
+
+  property parlementaire_redige_la_loi : all p : UPa, UPa!redige_la_loi (p);
+
+  property parlement_est_souverain : all p : UPa, UPa!exerce_sa_souverainete (p);
+
+end;;

@@ -1,24 +1,12 @@
 open "basics";;
-
-type acte_de_l_executif_t =
-  | Decret 
-  | Ordonnance 
-;;
+open "sets";;
 
 species Un_Acte_de_l_executif_S =
 
-  representation = acte_de_l_executif_t;
+  inherit Setoid;
 
-  let est_un_decret (s : Self) =
-    match s with
-      | Decret -> true
-      | Ordonnance -> false
-  ;
+  signature est_un_decret : Self -> bool;
 
-  let est_une_ordonnance (s : Self) =
-    match s with
-      | Decret -> false
-      | Ordonnance -> true
-  ;
+  signature est_une_ordonnance : Self -> bool;
 
 end;;
