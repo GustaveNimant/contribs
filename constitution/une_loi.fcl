@@ -1,11 +1,8 @@
 open "basics";;
-
-type loi_t = 
-  | Loi
-;;
+open "un_texte_legislatif";;
 
 species Une_Loi_S = 
 
-  representation = loi_t;
+  inherit Un_Texte_legislatif_S;
 
 end;;

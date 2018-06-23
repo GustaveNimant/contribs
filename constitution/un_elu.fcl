@@ -2,7 +2,7 @@ open "basics";;
 open "un_etre_humain";;
 open "un_scrutin";;
 
-species Elu_S (S is Un_Scrutin_S) = 
+species Un_Elu_S (S is Un_Scrutin_S) = 
 
   inherit Un_Etre_Humain_S; 
 

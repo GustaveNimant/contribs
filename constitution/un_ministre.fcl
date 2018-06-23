@@ -1,12 +1,8 @@
 open "basics";;
 
-type un_ministre_t =
-  | Ministre
-;;
-
 species Un_Ministre_S = 
 
-  representation = ministre_t;
+  inherit Un_Membre_du_gouvernement_S;
 
   let est_premier_ministre (p : Self) = false;;
 

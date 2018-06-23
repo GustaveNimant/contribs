@@ -6,7 +6,7 @@ open "electorat";;
 open "parlement";;
 
 species Souverainete_Nationale_S (Scr is Un_Scrutin_S, 
-                                  Elu is Elu_S (Scr), 
+                                  Elu is Un_Elu_S (Scr), 
                                   Eur is Electeur_S (Elu, Scr),
                                   Eat is Electorat_S (Scr, Elu, Eur)
                                   ) =

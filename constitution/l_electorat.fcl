@@ -4,7 +4,7 @@ open "un_elu";;
 open "un_electeur";;
 
 species Electorat_S (Scr is Un_Scrutin_S, 
-                     Elu is Elu_S (Scr), 
+                     Elu is Un_Elu_S (Scr), 
                      Eur is Electeur_S (Scr, Elu)
                      ) =
 

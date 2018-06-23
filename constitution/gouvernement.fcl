@@ -1,11 +1,16 @@
 open "basics";;
 open "un_membre_du_gouvernement";;
+open "un_acte_de_l_executif";;
 open "un_organe_deliberant";;
 
-species Gouvernement_S (UMg is Un_Membre_du_gouvernement_S) = 
+species Gouvernement_S (UMg is Un_Membre_du_gouvernement_S,
+                        UAe is Un_Acte_de_l_executif_S
+                        ) =
 
   inherit Un_Organe_deliberant_S;
 
   representation = list (UMg);
- 
+
+  signature delibere_sur : Self -> UAe -> bool;
+
 end;;

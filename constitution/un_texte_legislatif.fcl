@@ -1,20 +1,6 @@
 open "basics";;
-open "une_loi";;
-open "un_acte_de_l_executif";;
-
-type texte_legislatif_t =
-  | Loi (loi_t)
-  | Acte_de_l_executif (acte_de_l_executif_t)
-;;
 
 species Un_Texte_legislatif_S =
 
-  representation = texte_legislatif_t;
-
-  let est_une_loi (s : Self) =
-    match s with
-      | Loi (_) -> true
-      | Acte_de_l_executif (_) -> false
-  ;
 
 end;;

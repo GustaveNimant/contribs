@@ -9,7 +9,7 @@ type parlementaire_t =
 
 species Un_Parlementaire_S (S is Un_Scrutin_S) = 
 
-  inherit Elu_S (S);
+  inherit Un_Elu_S (S);
 
   representation = parlementaire_t;
  
