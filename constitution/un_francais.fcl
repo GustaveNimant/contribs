@@ -3,9 +3,9 @@ open "un_etre_humain";;
 
 species Un_Francais_S =
 
-  inherit Un_Etre_Humain_S;
+  inherit Un_Etre_humain_S;
 
-  property est_un_francais : all h : Self, est_francais (h);
+  let est_un_francais (s : Self) = true;
 
 end;;
 

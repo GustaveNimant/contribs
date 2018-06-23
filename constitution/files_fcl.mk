@@ -1,6 +1,5 @@
 FOCALIZE_SRC=\
   un_texte_legislatif.fcl \
-  les_nations.fcl \
   un_etre_humain.fcl \
   un_francais.fcl \
   un_scrutin.fcl \

@@ -1,49 +1,27 @@
 open "basics";;
-
-type scrutin_direct_t =
-  | Presidentiel
-  | Legislatif
-  | Europeen
-  | Municipal
-  | Regional
-  | Cantonal
-  | Referendum
-;;
-
-type scrutin_t =
-  | Scrutin_direct ( scrutin_direct_t )
-  | Scrutin_indirect 
-;;
+open "sets";;
 
 species Un_Scrutin_S =
 
-  representation = scrutin_t;
+  inherit Setoid;
 
-  let election_presidentielle = Presidentiel;
+  signature election_presidentielle : Self -> bool;
 
-  let election_europeenne = Europeen;
+  signature election_europeenne : Self -> bool;
 
-  let election_legislative = Legislatif;
+  signature election_legislative : Self -> bool;
 
-  let election_municipale = Municipal;
+  signature election_municipale : Self -> bool;
 
-  let election_regionale = Regional;
+  signature election_regionale : Self -> bool;
 
-  let election_cantonale = Cantonal;
+  signature election_cantonale : Self -> bool;
 
-  let election_senatoriale = Municipal;
+  signature election_senatoriale : Self -> bool;
 
-  let est_scrutin_direct (s : Self) =
-    match s with
-      | Scrutin_direct (_) -> true
-      | Scrutin_indirect -> false
-  ;
+  signature est_scrutin_direct : Self -> bool;
 
-  let est_scrutin_indirect (s : Self) =
-    match s with
-      | Scrutin_direct (_) -> false
-      | Scrutin_indirect -> true 
-  ;
+  signature est_scrutin_indirect : Self -> bool;
 
 end;;
 

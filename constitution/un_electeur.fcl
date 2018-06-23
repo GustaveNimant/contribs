@@ -3,15 +3,15 @@ open "un_elu";;
 open "un_francais";;
 open "un_scrutin";;
 
-species Electeur_S (Scr is Un_Scrutin_S, 
-                    Elu is Un_Elu_S (Scr)
-                    ) =
+species Un_Electeur_S (Scr is Un_Scrutin_S, 
+                       UEl is Un_Elu_S (Scr)
+                       ) =
 
   inherit Un_Francais_S;	
   
   signature numero_carte_electeur : int;
 
-  signature est_represente_par : Self -> Elu ;
+  signature est_represente_par : Self -> UEl ;
 
   signature participe_au_scrutin : Self -> Scr -> bool;
 
