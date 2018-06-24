@@ -1,0 +1,13 @@
+open "basics";;
+open "un_texte_legislatif";;
+open "un_francais";;
+
+species La_Constitution_S (UFr is Un_Francais_S) = 
+
+  inherit Un_Texte_legislatif_S;
+
+-- Article 4 c - La loi garantit les expressions pluralistes des opinions et la participation équitable des partis et groupements politiques à la vie démocratique de la Nation
+
+  property article_4_c : all f : UFr, UFr!a_la_liberte_d_expression (f);
+
+end;;

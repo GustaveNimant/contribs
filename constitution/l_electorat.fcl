@@ -1,34 +1,30 @@
 open "basics";;
+open "basic_sets";;
 open "un_scrutin";;
 open "un_elu";;
 open "un_electeur";;
 
-species Electorat_S (USc is Un_Scrutin_S, 
-                     Elu is Un_Elu_S (USc), 
-                     Eur is Electeur_S (USc, Elu)
+species L_Electorat_S (USc is Un_Scrutin_S, 
+                     UELu is Un_Elu_S (USc), 
+                     UELe is Un_Electeur_S (USc, UELu),
+                     L_Electorat is Finite_set (UELe) 
                      ) =
 
-  representation = list (Eur);
+  signature vote_referendum : UELe -> bool;
 
-  signature vote_referendum : Eur -> bool;
+  property participe_au_referendum : all e : UELe, (vote_referendum (e));
 
-  property participe_au_referendum : all e : Eur, (vote_referendum (e));
-
-  property suffrage_universel : all e : Eur, all s : USc, (Eur!participe_au_scrutin (e, s));
+  property suffrage_universel : all e : UELe, all s : USc, (UELe!participe_au_scrutin (e, s));
 
   property suffrage_direct : all s : USc, USc!est_scrutin_direct (s); 
 
--- Article 4 c - La une_loi garantit les expressions pluralistes des opinions et la participation équitable des partis et groupements politiques à la vie démocratique de la Nation
-
-  property article_4_c : all e : Eur, Eur!liberte_expression (e);
-
 -- Article 6 a - Le Président de la République est élu [ pour cinq ans ] au suffrage universel direct.
 
-  signature vote_president : Eur -> bool;
+  signature vote_president : UELe -> bool;
 
-  property participe_vote_president : all e : Eur, (vote_president (e));
+  property participe_vote_president : all e : UELe, (vote_president (e));
 
-  property article_6_a : all e : Eur, vote_president (e) -> participe_vote_president;
+  property article_6_a : all e : UELe, vote_president (e) -> participe_vote_president;
 
 
 -- Article 4 d - Sont électeurs, dans les conditions déterminées par la une_loi, tous les nationaux français majeurs des deux sexes, jouissant de leurs droits civils et politiques. 

@@ -1,9 +1,10 @@
 open "basics";;
+open "basic_sets";;
 open "un_francais";;
 
-species Le_Peuple_francais_S (F is Un_Francais_S) =
-
-  representation = list (F);
+species Le_Peuple_francais_S (UFr is Un_Francais_S,
+                              Le_Peuple_francais is Finite_set (UFr)
+                              ) = 
 
 end;;
 

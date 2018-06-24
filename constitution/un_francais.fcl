@@ -7,5 +7,7 @@ species Un_Francais_S =
 
   let est_un_francais (s : Self) = true;
 
+  signature a_la_liberte_d_expression : Self -> bool;
+ 
 end;;
 

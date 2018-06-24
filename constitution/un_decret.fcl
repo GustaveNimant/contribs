@@ -1,5 +1,8 @@
 open "basics";;
+open "un_texte_legislatif";;
 
-species Un_Decret_S =
+species Un_Decret_S = 
+
+  inherit Un_Texte_legislatif_S;
 
 end;;
