@@ -5,6 +5,8 @@ species Le_Premier_ministre_S =
 
   inherit Un_Membre_du_gouvernement_S;
 
-  let est_premier_ministre (p : Self) = true;
+  let est_le_premier_ministre (p : Self) = true;
+
+  let est_un_ministre (p : Self) = false;
 
 end;;

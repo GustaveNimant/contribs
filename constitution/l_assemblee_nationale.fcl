@@ -4,13 +4,15 @@ open "un_organe_deliberant";;
 open "un_scrutin";;
 open "un_acte_de_l_executif";;
 open "un_depute";;
+open "une_loi";;
 
 species L_Assemblee_nationale_S (USc is Un_Scrutin_S, 
                                  UAe is Un_Acte_de_l_executif_S,
-                                 UDe is Un_Depute_S (USc, UAe),
-                                 LAn is Finite_set (UDe)
+                                 ULo is Une_Loi_S,
+                                 UDe is Un_Depute_S (USc, UAe, ULo),
+                                 L_Assemblee_nationale is Finite_set (UDe)
                                  )= 
 
-  inherit Un_Organe_deliberant_S;
+  inherit Un_Organe_deliberant_S (ULo); 
 
 end;;

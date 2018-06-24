@@ -2,11 +2,13 @@ open "basics";;
 open "un_parlementaire";;
 open "un_scrutin";;
 open "un_acte_de_l_executif";;
+open "une_loi";;
 
 species Un_Depute_S (USc is Un_Scrutin_S, 
-                     UAe is Un_Acte_de_l_executif_S
+                     UAe is Un_Acte_de_l_executif_S,
+                     ULo is Une_Loi_S
                      ) = 
 
-  inherit Un_Parlementaire_S (USc, UAe); 
+  inherit Un_Parlementaire_S (USc, UAe, ULo); 
 
 end;;

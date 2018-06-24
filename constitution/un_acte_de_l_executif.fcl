@@ -1,9 +1,9 @@
 open "basics";;
-open "sets";;
+open "un_texte_legislatif";;
 
 species Un_Acte_de_l_executif_S =
 
-  inherit Setoid;
+  inherit Un_Texte_legislatif_S;
 
   signature est_un_decret : Self -> bool;
 

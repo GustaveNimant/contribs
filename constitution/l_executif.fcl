@@ -1,20 +1,24 @@
 open "basics";;
 open "un_membre_de_l_executif";;
 open "un_organe_deliberant";;
+open "un_decret";;
+open "une_ordonnance";;
 
 species L_Executif_S (UMe is Un_Membre_de_l_executif_S,
-                    UDe is Un_Texte_legislatif_S
-                    ) = 
+                      L_Executif is Finite_set (UMe),
+                      UDe is Un_Decret_S,
+                      UOr is Une_Ordonnance_S
+                      ) = 
 
   inherit Un_Organe_deliberant_S;
-
-  representation = list (UMe);
 
   signature le_premier_ministre : Self -> UMe;
 
   signature premier_ministre_demissionne : Self -> bool;
 
-  signature delibere_sur_une_ordonnance : Self -> UOr -> bool;
+  let delibere_sur_une_ordonnance (s : Self, o : UOr) =
+      delibere_sur (o)
+  ;
 
   signature delibere_sur_un_decret : Self -> UDe -> bool;
    

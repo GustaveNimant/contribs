@@ -7,7 +7,7 @@ open "le_parlement";;
 
 species La_Souverainete_nationale_S (USc is Un_Scrutin_S, 
                                      UELu is Un_Elu_S (USc), 
-                                     UELe is Un_Electeur_S (UELu, USc),
+                                     UELe is Un_Electeur_S (USc, UELu),
                                      Le_Peuple is Finite_set (UELe)
                                      ) =
 

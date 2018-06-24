@@ -2,16 +2,20 @@ open "basics";;
 open "un_elu";;
 open "un_scrutin";;
 open "un_acte_de_l_executif";;
+open "une_loi";;
 
 species Un_Parlementaire_S (USc is Un_Scrutin_S,
-                            UAe is Un_Acte_de_l_executif_S
+                            UAe is Un_Acte_de_l_executif_S,
+                            ULo is Une_Loi_S
                             ) = 
 
   inherit Un_Elu_S (USc);
 
-  signature redige_la_loi : Self -> bool;
+  signature redige_une_loi : Self -> ULo -> bool;
 
-  signature vote_la_loi : Self -> bool;
+  signature vote_une_loi : Self -> ULo -> bool;
+
+  signature delibere_sur_une_loi : Self -> ULo -> bool;
 
   signature est_un_depute : Self -> bool;
 
