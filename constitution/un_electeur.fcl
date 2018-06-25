@@ -9,7 +9,7 @@ species Un_Electeur_S (USc is Un_Scrutin_S,
 
   inherit Un_Francais_S;	
   
-  signature numero_carte_electeur : int;
+  signature numero_carte_electeur : Self -> int;
 
   signature est_represente_par : Self -> UEl ;
 

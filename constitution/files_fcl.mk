@@ -31,5 +31,5 @@ FOCALIZE_SRC=\
   le_gouvernement.fcl \
   la_constitution.fcl \
   la_souverainete_nationale.fcl \
-  le_president_republique.fcl \
- 
+  le_president_de_la_republique.fcl \
+

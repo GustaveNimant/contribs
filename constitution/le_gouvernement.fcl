@@ -3,14 +3,40 @@ open "basic_sets";;
 open "un_membre_du_gouvernement";;
 open "un_acte_de_l_executif";;
 open "un_organe_deliberant";;
+open "une_ordonnance";;
+open "un_decret";;
+open "un_parlementaire";;
+open "une_loi";;
+open "le_parlement";;
+open "un_scrutin";;
 
-species Le_Gouvernement_S (UMg is Un_Membre_du_gouvernement_S,
+species Le_Gouvernement_S (USc is Un_Scrutin_S,
                            UAe is Un_Acte_de_l_executif_S,
-                           Gou is Finite_set (UMg)  
+                           ULo is Une_Loi_S,
+                           UOr is Une_Ordonnance_S,
+                           UDe is Un_Decret_S,
+                           UPa is Un_Parlementaire_S (USc, UAe, ULo),
+                           UPa_set is Finite_set (UPa),
+                           LPa is Le_Parlement_S (USc, UAe, ULo, UPa, UPa_set),
+                           UMg is Un_Membre_du_gouvernement_S,
+                           LGo_set is Finite_set (UMg)  
                            ) =
 
   inherit Un_Organe_deliberant_S (UAe);
 
-  signature delibere_sur : Self -> UAe -> bool;
+  signature delibere_sur_un_decret : Self -> UDe -> bool;
+
+-- Article 38 a - Le Gouvernement peut, pour l'exécution de son programme, demander au Parlement l'autorisation de prendre par ordonnances, pendant un délai limité, des mesures qui sont normalement du domaine de la loi.
+
+  signature delibere_sur_une_ordonnance : Self -> UOr -> bool;
+
+  signature prend_une_ordonnance : Self -> UOr -> bool;
+
+  signature est_autorise_par_le_parlement_a_prendre_une_ordonnance : Self -> LPa -> UOr -> bool;
+
+  property article_38_a : all g : Self, all p : LPa, all o : UOr, 
+                                  prend_une_ordonnance (g, o) ->
+                                  delibere_sur_une_ordonnance (g, o) ->
+                                  est_autorise_par_le_parlement_a_prendre_une_ordonnance (g, p, o) ;
 
 end;;

@@ -3,14 +3,14 @@ open "basic_sets";;
 open "un_scrutin";;
 open "un_organe_deliberant";;
 open "un_parlementaire";;
-open "un_acte_de_l_executif";;
 open "une_loi";;
+open "un_acte_de_l_executif";;
 
-species Le_Parlement_S (USc is Un_Scrutin_S, 
+species Le_Parlement_S (USc is Un_Scrutin_S,
                         UAe is Un_Acte_de_l_executif_S,
                         ULo is Une_Loi_S,
                         UPa is Un_Parlementaire_S (USc, UAe, ULo),
-                        Le_Parlement is Finite_set (UPa)
+                        UPa_set is Finite_set (UPa)
                         ) = 
 
   inherit Un_Organe_deliberant_S (ULo);
