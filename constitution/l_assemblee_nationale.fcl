@@ -10,7 +10,7 @@ species L_Assemblee_nationale_S (USc is Un_Scrutin_S,
                                  UAe is Un_Acte_de_l_executif_S,
                                  ULo is Une_Loi_S,
                                  UDe is Un_Depute_S (USc, UAe, ULo),
-                                 L_Assemblee_nationale is Finite_set (UDe)
+                                 UDe_set is Finite_set (UDe)
                                  )= 
 
   inherit Un_Organe_deliberant_S (ULo); 

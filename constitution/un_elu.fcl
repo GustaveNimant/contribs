@@ -1,15 +1,15 @@
 open "basics";;
-open "un_etre_humain";;
+open "un_francais";;
 open "un_scrutin";;
 
 species Un_Elu_S (USc is Un_Scrutin_S) = 
 
-  inherit Un_Etre_humain_S; 
+  inherit Un_Francais_S; 
 
-  signature est_eligible_par_scrutin : USc -> bool;
+  signature est_eligible_par_le_scrutin : Self -> USc -> bool;
 
-  signature est_elu_par_scrutin : USc -> bool;
+  signature est_elu_par_le_scrutin : Self -> USc -> bool;
 
-  signature exerce_souverainete : Self -> bool;
+  signature exerce_sa_souverainete : Self -> bool;
 
 end;;

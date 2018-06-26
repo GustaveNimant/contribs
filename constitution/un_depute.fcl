@@ -11,8 +11,8 @@ species Un_Depute_S (USc is Un_Scrutin_S,
 
   inherit Un_Parlementaire_S (USc, UAe, ULo); 
 
-  property est_elu : all s : USc,
-        Self!est_elu_par_scrutin (s) ->
+  property est_elu : all p : Self, all s : USc,
+        est_elu_par_le_scrutin (p, s) ->
         USc!est_une_election_legislative (s);
 
 end;;

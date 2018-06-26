@@ -1,0 +1,8 @@
+open "basics";;
+open "un_francais";;
+
+species Un_Haut_fonctionnaire_S = 
+
+  inherit Un_Francais_S;
+
+end;;

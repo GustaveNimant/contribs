@@ -1,9 +1,13 @@
 open "basics";;
 open "un_membre_du_gouvernement";;
+open "un_scrutin";;
+open "un_elu";;
 
-species Un_Ministre_S = 
+species Un_Ministre_S (USc is Un_Scrutin_S,
+                       UElu is Un_Elu_S (USc)
+                       ) =
 
-  inherit Un_Membre_du_gouvernement_S;
+  inherit Un_Membre_du_gouvernement_S (USc, UElu);
 
   let est_premier_ministre (p : Self) = false;
 

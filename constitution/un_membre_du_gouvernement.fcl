@@ -1,7 +1,11 @@
 open "basics";;
 open "un_membre_de_l_executif";;
+open "un_scrutin";;
+open "un_elu";;
 
-species Un_Membre_du_gouvernement_S = 
+species Un_Membre_du_gouvernement_S (USc is Un_Scrutin_S,
+                                     UElu is Un_Elu_S (USc)
+                                     ) = 
 
   inherit Un_Membre_de_l_executif_S;
  

@@ -9,6 +9,7 @@ FOCALIZE_SRC=\
   un_etre_humain.fcl \
   un_francais.fcl \
   le_peuple_francais.fcl \
+  un_haut_fonctionnaire.fcl \
   un_scrutin.fcl \
   un_scrutin_direct.fcl \
   un_scrutin_indirect.fcl \
@@ -29,6 +30,7 @@ FOCALIZE_SRC=\
   le_premier_ministre.fcl \
   l_assemblee_nationale.fcl \
   le_gouvernement.fcl \
+  le_conseil_des_ministres.fcl \
   la_constitution.fcl \
   la_souverainete_nationale.fcl \
   le_president_de_la_republique.fcl \

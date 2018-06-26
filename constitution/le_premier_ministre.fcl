@@ -1,12 +1,21 @@
 open "basics";;
 open "un_membre_du_gouvernement";;
+open "un_acte_de_l_executif";;
+open "un_elu";;
+open "un_scrutin";;
 
-species Le_Premier_ministre_S = 
+species Le_Premier_ministre_S (USc is Un_Scrutin_S,
+                               UElu is Un_Elu_S (USc),
+                               UAe is Un_Acte_de_l_executif_S) = 
 
-  inherit Un_Membre_du_gouvernement_S;
+  inherit Un_Membre_du_gouvernement_S (USc, UElu);
 
   let est_le_premier_ministre (p : Self) = true;
 
   let est_un_ministre (p : Self) = false;
+
+-- Article 21 a 1 - Le Premier ministre dirige l'action du Gouvernement.
+
+  signature decide_d_un_acte_de_l_executif : Self -> UAe -> bool;
 
 end;;
