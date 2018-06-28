@@ -10,7 +10,7 @@ open "Une_Loi";;
 species Le_Senat_S (UScr is Un_Scrutin_S, 
                     UTfr is Un_Territoire_francais_S,
                     UAex is Un_Acte_de_l_executif_S,
-                    ULoi is Une_Loi_S,L
+                    ULoi is Une_Loi_S,
                     USe is Un_Senateur_S (UScr, UTfr, UAex, ULoi),
                     Le_Senat is Finite_set (USe)
                     )= 

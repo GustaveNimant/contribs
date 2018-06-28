@@ -2,7 +2,7 @@ open "basics";;
 open "Un_Etre_humain";;
 open "Un_Territoire_francais";;
 
-species Un_Francais_S ( UTfr is Un_Territoire_francais_S) =
+species Un_Francais_S (UTfr is Un_Territoire_francais_S) =
 
   inherit Un_Etre_humain_S;
 
