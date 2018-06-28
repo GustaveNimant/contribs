@@ -9,6 +9,7 @@ En vertu de ces principes et de celui de la libre détermination des peuples, la
 ===ARTICLE PREMIER.===
 
 La France est une République indivisible, laïque, démocratique et sociale. Elle assure l'égalité devant la loi de tous les citoyens sans distinction d'origine, de race ou de religion. Elle respecte toutes les croyances. Son organisation est décentralisée.
+
 La loi favorise l'égal accès des femmes et des hommes aux mandats électoraux et fonctions électives, ainsi qu'aux responsabilités professionnelles et sociales.
 
 ==Titre premier - DE LA SOUVERAINETÉ==
@@ -321,6 +322,7 @@ Des lois de programmation déterminent les objectifs de l'action de l'État.
 Les orientations pluriannuelles des finances publiques sont définies par des lois de programmation. Elles s'inscrivent dans l'objectif d'équilibre des comptes des administrations publiques.
 
 Les dispositions du présent article pourront être précisées et complétées par une loi organique.
+
 ====ARTICLE 34-1.====
 
 Les assemblées peuvent voter des résolutions dans les conditions fixées par la loi organique.
@@ -348,6 +350,7 @@ Sa prorogation au-delà de douze jours ne peut être autorisée que par le Parle
 Les matières autres que celles qui sont du domaine de la loi ont un caractère réglementaire.
 
 Les textes de forme législative intervenus en ces matières peuvent être modifiés par décrets pris après avis du Conseil d'État. Ceux de ces textes qui interviendraient après l'entrée en vigueur de la présente Constitution ne pourront être modifiés par décret que si le Conseil constitutionnel a déclaré qu'ils ont un caractère réglementaire en vertu de l'alinéa précédent.
+
 ====ARTICLE 37-1.====
 
 La loi et le règlement peuvent comporter, pour un objet et une durée limités, des dispositions à caractère expérimental.
@@ -535,7 +538,7 @@ La République peut reconnaître la juridiction de la Cour pénale international
 Si le Conseil constitutionnel, saisi par le Président de la République, par le Premier ministre, par le président de l'une ou l'autre assemblée ou par soixante députés ou soixante sénateurs, a déclaré qu'un engagement international comporte une clause contraire à la Constitution, l'autorisation de ratifier ou d'approuver l'engagement international en cause ne peut intervenir qu'après révision de la Constitution.
 
 ===ARTICLE 55.===
-
+<
 Les traités ou accords régulièrement ratifiés ou approuvés ont, dès leur publication, une autorité supérieure à celle des lois, sous réserve, pour chaque accord ou traité, de son application par l'autre partie.
 
 ==Titre VII - LE CONSEIL CONSTITUTIONNEL==
