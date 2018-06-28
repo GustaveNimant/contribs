@@ -1,0 +1,17 @@
+open "basics";;
+open "Un_Parlementaire";;
+open "Un_Scrutin";;
+open "Un_Acte_de_l_executif";;
+open "Une_Loi";;
+open "Un_Territoire_francais";;
+
+species Un_Senateur_S (UScr is Un_Scrutin_S, 
+                       UTfr is Un_Territoire_francais_S,
+                       UAex is Un_Acte_de_l_executif_S,
+                       ULoi is Une_Loi_S
+                       ) = 
+
+  inherit Un_Parlementaire_S (UScr, UTfr, UAex, ULoi); 
+
+  
+end;;

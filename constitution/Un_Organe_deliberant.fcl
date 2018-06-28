@@ -1,0 +1,8 @@
+open "basics";;
+open "Un_Texte_legislatif";;
+
+species Un_Organe_deliberant_S (UTle is Un_Texte_legislatif_S) =
+
+  signature delibere_sur : Self -> UTle -> bool;
+
+end;;

@@ -1,5 +1,5 @@
 open "basics";;
-open "un_scrutin";;
+open "Un_Scrutin";;
 
 species Un_Scrutin_direct_S =
 

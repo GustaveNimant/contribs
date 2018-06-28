@@ -1,5 +1,5 @@
 open "basics";;
-open "un_etre_humain";;
+open "Un_Etre_humain";;
 open "Un_Territoire_francais";;
 
 species Un_Francais_S ( UTfr is Un_Territoire_francais_S) =

@@ -1,12 +1,14 @@
 open "basics";;
 open "Basic_Sets";;
-open "un_scrutin";;
-open "un_elu";;
-open "un_electeur";;
+open "Un_Scrutin";;
+open "Un_Elu";;
+open "Un_Electeur";;
+open "Un_Territoire_francais";;
 
-species L_Electorat_S (USc is Un_Scrutin_S, 
-                       UELu is Un_Elu_S (USc), 
-                       UELe is Un_Electeur_S (USc, UELu),
+species L_Electorat_S (UScr is Un_Scrutin_S, 
+                       UTfr is Un_Territoire_francais_S,
+                       UELu is Un_Elu_S (UScr, UTfr), 
+                       UELe is Un_Electeur_S (UScr, UTfr, UELu),
                        LELe_set is Finite_set (UELe) 
                        ) =
 
@@ -14,9 +16,9 @@ species L_Electorat_S (USc is Un_Scrutin_S,
 
   property participe_au_referendum : all e : UELe, (vote_referendum (e));
 
-  property suffrage_universel : all e : UELe, all s : USc, (UELe!participe_au_scrutin (e, s));
+  property suffrage_universel : all e : UELe, all s : UScr, (UELe!participe_au_scrutin (e, s));
 
-  property suffrage_direct : all s : USc, USc!est_scrutin_direct (s); 
+  property suffrage_direct : all s : UScr, UScr!est_scrutin_direct (s); 
 
 -- Article 6 a - Le Président de la République est élu [ pour cinq ans ] au suffrage universel direct.
 

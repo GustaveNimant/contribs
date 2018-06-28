@@ -1,8 +1,0 @@
-open "basics";;
-open "un_texte_legislatif";;
-
-species Un_Organe_deliberant_S (UTl is Un_Texte_legislatif_S) =
-
-  signature delibere_sur : Self -> UTl -> bool;
-
-end;;

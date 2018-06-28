@@ -1,0 +1,20 @@
+open "basics";;
+open "Basic_Sets";;
+open "Un_Acte_de_l_executif";;
+open "Un_Organe_deliberant";;
+open "Un_Scrutin";;
+open "Un_Senateur";;
+open "Un_Territoire_francais";;
+open "Une_Loi";;
+
+species Le_Senat_S (UScr is Un_Scrutin_S, 
+                    UTfr is Un_Territoire_francais_S,
+                    UAex is Un_Acte_de_l_executif_S,
+                    ULoi is Une_Loi_S,L
+                    USe is Un_Senateur_S (UScr, UTfr, UAex, ULoi),
+                    Le_Senat is Finite_set (USe)
+                    )= 
+
+  inherit Un_Organe_deliberant_S (ULoi); 
+
+end;;

@@ -1,0 +1,24 @@
+open "basics";;
+open "Basic_Sets";;
+open "Un_Scrutin";;
+open "Un_Organe_deliberant";;
+open "Un_Parlementaire";;
+open "Une_Loi";;
+open "Un_Acte_de_l_executif";;
+open "Un_Territoire_francais";;
+
+species Le_Parlement_S (UScr is Un_Scrutin_S,
+                        UTfr is Un_Territoire_francais_S,
+                        UAex is Un_Acte_de_l_executif_S,
+                        ULoi is Une_Loi_S,
+                        UPar is Un_Parlementaire_S (UScr, UTfr, UAex, ULoi),
+                        UPar_set is Finite_set (UPar)
+                        ) = 
+
+  inherit Un_Organe_deliberant_S (ULoi);
+
+  property parlementaire_redige_une_loi : all p : UPar, all l : ULoi, UPar!redige_une_loi (p, l);
+
+  property parlement_est_souverain : all p : UPar, UPar!exerce_sa_souverainete (p);
+
+end;;

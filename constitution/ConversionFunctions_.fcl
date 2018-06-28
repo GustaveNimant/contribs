@@ -3,7 +3,7 @@
 open "basics";;
 open "sets";;
 open "Basic_Sets";;
-open "les_items_de_la_constitution";;
+open "Les_Items_de_la_constitution";;
 
 species Subtype (Sub is Setoid, Super is Setoid,
                  Sub_set is Finite_set(Sub),

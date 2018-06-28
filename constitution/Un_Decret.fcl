@@ -1,5 +1,5 @@
 open "basics";;
-open "un_texte_legislatif";;
+open "Un_Texte_legislatif";;
 
 species Un_Decret_S = 
 

@@ -1,0 +1,20 @@
+open "basics";;
+open "Basic_Sets";;
+open "Un_Organe_deliberant";;
+open "Un_Scrutin";;
+open "Un_Acte_de_l_executif";;
+open "Un_Depute";;
+open "Une_Loi";;
+open "Un_Territoire_francais";;
+
+species L_Assemblee_nationale_S (UScr is Un_Scrutin_S, 
+                                 UTfr is Un_Territoire_francais_S,
+                                 UAex is Un_Acte_de_l_executif_S,
+                                 ULoi is Une_Loi_S,
+                                 UDec is Un_Depute_S (UScr, UTfr,  UAex, ULoi),
+                                 UDe_set is Finite_set (UDec)
+                                 )= 
+
+  inherit Un_Organe_deliberant_S (ULoi); 
+
+end;;

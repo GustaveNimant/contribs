@@ -10,8 +10,8 @@ species Le_Peuple_francais_S (
                               UFra_set is Finite_set (UFra)
                               ) = 
 
-  property le_peuple_francais_est_un_sur_le_territoire :
-     UFra_set!allhabite_un_territoire_francais (f, t);
+--  property le_peuple_francais_est_un_sur_le_territoire :
+--     UFra_set!allhabite_un_territoire_francais (f, t);
 
 end;;
 
