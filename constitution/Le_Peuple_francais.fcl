@@ -1,0 +1,17 @@
+open "basics";;
+open "Basic_Sets";;
+open "Un_Francais";;
+open "Un_Territoire_francais";;
+
+species Le_Peuple_francais_S (
+                              UTer is Un_Territoire_francais_S,
+                              UTer_set is Finite_set (UTer),
+                              UFra is Un_Francais_S (UTer),
+                              UFra_set is Finite_set (UFra)
+                              ) = 
+
+  property le_peuple_francais_est_un_sur_le_territoire :
+     UFra_set!allhabite_un_territoire_francais (f, t);
+
+end;;
+

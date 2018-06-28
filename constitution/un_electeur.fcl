@@ -1,6 +1,6 @@
 open "basics";;
 open "un_elu";;
-open "un_francais";;
+open "Un_Francais";;
 open "un_scrutin";;
 
 species Un_Electeur_S (USc is Un_Scrutin_S, 

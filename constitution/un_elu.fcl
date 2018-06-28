@@ -1,5 +1,5 @@
 open "basics";;
-open "un_francais";;
+open "Un_Francais";;
 open "un_scrutin";;
 
 species Un_Elu_S (USc is Un_Scrutin_S) = 

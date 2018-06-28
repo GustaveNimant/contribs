@@ -1,0 +1,16 @@
+open "basics";;
+open "un_etre_humain";;
+open "Un_Territoire_francais";;
+
+species Un_Francais_S ( UTfr is Un_Territoire_francais_S) =
+
+  inherit Un_Etre_humain_S;
+
+  let est_un_francais (s : Self) = true;
+
+  signature a_la_liberte_d_expression : Self -> bool;
+
+  signature habite_un_territoire_francais : Self -> UTfr -> bool;
+ 
+end;;
+

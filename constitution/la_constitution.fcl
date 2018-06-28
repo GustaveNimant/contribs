@@ -1,6 +1,6 @@
 open "basics";;
 open "un_texte_legislatif";;
-open "un_francais";;
+open "Un_Francais";;
 
 species La_Constitution_S (UFr is Un_Francais_S) = 
 
