@@ -5,6 +5,7 @@ FOCALIZE_SRC=\
   Un_Texte_legislatif.fcl \
   Un_Organe_deliberant.fcl \
   Une_Loi.fcl \
+  Le_Droit_francais.fcl \
   Une_Ordonnance.fcl \
   Un_Decret.fcl \
   Un_Etre_humain.fcl \
