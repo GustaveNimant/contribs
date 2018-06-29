@@ -12,6 +12,5 @@ species Un_Senateur_S (UScr is Un_Scrutin_S,
                        ) = 
 
   inherit Un_Parlementaire_S (UScr, UTfr, UAex, ULoi); 
-
   
 end;;

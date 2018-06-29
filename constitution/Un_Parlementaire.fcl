@@ -13,15 +13,15 @@ species Un_Parlementaire_S (UScr is Un_Scrutin_S,
 
   inherit Un_Elu_S (UScr, UTfr);
 
+  signature est_un_depute : Self -> bool;
+
+  signature est_un_senateur : Self -> bool;
+
   signature redige_une_loi : Self -> ULoi -> bool;
 
   signature vote_une_loi : Self -> ULoi -> bool;
 
   signature delibere_sur_une_loi : Self -> ULoi -> bool;
-
-  signature est_un_depute : Self -> bool;
-
-  signature est_un_senateur : Self -> bool;
 
   signature controle_un_acte_de_l_executif : Self -> UAex -> bool;
   

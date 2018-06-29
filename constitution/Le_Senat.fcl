@@ -11,10 +11,9 @@ species Le_Senat_S (UScr is Un_Scrutin_S,
                     UTfr is Un_Territoire_francais_S,
                     UAex is Un_Acte_de_l_executif_S,
                     ULoi is Une_Loi_S,
-                    USe is Un_Senateur_S (UScr, UTfr, UAex, ULoi),
-                    Le_Senat is Finite_set (USe)
-                    )= 
+                    USen is Un_Senateur_S (UScr, UTfr, UAex, ULoi)
+                    ) =
 
-  inherit Un_Organe_deliberant_S (ULoi); 
+  inherit Un_Organe_deliberant_S (ULoi), Finite_set (USen);
 
 end;;

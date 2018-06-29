@@ -1,14 +1,20 @@
 open "basics";;
 open "Basic_Sets";;
+open "L_Assemblee_nationale";;
 open "Le_Parlement";;
+open "Le_Senat";;
+open "Les_Functions_de_conversion";;
 open "Un_Acte_de_l_executif";;
 open "Un_Decret";;
+open "Un_Depute";;
 open "Un_Elu";;
 open "Un_Membre_du_gouvernement";;
 open "Un_Organe_deliberant";;
 open "Un_Parlementaire";;
 open "Un_Scrutin";;
+open "Un_Senateur";;
 open "Un_Territoire_francais";;
+open "Une_Loi";;
 open "Une_Loi";;
 open "Une_Ordonnance";;
 
@@ -18,15 +24,20 @@ species Le_Gouvernement_S (UScr is Un_Scrutin_S,
                            ULoi is Une_Loi_S,
                            UOrd is Une_Ordonnance_S,
                            UDec is Un_Decret_S,
-                           UPar is Un_Parlementaire_S (UScr, UTfr, UAex, ULoi),
-                           UPar_set is Finite_set (UPar),
-                           LPar is Le_Parlement_S (UScr, UTfr, UAex, ULoi, UPar, UPar_set),
                            UElu is Un_Elu_S (UScr, UTfr),
                            UMgo is Un_Membre_du_gouvernement_S (UScr, UTfr, UElu),
-                           LGou_set is Finite_set (UMgo)  
+                           UDep is Un_Depute_S (UScr, UTfr,  UAex, ULoi),
+                           UDep_set is Finite_set (UDep),
+                           USen is Un_Senateur_S (UScr, UTfr, UAex, ULoi),
+                           USen_set is Finite_set (USen),
+                           UPar is Un_Parlementaire_S (UScr, UTfr, UAex, ULoi),
+                           UPar_set is Finite_set (UPar),
+                           UDepToUPar is Un_Parlementaire_subtype (UScr, UTfr, UAex, ULoi, UDep, UDep_set, UPar, UPar_set),
+                           USenToUPar is Un_Parlementaire_subtype (UScr, UTfr, UAex, ULoi, USen, USen_set, UPar, UPar_set),
+                           LPar is Le_Parlement_S (UScr, UTfr, UAex, ULoi, UDep, UDep_set, USen, USen_set, UPar, UPar_set, UDepToUPar, USenToUPar)
                            ) =
 
-  inherit Un_Organe_deliberant_S (UAex);
+  inherit Un_Organe_deliberant_S (UAex), Finite_set (UMgo);
 
   signature delibere_sur_un_decret : Self -> UDec -> bool;
 
@@ -36,7 +47,7 @@ species Le_Gouvernement_S (UScr is Un_Scrutin_S,
 
   let est_eligible_par_le_scrutin (p : UPar, s : UScr) = UPar!est_eligible_par_le_scrutin (p, s);
  
-  property article_23_a_1 : all s : UScr, all p : UPar, UPar!est_eligible_par_le_scrutin (p, s) -> all mg : UMgo, all g : LGou_set, LGou_set!member (mg, g); 
+  property article_23_a_1 : all s : UScr, all p : UPar, UPar!est_eligible_par_le_scrutin (p, s) -> all mg : UMgo, all g : Self, Self!member (mg, g); 
 
 -- Article 38 a - Le Gouvernement peut, pour l'exécution de son programme, demander au Parlement l'autorisation de prendre par ordonnances, pendant un délai limité, des mesures qui sont normalement du domaine de la loi.
 

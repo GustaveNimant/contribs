@@ -1,5 +1,6 @@
 FOCALIZE_SRC=\
   Basic_Sets.fcl \
+  Les_Functions_de_conversion.fcl \
   Un_Territoire_francais.fcl \
   Le_Territoire_francais.fcl \
   Un_Texte_legislatif.fcl \

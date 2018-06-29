@@ -4,6 +4,8 @@ open "L_Assemblee_nationale";;
 open "Le_Gouvernement";;
 open "Le_Parlement";;
 open "Le_Premier_ministre";;
+open "Le_Senat";;
+open "Les_Functions_de_conversion";;
 open "Un_Acte_de_l_executif";;
 open "Un_Decret";;
 open "Un_Depute";;
@@ -12,6 +14,7 @@ open "Un_Membre_de_l_executif";;
 open "Un_Membre_du_gouvernement";;
 open "Un_Parlementaire";;
 open "Un_Scrutin";;
+open "Un_Senateur";;
 open "Un_Territoire_francais";;
 open "Une_Loi";;
 open "Une_Ordonnance";;
@@ -22,18 +25,20 @@ species Le_President_de_la_republique_S (UScr is Un_Scrutin_S,
                                          UAex is Un_Acte_de_l_executif_S,
                                          UMgo is Un_Membre_du_gouvernement_S (UScr, UTfr, UElu),
                                          LPmi is Le_Premier_ministre_S (UScr, UTfr, UElu, UAex),
+                                         UOrd is Une_Ordonnance_S,
+                                         UDec is Un_Decret_S,
                                          ULoi is Une_Loi_S,
                                          UDep is Un_Depute_S (UScr, UTfr, UAex, ULoi),
                                          UDep_set is Finite_set (UDep),
-
-                                         LAna is L_Assemblee_nationale_S (UScr, UTfr, UAex, ULoi, UDep, UDep_set),
+                                         USen is Un_Senateur_S (UScr, UTfr, UAex, ULoi),
+                                         USen_set is Finite_set (USen),
+                                         LAna is L_Assemblee_nationale_S (UScr, UTfr, UAex, ULoi, UDep),
                                          UPar is Un_Parlementaire_S (UScr, UTfr, UAex, ULoi),
                                          UPar_set is Finite_set (UPar),
-                                         LPar is Le_Parlement_S (UScr, UTfr, UAex, ULoi, UPar, UPar_set),
-                                         LGou_set is Finite_set (UMgo),
-                                         UOrd is Une_Ordonnance_S,
-                                         UDec is Un_Decret_S,
-                                         LGou is Le_Gouvernement_S (UScr, UTfr, UAex, ULoi, UOrd, UDep, UPar, UPar_set, LPar, UElu, UMgo, LGou_set)
+					 UDepToUPar is Un_Parlementaire_subtype (UScr, UTfr, UAex, ULoi, UDep, UDep_set, UPar, UPar_set),
+					 USenToUPar is Un_Parlementaire_subtype (UScr, UTfr, UAex, ULoi, USen, USen_set, UPar, UPar_set),
+                                         LPar is Le_Parlement_S (UScr, UTfr, UAex, ULoi, UDec, UElu, UMgo, UDep, UDep_set, USen, USen_set, UPar, UPar_set, UDepToUPar, USenToUPar, LPar, LGouv),
+                                         LGou is Le_Gouvernement_S (UScr, UTfr, UAex, ULoi, UOrd, UDec, UElu, UMgo, UDep, UPar, UPar_set, UDepToUPar, USenToUPar, LPar)
                                          ) =
 
   inherit Un_Elu_S (UScr, UTfr), Un_Membre_de_l_executif_S;
@@ -44,11 +49,11 @@ species Le_President_de_la_republique_S (UScr is Un_Scrutin_S,
 
 -- Article 8 b - ...Il met fin à ses fonctions sur la présentation par celui-ci de la démission du Gouvernement. 
 
-  signature demissionne_gouvernement : Self -> LGou -> bool;
+  signature demissionne_le_gouvernement : Self -> LGou -> bool;
 
   signature demissionne_premier_ministre : Self -> LPmi -> bool;
 
-  property article_8 : all p : Self, all g : LGou, demissionne_gouvernement (p, g) -> all pm : LPmi, demissionne_premier_ministre (p, pm);
+  property article_8 : all p : Self, all g : LGou, demissionne_le_gouvernement (p, g) -> all pm : LPmi, demissionne_premier_ministre (p, pm);
 
 -- Article 9 - Le Président de la République préside le conseil des ministres.
 
