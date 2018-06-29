@@ -1,0 +1,25 @@
+open "basics";;
+open "Un_Scrutin";;
+
+species Un_Scrutin_direct_S =
+
+  inherit Un_Scrutin_S;
+
+  signature est_election_presidentielle : Self -> bool;
+
+  signature est_election_europeenne : Self -> bool;
+
+  signature est_election_legislative : Self -> bool;
+
+  signature est_election_municipale : Self -> bool;
+
+  signature est_election_regionale : Self -> bool;
+
+  signature est_election_cantonale : Self -> bool;
+
+  let est_scrutin_direct (s: Self) = true;
+
+  let est_scrutin_indirect (s: Self) = false;
+
+end;;
+

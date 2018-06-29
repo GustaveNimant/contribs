@@ -1,0 +1,27 @@
+open "basics";;
+open "Un_Elu";;
+open "Un_Scrutin";;
+open "Une_Loi";;
+open "Un_Territoire_francais";;
+
+species Un_Parlementaire_S (UScr is Un_Scrutin_S,
+                            UTfr is Un_Territoire_francais_S,
+                            ULoi is Une_Loi_S
+                            ) = 
+
+  inherit Un_Elu_S (UScr, UTfr);
+
+  signature est_un_depute : Self -> bool;
+
+  signature est_un_senateur : Self -> bool;
+
+  signature redige_une_loi : Self -> ULoi -> bool;
+
+  signature vote_une_loi : Self -> ULoi -> bool;
+
+  signature delibere_sur_une_loi : Self -> ULoi -> bool;
+
+  
+  signature exerce_sa_souverainete : Self -> bool;
+
+end;;

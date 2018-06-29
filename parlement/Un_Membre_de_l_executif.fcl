@@ -1,0 +1,11 @@
+open "basics";;
+open "sets";;
+
+
+  inherit Setoid;
+
+  signature est_le_president : Self -> bool;
+
+  signature est_un_membre_du_gouvernement : Self -> bool; 
+
+end;;

@@ -1,0 +1,17 @@
+open "basics";;
+open "Un_Parlementaire";;
+open "Un_Scrutin";;
+open "Un_Territoire_francais";;
+open "Une_Loi";;
+
+species Un_Depute_S (UScr is Un_Scrutin_S, 
+                     UTfr is Un_Territoire_francais_S,
+                     ULoi is Une_Loi_S
+                     ) = 
+
+
+  property est_elu : all p : Self, all s : UScr,
+        est_elu_par_le_scrutin (p, s) ->
+        UScr!est_une_election_legislative (s);
+
+end;;

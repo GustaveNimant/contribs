@@ -1,0 +1,12 @@
+-- Un_Parlementaire.txt
+--
+--  Un_Depute           Un_Senateur
+--      \                  /
+--       v                v
+--        Un_Parlementaire
+--
+--
+--  L_Assemblee_nationale Le_Senat
+--      \                  /
+--       v                v
+--          Le_Parlement

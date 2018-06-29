@@ -1,0 +1,14 @@
+open "basics";;
+open "Basic_Sets";;
+open "Un_Scrutin";;
+open "Un_Senateur";;
+open "Un_Territoire_francais";;
+open "Une_Loi";;
+
+species Le_Senat_S (UScr is Un_Scrutin_S, 
+                    UTfr is Un_Territoire_francais_S,
+                    ULoi is Une_Loi_S,
+                    ) =
+
+
+end;;

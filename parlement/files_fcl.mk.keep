@@ -1,0 +1,25 @@
+FOCALIZE_SRC=\
+  Basic_Sets.fcl \
+  Les_Functions_de_conversion.fcl \
+  Un_Territoire_francais.fcl \
+  Le_Territoire_francais.fcl \
+  Un_Texte_legislatif.fcl \
+  Une_Loi.fcl \
+  Le_Droit_francais.fcl \
+  Un_Etre_humain.fcl \
+  Un_Francais.fcl \
+  Le_Peuple_francais.fcl \
+  Un_Scrutin.fcl \
+  Un_Scrutin_direct.fcl \
+  Un_Scrutin_indirect.fcl \
+  Un_Electeur.fcl \
+  L_Electorat.fcl \
+  Une_Circonscription.fcl \
+  Un_Elu.fcl \
+  Un_Parlementaire.fcl \
+  Un_Depute.fcl \
+  Un_Senateur.fcl \
+  Le_Senat.fcl \
+  L_Assemblee_nationale.fcl \
+  Le_Parlement.fcl \
+ 

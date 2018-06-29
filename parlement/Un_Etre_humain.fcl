@@ -1,0 +1,28 @@
+open "basics";;
+open "sets";;
+
+species Un_Etre_humain_S =
+
+  inherit Setoid;
+
+  signature nom : string;
+
+  signature prenom : string;
+
+  signature date_de_naissance : int * (string * int) ; -- annee mois jour
+
+  signature age : int;
+
+  signature est_adulte : Self -> bool;
+
+  signature est_un_homme : Self -> bool;
+
+  signature est_une_femme : Self -> bool;
+
+  signature est_un_enfant : Self -> bool;
+
+  signature est_un_francais : Self -> bool;
+    
+end
+;;
+

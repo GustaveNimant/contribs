@@ -1,0 +1,43 @@
+open "basics";;
+open "Basic_Sets";;
+open "L_Assemblee_nationale";;
+open "Le_Senat";;
+open "Les_Functions_de_conversion";;
+open "Un_Depute";;
+open "Un_Parlementaire";;
+open "Un_Scrutin";;
+open "Un_Senateur";;
+open "Un_Territoire_francais";;
+open "Une_Loi";;
+
+-- Un_Parlementaire.txt
+--
+--  Un_Depute           Un_Senateur
+--      \                  /
+--       v                v
+--        Un_Parlementaire
+--
+--
+--  L_Assemblee_nationale Le_Senat
+--      \                  /
+--       v                v
+--          Le_Parlement
+
+species Le_Parlement_S (UScr is Un_Scrutin_S,
+                        UTfr is Un_Territoire_francais_S,
+                        ULoi is Une_Loi_S,
+                        UDep_set is Finite_set (UDep),
+                        USen_set is Finite_set (USen),
+                        UPar_set is Finite_set (UPar),
+                        ) = 
+
+
+  signature l_assemblee_nationale : Self -> UDep_set;
+  signature le_senat : Self -> USen_set;
+
+  let le_parlement (s : Self) : UPar_set =
+  UPar_set!union (UDepToUPar!to_super_set (!l_assemblee_nationale(s)), 
+                  USenToUPar!to_super_set (!le_senat(s))) ;
+
+
+end;;

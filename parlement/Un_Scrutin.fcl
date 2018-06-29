@@ -1,0 +1,27 @@
+open "basics";;
+open "sets";;
+
+species Un_Scrutin_S =
+
+  inherit Setoid;
+
+  signature est_une_election_presidentielle : Self -> bool;
+
+  signature est_une_election_europeenne : Self -> bool;
+
+  signature est_une_election_legislative : Self -> bool;
+
+  signature est_une_election_municipale : Self -> bool;
+
+  signature est_une_election_regionale : Self -> bool;
+
+  signature est_une_election_cantonale : Self -> bool;
+
+  signature est_une_election_senatoriale : Self -> bool;
+
+  signature est_scrutin_direct : Self -> bool;
+
+  signature est_scrutin_indirect : Self -> bool;
+
+end;;
+
