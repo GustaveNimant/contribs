@@ -3,7 +3,7 @@ open "Basic_Sets";;
 open "L_Assemblee_nationale";;
 open "Le_Parlement";;
 open "Le_Senat";;
-open "Les_Functions_de_conversion";;
+open "Les_Fonctions_de_conversion";;
 open "Un_Decret";;
 open "Un_Depute";;
 open "Un_Elu";;

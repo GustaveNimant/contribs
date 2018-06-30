@@ -2,14 +2,18 @@ open "basics";;
 open "Un_Francais";;
 open "Un_Scrutin";;
 open "Un_Territoire_francais";;
+open "Une_Loi";;
 
 species Un_Elu_S (UScr is Un_Scrutin_S,
-                  UTfr is Un_Territoire_francais_S
+                  UTfr is Un_Territoire_francais_S,
+                  ULoi is Une_Loi_S
                   ) = 
 
   inherit Un_Francais_S (UTfr); 
 
   signature est_eligible_par_le_scrutin : Self -> UScr -> bool;
+
+  signature delibere_sur_une_loi : Self -> ULoi -> bool;
 
   signature est_elu_par_le_scrutin : Self -> UScr -> bool;
 

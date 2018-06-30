@@ -2,13 +2,15 @@ open "basics";;
 open "Basic_Sets";;
 open "Un_Electeur";;
 open "Un_Elu";;
+open "Une_Loi";;
 open "Un_Scrutin";;
 open "Un_Territoire_francais";;
 
 species Une_Circonscription_S (UScr is Un_Scrutin_S, 
                                UTfr is Un_Territoire_francais_S,
-                               UElu is Un_Elu_S (UScr, UTfr),
-                               UEle is Un_Electeur_S (UScr, UTfr, UElu),
+                               ULoi is Une_Loi_S,
+                               UElu is Un_Elu_S (UScr, UTfr, ULoi),
+                               UEle is Un_Electeur_S (UScr, UTfr, ULoi, UElu),
                                UEle_set is Finite_set (UEle) 
                                ) = 
 

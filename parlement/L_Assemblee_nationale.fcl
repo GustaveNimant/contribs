@@ -8,7 +8,9 @@ open "Une_Loi";;
 species L_Assemblee_nationale_S (UScr is Un_Scrutin_S, 
                                  UTfr is Un_Territoire_francais_S,
                                  ULoi is Une_Loi_S,
-                                 )= 
+                                 UDep is Un_Depute_S (UScr, UTfr, ULoi)
+                                 ) = 
 
+  inherit Finite_set (UDep);
 
 end;;

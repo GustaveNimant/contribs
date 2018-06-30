@@ -9,7 +9,7 @@ species Un_Parlementaire_S (UScr is Un_Scrutin_S,
                             ULoi is Une_Loi_S
                             ) = 
 
-  inherit Un_Elu_S (UScr, UTfr);
+  inherit Un_Elu_S (UScr, UTfr, ULoi);
 
   signature est_un_depute : Self -> bool;
 
@@ -20,7 +20,6 @@ species Un_Parlementaire_S (UScr is Un_Scrutin_S,
   signature vote_une_loi : Self -> ULoi -> bool;
 
   signature delibere_sur_une_loi : Self -> ULoi -> bool;
-
   
   signature exerce_sa_souverainete : Self -> bool;
 

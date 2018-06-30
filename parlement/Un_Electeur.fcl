@@ -3,10 +3,12 @@ open "Un_Elu";;
 open "Un_Francais";;
 open "Un_Scrutin";;
 open "Un_Territoire_francais";;
+open "Une_Loi";;
 
 species Un_Electeur_S (UScr is Un_Scrutin_S, 
                        UTfr is Un_Territoire_francais_S,
-                       UElu is Un_Elu_S (UScr, UTfr)
+                       ULoi is Une_Loi_S,
+                       UElu is Un_Elu_S (UScr, UTfr, ULoi)
                        ) =
 
   inherit Un_Francais_S (UTfr);	
@@ -17,9 +19,9 @@ species Un_Electeur_S (UScr is Un_Scrutin_S,
 
   signature participe_au_scrutin : Self -> UScr -> bool;
 
-  let est_electeur (e : Self) = est_adulte (e); 
+  let est_un_electeur (e : Self) = est_adulte (e); 
 
-  property a_le_droit_de_vote : all e : Self, est_electeur (e);
+  property a_le_droit_de_vote : all e : Self, est_un_electeur (e);
 
 end
 ;;

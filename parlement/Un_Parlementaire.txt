@@ -3,10 +3,22 @@
 --  Un_Depute           Un_Senateur
 --      \                  /
 --       v                v
---        Un_Parlementaire
+--        Un_Parlementaire   Le_President_de_la_republique Un_Elu_europeen Un_Elu_regional Un_Elu_cantonalUn_Elu_municipal  
+--                |
+--                v
+--             Un_Elu
+--                |
+--                v
+--           Un_Francais
 --
 --
 --  L_Assemblee_nationale Le_Senat
 --      \                  /
 --       v                v
 --          Le_Parlement
+--                |
+--                v
+--           Un_Francais
+--                |
+--                v
+--           Un_Francais

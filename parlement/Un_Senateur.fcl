@@ -1,13 +1,30 @@
 open "basics";;
-open "Un_Parlementaire";;
+open "Un_Elu";;
 open "Un_Scrutin";;
-open "Une_Loi";;
 open "Un_Territoire_francais";;
+open "Une_Loi";;
 
 species Un_Senateur_S (UScr is Un_Scrutin_S, 
                        UTfr is Un_Territoire_francais_S,
                        ULoi is Une_Loi_S
                        ) = 
 
+  inherit Un_Elu_S (UScr, UTfr, ULoi);
+
+  let est_un_depute (s : Self) = false;
+
+  let est_un_senateur (s : Self) = true;
+
+  signature redige_une_loi : Self -> ULoi -> bool;
+
+  signature vote_une_loi : Self -> ULoi -> bool;
+
+  signature delibere_sur_une_loi : Self -> ULoi -> bool;
+  
+  signature exerce_sa_souverainete : Self -> bool;
+
+  property est_elu : all p : Self, all s : UScr,
+        est_elu_par_le_scrutin (p, s) ->
+        UScr!est_une_election_senatoriale (s);
   
 end;;

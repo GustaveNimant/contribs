@@ -2,7 +2,7 @@ open "basics";;
 open "Basic_Sets";;
 open "L_Assemblee_nationale";;
 open "Le_Senat";;
-open "Les_Functions_de_conversion";;
+open "Les_Fonctions_de_conversion";;
 open "Un_Depute";;
 open "Un_Parlementaire";;
 open "Un_Scrutin";;
@@ -26,18 +26,24 @@ open "Une_Loi";;
 species Le_Parlement_S (UScr is Un_Scrutin_S,
                         UTfr is Un_Territoire_francais_S,
                         ULoi is Une_Loi_S,
-                        UDep_set is Finite_set (UDep),
+                        USen is Un_Senateur_S (UScr, UTfr, ULoi),
                         USen_set is Finite_set (USen),
+                        UDep is Un_Depute_S (UScr, UTfr, ULoi),
+                        UDep_set is Finite_set (UDep),
+                        UPar is Un_Parlementaire_S (UScr, UTfr, ULoi),
                         UPar_set is Finite_set (UPar),
+			UDepToUPar is Un_Parlementaire_subtype (UScr, UTfr, ULoi, UDep, UDep_set, UPar, UPar_set),
+			USenToUPar is Un_Parlementaire_subtype (UScr, UTfr, ULoi, USen, USen_set, UPar, UPar_set)
                         ) = 
 
+  inherit Finite_set (UPar);
 
   signature l_assemblee_nationale : Self -> UDep_set;
   signature le_senat : Self -> USen_set;
 
   let le_parlement (s : Self) : UPar_set =
-  UPar_set!union (UDepToUPar!to_super_set (!l_assemblee_nationale(s)), 
-                  USenToUPar!to_super_set (!le_senat(s))) ;
+      UPar_set!union (UDepToUPar!to_super_set (!l_assemblee_nationale(s)), 
+                     USenToUPar!to_super_set (!le_senat(s))) ;
 
 
 end;;
