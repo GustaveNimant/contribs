@@ -36,14 +36,14 @@ species Le_Parlement_S (UScr is Un_Scrutin_S,
 			USenToUPar is Un_Parlementaire_subtype (UScr, UTfr, ULoi, USen, USen_set, UPar, UPar_set)
                         ) = 
 
-  inherit Finite_set (UPar);
+  inherit UPar_set;
 
   signature l_assemblee_nationale : Self -> UDep_set;
   signature le_senat : Self -> USen_set;
 
   let le_parlement (s : Self) : UPar_set =
-      UPar_set!union (UDepToUPar!to_super_set (!l_assemblee_nationale(s)), 
-                     USenToUPar!to_super_set (!le_senat(s))) ;
+      UPar_set!union (UDepToUPar!to_super_set (!l_assemblee_nationale (s)), 
+                      USenToUPar!to_super_set (!le_senat (s))) ;
 
 
 end;;

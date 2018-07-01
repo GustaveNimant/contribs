@@ -1,0 +1,19 @@
+
+--                                         La_France 
+--                              /                          \
+--                             v                            \
+--                   La_Metropole                            \
+--                             |                              v
+--                   Une_Region_metropolitaine    Un_Territoire_d_outre_mer 
+--                             |                              |
+--                             v                              v
+--                   Un_Departement_metropolitain Un_Departement_d_outre_mer
+--                             \                             /
+--                              v                           v
+--                                       Un_Departement
+--                                              |
+--                                              v
+--                                     Une_Circonscription
+--                                              |
+--                                              v
+--                                   Un_Territoire_francais
