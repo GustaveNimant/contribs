@@ -1,22 +1,22 @@
 open "basics";;
-open "Un_Francais";;
+open "Un_Electeur";;
 open "Un_Scrutin";;
 open "Un_Territoire_francais";;
-open "Une_Loi";;
+open "Un_Electeur";;
 
 species Un_Elu_S (UScr is Un_Scrutin_S,
                   UTfr is Un_Territoire_francais_S,
-                  ULoi is Une_Loi_S
+                  UEle is Un_Electeur_S (UScr, UTfr)
                   ) = 
 
-  inherit Un_Francais_S (UTfr); 
+  inherit Un_Electeur_S (UScr, UTfr); 
 
   signature est_eligible_par_le_scrutin : Self -> UScr -> bool;
 
-  signature delibere_sur_une_loi : Self -> ULoi -> bool;
-
   signature est_elu_par_le_scrutin : Self -> UScr -> bool;
 
-  signature exerce_sa_souverainete : Self -> bool;
+  signature est_elu_sur_un_territoire : Self -> UTfr -> bool;
+
+  signature represente_un_electeur : Self -> UEle -> bool;
 
 end;;

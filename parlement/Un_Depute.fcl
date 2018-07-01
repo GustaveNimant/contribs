@@ -1,4 +1,5 @@
 open "basics";;
+open "Un_Electeur";;
 open "Un_Elu";;
 open "Un_Parlementaire";;
 open "Un_Scrutin";;
@@ -7,14 +8,17 @@ open "Une_Loi";;
 
 species Un_Depute_S (UScr is Un_Scrutin_S, 
                      UTfr is Un_Territoire_francais_S,
+                     UEle is Un_Electeur_S (UScr, UTfr),
                      ULoi is Une_Loi_S
                      ) = 
 
-  inherit Un_Elu_S (UScr, UTfr, ULoi);
+  inherit Un_Elu_S (UScr, UTfr, UEle);
 
   let est_un_depute (s : Self) = true;
 
   let est_un_senateur (s : Self) = false;
+
+  signature represente_un_electeur : Self -> UEle -> bool;
 
   signature redige_une_loi : Self -> ULoi -> bool;
 

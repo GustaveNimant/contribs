@@ -1,21 +1,15 @@
 open "basics";;
-open "Un_Elu";;
 open "Un_Francais";;
 open "Un_Scrutin";;
 open "Un_Territoire_francais";;
-open "Une_Loi";;
 
 species Un_Electeur_S (UScr is Un_Scrutin_S, 
-                       UTfr is Un_Territoire_francais_S,
-                       ULoi is Une_Loi_S,
-                       UElu is Un_Elu_S (UScr, UTfr, ULoi)
+                       UTfr is Un_Territoire_francais_S
                        ) =
 
   inherit Un_Francais_S (UTfr);	
   
   signature numero_carte_electeur : Self -> int;
-
-  signature est_represente_par : Self -> UElu ;
 
   signature participe_au_scrutin : Self -> UScr -> bool;
 

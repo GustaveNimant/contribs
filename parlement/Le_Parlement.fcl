@@ -2,6 +2,7 @@ open "basics";;
 open "Basic_Sets";;
 open "L_Assemblee_nationale";;
 open "Le_Senat";;
+open "Un_Electeur";;
 open "Les_Fonctions_de_conversion";;
 open "Un_Depute";;
 open "Un_Parlementaire";;
@@ -25,15 +26,16 @@ open "Une_Loi";;
 
 species Le_Parlement_S (UScr is Un_Scrutin_S,
                         UTfr is Un_Territoire_francais_S,
+                        UEle is Un_Electeur_S (UScr, UTfr),
                         ULoi is Une_Loi_S,
-                        USen is Un_Senateur_S (UScr, UTfr, ULoi),
+                        USen is Un_Senateur_S (UScr, UTfr, UEle, ULoi),
                         USen_set is Finite_set (USen),
-                        UDep is Un_Depute_S (UScr, UTfr, ULoi),
+                        UDep is Un_Depute_S (UScr, UTfr, UEle, ULoi),
                         UDep_set is Finite_set (UDep),
-                        UPar is Un_Parlementaire_S (UScr, UTfr, ULoi),
+                        UPar is Un_Parlementaire_S (UScr, UTfr, UEle, ULoi),
                         UPar_set is Finite_set (UPar),
-			UDepToUPar is Un_Parlementaire_subtype (UScr, UTfr, ULoi, UDep, UDep_set, UPar, UPar_set),
-			USenToUPar is Un_Parlementaire_subtype (UScr, UTfr, ULoi, USen, USen_set, UPar, UPar_set)
+			UDepToUPar is Un_Parlementaire_subtype (UScr, UTfr, UEle, ULoi, UDep, UDep_set, UPar, UPar_set),
+			USenToUPar is Un_Parlementaire_subtype (UScr, UTfr, UEle, ULoi, USen, USen_set, UPar, UPar_set)
                         ) = 
 
   inherit UPar_set;
