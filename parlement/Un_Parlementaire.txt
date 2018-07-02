@@ -18,7 +18,4 @@
 --          Le_Parlement
 --                |
 --                v
---           Un_Francais
---                |
---                v
---           Un_Francais
+--         Finite_set (UPar)

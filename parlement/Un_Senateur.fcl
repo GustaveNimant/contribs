@@ -4,14 +4,16 @@ open "Un_Elu";;
 open "Un_Scrutin";;
 open "Un_Territoire_francais";;
 open "Une_Loi";;
+open "Un_Bureau_de_vote";;
 
 species Un_Senateur_S (UScr is Un_Scrutin_S, 
                        UTfr is Un_Territoire_francais_S,
-                       UEle is Un_Electeur_S (UScr, UTfr),
+		       UBvo is Un_Bureau_de_vote_S (UTfr),
+                       UEle is Un_Electeur_S (UScr, UTfr, UBvo),
                        ULoi is Une_Loi_S
                        ) = 
 
-  inherit Un_Elu_S (UScr, UTfr, UEle);
+  inherit Un_Elu_S (UScr, UTfr, UBvo, UEle);
 
   let est_un_depute (s : Self) = false;
 

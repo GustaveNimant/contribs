@@ -1,15 +1,17 @@
 open "basics";;
+open "Un_Bureau_de_vote";;
+open "Un_Electeur";;
 open "Un_Electeur";;
 open "Un_Scrutin";;
 open "Un_Territoire_francais";;
-open "Un_Electeur";;
 
 species Un_Elu_S (UScr is Un_Scrutin_S,
                   UTfr is Un_Territoire_francais_S,
-                  UEle is Un_Electeur_S (UScr, UTfr)
+                  UBvo is Un_Bureau_de_vote_S (UTfr),
+                  UEle is Un_Electeur_S (UScr, UTfr, UBvo)
                   ) = 
 
-  inherit Un_Electeur_S (UScr, UTfr); 
+  inherit Un_Electeur_S (UScr, UTfr, UBvo); 
 
   signature est_eligible_par_le_scrutin : Self -> UScr -> bool;
 

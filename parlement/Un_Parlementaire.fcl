@@ -1,4 +1,5 @@
 open "basics";;
+open "Un_Bureau_de_vote";;
 open "Un_Electeur";;
 open "Un_Elu";;
 open "Un_Scrutin";;
@@ -7,11 +8,12 @@ open "Une_Loi";;
 
 species Un_Parlementaire_S (UScr is Un_Scrutin_S,
                             UTfr is Un_Territoire_francais_S,
-                            UEle is Un_Electeur_S (UScr, UTfr),
+                            UBvo is Un_Bureau_de_vote_S (UTfr),
+                            UEle is Un_Electeur_S (UScr, UTfr, UBvo),
                             ULoi is Une_Loi_S
                             ) = 
 
-  inherit Un_Elu_S (UScr, UTfr, UEle);
+  inherit Un_Elu_S (UScr, UTfr, UBvo, UEle);
 
   signature est_un_depute : Self -> bool;
 

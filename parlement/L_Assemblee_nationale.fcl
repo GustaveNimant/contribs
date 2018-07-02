@@ -5,12 +5,14 @@ open "Un_Scrutin";;
 open "Un_Territoire_francais";;
 open "Une_Loi";;
 open "Un_Electeur";;
+open "Un_Bureau_de_vote";;
 
 species L_Assemblee_nationale_S (UScr is Un_Scrutin_S, 
                                  UTfr is Un_Territoire_francais_S,
+                                 UBvo is Un_Bureau_de_vote_S (UTfr),
                                  ULoi is Une_Loi_S,
-                                 UEle is Un_Electeur_S (UScr, UTfr),
-                                 UDep is Un_Depute_S (UScr, UTfr, UEle, ULoi)
+                                 UEle is Un_Electeur_S (UScr, UTfr, UBvo),
+                                 UDep is Un_Depute_S (UScr, UTfr, UBvo, UEle, ULoi)
                                  ) = 
 
   inherit Finite_set (UDep);
