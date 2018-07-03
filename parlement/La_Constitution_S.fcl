@@ -1,7 +1,7 @@
 open "basics";;
-open "Un_Texte_legislatif";;
-open "Un_Francais";;
-open "Un_Territoire_francais";;
+open "Un_Texte_legislatif_S";;
+open "Un_Francais_S";;
+open "Un_Territoire_francais_S";;
 
 species La_Constitution_S (UTfr is Un_Territoire_francais_S,
                            UFra is Un_Francais_S (UTfr)

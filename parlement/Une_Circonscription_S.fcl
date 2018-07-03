@@ -1,7 +1,7 @@
 open "basics";;
 open "Basic_Sets";;
-open "Un_Scrutin";;
-open "Un_Territoire_francais";;
+open "Un_Scrutin_S";;
+open "Un_Territoire_francais_S";;
 
 species Une_Circonscription_S (UScr is Un_Scrutin_S
                                ) = 

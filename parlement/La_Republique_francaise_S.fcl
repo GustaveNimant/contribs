@@ -1,15 +1,15 @@
 open "basics";;
 open "Basic_Sets";;
-open "Le_Parlement";;
-open "Le_Peuple_francais";;
-open "Un_Francais";;
-open "Un_Parlementaire";;
-open "Un_Scrutin";;
-open "Un_Territoire_francais";;
-open "Un_Territoire_francais";;
-open "Un_Texte_legislatif";;
-open "Une_Loi";;
-open "Le_Droit_francais";;
+open "Le_Parlement_S";;
+open "Le_Peuple_francais_S";;
+open "Un_Francais_S";;
+open "Un_Parlementaire_S";;
+open "Un_Scrutin_S";;
+open "Un_Territoire_francais_S";;
+open "Un_Territoire_francais_S";;
+open "Un_Texte_legislatif_S";;
+open "Une_Loi_S";;
+open "Le_Droit_francais_S";;
 
 species La_Republique_francaise_S (UScr is Un_Scrutin_S,
                                    UTfr is Un_Territoire_francais_S,

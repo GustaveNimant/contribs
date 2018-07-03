@@ -1,9 +1,9 @@
-(* $Id: Conversionfunctions.fcl,v 1.2 2012-03-01 16:05:01 pessaux Exp $ *)
+(* $Id: Conversionfunctions_S.fcl,v 1.2 2012-03-01 16:05:01 pessaux Exp $ *)
 
 open "basics";;
 open "sets";;
 open "Basic_Sets";;
-open "Les_Items_de_la_constitution";;
+open "Les_Items_de_la_constitution_S";;
 
 species Subtype (Sub is Setoid, Super is Setoid,
                  Sub_set is Finite_set(Sub),

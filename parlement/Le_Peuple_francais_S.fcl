@@ -1,7 +1,7 @@
 open "basics";;
 open "Basic_Sets";;
-open "Un_Francais";;
-open "Un_Territoire_francais";;
+open "Un_Francais_S";;
+open "Un_Territoire_francais_S";;
 
 species Le_Peuple_francais_S (
                               UTfr is Un_Territoire_francais_S,

@@ -1,26 +1,26 @@
 FOCALIZE_SRC=\
   Basic_Sets.fcl \
   Les_Fonctions_de_conversion.fcl \
-  Un_Territoire_francais.fcl \
-  Un_Bureau_de_vote.fcl \
-  Le_Territoire_francais.fcl \
-  Un_Texte_legislatif.fcl \
-  Une_Loi.fcl \
-  Le_Droit_francais.fcl \
-  Un_Etre_humain.fcl \
-  Un_Francais.fcl \
-  Le_Peuple_francais.fcl \
-  Un_Scrutin.fcl \
-  Un_Scrutin_direct.fcl \
-  Un_Scrutin_indirect.fcl \
-  Un_Electeur.fcl \
-  L_Electorat.fcl \
-  Une_Circonscription.fcl \
-  Un_Elu.fcl \
-  Un_Parlementaire.fcl \
-  Un_Depute.fcl \
-  Un_Senateur.fcl \
-  Le_Senat.fcl \
-  L_Assemblee_nationale.fcl \
-  Le_Parlement.fcl \
+  Un_Territoire_francais_S.fcl \
+  Un_Bureau_de_vote_S.fcl \
+  Le_Territoire_francais_S.fcl \
+  Un_Texte_legislatif_S.fcl \
+  Une_Loi_S.fcl \
+  Le_Droit_francais_S.fcl \
+  Un_Etre_humain_S.fcl \
+  Un_Francais_S.fcl \
+  Le_Peuple_francais_S.fcl \
+  Un_Scrutin_S.fcl \
+  Un_Scrutin_direct_S.fcl \
+  Un_Scrutin_indirect_S.fcl \
+  Un_Electeur_S.fcl \
+  L_Electorat_S.fcl \
+  Une_Circonscription_S.fcl \
+  Un_Elu_S.fcl \
+  Un_Parlementaire_S.fcl \
+  Un_Depute_S.fcl \
+  Un_Senateur_S.fcl \
+  Le_Senat_S.fcl \
+  L_Assemblee_nationale_S.fcl \
+  Le_Parlement_S.fcl \
  

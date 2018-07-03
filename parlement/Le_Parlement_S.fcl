@@ -1,16 +1,16 @@
 open "basics";;
 open "Basic_Sets";;
-open "L_Assemblee_nationale";;
-open "Le_Senat";;
+open "L_Assemblee_nationale_S";;
+open "Le_Senat_S";;
 open "Les_Fonctions_de_conversion";;
-open "Un_Bureau_de_vote";;
-open "Un_Depute";;
-open "Un_Electeur";;
-open "Un_Parlementaire";;
-open "Un_Scrutin";;
-open "Un_Senateur";;
-open "Un_Territoire_francais";;
-open "Une_Loi";;
+open "Un_Bureau_de_vote_S";;
+open "Un_Depute_S";;
+open "Un_Electeur_S";;
+open "Un_Parlementaire_S";;
+open "Un_Scrutin_S";;
+open "Un_Senateur_S";;
+open "Un_Territoire_francais_S";;
+open "Une_Loi_S";;
 
 --            Un_Parlementaire.txt
 --

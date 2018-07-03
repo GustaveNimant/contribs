@@ -1,11 +1,11 @@
 open "basics";;
 open "Basic_Sets";;
-open "Un_Electeur";;
-open "Un_Elu";;
-open "Un_Scrutin";;
-open "Un_Territoire_francais";;
-open "Une_Loi";;
-open "Un_Bureau_de_vote";;
+open "Un_Electeur_S";;
+open "Un_Elu_S";;
+open "Un_Scrutin_S";;
+open "Un_Territoire_francais_S";;
+open "Une_Loi_S";;
+open "Un_Bureau_de_vote_S";;
 
 species L_Electorat_S (UScr is Un_Scrutin_S, 
                        UTfr is Un_Territoire_francais_S,

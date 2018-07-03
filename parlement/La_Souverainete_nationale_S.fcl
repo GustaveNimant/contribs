@@ -1,10 +1,10 @@
 open "basics";;
 open "Basic_Sets";;
-open "Un_Scrutin";;
-open "Un_Elu";;
-open "Un_Electeur";;
-open "Le_Parlement";;
-open "Un_Territoire_francais";;
+open "Un_Scrutin_S";;
+open "Un_Elu_S";;
+open "Un_Electeur_S";;
+open "Le_Parlement_S";;
+open "Un_Territoire_francais_S";;
 
 species La_Souverainete_nationale_S (UScr is Un_Scrutin_S, 
                                      UTfr is Un_Territoire_francais_S,

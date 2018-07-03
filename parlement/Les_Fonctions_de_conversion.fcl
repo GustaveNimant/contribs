@@ -1,19 +1,19 @@
-(* $Id: Conversionfunctions.fcl,v 1.2 2012-03-01 16:05:01 pessaux Exp $ *)
+(* $Id: Conversionfunctions_S.fcl,v 1.2 2012-03-01 16:05:01 pessaux Exp $ *)
 
 open "basics";;
 open "sets";;
 open "Basic_Sets";;
-open "L_Assemblee_nationale";;
-open "Le_Senat";;
-open "Un_Bureau_de_vote";;
-open "Un_Depute";;
-open "Un_Electeur";;
-open "Un_Elu";;
-open "Un_Parlementaire";;
-open "Un_Scrutin";;
-open "Un_Senateur";;
-open "Un_Territoire_francais";;
-open "Une_Loi";;
+open "L_Assemblee_nationale_S";;
+open "Le_Senat_S";;
+open "Un_Bureau_de_vote_S";;
+open "Un_Depute_S";;
+open "Un_Electeur_S";;
+open "Un_Elu_S";;
+open "Un_Parlementaire_S";;
+open "Un_Scrutin_S";;
+open "Un_Senateur_S";;
+open "Un_Territoire_francais_S";;
+open "Une_Loi_S";;
 
 species Subtype (Sub is Setoid, 
                  Sub_set is Finite_set(Sub),

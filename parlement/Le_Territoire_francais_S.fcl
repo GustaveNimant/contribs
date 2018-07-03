@@ -1,6 +1,6 @@
 open "basics";;
 open "Basic_Sets";;
-open "Un_Territoire_francais";;
+open "Un_Territoire_francais_S";;
 
 species Le_Territoire_francais_S (UTfr is Un_Territoire_francais_S) =
  
