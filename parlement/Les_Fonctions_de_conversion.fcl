@@ -32,14 +32,14 @@ property to_super_set_congruence : all x y : Sub_set,
   Sub_set!equal(x, y) -> Super_set!equal(!to_super_set(x), !to_super_set(y));
 
 property to_super_set_const1 : all x_set : Sub_set, all y : Super,
-  Super_set!member(y, !to_super_set(x_set)) ->
+  Super_set!is_a_member_of(y, !to_super_set(x_set)) ->
                  (ex x : Sub,
-                     Sub_set!member(x, x_set) /\
+                     Sub_set!is_a_member_of(x, x_set) /\
                      Super!equal(!to_super(x), y));
 
 property to_super_set_const2 : all x_set : Sub_set, all x : Sub,
-                  Sub_set!member(x, x_set) ->
-                        Super_set!member(!to_super(x), !to_super_set(x_set));
+                  Sub_set!is_a_member_of(x, x_set) ->
+                        Super_set!is_a_member_of(!to_super(x), !to_super_set(x_set));
 
 end;;
 
