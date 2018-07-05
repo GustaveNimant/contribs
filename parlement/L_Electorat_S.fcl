@@ -4,14 +4,12 @@ open "Un_Electeur_S";;
 open "Un_Elu_S";;
 open "Un_Scrutin_S";;
 open "Un_Territoire_francais_S";;
-open "Une_Loi_S";;
 open "Un_Bureau_de_vote_S";;
 
 species L_Electorat_S (UScr is Un_Scrutin_S, 
                        UTfr is Un_Territoire_francais_S,
                        UBvo is Un_Bureau_de_vote_S (UTfr),
                        UEle is Un_Electeur_S (UScr, UTfr, UBvo), 
-                       ULoi is Une_Loi_S,
                        UElu is Un_Elu_S (UScr, UTfr, UBvo, UEle)
                       ) =
 
@@ -25,15 +23,9 @@ species L_Electorat_S (UScr is Un_Scrutin_S,
 
   property suffrage_direct : all s : UScr, UScr!est_scrutin_direct (s); 
 
--- Article 6 a - Le Président de la République est élu [ pour cinq ans ] au suffrage universel direct.
-
-  signature vote_a_l_election_presidentielle : UEle -> bool;
-
-  property participe_vote_president : all e : UEle, (vote_a_l_election_presidentielle (e));
-
-  property article_6_a : all e : UEle, vote_a_l_election_presidentielle (e) -> participe_vote_president;
-
 -- Article 4 d - Sont électeurs, dans les conditions déterminées par la loi, tous les nationaux français majeurs des deux sexes, jouissant de leurs droits civils et politiques. 
+
+--  let francais_majeurs (s : Self) : all e : UEle, UEleToUFra!to_super(e); 
 
 end;;
 

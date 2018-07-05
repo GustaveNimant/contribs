@@ -1,19 +1,31 @@
 open "basics";;
+open "Un_Bureau_de_vote_S";;
 open "Un_Electeur_S";;
 open "Un_Elu_S";;
+open "Un_Parlementaire_S";;
 open "Un_Scrutin_S";;
 open "Un_Territoire_francais_S";;
 open "Une_Loi_S";;
-open "Un_Bureau_de_vote_S";;
+
+--  Un_Depute           Un_Senateur
+--      \                  /
+--       v                v
+--        Un_Parlementaire   Le_President_de_la_republique Un_Elu_europeen Un_Elu_regional Un_Elu_cantonalUn_Elu_municipal  
+--                |
+--                v
+--             Un_Elu
+--                |
+--                v
+--           Un_Electeur
 
 species Un_Senateur_S (UScr is Un_Scrutin_S, 
                        UTfr is Un_Territoire_francais_S,
 		       UBvo is Un_Bureau_de_vote_S (UTfr),
                        UEle is Un_Electeur_S (UScr, UTfr, UBvo),
-                       ULoi is Une_Loi_S
+                       ULoi is Une_Loi_S                       
                        ) = 
 
-  inherit Un_Elu_S (UScr, UTfr, UBvo, UEle);
+  inherit Un_Parlementaire_S (UScr, UTfr, UBvo, UEle, ULoi);
 
   let est_un_depute (s : Self) = false;
 
@@ -27,8 +39,4 @@ species Un_Senateur_S (UScr is Un_Scrutin_S,
   
   signature exerce_sa_souverainete : Self -> bool;
 
-  property est_elu : all p : Self, all s : UScr,
-        est_elu_par_le_scrutin (p, s) ->
-        UScr!est_une_election_senatoriale (s);
-  
 end;;

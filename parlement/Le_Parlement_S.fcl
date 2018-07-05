@@ -24,12 +24,6 @@ open "Une_Loi_S";;
 --                |
 --                v
 --           Un_Francais
---
---
---  L_Assemblee_nationale Le_Senat
---      \                  /
---       v                v
---          Le_Parlement
 
 species Le_Parlement_S (UScr is Un_Scrutin_S,
                         UTfr is Un_Territoire_francais_S,

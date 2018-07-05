@@ -17,9 +17,12 @@ species Un_Electeur_S (UScr is Un_Scrutin_S,
 
   signature participe_au_scrutin : Self -> UScr -> bool;
 
-  let est_un_electeur (e : Self) = est_adulte (e); 
+  property est_un_electeur_pr : all e : Self,  
+   ( est_un_adulte (e) /\ est_un_francais (e) ) -> (numero_carte_electeur (e) > 0);
 
-  property a_le_droit_de_vote : all e : Self, est_un_electeur (e);
+--  theorem est_un_adulte_th : all e : Self, 
+--     (numero_carte_electeur (e) > 0) -> est_un_adulte (e) 	 
+--  proof = by property est_un_electeur_pr;
 
 end
 ;;

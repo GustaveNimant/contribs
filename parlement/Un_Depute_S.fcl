@@ -14,7 +14,7 @@ species Un_Depute_S (UScr is Un_Scrutin_S,
                      ULoi is Une_Loi_S
                      ) = 
 
-  inherit Un_Elu_S (UScr, UTfr, UBvo, UEle);
+  inherit Un_Parlementaire_S (UScr, UTfr, UBvo, UEle, ULoi);
 
   let est_un_depute (s : Self) = true;
 
@@ -33,5 +33,9 @@ species Un_Depute_S (UScr is Un_Scrutin_S,
   property est_elu : all p : Self, all s : UScr,
         est_elu_par_le_scrutin (p, s) ->
         UScr!est_une_election_legislative (s);
+
+  theorem un_depute_est_un_adulte : all d : Self,
+    est_un_depute (d) -> est_un_adulte (d)
+  proof = assumed;
 
 end;;

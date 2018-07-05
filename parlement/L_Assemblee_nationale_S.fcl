@@ -7,6 +7,20 @@ open "Une_Loi_S";;
 open "Un_Electeur_S";;
 open "Un_Bureau_de_vote_S";;
 
+--  Un_Depute           Un_Senateur
+--      \                  /
+--       v                v
+--        Un_Parlementaire   Le_President_de_la_republique Un_Elu_europeen Un_Elu_regional Un_Elu_cantonalUn_Elu_municipal  
+--                |
+--                v
+--             Un_Elu
+--                |
+--                v
+--           Un_Electeur
+--                |
+--                v
+--           Un_Francais
+
 species L_Assemblee_nationale_S (UScr is Un_Scrutin_S, 
                                  UTfr is Un_Territoire_francais_S,
                                  UBvo is Un_Bureau_de_vote_S (UTfr),

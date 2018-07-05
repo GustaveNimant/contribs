@@ -1,20 +1,59 @@
 open "basics";;
 open "Basic_Sets";;
+open "Les_Fonctions_de_conversion";;
+open "Un_Bureau_de_vote_S";;
+open "Un_Electeur_S";;
+open "Un_Elu_S";;
 open "Un_Scrutin_S";;
+open "Un_Parlementaire_S";;
 open "Un_Senateur_S";;
 open "Un_Territoire_francais_S";;
 open "Une_Loi_S";;
-open "Un_Electeur_S";;
-open "Un_Bureau_de_vote_S";;
+
+--  Un_Depute           Un_Senateur
+--      \                  /
+--       v                v
+--        Un_Parlementaire   Le_President_de_la_republique Un_Elu_europeen Un_Elu_regional Un_Elu_cantonalUn_Elu_municipal  
+--                |
+--                v
+--             Un_Elu
+--                |
+--                v
+--           Un_Electeur
+--                |
+--                v
+--           Un_Francais
 
 species Le_Senat_S (UScr is Un_Scrutin_S, 
                     UTfr is Un_Territoire_francais_S,
 		    UBvo is Un_Bureau_de_vote_S (UTfr),
-                    UEle is Un_Electeur_S (UScr, UTfr, UBvo),
                     ULoi is Une_Loi_S,
-                    USen is Un_Senateur_S (UScr, UTfr, UBvo, UEle, ULoi)
+                    UEle is Un_Electeur_S (UScr, UTfr, UBvo),
+                    UElu is Un_Elu_S (UScr, UTfr, UBvo, UEle),
+                    UElu_set is Finite_set (UElu),
+                    UPar is Un_Parlementaire_S (UScr, UTfr, UBvo, UEle, ULoi), 
+                    UPar_set is Finite_set (UPar),
+                    USen is Un_Senateur_S (UScr, UTfr, UBvo, UEle, ULoi),
+                    USen_set is Finite_set (USen),
+                    USenToUPar is Un_Parlementaire_subtype (UScr, UTfr, UBvo, UEle, ULoi, USen, USen_set, UPar, UPar_set),
+                    UParToUElu is Un_Elu_subtype (UScr, UTfr, UBvo, UEle, UPar, UPar_set, UElu, UElu_set)
                     ) =
 
   inherit Finite_set (USen);
+
+  let usenToUElu (s : USen) : UElu = 
+         UParToUElu!to_super (USenToUPar!to_super (s));
+
+ (*
+
+  property est_elu_par_des_elus : all s : Self, all e : UEle,
+        (usenToUElu(s)!est_elu_par_un_electeur (s, e)) -> ~(usenToUElu(s)!est_un_senateur (e));
+
+
+  property est_elu_par_une_senatoriale : all sen : Self, all scr : UScr,
+        est_elu_par_le_scrutin (sen, scr) ->
+        UScr!est_une_election_senatoriale (scr);
+*)
+  
 
 end;;

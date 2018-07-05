@@ -43,6 +43,15 @@ species Le_President_de_la_republique_S (UScr is Un_Scrutin_S,
 
   inherit Un_Elu_S (UScr, UTfr), Un_Membre_de_l_executif_S;
 
+-- Article 6 a - Le Président de la République est élu [ pour cinq ans ] au suffrage universel direct.
+
+  signature vote_a_l_election_presidentielle : UEle -> bool;
+
+  property participe_vote_president : all e : UEle, (vote_a_l_election_presidentielle (e));
+
+  property article_6_a : all e : UEle, vote_a_l_election_presidentielle (e) -> participe_vote_president;
+
+
 -- Article 8 a - Le Président de la République nomme le Premier ministre. 
 
   signature nomme_le_premier_ministre : Self -> LPmi -> bool;

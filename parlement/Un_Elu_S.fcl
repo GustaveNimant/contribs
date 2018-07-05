@@ -5,6 +5,14 @@ open "Un_Electeur_S";;
 open "Un_Scrutin_S";;
 open "Un_Territoire_francais_S";;
 
+--             Un_Elu
+--                |
+--                v
+--           Un_Electeur
+--                |
+--                v
+--           Un_Francais
+
 species Un_Elu_S (UScr is Un_Scrutin_S,
                   UTfr is Un_Territoire_francais_S,
                   UBvo is Un_Bureau_de_vote_S (UTfr),
@@ -17,8 +25,12 @@ species Un_Elu_S (UScr is Un_Scrutin_S,
 
   signature est_elu_par_le_scrutin : Self -> UScr -> bool;
 
+  signature est_un_senateur : Self -> bool;
+
   signature est_elu_sur_un_territoire : Self -> UTfr -> bool;
 
   signature represente_un_electeur : Self -> UEle -> bool;
+
+  signature est_elu_par_un_electeur : Self -> UEle -> bool;
 
 end;;
