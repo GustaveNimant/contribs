@@ -36,34 +36,42 @@ species Le_Senat_S (UScr is Un_Scrutin_S,
                     UPar_set is Finite_set (UPar),
                     USen is Un_Senateur_S (UScr, UTfr, UBvo, UEle, ULoi),
                     USen_set is Finite_set (USen),
-                    USenToUPar is Un_Parlementaire_subtype (UScr, UTfr, UBvo, UEle, ULoi, USen, USen_set, UPar, UPar_set),
-                    UParToUElu is Un_Elu_subtype (UScr, UTfr, UBvo, UEle, UPar, UPar_set, UElu, UElu_set),
-                    UEluToUEle is Un_Electeur_subtype (UScr, UTfr, UBvo, UElu, UElu_set, UEle, UEle_set)
+                    UParOfUSen is Un_Parlementaire_subtype (UScr, UTfr, UBvo, UEle, ULoi, USen, USen_set, UPar, UPar_set),
+                    UEluOfUPar is Un_Elu_subtype (UScr, UTfr, UBvo, UEle, UPar, UPar_set, UElu, UElu_set),
+                    UEleOfUElu is Un_Electeur_subtype (UScr, UTfr, UBvo, UElu, UElu_set, UEle, UEle_set)
                     ) =
 
   inherit Finite_set (USen);
 
-  let l_USenToUElu (sen : USen) : UElu = 
-         UParToUElu!to_super (USenToUPar!to_super (sen));
+  let ne_peut_pas_etre_dissous (s : Self) = false;
 
-  let l_UEluToUEle (elu : UElu) : UEle = 
-         (UEluToUEle!to_super (elu));
+  let l_UEluOfUSen (sen : USen) : UElu = 
+         UEluOfUPar!to_super (UParOfUSen!to_super (sen));
+
+  let l_UEleOfUElu (elu : UElu) : UEle = 
+         (UEleOfUElu!to_super (elu));
 
   property sont_elus_par_un_electeur_quelconque : all ele : UEle, all sen : USen, 
-           UElu!est_elu_par_un_electeur (l_USenToUElu(sen), ele);
+           UElu!est_elu_par_un_electeur (l_UEluOfUSen(sen), ele);
 
-  property sont_elus_par_un_elu_non_senateur : all elu : UElu, all sen : USen, 
-           UElu!est_elu_par_un_electeur (l_USenToUElu (sen), l_UEluToUEle (elu))
-           -> ~(UElu!est_un_senateur (elu));
+  property sont_elus_par_des_grands_electeurs : all elu : UElu, all sen : USen, 
+           UElu!est_elu_par_un_electeur (l_UEluOfUSen (sen), l_UEleOfUElu (elu))
+           -> UElu!est_un_grand_electeur (elu);
+
 
  (*
+
+  property sont_elus_par_un_elu_non_senateur : all elu : UElu, all sen : USen, 
+           UElu!est_elu_par_un_electeur (l_UEluOfUSen (sen), l_UEleOfUElu (elu))
+           -> ~(UElu!est_un_senateur (elu));
+
 
   let l_UEluOfUSen (s : USen) : UElu = 
         UEluOfUPar!to_super (UParOfUSen!to_super (s));
 
 
   property est_elu_par_des_elus : all s : Self, all e : UEle,
-        (l_USenToUElu(s)!est_elu_par_un_electeur (s, e)) -> ~(l_USenToUElu(s)!est_un_senateur (e));
+        (l_UEluOfUSen(s)!est_elu_par_un_electeur (s, e)) -> ~(l_UEluOfUSen(s)!est_un_senateur (e));
 
 
   property est_elu_par_une_senatoriale : all sen : Self, all scr : UScr,

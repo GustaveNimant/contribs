@@ -33,7 +33,9 @@ species Un_Parlementaire_S (UScr is Un_Scrutin_S,
 
   signature est_un_senateur : Self -> bool;
 
-  signature redige_une_loi : Self -> ULoi -> bool;
+  signature depose_un_projet_de_loi : Self -> ULoi -> bool;
+
+  signature redige_un_texte_de_loi : Self -> ULoi -> bool;
 
   signature vote_une_loi : Self -> ULoi -> bool;
 

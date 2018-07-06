@@ -25,7 +25,7 @@ species L_Electorat_S (UScr is Un_Scrutin_S,
 
 -- Article 4 d - Sont électeurs, dans les conditions déterminées par la loi, tous les nationaux français majeurs des deux sexes, jouissant de leurs droits civils et politiques. 
 
---  let francais_majeurs (s : Self) : all e : UEle, UEleToUFra!to_super(e); 
+--  let francais_majeurs (s : Self) : all e : UEle, UFraOfUEle!to_super(e); 
 
 end;;
 

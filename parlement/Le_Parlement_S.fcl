@@ -12,8 +12,6 @@ open "Un_Senateur_S";;
 open "Un_Territoire_francais_S";;
 open "Une_Loi_S";;
 
---            Un_Parlementaire.txt
---
 --  Un_Depute           Un_Senateur
 --      \                  /
 --       v                v
@@ -36,18 +34,18 @@ species Le_Parlement_S (UScr is Un_Scrutin_S,
                         UDep_set is Finite_set (UDep),
                         UPar is Un_Parlementaire_S (UScr, UTfr, UBvo, UEle, ULoi),
                         UPar_set is Finite_set (UPar),
-			UDepToUPar is Un_Parlementaire_subtype (UScr, UTfr, UBvo, UEle, ULoi, UDep, UDep_set, UPar, UPar_set),
-			USenToUPar is Un_Parlementaire_subtype (UScr, UTfr, UBvo, UEle, ULoi, USen, USen_set, UPar, UPar_set)
+			UParOfUDep is Un_Parlementaire_subtype (UScr, UTfr, UBvo, UEle, ULoi, UDep, UDep_set, UPar, UPar_set),
+			UParOfUSen is Un_Parlementaire_subtype (UScr, UTfr, UBvo, UEle, ULoi, USen, USen_set, UPar, UPar_set)
                         ) = 
 
   inherit UPar_set;
 
   signature l_assemblee_nationale : Self -> UDep_set;
+
   signature le_senat : Self -> USen_set;
 
   let le_parlement (s : Self) : UPar_set =
-      UPar_set!union (UDepToUPar!to_super_set (!l_assemblee_nationale (s)), 
-                      USenToUPar!to_super_set (!le_senat (s))) ;
-
+      UPar_set!union (UParOfUDep!to_super_set (!l_assemblee_nationale (s)), 
+                      UParOfUSen!to_super_set (!le_senat (s))) ;
 
 end;;

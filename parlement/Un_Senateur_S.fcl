@@ -31,7 +31,9 @@ species Un_Senateur_S (UScr is Un_Scrutin_S,
 
   let est_un_senateur (s : Self) = true;
 
-  signature redige_une_loi : Self -> ULoi -> bool;
+--  signature departement_d_election : UDep;
+
+  signature redige_un_texte_de_loi : Self -> ULoi -> bool;
 
   signature vote_une_loi : Self -> ULoi -> bool;
 

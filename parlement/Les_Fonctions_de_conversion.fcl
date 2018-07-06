@@ -132,7 +132,7 @@ species Un_Senateur_subtype (UScr is Un_Scrutin_S,
 end;;
 
 
-species Un_ParlementaireToUn_Elu (UScr is Un_Scrutin_S,
+species Un_EluOfUn_Parlementaire (UScr is Un_Scrutin_S,
                                   UTfr is Un_Territoire_francais_S,
 				  UBvo is Un_Bureau_de_vote_S (UTfr),   
                                   UEle is Un_Electeur_S (UScr, UTfr, UBvo),
@@ -150,7 +150,7 @@ property to_super_congruence2 : all p : UPar, all s : UScr,
 
 end;;
 
-species Un_DeputeToUn_Parlementaire (UScr is Un_Scrutin_S,
+species Un_ParlementaireOfUn_Depute (UScr is Un_Scrutin_S,
                                      UTfr is Un_Territoire_francais_S,
                                      UBvo is Un_Bureau_de_vote_S (UTfr), 
                                      UEle is Un_Electeur_S (UScr, UTfr, UBvo),
@@ -161,11 +161,11 @@ species Un_DeputeToUn_Parlementaire (UScr is Un_Scrutin_S,
                                      UPar_set is Finite_set (UPar)
                                      ) =
 
-  inherit Un_ParlementaireToUn_Elu (UScr, UTfr, UBvo, UEle, ULoi, UDep, UDep_set, UPar, UPar_set);
+  inherit Un_EluOfUn_Parlementaire (UScr, UTfr, UBvo, UEle, ULoi, UDep, UDep_set, UPar, UPar_set);
 
 end;;
 
-species Un_SenateurToUn_Parlementaire (UScr is Un_Scrutin_S,
+species Un_ParlementaireOfUn_Senateur (UScr is Un_Scrutin_S,
                                        UTfr is Un_Territoire_francais_S,
                                        UBvo is Un_Bureau_de_vote_S (UTfr), 
                                        UEle is Un_Electeur_S (UScr, UTfr, UBvo),
@@ -176,7 +176,7 @@ species Un_SenateurToUn_Parlementaire (UScr is Un_Scrutin_S,
                                        UPar_set is Finite_set (UPar)
                                        ) =
 
-  inherit Un_ParlementaireToUn_Elu (UScr, UTfr, UBvo, UEle, ULoi, USen, USen_set, UPar, UPar_set);
+  inherit Un_EluOfUn_Parlementaire (UScr, UTfr, UBvo, UEle, ULoi, USen, USen_set, UPar, UPar_set);
 
 end;;
 

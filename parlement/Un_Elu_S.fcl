@@ -27,10 +27,29 @@ species Un_Elu_S (UScr is Un_Scrutin_S,
 
   signature est_un_senateur : Self -> bool;
 
+  signature est_un_depute : Self -> bool;
+
+  signature est_un_conseiller_regional : Self -> bool;
+
+  signature est_un_conseiller_departemental : Self -> bool;
+
+  signature est_un_conseiller_municipal : Self -> bool;
+
+  signature est_un_conseiller_municipal_delegue : Self -> bool;
+
   signature est_elu_sur_un_territoire : Self -> UTfr -> bool;
 
-  signature represente_un_electeur : Self -> UEle -> bool;
+  signature represente_des_electeurs : Self -> UEle -> bool;
+
+  signature represente_la_nation : Self -> bool;
 
   signature est_elu_par_un_electeur : Self -> UEle -> bool;
+
+  let est_un_grand_electeur (s : Self) =
+      est_un_depute (s)
+   || est_un_senateur (s)
+   || est_un_conseiller_regional (s)
+   || est_un_conseiller_departemental (s)
+   || est_un_conseiller_municipal_delegue (s) ;
 
 end;;
