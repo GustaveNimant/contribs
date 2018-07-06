@@ -10,9 +10,15 @@ species Le_Peuple_francais_S (
                               UFra_set is Finite_set (UFra)
                               ) = 
 
-  property le_peuple_francais_est_un_sur_le_territoire : 
-           all fr : UFra, all t : UTfr, 
-           UFra!habite_un_territoire_francais (fr, t);
+  inherit Finite_set (UFra);
 
+  property le_peuple_francais_est_un_sur_le_territoire_pr : 
+           all fra : UFra, all ter : UTfr, 
+           UFra!habite_un_territoire_francais (fra, ter);
+(*
+  theorem le_peuple_francais_est_un_th :
+     le_peuple_francais_est_un_sur_le_territoire_pr
+  proof = assumed;
+*)
 end;;
 

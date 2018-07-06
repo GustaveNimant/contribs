@@ -1,7 +1,8 @@
 open "basics";;
 open "sets";;
+open "Un_Territoire_S";;
 
-species Un_Etre_humain_S =
+species Un_Etre_humain_S (UTer is Un_Territoire_S) =
 
   inherit Setoid;
 
@@ -14,7 +15,7 @@ species Un_Etre_humain_S =
   signature age : int;
 
   signature today : int;
-
+  
   signature est_un_homme : Self -> bool;
 
   signature est_une_femme : Self -> bool;
@@ -41,6 +42,7 @@ species Un_Etre_humain_S =
           est_un_adulte (s) \/ est_un_mineur (s)
           proof = by property est_un_adulte_ou_un_mineur_pr; 
 
-  
+  signature habite_un_territoire : Self -> UTer -> bool;
+
 end;;
 
