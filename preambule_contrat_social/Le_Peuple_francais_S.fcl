@@ -1,0 +1,24 @@
+open "basics";;
+open "Finite_Set_S";;
+open "Un_Francais_S";;
+open "Un_Logement_decent_francais_S";;
+
+species Le_Peuple_francais_S (
+                              UTfr is Un_Logement_decent_francais_S,
+                              UTfr_set is Finite_Set_S (UTfr),
+                              UFra is Un_Francais_S (UTfr),
+                              UFra_set is Finite_Set_S (UFra)
+                              ) = 
+
+  inherit Finite_Set_S (UFra);
+
+  property le_peuple_francais_est_un_sur_le_territoire_pr : 
+           all fra : UFra, all ter : UTfr, 
+           UFra!habite_un_territoire_francais (fra, ter);
+(*
+  theorem le_peuple_francais_est_un_th :
+     le_peuple_francais_est_un_sur_le_territoire_pr
+  proof = assumed;
+*)
+end;;
+

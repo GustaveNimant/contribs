@@ -1,0 +1,9 @@
+open "basics";;
+open "Un_Reseau_S";;
+
+species Le_Reseau_constituant_S =
+
+  inherit Un_Reseau_S;
+
+end;;
+

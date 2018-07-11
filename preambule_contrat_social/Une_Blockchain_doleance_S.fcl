@@ -1,0 +1,22 @@
+open "basics";;
+
+-- Une_Blockchain_doleance débute par Une_Doleance et se termine par Une_Assertion
+
+species Une_Blockchain_doleance_S (Une_Doleance_S,
+                                   Une_Assertion_S
+                                   ) =
+
+  inherit Une_Blockchain_S;
+
+  signature contenu : Self -> string;
+
+  signature clef_de_hachage_du_bloc_precedent : Self -> string;
+
+  signature clef_de_publique_du_citoyen_emetteur : Self -> string;
+
+  signature le_bloc_genesis : Self -> Un_Bloc_S;
+
+  property le_bloc_genesis_est_une_doleance_pr : all bdo : Self,
+           le_bloc_genesis (bdo)
+end;;
+

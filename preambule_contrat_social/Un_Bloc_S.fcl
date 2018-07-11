@@ -1,0 +1,25 @@
+open "basics";;
+open "Un_Contrat_intelligent_S";;
+open "Un_Texte_S";;
+
+-- Un_Bloc est créé par Un_Noeud_citoyen_emetteur
+--         est ajouté à Une_Blockchain Un_Noeud_citoyen_emetteur
+--         Une_Blockchain est diffusée par Un_Noeud_citoyen_emetteur
+--         est validé par Un_Noeud_citoyen_validateur
+
+species Un_Bloc_S (UTex is Un_Texte_S,
+                   UCin is Un_Contrat_intelligent_S
+                   ) =
+
+  signature le_texte : Self -> UTex;
+
+  signature le_contrat_intelligent : Self -> UCin;
+
+  signature clef_de_hachage_du_bloc_precedent : Self -> string;
+
+  signature clef_de_publique_du_citoyen_emetteur : Self -> string;
+
+  signature horodatage_de_la_creation : Self -> string;
+
+end;;
+

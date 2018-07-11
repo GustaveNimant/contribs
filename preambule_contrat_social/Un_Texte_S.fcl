@@ -1,0 +1,10 @@
+open "basics";;
+
+species Un_Texte_S =
+
+  signature texte : Self -> string;
+
+  signature est_une_doleance : Self -> bool;
+
+end;;
+

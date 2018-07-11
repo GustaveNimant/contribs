@@ -1,0 +1,13 @@
+open "basics";;
+open "Un_Francais_S";;
+open "Un_Territoire_francais_S";;
+
+species Un_Citoyen_S (UTfr is Un_Territoire_francais_S) =
+
+  inherit Un_Francais_S (UTfr);	
+
+  signature participe_a_l_expression_de_la_volonte_generale : Self -> bool;
+
+end
+;;
+

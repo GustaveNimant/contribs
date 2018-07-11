@@ -1,0 +1,14 @@
+open "basics";;
+open "Un_Bloc_S";;
+open "Un_Texte_S";;
+open "Une_Assertion_S";;
+
+species Un_Bloc_terminal_S (UTex is Un_Texte_S
+                           ) = 
+
+  inherit Un_Bloc_S (UTex);
+
+  signature le_texte : Self -> UTex;
+
+end;;
+

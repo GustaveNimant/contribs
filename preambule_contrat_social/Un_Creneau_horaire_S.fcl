@@ -1,0 +1,8 @@
+open "basics";;
+open "sets";;
+
+species Un_Creneau_horaire_S =
+
+  inherit Setoid;
+
+end;;

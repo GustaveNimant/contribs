@@ -1,0 +1,8 @@
+open "basics";;
+
+species Un_Contrat_intelligent_S =
+
+  signature programme : Self -> string;
+
+end;;
+

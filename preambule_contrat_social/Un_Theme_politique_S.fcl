@@ -1,0 +1,24 @@
+open "basics";;
+open "sets";;
+
+species Un_Theme_politique_S =
+
+  inherit Setoid;
+
+  signature est_en_rapport_avec_l_environnement : Self -> bool;
+
+  signature est_en_rapport_avec_l_education : Self -> bool;
+
+  signature est_en_rapport_avec_les_transports : Self -> bool;
+
+  signature est_en_rapport_avec_l_economie : Self -> bool;
+
+  signature est_en_rapport_avec_le_travail : Self -> bool;
+
+  signature est_en_rapport_avec_l_agriculture : Self -> bool;
+
+  signature est_en_rapport_avec_la_sante : Self -> bool;
+
+  signature est_en_rapport_avec_la_justice : Self -> bool;
+ 
+end;;

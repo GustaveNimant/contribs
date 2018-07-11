@@ -104,7 +104,6 @@ STD_BIN_OBJS=\
 
 BIN_EXE=build.bin
 
-
 all: $(BIN_EXE)
 
 lib: all

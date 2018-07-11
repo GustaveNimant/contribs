@@ -1,0 +1,8 @@
+open "basics";;
+open "sets";;
+
+species Une_Zone_geographique_S =
+
+  inherit Setoid;
+
+end;;

@@ -1,0 +1,10 @@
+open "basics";;
+open "sets";;
+open "Un_Logement_decent_S";;
+
+species Un_Logement_decent_francais_S =
+
+  inherit Un_Logement_decent_S;
+
+  let est_un_territoire_francais (s: Self) = true;
+end;;

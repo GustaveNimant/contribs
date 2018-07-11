@@ -1,0 +1,17 @@
+open "basics";;
+open "Une_Zone_geographique_S";;
+open "Un_Theme_politique_S";;
+
+species Une_Doleance_S (UZge is Une_Zone_geographique_S,
+                        UTpo is Un_Theme_politique_S 
+                        ) =
+
+  signature le_texte_de_la_doleance : Self -> string;
+
+  signature le_theme_politique_de_la_doleance : Self -> UTpo;
+
+  signature la_zone_geographique_de_la_doleance : Self -> UZge;
+
+end
+;;
+

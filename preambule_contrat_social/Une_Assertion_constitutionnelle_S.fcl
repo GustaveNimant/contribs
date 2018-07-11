@@ -1,0 +1,14 @@
+open "basics";;
+open "Une_Assertion_S";;
+
+species Une_Assertion_constitutionnelle_S =
+
+  inherit Une_Assertion_S;
+
+  signature le_texte_d_une_assertion_constitutionnelle_est_un_alinea : Self -> bool;
+
+  property le_texte_d_une_assertion_constitutionnelle_est_un_alinea_pr : all aco : Self,
+     le_texte_d_une_assertion_constitutionnelle_est_un_alinea (aco);
+
+end;;
+

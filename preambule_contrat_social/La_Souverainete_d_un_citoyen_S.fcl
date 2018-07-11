@@ -1,0 +1,35 @@
+open "basics";;
+open "Finite_Set_S";;
+open "Un_Citoyen_S";;
+open "Un_Francais_S";;
+open "Un_Territoire_francais_S";;
+open "Un_Theme_politique_S";;
+open "Une_Assertion_constitutionnelle_S";;
+open "Une_Doleance_S";;
+open "Une_Loi_S";;
+open "Une_Proposition_de_loi_S";;
+open "Une_Zone_geographique_S";;
+
+species La_Souverainete_d_un_citoyen_S (
+                                        UZge is Une_Zone_geographique_S,
+                                        UTpo is Un_Theme_politique_S,
+                                        UTfr is Un_Territoire_francais_S,
+                                        UCit is Un_Citoyen_S (UTfr),
+                                        UDol is Une_Doleance_S (UZge, UTpo),
+                                        UAco is Une_Assertion_constitutionnelle_S,
+                                        UPlo is Une_Proposition_de_loi_S,
+                                        ULoi is Une_Loi_S
+                                        ) =
+
+  inherit Un_Francais_S (UTfr);
+
+  signature un_citoyen_participe_a_l_elaboration_de_la_loi : Self -> ULoi;
+
+  signature un_citoyen_emet_une_doleance : Self -> UDol;
+
+  signature un_citoyen_valide_une_assertion_constitutionnelle: Self -> UAco;
+
+  signature un_citoyen_soumet_une_proposition_de_loi: Self -> UPlo;
+
+end;;
+

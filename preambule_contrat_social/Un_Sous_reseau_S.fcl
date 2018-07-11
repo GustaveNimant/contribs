@@ -1,0 +1,31 @@
+open "basics";;
+open "Un_Reseau_S";;
+open "Un_Theme_politique_S";;
+open "Une_Institution_politique_S";;
+open "Un_Creneau_horaire_S";;
+open "Une_Zone_geographique_S";;
+
+-- Un Sous Réseau connecte des noeuds sur une thématique politique
+--                                    pour une zone géographique
+--                                    pour une periode temporelle
+--                                    en rapport avec une institution politique
+                                 
+species Un_Sous_reseau_S (UZge is Une_Zone_geographique_S,
+                          UTpo is Un_Theme_politique_S,
+                          UIpo is Une_Institution_politique_S,
+                          UPte is Un_Creneau_horaire_S
+                          ) =
+
+  inherit Un_Reseau_S;
+
+  signature zone_geographique : Self -> UZge;
+
+  signature thematique_politique : Self -> UTpo;
+
+  signature periode_temporelle : Self -> UPte;
+
+  signature institution_politique : Self -> UIpo;
+  
+end
+;;
+

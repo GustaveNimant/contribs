@@ -1,0 +1,10 @@
+open "basics";;
+open "sets";;
+
+species Une_Existence_decente_S =
+
+  inherit Setoid;
+
+  signature est_un_territoire_francais : Self -> bool;
+
+end;;

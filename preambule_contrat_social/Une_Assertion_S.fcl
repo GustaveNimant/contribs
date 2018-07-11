@@ -1,0 +1,13 @@
+open "basics";;
+
+species Une_Assertion_S =
+
+  signature le_texte_d_une_assertion : Self -> string;
+
+  signature le_texte_d_une_assertion_est_une_formule : Self -> bool;
+
+  property le_texte_d_une_assertion_est_une_formule_pr : all ass : Self,
+     le_texte_d_une_assertion_est_une_formule (ass);
+end
+;;
+

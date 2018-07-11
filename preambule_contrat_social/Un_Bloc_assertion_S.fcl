@@ -1,0 +1,21 @@
+open "basics";;
+open "Un_Bloc_S";;
+open "Une_Assertion_S";;
+
+species Un_Bloc_assertion_S (UAss is Une_Assertion_S
+                             ) = 
+
+  inherit Un_Bloc_S;
+
+  signature position_dans_un_article : Self -> int;
+
+  signature numero_de_l_article_dans_un_titre : Self -> int;
+
+  signature numero_du_titre_dans_une_section : Self -> int;
+
+  signature numero_de_la_section_dans_la_constitution : Self -> int;
+
+
+end
+;;
+
