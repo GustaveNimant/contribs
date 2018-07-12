@@ -1,14 +1,24 @@
 open "basics";;
 open "Une_Assertion_S";;
 
+-- Une_Assertion_constitutionnelle_S
+--             |
+--             v
+--      Une_Assertion_S
+--             |
+--             v
+--        Un_Texte_S
+
 species Une_Assertion_constitutionnelle_S =
 
   inherit Une_Assertion_S;
 
-  signature le_texte_d_une_assertion_constitutionnelle_est_un_alinea : Self -> bool;
+  let le_texte_est_une_assertion (aco : Self) =
+    (un_texte_est_une_doleance (aco)) 
+   && (un_texte_est_une_formule (aco));
 
-  property le_texte_d_une_assertion_constitutionnelle_est_un_alinea_pr : all aco : Self,
-     le_texte_d_une_assertion_constitutionnelle_est_un_alinea (aco);
+  property le_texte_est_une_assertion_pr : all aco : Self,
+     le_texte_est_une_assertion (aco);
 
 end;;
 

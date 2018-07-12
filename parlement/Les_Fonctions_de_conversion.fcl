@@ -13,6 +13,21 @@ open "Un_Senateur_S";;
 open "Un_Territoire_francais_S";;
 open "Une_Loi_S";;
 
+--
+--  Un_Depute           Un_Senateur
+--      \                  /
+--       v                v
+--        Un_Parlementaire   Le_President_de_la_republique Un_Elu_europeen Un_Elu_regional Un_Elu_cantonalUn_Elu_municipal  
+--                |
+--                v
+--             Un_Elu
+--                |
+--                v
+--           Un_Electeur
+--                |
+--                v
+--           Un_Francais
+
 species Subtype (Sub is Setoid, 
                  Sub_set is Finite_set(Sub),
                  Super is Setoid,

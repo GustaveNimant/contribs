@@ -1,11 +1,15 @@
 open "basics";;
 open "Un_Bloc_S";;
+open "Un_Contrat_intelligent_S";;
+open "Un_Texte_S";;
 open "Une_Assertion_S";;
 
-species Un_Bloc_assertion_S (UAss is Une_Assertion_S
+species Un_Bloc_assertion_S (UTex is Un_Texte_S,
+                             UCin is Un_Contrat_intelligent_S,
+                             UAss is Une_Assertion_S
                              ) = 
 
-  inherit Un_Bloc_S;
+  inherit Un_Bloc_S (UTex, UCin);
 
   signature position_dans_un_article : Self -> int;
 

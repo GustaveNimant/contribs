@@ -1,6 +1,6 @@
 FOCALIZE_SRC=\
   Finite_Set_S.fcl \
-  Strictly_Ordered_set_S.fcl \
+  Finite_Anti_set_S.fcl \
   Un_Texte_S.fcl \
   Un_Contrat_intelligent_S.fcl \
   Un_Etre_humain_S.fcl \
@@ -14,12 +14,15 @@ FOCALIZE_SRC=\
   Une_Proposition_de_loi_S.fcl \
   Une_Assertion_S.fcl \
   Une_Assertion_constitutionnelle_S.fcl \
+  Les_Fonctions_de_conversion.fcl \
   Un_Bloc_S.fcl \
   Un_Bloc_genesis_S.fcl \
   Un_Bloc_terminal_S.fcl \
   Un_Bloc_assertion_S.fcl \
   Une_Blockchain_S.fcl \
   Une_Blockchain_doleance_S.fcl \
+  Une_Blockchain_definition_S.fcl \
+  Une_Blockchain_propriete_S.fcl \
   Une_Doleance_S.fcl \
   Un_Noeud_S.fcl \
   Un_Noeud_citoyen_S.fcl \

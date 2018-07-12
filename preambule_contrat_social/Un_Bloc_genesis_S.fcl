@@ -1,11 +1,13 @@
 open "basics";;
 open "Un_Bloc_S";;
+open "Un_Contrat_intelligent_S";;
 open "Un_Texte_S";;
-open "Une_Assertion_S";;
 
-species Un_Bloc_genesis_S (UTex is Un_Texte_S
+species Un_Bloc_genesis_S (UTex is Un_Texte_S,
+                           UCin is Un_Contrat_intelligent_S
                            ) = 
-  inherit Un_Bloc_S (UTex);
+
+  inherit Un_Bloc_S (UTex, UCin);
 
   signature le_texte : Self -> UTex;
 

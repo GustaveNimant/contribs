@@ -1,13 +1,19 @@
 open "basics";;
+open "Un_Texte_S";;
 
 species Une_Assertion_S =
 
-  signature le_texte_d_une_assertion : Self -> string;
+  inherit Un_Texte_S;
 
   signature le_texte_d_une_assertion_est_une_formule : Self -> bool;
 
-  property le_texte_d_une_assertion_est_une_formule_pr : all ass : Self,
-     le_texte_d_une_assertion_est_une_formule (ass);
+  signature le_texte_d_une_assertion_est_une_phrase : Self -> bool;
+
+  signature le_texte_d_une_assertion_ne_contient_pas_de_conjonction : Self -> bool;
+
+  let un_texte_est_une_assertion (ass : Self) = 
+     (un_texte_est_une_doleance (ass)) 
+     && (un_texte_est_une_formule (ass));
 end
 ;;
 

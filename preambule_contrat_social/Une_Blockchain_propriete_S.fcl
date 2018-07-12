@@ -10,14 +10,14 @@ open "Une_Blockchain_S";;
 open "Une_Doleance_S";;
 open "Une_Zone_geographique_S";;
 
--- Une_Blockchain_doleance débute par Une_Doleance et se termine par Une_Assertion
+-- Une_Blockchain_propriete débute par Une_Doleance et se termine par Une_Assertion
 
--- Une_Blockchain_doleance_S
+-- Une_Blockchain_propriete_S
 --              |
 --              v
 --      Une_Blockchain_S
 
-species Une_Blockchain_doleance_S (UTex is Un_Texte_S,
+species Une_Blockchain_propriete_S (UTex is Un_Texte_S,
                                    UZge is Une_Zone_geographique_S,
                                    UTpo is Un_Theme_politique_S, 
                                    UDol is Une_Doleance_S (UTex, UZge, UTpo),
@@ -35,8 +35,8 @@ species Une_Blockchain_doleance_S (UTex is Un_Texte_S,
 
   signature clef_de_publique_du_citoyen_emetteur : Self -> string;
 
-  property le_texte_du_bloc_genesis_est_une_doleance_pr : all bdo : Self,
-           UTex!un_texte_est_une_doleance (UBge!le_texte (le_bloc_genesis (bdo)));
+--  property le_texte_du_bloc_genesis_est_une_propriete_pr : all bdo : Self,
+--           UTex!un_texte_est_une_propriete (UBge!le_texte (le_bloc_genesis (bdo)));
 
 end;;
 

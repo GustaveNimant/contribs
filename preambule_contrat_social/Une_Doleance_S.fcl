@@ -1,12 +1,14 @@
 open "basics";;
 open "Une_Zone_geographique_S";;
 open "Un_Theme_politique_S";;
+open "Un_Texte_S";;
 
-species Une_Doleance_S (UZge is Une_Zone_geographique_S,
+species Une_Doleance_S (UTex is Un_Texte_S,
+                        UZge is Une_Zone_geographique_S,
                         UTpo is Un_Theme_politique_S 
                         ) =
 
-  signature le_texte_de_la_doleance : Self -> string;
+  signature le_texte_de_la_doleance : Self -> UTex;
 
   signature le_theme_politique_de_la_doleance : Self -> UTpo;
 

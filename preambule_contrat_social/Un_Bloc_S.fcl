@@ -1,4 +1,5 @@
 open "basics";;
+open "strict_orders";;
 open "Un_Contrat_intelligent_S";;
 open "Un_Texte_S";;
 
@@ -11,7 +12,11 @@ species Un_Bloc_S (UTex is Un_Texte_S,
                    UCin is Un_Contrat_intelligent_S
                    ) =
 
+  inherit Strict_order;
+
   signature le_texte : Self -> UTex;
+
+  signature l_ordinal : Self -> int;
 
   signature le_contrat_intelligent : Self -> UCin;
 
@@ -20,6 +25,11 @@ species Un_Bloc_S (UTex is Un_Texte_S,
   signature clef_de_publique_du_citoyen_emetteur : Self -> string;
 
   signature horodatage_de_la_creation : Self -> string;
+
+  let l_ordinal_est_non_negatif (blo : Self) =
+    l_ordinal (blo) >= 0;
+
+  property l_ordinal_est_non_negatif_pr : all blo : Self, l_ordinal_est_non_negatif (blo);
 
 end;;
 

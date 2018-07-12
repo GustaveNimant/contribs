@@ -1,24 +1,25 @@
 open "basics";;
-open "Finite_Set_S";;
-open "Strictly_Ordered_set_S";;
+open "Finite_Anti_set_S";;
 open "Un_Bloc_S";;
 open "Un_Bloc_genesis_S";;
 open "Un_Bloc_terminal_S";;
+open "Un_Contrat_intelligent_S";;
 open "Un_Texte_S";;
 
--- Une_Blockchain est une liste de Un_Bloc
+-- Une_Blockchain est ensemble de Un_Bloc (strictement ordonné) 
 -- Il y a trois sortes de Blockchains 
 --    Une_Blockchain_propriete
 --    Une_Blockchain_doleance qui débute par Une_Doleance et se termine par Une_Assertion
 --    Une_Blockchain_definition qui contient les étapes d'élaboration d'une définition de Un_Concept 
 
 species Une_Blockchain_S (UTex is Un_Texte_S,
-                          UBlo is Un_Bloc_S (UTex),
-                          UBge is Un_Bloc_genesis_S (UTex),
-                          UBte is Un_Bloc_terminal_S (UTex)
+                          UCin is Un_Contrat_intelligent_S,
+                          UBlo is Un_Bloc_S (UTex, UCin),
+                          UBge is Un_Bloc_genesis_S (UTex, UCin),
+                          UBte is Un_Bloc_terminal_S (UTex, UCin)
                           ) =
 
- inherit Strictly_Ordered_set_S (UBlo);
+ inherit Finite_Anti_set_S (UBlo);
 
  signature le_bloc_genesis : Self -> UBge;
 
