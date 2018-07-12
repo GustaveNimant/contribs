@@ -19,7 +19,9 @@ species Un_Bloc_assertion_S (UTex is Un_Texte_S,
 
   signature numero_de_la_section_dans_la_constitution : Self -> int;
 
-
+  property l_ordinal_est_positif_pr : all blo : Self, 
+           l_ordinal_est_positif (blo);
+ 
 end
 ;;
 

@@ -11,5 +11,7 @@ species Un_Bloc_genesis_S (UTex is Un_Texte_S,
 
   signature le_texte : Self -> UTex;
 
+  let l_ordinal (bge : Self) = 0;
+
 end;;
 

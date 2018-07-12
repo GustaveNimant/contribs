@@ -4,11 +4,12 @@ species Un_Texte_S =
 
   signature un_texte_est_une_doleance : Self -> bool;
 
-  signature un_texte_est_une_formule : Self -> bool;
-
   signature un_texte_est_une_phrase : Self -> bool;
 
   signature un_texte_ne_contient_pas_de_conjonction : Self -> bool;
+
+  let un_texte_est_une_formule (tex : Self) =
+      un_texte_est_une_phrase (tex);
 
 end;;
 

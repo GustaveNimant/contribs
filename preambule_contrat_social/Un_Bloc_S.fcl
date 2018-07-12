@@ -27,9 +27,10 @@ species Un_Bloc_S (UTex is Un_Texte_S,
   signature horodatage_de_la_creation : Self -> string;
 
   let l_ordinal_est_non_negatif (blo : Self) =
-    l_ordinal (blo) >= 0;
+      l_ordinal (blo) >= 0;
 
-  property l_ordinal_est_non_negatif_pr : all blo : Self, l_ordinal_est_non_negatif (blo);
+  let l_ordinal_est_positif (blo : Self) =
+      l_ordinal (blo) > 0;
 
 end;;
 

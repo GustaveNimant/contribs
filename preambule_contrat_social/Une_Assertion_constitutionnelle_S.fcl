@@ -13,12 +13,8 @@ species Une_Assertion_constitutionnelle_S =
 
   inherit Une_Assertion_S;
 
-  let le_texte_est_une_assertion (aco : Self) =
-    (un_texte_est_une_doleance (aco)) 
-   && (un_texte_est_une_formule (aco));
-
   property le_texte_est_une_assertion_pr : all aco : Self,
-     le_texte_est_une_assertion (aco);
+     un_texte_est_une_assertion (aco);
 
 end;;
 

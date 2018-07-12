@@ -23,9 +23,11 @@ species Une_Blockchain_S (UTex is Un_Texte_S,
 
  signature le_bloc_genesis : Self -> UBge;
 
- signature le_bloc_terminal : Self -> UBte;
-
  signature un_bloc_intermediaire : Self -> UBlo;
  
+ signature le_bloc_terminal : Self -> UBte;
+
+ let l_ordinal_du_bloc_terminal (bch : Self) = cardinal (bch);
+
 end;;
 
