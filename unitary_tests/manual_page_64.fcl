@@ -1,0 +1,5 @@
+Debugger entered--Lisp error: (error "Command attempted to use minibuffer while in minibuffer")
+  read-buffer("Switch to buffer: " #<buffer Makefile> confirm-after-completion)
+  read-buffer-to-switch("Switch to buffer: ")
+  (list (read-buffer-to-switch "Switch to buffer: "))
+  call-interactively(switch-to-buffer nil nil)

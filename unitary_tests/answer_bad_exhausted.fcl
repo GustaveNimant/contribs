@@ -1,0 +1,21 @@
+open "basics" ;;
+
+type flag_t = | On | Off ;;
+
+type answer_t = | Yes | No | Maybe (flag_t) ;;
+
+(* A pretty complex way to write the identity function... *)
+let f (x) =
+  match x with
+   | Yes -> Yes
+   | No -> No
+   | Maybe (y) -> 
+      if y = On 
+      then Maybe (On) 
+      else Maybe (Off)
+;;
+
+(* Prove that f is indeed the identity. *)
+theorem is_id: all x : answer_t, f (x) = x
+  proof = by type answer_t, flag_t definition of f
+;;

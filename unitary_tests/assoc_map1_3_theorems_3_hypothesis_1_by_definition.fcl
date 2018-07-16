@@ -1,0 +1,81 @@
+open "basics";;
+
+(* Structure recording bindings of a map: a hand-made basic list. *)
+type int_str_list_t =
+  | Nil
+  | Node (int, string, int_str_list_t)
+;;
+
+(* Keys: ints, values: strings. *)
+(* Return value of the lookup function: nothing or something. *)
+
+type option_t ('a) =
+  | None
+  | Some ('a)
+;;
+
+species AssocMap =
+  representation = int_str_list_t ;
+  
+  let empty : Self = Nil ; (* Empty association map: no bindings. *)
+
+  (* Addition to the map m of the value v bound to the key k. *)
+  let add (k: int, v: string, m : Self) : Self = Node (k, v, m) ;
+
+  (* Lookup the the value bound to the key k in the map m. *)
+  let rec find (k : int, m : Self) =
+    match m with
+      | Nil -> None
+      | Node (kcur, v, q) -> if kcur = k then Some (v) else find (k, q)
+  termination proof = structural m ;
+
+  (* Add make find a success.*)
+  theorem find_added_not_fails: all k : int, all v : string, all m1 m2 : Self,
+    m2 = add (k, v, m1) ->  ~~(find (k, m2) = None)
+  proof = by definition of add, find type int_str_list_t, option_t ;
+
+  (* Same key -> same value. *)
+  theorem find_same_key_same_value: all k1 k2: int, all m : Self,
+    k1 = k2 -> find (k1, m) = find (k2, m)
+  proof = conclude ;
+
+  theorem find_spec: all m : Self, all s k : int, all v : string,
+    (find (s, m) = Some (v) \/ s = k) 
+    <-> 
+     find (s, add (k, v, m)) = Some (v)
+  proof =
+      <1>1 assume m : Self,
+           assume s k : int,
+           assume v : string,
+           prove (find (s, m) = Some (v) \/ s = k) 
+                  <->
+                  find (s, add (k, v, m)) = Some (v)
+          <2>1 hypothesis H1: find (s, m) = Some (v) \/ s = k,
+               prove find (s, add (k, v, m)) = Some (v)
+               <3>1 prove add (k, v, m) = Node (k, v, m)
+	            by definition of add type int_str_list_t
+               <3>e qed by step <3>1 definition of find
+                    hypothesis H1 type int_str_list_t
+          <2>2 hypothesis H2: find (s, add (k, v, m)) = Some (v),
+               prove find (s, m) = Some (v) \/ s = k
+               assumed
+          <2>e qed by step <2>1, <2>2
+       <1>e conclude ;
+
+end ;;
+
+collection MyMap = implement AssocMap ; end ;;
+
+(* Printer of value of type option (string). *)
+let print_string_option (v) =
+  match v with
+    | None -> print_string ("Not found\n")
+    | Some (s) ->
+      let _a = print_string ("Found value: ") in
+      let _b = print_string (s) in
+      print_newline (())
+;;
+
+let m = MyMap!add (5, "five", MyMap!empty) ;;
+print_string_option (MyMap!find (5, m)) ;;
+print_string_option (MyMap!find (3, m)) ;;

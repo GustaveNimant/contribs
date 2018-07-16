@@ -1,26 +1,31 @@
 open "basics";;
 open "Finite_Set_S";;
-open "Un_Noeud_S";;
+open "Un_Creneau_horaire_S";;
+open "Un_Noeud_d_un_reseau_S";;
 open "Un_Reseau_S";;
 open "Un_Sous_reseau_S";;
 open "Un_Theme_politique_S";;
 open "Une_Institution_politique_S";;
-open "Un_Creneau_horaire_S";;
+open "Une_Note_S";;
 open "Une_Zone_geographique_S";;
 
 species Un_Noeud_citoyen_S (UZge is Une_Zone_geographique_S,
                             UTpo is Un_Theme_politique_S,
                             UIpo is Une_Institution_politique_S,
-                            UPte is Un_Creneau_horaire_S,
-                            USre is Un_Sous_reseau_S (UZge, UTpo, UIpo, UPte),
+                            UCho is Un_Creneau_horaire_S,
+                            USre is Un_Sous_reseau_S (UZge, UTpo, UIpo, UCho),
+                            UNot is Une_Note_S,
                             UZge_set is Finite_Set_S (UZge),
                             UTpo_set is Finite_Set_S (UTpo),
-                            UIpo_set is Finite_Set_S (UIpo)
+                            UIpo_set is Finite_Set_S (UIpo),
+                            UCho_set is Finite_Set_S (UCho)
                             ) =
 
-  inherit Un_Noeud_S;	
+  inherit Un_Noeud_d_un_reseau_S;	
 
   signature sous_reseau : Self -> USre;
+
+  signature la_note : Self -> UNot;
 
   signature les_zones_geographiques : Self -> UZge_set;
 
@@ -28,7 +33,7 @@ species Un_Noeud_citoyen_S (UZge is Une_Zone_geographique_S,
 
   signature les_institutions_politiques : Self -> UIpo_set;
 
-  signature une_periode_temporelle : Self -> UPte;
+  signature les_creneaux_horaires : Self -> UCho_set;
 
 
 end

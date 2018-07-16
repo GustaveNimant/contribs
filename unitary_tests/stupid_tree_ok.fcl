@@ -1,0 +1,26 @@
+open "basics";;
+
+type bintree_t =
+  | Leaf
+  | Node (bintree_t, bool, bintree_t)
+;;
+
+let rec f (t) =
+  match t with
+   | Leaf -> false
+   | Node (l, b, r) -> b && f (l) && f (r)
+termination proof = structural t
+;;
+
+theorem always_false : all t : bintree_t, ~(f (t))
+proof =
+  <1>1 prove ~(f (Leaf)) assumed
+  <1>2 assume l : bintree_t,
+       hypothesis HRecL : ~(f (l)),
+       assume b : bool,
+       assume r : bintree_t,
+       hypothesis HRecR : ~(f (r)),
+       prove ~(f (Node (l, b, r)))
+       by hypothesis HRecL, HRecR type bintree_t definition of f
+  <1>e qed by step <1>1, <1>2 type bintree_t
+;;

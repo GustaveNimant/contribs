@@ -1,0 +1,17 @@
+open "basics";;
+use "loose_sets";;
+
+let add_except_0 (x : int, s) = 
+  if x = 0 then s else loose_sets#add (x, s)
+;;
+
+theorem zero_not_added: all x : int, all s : loose_sets#set_t (int),
+  (loose_sets#is_empty (s) /\ x = 0) ->
+  loose_sets#is_empty (add_except_0 (x, s))
+proof = by definition of add_except_0 ;;
+
+theorem zero_not_added_weaker : all s : loose_sets#set_t (int),
+  loose_sets#is_empty (s) ->
+  loose_sets#is_empty (add_except_0 (0, s))
+proof = by property zero_not_added
+;;

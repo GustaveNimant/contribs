@@ -1,0 +1,16 @@
+open "basics";;
+
+species Setoid =
+  signature ( = ) : Self -> Self -> bool ;
+  signature element : Self ;
+
+  property refl : all x : Self, x = x ;
+  property symm : all x y : Self, x = y -> y = x ;
+  property trans: all x y z : Self, x = y -> y = z -> x = z ;
+
+  let different (x, y) = basics#( ~~ ) (x = y) ;
+
+  theorem different_irrefl : all x : Self,  ~~ (different (x, x))
+    proof = by definition of different
+            property refl ;
+end ;;

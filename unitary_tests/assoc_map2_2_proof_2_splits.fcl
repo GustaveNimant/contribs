@@ -1,0 +1,49 @@
+open "basics";;
+open "comparable";;
+
+(* Structure recording bindings of a map: a hand-made basic list. *)
+type pair_list_t ('a, 'b) =
+  | Nil
+  | Node ('a, 'b , pair_list_t ('a, 'b))
+;;
+
+(* Return value of the lookup function: nothing or something. *)
+type option_t ('a) =
+  | None
+  | Some ('a)
+;;
+
+species AssocMap (Key is Comparable, Value is Comparable) =
+  representation = pair_list_t (Key, Value) ;
+
+  let empty : Self = Nil ;
+ 
+  let add (k, v, m : Self) : Self = Node (k, v, m) ;
+
+  let rec find (k, m: Self) =
+    match m with
+      | Nil -> None
+      | Node (kcur, v, q) -> 
+          if Key!eq (kcur, k) then Some (v) else find (k, q)
+  termination proof = structural m ;
+
+  (* Add make find a success. *)
+  theorem find_added_not_fails: all k : Key, all v : Value, all m1 m2 : Self,
+    m2 = add (k, v, m1) -> ~~(find (k, m2) = None)
+  proof = by definition of add, find type pair_list_t, option_t
+          property Key!eq_reflexive ;
+
+   (* Same key -> same value. *)
+  theorem find_spec: all m : Self, all s k : Key, all v : Value,
+    (find (s, m) = Some (v) \/ s = k) <-> find (s, add (k, v, m)) = Some (v)
+  proof =
+    <1>1 assume k1 k2: Key,
+         assume m : Self,
+         hypothesis H: Key!eq (k1, k2),
+         prove find (k1, m) = find (k2, m)
+         <2>1 prove k1 = k2
+              assumed
+         <2>e qed by step <2>1
+    <1>e conclude ;
+
+end ;;

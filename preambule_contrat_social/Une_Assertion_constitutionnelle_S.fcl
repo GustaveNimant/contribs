@@ -1,5 +1,6 @@
 open "basics";;
 open "Une_Assertion_S";;
+open "Une_Formule_S";;
 
 -- Une_Assertion_constitutionnelle_S
 --             |
@@ -9,9 +10,9 @@ open "Une_Assertion_S";;
 --             v
 --        Un_Texte_S
 
-species Une_Assertion_constitutionnelle_S =
+species Une_Assertion_constitutionnelle_S (UFor is Une_Formule_S) =
 
-  inherit Une_Assertion_S;
+  inherit Une_Assertion_S (UFor);
 
   property le_texte_est_une_assertion_pr : all aco : Self,
      un_texte_est_une_assertion (aco);

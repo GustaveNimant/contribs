@@ -1,0 +1,10 @@
+open "basics";;
+open "sets";;
+
+species Monoid =
+  inherit Setoid;
+  signature ( * ) : Self -> Self -> Self;
+  signature one : Self;
+
+  let element = one * one ;
+end ;;

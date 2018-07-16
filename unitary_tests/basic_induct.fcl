@@ -1,0 +1,7 @@
+open "basics";;
+open "loose_sets";;
+
+theorem added_forcibly_belongs : all x : int, all s : set_t (int),
+  belongs (x, add (x, s))
+proof = by definition of add, belongs type set_t ;;
+;;

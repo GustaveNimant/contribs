@@ -1,0 +1,30 @@
+open "basics";;
+open "comparable";;
+
+(* Structure recording bindings of a map: a hand-made basic list. *)
+type pair_list_t ('a, 'b) =
+  | Nil
+  | Node ('a, 'b , pair_list_t ('a, 'b))
+;;
+
+(* Return value of the lookup function: nothing or something. *)
+type option_t ('a) =
+  | None
+  | Some ('a)
+;;
+
+species AssocMap (Key is Comparable, Value is Comparable) =
+  representation = pair_list_t (Key, Value) ;
+
+  let empty : Self = Nil ;
+ 
+  let add (k, v, m : Self) : Self = Node (k, v, m) ;
+
+  let rec find (k, m: Self) =
+    match m with
+      | Nil -> None
+      | Node (kcur, v, q) -> 
+          if Key!eq (kcur, k) then Some (v) else find (k, q)
+  termination proof = structural m ;
+
+end ;;

@@ -1,6 +1,9 @@
 open "basics";;
 open "Un_Texte_legislatif_S";;
 
+-- Une_Loi_S est un ensemble de Un_Article_de_loi_S
+-- Un_Article_de_loi_S est un ensemble de d
+
 species Une_Loi_S = 
 
   inherit Un_Texte_legislatif_S;

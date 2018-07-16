@@ -1,0 +1,12 @@
+open "basics";;
+
+type nat = | Zero | Succ (nat);;
+
+species AddSpecif =
+  signature add : nat -> nat -> nat -> basics#bool;
+  
+  property addZ : all n : nat, add (n, Zero, n);
+
+  property addS : all n m p : nat, add (n, m, p) ->
+                              add (n, Succ (m), Succ (p));
+end;;

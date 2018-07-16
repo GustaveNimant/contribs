@@ -1,0 +1,80 @@
+-------------------------------------------------------------------
+wifls departingAircraft
+
+aircraftEnv.fcl line # 133
+in species AircraftEnv:
+
+let departingAircraft (s : Self) : Dep_ac_set =
+  Dep_ac_set!union(OacToAc!to_super_set(!originatingAircraft(s)), 
+                   TacToAc!to_super_set(!transitAircraft(s)));
+
+airsideSubjects.fcl line # 265
+in species AirsideEnv:
+
+signature departingAircraft : Self -> Dep_ac_set;
+
+-------------------------------------------------------------------
+wifls departingPassengers
+
+airsideSubjects.fcl line # 164
+in species AirsideEnv:
+
+signature departingPassengers : Self -> Dep_pa_set;
+
+holdBaggageEnv.fcl line # 195
+in species HoldBaggageEnv:
+
+let departingPassengers (s : Self) : Dep_pa_set =
+  Dep_pa_set!union(OpToDep!to_super_set(!ordinaryPassengers(s)),
+    Dep_pa_set!union(ArmToDep!to_super_set(!armedPassengers(s)),
+                     DisToDep!to_super_set(!disruptivePassengers(s))));
+
+-------------------------------------------------------------------
+wifls holdBaggage
+
+airsideSubjects.fcl line # 107
+in species AirsideEnv:
+
+signature holdBaggage : Self -> Hl_set;
+
+holdBaggageEnv.fcl line # 203
+in species HoldBaggageEnv:
+
+let holdBaggage (s : Self) : Hl_set =
+  Hl_set!union(OhToHl!to_super_set(!originatingHoldBaggage(s)),
+               ThToHl!to_super_set(!transferHoldBaggage(s)));
+
+-------------------------------------------------------------------
+wifls no_unauthorized_objects
+
+a17property4_2.fcl line # 213
+in species A17property4_2:
+
+logical let no_unauthorized_objects (o : Obj, s : Self) =
+  Obj_set!member(o, DoToObj!to_super_set(!dangerousObjects(s))) ->
+  ex x : Do,
+    Do_set!member(x, !dangerousObjects(s)) /\
+    Obj!equal(DoToObj!to_super(x), o) /\ Do!is_authorized(x);
+
+-------------------------------------------------------------------
+wifls no_unauthorized_objects
+
+a17property4_2.fcl line # 213
+in species A17property4_2:
+
+logical let no_unauthorized_objects (o : Obj, s : Self) =
+  Obj_set!member(o, DoToObj!to_super_set(!dangerousObjects(s))) ->
+  ex x : Do,
+    Do_set!member(x, !dangerousObjects(s)) /\
+    Obj!equal(DoToObj!to_super(x), o) /\ Do!is_authorized(x);
+col@asu>wifls is_weapon_not_loaded
+
+a17property4_3.fcl line # 198
+in species A17property4_3:
+
+logical let is_weapon_not_loaded (o : Do, s : Self) =
+  Do_set!member(o, WpToDo!to_super_set(!weapons(s))) ->
+  (ex w : Wp,
+    Wp_set!member(w, !weapons(s)) /\ Do!equal(WpToDo!to_super(w), o) /\
+    ~ (Wp!loaded(w)));
+-------------------------------------------------------------------

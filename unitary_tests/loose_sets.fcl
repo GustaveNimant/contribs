@@ -1,0 +1,22 @@
+open "basics";;
+
+type set_t ('a) =
+  | Empty
+  | Elem ('a, set_t ('a))
+;;
+
+let is_empty (s) = 
+  s = Empty
+;;
+
+let add (x, s) = Elem (x, s);;
+
+let rec belongs (x, s) =
+  match s with
+   | Empty -> false
+   | Elem (e, s) -> 
+     if e = x 
+     then true
+     else belongs (x, s)
+termination proof = structural s
+;;

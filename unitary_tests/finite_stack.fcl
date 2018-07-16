@@ -1,0 +1,46 @@
+open "basics";;
+open "sets";;
+
+species Is_finite ( max : int ) =
+  inherit Basic_object;
+
+  signature size : Self -> int;
+
+  property size_max : all s : Self, ( <= )(!size (s), max);
+
+end;;
+
+species Finite_stack (Typ is Setoid, max ) = 
+  inherit Stack (Typ), Is_finite (max);
+
+  let is_full (s: self) = ( = ) (!size (s), max);
+
+  property size_empty : ( = ) (!size (!empty), 0);
+
+  property size_push : all t : Typ, all s : Self,
+                     ~~(!is_full (s)) -> 
+                     ( = ) (!size (!push (t, s)), ( + )(!size (s), 1));	
+ 
+end;;
+
+species Stack (Typ is Setoid) = 
+  inherit Setoid;
+
+  signature empty : Self;
+
+  signature push : Typ -> Self -> Self ;
+
+  signature pop : Self -> Self ;
+
+  signature last : Self -> Typ ;
+
+  let is_empty (s : Self) =
+    ( = ) (s, !empty)
+  ;
+
+  property ie_empty : !is_empty (!empty);
+
+  property ie_push : all t : Typ, all s : Self,
+                     ~~(!is_empty (!push (t, s)));
+ 
+end;;

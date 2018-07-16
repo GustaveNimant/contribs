@@ -1,0 +1,8 @@
+open "basics";;
+
+species Une_Formule_S =
+
+  signature sont_conformes : Self -> Self -> bool;
+
+end;;
+

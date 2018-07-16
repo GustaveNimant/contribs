@@ -1,0 +1,35 @@
+open "basics";;
+
+species Age = 
+
+  representation = int ; 
+
+  let get_age (p:Self) : int = p;
+
+  let set_age (i : int) : Self = i;
+   
+  let parse (s : basics#string) : Self = basics#int_of_string(s) ;
+
+  let string_of (p : Self) =
+    let a = "age = " in
+    let b = string_of_int (p) in
+    let c = "\n" in
+    (a ^ b ^ c)
+  ;
+
+  let print (p : Self) =
+     print_string (string_of (p))
+  ;
+
+end;;
+
+collection Age_C =
+  implement Age;
+end ;;
+
+let age = Age_C!parse ("55");;
+Age_C!print (age);;
+
+let a = Age_C!get_age (age);;
+print_int (a);;
+print_string ("\n");;

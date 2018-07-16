@@ -1,0 +1,13 @@
+open "basics";;
+
+species Comparable =
+  signature eq : Self -> Self -> bool ;
+
+  property eq_reflexive: all x : Self, eq (x, x) ;
+  
+  property eq_symmetric: all x y : Self, eq (x, y) -> eq (y, x) ;
+
+  property eq_transitive:
+    all x y z : Self, eq (x, y) -> eq (y, z) -> eq (x, z) ;
+
+end;;

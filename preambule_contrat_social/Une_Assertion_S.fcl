@@ -1,9 +1,12 @@
 open "basics";;
 open "Un_Texte_S";;
+open "Une_Formule_S";;
 
-species Une_Assertion_S =
+species Une_Assertion_S (UFor is Une_Formule_S) =
 
   inherit Un_Texte_S;
+
+  signature la_formule : Self -> UFor;
 
   signature le_texte_d_une_assertion_est_une_formule : Self -> bool;
 

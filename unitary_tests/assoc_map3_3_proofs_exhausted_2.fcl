@@ -1,0 +1,108 @@
+open "basics";;
+
+(* Structure recording bindings of a map: a hand-made basic list. *)
+type pair_list_t ('a, 'b) =
+  | Nil
+  | Node ('a, 'b , pair_list_t ('a, 'b))
+;;
+
+(* Return value of the lookup function: nothing or something. *)
+type option_t ('a) =
+  | None
+  | Some ('a)
+;;
+
+species Comparable =
+  signature eq : Self -> Self -> bool ;
+  property eq_reflexive: all x : Self, eq (x, x) ;
+  property eq_symmetric: all x y : Self, eq (x, y) -> eq (y, x) ;
+  property eq_transitive:
+    all x y z : Self, eq (x, y) -> eq (y, z) -> eq (x, z) ;
+end ;;
+
+(* **** Changes start here. **** *)
+species OptComparable (C is Comparable) =
+  inherit Comparable ;
+
+  representation = option_t (C) ;
+
+  let eq (ox : Self, oy : Self) =
+    match ox with
+      | None ->
+        begin
+        match oy with
+        | None -> true
+        | Some (_) -> false
+        end
+      | Some (x) ->
+        begin
+        match oy with
+        | None -> false
+        | Some (y) -> C!eq (x, y)
+        end ;
+
+  proof of eq_reflexive =
+    by definition of eq property C!eq_reflexive type option_t ;
+
+  proof of eq_symmetric =
+    by definition of eq property C!eq_symmetric type option_t ;
+
+  proof of eq_transitive =
+    by definition of eq property C!eq_transitive type option_t ;
+
+  let none : Self = None ;
+
+  let some (v : C) : Self = Some (v) ;
+
+  property none_different_some: all v : C, ~(eq (some (v), none)) ;
+end ;;
+
+species AssocMap (Key is Comparable, Value is Comparable,
+                  OptValue is OptComparable (Value)) =
+
+  representation = pair_list_t (Key, Value) ;
+
+  let empty : Self = Nil ;
+ 
+  let add (k, v, m : Self) : Self = Node (k, v, m) ;
+
+  let rec find (k, m: Self) : OptValue =
+    match m with
+      | Nil -> OptValue!none
+      | Node (kcur, v, q) -> 
+          if Key!eq (kcur, k) then OptValue!some (v) else find (k, q)
+  termination proof = structural m ;
+
+  (* Add make find a success. *)
+  theorem find_added_not_fails: all k : Key, all v : Value, all m1 m2 : Self,
+     m2 = add (k, v, m1) ->  ~(OptValue!eq (find (k, m2), OptValue!none))
+  proof =
+    <1>1 assume k : Key,
+         assume v : Value,
+         assume m1 m2 : Self,
+         hypothesis H1: m2 = add (k, v, m1),
+         prove  ~(OptValue!eq (find (k, m2), OptValue!none))
+         <2>1 prove OptValue!eq (find (k, m2), OptValue!some (v))
+              <3>0 prove Key!eq (k, k)
+                   assumed
+              <3>1 prove
+                     OptValue!eq (find (k, add (k, v, m1)), OptValue!some (v))
+                   by definition of find, add type pair_list_t
+                      property OptValue!eq_reflexive step <3>0
+              <3>e qed by step <3>1 hypothesis H1
+         <2>2 prove  ~(OptValue!eq (OptValue!none, OptValue!some (v)))
+              by property OptValue!none_different_some,
+                          (* Eh yes, in none_different_some the statement is in
+                             the inverse order of our goal. *)
+                          OptValue!eq_symmetric
+         <2>e qed by step <2>1, <2>2
+              property OptValue!eq_symmetric, OptValue!eq_transitive
+    <1>e conclude ;
+
+   (* Same key -> same value. 
+  theorem find_same_key_same_value: all k1 k2: Key, all m : Self,
+    Key!eq (k1, k2) -> find (k1, m) = find (k2, m)
+  proof = by property Key!eq_reflexive, Key!eq_transitive, Key!eq_symmetric ;
+*)
+end ;;
+(* End of the species already written in the first listing. *)

@@ -1,0 +1,14 @@
+open "basics";;
+
+-- Une_Note_S est attribuée par les Noeuds du Réseau 
+-- elle sanctionne la qualité d'une intervention
+-- elle encourage les interventions positives
+-- elle décourage les interventions négatives
+
+species Une_Note_S =
+
+  signature la_valeur : Self -> int;
+
+end
+;;
+

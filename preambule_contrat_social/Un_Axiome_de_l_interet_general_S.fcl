@@ -1,0 +1,13 @@
+open "basics";;
+open "Une_Formule_S";;
+open "Une_Loi_S";;
+
+species Un_Axiome_de_l_interet_general_S (ULoi is Une_Loi_S) =
+
+  inherit Une_Formule_S;
+
+  property une_loi_est_conforme_a_l_interet_general_pr : all loi : ULoi,
+           ULoi!est_conforme_a_l_interet_general (loi);
+
+end;;
+

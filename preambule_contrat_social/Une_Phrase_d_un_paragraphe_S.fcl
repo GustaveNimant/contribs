@@ -1,0 +1,16 @@
+open "basics";;
+open "sets";;
+
+-- Une_Phrase_d_un_paragraphe_S
+-- Un_Paragraphe_d_un_article_S
+-- Un_Article_d_un_titre_S
+-- Un_Titre_d_un_texte_legislatif_S
+-- Un_Texte_legislatif_S
+
+species Une_Phrase_d_un_paragraphe_S =
+
+  inherit Setoid;
+
+  signature la_phrase_d_un_paragraphe : Self;
+
+end;;

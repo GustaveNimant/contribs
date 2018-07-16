@@ -1,0 +1,31 @@
+open "basics";;
+open "Finite_Anti_set_S";;
+open "Un_Bloc_S";;
+open "Un_Bloc_genesis_S";;
+open "Un_Bloc_terminal_S";;
+open "Un_Contrat_intelligent_S";;
+open "Un_Texte_S";;
+
+-- Une_Blockchain_arbre est ensemble de Une_Blockchain_S
+-- Ses feuilles sont des Une_Blockchain_S
+-- Un_Noeud_d_un_arbre_S contient les Une_Cle_de_hachage_S de ses fils
+
+species Une_Blockchain_S (UTex is Un_Texte_S,
+                          UCin is Un_Contrat_intelligent_S,
+                          UBlo is Un_Bloc_S (UTex, UCin),
+                          UBge is Un_Bloc_genesis_S (UTex, UCin),
+                          UBte is Un_Bloc_terminal_S (UTex, UCin)
+                          ) =
+
+ inherit Finite_Anti_set_S (UBlo);
+
+ signature le_bloc_genesis : Self -> UBge;
+
+ signature un_bloc_intermediaire : Self -> UBlo;
+ 
+ signature le_bloc_terminal : Self -> UBte;
+
+ let l_ordinal_du_bloc_terminal (bch : Self) = cardinal (bch);
+
+end;;
+

@@ -1,0 +1,23 @@
+open "basics";;
+open "sets";;
+open "Finite_Set_S";;
+open "Une_Phrase_d_un_paragraphe_S";;
+
+-- Une_Phrase_d_un_paragraphe_S
+-- Un_Paragraphe_d_un_article_S
+-- Un_Article_d_un_titre_S
+-- Un_Titre_d_un_texte_legislatif_S
+-- Un_Texte_legislatif_S
+
+species Un_Paragraphe_d_un_article_S (
+                                      UPpa is Une_Phrase_d_un_paragraphe_S,
+                                      UPpa_set is Finite_Set_S (UPpa)
+                                      )=
+
+  inherit Setoid;
+
+  signature une_phrase_d_un_paragraphe : Self -> UPpa;
+
+  signature le_paragraphe_d_un_article : Self -> UPpa_set;
+
+end;;

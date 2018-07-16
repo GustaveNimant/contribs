@@ -1,0 +1,24 @@
+open "basics";;
+open "sets";;
+
+species Stack (Typ is Setoid) = 
+
+  signature empty : Self;
+
+  signature push : Typ -> Self -> Self ;
+
+  signature pop : Self -> Self ;
+
+  signature last : Self -> Typ ;
+
+  let is_empty (s : Self) =
+    ( = ) (s, !empty)
+  ;
+
+  property ie_empty : !is_empty (!empty);
+
+  property ie_push : all t : Typ, all s : Self,
+                     ~~(!is_empty (!push (t, s)));
+ 
+end;;
+

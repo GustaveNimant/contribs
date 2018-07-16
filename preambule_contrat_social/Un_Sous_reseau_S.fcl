@@ -13,7 +13,7 @@ open "Une_Zone_geographique_S";;
 species Un_Sous_reseau_S (UZge is Une_Zone_geographique_S,
                           UTpo is Un_Theme_politique_S,
                           UIpo is Une_Institution_politique_S,
-                          UPte is Un_Creneau_horaire_S
+                          UCho is Un_Creneau_horaire_S
                           ) =
 
   inherit Un_Reseau_S;
@@ -22,7 +22,7 @@ species Un_Sous_reseau_S (UZge is Une_Zone_geographique_S,
 
   signature thematique_politique : Self -> UTpo;
 
-  signature periode_temporelle : Self -> UPte;
+  signature periode_temporelle : Self -> UCho;
 
   signature institution_politique : Self -> UIpo;
   

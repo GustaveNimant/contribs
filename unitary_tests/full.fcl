@@ -1,0 +1,22 @@
+open "basics";;
+
+species Full =
+  representation = int ;
+  
+  let create_some_value : Self = 42;
+
+  let print (x : Self) = print_int (x) ;
+end ;;
+
+collection Full_collection =
+  implement Full;
+end ;;
+
+basics#print_string("\nUn nombre entier au hasard ") ;;
+
+let v = Full_collection!create_some_value ;;
+basics#print_int (v) ;;
+basics#print_string("\n") ;;
+
+Full_collection!print (v) ;;
+

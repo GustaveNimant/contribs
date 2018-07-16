@@ -1,0 +1,50 @@
+open "basics";;
+
+(* Structure recording bindings of a map: a hand-made basic list. *)
+type pair_list_t ('a, 'b) =
+  | Nil
+  | Node ('a, 'b , pair_list_t ('a, 'b))
+;;
+
+(* Return value of the lookup function: nothing or something. *)
+type option_t ('a) =
+  | None
+  | Some ('a)
+;;
+
+species Comparable =
+  signature eq : Self -> Self -> bool ;
+
+  property eq_reflexive: all x : Self, eq (x, x) ;
+  
+  property eq_symmetric: all x y : Self, eq (x, y) -> eq (y, x) ;
+
+  property eq_transitive:
+    all x y z : Self, eq (x, y) -> eq (y, z) -> eq (x, z) ;
+
+end ;;
+
+(* **** Changes start here. **** *)
+species OptComparable (C is Comparable) =
+  inherit Comparable ;
+
+  representation = option_t (C) ;
+
+  let eq (ox : Self, oy : Self) =
+    match ox with
+      | None ->
+        begin
+        match oy with
+        | None -> true
+        | Some (_) -> false
+        end
+      | Some (x) ->
+        begin
+        match oy with
+        | None -> false
+        | Some (y) -> C!eq (x, y)
+        end ;
+(* ... To be continued ... *)
+
+
+end ;;

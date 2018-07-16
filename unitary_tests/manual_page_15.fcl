@@ -1,0 +1,23 @@
+open "basics";;
+open "sets";;
+
+species Setoid_product (A is Setoid, B is Setoid) =
+  inherit Setoid;
+
+  signature fst : Self -> A ;
+  signature snd : Self -> B ;
+  signature pair : A -> B -> Self ;
+  
+  let element = Self!pair(A!element, B!element) ;
+ 
+  let ( = ) (x, y) = basics#( && ) (
+                       A!equal (fst(x), fst(y)), 
+                       B!equal (snd(x), snd(y))
+                                  );
+
+(*  property refl : all s : Self, !equal (s, s); *)
+
+  theorem refl : all s : Self, !equal (s, s)
+    proof = by definition of ( = )
+               property A!equal_reflexive, B!equal_reflexive ;
+end ;;

@@ -1,0 +1,7 @@
+open "basics";;
+
+theorem implications : all a b : bool, a -> (b -> a)
+proof = conclude;;
+
+theorem and_or : all a b : bool, (a  /\ b) -> (b \/ a)
+proof = conclude;;

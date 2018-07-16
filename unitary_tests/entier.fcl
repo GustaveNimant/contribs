@@ -1,0 +1,25 @@
+open "basics";;
+
+species Entier =
+
+ representation = basics#int ;
+
+ let print (s : Self) = basics#print_int (s) ;
+
+ let parse (s : basics#string) : Self = basics#int_of_string(s) ;
+
+end ;;
+
+collection Entier_C =
+
+ implement Entier;
+
+end ;;
+
+basics#print_string ("Un entier :") ;;
+
+let un_entier = Entier_C!parse ("55");;
+
+Entier_C!print (un_entier);;
+
+basics#print_string ("\n") ;;

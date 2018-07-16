@@ -1,0 +1,12 @@
+open "basics" ;;
+
+type flag_t = | On | Off ;;
+
+let constant (x) =
+  match x with
+    | On -> 1
+    | Off -> 1
+;;
+
+theorem constant_is_one: all x : flag_t, constant (x) = 1
+proof = by definition of constant type flag_t ;;

@@ -7,10 +7,13 @@ open "Un_Contrat_intelligent_S";;
 open "Un_Texte_S";;
 open "Un_Theme_politique_S";;
 open "Une_Blockchain_S";;
+open "Une_Blockchain_arbre_S";;
 open "Une_Doleance_S";;
 open "Une_Zone_geographique_S";;
 
--- Une_Blockchain_definition débute par Une_Doleance et se termine par Une_Assertion
+-- Une_Blockchain_definition_S définit Un_Concept_S par ses propriétés
+-- Une_Blockchain_definition_S est un arbre 
+-- Ses feuilles sont les Une_Blockchain_propriete_S 
 
 -- Une_Blockchain_definition_S
 --              |
@@ -27,7 +30,7 @@ species Une_Blockchain_definition_S (UTex is Un_Texte_S,
                                    UBte is Un_Bloc_terminal_S (UTex, UCin)
                                    ) =
 
-  inherit Une_Blockchain_S (UTex, UCin, UBlo, UBge, UBte);
+  inherit Une_Blockchain_arbre_S (UTex, UCin, UBlo, UBge, UBte);
 
   signature contenu : Self -> string;
 
