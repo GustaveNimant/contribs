@@ -5,10 +5,10 @@ open "Un_Paragraphe_d_un_article_S";;
 open "Une_Phrase_d_un_paragraphe_S";;
 
 species Un_Article_d_un_titre_S (
-                                 UPpa is Une_Phrase_d_un_paragraphe_S,
-                                 UPpa_set is Finite_Set_S (UPpa),
-                                 UPar is Un_Paragraphe_d_un_article_S (UPpa, UPpa_set),
-                                 UPar_set is Finite_Set_S (UPar)
+             UPpa is Une_Phrase_d_un_paragraphe_S,
+             UPpa_set is Finite_Set_S (UPpa),
+             UPar is Un_Paragraphe_d_un_article_S (UPpa, UPpa_set),
+             UPar_set is Finite_Set_S (UPar)
                                  )=
 
   inherit Setoid;

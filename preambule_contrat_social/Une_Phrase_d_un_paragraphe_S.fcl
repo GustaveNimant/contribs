@@ -11,6 +11,15 @@ species Une_Phrase_d_un_paragraphe_S =
 
   inherit Setoid;
 
-  signature la_phrase_d_un_paragraphe : Self;
+  signature est_une_doleance : Self -> bool;
+
+  signature ne_contient_pas_de_conjonction : Self -> bool;
+
+  signature est_une_formule : Self -> bool;
+
+  logical let est_une_assertion (php : Self) = 
+       (~(est_une_doleance (php))) 
+       /\ (est_une_formule (php))
+       /\ (ne_contient_pas_de_conjonction (php));
 
 end;;

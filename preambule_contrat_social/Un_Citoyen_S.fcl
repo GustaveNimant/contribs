@@ -6,8 +6,31 @@ species Un_Citoyen_S (UTfr is Un_Territoire_francais_S) =
 
   inherit Un_Francais_S (UTfr);	
 
-  signature participe_a_l_expression_de_la_volonte_generale : Self -> bool;
+  signature participe_a_l_expression_de_l_interet_general : Self -> bool;
 
-end
-;;
+  signature a_acces_a_un_logement_decent : Self -> bool;    
+
+  signature a_une_alimentation_suffisante : Self -> bool;  
+  
+  signature a_une_alimentation_saine : Self -> bool;
+  
+  signature est_habille_suffisamment : Self -> bool;  
+
+  signature est_habille_decemment : Self -> bool;  
+
+  signature est_maintenu_en_bonne_sante : Self -> bool;  
+
+  signature a_acces_a_une_education_de_qualite : Self -> bool;  
+
+  logical let a_une_existence_decente (cit : Self) =
+                a_acces_a_un_logement_decent (cit) ->    
+                a_une_alimentation_suffisante (cit) ->              
+                a_une_alimentation_saine (cit) ->
+                est_habille_suffisamment (cit) ->              
+                est_habille_decemment (cit) ->              
+                est_maintenu_en_bonne_sante (cit) ->              
+                a_acces_a_une_education_de_qualite (cit);
+
+
+end;;
 

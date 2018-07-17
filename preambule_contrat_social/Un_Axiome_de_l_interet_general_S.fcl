@@ -1,13 +1,28 @@
 open "basics";;
-open "Une_Formule_S";;
-open "Une_Loi_S";;
+open "Finite_Set_S";;
+open "Un_Citoyen_S";;
+open "Un_Territoire_francais_S";;
+open "Une_Phrase_d_un_paragraphe_S";;
 
-species Un_Axiome_de_l_interet_general_S (ULoi is Une_Loi_S) =
+-- Une_Phrase_d_un_paragraphe_S
+-- Un_Paragraphe_d_un_article_S
+-- Un_Article_d_un_titre_S
+-- Un_Titre_d_un_texte_legislatif_S
+-- Un_Texte_legislatif_S
 
-  inherit Une_Formule_S;
+species Un_Axiome_de_l_interet_general_S (
+           UTfr is Un_Territoire_francais_S,
+           UCit is Un_Citoyen_S (UTfr) ,
+           UCit_set is Finite_Set_S (UCit)
+           ) =
 
-  property une_loi_est_conforme_a_l_interet_general_pr : all loi : ULoi,
-           ULoi!est_conforme_a_l_interet_general (loi);
+  inherit Une_Phrase_d_un_paragraphe_S;
 
+-- l’intérêt général est ce qui est commun dans les différents intérêts
+
+  signature est_commun_a_tous_les_interets_de_tous_les_citoyens : Self -> bool; 
+
+  signature un_citoyen_a_une_existence_decente : Self -> bool;
+  
 end;;
 
