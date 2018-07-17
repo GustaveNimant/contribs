@@ -1,0 +1,120 @@
+"Un_Bloc_S.ml" 3 28 34 "Un_Bloc_S.ml" 3 28 59
+type(
+  ('abst_T -> int) -> 'abst_T -> bool
+)
+ident(
+  def l_ordinal_est_non_negatif "Un_Bloc_S.ml" 5 141 143 "Un_Bloc_S.ml" 7 243 248
+)
+"Un_Bloc_S.ml" 3 28 60 "Un_Bloc_S.ml" 3 28 74
+type(
+  'abst_T -> int
+)
+ident(
+  def abst_l_ordinal "Un_Bloc_S.ml" 3 28 75 "Un_Bloc_S.ml" 4 93 140
+)
+"Un_Bloc_S.ml" 3 28 76 "Un_Bloc_S.ml" 3 28 79
+type(
+  'abst_T
+)
+ident(
+  def blo "Un_Bloc_S.ml" 4 93 97 "Un_Bloc_S.ml" 4 93 140
+)
+"Un_Bloc_S.ml" 4 93 98 "Un_Bloc_S.ml" 4 93 116
+type(
+  int -> int -> bool
+)
+ident(
+  ext_ref Basics._gt__equal_
+)
+"Un_Bloc_S.ml" 4 93 118 "Un_Bloc_S.ml" 4 93 132
+type(
+  'abst_T -> int
+)
+ident(
+  int_ref abst_l_ordinal "Un_Bloc_S.ml" 3 28 60 "Un_Bloc_S.ml" 3 28 74
+)
+"Un_Bloc_S.ml" 4 93 133 "Un_Bloc_S.ml" 4 93 136
+type(
+  'abst_T
+)
+ident(
+  int_ref blo "Un_Bloc_S.ml" 3 28 76 "Un_Bloc_S.ml" 3 28 79
+)
+"Un_Bloc_S.ml" 4 93 117 "Un_Bloc_S.ml" 4 93 137
+call(
+  stack
+)
+type(
+  int
+)
+"Un_Bloc_S.ml" 4 93 138 "Un_Bloc_S.ml" 4 93 139
+type(
+  int
+)
+"Un_Bloc_S.ml" 4 93 97 "Un_Bloc_S.ml" 4 93 140
+call(
+  tail
+)
+type(
+  bool
+)
+"Un_Bloc_S.ml" 5 141 147 "Un_Bloc_S.ml" 5 141 168
+type(
+  ('abst_T0 -> int) -> 'abst_T0 -> bool
+)
+ident(
+  def l_ordinal_est_positif "Un_Bloc_S.ml" 6 202 242 "Un_Bloc_S.ml" 7 243 248
+)
+"Un_Bloc_S.ml" 5 141 169 "Un_Bloc_S.ml" 5 141 183
+type(
+  'abst_T0 -> int
+)
+ident(
+  def abst_l_ordinal "Un_Bloc_S.ml" 5 141 184 "Un_Bloc_S.ml" 6 202 242
+)
+"Un_Bloc_S.ml" 5 141 185 "Un_Bloc_S.ml" 5 141 188
+type(
+  'abst_T0
+)
+ident(
+  def blo "Un_Bloc_S.ml" 6 202 206 "Un_Bloc_S.ml" 6 202 242
+)
+"Un_Bloc_S.ml" 6 202 207 "Un_Bloc_S.ml" 6 202 218
+type(
+  int -> int -> bool
+)
+ident(
+  ext_ref Basics._gt_
+)
+"Un_Bloc_S.ml" 6 202 220 "Un_Bloc_S.ml" 6 202 234
+type(
+  'abst_T0 -> int
+)
+ident(
+  int_ref abst_l_ordinal "Un_Bloc_S.ml" 5 141 169 "Un_Bloc_S.ml" 5 141 183
+)
+"Un_Bloc_S.ml" 6 202 235 "Un_Bloc_S.ml" 6 202 238
+type(
+  'abst_T0
+)
+ident(
+  int_ref blo "Un_Bloc_S.ml" 5 141 185 "Un_Bloc_S.ml" 5 141 188
+)
+"Un_Bloc_S.ml" 6 202 219 "Un_Bloc_S.ml" 6 202 239
+call(
+  stack
+)
+type(
+  int
+)
+"Un_Bloc_S.ml" 6 202 240 "Un_Bloc_S.ml" 6 202 241
+type(
+  int
+)
+"Un_Bloc_S.ml" 6 202 206 "Un_Bloc_S.ml" 6 202 242
+call(
+  tail
+)
+type(
+  bool
+)

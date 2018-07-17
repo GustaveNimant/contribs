@@ -1,0 +1,615 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!-- document automatically generated from a FoCaL program. Note that focdoc has also both a DTD 'focdoc.dtd' and a RELAX NG schema 'focdoc.rnc'.  To validate a focdoc file with focdoc.dtd, please product the focdoc file with the '-focalize-doc' option of focalizecc. But whereas an XML document can associate itself with a DTD using a DOCTYPE declaration, RELAX NG does not define a way for an XML document to associate itself with a RELAX NG pattern. -->
+
+<foc:focdoc xsi:schemaLocation="focal focdoc.xsd mathml2 http://www.w3.org/Math/XMLSchema/mathml2/mathml2.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mml="mathml2" xmlns:foc="http://focal.inria.fr/site/index">
+  <foc:fcl-name>Les_Fonctions_de_conversion</foc:fcl-name>
+  <foc:general-informations>
+    </foc:general-informations>
+  
+  <foc:directive><foc:dir-open>basics</foc:dir-open></foc:directive>
+  <foc:directive><foc:dir-open>sets</foc:dir-open></foc:directive>
+  <foc:directive><foc:dir-open>Finite_Set_S</foc:dir-open></foc:directive>
+  <foc:directive><foc:dir-open>Une_Assertion_constitutionnelle_S</foc:dir-open></foc:directive>
+  <foc:directive><foc:dir-open>Une_Assertion_S</foc:dir-open></foc:directive>
+  <foc:directive><foc:dir-open>Une_Phrase_d_un_paragraphe_S</foc:dir-open></foc:directive>
+  <foc:species>
+    <foc:fcl-name>Subtype</foc:fcl-name>
+    <foc:informations>
+      </foc:informations>
+    <foc:spe-param>
+      <foc:fcl-name>Sub</foc:fcl-name>
+      <foc:spe-param-kind>
+      <foc:spe-param-kind-collection>
+      <foc:spe-expr>
+        <foc:spe-expr-atom infile="sets">
+          <foc:fcl-name>Setoid</foc:fcl-name>
+          </foc:spe-expr-atom>
+        </foc:spe-expr>
+      </foc:spe-param-kind-collection>
+      </foc:spe-param-kind>
+      <foc:informations>
+        </foc:informations>
+      </foc:spe-param>
+    <foc:spe-param>
+      <foc:fcl-name>Sub_set</foc:fcl-name>
+      <foc:spe-param-kind>
+      <foc:spe-param-kind-collection>
+      <foc:spe-expr>
+        <foc:spe-expr-paramd infile="Finite_Set_S">
+          <foc:fcl-name>Finite_Set_S</foc:fcl-name>
+          <foc:spe-expr-atom infile="Les_Fonctions_de_conversion"><foc:fcl-name>Sub</foc:fcl-name></foc:spe-expr-atom>
+          </foc:spe-expr-paramd>
+        </foc:spe-expr>
+      </foc:spe-param-kind-collection>
+      </foc:spe-param-kind>
+      <foc:informations>
+        </foc:informations>
+      </foc:spe-param>
+    <foc:spe-param>
+      <foc:fcl-name>Super</foc:fcl-name>
+      <foc:spe-param-kind>
+      <foc:spe-param-kind-collection>
+      <foc:spe-expr>
+        <foc:spe-expr-atom infile="sets">
+          <foc:fcl-name>Setoid</foc:fcl-name>
+          </foc:spe-expr-atom>
+        </foc:spe-expr>
+      </foc:spe-param-kind-collection>
+      </foc:spe-param-kind>
+      <foc:informations>
+        </foc:informations>
+      </foc:spe-param>
+    <foc:spe-param>
+      <foc:fcl-name>Super_set</foc:fcl-name>
+      <foc:spe-param-kind>
+      <foc:spe-param-kind-collection>
+      <foc:spe-expr>
+        <foc:spe-expr-paramd infile="Finite_Set_S">
+          <foc:fcl-name>Finite_Set_S</foc:fcl-name>
+          <foc:spe-expr-atom infile="Les_Fonctions_de_conversion"><foc:fcl-name>Super</foc:fcl-name></foc:spe-expr-atom>
+          </foc:spe-expr-paramd>
+        </foc:spe-expr>
+      </foc:spe-param-kind-collection>
+      </foc:spe-param-kind>
+      <foc:informations>
+        </foc:informations>
+      </foc:spe-param>
+    <foc:method>
+      <foc:meth-signature>
+        <foc:fcl-name>rep</foc:fcl-name>
+        <foc:history>
+          <foc:initial-apparition infile="Les_Fonctions_de_conversion">Subtype</foc:initial-apparition>
+          <foc:comes-from infile="Les_Fonctions_de_conversion">Subtype</foc:comes-from>
+          </foc:history>
+        <foc:informations>
+          </foc:informations>
+        <foc:type-expr>
+          <foc:ty-cstr>
+            <foc:identifier infile="basics">
+              <foc:fcl-name>unit</foc:fcl-name>
+              </foc:identifier>
+            </foc:ty-cstr>
+          </foc:type-expr>
+        </foc:meth-signature>
+      </foc:method>
+    <foc:method>
+      <foc:meth-signature>
+        <foc:fcl-name>to_super</foc:fcl-name>
+        <foc:history>
+          <foc:initial-apparition infile="Les_Fonctions_de_conversion">Subtype</foc:initial-apparition>
+          <foc:comes-from infile="Les_Fonctions_de_conversion">Subtype</foc:comes-from>
+          </foc:history>
+        <foc:informations>
+          </foc:informations>
+        <foc:type-expr>
+          <foc:ty-fun>
+            <foc:type-expr>
+              <foc:ty-species-rep>
+                <foc:identifier infile="Les_Fonctions_de_conversion">
+                  <foc:fcl-name>Sub</foc:fcl-name>
+                  </foc:identifier>
+                </foc:ty-species-rep>
+              </foc:type-expr>
+            <foc:type-expr>
+              <foc:ty-species-rep>
+                <foc:identifier infile="Les_Fonctions_de_conversion">
+                  <foc:fcl-name>Super</foc:fcl-name>
+                  </foc:identifier>
+                </foc:ty-species-rep>
+              </foc:type-expr>
+            </foc:ty-fun>
+          </foc:type-expr>
+        </foc:meth-signature>
+      </foc:method>
+    <foc:method>
+      <foc:meth-signature>
+        <foc:fcl-name>to_super_set</foc:fcl-name>
+        <foc:history>
+          <foc:initial-apparition infile="Les_Fonctions_de_conversion">Subtype</foc:initial-apparition>
+          <foc:comes-from infile="Les_Fonctions_de_conversion">Subtype</foc:comes-from>
+          </foc:history>
+        <foc:informations>
+          </foc:informations>
+        <foc:type-expr>
+          <foc:ty-fun>
+            <foc:type-expr>
+              <foc:ty-species-rep>
+                <foc:identifier infile="Les_Fonctions_de_conversion">
+                  <foc:fcl-name>Sub_set</foc:fcl-name>
+                  </foc:identifier>
+                </foc:ty-species-rep>
+              </foc:type-expr>
+            <foc:type-expr>
+              <foc:ty-species-rep>
+                <foc:identifier infile="Les_Fonctions_de_conversion">
+                  <foc:fcl-name>Super_set</foc:fcl-name>
+                  </foc:identifier>
+                </foc:ty-species-rep>
+              </foc:type-expr>
+            </foc:ty-fun>
+          </foc:type-expr>
+        </foc:meth-signature>
+      </foc:method>
+    <foc:method>
+      <foc:meth-property>
+        <foc:fcl-name>to_super_congruence</foc:fcl-name>
+        <foc:history>
+          <foc:initial-apparition infile="Les_Fonctions_de_conversion">Subtype</foc:initial-apparition>
+          <foc:comes-from infile="Les_Fonctions_de_conversion">Subtype</foc:comes-from>
+          </foc:history>
+        <foc:informations>
+          </foc:informations>
+        <foc:logexpr>
+          <foc:logexpr-all>
+            <foc:var><foc:fcl-name>x</foc:fcl-name></foc:var>
+            <foc:type-expr>
+              <foc:ty-species-rep>
+                <foc:identifier infile="Les_Fonctions_de_conversion">
+                  <foc:fcl-name>Sub</foc:fcl-name>
+                  </foc:identifier>
+                </foc:ty-species-rep>
+              </foc:type-expr>
+            <foc:logexpr-all>
+              <foc:var><foc:fcl-name>y</foc:fcl-name></foc:var>
+              <foc:type-expr>
+                <foc:ty-species-rep>
+                  <foc:identifier infile="Les_Fonctions_de_conversion">
+                    <foc:fcl-name>Sub</foc:fcl-name>
+                    </foc:identifier>
+                  </foc:ty-species-rep>
+                </foc:type-expr>
+              <foc:logexpr>
+                <foc:logexpr-implies>
+                  <foc:logexpr>
+                    <foc:logexpr-expr>
+                      <foc:expr>
+                        <foc:expr-app>
+                          <foc:expr>
+                            <foc:identifier infile="Les_Fonctions_de_conversion">
+                              <foc:of-species><foc:fcl-name>Sub</foc:fcl-name></foc:of-species>
+                              <foc:fcl-name>equal</foc:fcl-name>
+                              </foc:identifier>
+                            </foc:expr>
+                          <foc:expr>
+                            <foc:identifier infile="">
+                              <foc:fcl-name>x</foc:fcl-name>
+                              </foc:identifier>
+                            </foc:expr>
+                          <foc:expr>
+                            <foc:identifier infile="">
+                              <foc:fcl-name>y</foc:fcl-name>
+                              </foc:identifier>
+                            </foc:expr>
+                          </foc:expr-app>
+                        </foc:expr>
+                      </foc:logexpr-expr>
+                    </foc:logexpr>
+                  <foc:logexpr>
+                    <foc:logexpr-expr>
+                      <foc:expr>
+                        <foc:expr-app>
+                          <foc:expr>
+                            <foc:identifier infile="Les_Fonctions_de_conversion">
+                              <foc:of-species><foc:fcl-name>Super</foc:fcl-name></foc:of-species>
+                              <foc:fcl-name>equal</foc:fcl-name>
+                              </foc:identifier>
+                            </foc:expr>
+                          <foc:expr>
+                            <foc:expr-app>
+                              <foc:expr>
+                                <foc:identifier infile="">
+                                  <foc:fcl-name>to_super</foc:fcl-name>
+                                  </foc:identifier>
+                                </foc:expr>
+                              <foc:expr>
+                                <foc:identifier infile="">
+                                  <foc:fcl-name>x</foc:fcl-name>
+                                  </foc:identifier>
+                                </foc:expr>
+                              </foc:expr-app>
+                            </foc:expr>
+                          <foc:expr>
+                            <foc:expr-app>
+                              <foc:expr>
+                                <foc:identifier infile="">
+                                  <foc:fcl-name>to_super</foc:fcl-name>
+                                  </foc:identifier>
+                                </foc:expr>
+                              <foc:expr>
+                                <foc:identifier infile="">
+                                  <foc:fcl-name>y</foc:fcl-name>
+                                  </foc:identifier>
+                                </foc:expr>
+                              </foc:expr-app>
+                            </foc:expr>
+                          </foc:expr-app>
+                        </foc:expr>
+                      </foc:logexpr-expr>
+                    </foc:logexpr>
+                  </foc:logexpr-implies>
+                </foc:logexpr>
+              </foc:logexpr-all>
+            </foc:logexpr-all>
+          </foc:logexpr>
+        </foc:meth-property>
+      </foc:method>
+    <foc:method>
+      <foc:meth-property>
+        <foc:fcl-name>to_super_set_congruence</foc:fcl-name>
+        <foc:history>
+          <foc:initial-apparition infile="Les_Fonctions_de_conversion">Subtype</foc:initial-apparition>
+          <foc:comes-from infile="Les_Fonctions_de_conversion">Subtype</foc:comes-from>
+          </foc:history>
+        <foc:informations>
+          </foc:informations>
+        <foc:logexpr>
+          <foc:logexpr-all>
+            <foc:var><foc:fcl-name>x</foc:fcl-name></foc:var>
+            <foc:type-expr>
+              <foc:ty-species-rep>
+                <foc:identifier infile="Les_Fonctions_de_conversion">
+                  <foc:fcl-name>Sub_set</foc:fcl-name>
+                  </foc:identifier>
+                </foc:ty-species-rep>
+              </foc:type-expr>
+            <foc:logexpr-all>
+              <foc:var><foc:fcl-name>y</foc:fcl-name></foc:var>
+              <foc:type-expr>
+                <foc:ty-species-rep>
+                  <foc:identifier infile="Les_Fonctions_de_conversion">
+                    <foc:fcl-name>Sub_set</foc:fcl-name>
+                    </foc:identifier>
+                  </foc:ty-species-rep>
+                </foc:type-expr>
+              <foc:logexpr>
+                <foc:logexpr-implies>
+                  <foc:logexpr>
+                    <foc:logexpr-expr>
+                      <foc:expr>
+                        <foc:expr-app>
+                          <foc:expr>
+                            <foc:identifier infile="Les_Fonctions_de_conversion">
+                              <foc:of-species><foc:fcl-name>Sub_set</foc:fcl-name></foc:of-species>
+                              <foc:fcl-name>equal</foc:fcl-name>
+                              </foc:identifier>
+                            </foc:expr>
+                          <foc:expr>
+                            <foc:identifier infile="">
+                              <foc:fcl-name>x</foc:fcl-name>
+                              </foc:identifier>
+                            </foc:expr>
+                          <foc:expr>
+                            <foc:identifier infile="">
+                              <foc:fcl-name>y</foc:fcl-name>
+                              </foc:identifier>
+                            </foc:expr>
+                          </foc:expr-app>
+                        </foc:expr>
+                      </foc:logexpr-expr>
+                    </foc:logexpr>
+                  <foc:logexpr>
+                    <foc:logexpr-expr>
+                      <foc:expr>
+                        <foc:expr-app>
+                          <foc:expr>
+                            <foc:identifier infile="Les_Fonctions_de_conversion">
+                              <foc:of-species><foc:fcl-name>Super_set</foc:fcl-name></foc:of-species>
+                              <foc:fcl-name>equal</foc:fcl-name>
+                              </foc:identifier>
+                            </foc:expr>
+                          <foc:expr>
+                            <foc:expr-app>
+                              <foc:expr>
+                                <foc:identifier infile="">
+                                  <foc:fcl-name>to_super_set</foc:fcl-name>
+                                  </foc:identifier>
+                                </foc:expr>
+                              <foc:expr>
+                                <foc:identifier infile="">
+                                  <foc:fcl-name>x</foc:fcl-name>
+                                  </foc:identifier>
+                                </foc:expr>
+                              </foc:expr-app>
+                            </foc:expr>
+                          <foc:expr>
+                            <foc:expr-app>
+                              <foc:expr>
+                                <foc:identifier infile="">
+                                  <foc:fcl-name>to_super_set</foc:fcl-name>
+                                  </foc:identifier>
+                                </foc:expr>
+                              <foc:expr>
+                                <foc:identifier infile="">
+                                  <foc:fcl-name>y</foc:fcl-name>
+                                  </foc:identifier>
+                                </foc:expr>
+                              </foc:expr-app>
+                            </foc:expr>
+                          </foc:expr-app>
+                        </foc:expr>
+                      </foc:logexpr-expr>
+                    </foc:logexpr>
+                  </foc:logexpr-implies>
+                </foc:logexpr>
+              </foc:logexpr-all>
+            </foc:logexpr-all>
+          </foc:logexpr>
+        </foc:meth-property>
+      </foc:method>
+    <foc:method>
+      <foc:meth-property>
+        <foc:fcl-name>to_super_set_const1</foc:fcl-name>
+        <foc:history>
+          <foc:initial-apparition infile="Les_Fonctions_de_conversion">Subtype</foc:initial-apparition>
+          <foc:comes-from infile="Les_Fonctions_de_conversion">Subtype</foc:comes-from>
+          </foc:history>
+        <foc:informations>
+          </foc:informations>
+        <foc:logexpr>
+          <foc:logexpr-all>
+            <foc:var><foc:fcl-name>x_set</foc:fcl-name></foc:var>
+            <foc:type-expr>
+              <foc:ty-species-rep>
+                <foc:identifier infile="Les_Fonctions_de_conversion">
+                  <foc:fcl-name>Sub_set</foc:fcl-name>
+                  </foc:identifier>
+                </foc:ty-species-rep>
+              </foc:type-expr>
+            <foc:logexpr>
+              <foc:logexpr-all>
+                <foc:var><foc:fcl-name>y</foc:fcl-name></foc:var>
+                <foc:type-expr>
+                  <foc:ty-species-rep>
+                    <foc:identifier infile="Les_Fonctions_de_conversion">
+                      <foc:fcl-name>Super</foc:fcl-name>
+                      </foc:identifier>
+                    </foc:ty-species-rep>
+                  </foc:type-expr>
+                <foc:logexpr>
+                  <foc:logexpr-implies>
+                    <foc:logexpr>
+                      <foc:logexpr-expr>
+                        <foc:expr>
+                          <foc:expr-app>
+                            <foc:expr>
+                              <foc:identifier infile="Les_Fonctions_de_conversion">
+                                <foc:of-species><foc:fcl-name>Super_set</foc:fcl-name></foc:of-species>
+                                <foc:fcl-name>is_a_member_of</foc:fcl-name>
+                                </foc:identifier>
+                              </foc:expr>
+                            <foc:expr>
+                              <foc:identifier infile="">
+                                <foc:fcl-name>y</foc:fcl-name>
+                                </foc:identifier>
+                              </foc:expr>
+                            <foc:expr>
+                              <foc:expr-app>
+                                <foc:expr>
+                                  <foc:identifier infile="">
+                                    <foc:fcl-name>to_super_set</foc:fcl-name>
+                                    </foc:identifier>
+                                  </foc:expr>
+                                <foc:expr>
+                                  <foc:identifier infile="">
+                                    <foc:fcl-name>x_set</foc:fcl-name>
+                                    </foc:identifier>
+                                  </foc:expr>
+                                </foc:expr-app>
+                              </foc:expr>
+                            </foc:expr-app>
+                          </foc:expr>
+                        </foc:logexpr-expr>
+                      </foc:logexpr>
+                    <foc:logexpr>
+                      <foc:logexpr-paren>
+                        <foc:logexpr>
+                          <foc:logexpr-ex>
+                            <foc:var><foc:fcl-name>x</foc:fcl-name></foc:var>
+                            <foc:type-expr>
+                              <foc:ty-species-rep>
+                                <foc:identifier infile="Les_Fonctions_de_conversion">
+                                  <foc:fcl-name>Sub</foc:fcl-name>
+                                  </foc:identifier>
+                                </foc:ty-species-rep>
+                              </foc:type-expr>
+                            <foc:logexpr>
+                              <foc:logexpr-and>
+                                <foc:logexpr>
+                                  <foc:logexpr-expr>
+                                    <foc:expr>
+                                      <foc:expr-app>
+                                        <foc:expr>
+                                          <foc:identifier infile="Les_Fonctions_de_conversion">
+                                            <foc:of-species><foc:fcl-name>Sub_set</foc:fcl-name></foc:of-species>
+                                            <foc:fcl-name>is_a_member_of</foc:fcl-name>
+                                            </foc:identifier>
+                                          </foc:expr>
+                                        <foc:expr>
+                                          <foc:identifier infile="">
+                                            <foc:fcl-name>x</foc:fcl-name>
+                                            </foc:identifier>
+                                          </foc:expr>
+                                        <foc:expr>
+                                          <foc:identifier infile="">
+                                            <foc:fcl-name>x_set</foc:fcl-name>
+                                            </foc:identifier>
+                                          </foc:expr>
+                                        </foc:expr-app>
+                                      </foc:expr>
+                                    </foc:logexpr-expr>
+                                  </foc:logexpr>
+                                <foc:logexpr>
+                                  <foc:logexpr-expr>
+                                    <foc:expr>
+                                      <foc:expr-app>
+                                        <foc:expr>
+                                          <foc:identifier infile="Les_Fonctions_de_conversion">
+                                            <foc:of-species><foc:fcl-name>Super</foc:fcl-name></foc:of-species>
+                                            <foc:fcl-name>equal</foc:fcl-name>
+                                            </foc:identifier>
+                                          </foc:expr>
+                                        <foc:expr>
+                                          <foc:expr-app>
+                                            <foc:expr>
+                                              <foc:identifier infile="">
+                                                <foc:fcl-name>to_super</foc:fcl-name>
+                                                </foc:identifier>
+                                              </foc:expr>
+                                            <foc:expr>
+                                              <foc:identifier infile="">
+                                                <foc:fcl-name>x</foc:fcl-name>
+                                                </foc:identifier>
+                                              </foc:expr>
+                                            </foc:expr-app>
+                                          </foc:expr>
+                                        <foc:expr>
+                                          <foc:identifier infile="">
+                                            <foc:fcl-name>y</foc:fcl-name>
+                                            </foc:identifier>
+                                          </foc:expr>
+                                        </foc:expr-app>
+                                      </foc:expr>
+                                    </foc:logexpr-expr>
+                                  </foc:logexpr>
+                                </foc:logexpr-and>
+                              </foc:logexpr>
+                            </foc:logexpr-ex>
+                          </foc:logexpr>
+                        </foc:logexpr-paren>
+                      </foc:logexpr>
+                    </foc:logexpr-implies>
+                  </foc:logexpr>
+                </foc:logexpr-all>
+              </foc:logexpr>
+            </foc:logexpr-all>
+          </foc:logexpr>
+        </foc:meth-property>
+      </foc:method>
+    <foc:method>
+      <foc:meth-property>
+        <foc:fcl-name>to_super_set_const2</foc:fcl-name>
+        <foc:history>
+          <foc:initial-apparition infile="Les_Fonctions_de_conversion">Subtype</foc:initial-apparition>
+          <foc:comes-from infile="Les_Fonctions_de_conversion">Subtype</foc:comes-from>
+          </foc:history>
+        <foc:informations>
+          </foc:informations>
+        <foc:logexpr>
+          <foc:logexpr-all>
+            <foc:var><foc:fcl-name>x_set</foc:fcl-name></foc:var>
+            <foc:type-expr>
+              <foc:ty-species-rep>
+                <foc:identifier infile="Les_Fonctions_de_conversion">
+                  <foc:fcl-name>Sub_set</foc:fcl-name>
+                  </foc:identifier>
+                </foc:ty-species-rep>
+              </foc:type-expr>
+            <foc:logexpr>
+              <foc:logexpr-all>
+                <foc:var><foc:fcl-name>x</foc:fcl-name></foc:var>
+                <foc:type-expr>
+                  <foc:ty-species-rep>
+                    <foc:identifier infile="Les_Fonctions_de_conversion">
+                      <foc:fcl-name>Sub</foc:fcl-name>
+                      </foc:identifier>
+                    </foc:ty-species-rep>
+                  </foc:type-expr>
+                <foc:logexpr>
+                  <foc:logexpr-implies>
+                    <foc:logexpr>
+                      <foc:logexpr-expr>
+                        <foc:expr>
+                          <foc:expr-app>
+                            <foc:expr>
+                              <foc:identifier infile="Les_Fonctions_de_conversion">
+                                <foc:of-species><foc:fcl-name>Sub_set</foc:fcl-name></foc:of-species>
+                                <foc:fcl-name>is_a_member_of</foc:fcl-name>
+                                </foc:identifier>
+                              </foc:expr>
+                            <foc:expr>
+                              <foc:identifier infile="">
+                                <foc:fcl-name>x</foc:fcl-name>
+                                </foc:identifier>
+                              </foc:expr>
+                            <foc:expr>
+                              <foc:identifier infile="">
+                                <foc:fcl-name>x_set</foc:fcl-name>
+                                </foc:identifier>
+                              </foc:expr>
+                            </foc:expr-app>
+                          </foc:expr>
+                        </foc:logexpr-expr>
+                      </foc:logexpr>
+                    <foc:logexpr>
+                      <foc:logexpr-expr>
+                        <foc:expr>
+                          <foc:expr-app>
+                            <foc:expr>
+                              <foc:identifier infile="Les_Fonctions_de_conversion">
+                                <foc:of-species><foc:fcl-name>Super_set</foc:fcl-name></foc:of-species>
+                                <foc:fcl-name>is_a_member_of</foc:fcl-name>
+                                </foc:identifier>
+                              </foc:expr>
+                            <foc:expr>
+                              <foc:expr-app>
+                                <foc:expr>
+                                  <foc:identifier infile="">
+                                    <foc:fcl-name>to_super</foc:fcl-name>
+                                    </foc:identifier>
+                                  </foc:expr>
+                                <foc:expr>
+                                  <foc:identifier infile="">
+                                    <foc:fcl-name>x</foc:fcl-name>
+                                    </foc:identifier>
+                                  </foc:expr>
+                                </foc:expr-app>
+                              </foc:expr>
+                            <foc:expr>
+                              <foc:expr-app>
+                                <foc:expr>
+                                  <foc:identifier infile="">
+                                    <foc:fcl-name>to_super_set</foc:fcl-name>
+                                    </foc:identifier>
+                                  </foc:expr>
+                                <foc:expr>
+                                  <foc:identifier infile="">
+                                    <foc:fcl-name>x_set</foc:fcl-name>
+                                    </foc:identifier>
+                                  </foc:expr>
+                                </foc:expr-app>
+                              </foc:expr>
+                            </foc:expr-app>
+                          </foc:expr>
+                        </foc:logexpr-expr>
+                      </foc:logexpr>
+                    </foc:logexpr-implies>
+                  </foc:logexpr>
+                </foc:logexpr-all>
+              </foc:logexpr>
+            </foc:logexpr-all>
+          </foc:logexpr>
+        </foc:meth-property>
+      </foc:method>
+    </foc:species>
+  
+  </foc:focdoc>

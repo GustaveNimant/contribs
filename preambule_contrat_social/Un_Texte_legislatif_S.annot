@@ -1,0 +1,18 @@
+"Un_Texte_legislatif_S.ml" 3 40 46 "Un_Texte_legislatif_S.ml" 3 40 78
+type(
+  'abst_T -> bool
+)
+ident(
+  def est_conforme_a_l_interet_general "Un_Texte_legislatif_S.ml" 3 40 101 "Un_Texte_legislatif_S.ml" 4 102 107
+)
+"Un_Texte_legislatif_S.ml" 3 40 80 "Un_Texte_legislatif_S.ml" 3 40 83
+type(
+  'abst_T
+)
+ident(
+  def tle "Un_Texte_legislatif_S.ml" 3 40 97 "Un_Texte_legislatif_S.ml" 3 40 101
+)
+"Un_Texte_legislatif_S.ml" 3 40 97 "Un_Texte_legislatif_S.ml" 3 40 101
+type(
+  bool
+)

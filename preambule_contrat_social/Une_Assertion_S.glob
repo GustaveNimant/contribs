@@ -1,0 +1,44 @@
+DIGEST 2fb13174d21f43a6f9dd00e0386328d6
+FUne_Assertion_S
+R228:232 zenon <> <> lib
+R250:261 zenon_induct <> <> lib
+R279:289 zenon_focal <> <> lib
+R307:310 Coq.Bool.Bool <> <> lib
+R328:333 Coq.ZArith.ZArith <> <> lib
+R371:375 Coq.Reals.Reals <> <> lib
+R393:397 Coq.Strings.Ascii <> <> lib
+R415:420 Coq.Strings.String <> <> lib
+R438:441 Coq.Lists.List <> <> lib
+R459:469 Coq.Wellfounded.Wellfounded <> <> lib
+R487:492 Coq.funind.Recdef <> <> lib
+R510:521 coq_builtins <> <> lib
+R539:547 Coq.Relations.Relations <> <> lib
+R565:567 Coq.ZArith.Zwf <> <> lib
+R727:732 basics <> <> lib
+R743:770 Une_Phrase_d_un_paragraphe_S <> <> lib
+mod 780:794 <> Une_Assertion_S
+def 810:826 Une_Assertion_S est_une_assertion
+R878:881 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R882:895 basics <> bool__t def
+R872:877 Une_Assertion_S <> abst_T var
+R932:935 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R936:949 basics <> bool__t def
+R926:931 Une_Assertion_S <> abst_T var
+R1001:1004 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R1005:1018 basics <> bool__t def
+R995:1000 Une_Assertion_S <> abst_T var
+R1032:1037 Une_Assertion_S <> abst_T var
+R1042:1061 coq_builtins <> prop__t def
+R1110:1120 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R1157:1169 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R1170:1176 Coq.Bool.Bool <> Is_true def
+R1180:1214 Une_Assertion_S <> abst_ne_contient_pas_de_conjonction var
+R1216:1218 Une_Assertion_S <> ass var
+R1121:1127 Coq.Bool.Bool <> Is_true def
+R1131:1150 Une_Assertion_S <> abst_est_une_formule var
+R1152:1154 Une_Assertion_S <> ass var
+R1070:1070 Coq.Init.Logic <> :type_scope:'~'_x not
+R1071:1077 Coq.Bool.Bool <> Is_true def
+R1082:1102 Une_Assertion_S <> abst_est_une_doleance var
+R1104:1106 Une_Assertion_S <> ass var
+R1230:1244 Une_Assertion_S Une_Assertion_S <> mod

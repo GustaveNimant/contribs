@@ -1,0 +1,29 @@
+DIGEST 2d1c58927eff2b486c9677c96d07dd28
+FUne_Blockchain_doleance_S
+R228:232 zenon <> <> lib
+R250:261 zenon_induct <> <> lib
+R279:289 zenon_focal <> <> lib
+R307:310 Coq.Bool.Bool <> <> lib
+R328:333 Coq.ZArith.ZArith <> <> lib
+R371:375 Coq.Reals.Reals <> <> lib
+R393:397 Coq.Strings.Ascii <> <> lib
+R415:420 Coq.Strings.String <> <> lib
+R438:441 Coq.Lists.List <> <> lib
+R459:469 Coq.Wellfounded.Wellfounded <> <> lib
+R487:492 Coq.funind.Recdef <> <> lib
+R510:521 coq_builtins <> <> lib
+R539:547 Coq.Relations.Relations <> <> lib
+R565:567 Coq.ZArith.Zwf <> <> lib
+R727:732 basics <> <> lib
+R743:759 Finite_Anti_set_S <> <> lib
+R770:778 Un_Bloc_S <> <> lib
+R789:805 Un_Bloc_genesis_S <> <> lib
+R816:833 Un_Bloc_terminal_S <> <> lib
+R844:867 Un_Contrat_intelligent_S <> <> lib
+R878:905 Une_Phrase_d_un_paragraphe_S <> <> lib
+R916:935 Un_Theme_politique_S <> <> lib
+R946:961 Une_Blockchain_S <> <> lib
+R972:985 Une_Doleance_S <> <> lib
+R996:1018 Une_Zone_geographique_S <> <> lib
+mod 1028:1052 <> Une_Blockchain_doleance_S
+R1062:1086 Une_Blockchain_doleance_S Une_Blockchain_doleance_S <> mod

@@ -1,0 +1,117 @@
+"Un_Francais_S.ml" 3 32 38 "Un_Francais_S.ml" 3 32 53
+type(
+  'abst_T -> bool
+)
+ident(
+  def est_un_francais "Un_Francais_S.ml" 4 75 77 "Un_Francais_S.ml" 8 322 327
+)
+"Un_Francais_S.ml" 3 32 55 "Un_Francais_S.ml" 3 32 56
+type(
+  'abst_T
+)
+ident(
+  def s "Un_Francais_S.ml" 3 32 70 "Un_Francais_S.ml" 3 32 74
+)
+"Un_Francais_S.ml" 3 32 70 "Un_Francais_S.ml" 3 32 74
+type(
+  bool
+)
+"Un_Francais_S.ml" 4 75 81 "Un_Francais_S.ml" 4 75 110
+type(
+  ('uTfr0_T -> bool) ->
+  ('abst_T0 -> 'uTfr0_T -> bool) -> 'abst_T0 -> 'uTfr0_T -> bool
+)
+ident(
+  def habite_un_territoire_francais "Un_Francais_S.ml" 7 274 321 "Un_Francais_S.ml" 8 322 327
+)
+"Un_Francais_S.ml" 4 75 111 "Un_Francais_S.ml" 4 75 145
+type(
+  'uTfr0_T -> bool
+)
+ident(
+  def _p_UTfr_est_un_territoire_francais "Un_Francais_S.ml" 5 146 150 "Un_Francais_S.ml" 7 274 321
+)
+"Un_Francais_S.ml" 5 146 150 "Un_Francais_S.ml" 5 146 175
+type(
+  'abst_T0 -> 'uTfr0_T -> bool
+)
+ident(
+  def abst_habite_un_territoire "Un_Francais_S.ml" 5 146 176 "Un_Francais_S.ml" 7 274 321
+)
+"Un_Francais_S.ml" 5 146 177 "Un_Francais_S.ml" 5 146 180
+type(
+  'abst_T0
+)
+ident(
+  def fra "Un_Francais_S.ml" 5 146 192 "Un_Francais_S.ml" 7 274 321
+)
+"Un_Francais_S.ml" 5 146 193 "Un_Francais_S.ml" 5 146 196
+type(
+  'uTfr0_T
+)
+ident(
+  def ter "Un_Francais_S.ml" 6 211 215 "Un_Francais_S.ml" 7 274 321
+)
+"Un_Francais_S.ml" 6 211 216 "Un_Francais_S.ml" 6 211 237
+type(
+  bool -> bool -> bool
+)
+ident(
+  ext_ref Basics._amper__amper_
+)
+"Un_Francais_S.ml" 6 211 239 "Un_Francais_S.ml" 6 211 264
+type(
+  'abst_T0 -> 'uTfr0_T -> bool
+)
+ident(
+  int_ref abst_habite_un_territoire "Un_Francais_S.ml" 5 146 150 "Un_Francais_S.ml" 5 146 175
+)
+"Un_Francais_S.ml" 6 211 265 "Un_Francais_S.ml" 6 211 268
+type(
+  'abst_T0
+)
+ident(
+  int_ref fra "Un_Francais_S.ml" 5 146 177 "Un_Francais_S.ml" 5 146 180
+)
+"Un_Francais_S.ml" 6 211 269 "Un_Francais_S.ml" 6 211 272
+type(
+  'uTfr0_T
+)
+ident(
+  int_ref ter "Un_Francais_S.ml" 5 146 193 "Un_Francais_S.ml" 5 146 196
+)
+"Un_Francais_S.ml" 6 211 238 "Un_Francais_S.ml" 6 211 273
+call(
+  stack
+)
+type(
+  bool
+)
+"Un_Francais_S.ml" 7 274 281 "Un_Francais_S.ml" 7 274 315
+type(
+  'uTfr0_T -> bool
+)
+ident(
+  int_ref _p_UTfr_est_un_territoire_francais "Un_Francais_S.ml" 4 75 111 "Un_Francais_S.ml" 4 75 145
+)
+"Un_Francais_S.ml" 7 274 316 "Un_Francais_S.ml" 7 274 319
+type(
+  'uTfr0_T
+)
+ident(
+  int_ref ter "Un_Francais_S.ml" 5 146 193 "Un_Francais_S.ml" 5 146 196
+)
+"Un_Francais_S.ml" 7 274 280 "Un_Francais_S.ml" 7 274 320
+call(
+  stack
+)
+type(
+  bool
+)
+"Un_Francais_S.ml" 6 211 215 "Un_Francais_S.ml" 7 274 321
+call(
+  tail
+)
+type(
+  bool
+)

@@ -1,4 +1,4 @@
-DIGEST 861de705a7be5d0e0cb14733cf43f8cd
+DIGEST 5902bdcfbe8dc2c7dcac874f9df84229
 FUne_Phrase_d_un_paragraphe_S
 R228:232 zenon <> <> lib
 R250:261 zenon_induct <> <> lib
@@ -17,4 +17,29 @@ R565:567 Coq.ZArith.Zwf <> <> lib
 R727:732 basics <> <> lib
 R743:746 sets <> <> lib
 mod 756:783 <> Une_Phrase_d_un_paragraphe_S
-R793:820 Une_Phrase_d_un_paragraphe_S Une_Phrase_d_un_paragraphe_S <> mod
+def 799:815 Une_Phrase_d_un_paragraphe_S est_une_assertion
+R867:870 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R871:884 basics <> bool__t def
+R861:866 Une_Phrase_d_un_paragraphe_S <> abst_T var
+R921:924 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R925:938 basics <> bool__t def
+R915:920 Une_Phrase_d_un_paragraphe_S <> abst_T var
+R990:993 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R994:1007 basics <> bool__t def
+R984:989 Une_Phrase_d_un_paragraphe_S <> abst_T var
+R1021:1026 Une_Phrase_d_un_paragraphe_S <> abst_T var
+R1031:1050 coq_builtins <> prop__t def
+R1059:1059 Coq.Init.Logic <> :type_scope:x_'/\'_x not
+R1100:1110 Coq.Init.Logic <> :type_scope:x_'/\'_x not
+R1060:1060 Coq.Init.Logic <> :type_scope:'~'_x not
+R1061:1067 Coq.Bool.Bool <> Is_true def
+R1072:1092 Une_Phrase_d_un_paragraphe_S <> abst_est_une_doleance var
+R1094:1096 Une_Phrase_d_un_paragraphe_S <> php var
+R1149:1160 Coq.Init.Logic <> :type_scope:x_'/\'_x not
+R1111:1117 Coq.Bool.Bool <> Is_true def
+R1122:1141 Une_Phrase_d_un_paragraphe_S <> abst_est_une_formule var
+R1143:1145 Une_Phrase_d_un_paragraphe_S <> php var
+R1161:1167 Coq.Bool.Bool <> Is_true def
+R1172:1206 Une_Phrase_d_un_paragraphe_S <> abst_ne_contient_pas_de_conjonction var
+R1208:1210 Une_Phrase_d_un_paragraphe_S <> php var
+R1223:1250 Une_Phrase_d_un_paragraphe_S Une_Phrase_d_un_paragraphe_S <> mod

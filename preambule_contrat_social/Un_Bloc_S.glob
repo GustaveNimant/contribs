@@ -1,0 +1,40 @@
+DIGEST 695bf64d2c8eefcffec560098da0e56b
+FUn_Bloc_S
+R228:232 zenon <> <> lib
+R250:261 zenon_induct <> <> lib
+R279:289 zenon_focal <> <> lib
+R307:310 Coq.Bool.Bool <> <> lib
+R328:333 Coq.ZArith.ZArith <> <> lib
+R371:375 Coq.Reals.Reals <> <> lib
+R393:397 Coq.Strings.Ascii <> <> lib
+R415:420 Coq.Strings.String <> <> lib
+R438:441 Coq.Lists.List <> <> lib
+R459:469 Coq.Wellfounded.Wellfounded <> <> lib
+R487:492 Coq.funind.Recdef <> <> lib
+R510:521 coq_builtins <> <> lib
+R539:547 Coq.Relations.Relations <> <> lib
+R565:567 Coq.ZArith.Zwf <> <> lib
+R727:732 basics <> <> lib
+R743:755 strict_orders <> <> lib
+R766:789 Un_Contrat_intelligent_S <> <> lib
+R800:827 Une_Phrase_d_un_paragraphe_S <> <> lib
+mod 837:845 <> Un_Bloc_S
+def 861:885 Un_Bloc_S l_ordinal_est_non_negatif
+R930:933 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R934:946 basics <> int__t def
+R924:929 Un_Bloc_S <> abst_T var
+R956:961 Un_Bloc_S <> abst_T var
+R970:983 basics <> bool__t def
+R989:1006 basics <> _gt__equal_ def
+R1009:1022 Un_Bloc_S <> abst_l_ordinal var
+R1024:1026 Un_Bloc_S <> blo var
+def 1046:1066 Un_Bloc_S l_ordinal_est_positif
+R1111:1114 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R1115:1127 basics <> int__t def
+R1105:1110 Un_Bloc_S <> abst_T var
+R1137:1142 Un_Bloc_S <> abst_T var
+R1151:1164 basics <> bool__t def
+R1170:1180 basics <> _gt_ def
+R1183:1196 Un_Bloc_S <> abst_l_ordinal var
+R1198:1200 Un_Bloc_S <> blo var
+R1214:1222 Un_Bloc_S Un_Bloc_S <> mod

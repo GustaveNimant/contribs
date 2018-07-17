@@ -1,0 +1,25 @@
+DIGEST 8dfd8286de220c6559153a09840f45ff
+FUn_Territoire_francais_S
+R228:232 zenon <> <> lib
+R250:261 zenon_induct <> <> lib
+R279:289 zenon_focal <> <> lib
+R307:310 Coq.Bool.Bool <> <> lib
+R328:333 Coq.ZArith.ZArith <> <> lib
+R371:375 Coq.Reals.Reals <> <> lib
+R393:397 Coq.Strings.Ascii <> <> lib
+R415:420 Coq.Strings.String <> <> lib
+R438:441 Coq.Lists.List <> <> lib
+R459:469 Coq.Wellfounded.Wellfounded <> <> lib
+R487:492 Coq.funind.Recdef <> <> lib
+R510:521 coq_builtins <> <> lib
+R539:547 Coq.Relations.Relations <> <> lib
+R565:567 Coq.ZArith.Zwf <> <> lib
+R727:732 basics <> <> lib
+R743:746 sets <> <> lib
+R757:771 Un_Territoire_S <> <> lib
+mod 781:804 <> Un_Territoire_francais_S
+def 820:845 Un_Territoire_francais_S est_un_territoire_francais
+R867:872 Un_Territoire_francais_S <> abst_T var
+R881:894 basics <> bool__t def
+R899:902 Coq.Init.Datatypes <> true constr
+R912:935 Un_Territoire_francais_S Un_Territoire_francais_S <> mod

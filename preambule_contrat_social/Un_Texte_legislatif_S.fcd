@@ -1,0 +1,1062 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!-- document automatically generated from a FoCaL program. Note that focdoc has also both a DTD 'focdoc.dtd' and a RELAX NG schema 'focdoc.rnc'.  To validate a focdoc file with focdoc.dtd, please product the focdoc file with the '-focalize-doc' option of focalizecc. But whereas an XML document can associate itself with a DTD using a DOCTYPE declaration, RELAX NG does not define a way for an XML document to associate itself with a RELAX NG pattern. -->
+
+<foc:focdoc xsi:schemaLocation="focal focdoc.xsd mathml2 http://www.w3.org/Math/XMLSchema/mathml2/mathml2.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mml="mathml2" xmlns:foc="http://focal.inria.fr/site/index">
+  <foc:fcl-name>Un_Texte_legislatif_S</foc:fcl-name>
+  <foc:general-informations>
+    </foc:general-informations>
+  
+  <foc:directive><foc:dir-open>basics</foc:dir-open></foc:directive>
+  <foc:directive><foc:dir-open>sets</foc:dir-open></foc:directive>
+  <foc:directive><foc:dir-open>Finite_Set_S</foc:dir-open></foc:directive>
+  <foc:directive><foc:dir-open>Un_Article_d_un_titre_S</foc:dir-open></foc:directive>
+  <foc:directive><foc:dir-open>Un_Paragraphe_d_un_article_S</foc:dir-open></foc:directive>
+  <foc:directive><foc:dir-open>Un_Titre_d_un_texte_legislatif_S</foc:dir-open></foc:directive>
+  <foc:directive><foc:dir-open>Une_Phrase_d_un_paragraphe_S</foc:dir-open></foc:directive>
+  <foc:species>
+    <foc:fcl-name>Un_Texte_legislatif_S</foc:fcl-name>
+    <foc:informations>
+      </foc:informations>
+    <foc:spe-param>
+      <foc:fcl-name>UPpa</foc:fcl-name>
+      <foc:spe-param-kind>
+      <foc:spe-param-kind-collection>
+      <foc:spe-expr>
+        <foc:spe-expr-atom infile="Une_Phrase_d_un_paragraphe_S">
+          <foc:fcl-name>Une_Phrase_d_un_paragraphe_S</foc:fcl-name>
+          </foc:spe-expr-atom>
+        </foc:spe-expr>
+      </foc:spe-param-kind-collection>
+      </foc:spe-param-kind>
+      <foc:informations>
+        </foc:informations>
+      </foc:spe-param>
+    <foc:spe-param>
+      <foc:fcl-name>UPpa_set</foc:fcl-name>
+      <foc:spe-param-kind>
+      <foc:spe-param-kind-collection>
+      <foc:spe-expr>
+        <foc:spe-expr-paramd infile="Finite_Set_S">
+          <foc:fcl-name>Finite_Set_S</foc:fcl-name>
+          <foc:spe-expr-atom infile="Un_Texte_legislatif_S"><foc:fcl-name>UPpa</foc:fcl-name></foc:spe-expr-atom>
+          </foc:spe-expr-paramd>
+        </foc:spe-expr>
+      </foc:spe-param-kind-collection>
+      </foc:spe-param-kind>
+      <foc:informations>
+        </foc:informations>
+      </foc:spe-param>
+    <foc:spe-param>
+      <foc:fcl-name>UPar</foc:fcl-name>
+      <foc:spe-param-kind>
+      <foc:spe-param-kind-collection>
+      <foc:spe-expr>
+        <foc:spe-expr-paramd infile="Un_Paragraphe_d_un_article_S">
+          <foc:fcl-name>Un_Paragraphe_d_un_article_S</foc:fcl-name>
+          <foc:spe-expr-atom infile="Un_Texte_legislatif_S"><foc:fcl-name>UPpa</foc:fcl-name></foc:spe-expr-atom>
+          <foc:spe-expr-atom infile="Un_Texte_legislatif_S"><foc:fcl-name>UPpa_set</foc:fcl-name></foc:spe-expr-atom>
+          </foc:spe-expr-paramd>
+        </foc:spe-expr>
+      </foc:spe-param-kind-collection>
+      </foc:spe-param-kind>
+      <foc:informations>
+        </foc:informations>
+      </foc:spe-param>
+    <foc:spe-param>
+      <foc:fcl-name>UPar_set</foc:fcl-name>
+      <foc:spe-param-kind>
+      <foc:spe-param-kind-collection>
+      <foc:spe-expr>
+        <foc:spe-expr-paramd infile="Finite_Set_S">
+          <foc:fcl-name>Finite_Set_S</foc:fcl-name>
+          <foc:spe-expr-atom infile="Un_Texte_legislatif_S"><foc:fcl-name>UPar</foc:fcl-name></foc:spe-expr-atom>
+          </foc:spe-expr-paramd>
+        </foc:spe-expr>
+      </foc:spe-param-kind-collection>
+      </foc:spe-param-kind>
+      <foc:informations>
+        </foc:informations>
+      </foc:spe-param>
+    <foc:spe-param>
+      <foc:fcl-name>UAti</foc:fcl-name>
+      <foc:spe-param-kind>
+      <foc:spe-param-kind-collection>
+      <foc:spe-expr>
+        <foc:spe-expr-paramd infile="Un_Article_d_un_titre_S">
+          <foc:fcl-name>Un_Article_d_un_titre_S</foc:fcl-name>
+          <foc:spe-expr-atom infile="Un_Texte_legislatif_S"><foc:fcl-name>UPpa</foc:fcl-name></foc:spe-expr-atom>
+          <foc:spe-expr-atom infile="Un_Texte_legislatif_S"><foc:fcl-name>UPpa_set</foc:fcl-name></foc:spe-expr-atom>
+          <foc:spe-expr-atom infile="Un_Texte_legislatif_S"><foc:fcl-name>UPar</foc:fcl-name></foc:spe-expr-atom>
+          <foc:spe-expr-atom infile="Un_Texte_legislatif_S"><foc:fcl-name>UPar_set</foc:fcl-name></foc:spe-expr-atom>
+          </foc:spe-expr-paramd>
+        </foc:spe-expr>
+      </foc:spe-param-kind-collection>
+      </foc:spe-param-kind>
+      <foc:informations>
+        </foc:informations>
+      </foc:spe-param>
+    <foc:spe-param>
+      <foc:fcl-name>UAti_set</foc:fcl-name>
+      <foc:spe-param-kind>
+      <foc:spe-param-kind-collection>
+      <foc:spe-expr>
+        <foc:spe-expr-paramd infile="Finite_Set_S">
+          <foc:fcl-name>Finite_Set_S</foc:fcl-name>
+          <foc:spe-expr-atom infile="Un_Texte_legislatif_S"><foc:fcl-name>UAti</foc:fcl-name></foc:spe-expr-atom>
+          </foc:spe-expr-paramd>
+        </foc:spe-expr>
+      </foc:spe-param-kind-collection>
+      </foc:spe-param-kind>
+      <foc:informations>
+        </foc:informations>
+      </foc:spe-param>
+    <foc:spe-param>
+      <foc:fcl-name>UTtl</foc:fcl-name>
+      <foc:spe-param-kind>
+      <foc:spe-param-kind-collection>
+      <foc:spe-expr>
+        <foc:spe-expr-paramd infile="Un_Titre_d_un_texte_legislatif_S">
+          <foc:fcl-name>Un_Titre_d_un_texte_legislatif_S</foc:fcl-name>
+          <foc:spe-expr-atom infile="Un_Texte_legislatif_S"><foc:fcl-name>UPpa</foc:fcl-name></foc:spe-expr-atom>
+          <foc:spe-expr-atom infile="Un_Texte_legislatif_S"><foc:fcl-name>UPpa_set</foc:fcl-name></foc:spe-expr-atom>
+          <foc:spe-expr-atom infile="Un_Texte_legislatif_S"><foc:fcl-name>UPar</foc:fcl-name></foc:spe-expr-atom>
+          <foc:spe-expr-atom infile="Un_Texte_legislatif_S"><foc:fcl-name>UPar_set</foc:fcl-name></foc:spe-expr-atom>
+          <foc:spe-expr-atom infile="Un_Texte_legislatif_S"><foc:fcl-name>UAti</foc:fcl-name></foc:spe-expr-atom>
+          <foc:spe-expr-atom infile="Un_Texte_legislatif_S"><foc:fcl-name>UAti_set</foc:fcl-name></foc:spe-expr-atom>
+          </foc:spe-expr-paramd>
+        </foc:spe-expr>
+      </foc:spe-param-kind-collection>
+      </foc:spe-param-kind>
+      <foc:informations>
+        </foc:informations>
+      </foc:spe-param>
+    <foc:spe-param>
+      <foc:fcl-name>UTtl_set</foc:fcl-name>
+      <foc:spe-param-kind>
+      <foc:spe-param-kind-collection>
+      <foc:spe-expr>
+        <foc:spe-expr-paramd infile="Finite_Set_S">
+          <foc:fcl-name>Finite_Set_S</foc:fcl-name>
+          <foc:spe-expr-atom infile="Un_Texte_legislatif_S"><foc:fcl-name>UTtl</foc:fcl-name></foc:spe-expr-atom>
+          </foc:spe-expr-paramd>
+        </foc:spe-expr>
+      </foc:spe-param-kind-collection>
+      </foc:spe-param-kind>
+      <foc:informations>
+        </foc:informations>
+      </foc:spe-param>
+    <foc:spe-inherits>
+      <foc:spe-expr>
+        <foc:spe-expr-atom infile="sets">
+          <foc:fcl-name>Setoid</foc:fcl-name>
+          </foc:spe-expr-atom>
+        </foc:spe-expr>
+      </foc:spe-inherits>
+    <foc:method>
+      <foc:meth-signature>
+        <foc:fcl-name>element</foc:fcl-name>
+        <foc:history>
+          <foc:initial-apparition infile="sets">Setoid</foc:initial-apparition>
+          <foc:comes-from infile="Un_Texte_legislatif_S">Un_Texte_legislatif_S</foc:comes-from>
+          </foc:history>
+        <foc:informations>
+          </foc:informations>
+        <foc:type-expr>
+          <foc:self/>
+          </foc:type-expr>
+        </foc:meth-signature>
+      </foc:method>
+    <foc:method>
+      <foc:meth-signature>
+        <foc:fcl-name>equal</foc:fcl-name>
+        <foc:history>
+          <foc:initial-apparition infile="sets">Setoid</foc:initial-apparition>
+          <foc:comes-from infile="Un_Texte_legislatif_S">Un_Texte_legislatif_S</foc:comes-from>
+          </foc:history>
+        <foc:informations>
+          </foc:informations>
+        <foc:type-expr>
+          <foc:ty-fun>
+            <foc:type-expr>
+              <foc:self/>
+              </foc:type-expr>
+            <foc:type-expr>
+              <foc:ty-fun>
+                <foc:type-expr>
+                  <foc:self/>
+                  </foc:type-expr>
+                <foc:type-expr>
+                  <foc:ty-cstr>
+                    <foc:identifier infile="basics">
+                      <foc:fcl-name>bool</foc:fcl-name>
+                      </foc:identifier>
+                    </foc:ty-cstr>
+                  </foc:type-expr>
+                </foc:ty-fun>
+              </foc:type-expr>
+            </foc:ty-fun>
+          </foc:type-expr>
+        </foc:meth-signature>
+      </foc:method>
+    <foc:method>
+      <foc:meth-signature>
+        <foc:fcl-name>le_texte_legislatif</foc:fcl-name>
+        <foc:history>
+          <foc:initial-apparition infile="Un_Texte_legislatif_S">Un_Texte_legislatif_S</foc:initial-apparition>
+          <foc:comes-from infile="Un_Texte_legislatif_S">Un_Texte_legislatif_S</foc:comes-from>
+          </foc:history>
+        <foc:informations>
+          </foc:informations>
+        <foc:type-expr>
+          <foc:ty-fun>
+            <foc:type-expr>
+              <foc:self/>
+              </foc:type-expr>
+            <foc:type-expr>
+              <foc:ty-species-rep>
+                <foc:identifier infile="Un_Texte_legislatif_S">
+                  <foc:fcl-name>UTtl_set</foc:fcl-name>
+                  </foc:identifier>
+                </foc:ty-species-rep>
+              </foc:type-expr>
+            </foc:ty-fun>
+          </foc:type-expr>
+        </foc:meth-signature>
+      </foc:method>
+    <foc:method>
+      <foc:meth-signature>
+        <foc:fcl-name>un_titre_d_un_texte_legislatif</foc:fcl-name>
+        <foc:history>
+          <foc:initial-apparition infile="Un_Texte_legislatif_S">Un_Texte_legislatif_S</foc:initial-apparition>
+          <foc:comes-from infile="Un_Texte_legislatif_S">Un_Texte_legislatif_S</foc:comes-from>
+          </foc:history>
+        <foc:informations>
+          </foc:informations>
+        <foc:type-expr>
+          <foc:ty-fun>
+            <foc:type-expr>
+              <foc:self/>
+              </foc:type-expr>
+            <foc:type-expr>
+              <foc:ty-species-rep>
+                <foc:identifier infile="Un_Texte_legislatif_S">
+                  <foc:fcl-name>UTtl</foc:fcl-name>
+                  </foc:identifier>
+                </foc:ty-species-rep>
+              </foc:type-expr>
+            </foc:ty-fun>
+          </foc:type-expr>
+        </foc:meth-signature>
+      </foc:method>
+    <foc:method>
+      <foc:meth-let>
+        <foc:fcl-name>different</foc:fcl-name>
+        <foc:history>
+          <foc:initial-apparition infile="sets">Setoid</foc:initial-apparition>
+          <foc:comes-from infile="Un_Texte_legislatif_S">Un_Texte_legislatif_S</foc:comes-from>
+          </foc:history>
+        <foc:informations>
+          </foc:informations>
+        <foc:binding-param>
+        <foc:fcl-name>x</foc:fcl-name>
+        <foc:type-expr>
+          <foc:self/>
+          </foc:type-expr>
+        <foc:fcl-name>y</foc:fcl-name>
+        <foc:type-expr>
+          <foc:self/>
+          </foc:type-expr>
+        </foc:binding-param>
+        <foc:type-expr>
+          <foc:ty-fun>
+            <foc:type-expr>
+              <foc:self/>
+              </foc:type-expr>
+            <foc:type-expr>
+              <foc:ty-fun>
+                <foc:type-expr>
+                  <foc:self/>
+                  </foc:type-expr>
+                <foc:type-expr>
+                  <foc:ty-cstr>
+                    <foc:identifier infile="basics">
+                      <foc:fcl-name>bool</foc:fcl-name>
+                      </foc:identifier>
+                    </foc:ty-cstr>
+                  </foc:type-expr>
+                </foc:ty-fun>
+              </foc:type-expr>
+            </foc:ty-fun>
+          </foc:type-expr>
+        <foc:let-body><foc:let-body-kind><foc:let-bkind-comp/></foc:let-body-kind>
+        <foc:expr>
+          <foc:expr-app>
+            <foc:expr>
+              <foc:identifier infile="basics">
+                <foc:fcl-name>~~</foc:fcl-name>
+                </foc:identifier>
+              </foc:expr>
+            <foc:expr>
+              <foc:expr-paren>
+                <foc:expr>
+                  <foc:expr-app>
+                    <foc:expr>
+                      <foc:identifier infile="">
+                        <foc:fcl-name>equal</foc:fcl-name>
+                        </foc:identifier>
+                      </foc:expr>
+                    <foc:expr>
+                      <foc:identifier infile="">
+                        <foc:fcl-name>x</foc:fcl-name>
+                        </foc:identifier>
+                      </foc:expr>
+                    <foc:expr>
+                      <foc:identifier infile="">
+                        <foc:fcl-name>y</foc:fcl-name>
+                        </foc:identifier>
+                      </foc:expr>
+                    </foc:expr-app>
+                  </foc:expr>
+                </foc:expr-paren>
+              </foc:expr>
+            </foc:expr-app>
+          </foc:expr>
+        </foc:let-body>
+        </foc:meth-let>
+      </foc:method>
+    <foc:method>
+      <foc:meth-property>
+        <foc:fcl-name>equal_reflexive</foc:fcl-name>
+        <foc:history>
+          <foc:initial-apparition infile="sets">Setoid</foc:initial-apparition>
+          <foc:comes-from infile="Un_Texte_legislatif_S">Un_Texte_legislatif_S</foc:comes-from>
+          </foc:history>
+        <foc:informations>
+          </foc:informations>
+        <foc:logexpr>
+          <foc:logexpr-all>
+            <foc:var><foc:fcl-name>x</foc:fcl-name></foc:var>
+            <foc:type-expr>
+              <foc:self/>
+              </foc:type-expr>
+            <foc:logexpr>
+              <foc:logexpr-expr>
+                <foc:expr>
+                  <foc:expr-app>
+                    <foc:expr>
+                      <foc:identifier infile="">
+                        <foc:fcl-name>equal</foc:fcl-name>
+                        </foc:identifier>
+                      </foc:expr>
+                    <foc:expr>
+                      <foc:identifier infile="">
+                        <foc:fcl-name>x</foc:fcl-name>
+                        </foc:identifier>
+                      </foc:expr>
+                    <foc:expr>
+                      <foc:identifier infile="">
+                        <foc:fcl-name>x</foc:fcl-name>
+                        </foc:identifier>
+                      </foc:expr>
+                    </foc:expr-app>
+                  </foc:expr>
+                </foc:logexpr-expr>
+              </foc:logexpr>
+            </foc:logexpr-all>
+          </foc:logexpr>
+        </foc:meth-property>
+      </foc:method>
+    <foc:method>
+      <foc:meth-property>
+        <foc:fcl-name>equal_symmetric</foc:fcl-name>
+        <foc:history>
+          <foc:initial-apparition infile="sets">Setoid</foc:initial-apparition>
+          <foc:comes-from infile="Un_Texte_legislatif_S">Un_Texte_legislatif_S</foc:comes-from>
+          </foc:history>
+        <foc:informations>
+          </foc:informations>
+        <foc:logexpr>
+          <foc:logexpr-all>
+            <foc:var><foc:fcl-name>x</foc:fcl-name></foc:var>
+            <foc:type-expr>
+              <foc:self/>
+              </foc:type-expr>
+            <foc:logexpr-all>
+              <foc:var><foc:fcl-name>y</foc:fcl-name></foc:var>
+              <foc:type-expr>
+                <foc:self/>
+                </foc:type-expr>
+              <foc:logexpr>
+                <foc:logexpr-implies>
+                  <foc:logexpr>
+                    <foc:logexpr-expr>
+                      <foc:expr>
+                        <foc:expr-app>
+                          <foc:expr>
+                            <foc:identifier infile="">
+                              <foc:fcl-name>equal</foc:fcl-name>
+                              </foc:identifier>
+                            </foc:expr>
+                          <foc:expr>
+                            <foc:identifier infile="">
+                              <foc:fcl-name>x</foc:fcl-name>
+                              </foc:identifier>
+                            </foc:expr>
+                          <foc:expr>
+                            <foc:identifier infile="">
+                              <foc:fcl-name>y</foc:fcl-name>
+                              </foc:identifier>
+                            </foc:expr>
+                          </foc:expr-app>
+                        </foc:expr>
+                      </foc:logexpr-expr>
+                    </foc:logexpr>
+                  <foc:logexpr>
+                    <foc:logexpr-expr>
+                      <foc:expr>
+                        <foc:expr-app>
+                          <foc:expr>
+                            <foc:identifier infile="">
+                              <foc:fcl-name>equal</foc:fcl-name>
+                              </foc:identifier>
+                            </foc:expr>
+                          <foc:expr>
+                            <foc:identifier infile="">
+                              <foc:fcl-name>y</foc:fcl-name>
+                              </foc:identifier>
+                            </foc:expr>
+                          <foc:expr>
+                            <foc:identifier infile="">
+                              <foc:fcl-name>x</foc:fcl-name>
+                              </foc:identifier>
+                            </foc:expr>
+                          </foc:expr-app>
+                        </foc:expr>
+                      </foc:logexpr-expr>
+                    </foc:logexpr>
+                  </foc:logexpr-implies>
+                </foc:logexpr>
+              </foc:logexpr-all>
+            </foc:logexpr-all>
+          </foc:logexpr>
+        </foc:meth-property>
+      </foc:method>
+    <foc:method>
+      <foc:meth-property>
+        <foc:fcl-name>equal_transitive</foc:fcl-name>
+        <foc:history>
+          <foc:initial-apparition infile="sets">Setoid</foc:initial-apparition>
+          <foc:comes-from infile="Un_Texte_legislatif_S">Un_Texte_legislatif_S</foc:comes-from>
+          </foc:history>
+        <foc:informations>
+          </foc:informations>
+        <foc:logexpr>
+          <foc:logexpr-all>
+            <foc:var><foc:fcl-name>x</foc:fcl-name></foc:var>
+            <foc:type-expr>
+              <foc:self/>
+              </foc:type-expr>
+            <foc:logexpr-all>
+              <foc:var><foc:fcl-name>y</foc:fcl-name></foc:var>
+              <foc:type-expr>
+                <foc:self/>
+                </foc:type-expr>
+              <foc:logexpr-all>
+                <foc:var><foc:fcl-name>z</foc:fcl-name></foc:var>
+                <foc:type-expr>
+                  <foc:self/>
+                  </foc:type-expr>
+                <foc:logexpr>
+                  <foc:logexpr-implies>
+                    <foc:logexpr>
+                      <foc:logexpr-expr>
+                        <foc:expr>
+                          <foc:expr-app>
+                            <foc:expr>
+                              <foc:identifier infile="">
+                                <foc:fcl-name>equal</foc:fcl-name>
+                                </foc:identifier>
+                              </foc:expr>
+                            <foc:expr>
+                              <foc:identifier infile="">
+                                <foc:fcl-name>x</foc:fcl-name>
+                                </foc:identifier>
+                              </foc:expr>
+                            <foc:expr>
+                              <foc:identifier infile="">
+                                <foc:fcl-name>y</foc:fcl-name>
+                                </foc:identifier>
+                              </foc:expr>
+                            </foc:expr-app>
+                          </foc:expr>
+                        </foc:logexpr-expr>
+                      </foc:logexpr>
+                    <foc:logexpr>
+                      <foc:logexpr-implies>
+                        <foc:logexpr>
+                          <foc:logexpr-expr>
+                            <foc:expr>
+                              <foc:expr-app>
+                                <foc:expr>
+                                  <foc:identifier infile="">
+                                    <foc:fcl-name>equal</foc:fcl-name>
+                                    </foc:identifier>
+                                  </foc:expr>
+                                <foc:expr>
+                                  <foc:identifier infile="">
+                                    <foc:fcl-name>y</foc:fcl-name>
+                                    </foc:identifier>
+                                  </foc:expr>
+                                <foc:expr>
+                                  <foc:identifier infile="">
+                                    <foc:fcl-name>z</foc:fcl-name>
+                                    </foc:identifier>
+                                  </foc:expr>
+                                </foc:expr-app>
+                              </foc:expr>
+                            </foc:logexpr-expr>
+                          </foc:logexpr>
+                        <foc:logexpr>
+                          <foc:logexpr-expr>
+                            <foc:expr>
+                              <foc:expr-app>
+                                <foc:expr>
+                                  <foc:identifier infile="">
+                                    <foc:fcl-name>equal</foc:fcl-name>
+                                    </foc:identifier>
+                                  </foc:expr>
+                                <foc:expr>
+                                  <foc:identifier infile="">
+                                    <foc:fcl-name>x</foc:fcl-name>
+                                    </foc:identifier>
+                                  </foc:expr>
+                                <foc:expr>
+                                  <foc:identifier infile="">
+                                    <foc:fcl-name>z</foc:fcl-name>
+                                    </foc:identifier>
+                                  </foc:expr>
+                                </foc:expr-app>
+                              </foc:expr>
+                            </foc:logexpr-expr>
+                          </foc:logexpr>
+                        </foc:logexpr-implies>
+                      </foc:logexpr>
+                    </foc:logexpr-implies>
+                  </foc:logexpr>
+                </foc:logexpr-all>
+              </foc:logexpr-all>
+            </foc:logexpr-all>
+          </foc:logexpr>
+        </foc:meth-property>
+      </foc:method>
+    <foc:method>
+      <foc:meth-let>
+        <foc:fcl-name>est_conforme_a_l_interet_general</foc:fcl-name>
+        <foc:history>
+          <foc:initial-apparition infile="Un_Texte_legislatif_S">Un_Texte_legislatif_S</foc:initial-apparition>
+          <foc:comes-from infile="Un_Texte_legislatif_S">Un_Texte_legislatif_S</foc:comes-from>
+          </foc:history>
+        <foc:informations>
+          </foc:informations>
+        <foc:binding-param>
+        <foc:fcl-name>tle</foc:fcl-name>
+        <foc:type-expr>
+          <foc:self/>
+          </foc:type-expr>
+        </foc:binding-param>
+        <foc:type-expr>
+          <foc:ty-fun>
+            <foc:type-expr>
+              <foc:self/>
+              </foc:type-expr>
+            <foc:type-expr>
+              <foc:ty-cstr>
+                <foc:identifier infile="basics">
+                  <foc:fcl-name>bool</foc:fcl-name>
+                  </foc:identifier>
+                </foc:ty-cstr>
+              </foc:type-expr>
+            </foc:ty-fun>
+          </foc:type-expr>
+        <foc:let-body><foc:let-body-kind><foc:let-bkind-comp/></foc:let-body-kind>
+        <foc:expr>
+          <foc:expr-cst>
+            <foc:cst-bool val="true"></foc:cst-bool>
+            </foc:expr-cst>
+          </foc:expr>
+        </foc:let-body>
+        </foc:meth-let>
+      </foc:method>
+    <foc:method>
+      <foc:meth-let>
+        <foc:fcl-name>parse</foc:fcl-name>
+        <foc:history>
+          <foc:initial-apparition infile="basics">Basic_object</foc:initial-apparition>
+          <foc:comes-from infile="Un_Texte_legislatif_S">Un_Texte_legislatif_S</foc:comes-from>
+          </foc:history>
+        <foc:informations>
+          </foc:informations>
+        <foc:binding-param>
+        <foc:fcl-name>_x</foc:fcl-name>
+        <foc:type-expr>
+          <foc:ty-cstr>
+            <foc:identifier infile="basics">
+              <foc:fcl-name>string</foc:fcl-name>
+              </foc:identifier>
+            </foc:ty-cstr>
+          </foc:type-expr>
+        </foc:binding-param>
+        <foc:type-expr>
+          <foc:ty-fun>
+            <foc:type-expr>
+              <foc:ty-cstr>
+                <foc:identifier infile="basics">
+                  <foc:fcl-name>string</foc:fcl-name>
+                  </foc:identifier>
+                </foc:ty-cstr>
+              </foc:type-expr>
+            <foc:type-expr>
+              <foc:self/>
+              </foc:type-expr>
+            </foc:ty-fun>
+          </foc:type-expr>
+        <foc:let-body><foc:let-body-kind><foc:let-bkind-comp/></foc:let-body-kind>
+        <foc:expr>
+          <foc:expr-app>
+            <foc:expr>
+              <foc:identifier infile="basics">
+                <foc:fcl-name>focalize_error</foc:fcl-name>
+                </foc:identifier>
+              </foc:expr>
+            <foc:expr>
+              <foc:expr-cst>
+                <foc:cst-string val="not parsable"></foc:cst-string>
+                </foc:expr-cst>
+              </foc:expr>
+            </foc:expr-app>
+          </foc:expr>
+        </foc:let-body>
+        </foc:meth-let>
+      </foc:method>
+    <foc:method>
+      <foc:meth-let>
+        <foc:fcl-name>print</foc:fcl-name>
+        <foc:history>
+          <foc:initial-apparition infile="basics">Basic_object</foc:initial-apparition>
+          <foc:comes-from infile="Un_Texte_legislatif_S">Un_Texte_legislatif_S</foc:comes-from>
+          </foc:history>
+        <foc:informations>
+          </foc:informations>
+        <foc:binding-param>
+        <foc:fcl-name>_x</foc:fcl-name>
+        <foc:type-expr>
+          <foc:self/>
+          </foc:type-expr>
+        </foc:binding-param>
+        <foc:type-expr>
+          <foc:ty-fun>
+            <foc:type-expr>
+              <foc:self/>
+              </foc:type-expr>
+            <foc:type-expr>
+              <foc:ty-cstr>
+                <foc:identifier infile="basics">
+                  <foc:fcl-name>string</foc:fcl-name>
+                  </foc:identifier>
+                </foc:ty-cstr>
+              </foc:type-expr>
+            </foc:ty-fun>
+          </foc:type-expr>
+        <foc:let-body><foc:let-body-kind><foc:let-bkind-comp/></foc:let-body-kind>
+        <foc:expr>
+          <foc:expr-cst>
+            <foc:cst-string val="&lt;abst&gt;"></foc:cst-string>
+            </foc:expr-cst>
+          </foc:expr>
+        </foc:let-body>
+        </foc:meth-let>
+      </foc:method>
+    <foc:method>
+      <foc:meth-theorem>
+        <foc:fcl-name>same_is_not_different</foc:fcl-name>
+        <foc:history>
+          <foc:initial-apparition infile="sets">Setoid</foc:initial-apparition>
+          <foc:comes-from infile="Un_Texte_legislatif_S">Un_Texte_legislatif_S</foc:comes-from>
+          </foc:history>
+        <foc:informations>
+          </foc:informations>
+        <foc:logexpr>
+          <foc:logexpr-all>
+            <foc:var><foc:fcl-name>x</foc:fcl-name></foc:var>
+            <foc:type-expr>
+              <foc:self/>
+              </foc:type-expr>
+            <foc:logexpr-all>
+              <foc:var><foc:fcl-name>y</foc:fcl-name></foc:var>
+              <foc:type-expr>
+                <foc:self/>
+                </foc:type-expr>
+              <foc:logexpr>
+                <foc:logexpr-equiv>
+                  <foc:logexpr>
+                    <foc:logexpr-expr>
+                      <foc:expr>
+                        <foc:expr-app>
+                          <foc:expr>
+                            <foc:identifier infile="">
+                              <foc:fcl-name>different</foc:fcl-name>
+                              </foc:identifier>
+                            </foc:expr>
+                          <foc:expr>
+                            <foc:identifier infile="">
+                              <foc:fcl-name>x</foc:fcl-name>
+                              </foc:identifier>
+                            </foc:expr>
+                          <foc:expr>
+                            <foc:identifier infile="">
+                              <foc:fcl-name>y</foc:fcl-name>
+                              </foc:identifier>
+                            </foc:expr>
+                          </foc:expr-app>
+                        </foc:expr>
+                      </foc:logexpr-expr>
+                    </foc:logexpr>
+                  <foc:logexpr>
+                    <foc:logexpr-not>
+                      <foc:logexpr>
+                        <foc:logexpr-expr>
+                          <foc:expr>
+                            <foc:expr-paren>
+                              <foc:expr>
+                                <foc:expr-app>
+                                  <foc:expr>
+                                    <foc:identifier infile="">
+                                      <foc:fcl-name>equal</foc:fcl-name>
+                                      </foc:identifier>
+                                    </foc:expr>
+                                  <foc:expr>
+                                    <foc:identifier infile="">
+                                      <foc:fcl-name>x</foc:fcl-name>
+                                      </foc:identifier>
+                                    </foc:expr>
+                                  <foc:expr>
+                                    <foc:identifier infile="">
+                                      <foc:fcl-name>y</foc:fcl-name>
+                                      </foc:identifier>
+                                    </foc:expr>
+                                  </foc:expr-app>
+                                </foc:expr>
+                              </foc:expr-paren>
+                            </foc:expr>
+                          </foc:logexpr-expr>
+                        </foc:logexpr>
+                      </foc:logexpr-not>
+                    </foc:logexpr>
+                  </foc:logexpr-equiv>
+                </foc:logexpr>
+              </foc:logexpr-all>
+            </foc:logexpr-all>
+          </foc:logexpr>
+        <foc:proof>
+          <foc:pr-auto>
+            <foc:fact-def>
+              <foc:identifier infile="">
+                <foc:fcl-name>different</foc:fcl-name>
+                </foc:identifier>
+              </foc:fact-def>
+            </foc:pr-auto>
+          </foc:proof>
+        </foc:meth-theorem>
+      </foc:method>
+    <foc:method>
+      <foc:meth-theorem>
+        <foc:fcl-name>different_is_complete</foc:fcl-name>
+        <foc:history>
+          <foc:initial-apparition infile="sets">Setoid</foc:initial-apparition>
+          <foc:comes-from infile="Un_Texte_legislatif_S">Un_Texte_legislatif_S</foc:comes-from>
+          </foc:history>
+        <foc:informations>
+          </foc:informations>
+        <foc:logexpr>
+          <foc:logexpr-all>
+            <foc:var><foc:fcl-name>x</foc:fcl-name></foc:var>
+            <foc:type-expr>
+              <foc:self/>
+              </foc:type-expr>
+            <foc:logexpr-all>
+              <foc:var><foc:fcl-name>y</foc:fcl-name></foc:var>
+              <foc:type-expr>
+                <foc:self/>
+                </foc:type-expr>
+              <foc:logexpr-all>
+                <foc:var><foc:fcl-name>z</foc:fcl-name></foc:var>
+                <foc:type-expr>
+                  <foc:self/>
+                  </foc:type-expr>
+                <foc:logexpr>
+                  <foc:logexpr-implies>
+                    <foc:logexpr>
+                      <foc:logexpr-expr>
+                        <foc:expr>
+                          <foc:expr-app>
+                            <foc:expr>
+                              <foc:identifier infile="">
+                                <foc:fcl-name>different</foc:fcl-name>
+                                </foc:identifier>
+                              </foc:expr>
+                            <foc:expr>
+                              <foc:identifier infile="">
+                                <foc:fcl-name>x</foc:fcl-name>
+                                </foc:identifier>
+                              </foc:expr>
+                            <foc:expr>
+                              <foc:identifier infile="">
+                                <foc:fcl-name>y</foc:fcl-name>
+                                </foc:identifier>
+                              </foc:expr>
+                            </foc:expr-app>
+                          </foc:expr>
+                        </foc:logexpr-expr>
+                      </foc:logexpr>
+                    <foc:logexpr>
+                      <foc:logexpr-paren>
+                        <foc:logexpr>
+                          <foc:logexpr-or>
+                            <foc:logexpr>
+                              <foc:logexpr-expr>
+                                <foc:expr>
+                                  <foc:expr-app>
+                                    <foc:expr>
+                                      <foc:identifier infile="">
+                                        <foc:fcl-name>different</foc:fcl-name>
+                                        </foc:identifier>
+                                      </foc:expr>
+                                    <foc:expr>
+                                      <foc:identifier infile="">
+                                        <foc:fcl-name>x</foc:fcl-name>
+                                        </foc:identifier>
+                                      </foc:expr>
+                                    <foc:expr>
+                                      <foc:identifier infile="">
+                                        <foc:fcl-name>z</foc:fcl-name>
+                                        </foc:identifier>
+                                      </foc:expr>
+                                    </foc:expr-app>
+                                  </foc:expr>
+                                </foc:logexpr-expr>
+                              </foc:logexpr>
+                            <foc:logexpr>
+                              <foc:logexpr-expr>
+                                <foc:expr>
+                                  <foc:expr-app>
+                                    <foc:expr>
+                                      <foc:identifier infile="">
+                                        <foc:fcl-name>different</foc:fcl-name>
+                                        </foc:identifier>
+                                      </foc:expr>
+                                    <foc:expr>
+                                      <foc:identifier infile="">
+                                        <foc:fcl-name>y</foc:fcl-name>
+                                        </foc:identifier>
+                                      </foc:expr>
+                                    <foc:expr>
+                                      <foc:identifier infile="">
+                                        <foc:fcl-name>z</foc:fcl-name>
+                                        </foc:identifier>
+                                      </foc:expr>
+                                    </foc:expr-app>
+                                  </foc:expr>
+                                </foc:logexpr-expr>
+                              </foc:logexpr>
+                            </foc:logexpr-or>
+                          </foc:logexpr>
+                        </foc:logexpr-paren>
+                      </foc:logexpr>
+                    </foc:logexpr-implies>
+                  </foc:logexpr>
+                </foc:logexpr-all>
+              </foc:logexpr-all>
+            </foc:logexpr-all>
+          </foc:logexpr>
+        <foc:proof>
+          <foc:pr-auto>
+            <foc:fact-prop>
+              <foc:identifier infile="">
+                <foc:fcl-name>equal_reflexive</foc:fcl-name>
+                </foc:identifier>
+              </foc:fact-prop>
+            <foc:fact-prop>
+              <foc:identifier infile="">
+                <foc:fcl-name>equal_symmetric</foc:fcl-name>
+                </foc:identifier>
+              </foc:fact-prop>
+            <foc:fact-prop>
+              <foc:identifier infile="">
+                <foc:fcl-name>equal_transitive</foc:fcl-name>
+                </foc:identifier>
+              </foc:fact-prop>
+            <foc:fact-prop>
+              <foc:identifier infile="">
+                <foc:fcl-name>same_is_not_different</foc:fcl-name>
+                </foc:identifier>
+              </foc:fact-prop>
+            </foc:pr-auto>
+          </foc:proof>
+        </foc:meth-theorem>
+      </foc:method>
+    <foc:method>
+      <foc:meth-theorem>
+        <foc:fcl-name>different_is_irreflexive</foc:fcl-name>
+        <foc:history>
+          <foc:initial-apparition infile="sets">Setoid</foc:initial-apparition>
+          <foc:comes-from infile="Un_Texte_legislatif_S">Un_Texte_legislatif_S</foc:comes-from>
+          </foc:history>
+        <foc:informations>
+          </foc:informations>
+        <foc:logexpr>
+          <foc:logexpr-all>
+            <foc:var><foc:fcl-name>x</foc:fcl-name></foc:var>
+            <foc:type-expr>
+              <foc:self/>
+              </foc:type-expr>
+            <foc:logexpr>
+              <foc:logexpr-not>
+                <foc:logexpr>
+                  <foc:logexpr-expr>
+                    <foc:expr>
+                      <foc:expr-paren>
+                        <foc:expr>
+                          <foc:expr-app>
+                            <foc:expr>
+                              <foc:identifier infile="">
+                                <foc:fcl-name>different</foc:fcl-name>
+                                </foc:identifier>
+                              </foc:expr>
+                            <foc:expr>
+                              <foc:identifier infile="">
+                                <foc:fcl-name>x</foc:fcl-name>
+                                </foc:identifier>
+                              </foc:expr>
+                            <foc:expr>
+                              <foc:identifier infile="">
+                                <foc:fcl-name>x</foc:fcl-name>
+                                </foc:identifier>
+                              </foc:expr>
+                            </foc:expr-app>
+                          </foc:expr>
+                        </foc:expr-paren>
+                      </foc:expr>
+                    </foc:logexpr-expr>
+                  </foc:logexpr>
+                </foc:logexpr-not>
+              </foc:logexpr>
+            </foc:logexpr-all>
+          </foc:logexpr>
+        <foc:proof>
+          <foc:pr-auto>
+            <foc:fact-prop>
+              <foc:identifier infile="">
+                <foc:fcl-name>equal_reflexive</foc:fcl-name>
+                </foc:identifier>
+              </foc:fact-prop>
+            <foc:fact-prop>
+              <foc:identifier infile="">
+                <foc:fcl-name>same_is_not_different</foc:fcl-name>
+                </foc:identifier>
+              </foc:fact-prop>
+            </foc:pr-auto>
+          </foc:proof>
+        </foc:meth-theorem>
+      </foc:method>
+    <foc:method>
+      <foc:meth-theorem>
+        <foc:fcl-name>different_is_symmetric</foc:fcl-name>
+        <foc:history>
+          <foc:initial-apparition infile="sets">Setoid</foc:initial-apparition>
+          <foc:comes-from infile="Un_Texte_legislatif_S">Un_Texte_legislatif_S</foc:comes-from>
+          </foc:history>
+        <foc:informations>
+          </foc:informations>
+        <foc:logexpr>
+          <foc:logexpr-all>
+            <foc:var><foc:fcl-name>x</foc:fcl-name></foc:var>
+            <foc:type-expr>
+              <foc:self/>
+              </foc:type-expr>
+            <foc:logexpr-all>
+              <foc:var><foc:fcl-name>y</foc:fcl-name></foc:var>
+              <foc:type-expr>
+                <foc:self/>
+                </foc:type-expr>
+              <foc:logexpr>
+                <foc:logexpr-implies>
+                  <foc:logexpr>
+                    <foc:logexpr-expr>
+                      <foc:expr>
+                        <foc:expr-app>
+                          <foc:expr>
+                            <foc:identifier infile="">
+                              <foc:fcl-name>different</foc:fcl-name>
+                              </foc:identifier>
+                            </foc:expr>
+                          <foc:expr>
+                            <foc:identifier infile="">
+                              <foc:fcl-name>x</foc:fcl-name>
+                              </foc:identifier>
+                            </foc:expr>
+                          <foc:expr>
+                            <foc:identifier infile="">
+                              <foc:fcl-name>y</foc:fcl-name>
+                              </foc:identifier>
+                            </foc:expr>
+                          </foc:expr-app>
+                        </foc:expr>
+                      </foc:logexpr-expr>
+                    </foc:logexpr>
+                  <foc:logexpr>
+                    <foc:logexpr-expr>
+                      <foc:expr>
+                        <foc:expr-app>
+                          <foc:expr>
+                            <foc:identifier infile="">
+                              <foc:fcl-name>different</foc:fcl-name>
+                              </foc:identifier>
+                            </foc:expr>
+                          <foc:expr>
+                            <foc:identifier infile="">
+                              <foc:fcl-name>y</foc:fcl-name>
+                              </foc:identifier>
+                            </foc:expr>
+                          <foc:expr>
+                            <foc:identifier infile="">
+                              <foc:fcl-name>x</foc:fcl-name>
+                              </foc:identifier>
+                            </foc:expr>
+                          </foc:expr-app>
+                        </foc:expr>
+                      </foc:logexpr-expr>
+                    </foc:logexpr>
+                  </foc:logexpr-implies>
+                </foc:logexpr>
+              </foc:logexpr-all>
+            </foc:logexpr-all>
+          </foc:logexpr>
+        <foc:proof>
+          <foc:pr-auto>
+            <foc:fact-prop>
+              <foc:identifier infile="">
+                <foc:fcl-name>equal_symmetric</foc:fcl-name>
+                </foc:identifier>
+              </foc:fact-prop>
+            <foc:fact-prop>
+              <foc:identifier infile="">
+                <foc:fcl-name>same_is_not_different</foc:fcl-name>
+                </foc:identifier>
+              </foc:fact-prop>
+            </foc:pr-auto>
+          </foc:proof>
+        </foc:meth-theorem>
+      </foc:method>
+    </foc:species>
+  
+  </foc:focdoc>

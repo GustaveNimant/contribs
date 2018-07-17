@@ -1,0 +1,24 @@
+DIGEST 94e2402d4687eb13605bf5a188b33b9c
+FUn_Titre_d_un_texte_legislatif_S
+R228:232 zenon <> <> lib
+R250:261 zenon_induct <> <> lib
+R279:289 zenon_focal <> <> lib
+R307:310 Coq.Bool.Bool <> <> lib
+R328:333 Coq.ZArith.ZArith <> <> lib
+R371:375 Coq.Reals.Reals <> <> lib
+R393:397 Coq.Strings.Ascii <> <> lib
+R415:420 Coq.Strings.String <> <> lib
+R438:441 Coq.Lists.List <> <> lib
+R459:469 Coq.Wellfounded.Wellfounded <> <> lib
+R487:492 Coq.funind.Recdef <> <> lib
+R510:521 coq_builtins <> <> lib
+R539:547 Coq.Relations.Relations <> <> lib
+R565:567 Coq.ZArith.Zwf <> <> lib
+R727:732 basics <> <> lib
+R743:746 sets <> <> lib
+R757:768 Finite_Set_S <> <> lib
+R779:801 Un_Article_d_un_titre_S <> <> lib
+R812:839 Un_Paragraphe_d_un_article_S <> <> lib
+R850:877 Une_Phrase_d_un_paragraphe_S <> <> lib
+mod 887:918 <> Un_Titre_d_un_texte_legislatif_S
+R928:959 Un_Titre_d_un_texte_legislatif_S Un_Titre_d_un_texte_legislatif_S <> mod

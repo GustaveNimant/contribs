@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!-- document automatically generated from a FoCaL program. Note that focdoc has also both a DTD 'focdoc.dtd' and a RELAX NG schema 'focdoc.rnc'.  To validate a focdoc file with focdoc.dtd, please product the focdoc file with the '-focalize-doc' option of focalizecc. But whereas an XML document can associate itself with a DTD using a DOCTYPE declaration, RELAX NG does not define a way for an XML document to associate itself with a RELAX NG pattern. -->
+
+<foc:focdoc xsi:schemaLocation="focal focdoc.xsd mathml2 http://www.w3.org/Math/XMLSchema/mathml2/mathml2.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mml="mathml2" xmlns:foc="http://focal.inria.fr/site/index">
+  <foc:fcl-name>Une_Note_S</foc:fcl-name>
+  <foc:general-informations>
+    </foc:general-informations>
+  
+  <foc:directive><foc:dir-open>basics</foc:dir-open></foc:directive>
+  <foc:species>
+    <foc:fcl-name>Une_Note_S</foc:fcl-name>
+    <foc:informations>
+      </foc:informations>
+    <foc:method>
+      <foc:meth-signature>
+        <foc:fcl-name>la_valeur</foc:fcl-name>
+        <foc:history>
+          <foc:initial-apparition infile="Une_Note_S">Une_Note_S</foc:initial-apparition>
+          <foc:comes-from infile="Une_Note_S">Une_Note_S</foc:comes-from>
+          </foc:history>
+        <foc:informations>
+          </foc:informations>
+        <foc:type-expr>
+          <foc:ty-fun>
+            <foc:type-expr>
+              <foc:self/>
+              </foc:type-expr>
+            <foc:type-expr>
+              <foc:ty-cstr>
+                <foc:identifier infile="basics">
+                  <foc:fcl-name>int</foc:fcl-name>
+                  </foc:identifier>
+                </foc:ty-cstr>
+              </foc:type-expr>
+            </foc:ty-fun>
+          </foc:type-expr>
+        </foc:meth-signature>
+      </foc:method>
+    </foc:species>
+  
+  </foc:focdoc>

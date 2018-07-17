@@ -26,6 +26,14 @@ Set Function_raw_tcc.
 Require basics.
 Require sets.
 Module Une_Phrase_d_un_paragraphe_S.
+  Definition est_une_assertion (abst_T : Set)
+    (abst_est_une_doleance : abst_T -> basics.bool__t)
+    (abst_est_une_formule : abst_T -> basics.bool__t)
+    (abst_ne_contient_pas_de_conjonction : abst_T -> basics.bool__t)
+    (php : abst_T) : coq_builtins.prop__t :=
+    (~Is_true (((abst_est_une_doleance php)))) /\
+      Is_true (((abst_est_une_formule php))) /\
+        Is_true (((abst_ne_contient_pas_de_conjonction php))).
   
 End Une_Phrase_d_un_paragraphe_S.
 

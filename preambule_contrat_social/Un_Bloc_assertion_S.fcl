@@ -26,7 +26,7 @@ species Un_Bloc_assertion_S (
               l_ordinal_dans_la_blockchain (bla) >= 0;
 
   logical let est_conforme_a_l_interet_general (bla) =
-          est_une_assertion (l_assertion (bla));
+          UAss!est_une_assertion (l_assertion (bla));
 
 end;;
 
