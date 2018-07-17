@@ -1,40 +1,32 @@
 open "basics";;
-open "Un_Axiome_de_l_interet_general_S";;
 open "Un_Bloc_S";;
 open "Un_Contrat_intelligent_S";;
-open "Un_Texte_S";;
 open "Une_Assertion_S";;
-open "Une_Loi_S";;
-open "Une_Formule_S";;
 
-species Un_Bloc_assertion_S (ULoi is Une_Loi_S,
-                             UAig is Un_Axiome_de_l_interet_general_S (ULoi),
-                             UTex is Un_Texte_S,
-			     UFor is Une_Formule_S,
-                             UCin is Un_Contrat_intelligent_S,
-                             UAss is Une_Assertion_S (UFor)
-                             ) = 
+species Un_Bloc_assertion_S (
+           UCin is Un_Contrat_intelligent_S,
+           UAss is Une_Assertion_S
+           ) = 
 
-  inherit Un_Bloc_S (UTex, UCin);
+  inherit Un_Bloc_S (UAss, UCin);
 
-  signature l_assertion : self -> UAss; 
+  signature l_assertion : Self -> UAss; 
 
-  signature position_dans_un_article : Self -> int;
+  signature l_ordinal_dans_la_blockchain : Self -> int;
 
-  signature numero_de_l_article_dans_un_titre : Self -> int;
+  signature la_position_dans_un_article : Self -> int;
 
-  signature numero_du_titre_dans_une_section : Self -> int;
+  signature le_numero_de_l_article_dans_un_titre : Self -> int;
 
-  signature numero_de_la_section_dans_la_constitution : Self -> int;
+  signature le_numero_du_titre_dans_une_section : Self -> int;
 
-  property l_ordinal_est_positif_pr : all blo : Self, 
-           l_ordinal_est_positif (blo);
+  signature le_numero_de_la_section_dans_la_constitution : Self -> int;
 
-  property est_conforme_a_l_interet_general : all bas : Self, all aig : UAig,
-           UTex!un_texte_est_une_formule (UAss!le_texte (l_assertion)) ;
-                    
+  logical let l_ordinal_est_positif (bla) = 
+              l_ordinal_dans_la_blockchain (bla) >= 0;
 
- 
-end
-;;
+  logical let est_conforme_a_l_interet_general (bla) =
+          est_une_assertion (l_assertion (bla));
+
+end;;
 

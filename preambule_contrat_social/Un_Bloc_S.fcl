@@ -1,20 +1,20 @@
 open "basics";;
 open "strict_orders";;
 open "Un_Contrat_intelligent_S";;
-open "Un_Texte_S";;
+open "Une_Phrase_d_un_paragraphe_S";;
 
 -- Un_Bloc est créé par Un_Noeud_citoyen_emetteur
 --         est ajouté à Une_Blockchain Un_Noeud_citoyen_emetteur
 --         Une_Blockchain est diffusée par Un_Noeud_citoyen_emetteur
 --         est validé par Un_Noeud_citoyen_validateur
 
-species Un_Bloc_S (UTex is Un_Texte_S,
+species Un_Bloc_S (UPpa is Une_Phrase_d_un_paragraphe_S,
                    UCin is Un_Contrat_intelligent_S
                    ) =
 
   inherit Strict_order;
 
-  signature le_texte : Self -> UTex;
+  signature le_texte : Self -> UPpa;
 
   signature l_ordinal : Self -> int;
 

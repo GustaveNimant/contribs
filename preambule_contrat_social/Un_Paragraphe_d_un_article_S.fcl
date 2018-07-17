@@ -10,8 +10,8 @@ open "Une_Phrase_d_un_paragraphe_S";;
 -- Un_Texte_legislatif_S
 
 species Un_Paragraphe_d_un_article_S (
-                                      UPpa is Une_Phrase_d_un_paragraphe_S,
-                                      UPpa_set is Finite_Set_S (UPpa)
+                  UPpa is Une_Phrase_d_un_paragraphe_S,
+                  UPpa_set is Finite_Set_S (UPpa)
                                       )=
 
   inherit Setoid;

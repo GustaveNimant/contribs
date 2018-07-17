@@ -78,3 +78,15 @@ logical let is_weapon_not_loaded (o : Do, s : Self) =
     Wp_set!member(w, !weapons(s)) /\ Do!equal(WpToDo!to_super(w), o) /\
     ~ (Wp!loaded(w)));
 -------------------------------------------------------------------
+wifls  trustworthy 
+
+a17property4_2.fcl line # 235
+in species A17property4_2:
+
+logical let trustworthy (p : U_person) =
+  (all area : Sra, all s : Self,
+    Sra_set!member(area, !securityRestrictedAreas(s)) ->
+    Up_set!cardinal(!screenedUnescortedPersons(area, s)) >=
+    ((!min_portion(s) * Up_set!cardinal(!unescortedPersons_in_sra(area, s))) /
+     !upper)) /\ U_person!backgroundChecked(p);
+-------------------------------------------------------------------

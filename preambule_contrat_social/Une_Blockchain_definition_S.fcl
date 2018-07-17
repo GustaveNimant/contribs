@@ -4,7 +4,7 @@ open "Un_Bloc_S";;
 open "Un_Bloc_genesis_S";;
 open "Un_Bloc_terminal_S";;
 open "Un_Contrat_intelligent_S";;
-open "Un_Texte_S";;
+open "Une_Phrase_d_un_paragraphe_S";;
 open "Un_Theme_politique_S";;
 open "Une_Blockchain_S";;
 open "Une_Blockchain_arbre_S";;
@@ -20,17 +20,17 @@ open "Une_Zone_geographique_S";;
 --              v
 --      Une_Blockchain_S
 
-species Une_Blockchain_definition_S (UTex is Un_Texte_S,
-                                   UZge is Une_Zone_geographique_S,
-                                   UTpo is Un_Theme_politique_S, 
-                                   UDol is Une_Doleance_S (UTex, UZge, UTpo),
-                                   UCin is Un_Contrat_intelligent_S,
-                                   UBlo is Un_Bloc_S (UTex, UCin),
-                                   UBge is Un_Bloc_genesis_S (UTex, UCin),
-                                   UBte is Un_Bloc_terminal_S (UTex, UCin)
+species Une_Blockchain_definition_S (UPpa is Une_Phrase_d_un_paragraphe_S,
+               UZge is Une_Zone_geographique_S,
+               UTpo is Un_Theme_politique_S, 
+               UDol is Une_Doleance_S (UPpa, UZge, UTpo),
+               UCin is Un_Contrat_intelligent_S,
+               UBlo is Un_Bloc_S (UPpa, UCin),
+               UBge is Un_Bloc_genesis_S (UPpa, UCin),
+               UBte is Un_Bloc_terminal_S (UPpa, UCin)
                                    ) =
 
-  inherit Une_Blockchain_arbre_S (UTex, UCin, UBlo, UBge, UBte);
+  inherit Une_Blockchain_arbre_S (UPpa, UCin, UBlo, UBge, UBte);
 
   signature contenu : Self -> string;
 
@@ -39,7 +39,7 @@ species Une_Blockchain_definition_S (UTex is Un_Texte_S,
   signature clef_de_publique_du_citoyen_emetteur : Self -> string;
 
 --  property le_texte_du_bloc_genesis_est_une_definition_pr : all bdo : Self,
---           UTex!un_texte_est_une_definition (UBge!le_texte (le_bloc_genesis (bdo)));
+--           UPpa!un_texte_est_une_definition (UBge!le_texte (le_bloc_genesis (bdo)));
 
 end;;
 

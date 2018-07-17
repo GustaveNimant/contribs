@@ -12,13 +12,13 @@ open "Une_Phrase_d_un_paragraphe_S";;
 -- Un_Texte_legislatif_S
 
 species Un_Titre_d_un_texte_legislatif_S (
-                               UPpa is Une_Phrase_d_un_paragraphe_S, 
-                               UPpa_set is Finite_Set_S (UPpa),
-                               UPar is Un_Paragraphe_d_un_article_S,
-                               UPar_set is Un_Paragraphe_d_un_article_S (UPar),
-                               UAti is Un_Article_d_un_titre_S,
-                               UAti_set is Finite_Set_S (UAti)
-                               )=
+           UPpa is Une_Phrase_d_un_paragraphe_S, 
+           UPpa_set is Finite_Set_S (UPpa),
+           UPar is Un_Paragraphe_d_un_article_S (UPpa, UPpa_set),
+           UPar_set is Finite_Set_S (UPar),
+           UAti is Un_Article_d_un_titre_S (UPpa, UPpa_set, UPar, UPar_set),
+           UAti_set is Finite_Set_S (UAti)
+           )=
 
   inherit Setoid;
 

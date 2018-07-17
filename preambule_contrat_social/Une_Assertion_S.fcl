@@ -1,23 +1,16 @@
 open "basics";;
-open "Un_Texte_S";;
-open "Une_Formule_S";;
+open "Une_Phrase_d_un_paragraphe_S";;
 
-species Une_Assertion_S (UFor is Une_Formule_S) =
+species Une_Assertion_S =
 
-  inherit Un_Texte_S;
+  inherit Une_Phrase_d_un_paragraphe_S;
 
-  signature la_formule : Self -> UFor;
+  signature sont_conformes : Self -> Self -> bool;
 
-  signature le_texte_d_une_assertion_est_une_formule : Self -> bool;
-
-  signature le_texte_d_une_assertion_est_une_phrase : Self -> bool;
-
-  signature le_texte_d_une_assertion_ne_contient_pas_de_conjonction : Self -> bool;
-
-  let un_texte_est_une_assertion (ass : Self) = 
-       (~~(un_texte_est_une_doleance (ass))) 
-       && (un_texte_est_une_formule (ass))
-       && (un_texte_ne_contient_pas_de_conjonction (ass));
-
+  logical let est_une_assertion (ass) =
+    ~(est_une_doleance (ass) ) ->
+    est_une_formule (ass) -> 
+    ne_contient_pas_de_conjonction (ass);
+  
 end;;
 

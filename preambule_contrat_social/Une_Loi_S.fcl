@@ -1,11 +1,34 @@
 open "basics";;
+open "Finite_Set_S";;
+open "Un_Article_d_un_titre_S";;
+open "Un_Paragraphe_d_un_article_S";;
 open "Un_Texte_legislatif_S";;
+open "Un_Titre_d_un_texte_legislatif_S";;
+open "Une_Phrase_d_un_paragraphe_S";;
+
 
 -- Une_Loi_S est un ensemble de Un_Article_de_loi_S
 -- Un_Article_de_loi_S est un ensemble de d
 
-species Une_Loi_S = 
+-- Une_Phrase_d_un_paragraphe_S
+-- Un_Paragraphe_d_un_article_S
+-- Un_Article_d_un_titre_S
+-- Un_Titre_d_un_texte_legislatif_S
+-- Un_Texte_legislatif_S
 
-  inherit Un_Texte_legislatif_S;
+species Une_Loi_S ( 
+           UPpa is Une_Phrase_d_un_paragraphe_S, 
+           UPpa_set is Finite_Set_S (UPpa),
+           UPar is Un_Paragraphe_d_un_article_S (UPpa, UPpa_set),
+           UPar_set is Finite_Set_S (UPar), 
+           UAti is Un_Article_d_un_titre_S (UPpa, UPpa_set, UPar, UPar_set),
+           UAti_set is Finite_Set_S (UAti),
+           UTtl is Un_Titre_d_un_texte_legislatif_S (UPpa, UPpa_set, UPar, UPar_set, UAti, UAti_set),
+           UTtl_set is Finite_Set_S (UTtl)
+           ) =
 
+  inherit Un_Texte_legislatif_S (UPpa, UPpa_set, UPar, UPar_set, UAti, UAti_set, UTtl, UTtl_set);
+
+  signature les_titres_de_la_loi : Self -> UTtl_set;
+ 
 end;;

@@ -1,15 +1,15 @@
 open "basics";;
 open "Un_Bloc_S";;
 open "Un_Contrat_intelligent_S";;
-open "Un_Texte_S";;
+open "Une_Phrase_d_un_paragraphe_S";;
 
-species Un_Bloc_genesis_S (UTex is Un_Texte_S,
+species Un_Bloc_genesis_S (UPpa is Une_Phrase_d_un_paragraphe_S,
                            UCin is Un_Contrat_intelligent_S
                            ) = 
 
-  inherit Un_Bloc_S (UTex, UCin);
+  inherit Un_Bloc_S (UPpa, UCin);
 
-  signature le_texte : Self -> UTex;
+  signature le_texte : Self -> UPpa;
 
   let l_ordinal (bge : Self) = 0;
 

@@ -1,8 +1,8 @@
 open "basics";;
 
-species Un_Texte_S =
+species Une_Phrase_d_un_paragraphe_S =
 
-  signature un_texte_est_une_doleance : Self -> bool;
+  signature est_une_doleance : Self -> bool;
 
   signature un_texte_est_une_phrase : Self -> bool;
 

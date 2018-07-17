@@ -1,0 +1,17 @@
+open "basics";;
+
+species Une_Existence_decente_S (
+            UCit is Un_Citoyen
+            ) =
+
+  signature a_acces_a_un_logement_decent (cit : UCit) -
+    
+  signature alimentation_suffisante
+  signature alimentation_saine
+  signature habillement_suffisant_selon_le_climat
+  signature habillement_decent
+  signature maintien_en_bonne_sante
+  signature acces_a_une_education_de_qualite
+  signature fraternite_:_participation_au_maintien_du_Contrat_Social.
+
+end;;
