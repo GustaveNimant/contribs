@@ -12,22 +12,23 @@ open "Une_Phrase_d_un_paragraphe_S";;
 --    Une_Blockchain_doleance qui débute par Une_Doleance et se termine par Une_Assertion
 --    Une_Blockchain_definition qui contient les étapes d'élaboration d'une définition de Un_Concept 
 
-species Une_Blockchain_S (UPpa is Une_Phrase_d_un_paragraphe_S,
-                          UCin is Un_Contrat_intelligent_S,
-                          UBlo is Un_Bloc_S (UPpa, UCin),
-                          UBge is Un_Bloc_genesis_S (UPpa, UCin),
-                          UBte is Un_Bloc_terminal_S (UPpa, UCin)
-                          ) =
+species Une_Blockchain_S (
+  UPpa is Une_Phrase_d_un_paragraphe_S,
+  UCin is Un_Contrat_intelligent_S,
+  UBlo is Un_Bloc_S (UPpa, UCin),
+  UBge is Un_Bloc_genesis_S (UPpa, UCin),
+  UBte is Un_Bloc_terminal_S (UPpa, UCin)
+) =
+    
+  inherit Finite_Anti_set_S (UBlo);
 
- inherit Finite_Anti_set_S (UBlo);
+  signature le_bloc_genesis : Self -> UBge;
 
- signature le_bloc_genesis : Self -> UBge;
-
- signature un_bloc_intermediaire : Self -> UBlo;
+  signature un_bloc_intermediaire : Self -> UBlo;
  
- signature le_bloc_terminal : Self -> UBte;
+  signature le_bloc_terminal : Self -> UBte;
 
- let l_ordinal_du_bloc_terminal (bch : Self) = cardinal (bch);
+  let l_ordinal_du_bloc_terminal (bch : Self) = cardinal (bch);
 
 end;;
 
