@@ -23,14 +23,21 @@ species Un_Citoyen_S (UTfr is Un_Territoire_francais_S) =
   signature a_acces_a_une_education_de_qualite : Self -> bool;  
 
   logical let a_une_existence_decente (cit : Self) =
-                a_acces_a_un_logement_decent (cit) ->    
-                a_une_alimentation_suffisante (cit) ->              
-                a_une_alimentation_saine (cit) ->
-                est_habille_suffisamment (cit) ->              
-                est_habille_decemment (cit) ->              
-                est_maintenu_en_bonne_sante (cit) ->              
-                a_acces_a_une_education_de_qualite (cit);
+    a_acces_a_un_logement_decent (cit) ->    
+    a_une_alimentation_suffisante (cit) ->              
+    a_une_alimentation_saine (cit) ->
+    est_habille_suffisamment (cit) ->              
+    est_habille_decemment (cit) ->              
+    est_maintenu_en_bonne_sante (cit) ->              
+    a_acces_a_une_education_de_qualite (cit);
+
+  logical let est_un_sdf (cit : Self) =
+    (a_acces_a_un_logement_decent (cit)) 
+    /\ (a_une_alimentation_saine (cit));
 
 
+  property est_conforme_pr : all cit : Self,
+    est_un_sdf (cit) -> a_une_existence_decente (cit);
+ 
 end;;
 

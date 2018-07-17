@@ -3,8 +3,9 @@ open "sets";;
 open "Un_Territoire_S";;
 
 species Un_Territoire_francais_S =
-
+  
   inherit Un_Territoire_S;
 
   let est_un_territoire_francais (s: Self) = true;
+
 end;;

@@ -16,7 +16,7 @@ species Un_Bloc_S (UPpa is Une_Phrase_d_un_paragraphe_S,
 
   signature le_texte : Self -> UPpa;
 
-  signature l_ordinal : Self -> int;
+  signature l_ordinal_dans_la_blockchain : Self -> int;
 
   signature le_contrat_intelligent : Self -> UCin;
 
@@ -26,11 +26,11 @@ species Un_Bloc_S (UPpa is Une_Phrase_d_un_paragraphe_S,
 
   signature horodatage_de_la_creation : Self -> string;
 
-  let l_ordinal_est_non_negatif (blo : Self) =
-      l_ordinal (blo) >= 0;
+  logical let l_ordinal_est_non_negatif (blo : Self) =
+      l_ordinal_dans_la_blockchain (blo) >= 0;
 
-  let l_ordinal_est_positif (blo : Self) =
-      l_ordinal (blo) > 0;
+  logical let l_ordinal_est_positif (blo : Self) =
+      l_ordinal_dans_la_blockchain (blo) > 0;
 
 end;;
 
