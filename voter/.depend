@@ -1,0 +1,108 @@
+basic_type.fo:
+basic_type.ml:
+basic_type.zv:
+basic_type.v:
+basic_type.sk:
+basic_type.cmo:
+basic_type.cmx:
+basic_type.dko: basic_type.sk
+basic_type.cmx:
+diag.fo: etat_vote.fo gen_diag.fo num_capteur.fo
+diag.ml: etat_vote.ml gen_diag.ml num_capteur.ml
+diag.zv: etat_vote.zv gen_diag.zv num_capteur.zv
+diag.v: etat_vote.v gen_diag.v num_capteur.v
+diag.sk: etat_vote.sk gen_diag.sk num_capteur.sk
+diag.cmo: etat_vote.cmo gen_diag.cmo num_capteur.cmo
+diag.cmx: etat_vote.cmx gen_diag.cmx num_capteur.cmx
+diag.dko: diag.sk etat_vote.dko gen_diag.dko num_capteur.dko
+diag.cmx: etat_vote.cmx gen_diag.cmx num_capteur.cmx
+etat_vote.fo:
+etat_vote.ml:
+etat_vote.zv:
+etat_vote.v:
+etat_vote.sk:
+etat_vote.cmo:
+etat_vote.cmx:
+etat_vote.dko: etat_vote.sk
+etat_vote.cmx:
+gen_diag.fo:
+gen_diag.ml:
+gen_diag.zv:
+gen_diag.v:
+gen_diag.sk:
+gen_diag.cmo:
+gen_diag.cmx:
+gen_diag.dko: gen_diag.sk
+gen_diag.cmx:
+gen_value.fo:
+gen_value.ml:
+gen_value.zv:
+gen_value.v:
+gen_value.sk:
+gen_value.cmo:
+gen_value.cmx:
+gen_value.dko: gen_value.sk
+gen_value.cmx:
+gen_vote.fo: gen_diag.fo gen_value.fo
+gen_vote.ml: gen_diag.ml gen_value.ml
+gen_vote.zv: gen_diag.zv gen_value.zv
+gen_vote.v: gen_diag.v gen_value.v
+gen_vote.sk: gen_diag.sk gen_value.sk
+gen_vote.cmo: gen_diag.cmo gen_value.cmo
+gen_vote.cmx: gen_diag.cmx gen_value.cmx
+gen_vote.dko: gen_vote.sk gen_diag.dko gen_value.dko
+gen_vote.cmx: gen_diag.cmx gen_value.cmx
+main.fo: diag.fo etat_vote.fo num_capteur.fo value.fo value_with_valid.fo vote.fo
+main.ml: diag.ml etat_vote.ml num_capteur.ml value.ml value_with_valid.ml vote.ml
+main.zv: diag.zv etat_vote.zv num_capteur.zv value.zv value_with_valid.zv vote.zv
+main.v: diag.v etat_vote.v num_capteur.v value.v value_with_valid.v vote.v
+main.sk: diag.sk etat_vote.sk num_capteur.sk value.sk value_with_valid.sk vote.sk
+main.cmo: diag.cmo etat_vote.cmo num_capteur.cmo value.cmo value_with_valid.cmo vote.cmo
+main.cmx: diag.cmx etat_vote.cmx num_capteur.cmx value.cmx value_with_valid.cmx vote.cmx
+main.dko: main.sk diag.dko etat_vote.dko num_capteur.dko value.dko value_with_valid.dko vote.dko
+main.cmx: diag.cmx etat_vote.cmx num_capteur.cmx value.cmx value_with_valid.cmx vote.cmx
+num_capteur.fo:
+num_capteur.ml:
+num_capteur.zv:
+num_capteur.v:
+num_capteur.sk:
+num_capteur.cmo:
+num_capteur.cmx:
+num_capteur.dko: num_capteur.sk
+num_capteur.cmx:
+valid_meas.fo: basic_type.fo gen_value.fo
+valid_meas.ml: basic_type.ml gen_value.ml
+valid_meas.zv: basic_type.zv gen_value.zv
+valid_meas.v: basic_type.v gen_value.v
+valid_meas.sk: basic_type.sk gen_value.sk
+valid_meas.cmo: basic_type.cmo gen_value.cmo
+valid_meas.cmx: basic_type.cmx gen_value.cmx
+valid_meas.dko: valid_meas.sk basic_type.dko gen_value.dko
+valid_meas.cmx: basic_type.cmx gen_value.cmx
+value.fo: basic_type.fo gen_value.fo
+value.ml: basic_type.ml gen_value.ml
+value.zv: basic_type.zv gen_value.zv
+value.v: basic_type.v gen_value.v
+value.sk: basic_type.sk gen_value.sk
+value.cmo: basic_type.cmo gen_value.cmo
+value.cmx: basic_type.cmx gen_value.cmx
+value.dko: value.sk basic_type.dko gen_value.dko
+value.cmx: basic_type.cmx gen_value.cmx
+value_with_valid.fo: basic_type.fo gen_value.fo valid_meas.fo
+value_with_valid.ml: basic_type.ml gen_value.ml valid_meas.ml
+value_with_valid.zv: basic_type.zv gen_value.zv valid_meas.zv
+value_with_valid.v: basic_type.v gen_value.v valid_meas.v
+value_with_valid.sk: basic_type.sk gen_value.sk valid_meas.sk
+value_with_valid.cmo: basic_type.cmo gen_value.cmo valid_meas.cmo
+value_with_valid.cmx: basic_type.cmx gen_value.cmx valid_meas.cmx
+value_with_valid.dko: value_with_valid.sk basic_type.dko gen_value.dko valid_meas.dko
+value_with_valid.cmx: basic_type.cmx gen_value.cmx valid_meas.cmx
+vote.fo: diag.fo etat_vote.fo gen_value.fo gen_vote.fo num_capteur.fo
+vote.ml: diag.ml etat_vote.ml gen_value.ml gen_vote.ml num_capteur.ml
+vote.zv: diag.zv etat_vote.zv gen_value.zv gen_vote.zv num_capteur.zv
+vote.v: diag.v etat_vote.v gen_value.v gen_vote.v num_capteur.v
+vote.sk: diag.sk etat_vote.sk gen_value.sk gen_vote.sk num_capteur.sk
+vote.cmo: diag.cmo etat_vote.cmo gen_value.cmo gen_vote.cmo num_capteur.cmo
+vote.cmx: diag.cmx etat_vote.cmx gen_value.cmx gen_vote.cmx num_capteur.cmx
+vote.dko: vote.sk diag.dko etat_vote.dko gen_value.dko gen_vote.dko num_capteur.dko
+vote.cmx: diag.cmx etat_vote.cmx gen_value.cmx gen_vote.cmx num_capteur.cmx

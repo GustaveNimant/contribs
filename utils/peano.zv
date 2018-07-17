@@ -1,0 +1,463 @@
+(* Coq >= 8.3pl2: disable automatic introduction of hypotheses. *)
+Global Unset Automatic Introduction.
+(* Coq >= 8.5: allow sum constructors without explicit types in patterns. *)
+Global Set Asymmetric Patterns.
+Require Export Bool.
+Require Export ZArith.
+Open Scope Z_scope.
+Require Export Reals.
+Require Export Ascii.
+Require Export String.
+Require Export List.
+Require Import Wellfounded.
+Require Export Recdef.
+Require Export coq_builtins.
+Require Import Relations.
+Require Import Zwf.
+
+(* Below: to prevent Function to apply heuristics that would
+the expected aim in recursive functions termination proofs. *)
+
+Set Function_raw_tcc.
+
+Require basics.
+Require basics.
+Module Peano.
+  Definition induction (abst_T : Set) (abst_s : abst_T -> abst_T)
+    (abst_zero : abst_T) (p : abst_T -> basics.bool__t) :
+    coq_builtins.prop__t :=
+    Is_true ((p abst_zero)) ->
+      (forall n : abst_T, Is_true ((p n)) -> Is_true ((p (abst_s n)))) ->
+        (forall n : abst_T, Is_true ((p n))).
+  
+End Peano.
+
+Module Imp_peano.
+  Record me_as_species : Type :=
+    mk_record {
+    rf_T : Set ;
+    (* From species peano#Imp_peano. *)
+    rf_diff : rf_T -> rf_T -> basics.bool__t ;
+    (* From species peano#Imp_peano. *)
+    rf_equal : rf_T -> rf_T -> basics.bool__t ;
+    (* From species peano#Imp_peano. *)
+    rf_s : rf_T -> rf_T ;
+    (* From species peano#Imp_peano. *)
+    rf_zero : rf_T ;
+    (* From species peano#Imp_peano. *)
+    rf_diff_spec :
+      forall x  y : rf_T,
+        Is_true ((rf_diff x y)) <-> ~Is_true ((rf_equal x y)) ;
+    (* From species peano#Imp_peano. *)
+    rf_equal_reflexive : forall x : rf_T, Is_true ((rf_equal x x)) ;
+    (* From species peano#Imp_peano. *)
+    rf_equal_symmetric :
+      forall x  y : rf_T,
+        Is_true ((rf_equal x y)) -> Is_true ((rf_equal y x)) ;
+    (* From species peano#Imp_peano. *)
+    rf_equal_transitive :
+      forall x  y  z : rf_T,
+        (Is_true ((rf_equal x y)) /\ Is_true ((rf_equal y z))) ->
+          Is_true ((rf_equal x z)) ;
+    (* From species peano#Imp_peano. *)
+    rf_succ_is_an_injection :
+      forall x  y : rf_T,
+        Is_true ((rf_equal (rf_s x) (rf_s y))) -> Is_true ((rf_equal x y)) ;
+    (* From species peano#Peano. *)
+    rf_induction : (rf_T -> basics.bool__t) -> coq_builtins.prop__t ;
+    (* From species peano#Imp_peano. *)
+    rf_zero_is_not_successor :
+      forall x : rf_T, ~Is_true ((rf_equal rf_zero (rf_s x))) ;
+    (* From species peano#Imp_peano. *)
+    rf_diff_is_irreflexive : forall x : rf_T, ~Is_true ((rf_diff x x)) ;
+    (* From species peano#Imp_peano. *)
+    rf_diff_is_symmetric :
+      forall x  y : rf_T,
+        (~Is_true ((rf_diff x y))) -> (~Is_true ((rf_diff y x)))
+    }.
+  
+  Definition diff (abst_T : Set) (x : abst_T) (y : abst_T) :
+    basics.bool__t := (if (((basics._equal_ _) x y)) then false else true).
+  Definition equal (abst_T : Set) (x : abst_T) (y : abst_T) :
+    basics.bool__t := (((basics._equal_ _) x y)).
+  Definition s (abst_T := basics.int__t) (x : abst_T) : abst_T :=
+    (basics.int_succ x).
+  Definition zero (abst_T := basics.int__t) : abst_T := 0.
+  
+  (* From species peano#Imp_peano. *)
+  (* Section for proof of theorem 'diff_spec'. *)
+  Section Proof_of_diff_spec.
+    Variable abst_T : Set.
+    Let abst_diff := diff abst_T.
+    Let abst_equal := equal
+    abst_T.
+    %%begin-auto-proof
+    %%location: [File "peano.fcl", line 133, characters 2-30]
+    %%name: for_zenon_diff_spec
+    
+    
+    
+    (* Methods to use for automated proof. *)
+    (* For method of Self used via "by definition of !diff". *)
+    Definition abst_diff (x : abst_T) (y : abst_T) : basics.bool__t :=
+      (if (((basics._equal_ _) x y)) then false else true).
+    (* For method of Self used via "by definition of !equal". *)
+    Definition abst_equal (x : abst_T) (y : abst_T) : basics.bool__t :=
+      (((basics._equal_ _) x y)).
+    (* Theorem's body. *)
+    Theorem for_zenon_diff_spec :
+    forall x  y : abst_T,
+      Is_true ((abst_diff x y)) <-> ~Is_true ((abst_equal x y)).
+    %%end-auto-proof
+    (* Dummy theorem to enforce Coq abstractions. *)
+    Theorem for_zenon_abstracted_diff_spec :
+      forall x  y : abst_T,
+        Is_true ((abst_diff x y)) <-> ~Is_true ((abst_equal x y)).
+    assert (__force_use_abst_T := abst_T).
+    assert (__force_use_abst_diff := abst_diff).
+    assert (__force_use_abst_equal := abst_equal).
+    apply for_zenon_diff_spec;
+    auto.
+    Qed.
+    End Proof_of_diff_spec.
+  
+  Theorem diff_spec  (abst_T : Set) (abst_diff := diff abst_T) (abst_equal :=
+    equal abst_T):
+    forall x  y : abst_T,
+      Is_true ((abst_diff x y)) <-> ~Is_true ((abst_equal x y)).
+  apply for_zenon_abstracted_diff_spec;
+  auto.
+  Qed.
+  
+  (* From species peano#Imp_peano. *)
+  (* Section for proof of theorem 'equal_reflexive'. *)
+  Section Proof_of_equal_reflexive.
+    Variable abst_T : Set.
+    Let abst_equal := equal
+    abst_T.
+    %%begin-auto-proof
+    %%location: [File "peano.fcl", line 116, character 2, line 117, character 19]
+    %%name: for_zenon_equal_reflexive
+    
+    
+    
+    (* Methods to use for automated proof. *)
+    (* For method of Self used via "by definition of !equal". *)
+    Definition abst_equal (x : abst_T) (y : abst_T) : basics.bool__t :=
+      (((basics._equal_ _) x y)).
+    (* For toplevel definition used via "by property of basics#beq_refl". *)
+    Parameter basics.beq_refl :
+      forall __var_a : Set, forall x : __var_a,
+        Is_true (((basics._equal_ _) x x)).
+    (* Theorem's body. *)
+    Theorem for_zenon_equal_reflexive :
+    forall x : abst_T, Is_true ((abst_equal x x)).
+    %%end-auto-proof
+    (* Dummy theorem to enforce Coq abstractions. *)
+    Theorem for_zenon_abstracted_equal_reflexive :
+      forall x : abst_T, Is_true ((abst_equal x x)).
+    assert (__force_use_abst_T := abst_T).
+    assert (__force_use_abst_equal := abst_equal).
+    apply for_zenon_equal_reflexive;
+    auto.
+    Qed.
+    End Proof_of_equal_reflexive.
+  
+  Theorem equal_reflexive  (abst_T : Set) (abst_equal := equal abst_T):
+    forall x : abst_T, Is_true ((abst_equal x x)).
+  apply for_zenon_abstracted_equal_reflexive;
+  auto.
+  Qed.
+  
+  (* From species peano#Imp_peano. *)
+  (* Section for proof of theorem 'equal_symmetric'. *)
+  Section Proof_of_equal_symmetric.
+    Variable abst_T : Set.
+    Let abst_equal := equal
+    abst_T.
+    %%begin-auto-proof
+    %%location: [File "peano.fcl", line 121, character 2, line 122, character 19]
+    %%name: for_zenon_equal_symmetric
+    
+    
+    
+    (* Methods to use for automated proof. *)
+    (* For method of Self used via "by definition of !equal". *)
+    Definition abst_equal (x : abst_T) (y : abst_T) : basics.bool__t :=
+      (((basics._equal_ _) x y)).
+    (* For toplevel definition used via "by property of basics#beq_symm". *)
+    Parameter basics.beq_symm :
+      forall __var_b : Set, forall x  y : __var_b,
+        Is_true (((basics._equal_ _) x y)) ->
+          Is_true (((basics._equal_ _) y x)).
+    (* Theorem's body. *)
+    Theorem for_zenon_equal_symmetric :
+    forall x  y : abst_T,
+      Is_true ((abst_equal x y)) -> Is_true ((abst_equal y x)).
+    %%end-auto-proof
+    (* Dummy theorem to enforce Coq abstractions. *)
+    Theorem for_zenon_abstracted_equal_symmetric :
+      forall x  y : abst_T,
+        Is_true ((abst_equal x y)) -> Is_true ((abst_equal y x)).
+    assert (__force_use_abst_T := abst_T).
+    assert (__force_use_abst_equal := abst_equal).
+    apply for_zenon_equal_symmetric;
+    auto.
+    Qed.
+    End Proof_of_equal_symmetric.
+  
+  Theorem equal_symmetric  (abst_T : Set) (abst_equal := equal abst_T):
+    forall x  y : abst_T,
+      Is_true ((abst_equal x y)) -> Is_true ((abst_equal y x)).
+  apply for_zenon_abstracted_equal_symmetric;
+  auto.
+  Qed.
+  
+  (* From species peano#Imp_peano. *)
+  (* Section for proof of theorem 'equal_transitive'. *)
+  Section Proof_of_equal_transitive.
+    Variable abst_T : Set.
+    Let abst_equal := equal
+    abst_T.
+    %%begin-auto-proof
+    %%location: [File "peano.fcl", line 126, character 2, line 127, character 20]
+    %%name: for_zenon_equal_transitive
+    
+    
+    
+    (* Methods to use for automated proof. *)
+    (* For method of Self used via "by definition of !equal". *)
+    Definition abst_equal (x : abst_T) (y : abst_T) : basics.bool__t :=
+      (((basics._equal_ _) x y)).
+    (* For toplevel definition used via "by property of basics#beq_trans". *)
+    Parameter basics.beq_trans :
+      forall __var_c : Set, forall x  y  z : __var_c,
+        Is_true (((basics._equal_ _) x y)) ->
+          Is_true (((basics._equal_ _) y z)) ->
+            Is_true (((basics._equal_ _) x z)).
+    (* Theorem's body. *)
+    Theorem for_zenon_equal_transitive :
+    forall x  y  z : abst_T,
+      (Is_true ((abst_equal x y)) /\ Is_true ((abst_equal y z))) ->
+        Is_true ((abst_equal x z)).
+    %%end-auto-proof
+    (* Dummy theorem to enforce Coq abstractions. *)
+    Theorem for_zenon_abstracted_equal_transitive :
+      forall x  y  z : abst_T,
+        (Is_true ((abst_equal x y)) /\ Is_true ((abst_equal y z))) ->
+          Is_true ((abst_equal x z)).
+    assert (__force_use_abst_T := abst_T).
+    assert (__force_use_abst_equal := abst_equal).
+    apply for_zenon_equal_transitive;
+    auto.
+    Qed.
+    End Proof_of_equal_transitive.
+  
+  Theorem equal_transitive  (abst_T : Set) (abst_equal := equal abst_T):
+    forall x  y  z : abst_T,
+      (Is_true ((abst_equal x y)) /\ Is_true ((abst_equal y z))) ->
+        Is_true ((abst_equal x z)).
+  apply for_zenon_abstracted_equal_transitive;
+  auto.
+  Qed.
+  
+  (* From species peano#Imp_peano. *)
+  Theorem succ_is_an_injection  (abst_T : Set)
+    (abst_equal : abst_T -> abst_T -> basics.bool__t)
+    (abst_s : abst_T -> abst_T):
+    forall x  y : abst_T,
+      Is_true ((abst_equal (abst_s x) (abst_s y))) ->
+        Is_true ((abst_equal x y)).
+  (* Proof was flagged as assumed *)
+  apply coq_builtins.magic_prove.
+  Qed.
+  
+  (* From species peano#Imp_peano. *)
+  Theorem zero_is_not_successor  (abst_T : Set)
+    (abst_equal : abst_T -> abst_T -> basics.bool__t)
+    (abst_s : abst_T -> abst_T) (abst_zero : abst_T):
+    forall x : abst_T, ~Is_true ((abst_equal abst_zero (abst_s x))).
+  (* Proof was flagged as assumed *)
+  apply coq_builtins.magic_prove.
+  Qed.
+  
+  (* From species peano#Imp_peano. *)
+  (* Section for proof of theorem 'diff_is_irreflexive'. *)
+  Section Proof_of_diff_is_irreflexive.
+    Variable abst_T : Set.
+    Let abst_diff := diff
+    abst_T.
+    Variable abst_equal : abst_T -> abst_T -> basics.bool__t.
+    Hypothesis abst_equal_reflexive :
+      forall x : abst_T, Is_true ((abst_equal x x)).
+    %%begin-auto-proof
+    %%location: [File "peano.fcl", line 137, character 2, line 138, character 26]
+    %%name: for_zenon_diff_is_irreflexive
+    
+    
+    
+    (* Methods to use for automated proof. *)
+    (* For method of Self used via "by definition of !diff". *)
+    Definition abst_diff (x : abst_T) (y : abst_T) : basics.bool__t :=
+      (if (((basics._equal_ _) x y)) then false else true).
+    (* For method of Self used via "by property !equal_reflexive". *)
+    Parameter abst_equal_reflexive :
+      forall x : abst_T, Is_true ((abst_equal x x)).
+    (* Theorem's body. *)
+    Theorem for_zenon_diff_is_irreflexive :
+    forall x : abst_T, ~Is_true ((abst_diff x x)).
+    %%end-auto-proof
+    (* Dummy theorem to enforce Coq abstractions. *)
+    Theorem for_zenon_abstracted_diff_is_irreflexive :
+      forall x : abst_T, ~Is_true ((abst_diff x x)).
+    assert (__force_use_abst_T := abst_T).
+    assert (__force_use_abst_diff := abst_diff).
+    assert (__force_use_abst_equal := abst_equal).
+    assert (__force_use_abst_equal_reflexive := abst_equal_reflexive).
+    apply for_zenon_diff_is_irreflexive;
+    auto.
+    Qed.
+    End Proof_of_diff_is_irreflexive.
+  
+  Theorem diff_is_irreflexive  (abst_T : Set) (abst_diff := diff abst_T)
+    (abst_equal : abst_T -> abst_T -> basics.bool__t) (abst_equal_reflexive :
+    forall x : abst_T, Is_true ((abst_equal x x))):
+    forall x : abst_T, ~Is_true ((abst_diff x x)).
+  apply for_zenon_abstracted_diff_is_irreflexive;
+  auto.
+  Qed.
+  
+  (* From species peano#Imp_peano. *)
+  (* Section for proof of theorem 'diff_is_symmetric'. *)
+  Section Proof_of_diff_is_symmetric.
+    Variable abst_T : Set.
+    Let abst_diff := diff
+    abst_T.
+    Variable abst_equal : abst_T -> abst_T -> basics.bool__t.
+    Hypothesis abst_equal_symmetric :
+      forall x  y : abst_T,
+        Is_true ((abst_equal x y)) -> Is_true ((abst_equal y x)).
+    %%begin-auto-proof
+    %%location: [File "peano.fcl", line 142, character 2, line 143, character 26]
+    %%name: for_zenon_diff_is_symmetric
+    
+    
+    
+    (* Methods to use for automated proof. *)
+    (* For method of Self used via "by definition of !diff". *)
+    Definition abst_diff (x : abst_T) (y : abst_T) : basics.bool__t :=
+      (if (((basics._equal_ _) x y)) then false else true).
+    (* For method of Self used via "by property !equal_symmetric". *)
+    Parameter abst_equal_symmetric :
+      forall x  y : abst_T,
+        Is_true ((abst_equal x y)) -> Is_true ((abst_equal y x)).
+    (* Theorem's body. *)
+    Theorem for_zenon_diff_is_symmetric :
+    forall x  y : abst_T,
+      (~Is_true ((abst_diff x y))) -> (~Is_true ((abst_diff y x))).
+    %%end-auto-proof
+    (* Dummy theorem to enforce Coq abstractions. *)
+    Theorem for_zenon_abstracted_diff_is_symmetric :
+      forall x  y : abst_T,
+        (~Is_true ((abst_diff x y))) -> (~Is_true ((abst_diff y x))).
+    assert (__force_use_abst_T := abst_T).
+    assert (__force_use_abst_diff := abst_diff).
+    assert (__force_use_abst_equal := abst_equal).
+    assert (__force_use_abst_equal_symmetric := abst_equal_symmetric).
+    apply for_zenon_diff_is_symmetric;
+    auto.
+    Qed.
+    End Proof_of_diff_is_symmetric.
+  
+  Theorem diff_is_symmetric  (abst_T : Set) (abst_diff := diff abst_T)
+    (abst_equal : abst_T -> abst_T -> basics.bool__t) (abst_equal_symmetric :
+    forall x  y : abst_T,
+      Is_true ((abst_equal x y)) -> Is_true ((abst_equal y x))):
+    forall x  y : abst_T,
+      (~Is_true ((abst_diff x y))) -> (~Is_true ((abst_diff y x))).
+  apply for_zenon_abstracted_diff_is_symmetric;
+  auto.
+  Qed.
+  
+  (* Fully defined 'Imp_peano' species's collection generator. *)
+  Definition collection_create :=
+    let local_rep := basics.int__t in
+    (* From species peano#Imp_peano. *)
+    let local_diff := diff local_rep in
+    (* From species peano#Imp_peano. *)
+    let local_equal := equal local_rep in
+    (* From species peano#Imp_peano. *)
+    let local_s := s in
+    (* From species peano#Imp_peano. *)
+    let local_zero := zero in
+    (* From species peano#Imp_peano. *)
+    let local_diff_spec := diff_spec local_rep in
+    (* From species peano#Imp_peano. *)
+    let local_equal_reflexive := equal_reflexive local_rep in
+    (* From species peano#Imp_peano. *)
+    let local_equal_symmetric := equal_symmetric local_rep in
+    (* From species peano#Imp_peano. *)
+    let local_equal_transitive := equal_transitive local_rep in
+    (* From species peano#Imp_peano. *)
+    let local_succ_is_an_injection := succ_is_an_injection local_rep
+      local_equal local_s in
+    (* From species peano#Peano. *)
+    let local_induction := Peano.induction local_rep local_s local_zero in
+    (* From species peano#Imp_peano. *)
+    let local_zero_is_not_successor := zero_is_not_successor local_rep
+      local_equal local_s local_zero in
+    (* From species peano#Imp_peano. *)
+    let local_diff_is_irreflexive := diff_is_irreflexive local_rep
+      local_equal local_equal_reflexive in
+    (* From species peano#Imp_peano. *)
+    let local_diff_is_symmetric := diff_is_symmetric local_rep local_equal
+      local_equal_symmetric in
+    mk_record local_rep local_diff local_equal local_s local_zero
+    local_diff_spec local_equal_reflexive local_equal_symmetric
+    local_equal_transitive local_succ_is_an_injection local_induction
+    local_zero_is_not_successor local_diff_is_irreflexive
+    local_diff_is_symmetric.
+  
+End Imp_peano.
+
+Module Coll_peano.
+  Let effective_collection := Imp_peano.collection_create.
+  (* Carrier's structure explicitly given by "rep". *)
+  Definition me_as_carrier := basics.int__t.
+  Definition diff := effective_collection.(Imp_peano.rf_diff).
+  Definition equal := effective_collection.(Imp_peano.rf_equal).
+  Definition s := effective_collection.(Imp_peano.rf_s).
+  Definition zero := effective_collection.(Imp_peano.rf_zero).
+  Definition diff_spec := effective_collection.(Imp_peano.rf_diff_spec).
+  Definition equal_reflexive :=
+    effective_collection.(Imp_peano.rf_equal_reflexive).
+  Definition equal_symmetric :=
+    effective_collection.(Imp_peano.rf_equal_symmetric).
+  Definition equal_transitive :=
+    effective_collection.(Imp_peano.rf_equal_transitive).
+  Definition succ_is_an_injection :=
+    effective_collection.(Imp_peano.rf_succ_is_an_injection).
+  Definition induction := effective_collection.(Imp_peano.rf_induction).
+  Definition zero_is_not_successor :=
+    effective_collection.(Imp_peano.rf_zero_is_not_successor).
+  Definition diff_is_irreflexive :=
+    effective_collection.(Imp_peano.rf_diff_is_irreflexive).
+  Definition diff_is_symmetric :=
+    effective_collection.(Imp_peano.rf_diff_is_symmetric).
+  
+End Coll_peano.
+
+Module Peano_Arith.
+  
+  (* From species peano#Peano_Arith. *)
+  Theorem plus_commutative  (abst_T : Set)
+    (abst_equal : abst_T -> abst_T -> basics.bool__t)
+    (abst_plus : abst_T -> abst_T -> abst_T):
+    forall x  y : abst_T,
+      Is_true ((abst_equal (abst_plus x y) (abst_plus y x))).
+  (* Proof was flagged as assumed *)
+  apply coq_builtins.magic_prove.
+  Qed.
+  
+End Peano_Arith.
+

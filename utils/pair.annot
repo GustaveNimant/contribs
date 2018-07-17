@@ -1,0 +1,645 @@
+"pair.ml" 25 795 801 "pair.ml" 25 795 807
+type(
+  's10_T -> 's21_T -> 's10_T * 's21_T
+)
+ident(
+  def constr "pair.ml" 26 858 860 "pair.ml" 62 2375 2380
+)
+"pair.ml" 25 795 809 "pair.ml" 25 795 811
+type(
+  's10_T
+)
+ident(
+  def n1 "pair.ml" 25 795 822 "pair.ml" 25 795 857
+)
+"pair.ml" 25 795 823 "pair.ml" 25 795 825
+type(
+  's21_T
+)
+ident(
+  def n2 "pair.ml" 25 795 838 "pair.ml" 25 795 857
+)
+"pair.ml" 25 795 839 "pair.ml" 25 795 850
+type(
+  's10_T -> 's21_T -> 's10_T * 's21_T
+)
+ident(
+  ext_ref Basics.pair
+)
+"pair.ml" 25 795 851 "pair.ml" 25 795 853
+type(
+  's10_T
+)
+ident(
+  int_ref n1 "pair.ml" 25 795 809 "pair.ml" 25 795 811
+)
+"pair.ml" 25 795 854 "pair.ml" 25 795 856
+type(
+  's21_T
+)
+ident(
+  int_ref n2 "pair.ml" 25 795 823 "pair.ml" 25 795 825
+)
+"pair.ml" 25 795 838 "pair.ml" 25 795 857
+call(
+  tail
+)
+type(
+  's10_T * 's21_T
+)
+"pair.ml" 26 858 864 "pair.ml" 26 858 869
+type(
+  ('a -> 'a -> bool) -> ('b -> 'b -> bool) -> 'a * 'b -> 'a * 'b -> bool
+)
+ident(
+  def equal "pair.ml" 29 1052 1054 "pair.ml" 62 2375 2380
+)
+"pair.ml" 26 858 870 "pair.ml" 26 858 881
+type(
+  'a -> 'a -> bool
+)
+ident(
+  def _p_S1_equal "pair.ml" 26 858 882 "pair.ml" 28 999 1051
+)
+"pair.ml" 26 858 882 "pair.ml" 26 858 893
+type(
+  'b -> 'b -> bool
+)
+ident(
+  def _p_S2_equal "pair.ml" 26 858 894 "pair.ml" 28 999 1051
+)
+"pair.ml" 26 858 895 "pair.ml" 26 858 897
+type(
+  'a * 'b
+)
+ident(
+  def n1 "pair.ml" 26 858 909 "pair.ml" 28 999 1051
+)
+"pair.ml" 26 858 910 "pair.ml" 26 858 912
+type(
+  'a * 'b
+)
+ident(
+  def n2 "pair.ml" 27 926 930 "pair.ml" 28 999 1051
+)
+"pair.ml" 27 926 931 "pair.ml" 27 926 952
+type(
+  bool -> bool -> bool
+)
+ident(
+  ext_ref Basics._amper__amper_
+)
+"pair.ml" 27 926 954 "pair.ml" 27 926 965
+type(
+  'a -> 'a -> bool
+)
+ident(
+  int_ref _p_S1_equal "pair.ml" 26 858 870 "pair.ml" 26 858 881
+)
+"pair.ml" 27 926 967 "pair.ml" 27 926 977
+type(
+  'a * 'b -> 'a
+)
+ident(
+  ext_ref Basics.fst
+)
+"pair.ml" 27 926 978 "pair.ml" 27 926 980
+type(
+  'a * 'b
+)
+ident(
+  int_ref n1 "pair.ml" 26 858 895 "pair.ml" 26 858 897
+)
+"pair.ml" 27 926 966 "pair.ml" 27 926 981
+call(
+  stack
+)
+type(
+  'a
+)
+"pair.ml" 27 926 983 "pair.ml" 27 926 993
+type(
+  'a * 'b -> 'a
+)
+ident(
+  ext_ref Basics.fst
+)
+"pair.ml" 27 926 994 "pair.ml" 27 926 996
+type(
+  'a * 'b
+)
+ident(
+  int_ref n2 "pair.ml" 26 858 910 "pair.ml" 26 858 912
+)
+"pair.ml" 27 926 982 "pair.ml" 27 926 997
+call(
+  stack
+)
+type(
+  'a
+)
+"pair.ml" 27 926 953 "pair.ml" 27 926 998
+call(
+  stack
+)
+type(
+  bool
+)
+"pair.ml" 28 999 1006 "pair.ml" 28 999 1017
+type(
+  'b -> 'b -> bool
+)
+ident(
+  int_ref _p_S2_equal "pair.ml" 26 858 882 "pair.ml" 26 858 893
+)
+"pair.ml" 28 999 1019 "pair.ml" 28 999 1029
+type(
+  'a * 'b -> 'b
+)
+ident(
+  ext_ref Basics.snd
+)
+"pair.ml" 28 999 1030 "pair.ml" 28 999 1032
+type(
+  'a * 'b
+)
+ident(
+  int_ref n1 "pair.ml" 26 858 895 "pair.ml" 26 858 897
+)
+"pair.ml" 28 999 1018 "pair.ml" 28 999 1033
+call(
+  stack
+)
+type(
+  'b
+)
+"pair.ml" 28 999 1035 "pair.ml" 28 999 1045
+type(
+  'a * 'b -> 'b
+)
+ident(
+  ext_ref Basics.snd
+)
+"pair.ml" 28 999 1046 "pair.ml" 28 999 1048
+type(
+  'a * 'b
+)
+ident(
+  int_ref n2 "pair.ml" 26 858 910 "pair.ml" 26 858 912
+)
+"pair.ml" 28 999 1034 "pair.ml" 28 999 1049
+call(
+  stack
+)
+type(
+  'b
+)
+"pair.ml" 28 999 1005 "pair.ml" 28 999 1050
+call(
+  stack
+)
+type(
+  bool
+)
+"pair.ml" 27 926 930 "pair.ml" 28 999 1051
+call(
+  tail
+)
+type(
+  bool
+)
+"pair.ml" 29 1052 1058 "pair.ml" 29 1052 1063
+type(
+  'c * 'd -> 'c
+)
+ident(
+  def prj_a "pair.ml" 30 1097 1099 "pair.ml" 62 2375 2380
+)
+"pair.ml" 29 1052 1065 "pair.ml" 29 1052 1067
+type(
+  'c * 'd
+)
+ident(
+  def nn "pair.ml" 29 1052 1081 "pair.ml" 29 1052 1096
+)
+"pair.ml" 29 1052 1082 "pair.ml" 29 1052 1092
+type(
+  'c * 'd -> 'c
+)
+ident(
+  ext_ref Basics.fst
+)
+"pair.ml" 29 1052 1093 "pair.ml" 29 1052 1095
+type(
+  'c * 'd
+)
+ident(
+  int_ref nn "pair.ml" 29 1052 1065 "pair.ml" 29 1052 1067
+)
+"pair.ml" 29 1052 1081 "pair.ml" 29 1052 1096
+call(
+  tail
+)
+type(
+  'c
+)
+"pair.ml" 30 1097 1103 "pair.ml" 30 1097 1108
+type(
+  'e * 'f -> 'f
+)
+ident(
+  def prj_b "pair.ml" 31 1142 1144 "pair.ml" 62 2375 2380
+)
+"pair.ml" 30 1097 1110 "pair.ml" 30 1097 1112
+type(
+  'e * 'f
+)
+ident(
+  def nn "pair.ml" 30 1097 1126 "pair.ml" 30 1097 1141
+)
+"pair.ml" 30 1097 1127 "pair.ml" 30 1097 1137
+type(
+  'e * 'f -> 'f
+)
+ident(
+  ext_ref Basics.snd
+)
+"pair.ml" 30 1097 1138 "pair.ml" 30 1097 1140
+type(
+  'e * 'f
+)
+ident(
+  int_ref nn "pair.ml" 30 1097 1110 "pair.ml" 30 1097 1112
+)
+"pair.ml" 30 1097 1126 "pair.ml" 30 1097 1141
+call(
+  tail
+)
+type(
+  'f
+)
+"pair.ml" 31 1142 1148 "pair.ml" 31 1142 1155
+type(
+  'g -> 'h -> ('g -> 'h -> 'i) -> 'i
+)
+ident(
+  def element "pair.ml" 34 1309 1311 "pair.ml" 62 2375 2380
+)
+"pair.ml" 31 1142 1156 "pair.ml" 31 1142 1169
+type(
+  'g
+)
+ident(
+  def _p_S1_element "pair.ml" 31 1142 1170 "pair.ml" 32 1198 1243
+)
+"pair.ml" 31 1142 1170 "pair.ml" 31 1142 1183
+type(
+  'h
+)
+ident(
+  def _p_S2_element "pair.ml" 31 1142 1184 "pair.ml" 32 1198 1243
+)
+"pair.ml" 31 1142 1184 "pair.ml" 31 1142 1195
+type(
+  'g -> 'h -> 'i
+)
+ident(
+  def abst_constr "pair.ml" 32 1198 1202 "pair.ml" 32 1198 1243
+)
+"pair.ml" 32 1198 1203 "pair.ml" 32 1198 1214
+type(
+  'g -> 'h -> 'i
+)
+ident(
+  int_ref abst_constr "pair.ml" 31 1142 1184 "pair.ml" 31 1142 1195
+)
+"pair.ml" 32 1198 1215 "pair.ml" 32 1198 1228
+type(
+  'g
+)
+ident(
+  int_ref _p_S1_element "pair.ml" 31 1142 1156 "pair.ml" 31 1142 1169
+)
+"pair.ml" 32 1198 1229 "pair.ml" 32 1198 1242
+type(
+  'h
+)
+ident(
+  int_ref _p_S2_element "pair.ml" 31 1142 1170 "pair.ml" 31 1142 1183
+)
+"pair.ml" 32 1198 1202 "pair.ml" 32 1198 1243
+call(
+  tail
+)
+type(
+  'i
+)
+"pair.ml" 34 1309 1315 "pair.ml" 34 1309 1332
+type(
+  unit ->
+  'j ->
+  ('j -> 'j -> bool) ->
+  'k -> ('k -> 'k -> bool) -> ('k, 'j, 'k * 'j) me_as_species
+)
+ident(
+  def collection_create "pair.ml" 60 2361 2369 "pair.ml" 62 2375 2380
+)
+"pair.ml" 34 1309 1333 "pair.ml" 34 1309 1335
+type(
+  unit
+)
+"pair.ml" 34 1309 1336 "pair.ml" 34 1309 1349
+type(
+  'j
+)
+ident(
+  def _p_S2_element "pair.ml" 34 1309 1350 "pair.ml" 60 2361 2369
+)
+"pair.ml" 34 1309 1350 "pair.ml" 34 1309 1361
+type(
+  'j -> 'j -> bool
+)
+ident(
+  def _p_S2_equal "pair.ml" 34 1309 1362 "pair.ml" 60 2361 2369
+)
+"pair.ml" 34 1309 1362 "pair.ml" 34 1309 1375
+type(
+  'k
+)
+ident(
+  def _p_S1_element "pair.ml" 35 1376 1380 "pair.ml" 60 2361 2369
+)
+"pair.ml" 35 1376 1380 "pair.ml" 35 1376 1391
+type(
+  'k -> 'k -> bool
+)
+ident(
+  def _p_S1_equal "pair.ml" 37 1432 1436 "pair.ml" 60 2361 2369
+)
+"pair.ml" 37 1432 1440 "pair.ml" 37 1432 1452
+type(
+  'l -> 'm -> 'l * 'm
+)
+ident(
+  def local_constr "pair.ml" 39 1503 1507 "pair.ml" 60 2361 2369
+)
+"pair.ml" 37 1432 1455 "pair.ml" 37 1432 1461
+type(
+  'l -> 'm -> 'l * 'm
+)
+ident(
+  int_ref constr "pair.ml" 25 795 801 "pair.ml" 25 795 807
+)
+"pair.ml" 39 1503 1511 "pair.ml" 39 1503 1522
+type(
+  'k * 'j -> 'k * 'j -> bool
+)
+ident(
+  def local_equal "pair.ml" 41 1602 1606 "pair.ml" 60 2361 2369
+)
+"pair.ml" 39 1503 1525 "pair.ml" 39 1503 1530
+type(
+  ('k -> 'k -> bool) -> ('j -> 'j -> bool) -> 'k * 'j -> 'k * 'j -> bool
+)
+ident(
+  int_ref equal "pair.ml" 26 858 864 "pair.ml" 26 858 869
+)
+"pair.ml" 39 1503 1531 "pair.ml" 39 1503 1542
+type(
+  'k -> 'k -> bool
+)
+ident(
+  int_ref _p_S1_equal "pair.ml" 35 1376 1380 "pair.ml" 35 1376 1391
+)
+"pair.ml" 39 1503 1543 "pair.ml" 39 1503 1554
+type(
+  'j -> 'j -> bool
+)
+ident(
+  int_ref _p_S2_equal "pair.ml" 34 1309 1350 "pair.ml" 34 1309 1361
+)
+"pair.ml" 39 1503 1525 "pair.ml" 39 1503 1554
+call(
+  stack
+)
+type(
+  'k * 'j -> 'k * 'j -> bool
+)
+"pair.ml" 41 1602 1610 "pair.ml" 41 1602 1621
+type(
+  Basics._focty_string -> 'n
+)
+ident(
+  def local_parse "pair.ml" 43 1697 1701 "pair.ml" 60 2361 2369
+)
+"pair.ml" 41 1602 1624 "pair.ml" 41 1602 1649
+type(
+  Basics._focty_string -> 'n
+)
+ident(
+  ext_ref Basics.Basic_object.parse
+)
+"pair.ml" 43 1697 1705 "pair.ml" 43 1697 1716
+type(
+  'o -> string
+)
+ident(
+  def local_print "pair.ml" 45 1786 1790 "pair.ml" 60 2361 2369
+)
+"pair.ml" 43 1697 1719 "pair.ml" 43 1697 1744
+type(
+  'o -> string
+)
+ident(
+  ext_ref Basics.Basic_object.print
+)
+"pair.ml" 45 1786 1794 "pair.ml" 45 1786 1805
+type(
+  'p * 'q -> 'p
+)
+ident(
+  def local_prj_a "pair.ml" 47 1855 1859 "pair.ml" 60 2361 2369
+)
+"pair.ml" 45 1786 1808 "pair.ml" 45 1786 1813
+type(
+  'p * 'q -> 'p
+)
+ident(
+  int_ref prj_a "pair.ml" 29 1052 1058 "pair.ml" 29 1052 1063
+)
+"pair.ml" 47 1855 1863 "pair.ml" 47 1855 1874
+type(
+  'r * 's -> 's
+)
+ident(
+  def local_prj_b "pair.ml" 49 1924 1928 "pair.ml" 60 2361 2369
+)
+"pair.ml" 47 1855 1877 "pair.ml" 47 1855 1882
+type(
+  'r * 's -> 's
+)
+ident(
+  int_ref prj_b "pair.ml" 30 1097 1103 "pair.ml" 30 1097 1108
+)
+"pair.ml" 49 1924 1932 "pair.ml" 49 1924 1945
+type(
+  'k * 'j
+)
+ident(
+  def local_element "pair.ml" 51 2036 2040 "pair.ml" 60 2361 2369
+)
+"pair.ml" 49 1924 1948 "pair.ml" 49 1924 1955
+type(
+  'k -> 'j -> ('k -> 'j -> 'k * 'j) -> 'k * 'j
+)
+ident(
+  int_ref element "pair.ml" 31 1142 1148 "pair.ml" 31 1142 1155
+)
+"pair.ml" 49 1924 1956 "pair.ml" 49 1924 1969
+type(
+  'k
+)
+ident(
+  int_ref _p_S1_element "pair.ml" 34 1309 1362 "pair.ml" 34 1309 1375
+)
+"pair.ml" 49 1924 1970 "pair.ml" 49 1924 1983
+type(
+  'j
+)
+ident(
+  int_ref _p_S2_element "pair.ml" 34 1309 1336 "pair.ml" 34 1309 1349
+)
+"pair.ml" 49 1924 1984 "pair.ml" 49 1924 1996
+type(
+  'k -> 'j -> 'k * 'j
+)
+ident(
+  int_ref local_constr "pair.ml" 37 1432 1440 "pair.ml" 37 1432 1452
+)
+"pair.ml" 49 1924 1948 "pair.ml" 49 1924 1996
+call(
+  stack
+)
+type(
+  'k * 'j
+)
+"pair.ml" 51 2036 2044 "pair.ml" 51 2036 2059
+type(
+  'k * 'j -> 'k * 'j -> bool
+)
+ident(
+  def local_different "pair.ml" 52 2099 2103 "pair.ml" 60 2361 2369
+)
+"pair.ml" 51 2036 2062 "pair.ml" 51 2036 2083
+type(
+  ('k * 'j -> 'k * 'j -> bool) -> 'k * 'j -> 'k * 'j -> bool
+)
+ident(
+  ext_ref Sets.Setoid.different
+)
+"pair.ml" 51 2036 2084 "pair.ml" 51 2036 2095
+type(
+  'k * 'j -> 'k * 'j -> bool
+)
+ident(
+  int_ref local_equal "pair.ml" 39 1503 1511 "pair.ml" 39 1503 1522
+)
+"pair.ml" 51 2036 2062 "pair.ml" 51 2036 2095
+call(
+  stack
+)
+type(
+  'k * 'j -> 'k * 'j -> bool
+)
+"pair.ml" 52 2099 2117 "pair.ml" 52 2099 2129
+type(
+  'k -> 'j -> 'k * 'j
+)
+ident(
+  int_ref local_constr "pair.ml" 37 1432 1440 "pair.ml" 37 1432 1452
+)
+"pair.ml" 53 2132 2149 "pair.ml" 53 2132 2160
+type(
+  'k * 'j -> 'k * 'j -> Basics._focty_bool
+)
+ident(
+  int_ref local_equal "pair.ml" 39 1503 1511 "pair.ml" 39 1503 1522
+)
+"pair.ml" 54 2163 2180 "pair.ml" 54 2163 2191
+type(
+  Basics._focty_string -> 'k * 'j
+)
+ident(
+  int_ref local_parse "pair.ml" 41 1602 1610 "pair.ml" 41 1602 1621
+)
+"pair.ml" 55 2194 2211 "pair.ml" 55 2194 2222
+type(
+  'k * 'j -> Basics._focty_string
+)
+ident(
+  int_ref local_print "pair.ml" 43 1697 1705 "pair.ml" 43 1697 1716
+)
+"pair.ml" 56 2225 2242 "pair.ml" 56 2225 2253
+type(
+  'k * 'j -> 'k
+)
+ident(
+  int_ref local_prj_a "pair.ml" 45 1786 1794 "pair.ml" 45 1786 1805
+)
+"pair.ml" 57 2256 2273 "pair.ml" 57 2256 2284
+type(
+  'k * 'j -> 'j
+)
+ident(
+  int_ref local_prj_b "pair.ml" 47 1855 1863 "pair.ml" 47 1855 1874
+)
+"pair.ml" 58 2287 2306 "pair.ml" 58 2287 2319
+type(
+  'k * 'j
+)
+ident(
+  int_ref local_element "pair.ml" 49 1924 1932 "pair.ml" 49 1924 1945
+)
+"pair.ml" 59 2322 2343 "pair.ml" 59 2322 2358
+type(
+  'k * 'j -> 'k * 'j -> Basics._focty_bool
+)
+ident(
+  int_ref local_different "pair.ml" 51 2036 2044 "pair.ml" 51 2036 2059
+)
+"pair.ml" 52 2099 2103 "pair.ml" 60 2361 2369
+type(
+  ('k, 'j, 'k * 'j) me_as_species
+)
+"pair.ml" 51 2036 2040 "pair.ml" 60 2361 2369
+type(
+  ('k, 'j, 'k * 'j) me_as_species
+)
+"pair.ml" 49 1924 1928 "pair.ml" 60 2361 2369
+type(
+  ('k, 'j, 'k * 'j) me_as_species
+)
+"pair.ml" 47 1855 1859 "pair.ml" 60 2361 2369
+type(
+  ('k, 'j, 'k * 'j) me_as_species
+)
+"pair.ml" 45 1786 1790 "pair.ml" 60 2361 2369
+type(
+  ('k, 'j, 'k * 'j) me_as_species
+)
+"pair.ml" 43 1697 1701 "pair.ml" 60 2361 2369
+type(
+  ('k, 'j, 'k * 'j) me_as_species
+)
+"pair.ml" 41 1602 1606 "pair.ml" 60 2361 2369
+type(
+  ('k, 'j, 'k * 'j) me_as_species
+)
+"pair.ml" 39 1503 1507 "pair.ml" 60 2361 2369
+type(
+  ('k, 'j, 'k * 'j) me_as_species
+)
+"pair.ml" 37 1432 1436 "pair.ml" 60 2361 2369
+type(
+  ('k, 'j, 'k * 'j) me_as_species
+)

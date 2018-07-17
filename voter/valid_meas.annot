@@ -1,0 +1,890 @@
+"valid_meas.ml" 23 756 762 "valid_meas.ml" 23 756 767
+type(
+  ('abst_T -> 'abst_T -> 'a) -> 'abst_T -> 'abst_T -> 'a
+)
+ident(
+  def equal "valid_meas.ml" 24 826 828 "valid_meas.ml" 60 2503 2508
+)
+"valid_meas.ml" 23 756 768 "valid_meas.ml" 23 756 778
+type(
+  'abst_T -> 'abst_T -> 'a
+)
+ident(
+  def _p_P_equal "valid_meas.ml" 23 756 779 "valid_meas.ml" 23 756 825
+)
+"valid_meas.ml" 23 756 780 "valid_meas.ml" 23 756 781
+type(
+  'abst_T
+)
+ident(
+  def x "valid_meas.ml" 23 756 793 "valid_meas.ml" 23 756 825
+)
+"valid_meas.ml" 23 756 794 "valid_meas.ml" 23 756 795
+type(
+  'abst_T
+)
+ident(
+  def y "valid_meas.ml" 23 756 809 "valid_meas.ml" 23 756 825
+)
+"valid_meas.ml" 23 756 810 "valid_meas.ml" 23 756 820
+type(
+  'abst_T -> 'abst_T -> 'a
+)
+ident(
+  int_ref _p_P_equal "valid_meas.ml" 23 756 768 "valid_meas.ml" 23 756 778
+)
+"valid_meas.ml" 23 756 821 "valid_meas.ml" 23 756 822
+type(
+  'abst_T
+)
+ident(
+  int_ref x "valid_meas.ml" 23 756 780 "valid_meas.ml" 23 756 781
+)
+"valid_meas.ml" 23 756 823 "valid_meas.ml" 23 756 824
+type(
+  'abst_T
+)
+ident(
+  int_ref y "valid_meas.ml" 23 756 794 "valid_meas.ml" 23 756 795
+)
+"valid_meas.ml" 23 756 809 "valid_meas.ml" 23 756 825
+call(
+  tail
+)
+type(
+  'a
+)
+"valid_meas.ml" 24 826 832 "valid_meas.ml" 24 826 837
+type(
+  'b -> 'b
+)
+ident(
+  def valid "valid_meas.ml" 25 860 862 "valid_meas.ml" 60 2503 2508
+)
+"valid_meas.ml" 24 826 838 "valid_meas.ml" 24 826 847
+type(
+  'b
+)
+ident(
+  def _p_P_zero "valid_meas.ml" 24 826 850 "valid_meas.ml" 24 826 859
+)
+"valid_meas.ml" 24 826 850 "valid_meas.ml" 24 826 859
+type(
+  'b
+)
+ident(
+  int_ref _p_P_zero "valid_meas.ml" 24 826 838 "valid_meas.ml" 24 826 847
+)
+"valid_meas.ml" 25 860 866 "valid_meas.ml" 25 860 873
+type(
+  ('c -> 'd) -> 'c -> 'd
+)
+ident(
+  def invalid "valid_meas.ml" 26 914 916 "valid_meas.ml" 60 2503 2508
+)
+"valid_meas.ml" 25 860 874 "valid_meas.ml" 25 860 880
+type(
+  'c -> 'd
+)
+ident(
+  def _p_P_s "valid_meas.ml" 25 860 881 "valid_meas.ml" 25 860 913
+)
+"valid_meas.ml" 25 860 881 "valid_meas.ml" 25 860 891
+type(
+  'c
+)
+ident(
+  def abst_valid "valid_meas.ml" 25 860 894 "valid_meas.ml" 25 860 913
+)
+"valid_meas.ml" 25 860 895 "valid_meas.ml" 25 860 901
+type(
+  'c -> 'd
+)
+ident(
+  int_ref _p_P_s "valid_meas.ml" 25 860 874 "valid_meas.ml" 25 860 880
+)
+"valid_meas.ml" 25 860 902 "valid_meas.ml" 25 860 912
+type(
+  'c
+)
+ident(
+  int_ref abst_valid "valid_meas.ml" 25 860 881 "valid_meas.ml" 25 860 891
+)
+"valid_meas.ml" 25 860 894 "valid_meas.ml" 25 860 913
+call(
+  tail
+)
+type(
+  'd
+)
+"valid_meas.ml" 26 914 920 "valid_meas.ml" 26 914 927
+type(
+  'e -> 'e
+)
+ident(
+  def element "valid_meas.ml" 27 956 958 "valid_meas.ml" 60 2503 2508
+)
+"valid_meas.ml" 26 914 928 "valid_meas.ml" 26 914 940
+type(
+  'e
+)
+ident(
+  def abst_invalid "valid_meas.ml" 26 914 943 "valid_meas.ml" 26 914 955
+)
+"valid_meas.ml" 26 914 943 "valid_meas.ml" 26 914 955
+type(
+  'e
+)
+ident(
+  int_ref abst_invalid "valid_meas.ml" 26 914 928 "valid_meas.ml" 26 914 940
+)
+"valid_meas.ml" 27 956 962 "valid_meas.ml" 27 956 967
+type(
+  'f -> 'f -> Basics._focty_string -> 'f
+)
+ident(
+  def parse "valid_meas.ml" 31 1200 1202 "valid_meas.ml" 60 2503 2508
+)
+"valid_meas.ml" 27 956 968 "valid_meas.ml" 27 956 978
+type(
+  'f
+)
+ident(
+  def abst_valid "valid_meas.ml" 27 956 979 "valid_meas.ml" 30 1132 1199
+)
+"valid_meas.ml" 27 956 979 "valid_meas.ml" 27 956 991
+type(
+  'f
+)
+ident(
+  def abst_invalid "valid_meas.ml" 27 956 992 "valid_meas.ml" 30 1132 1199
+)
+"valid_meas.ml" 27 956 993 "valid_meas.ml" 27 956 994
+type(
+  Basics._focty_string
+)
+ident(
+  def x "valid_meas.ml" 28 1021 1025 "valid_meas.ml" 30 1132 1199
+)
+"valid_meas.ml" 28 1021 1029 "valid_meas.ml" 28 1021 1043
+type(
+  Basics._focty_string -> Basics._focty_string -> bool
+)
+ident(
+  ext_ref Basics._equal_
+)
+"valid_meas.ml" 28 1021 1044 "valid_meas.ml" 28 1021 1045
+type(
+  Basics._focty_string
+)
+ident(
+  int_ref x "valid_meas.ml" 27 956 993 "valid_meas.ml" 27 956 994
+)
+"valid_meas.ml" 28 1021 1046 "valid_meas.ml" 28 1021 1053
+type(
+  Basics._focty_string
+)
+"valid_meas.ml" 28 1021 1028 "valid_meas.ml" 28 1021 1054
+call(
+  stack
+)
+type(
+  bool
+)
+"valid_meas.ml" 28 1021 1060 "valid_meas.ml" 28 1021 1070
+type(
+  'f
+)
+ident(
+  int_ref abst_valid "valid_meas.ml" 27 956 968 "valid_meas.ml" 27 956 978
+)
+"valid_meas.ml" 29 1071 1086 "valid_meas.ml" 29 1071 1100
+type(
+  Basics._focty_string -> Basics._focty_string -> bool
+)
+ident(
+  ext_ref Basics._equal_
+)
+"valid_meas.ml" 29 1071 1101 "valid_meas.ml" 29 1071 1102
+type(
+  Basics._focty_string
+)
+ident(
+  int_ref x "valid_meas.ml" 27 956 993 "valid_meas.ml" 27 956 994
+)
+"valid_meas.ml" 29 1071 1103 "valid_meas.ml" 29 1071 1112
+type(
+  Basics._focty_string
+)
+"valid_meas.ml" 29 1071 1085 "valid_meas.ml" 29 1071 1113
+call(
+  stack
+)
+type(
+  bool
+)
+"valid_meas.ml" 29 1071 1119 "valid_meas.ml" 29 1071 1131
+type(
+  'f
+)
+ident(
+  int_ref abst_invalid "valid_meas.ml" 27 956 979 "valid_meas.ml" 27 956 991
+)
+"valid_meas.ml" 30 1132 1151 "valid_meas.ml" 30 1132 1172
+type(
+  string -> 'f
+)
+ident(
+  ext_ref Basics.focalize_error
+)
+"valid_meas.ml" 30 1132 1173 "valid_meas.ml" 30 1132 1198
+type(
+  string
+)
+"valid_meas.ml" 30 1132 1150 "valid_meas.ml" 30 1132 1199
+call(
+  tail
+)
+type(
+  'f
+)
+"valid_meas.ml" 29 1071 1082 "valid_meas.ml" 30 1132 1199
+type(
+  'f
+)
+"valid_meas.ml" 28 1021 1025 "valid_meas.ml" 30 1132 1199
+type(
+  'f
+)
+"valid_meas.ml" 31 1200 1206 "valid_meas.ml" 31 1200 1211
+type(
+  ('abst_T0 -> 'g -> bool) -> 'g -> 'g -> 'abst_T0 -> string
+)
+ident(
+  def print "valid_meas.ml" 36 1488 1490 "valid_meas.ml" 60 2503 2508
+)
+"valid_meas.ml" 31 1200 1212 "valid_meas.ml" 31 1200 1222
+type(
+  'abst_T0 -> 'g -> bool
+)
+ident(
+  def abst_equal "valid_meas.ml" 31 1200 1223 "valid_meas.ml" 34 1382 1416
+)
+"valid_meas.ml" 31 1200 1223 "valid_meas.ml" 31 1200 1233
+type(
+  'g
+)
+ident(
+  def abst_valid "valid_meas.ml" 31 1200 1234 "valid_meas.ml" 34 1382 1416
+)
+"valid_meas.ml" 31 1200 1234 "valid_meas.ml" 31 1200 1246
+type(
+  'g
+)
+ident(
+  def abst_invalid "valid_meas.ml" 31 1200 1247 "valid_meas.ml" 34 1382 1416
+)
+"valid_meas.ml" 31 1200 1248 "valid_meas.ml" 31 1200 1249
+type(
+  'abst_T0
+)
+ident(
+  def x "valid_meas.ml" 32 1263 1267 "valid_meas.ml" 34 1382 1416
+)
+"valid_meas.ml" 32 1263 1271 "valid_meas.ml" 32 1263 1281
+type(
+  'abst_T0 -> 'g -> bool
+)
+ident(
+  int_ref abst_equal "valid_meas.ml" 31 1200 1212 "valid_meas.ml" 31 1200 1222
+)
+"valid_meas.ml" 32 1263 1282 "valid_meas.ml" 32 1263 1283
+type(
+  'abst_T0
+)
+ident(
+  int_ref x "valid_meas.ml" 31 1200 1248 "valid_meas.ml" 31 1200 1249
+)
+"valid_meas.ml" 32 1263 1284 "valid_meas.ml" 32 1263 1294
+type(
+  'g
+)
+ident(
+  int_ref abst_valid "valid_meas.ml" 31 1200 1223 "valid_meas.ml" 31 1200 1233
+)
+"valid_meas.ml" 32 1263 1270 "valid_meas.ml" 32 1263 1295
+call(
+  stack
+)
+type(
+  bool
+)
+"valid_meas.ml" 32 1263 1301 "valid_meas.ml" 32 1263 1316
+type(
+  string
+)
+"valid_meas.ml" 33 1317 1332 "valid_meas.ml" 33 1317 1342
+type(
+  'abst_T0 -> 'g -> bool
+)
+ident(
+  int_ref abst_equal "valid_meas.ml" 31 1200 1212 "valid_meas.ml" 31 1200 1222
+)
+"valid_meas.ml" 33 1317 1343 "valid_meas.ml" 33 1317 1344
+type(
+  'abst_T0
+)
+ident(
+  int_ref x "valid_meas.ml" 31 1200 1248 "valid_meas.ml" 31 1200 1249
+)
+"valid_meas.ml" 33 1317 1345 "valid_meas.ml" 33 1317 1357
+type(
+  'g
+)
+ident(
+  int_ref abst_invalid "valid_meas.ml" 31 1200 1234 "valid_meas.ml" 31 1200 1246
+)
+"valid_meas.ml" 33 1317 1331 "valid_meas.ml" 33 1317 1358
+call(
+  stack
+)
+type(
+  bool
+)
+"valid_meas.ml" 33 1317 1364 "valid_meas.ml" 33 1317 1381
+type(
+  string
+)
+"valid_meas.ml" 34 1382 1400 "valid_meas.ml" 34 1382 1416
+type(
+  string
+)
+"valid_meas.ml" 33 1317 1328 "valid_meas.ml" 34 1382 1416
+type(
+  string
+)
+"valid_meas.ml" 32 1263 1267 "valid_meas.ml" 34 1382 1416
+type(
+  string
+)
+"valid_meas.ml" 36 1488 1494 "valid_meas.ml" 36 1488 1511
+type(
+  unit ->
+  ('h -> 'h -> Basics._focty_bool) ->
+  ('h -> 'h) -> 'h -> ('i, 'h) me_as_species
+)
+ident(
+  def collection_create "valid_meas.ml" 58 2489 2497 "valid_meas.ml" 60 2503 2508
+)
+"valid_meas.ml" 36 1488 1512 "valid_meas.ml" 36 1488 1514
+type(
+  unit
+)
+"valid_meas.ml" 36 1488 1515 "valid_meas.ml" 36 1488 1525
+type(
+  'h -> 'h -> Basics._focty_bool
+)
+ident(
+  def _p_P_equal "valid_meas.ml" 36 1488 1526 "valid_meas.ml" 58 2489 2497
+)
+"valid_meas.ml" 36 1488 1526 "valid_meas.ml" 36 1488 1532
+type(
+  'h -> 'h
+)
+ident(
+  def _p_P_s "valid_meas.ml" 36 1488 1533 "valid_meas.ml" 58 2489 2497
+)
+"valid_meas.ml" 36 1488 1533 "valid_meas.ml" 36 1488 1542
+type(
+  'h
+)
+ident(
+  def _p_P_zero "valid_meas.ml" 38 1595 1599 "valid_meas.ml" 58 2489 2497
+)
+"valid_meas.ml" 38 1595 1603 "valid_meas.ml" 38 1595 1614
+type(
+  'h -> 'h -> Basics._focty_bool
+)
+ident(
+  def local_equal "valid_meas.ml" 40 1687 1691 "valid_meas.ml" 58 2489 2497
+)
+"valid_meas.ml" 38 1595 1617 "valid_meas.ml" 38 1595 1622
+type(
+  ('h -> 'h -> Basics._focty_bool) -> 'h -> 'h -> Basics._focty_bool
+)
+ident(
+  int_ref equal "valid_meas.ml" 23 756 762 "valid_meas.ml" 23 756 767
+)
+"valid_meas.ml" 38 1595 1623 "valid_meas.ml" 38 1595 1633
+type(
+  'h -> 'h -> Basics._focty_bool
+)
+ident(
+  int_ref _p_P_equal "valid_meas.ml" 36 1488 1515 "valid_meas.ml" 36 1488 1525
+)
+"valid_meas.ml" 38 1595 1617 "valid_meas.ml" 38 1595 1633
+call(
+  stack
+)
+type(
+  'h -> 'h -> Basics._focty_bool
+)
+"valid_meas.ml" 40 1687 1695 "valid_meas.ml" 40 1687 1706
+type(
+  'h
+)
+ident(
+  def local_valid "valid_meas.ml" 42 1764 1768 "valid_meas.ml" 58 2489 2497
+)
+"valid_meas.ml" 40 1687 1709 "valid_meas.ml" 40 1687 1714
+type(
+  'h -> 'h
+)
+ident(
+  int_ref valid "valid_meas.ml" 24 826 832 "valid_meas.ml" 24 826 837
+)
+"valid_meas.ml" 40 1687 1715 "valid_meas.ml" 40 1687 1724
+type(
+  'h
+)
+ident(
+  int_ref _p_P_zero "valid_meas.ml" 36 1488 1533 "valid_meas.ml" 36 1488 1542
+)
+"valid_meas.ml" 40 1687 1709 "valid_meas.ml" 40 1687 1724
+call(
+  stack
+)
+type(
+  'h
+)
+"valid_meas.ml" 42 1764 1772 "valid_meas.ml" 42 1764 1787
+type(
+  'h -> 'h -> bool
+)
+ident(
+  def local_different "valid_meas.ml" 44 1877 1881 "valid_meas.ml" 58 2489 2497
+)
+"valid_meas.ml" 42 1764 1790 "valid_meas.ml" 42 1764 1811
+type(
+  ('h -> 'h -> Basics._focty_bool) -> 'h -> 'h -> bool
+)
+ident(
+  ext_ref Sets.Setoid.different
+)
+"valid_meas.ml" 42 1764 1812 "valid_meas.ml" 42 1764 1823
+type(
+  'h -> 'h -> Basics._focty_bool
+)
+ident(
+  int_ref local_equal "valid_meas.ml" 38 1595 1603 "valid_meas.ml" 38 1595 1614
+)
+"valid_meas.ml" 42 1764 1790 "valid_meas.ml" 42 1764 1823
+call(
+  stack
+)
+type(
+  'h -> 'h -> bool
+)
+"valid_meas.ml" 44 1877 1885 "valid_meas.ml" 44 1877 1898
+type(
+  'h
+)
+ident(
+  def local_invalid "valid_meas.ml" 46 1981 1985 "valid_meas.ml" 58 2489 2497
+)
+"valid_meas.ml" 44 1877 1901 "valid_meas.ml" 44 1877 1908
+type(
+  ('h -> 'h) -> 'h -> 'h
+)
+ident(
+  int_ref invalid "valid_meas.ml" 25 860 866 "valid_meas.ml" 25 860 873
+)
+"valid_meas.ml" 44 1877 1909 "valid_meas.ml" 44 1877 1915
+type(
+  'h -> 'h
+)
+ident(
+  int_ref _p_P_s "valid_meas.ml" 36 1488 1526 "valid_meas.ml" 36 1488 1532
+)
+"valid_meas.ml" 44 1877 1916 "valid_meas.ml" 44 1877 1927
+type(
+  'h
+)
+ident(
+  int_ref local_valid "valid_meas.ml" 40 1687 1695 "valid_meas.ml" 40 1687 1706
+)
+"valid_meas.ml" 44 1877 1901 "valid_meas.ml" 44 1877 1927
+call(
+  stack
+)
+type(
+  'h
+)
+"valid_meas.ml" 46 1981 1989 "valid_meas.ml" 46 1981 2002
+type(
+  'h
+)
+ident(
+  def local_element "valid_meas.ml" 48 2080 2084 "valid_meas.ml" 58 2489 2497
+)
+"valid_meas.ml" 46 1981 2005 "valid_meas.ml" 46 1981 2012
+type(
+  'h -> 'h
+)
+ident(
+  int_ref element "valid_meas.ml" 26 914 920 "valid_meas.ml" 26 914 927
+)
+"valid_meas.ml" 46 1981 2013 "valid_meas.ml" 46 1981 2026
+type(
+  'h
+)
+ident(
+  int_ref local_invalid "valid_meas.ml" 44 1877 1885 "valid_meas.ml" 44 1877 1898
+)
+"valid_meas.ml" 46 1981 2005 "valid_meas.ml" 46 1981 2026
+call(
+  stack
+)
+type(
+  'h
+)
+"valid_meas.ml" 48 2080 2088 "valid_meas.ml" 48 2080 2099
+type(
+  Basics._focty_string -> 'h
+)
+ident(
+  def local_parse "valid_meas.ml" 50 2187 2191 "valid_meas.ml" 58 2489 2497
+)
+"valid_meas.ml" 48 2080 2102 "valid_meas.ml" 48 2080 2107
+type(
+  'h -> 'h -> Basics._focty_string -> 'h
+)
+ident(
+  int_ref parse "valid_meas.ml" 27 956 962 "valid_meas.ml" 27 956 967
+)
+"valid_meas.ml" 48 2080 2108 "valid_meas.ml" 48 2080 2119
+type(
+  'h
+)
+ident(
+  int_ref local_valid "valid_meas.ml" 40 1687 1695 "valid_meas.ml" 40 1687 1706
+)
+"valid_meas.ml" 48 2080 2120 "valid_meas.ml" 48 2080 2133
+type(
+  'h
+)
+ident(
+  int_ref local_invalid "valid_meas.ml" 44 1877 1885 "valid_meas.ml" 44 1877 1898
+)
+"valid_meas.ml" 48 2080 2102 "valid_meas.ml" 48 2080 2133
+call(
+  stack
+)
+type(
+  Basics._focty_string -> 'h
+)
+"valid_meas.ml" 50 2187 2195 "valid_meas.ml" 50 2187 2206
+type(
+  'h -> string
+)
+ident(
+  def local_print "valid_meas.ml" 51 2256 2260 "valid_meas.ml" 58 2489 2497
+)
+"valid_meas.ml" 50 2187 2209 "valid_meas.ml" 50 2187 2214
+type(
+  ('h -> 'h -> Basics._focty_bool) -> 'h -> 'h -> 'h -> string
+)
+ident(
+  int_ref print "valid_meas.ml" 31 1200 1206 "valid_meas.ml" 31 1200 1211
+)
+"valid_meas.ml" 50 2187 2215 "valid_meas.ml" 50 2187 2226
+type(
+  'h -> 'h -> Basics._focty_bool
+)
+ident(
+  int_ref local_equal "valid_meas.ml" 38 1595 1603 "valid_meas.ml" 38 1595 1614
+)
+"valid_meas.ml" 50 2187 2227 "valid_meas.ml" 50 2187 2238
+type(
+  'h
+)
+ident(
+  int_ref local_valid "valid_meas.ml" 40 1687 1695 "valid_meas.ml" 40 1687 1706
+)
+"valid_meas.ml" 50 2187 2239 "valid_meas.ml" 50 2187 2252
+type(
+  'h
+)
+ident(
+  int_ref local_invalid "valid_meas.ml" 44 1877 1885 "valid_meas.ml" 44 1877 1898
+)
+"valid_meas.ml" 50 2187 2209 "valid_meas.ml" 50 2187 2252
+call(
+  stack
+)
+type(
+  'h -> string
+)
+"valid_meas.ml" 51 2256 2273 "valid_meas.ml" 51 2256 2284
+type(
+  'h -> 'h -> Basics._focty_bool
+)
+ident(
+  int_ref local_equal "valid_meas.ml" 38 1595 1603 "valid_meas.ml" 38 1595 1614
+)
+"valid_meas.ml" 52 2287 2304 "valid_meas.ml" 52 2287 2315
+type(
+  'h
+)
+ident(
+  int_ref local_valid "valid_meas.ml" 40 1687 1695 "valid_meas.ml" 40 1687 1706
+)
+"valid_meas.ml" 53 2318 2339 "valid_meas.ml" 53 2318 2354
+type(
+  'h -> 'h -> Basics._focty_bool
+)
+ident(
+  int_ref local_different "valid_meas.ml" 42 1764 1772 "valid_meas.ml" 42 1764 1787
+)
+"valid_meas.ml" 54 2357 2376 "valid_meas.ml" 54 2357 2389
+type(
+  'h
+)
+ident(
+  int_ref local_invalid "valid_meas.ml" 44 1877 1885 "valid_meas.ml" 44 1877 1898
+)
+"valid_meas.ml" 55 2392 2411 "valid_meas.ml" 55 2392 2424
+type(
+  'h
+)
+ident(
+  int_ref local_element "valid_meas.ml" 46 1981 1989 "valid_meas.ml" 46 1981 2002
+)
+"valid_meas.ml" 56 2427 2444 "valid_meas.ml" 56 2427 2455
+type(
+  Basics._focty_string -> 'h
+)
+ident(
+  int_ref local_parse "valid_meas.ml" 48 2080 2088 "valid_meas.ml" 48 2080 2099
+)
+"valid_meas.ml" 57 2458 2475 "valid_meas.ml" 57 2458 2486
+type(
+  'h -> Basics._focty_string
+)
+ident(
+  int_ref local_print "valid_meas.ml" 50 2187 2195 "valid_meas.ml" 50 2187 2206
+)
+"valid_meas.ml" 51 2256 2260 "valid_meas.ml" 58 2489 2497
+type(
+  ('i, 'h) me_as_species
+)
+"valid_meas.ml" 50 2187 2191 "valid_meas.ml" 58 2489 2497
+type(
+  ('i, 'h) me_as_species
+)
+"valid_meas.ml" 48 2080 2084 "valid_meas.ml" 58 2489 2497
+type(
+  ('i, 'h) me_as_species
+)
+"valid_meas.ml" 46 1981 1985 "valid_meas.ml" 58 2489 2497
+type(
+  ('i, 'h) me_as_species
+)
+"valid_meas.ml" 44 1877 1881 "valid_meas.ml" 58 2489 2497
+type(
+  ('i, 'h) me_as_species
+)
+"valid_meas.ml" 42 1764 1768 "valid_meas.ml" 58 2489 2497
+type(
+  ('i, 'h) me_as_species
+)
+"valid_meas.ml" 40 1687 1691 "valid_meas.ml" 58 2489 2497
+type(
+  ('i, 'h) me_as_species
+)
+"valid_meas.ml" 38 1595 1599 "valid_meas.ml" 58 2489 2497
+type(
+  ('i, 'h) me_as_species
+)
+"valid_meas.ml" 84 3394 3400 "valid_meas.ml" 84 3394 3420
+type(
+  ('a, Peano.Coll_peano.me_as_carrier) Imp_valid_meas.me_as_species
+)
+ident(
+  def effective_collection "valid_meas.ml" 87 3531 3533 "valid_meas.ml" 94 3960 3965
+)
+"valid_meas.ml" 85 3423 3427 "valid_meas.ml" 85 3423 3459
+type(
+  unit ->
+  (Peano.Coll_peano.me_as_carrier ->
+   Peano.Coll_peano.me_as_carrier -> Basics._focty_bool) ->
+  (Peano.Coll_peano.me_as_carrier -> Peano.Coll_peano.me_as_carrier) ->
+  Peano.Coll_peano.me_as_carrier ->
+  ('a, Peano.Coll_peano.me_as_carrier) Imp_valid_meas.me_as_species
+)
+ident(
+  int_ref Imp_valid_meas.collection_create "valid_meas.ml" 36 1488 1494 "valid_meas.ml" 36 1488 1511
+)
+"valid_meas.ml" 85 3423 3460 "valid_meas.ml" 85 3423 3462
+type(
+  unit
+)
+"valid_meas.ml" 85 3423 3463 "valid_meas.ml" 85 3423 3485
+type(
+  Peano.Coll_peano.me_as_carrier ->
+  Peano.Coll_peano.me_as_carrier -> Basics._focty_bool
+)
+ident(
+  ext_ref Peano.Coll_peano.equal
+)
+"valid_meas.ml" 86 3486 3490 "valid_meas.ml" 86 3486 3508
+type(
+  Peano.Coll_peano.me_as_carrier -> Peano.Coll_peano.me_as_carrier
+)
+ident(
+  ext_ref Peano.Coll_peano.s
+)
+"valid_meas.ml" 86 3486 3509 "valid_meas.ml" 86 3486 3530
+type(
+  Peano.Coll_peano.me_as_carrier
+)
+ident(
+  ext_ref Peano.Coll_peano.zero
+)
+"valid_meas.ml" 85 3423 3427 "valid_meas.ml" 86 3486 3530
+call(
+  stack
+)
+type(
+  ('a, Peano.Coll_peano.me_as_carrier) Imp_valid_meas.me_as_species
+)
+"valid_meas.ml" 87 3531 3537 "valid_meas.ml" 87 3531 3542
+type(
+  Peano.Coll_peano.me_as_carrier ->
+  Peano.Coll_peano.me_as_carrier -> Basics._focty_bool
+)
+ident(
+  def equal "valid_meas.ml" 88 3590 3592 "valid_meas.ml" 94 3960 3965
+)
+"valid_meas.ml" 87 3531 3545 "valid_meas.ml" 87 3531 3565
+type(
+  ('_b, Peano.Coll_peano.me_as_carrier) Imp_valid_meas.me_as_species
+)
+ident(
+  int_ref effective_collection "valid_meas.ml" 84 3394 3400 "valid_meas.ml" 84 3394 3420
+)
+"valid_meas.ml" 87 3531 3545 "valid_meas.ml" 87 3531 3589
+type(
+  Peano.Coll_peano.me_as_carrier ->
+  Peano.Coll_peano.me_as_carrier -> Basics._focty_bool
+)
+"valid_meas.ml" 88 3590 3596 "valid_meas.ml" 88 3590 3601
+type(
+  Peano.Coll_peano.me_as_carrier
+)
+ident(
+  def valid "valid_meas.ml" 89 3649 3651 "valid_meas.ml" 94 3960 3965
+)
+"valid_meas.ml" 88 3590 3604 "valid_meas.ml" 88 3590 3624
+type(
+  ('_c, Peano.Coll_peano.me_as_carrier) Imp_valid_meas.me_as_species
+)
+ident(
+  int_ref effective_collection "valid_meas.ml" 84 3394 3400 "valid_meas.ml" 84 3394 3420
+)
+"valid_meas.ml" 88 3590 3604 "valid_meas.ml" 88 3590 3648
+type(
+  Peano.Coll_peano.me_as_carrier
+)
+"valid_meas.ml" 89 3649 3655 "valid_meas.ml" 89 3649 3664
+type(
+  Peano.Coll_peano.me_as_carrier ->
+  Peano.Coll_peano.me_as_carrier -> Basics._focty_bool
+)
+ident(
+  def different "valid_meas.ml" 90 3716 3718 "valid_meas.ml" 94 3960 3965
+)
+"valid_meas.ml" 89 3649 3667 "valid_meas.ml" 89 3649 3687
+type(
+  ('_d, Peano.Coll_peano.me_as_carrier) Imp_valid_meas.me_as_species
+)
+ident(
+  int_ref effective_collection "valid_meas.ml" 84 3394 3400 "valid_meas.ml" 84 3394 3420
+)
+"valid_meas.ml" 89 3649 3667 "valid_meas.ml" 89 3649 3715
+type(
+  Peano.Coll_peano.me_as_carrier ->
+  Peano.Coll_peano.me_as_carrier -> Basics._focty_bool
+)
+"valid_meas.ml" 90 3716 3722 "valid_meas.ml" 90 3716 3729
+type(
+  Peano.Coll_peano.me_as_carrier
+)
+ident(
+  def invalid "valid_meas.ml" 91 3779 3781 "valid_meas.ml" 94 3960 3965
+)
+"valid_meas.ml" 90 3716 3732 "valid_meas.ml" 90 3716 3752
+type(
+  ('_e, Peano.Coll_peano.me_as_carrier) Imp_valid_meas.me_as_species
+)
+ident(
+  int_ref effective_collection "valid_meas.ml" 84 3394 3400 "valid_meas.ml" 84 3394 3420
+)
+"valid_meas.ml" 90 3716 3732 "valid_meas.ml" 90 3716 3778
+type(
+  Peano.Coll_peano.me_as_carrier
+)
+"valid_meas.ml" 91 3779 3785 "valid_meas.ml" 91 3779 3792
+type(
+  Peano.Coll_peano.me_as_carrier
+)
+ident(
+  def element "valid_meas.ml" 92 3842 3844 "valid_meas.ml" 94 3960 3965
+)
+"valid_meas.ml" 91 3779 3795 "valid_meas.ml" 91 3779 3815
+type(
+  ('_f, Peano.Coll_peano.me_as_carrier) Imp_valid_meas.me_as_species
+)
+ident(
+  int_ref effective_collection "valid_meas.ml" 84 3394 3400 "valid_meas.ml" 84 3394 3420
+)
+"valid_meas.ml" 91 3779 3795 "valid_meas.ml" 91 3779 3841
+type(
+  Peano.Coll_peano.me_as_carrier
+)
+"valid_meas.ml" 92 3842 3848 "valid_meas.ml" 92 3842 3853
+type(
+  Basics._focty_string -> Peano.Coll_peano.me_as_carrier
+)
+ident(
+  def parse "valid_meas.ml" 93 3901 3903 "valid_meas.ml" 94 3960 3965
+)
+"valid_meas.ml" 92 3842 3856 "valid_meas.ml" 92 3842 3876
+type(
+  ('_g, Peano.Coll_peano.me_as_carrier) Imp_valid_meas.me_as_species
+)
+ident(
+  int_ref effective_collection "valid_meas.ml" 84 3394 3400 "valid_meas.ml" 84 3394 3420
+)
+"valid_meas.ml" 92 3842 3856 "valid_meas.ml" 92 3842 3900
+type(
+  Basics._focty_string -> Peano.Coll_peano.me_as_carrier
+)
+"valid_meas.ml" 93 3901 3907 "valid_meas.ml" 93 3901 3912
+type(
+  Peano.Coll_peano.me_as_carrier -> Basics._focty_string
+)
+ident(
+  def print "valid_meas.ml" 93 3901 3959 "valid_meas.ml" 94 3960 3965
+)
+"valid_meas.ml" 93 3901 3915 "valid_meas.ml" 93 3901 3935
+type(
+  ('_h, Peano.Coll_peano.me_as_carrier) Imp_valid_meas.me_as_species
+)
+ident(
+  int_ref effective_collection "valid_meas.ml" 84 3394 3400 "valid_meas.ml" 84 3394 3420
+)
+"valid_meas.ml" 93 3901 3915 "valid_meas.ml" 93 3901 3959
+type(
+  Peano.Coll_peano.me_as_carrier -> Basics._focty_string
+)

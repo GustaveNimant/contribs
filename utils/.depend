@@ -1,0 +1,18 @@
+pair.fo:
+pair.ml:
+pair.zv:
+pair.v:
+pair.sk:
+pair.cmo:
+pair.cmx:
+pair.dko: pair.sk
+pair.cmx:
+peano.fo:
+peano.ml:
+peano.zv:
+peano.v:
+peano.sk:
+peano.cmo:
+peano.cmx:
+peano.dko: peano.sk
+peano.cmx:

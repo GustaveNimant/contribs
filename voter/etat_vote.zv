@@ -1,0 +1,931 @@
+(* Coq >= 8.3pl2: disable automatic introduction of hypotheses. *)
+Global Unset Automatic Introduction.
+(* Coq >= 8.5: allow sum constructors without explicit types in patterns. *)
+Global Set Asymmetric Patterns.
+Require Export Bool.
+Require Export ZArith.
+Open Scope Z_scope.
+Require Export Reals.
+Require Export Ascii.
+Require Export String.
+Require Export List.
+Require Import Wellfounded.
+Require Export Recdef.
+Require Export coq_builtins.
+Require Import Relations.
+Require Import Zwf.
+
+(* Below: to prevent Function to apply heuristics that would
+the expected aim in recursive functions termination proofs. *)
+
+Set Function_raw_tcc.
+
+Require basics.
+Require sets.
+Require orders.
+Require integers.
+Require peano.
+Module Sp_etat_vote.
+  
+  (* From species etat_vote#Sp_etat_vote. *)
+  Theorem all_value  (abst_T : Set)
+    (abst_equal : abst_T -> abst_T -> basics.bool__t)
+    (abst_no_match : abst_T) (abst_partial_match : abst_T)
+    (abst_perfect_match : abst_T) (abst_range_match : abst_T):
+    forall e : abst_T,
+      (Is_true ((abst_equal e abst_no_match)) \/
+         Is_true ((abst_equal e abst_range_match)) \/
+           Is_true ((abst_equal e abst_partial_match)) \/
+             Is_true ((abst_equal e abst_perfect_match))).
+  (* Proof was flagged as assumed *)
+  apply coq_builtins.magic_prove.
+  Qed.
+  
+End Sp_etat_vote.
+
+Module Imp_etat_vote.
+  Record me_as_species (P_T : Set) : Type :=
+    mk_record {
+    rf_T : Set ;
+    (* From species etat_vote#Imp_etat_vote. *)
+    rf_equal : rf_T -> rf_T -> basics.bool__t ;
+    (* From species etat_vote#Imp_etat_vote. *)
+    rf_no_match : rf_T ;
+    (* From species basics#Basic_object. *)
+    rf_parse : basics.string__t -> rf_T ;
+    (* From species sets#Setoid. *)
+    rf_different : rf_T -> rf_T -> basics.bool__t ;
+    (* From species etat_vote#Imp_etat_vote. *)
+    rf_equal_reflexive : forall x : rf_T, Is_true ((rf_equal x x)) ;
+    (* From species etat_vote#Imp_etat_vote. *)
+    rf_equal_symmetric :
+      forall x  y : rf_T,
+        Is_true ((rf_equal x y)) -> Is_true ((rf_equal y x)) ;
+    (* From species etat_vote#Imp_etat_vote. *)
+    rf_equal_transitive :
+      forall x  y  z : rf_T,
+        Is_true ((rf_equal x y)) ->
+          Is_true ((rf_equal y z)) -> Is_true ((rf_equal x z)) ;
+    (* From species etat_vote#Imp_etat_vote. *)
+    rf_element : rf_T ;
+    (* From species etat_vote#Imp_etat_vote. *)
+    rf_range_match : rf_T ;
+    (* From species sets#Setoid. *)
+    rf_same_is_not_different :
+      forall x  y : rf_T,
+        Is_true ((rf_different x y)) <-> ~Is_true (((rf_equal x y))) ;
+    (* From species etat_vote#Imp_etat_vote. *)
+    rf_all_field_different_0_1 :
+      ~Is_true (((rf_equal rf_no_match rf_range_match))) ;
+    (* From species etat_vote#Imp_etat_vote. *)
+    rf_partial_match : rf_T ;
+    (* From species sets#Setoid. *)
+    rf_different_is_complete :
+      forall x  y  z : rf_T,
+        Is_true ((rf_different x y)) ->
+          (Is_true ((rf_different x z)) \/ Is_true ((rf_different y z))) ;
+    (* From species sets#Setoid. *)
+    rf_different_is_irreflexive :
+      forall x : rf_T, ~Is_true (((rf_different x x))) ;
+    (* From species sets#Setoid. *)
+    rf_different_is_symmetric :
+      forall x  y : rf_T,
+        Is_true ((rf_different x y)) -> Is_true ((rf_different y x)) ;
+    (* From species etat_vote#Imp_etat_vote. *)
+    rf_all_field_different_0_2 :
+      ~Is_true (((rf_equal rf_no_match rf_partial_match))) ;
+    (* From species etat_vote#Imp_etat_vote. *)
+    rf_all_field_different_1_2 :
+      ~Is_true (((rf_equal rf_range_match rf_partial_match))) ;
+    (* From species etat_vote#Imp_etat_vote. *)
+    rf_perfect_match : rf_T ;
+    (* From species etat_vote#Imp_etat_vote. *)
+    rf_all_field_different_0_3 :
+      ~Is_true (((rf_equal rf_no_match rf_perfect_match))) ;
+    (* From species etat_vote#Imp_etat_vote. *)
+    rf_all_field_different_1_3 :
+      ~Is_true (((rf_equal rf_range_match rf_perfect_match))) ;
+    (* From species etat_vote#Imp_etat_vote. *)
+    rf_all_field_different_2_3 :
+      ~Is_true (((rf_equal rf_partial_match rf_perfect_match))) ;
+    (* From species etat_vote#Sp_etat_vote. *)
+    rf_all_value :
+      forall e : rf_T,
+        (Is_true ((rf_equal e rf_no_match)) \/
+           Is_true ((rf_equal e rf_range_match)) \/
+             Is_true ((rf_equal e rf_partial_match)) \/
+               Is_true ((rf_equal e rf_perfect_match))) ;
+    (* From species etat_vote#Imp_etat_vote. *)
+    rf_print : rf_T -> basics.string__t
+    }.
+  
+  Definition equal (_p_P_T : Set) (_p_P_equal :
+    _p_P_T -> _p_P_T -> basics.bool__t) (abst_T := _p_P_T) (x : abst_T)
+    (y : abst_T) : basics.bool__t := (_p_P_equal x y).
+  Definition no_match (_p_P_T : Set) (_p_P_zero : _p_P_T)
+    (abst_T := _p_P_T) : abst_T := _p_P_zero.
+  
+  (* From species etat_vote#Imp_etat_vote. *)
+  (* Section for proof of theorem 'equal_reflexive'. *)
+  Section Proof_of_equal_reflexive.
+    Variable _p_P_T : Set.
+    Variable _p_P_equal : _p_P_T -> _p_P_T -> basics.bool__t.
+    Variable _p_P_equal_reflexive :
+      forall x : _p_P_T, Is_true ((_p_P_equal x x)).
+    Let abst_T := _p_P_T.
+    Let abst_equal := equal _p_P_T
+    _p_P_equal.
+    %%begin-auto-proof
+    %%location: [File "etat_vote.fcl", line 89, characters 4-53]
+    %%name: for_zenon_equal_reflexive
+    
+    
+    
+    (* Methods to use for automated proof. *)
+    (* For species parameter method used via "by property etat_vote#P!equal_reflexive". *)
+    Parameter _p_P_equal_reflexive :
+      forall x : _p_P_T, Is_true ((_p_P_equal x x)).
+    (* For method of Self used via "by definition of !equal". *)
+    Definition abst_equal (x : abst_T) (y : abst_T) : basics.bool__t :=
+      (_p_P_equal x y).
+    (* Theorem's body. *)
+    Theorem for_zenon_equal_reflexive :
+    forall x : abst_T, Is_true ((abst_equal x x)).
+    %%end-auto-proof
+    (* Dummy theorem to enforce Coq abstractions. *)
+    Theorem for_zenon_abstracted_equal_reflexive :
+      forall x : abst_T, Is_true ((abst_equal x x)).
+    assert (__force_use_p_P_T := _p_P_T).
+    assert (__force_use__p_P_equal := _p_P_equal).
+    assert (__force_use__p_P_equal_reflexive := _p_P_equal_reflexive).
+    assert (__force_use_abst_T := abst_T).
+    assert (__force_use_abst_equal := abst_equal).
+    apply for_zenon_equal_reflexive;
+    auto.
+    Qed.
+    End Proof_of_equal_reflexive.
+  
+  Theorem equal_reflexive  (_p_P_T : Set) (_p_P_equal :
+    _p_P_T -> _p_P_T -> basics.bool__t) (_p_P_equal_reflexive :
+    forall x : _p_P_T, Is_true ((_p_P_equal x x))) (abst_T := _p_P_T)
+    (abst_equal := equal _p_P_T _p_P_equal):
+    forall x : abst_T, Is_true ((abst_equal x x)).
+  apply for_zenon_abstracted_equal_reflexive;
+  auto.
+  Qed.
+  
+  (* From species etat_vote#Imp_etat_vote. *)
+  (* Section for proof of theorem 'equal_symmetric'. *)
+  Section Proof_of_equal_symmetric.
+    Variable _p_P_T : Set.
+    Variable _p_P_equal : _p_P_T -> _p_P_T -> basics.bool__t.
+    Variable _p_P_equal_symmetric :
+      forall x  y : _p_P_T,
+        Is_true ((_p_P_equal x y)) -> Is_true ((_p_P_equal y x)).
+    Let abst_T := _p_P_T.
+    Let abst_equal := equal _p_P_T
+    _p_P_equal.
+    %%begin-auto-proof
+    %%location: [File "etat_vote.fcl", line 87, characters 4-53]
+    %%name: for_zenon_equal_symmetric
+    
+    
+    
+    (* Methods to use for automated proof. *)
+    (* For species parameter method used via "by property etat_vote#P!equal_symmetric". *)
+    Parameter _p_P_equal_symmetric :
+      forall x  y : _p_P_T,
+        Is_true ((_p_P_equal x y)) -> Is_true ((_p_P_equal y x)).
+    (* For method of Self used via "by definition of !equal". *)
+    Definition abst_equal (x : abst_T) (y : abst_T) : basics.bool__t :=
+      (_p_P_equal x y).
+    (* Theorem's body. *)
+    Theorem for_zenon_equal_symmetric :
+    forall x  y : abst_T,
+      Is_true ((abst_equal x y)) -> Is_true ((abst_equal y x)).
+    %%end-auto-proof
+    (* Dummy theorem to enforce Coq abstractions. *)
+    Theorem for_zenon_abstracted_equal_symmetric :
+      forall x  y : abst_T,
+        Is_true ((abst_equal x y)) -> Is_true ((abst_equal y x)).
+    assert (__force_use_p_P_T := _p_P_T).
+    assert (__force_use__p_P_equal := _p_P_equal).
+    assert (__force_use__p_P_equal_symmetric := _p_P_equal_symmetric).
+    assert (__force_use_abst_T := abst_T).
+    assert (__force_use_abst_equal := abst_equal).
+    apply for_zenon_equal_symmetric;
+    auto.
+    Qed.
+    End Proof_of_equal_symmetric.
+  
+  Theorem equal_symmetric  (_p_P_T : Set) (_p_P_equal :
+    _p_P_T -> _p_P_T -> basics.bool__t) (_p_P_equal_symmetric :
+    forall x  y : _p_P_T,
+      Is_true ((_p_P_equal x y)) -> Is_true ((_p_P_equal y x)))
+    (abst_T := _p_P_T) (abst_equal := equal _p_P_T _p_P_equal):
+    forall x  y : abst_T,
+      Is_true ((abst_equal x y)) -> Is_true ((abst_equal y x)).
+  apply for_zenon_abstracted_equal_symmetric;
+  auto.
+  Qed.
+  
+  (* From species etat_vote#Imp_etat_vote. *)
+  (* Section for proof of theorem 'equal_transitive'. *)
+  Section Proof_of_equal_transitive.
+    Variable _p_P_T : Set.
+    Variable _p_P_equal : _p_P_T -> _p_P_T -> basics.bool__t.
+    Variable _p_P_equal_transitive :
+      forall x  y  z : _p_P_T,
+        (Is_true ((_p_P_equal x y)) /\ Is_true ((_p_P_equal y z))) ->
+          Is_true ((_p_P_equal x z)).
+    Let abst_T := _p_P_T.
+    Let abst_equal := equal _p_P_T
+    _p_P_equal.
+    %%begin-auto-proof
+    %%location: [File "etat_vote.fcl", line 85, characters 4-54]
+    %%name: for_zenon_equal_transitive
+    
+    
+    
+    (* Methods to use for automated proof. *)
+    (* For species parameter method used via "by property etat_vote#P!equal_transitive". *)
+    Parameter _p_P_equal_transitive :
+      forall x  y  z : _p_P_T,
+        (Is_true ((_p_P_equal x y)) /\ Is_true ((_p_P_equal y z))) ->
+          Is_true ((_p_P_equal x z)).
+    (* For method of Self used via "by definition of !equal". *)
+    Definition abst_equal (x : abst_T) (y : abst_T) : basics.bool__t :=
+      (_p_P_equal x y).
+    (* Theorem's body. *)
+    Theorem for_zenon_equal_transitive :
+    forall x  y  z : abst_T,
+      Is_true ((abst_equal x y)) ->
+        Is_true ((abst_equal y z)) -> Is_true ((abst_equal x z)).
+    %%end-auto-proof
+    (* Dummy theorem to enforce Coq abstractions. *)
+    Theorem for_zenon_abstracted_equal_transitive :
+      forall x  y  z : abst_T,
+        Is_true ((abst_equal x y)) ->
+          Is_true ((abst_equal y z)) -> Is_true ((abst_equal x z)).
+    assert (__force_use_p_P_T := _p_P_T).
+    assert (__force_use__p_P_equal := _p_P_equal).
+    assert (__force_use__p_P_equal_transitive := _p_P_equal_transitive).
+    assert (__force_use_abst_T := abst_T).
+    assert (__force_use_abst_equal := abst_equal).
+    apply for_zenon_equal_transitive;
+    auto.
+    Qed.
+    End Proof_of_equal_transitive.
+  
+  Theorem equal_transitive  (_p_P_T : Set) (_p_P_equal :
+    _p_P_T -> _p_P_T -> basics.bool__t) (_p_P_equal_transitive :
+    forall x  y  z : _p_P_T,
+      (Is_true ((_p_P_equal x y)) /\ Is_true ((_p_P_equal y z))) ->
+        Is_true ((_p_P_equal x z)))
+    (abst_T := _p_P_T) (abst_equal := equal _p_P_T _p_P_equal):
+    forall x  y  z : abst_T,
+      Is_true ((abst_equal x y)) ->
+        Is_true ((abst_equal y z)) -> Is_true ((abst_equal x z)).
+  apply for_zenon_abstracted_equal_transitive;
+  auto.
+  Qed.
+  Definition element (_p_P_T : Set) (abst_T : Set) (abst_no_match : abst_T) :
+    abst_T := abst_no_match.
+  Definition range_match (_p_P_T : Set) (_p_P_s : _p_P_T -> _p_P_T)
+    (abst_T := _p_P_T) (abst_no_match : abst_T) : abst_T :=
+    (_p_P_s abst_no_match).
+  
+  (* From species etat_vote#Imp_etat_vote. *)
+  (* Section for proof of theorem 'all_field_different_0_1'. *)
+  Section Proof_of_all_field_different_0_1.
+    Variable _p_P_T : Set.
+    Variable _p_P_equal : _p_P_T -> _p_P_T -> basics.bool__t.
+    Variable _p_P_s : _p_P_T -> _p_P_T.
+    Variable _p_P_zero : _p_P_T.
+    Variable _p_P_zero_is_not_successor :
+      forall x : _p_P_T, ~Is_true ((_p_P_equal _p_P_zero (_p_P_s x))).
+    Let abst_T := _p_P_T.
+    Let abst_equal := equal _p_P_T _p_P_equal.
+    Let abst_no_match := no_match _p_P_T _p_P_zero.
+    Let abst_range_match := range_match _p_P_T _p_P_s
+    abst_no_match.
+    %%begin-auto-proof
+    %%location: [File "etat_vote.fcl", line 92, character 4, line 93, character 36]
+    %%name: for_zenon_all_field_different_0_1
+    
+    
+    
+    (* Methods to use for automated proof. *)
+    (* For method of Self used via "by definition of !no_match". *)
+    Definition abst_no_match : abst_T := _p_P_zero.
+    (* For method of Self used via "by definition of !range_match". *)
+    Definition abst_range_match : abst_T := (_p_P_s abst_no_match).
+    (* For method of Self used via "by definition of !equal". *)
+    Definition abst_equal (x : abst_T) (y : abst_T) : basics.bool__t :=
+      (_p_P_equal x y).
+    (* For species parameter method used via "by property etat_vote#P!zero_is_not_successor". *)
+    Parameter _p_P_zero_is_not_successor :
+      forall x : _p_P_T, ~Is_true ((_p_P_equal _p_P_zero (_p_P_s x))).
+    (* Theorem's body. *)
+    Theorem for_zenon_all_field_different_0_1 :
+    ~Is_true (((abst_equal abst_no_match abst_range_match))).
+    %%end-auto-proof
+    (* Dummy theorem to enforce Coq abstractions. *)
+    Theorem for_zenon_abstracted_all_field_different_0_1 :
+      ~Is_true (((abst_equal abst_no_match abst_range_match))).
+    assert (__force_use_p_P_T := _p_P_T).
+    assert (__force_use__p_P_equal := _p_P_equal).
+    assert (__force_use__p_P_s := _p_P_s).
+    assert (__force_use__p_P_zero := _p_P_zero).
+    assert (__force_use__p_P_zero_is_not_successor :=
+      _p_P_zero_is_not_successor).
+    assert (__force_use_abst_T := abst_T).
+    assert (__force_use_abst_equal := abst_equal).
+    assert (__force_use_abst_no_match := abst_no_match).
+    assert (__force_use_abst_range_match := abst_range_match).
+    apply for_zenon_all_field_different_0_1;
+    auto.
+    Qed.
+    End Proof_of_all_field_different_0_1.
+  
+  Theorem all_field_different_0_1  (_p_P_T : Set) (_p_P_equal :
+    _p_P_T -> _p_P_T -> basics.bool__t) (_p_P_s : _p_P_T -> _p_P_T)
+    (_p_P_zero : _p_P_T) (_p_P_zero_is_not_successor :
+    forall x : _p_P_T, ~Is_true ((_p_P_equal _p_P_zero (_p_P_s x))))
+    (abst_T := _p_P_T) (abst_equal := equal _p_P_T _p_P_equal)
+    (abst_no_match := no_match _p_P_T _p_P_zero) (abst_range_match :=
+    range_match _p_P_T _p_P_s abst_no_match):
+    ~Is_true (((abst_equal abst_no_match abst_range_match))).
+  apply for_zenon_abstracted_all_field_different_0_1;
+  auto.
+  Qed.
+  Definition partial_match (_p_P_T : Set) (_p_P_s : _p_P_T -> _p_P_T)
+    (abst_T := _p_P_T) (abst_range_match : abst_T) : abst_T :=
+    (_p_P_s abst_range_match).
+  
+  (* From species etat_vote#Imp_etat_vote. *)
+  (* Section for proof of theorem 'all_field_different_0_2'. *)
+  Section Proof_of_all_field_different_0_2.
+    Variable _p_P_T : Set.
+    Variable _p_P_equal : _p_P_T -> _p_P_T -> basics.bool__t.
+    Variable _p_P_s : _p_P_T -> _p_P_T.
+    Variable _p_P_zero : _p_P_T.
+    Variable _p_P_zero_is_not_successor :
+      forall x : _p_P_T, ~Is_true ((_p_P_equal _p_P_zero (_p_P_s x))).
+    Let abst_T := _p_P_T.
+    Let abst_equal := equal _p_P_T _p_P_equal.
+    Let abst_no_match := no_match _p_P_T
+    _p_P_zero.
+    Variable abst_range_match : abst_T.
+    Let abst_partial_match := partial_match _p_P_T _p_P_s
+    abst_range_match.
+    %%begin-auto-proof
+    %%location: [File "etat_vote.fcl", line 97, character 3, line 98, character 35]
+    %%name: for_zenon_all_field_different_0_2
+    
+    
+    
+    (* Methods to use for automated proof. *)
+    (* For method of Self used via "by definition of !no_match". *)
+    Definition abst_no_match : abst_T := _p_P_zero.
+    (* For method of Self used via "by definition of !partial_match". *)
+    Definition abst_partial_match : abst_T := (_p_P_s abst_range_match).
+    (* For method of Self used via "by definition of !equal". *)
+    Definition abst_equal (x : abst_T) (y : abst_T) : basics.bool__t :=
+      (_p_P_equal x y).
+    (* For species parameter method used via "by property etat_vote#P!zero_is_not_successor". *)
+    Parameter _p_P_zero_is_not_successor :
+      forall x : _p_P_T, ~Is_true ((_p_P_equal _p_P_zero (_p_P_s x))).
+    (* Theorem's body. *)
+    Theorem for_zenon_all_field_different_0_2 :
+    ~Is_true (((abst_equal abst_no_match abst_partial_match))).
+    %%end-auto-proof
+    (* Dummy theorem to enforce Coq abstractions. *)
+    Theorem for_zenon_abstracted_all_field_different_0_2 :
+      ~Is_true (((abst_equal abst_no_match abst_partial_match))).
+    assert (__force_use_p_P_T := _p_P_T).
+    assert (__force_use__p_P_equal := _p_P_equal).
+    assert (__force_use__p_P_s := _p_P_s).
+    assert (__force_use__p_P_zero := _p_P_zero).
+    assert (__force_use__p_P_zero_is_not_successor :=
+      _p_P_zero_is_not_successor).
+    assert (__force_use_abst_T := abst_T).
+    assert (__force_use_abst_equal := abst_equal).
+    assert (__force_use_abst_no_match := abst_no_match).
+    assert (__force_use_abst_range_match := abst_range_match).
+    assert (__force_use_abst_partial_match := abst_partial_match).
+    apply for_zenon_all_field_different_0_2;
+    auto.
+    Qed.
+    End Proof_of_all_field_different_0_2.
+  
+  Theorem all_field_different_0_2  (_p_P_T : Set) (_p_P_equal :
+    _p_P_T -> _p_P_T -> basics.bool__t) (_p_P_s : _p_P_T -> _p_P_T)
+    (_p_P_zero : _p_P_T) (_p_P_zero_is_not_successor :
+    forall x : _p_P_T, ~Is_true ((_p_P_equal _p_P_zero (_p_P_s x))))
+    (abst_T := _p_P_T) (abst_equal := equal _p_P_T _p_P_equal)
+    (abst_no_match := no_match _p_P_T _p_P_zero) (abst_range_match : abst_T)
+    (abst_partial_match := partial_match _p_P_T _p_P_s abst_range_match):
+    ~Is_true (((abst_equal abst_no_match abst_partial_match))).
+  apply for_zenon_abstracted_all_field_different_0_2;
+  auto.
+  Qed.
+  
+  (* From species etat_vote#Imp_etat_vote. *)
+  (* Section for proof of theorem 'all_field_different_1_2'. *)
+  Section Proof_of_all_field_different_1_2.
+    Variable _p_P_T : Set.
+    Variable _p_P_equal : _p_P_T -> _p_P_T -> basics.bool__t.
+    Variable _p_P_s : _p_P_T -> _p_P_T.
+    Variable _p_P_zero : _p_P_T.
+    Variable _p_P_succ_is_an_injection :
+      forall x  y : _p_P_T,
+        Is_true ((_p_P_equal (_p_P_s x) (_p_P_s y))) ->
+          Is_true ((_p_P_equal x y)).
+    Variable _p_P_zero_is_not_successor :
+      forall x : _p_P_T, ~Is_true ((_p_P_equal _p_P_zero (_p_P_s x))).
+    Let abst_T := _p_P_T.
+    Let abst_equal := equal _p_P_T _p_P_equal.
+    Let abst_no_match := no_match _p_P_T _p_P_zero.
+    Let abst_range_match := range_match _p_P_T _p_P_s
+    abst_no_match.
+    Let abst_partial_match := partial_match _p_P_T _p_P_s
+    abst_range_match.
+    %%begin-auto-proof
+    %%location: [File "etat_vote.fcl", line 107, character 4, line 108, character 60]
+    %%name: for_zenon_all_field_different_1_2
+    
+    
+    
+    (* Methods to use for automated proof. *)
+    (* For method of Self used via "by definition of !range_match". *)
+    Definition abst_range_match : abst_T := (_p_P_s abst_no_match).
+    (* For method of Self used via "by definition of !partial_match". *)
+    Definition abst_partial_match : abst_T := (_p_P_s abst_range_match).
+    (* For method of Self used via "by definition of !equal". *)
+    Definition abst_equal (x : abst_T) (y : abst_T) : basics.bool__t :=
+      (_p_P_equal x y).
+    (* For method of Self used via "by definition of !no_match". *)
+    Definition abst_no_match : abst_T := _p_P_zero.
+    (* For species parameter method used via "by property etat_vote#P!zero_is_not_successor". *)
+    Parameter _p_P_zero_is_not_successor :
+      forall x : _p_P_T, ~Is_true ((_p_P_equal _p_P_zero (_p_P_s x))).
+    (* For species parameter method used via "by property etat_vote#P!succ_is_an_injection". *)
+    Parameter _p_P_succ_is_an_injection :
+      forall x  y : _p_P_T,
+        Is_true ((_p_P_equal (_p_P_s x) (_p_P_s y))) ->
+          Is_true ((_p_P_equal x y)).
+    (* Theorem's body. *)
+    Theorem for_zenon_all_field_different_1_2 :
+    ~Is_true (((abst_equal abst_range_match abst_partial_match))).
+    %%end-auto-proof
+    (* Dummy theorem to enforce Coq abstractions. *)
+    Theorem for_zenon_abstracted_all_field_different_1_2 :
+      ~Is_true (((abst_equal abst_range_match abst_partial_match))).
+    assert (__force_use_p_P_T := _p_P_T).
+    assert (__force_use__p_P_equal := _p_P_equal).
+    assert (__force_use__p_P_s := _p_P_s).
+    assert (__force_use__p_P_zero := _p_P_zero).
+    assert (__force_use__p_P_succ_is_an_injection :=
+      _p_P_succ_is_an_injection).
+    assert (__force_use__p_P_zero_is_not_successor :=
+      _p_P_zero_is_not_successor).
+    assert (__force_use_abst_T := abst_T).
+    assert (__force_use_abst_equal := abst_equal).
+    assert (__force_use_abst_no_match := abst_no_match).
+    assert (__force_use_abst_range_match := abst_range_match).
+    assert (__force_use_abst_partial_match := abst_partial_match).
+    apply for_zenon_all_field_different_1_2;
+    auto.
+    Qed.
+    End Proof_of_all_field_different_1_2.
+  
+  Theorem all_field_different_1_2  (_p_P_T : Set) (_p_P_equal :
+    _p_P_T -> _p_P_T -> basics.bool__t) (_p_P_s : _p_P_T -> _p_P_T)
+    (_p_P_zero : _p_P_T) (_p_P_succ_is_an_injection :
+    forall x  y : _p_P_T,
+      Is_true ((_p_P_equal (_p_P_s x) (_p_P_s y))) ->
+        Is_true ((_p_P_equal x y)))
+    (_p_P_zero_is_not_successor :
+    forall x : _p_P_T, ~Is_true ((_p_P_equal _p_P_zero (_p_P_s x))))
+    (abst_T := _p_P_T) (abst_equal := equal _p_P_T _p_P_equal)
+    (abst_no_match := no_match _p_P_T _p_P_zero) (abst_range_match :=
+    range_match _p_P_T _p_P_s abst_no_match) (abst_partial_match :=
+    partial_match _p_P_T _p_P_s abst_range_match):
+    ~Is_true (((abst_equal abst_range_match abst_partial_match))).
+  apply for_zenon_abstracted_all_field_different_1_2;
+  auto.
+  Qed.
+  Definition perfect_match (_p_P_T : Set) (_p_P_s : _p_P_T -> _p_P_T)
+    (abst_T := _p_P_T) (abst_partial_match : abst_T) : abst_T :=
+    (_p_P_s abst_partial_match).
+  
+  (* From species etat_vote#Imp_etat_vote. *)
+  (* Section for proof of theorem 'all_field_different_0_3'. *)
+  Section Proof_of_all_field_different_0_3.
+    Variable _p_P_T : Set.
+    Variable _p_P_equal : _p_P_T -> _p_P_T -> basics.bool__t.
+    Variable _p_P_s : _p_P_T -> _p_P_T.
+    Variable _p_P_zero : _p_P_T.
+    Variable _p_P_zero_is_not_successor :
+      forall x : _p_P_T, ~Is_true ((_p_P_equal _p_P_zero (_p_P_s x))).
+    Let abst_T := _p_P_T.
+    Let abst_equal := equal _p_P_T _p_P_equal.
+    Let abst_no_match := no_match _p_P_T
+    _p_P_zero.
+    Variable abst_partial_match : abst_T.
+    Let abst_perfect_match := perfect_match _p_P_T _p_P_s
+    abst_partial_match.
+    %%begin-auto-proof
+    %%location: [File "etat_vote.fcl", line 102, character 4, line 103, character 36]
+    %%name: for_zenon_all_field_different_0_3
+    
+    
+    
+    (* Methods to use for automated proof. *)
+    (* For method of Self used via "by definition of !no_match". *)
+    Definition abst_no_match : abst_T := _p_P_zero.
+    (* For method of Self used via "by definition of !perfect_match". *)
+    Definition abst_perfect_match : abst_T := (_p_P_s abst_partial_match).
+    (* For method of Self used via "by definition of !equal". *)
+    Definition abst_equal (x : abst_T) (y : abst_T) : basics.bool__t :=
+      (_p_P_equal x y).
+    (* For species parameter method used via "by property etat_vote#P!zero_is_not_successor". *)
+    Parameter _p_P_zero_is_not_successor :
+      forall x : _p_P_T, ~Is_true ((_p_P_equal _p_P_zero (_p_P_s x))).
+    (* Theorem's body. *)
+    Theorem for_zenon_all_field_different_0_3 :
+    ~Is_true (((abst_equal abst_no_match abst_perfect_match))).
+    %%end-auto-proof
+    (* Dummy theorem to enforce Coq abstractions. *)
+    Theorem for_zenon_abstracted_all_field_different_0_3 :
+      ~Is_true (((abst_equal abst_no_match abst_perfect_match))).
+    assert (__force_use_p_P_T := _p_P_T).
+    assert (__force_use__p_P_equal := _p_P_equal).
+    assert (__force_use__p_P_s := _p_P_s).
+    assert (__force_use__p_P_zero := _p_P_zero).
+    assert (__force_use__p_P_zero_is_not_successor :=
+      _p_P_zero_is_not_successor).
+    assert (__force_use_abst_T := abst_T).
+    assert (__force_use_abst_equal := abst_equal).
+    assert (__force_use_abst_no_match := abst_no_match).
+    assert (__force_use_abst_partial_match := abst_partial_match).
+    assert (__force_use_abst_perfect_match := abst_perfect_match).
+    apply for_zenon_all_field_different_0_3;
+    auto.
+    Qed.
+    End Proof_of_all_field_different_0_3.
+  
+  Theorem all_field_different_0_3  (_p_P_T : Set) (_p_P_equal :
+    _p_P_T -> _p_P_T -> basics.bool__t) (_p_P_s : _p_P_T -> _p_P_T)
+    (_p_P_zero : _p_P_T) (_p_P_zero_is_not_successor :
+    forall x : _p_P_T, ~Is_true ((_p_P_equal _p_P_zero (_p_P_s x))))
+    (abst_T := _p_P_T) (abst_equal := equal _p_P_T _p_P_equal)
+    (abst_no_match := no_match _p_P_T _p_P_zero)
+    (abst_partial_match : abst_T) (abst_perfect_match := perfect_match _p_P_T
+    _p_P_s abst_partial_match):
+    ~Is_true (((abst_equal abst_no_match abst_perfect_match))).
+  apply for_zenon_abstracted_all_field_different_0_3;
+  auto.
+  Qed.
+  
+  (* From species etat_vote#Imp_etat_vote. *)
+  (* Section for proof of theorem 'all_field_different_1_3'. *)
+  Section Proof_of_all_field_different_1_3.
+    Variable _p_P_T : Set.
+    Variable _p_P_equal : _p_P_T -> _p_P_T -> basics.bool__t.
+    Variable _p_P_s : _p_P_T -> _p_P_T.
+    Variable _p_P_zero : _p_P_T.
+    Variable _p_P_succ_is_an_injection :
+      forall x  y : _p_P_T,
+        Is_true ((_p_P_equal (_p_P_s x) (_p_P_s y))) ->
+          Is_true ((_p_P_equal x y)).
+    Variable _p_P_zero_is_not_successor :
+      forall x : _p_P_T, ~Is_true ((_p_P_equal _p_P_zero (_p_P_s x))).
+    Let abst_T := _p_P_T.
+    Let abst_equal := equal _p_P_T _p_P_equal.
+    Let abst_no_match := no_match _p_P_T _p_P_zero.
+    Let abst_range_match := range_match _p_P_T _p_P_s
+    abst_no_match.
+    Let abst_partial_match := partial_match _p_P_T _p_P_s
+    abst_range_match.
+    Let abst_perfect_match := perfect_match _p_P_T _p_P_s
+    abst_partial_match.
+    %%begin-auto-proof
+    %%location: [File "etat_vote.fcl", line 112, character 4, line 113, character 60]
+    %%name: for_zenon_all_field_different_1_3
+    
+    
+    
+    (* Methods to use for automated proof. *)
+    (* For method of Self used via "by definition of !range_match". *)
+    Definition abst_range_match : abst_T := (_p_P_s abst_no_match).
+    (* For method of Self used via "by definition of !partial_match". *)
+    Definition abst_partial_match : abst_T := (_p_P_s abst_range_match).
+    (* For method of Self used via "by definition of !perfect_match". *)
+    Definition abst_perfect_match : abst_T := (_p_P_s abst_partial_match).
+    (* For method of Self used via "by definition of !equal". *)
+    Definition abst_equal (x : abst_T) (y : abst_T) : basics.bool__t :=
+      (_p_P_equal x y).
+    (* For method of Self used via "by definition of !no_match". *)
+    Definition abst_no_match : abst_T := _p_P_zero.
+    (* For species parameter method used via "by property etat_vote#P!zero_is_not_successor". *)
+    Parameter _p_P_zero_is_not_successor :
+      forall x : _p_P_T, ~Is_true ((_p_P_equal _p_P_zero (_p_P_s x))).
+    (* For species parameter method used via "by property etat_vote#P!succ_is_an_injection". *)
+    Parameter _p_P_succ_is_an_injection :
+      forall x  y : _p_P_T,
+        Is_true ((_p_P_equal (_p_P_s x) (_p_P_s y))) ->
+          Is_true ((_p_P_equal x y)).
+    (* Theorem's body. *)
+    Theorem for_zenon_all_field_different_1_3 :
+    ~Is_true (((abst_equal abst_range_match abst_perfect_match))).
+    %%end-auto-proof
+    (* Dummy theorem to enforce Coq abstractions. *)
+    Theorem for_zenon_abstracted_all_field_different_1_3 :
+      ~Is_true (((abst_equal abst_range_match abst_perfect_match))).
+    assert (__force_use_p_P_T := _p_P_T).
+    assert (__force_use__p_P_equal := _p_P_equal).
+    assert (__force_use__p_P_s := _p_P_s).
+    assert (__force_use__p_P_zero := _p_P_zero).
+    assert (__force_use__p_P_succ_is_an_injection :=
+      _p_P_succ_is_an_injection).
+    assert (__force_use__p_P_zero_is_not_successor :=
+      _p_P_zero_is_not_successor).
+    assert (__force_use_abst_T := abst_T).
+    assert (__force_use_abst_equal := abst_equal).
+    assert (__force_use_abst_no_match := abst_no_match).
+    assert (__force_use_abst_range_match := abst_range_match).
+    assert (__force_use_abst_partial_match := abst_partial_match).
+    assert (__force_use_abst_perfect_match := abst_perfect_match).
+    apply for_zenon_all_field_different_1_3;
+    auto.
+    Qed.
+    End Proof_of_all_field_different_1_3.
+  
+  Theorem all_field_different_1_3  (_p_P_T : Set) (_p_P_equal :
+    _p_P_T -> _p_P_T -> basics.bool__t) (_p_P_s : _p_P_T -> _p_P_T)
+    (_p_P_zero : _p_P_T) (_p_P_succ_is_an_injection :
+    forall x  y : _p_P_T,
+      Is_true ((_p_P_equal (_p_P_s x) (_p_P_s y))) ->
+        Is_true ((_p_P_equal x y)))
+    (_p_P_zero_is_not_successor :
+    forall x : _p_P_T, ~Is_true ((_p_P_equal _p_P_zero (_p_P_s x))))
+    (abst_T := _p_P_T) (abst_equal := equal _p_P_T _p_P_equal)
+    (abst_no_match := no_match _p_P_T _p_P_zero) (abst_range_match :=
+    range_match _p_P_T _p_P_s abst_no_match) (abst_partial_match :=
+    partial_match _p_P_T _p_P_s abst_range_match) (abst_perfect_match :=
+    perfect_match _p_P_T _p_P_s abst_partial_match):
+    ~Is_true (((abst_equal abst_range_match abst_perfect_match))).
+  apply for_zenon_abstracted_all_field_different_1_3;
+  auto.
+  Qed.
+  
+  (* From species etat_vote#Imp_etat_vote. *)
+  (* Section for proof of theorem 'all_field_different_2_3'. *)
+  Section Proof_of_all_field_different_2_3.
+    Variable _p_P_T : Set.
+    Variable _p_P_equal : _p_P_T -> _p_P_T -> basics.bool__t.
+    Variable _p_P_s : _p_P_T -> _p_P_T.
+    Variable _p_P_zero : _p_P_T.
+    Variable _p_P_succ_is_an_injection :
+      forall x  y : _p_P_T,
+        Is_true ((_p_P_equal (_p_P_s x) (_p_P_s y))) ->
+          Is_true ((_p_P_equal x y)).
+    Variable _p_P_zero_is_not_successor :
+      forall x : _p_P_T, ~Is_true ((_p_P_equal _p_P_zero (_p_P_s x))).
+    Let abst_T := _p_P_T.
+    Let abst_equal := equal _p_P_T _p_P_equal.
+    Let abst_no_match := no_match _p_P_T _p_P_zero.
+    Let abst_range_match := range_match _p_P_T _p_P_s
+    abst_no_match.
+    Let abst_partial_match := partial_match _p_P_T _p_P_s
+    abst_range_match.
+    Let abst_perfect_match := perfect_match _p_P_T _p_P_s
+    abst_partial_match.
+    %%begin-auto-proof
+    %%location: [File "etat_vote.fcl", line 117, character 4, line 118, character 60]
+    %%name: for_zenon_all_field_different_2_3
+    
+    
+    
+    (* Methods to use for automated proof. *)
+    (* For method of Self used via "by definition of !range_match". *)
+    Definition abst_range_match : abst_T := (_p_P_s abst_no_match).
+    (* For method of Self used via "by definition of !partial_match". *)
+    Definition abst_partial_match : abst_T := (_p_P_s abst_range_match).
+    (* For method of Self used via "by definition of !perfect_match". *)
+    Definition abst_perfect_match : abst_T := (_p_P_s abst_partial_match).
+    (* For method of Self used via "by definition of !equal". *)
+    Definition abst_equal (x : abst_T) (y : abst_T) : basics.bool__t :=
+      (_p_P_equal x y).
+    (* For method of Self used via "by definition of !no_match". *)
+    Definition abst_no_match : abst_T := _p_P_zero.
+    (* For species parameter method used via "by property etat_vote#P!zero_is_not_successor". *)
+    Parameter _p_P_zero_is_not_successor :
+      forall x : _p_P_T, ~Is_true ((_p_P_equal _p_P_zero (_p_P_s x))).
+    (* For species parameter method used via "by property etat_vote#P!succ_is_an_injection". *)
+    Parameter _p_P_succ_is_an_injection :
+      forall x  y : _p_P_T,
+        Is_true ((_p_P_equal (_p_P_s x) (_p_P_s y))) ->
+          Is_true ((_p_P_equal x y)).
+    (* Theorem's body. *)
+    Theorem for_zenon_all_field_different_2_3 :
+    ~Is_true (((abst_equal abst_partial_match abst_perfect_match))).
+    %%end-auto-proof
+    (* Dummy theorem to enforce Coq abstractions. *)
+    Theorem for_zenon_abstracted_all_field_different_2_3 :
+      ~Is_true (((abst_equal abst_partial_match abst_perfect_match))).
+    assert (__force_use_p_P_T := _p_P_T).
+    assert (__force_use__p_P_equal := _p_P_equal).
+    assert (__force_use__p_P_s := _p_P_s).
+    assert (__force_use__p_P_zero := _p_P_zero).
+    assert (__force_use__p_P_succ_is_an_injection :=
+      _p_P_succ_is_an_injection).
+    assert (__force_use__p_P_zero_is_not_successor :=
+      _p_P_zero_is_not_successor).
+    assert (__force_use_abst_T := abst_T).
+    assert (__force_use_abst_equal := abst_equal).
+    assert (__force_use_abst_no_match := abst_no_match).
+    assert (__force_use_abst_range_match := abst_range_match).
+    assert (__force_use_abst_partial_match := abst_partial_match).
+    assert (__force_use_abst_perfect_match := abst_perfect_match).
+    apply for_zenon_all_field_different_2_3;
+    auto.
+    Qed.
+    End Proof_of_all_field_different_2_3.
+  
+  Theorem all_field_different_2_3  (_p_P_T : Set) (_p_P_equal :
+    _p_P_T -> _p_P_T -> basics.bool__t) (_p_P_s : _p_P_T -> _p_P_T)
+    (_p_P_zero : _p_P_T) (_p_P_succ_is_an_injection :
+    forall x  y : _p_P_T,
+      Is_true ((_p_P_equal (_p_P_s x) (_p_P_s y))) ->
+        Is_true ((_p_P_equal x y)))
+    (_p_P_zero_is_not_successor :
+    forall x : _p_P_T, ~Is_true ((_p_P_equal _p_P_zero (_p_P_s x))))
+    (abst_T := _p_P_T) (abst_equal := equal _p_P_T _p_P_equal)
+    (abst_no_match := no_match _p_P_T _p_P_zero) (abst_range_match :=
+    range_match _p_P_T _p_P_s abst_no_match) (abst_partial_match :=
+    partial_match _p_P_T _p_P_s abst_range_match) (abst_perfect_match :=
+    perfect_match _p_P_T _p_P_s abst_partial_match):
+    ~Is_true (((abst_equal abst_partial_match abst_perfect_match))).
+  apply for_zenon_abstracted_all_field_different_2_3;
+  auto.
+  Qed.
+  Definition print (_p_P_T : Set) (abst_T : Set)
+    (abst_equal : abst_T -> abst_T -> basics.bool__t)
+    (abst_no_match : abst_T) (abst_range_match : abst_T)
+    (abst_partial_match : abst_T) (abst_perfect_match : abst_T)
+    (x : abst_T) : basics.string__t :=
+    (if (abst_equal x abst_no_match) then "no_match"%string
+      else (if (abst_equal x abst_range_match) then "range_match"%string
+             else (if (abst_equal x abst_partial_match)
+                    then "partial_match"%string
+                    else (if (abst_equal x abst_perfect_match)
+                           then "perfect_match"%string
+                           else "Erreur etat_vote"%string)))).
+  
+  (* Fully defined 'Imp_etat_vote' species's collection generator. *)
+  Definition collection_create (_p_P_T : Set) _p_P_equal _p_P_s _p_P_zero
+    _p_P_equal_reflexive _p_P_equal_symmetric _p_P_equal_transitive
+    _p_P_succ_is_an_injection _p_P_zero_is_not_successor :=
+    let local_rep := _p_P_T in
+    (* From species etat_vote#Imp_etat_vote. *)
+    let local_equal := equal _p_P_T _p_P_equal in
+    (* From species etat_vote#Imp_etat_vote. *)
+    let local_no_match := no_match _p_P_T _p_P_zero in
+    (* From species basics#Basic_object. *)
+    let local_parse := basics.Basic_object.parse local_rep in
+    (* From species sets#Setoid. *)
+    let local_different := sets.Setoid.different local_rep local_equal in
+    (* From species etat_vote#Imp_etat_vote. *)
+    let local_equal_reflexive := equal_reflexive _p_P_T _p_P_equal
+      _p_P_equal_reflexive in
+    (* From species etat_vote#Imp_etat_vote. *)
+    let local_equal_symmetric := equal_symmetric _p_P_T _p_P_equal
+      _p_P_equal_symmetric in
+    (* From species etat_vote#Imp_etat_vote. *)
+    let local_equal_transitive := equal_transitive _p_P_T _p_P_equal
+      _p_P_equal_transitive in
+    (* From species etat_vote#Imp_etat_vote. *)
+    let local_element := element _p_P_T local_rep local_no_match in
+    (* From species etat_vote#Imp_etat_vote. *)
+    let local_range_match := range_match _p_P_T _p_P_s local_no_match in
+    (* From species sets#Setoid. *)
+    let local_same_is_not_different := sets.Setoid.same_is_not_different
+      local_rep local_equal in
+    (* From species etat_vote#Imp_etat_vote. *)
+    let local_all_field_different_0_1 := all_field_different_0_1 _p_P_T
+      _p_P_equal _p_P_s _p_P_zero _p_P_zero_is_not_successor in
+    (* From species etat_vote#Imp_etat_vote. *)
+    let local_partial_match := partial_match _p_P_T _p_P_s local_range_match
+      in
+    (* From species sets#Setoid. *)
+    let local_different_is_complete := sets.Setoid.different_is_complete
+      local_rep local_equal local_different local_equal_reflexive
+      local_equal_symmetric local_equal_transitive
+      local_same_is_not_different in
+    (* From species sets#Setoid. *)
+    let local_different_is_irreflexive :=
+      sets.Setoid.different_is_irreflexive local_rep local_equal
+      local_different local_equal_reflexive local_same_is_not_different in
+    (* From species sets#Setoid. *)
+    let local_different_is_symmetric := sets.Setoid.different_is_symmetric
+      local_rep local_equal local_different local_equal_symmetric
+      local_same_is_not_different in
+    (* From species etat_vote#Imp_etat_vote. *)
+    let local_all_field_different_0_2 := all_field_different_0_2 _p_P_T
+      _p_P_equal _p_P_s _p_P_zero _p_P_zero_is_not_successor
+      local_range_match in
+    (* From species etat_vote#Imp_etat_vote. *)
+    let local_all_field_different_1_2 := all_field_different_1_2 _p_P_T
+      _p_P_equal _p_P_s _p_P_zero _p_P_succ_is_an_injection
+      _p_P_zero_is_not_successor in
+    (* From species etat_vote#Imp_etat_vote. *)
+    let local_perfect_match := perfect_match _p_P_T _p_P_s
+      local_partial_match in
+    (* From species etat_vote#Imp_etat_vote. *)
+    let local_all_field_different_0_3 := all_field_different_0_3 _p_P_T
+      _p_P_equal _p_P_s _p_P_zero _p_P_zero_is_not_successor
+      local_partial_match in
+    (* From species etat_vote#Imp_etat_vote. *)
+    let local_all_field_different_1_3 := all_field_different_1_3 _p_P_T
+      _p_P_equal _p_P_s _p_P_zero _p_P_succ_is_an_injection
+      _p_P_zero_is_not_successor in
+    (* From species etat_vote#Imp_etat_vote. *)
+    let local_all_field_different_2_3 := all_field_different_2_3 _p_P_T
+      _p_P_equal _p_P_s _p_P_zero _p_P_succ_is_an_injection
+      _p_P_zero_is_not_successor in
+    (* From species etat_vote#Sp_etat_vote. *)
+    let local_all_value := Sp_etat_vote.all_value local_rep local_equal
+      local_no_match local_partial_match local_perfect_match
+      local_range_match in
+    (* From species etat_vote#Imp_etat_vote. *)
+    let local_print := print _p_P_T local_rep local_equal local_no_match
+      local_range_match local_partial_match local_perfect_match in
+    mk_record (_p_P_T : Set) local_rep local_equal local_no_match local_parse
+    local_different local_equal_reflexive local_equal_symmetric
+    local_equal_transitive local_element local_range_match
+    local_same_is_not_different local_all_field_different_0_1
+    local_partial_match local_different_is_complete
+    local_different_is_irreflexive local_different_is_symmetric
+    local_all_field_different_0_2 local_all_field_different_1_2
+    local_perfect_match local_all_field_different_0_3
+    local_all_field_different_1_3 local_all_field_different_2_3
+    local_all_value local_print.
+  
+End Imp_etat_vote.
+
+Module Coll_etat_vote.
+  Let effective_collection := Imp_etat_vote.collection_create
+    peano.Coll_peano.me_as_carrier peano.Coll_peano.equal peano.Coll_peano.s
+    peano.Coll_peano.zero peano.Coll_peano.equal_reflexive
+    peano.Coll_peano.equal_symmetric peano.Coll_peano.equal_transitive
+    peano.Coll_peano.succ_is_an_injection
+    peano.Coll_peano.zero_is_not_successor.
+  (* Carrier's structure explicitly given by "rep". *)
+  Definition me_as_carrier := peano.Coll_peano.me_as_carrier.
+  Definition equal := effective_collection.(Imp_etat_vote.rf_equal _).
+  Definition no_match := effective_collection.(Imp_etat_vote.rf_no_match _).
+  Definition parse := effective_collection.(Imp_etat_vote.rf_parse _).
+  Definition different :=
+    effective_collection.(Imp_etat_vote.rf_different _).
+  Definition equal_reflexive :=
+    effective_collection.(Imp_etat_vote.rf_equal_reflexive _).
+  Definition equal_symmetric :=
+    effective_collection.(Imp_etat_vote.rf_equal_symmetric _).
+  Definition equal_transitive :=
+    effective_collection.(Imp_etat_vote.rf_equal_transitive _).
+  Definition element := effective_collection.(Imp_etat_vote.rf_element _).
+  Definition range_match :=
+    effective_collection.(Imp_etat_vote.rf_range_match _).
+  Definition same_is_not_different :=
+    effective_collection.(Imp_etat_vote.rf_same_is_not_different _).
+  Definition all_field_different_0_1 :=
+    effective_collection.(Imp_etat_vote.rf_all_field_different_0_1 _).
+  Definition partial_match :=
+    effective_collection.(Imp_etat_vote.rf_partial_match _).
+  Definition different_is_complete :=
+    effective_collection.(Imp_etat_vote.rf_different_is_complete _).
+  Definition different_is_irreflexive :=
+    effective_collection.(Imp_etat_vote.rf_different_is_irreflexive _).
+  Definition different_is_symmetric :=
+    effective_collection.(Imp_etat_vote.rf_different_is_symmetric _).
+  Definition all_field_different_0_2 :=
+    effective_collection.(Imp_etat_vote.rf_all_field_different_0_2 _).
+  Definition all_field_different_1_2 :=
+    effective_collection.(Imp_etat_vote.rf_all_field_different_1_2 _).
+  Definition perfect_match :=
+    effective_collection.(Imp_etat_vote.rf_perfect_match _).
+  Definition all_field_different_0_3 :=
+    effective_collection.(Imp_etat_vote.rf_all_field_different_0_3 _).
+  Definition all_field_different_1_3 :=
+    effective_collection.(Imp_etat_vote.rf_all_field_different_1_3 _).
+  Definition all_field_different_2_3 :=
+    effective_collection.(Imp_etat_vote.rf_all_field_different_2_3 _).
+  Definition all_value :=
+    effective_collection.(Imp_etat_vote.rf_all_value _).
+  Definition print := effective_collection.(Imp_etat_vote.rf_print _).
+  
+End Coll_etat_vote.
+

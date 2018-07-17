@@ -1,0 +1,368 @@
+"peano.ml" 17 432 438 "peano.ml" 17 432 442
+type(
+  'abst_T -> 'abst_T -> bool
+)
+ident(
+  def diff "peano.ml" 19 522 524 "peano.ml" 38 1137 1142
+)
+"peano.ml" 17 432 444 "peano.ml" 17 432 445
+type(
+  'abst_T
+)
+ident(
+  def x "peano.ml" 17 432 457 "peano.ml" 18 473 521
+)
+"peano.ml" 17 432 458 "peano.ml" 17 432 459
+type(
+  'abst_T
+)
+ident(
+  def y "peano.ml" 18 473 477 "peano.ml" 18 473 521
+)
+"peano.ml" 18 473 481 "peano.ml" 18 473 495
+type(
+  'abst_T -> 'abst_T -> bool
+)
+ident(
+  ext_ref Basics._equal_
+)
+"peano.ml" 18 473 496 "peano.ml" 18 473 497
+type(
+  'abst_T
+)
+ident(
+  int_ref x "peano.ml" 17 432 444 "peano.ml" 17 432 445
+)
+"peano.ml" 18 473 498 "peano.ml" 18 473 499
+type(
+  'abst_T
+)
+ident(
+  int_ref y "peano.ml" 17 432 458 "peano.ml" 17 432 459
+)
+"peano.ml" 18 473 480 "peano.ml" 18 473 500
+call(
+  stack
+)
+type(
+  bool
+)
+"peano.ml" 18 473 506 "peano.ml" 18 473 511
+type(
+  bool
+)
+"peano.ml" 18 473 517 "peano.ml" 18 473 521
+type(
+  bool
+)
+"peano.ml" 18 473 477 "peano.ml" 18 473 521
+type(
+  bool
+)
+"peano.ml" 19 522 528 "peano.ml" 19 522 533
+type(
+  'abst_T0 -> 'abst_T0 -> bool
+)
+ident(
+  def equal "peano.ml" 20 585 587 "peano.ml" 38 1137 1142
+)
+"peano.ml" 19 522 535 "peano.ml" 19 522 536
+type(
+  'abst_T0
+)
+ident(
+  def x "peano.ml" 19 522 548 "peano.ml" 19 522 584
+)
+"peano.ml" 19 522 549 "peano.ml" 19 522 550
+type(
+  'abst_T0
+)
+ident(
+  def y "peano.ml" 19 522 564 "peano.ml" 19 522 584
+)
+"peano.ml" 19 522 565 "peano.ml" 19 522 579
+type(
+  'abst_T0 -> 'abst_T0 -> bool
+)
+ident(
+  ext_ref Basics._equal_
+)
+"peano.ml" 19 522 580 "peano.ml" 19 522 581
+type(
+  'abst_T0
+)
+ident(
+  int_ref x "peano.ml" 19 522 535 "peano.ml" 19 522 536
+)
+"peano.ml" 19 522 582 "peano.ml" 19 522 583
+type(
+  'abst_T0
+)
+ident(
+  int_ref y "peano.ml" 19 522 549 "peano.ml" 19 522 550
+)
+"peano.ml" 19 522 564 "peano.ml" 19 522 584
+call(
+  tail
+)
+type(
+  bool
+)
+"peano.ml" 20 585 591 "peano.ml" 20 585 592
+type(
+  Basics._focty_int -> int
+)
+ident(
+  def s "peano.ml" 21 629 631 "peano.ml" 38 1137 1142
+)
+"peano.ml" 20 585 594 "peano.ml" 20 585 595
+type(
+  Basics._focty_int
+)
+ident(
+  def x "peano.ml" 20 585 609 "peano.ml" 20 585 628
+)
+"peano.ml" 20 585 610 "peano.ml" 20 585 625
+type(
+  Basics._focty_int -> int
+)
+ident(
+  ext_ref Basics.int_succ
+)
+"peano.ml" 20 585 626 "peano.ml" 20 585 627
+type(
+  Basics._focty_int
+)
+ident(
+  int_ref x "peano.ml" 20 585 594 "peano.ml" 20 585 595
+)
+"peano.ml" 20 585 609 "peano.ml" 20 585 628
+call(
+  tail
+)
+type(
+  int
+)
+"peano.ml" 21 629 635 "peano.ml" 21 629 639
+type(
+  int
+)
+ident(
+  def zero "peano.ml" 23 710 712 "peano.ml" 38 1137 1142
+)
+"peano.ml" 21 629 642 "peano.ml" 21 629 643
+type(
+  int
+)
+"peano.ml" 23 710 716 "peano.ml" 23 710 733
+type(
+  unit -> Basics._focty_int me_as_species
+)
+ident(
+  def collection_create "peano.ml" 36 1123 1131 "peano.ml" 38 1137 1142
+)
+"peano.ml" 23 710 734 "peano.ml" 23 710 736
+type(
+  unit
+)
+"peano.ml" 25 779 787 "peano.ml" 25 779 797
+type(
+  'a -> 'a -> bool
+)
+ident(
+  def local_diff "peano.ml" 27 848 852 "peano.ml" 36 1123 1131
+)
+"peano.ml" 25 779 800 "peano.ml" 25 779 804
+type(
+  'a -> 'a -> bool
+)
+ident(
+  int_ref diff "peano.ml" 17 432 438 "peano.ml" 17 432 442
+)
+"peano.ml" 27 848 856 "peano.ml" 27 848 867
+type(
+  'b -> 'b -> bool
+)
+ident(
+  def local_equal "peano.ml" 29 919 923 "peano.ml" 36 1123 1131
+)
+"peano.ml" 27 848 870 "peano.ml" 27 848 875
+type(
+  'b -> 'b -> bool
+)
+ident(
+  int_ref equal "peano.ml" 19 522 528 "peano.ml" 19 522 533
+)
+"peano.ml" 29 919 927 "peano.ml" 29 919 934
+type(
+  Basics._focty_int -> int
+)
+ident(
+  def local_s "peano.ml" 31 982 986 "peano.ml" 36 1123 1131
+)
+"peano.ml" 29 919 937 "peano.ml" 29 919 938
+type(
+  Basics._focty_int -> int
+)
+ident(
+  int_ref s "peano.ml" 20 585 591 "peano.ml" 20 585 592
+)
+"peano.ml" 31 982 990 "peano.ml" 31 982 1000
+type(
+  int
+)
+ident(
+  def local_zero "peano.ml" 32 1011 1015 "peano.ml" 36 1123 1131
+)
+"peano.ml" 31 982 1003 "peano.ml" 31 982 1007
+type(
+  int
+)
+ident(
+  int_ref zero "peano.ml" 21 629 635 "peano.ml" 21 629 639
+)
+"peano.ml" 32 1011 1027 "peano.ml" 32 1011 1037
+type(
+  Basics._focty_int -> Basics._focty_int -> Basics._focty_bool
+)
+ident(
+  int_ref local_diff "peano.ml" 25 779 787 "peano.ml" 25 779 797
+)
+"peano.ml" 33 1040 1057 "peano.ml" 33 1040 1068
+type(
+  Basics._focty_int -> Basics._focty_int -> Basics._focty_bool
+)
+ident(
+  int_ref local_equal "peano.ml" 27 848 856 "peano.ml" 27 848 867
+)
+"peano.ml" 34 1071 1084 "peano.ml" 34 1071 1091
+type(
+  Basics._focty_int -> Basics._focty_int
+)
+ident(
+  int_ref local_s "peano.ml" 29 919 927 "peano.ml" 29 919 934
+)
+"peano.ml" 35 1094 1110 "peano.ml" 35 1094 1120
+type(
+  Basics._focty_int
+)
+ident(
+  int_ref local_zero "peano.ml" 31 982 990 "peano.ml" 31 982 1000
+)
+"peano.ml" 32 1011 1015 "peano.ml" 36 1123 1131
+type(
+  Basics._focty_int me_as_species
+)
+"peano.ml" 31 982 986 "peano.ml" 36 1123 1131
+type(
+  Basics._focty_int me_as_species
+)
+"peano.ml" 29 919 923 "peano.ml" 36 1123 1131
+type(
+  Basics._focty_int me_as_species
+)
+"peano.ml" 27 848 852 "peano.ml" 36 1123 1131
+type(
+  Basics._focty_int me_as_species
+)
+"peano.ml" 25 779 783 "peano.ml" 36 1123 1131
+type(
+  Basics._focty_int me_as_species
+)
+"peano.ml" 56 1701 1707 "peano.ml" 56 1701 1727
+type(
+  Basics._focty_int Imp_peano.me_as_species
+)
+ident(
+  def effective_collection "peano.ml" 58 1765 1767 "peano.ml" 62 1969 1974
+)
+"peano.ml" 57 1730 1734 "peano.ml" 57 1730 1761
+type(
+  unit -> Basics._focty_int Imp_peano.me_as_species
+)
+ident(
+  int_ref Imp_peano.collection_create "peano.ml" 23 710 716 "peano.ml" 23 710 733
+)
+"peano.ml" 57 1730 1762 "peano.ml" 57 1730 1764
+type(
+  unit
+)
+"peano.ml" 57 1730 1734 "peano.ml" 57 1730 1764
+call(
+  stack
+)
+type(
+  Basics._focty_int Imp_peano.me_as_species
+)
+"peano.ml" 58 1765 1771 "peano.ml" 58 1765 1775
+type(
+  Basics._focty_int -> Basics._focty_int -> Basics._focty_bool
+)
+ident(
+  def diff "peano.ml" 59 1817 1819 "peano.ml" 62 1969 1974
+)
+"peano.ml" 58 1765 1778 "peano.ml" 58 1765 1798
+type(
+  Basics._focty_int Imp_peano.me_as_species
+)
+ident(
+  int_ref effective_collection "peano.ml" 56 1701 1707 "peano.ml" 56 1701 1727
+)
+"peano.ml" 58 1765 1778 "peano.ml" 58 1765 1816
+type(
+  Basics._focty_int -> Basics._focty_int -> Basics._focty_bool
+)
+"peano.ml" 59 1817 1823 "peano.ml" 59 1817 1828
+type(
+  Basics._focty_int -> Basics._focty_int -> Basics._focty_bool
+)
+ident(
+  def equal "peano.ml" 60 1871 1873 "peano.ml" 62 1969 1974
+)
+"peano.ml" 59 1817 1831 "peano.ml" 59 1817 1851
+type(
+  Basics._focty_int Imp_peano.me_as_species
+)
+ident(
+  int_ref effective_collection "peano.ml" 56 1701 1707 "peano.ml" 56 1701 1727
+)
+"peano.ml" 59 1817 1831 "peano.ml" 59 1817 1870
+type(
+  Basics._focty_int -> Basics._focty_int -> Basics._focty_bool
+)
+"peano.ml" 60 1871 1877 "peano.ml" 60 1871 1878
+type(
+  Basics._focty_int -> Basics._focty_int
+)
+ident(
+  def s "peano.ml" 61 1917 1919 "peano.ml" 62 1969 1974
+)
+"peano.ml" 60 1871 1881 "peano.ml" 60 1871 1901
+type(
+  Basics._focty_int Imp_peano.me_as_species
+)
+ident(
+  int_ref effective_collection "peano.ml" 56 1701 1707 "peano.ml" 56 1701 1727
+)
+"peano.ml" 60 1871 1881 "peano.ml" 60 1871 1916
+type(
+  Basics._focty_int -> Basics._focty_int
+)
+"peano.ml" 61 1917 1923 "peano.ml" 61 1917 1927
+type(
+  Basics._focty_int
+)
+ident(
+  def zero "peano.ml" 61 1917 1968 "peano.ml" 62 1969 1974
+)
+"peano.ml" 61 1917 1930 "peano.ml" 61 1917 1950
+type(
+  Basics._focty_int Imp_peano.me_as_species
+)
+ident(
+  int_ref effective_collection "peano.ml" 56 1701 1707 "peano.ml" 56 1701 1727
+)
+"peano.ml" 61 1917 1930 "peano.ml" 61 1917 1968
+type(
+  Basics._focty_int
+)

@@ -1,0 +1,619 @@
+(* Coq >= 8.3pl2: disable automatic introduction of hypotheses. *)
+Global Unset Automatic Introduction.
+(* Coq >= 8.5: allow sum constructors without explicit types in patterns. *)
+Global Set Asymmetric Patterns.
+Require Export Bool.
+Require Export ZArith.
+Open Scope Z_scope.
+Require Export Reals.
+Require Export Ascii.
+Require Export String.
+Require Export List.
+Require Import Wellfounded.
+Require Export Recdef.
+Require Export coq_builtins.
+Require Import Relations.
+Require Import Zwf.
+
+(* Below: to prevent Function to apply heuristics that would
+the expected aim in recursive functions termination proofs. *)
+
+Set Function_raw_tcc.
+
+Require basics.
+Require sets.
+Require orders.
+Require peano.
+Module Sp_capteur.
+  
+End Sp_capteur.
+
+Module Imp_capteur.
+  Record me_as_species (P_T : Set) : Type :=
+    mk_record {
+    rf_T : Set ;
+    (* From species num_capteur#Imp_capteur. *)
+    rf_capt_1 : rf_T ;
+    (* From species num_capteur#Imp_capteur. *)
+    rf_equal : rf_T -> rf_T -> basics.bool__t ;
+    (* From species basics#Basic_object. *)
+    rf_parse : basics.string__t -> rf_T ;
+    (* From species num_capteur#Imp_capteur. *)
+    rf_capt_2 : rf_T ;
+    (* From species num_capteur#Imp_capteur. *)
+    rf_element : rf_T ;
+    (* From species sets#Setoid. *)
+    rf_different : rf_T -> rf_T -> basics.bool__t ;
+    (* From species num_capteur#Imp_capteur. *)
+    rf_equal_reflexive : forall x : rf_T, Is_true ((rf_equal x x)) ;
+    (* From species num_capteur#Imp_capteur. *)
+    rf_equal_symmetric :
+      forall x  y : rf_T,
+        Is_true ((rf_equal x y)) -> Is_true ((rf_equal y x)) ;
+    (* From species num_capteur#Imp_capteur. *)
+    rf_equal_transitive :
+      forall x  y  z : rf_T,
+        Is_true ((rf_equal x y)) ->
+          Is_true ((rf_equal y z)) -> Is_true ((rf_equal x z)) ;
+    (* From species num_capteur#Imp_capteur. *)
+    rf_all_field_different_0_1 :
+      ~Is_true (((rf_equal rf_capt_1 rf_capt_2))) ;
+    (* From species num_capteur#Imp_capteur. *)
+    rf_capt_3 : rf_T ;
+    (* From species sets#Setoid. *)
+    rf_same_is_not_different :
+      forall x  y : rf_T,
+        Is_true ((rf_different x y)) <-> ~Is_true (((rf_equal x y))) ;
+    (* From species num_capteur#Imp_capteur. *)
+    rf_all_field_different_0_2 :
+      ~Is_true (((rf_equal rf_capt_1 rf_capt_3))) ;
+    (* From species num_capteur#Imp_capteur. *)
+    rf_all_field_different_1_2 :
+      ~Is_true (((rf_equal rf_capt_2 rf_capt_3))) ;
+    (* From species num_capteur#Imp_capteur. *)
+    rf_all_value :
+      forall e : rf_T,
+        Is_true ((rf_equal e rf_capt_1)) \/
+          Is_true ((rf_equal e rf_capt_2)) \/
+            Is_true ((rf_equal e rf_capt_3)) ;
+    (* From species num_capteur#Imp_capteur. *)
+    rf_print : rf_T -> basics.string__t ;
+    (* From species sets#Setoid. *)
+    rf_different_is_complete :
+      forall x  y  z : rf_T,
+        Is_true ((rf_different x y)) ->
+          (Is_true ((rf_different x z)) \/ Is_true ((rf_different y z))) ;
+    (* From species sets#Setoid. *)
+    rf_different_is_irreflexive :
+      forall x : rf_T, ~Is_true (((rf_different x x))) ;
+    (* From species sets#Setoid. *)
+    rf_different_is_symmetric :
+      forall x  y : rf_T,
+        Is_true ((rf_different x y)) -> Is_true ((rf_different y x))
+    }.
+  
+  Definition capt_1 (_p_P_T : Set) (_p_P_zero : _p_P_T) (abst_T := _p_P_T) :
+    abst_T := _p_P_zero.
+  Definition equal (_p_P_T : Set) (_p_P_equal :
+    _p_P_T -> _p_P_T -> basics.bool__t) (abst_T := _p_P_T) (x : abst_T)
+    (y : abst_T) : basics.bool__t := (_p_P_equal x y).
+  Definition capt_2 (_p_P_T : Set) (_p_P_s : _p_P_T -> _p_P_T)
+    (abst_T := _p_P_T) (abst_capt_1 : abst_T) : abst_T :=
+    (_p_P_s abst_capt_1).
+  Definition element (_p_P_T : Set) (abst_T : Set) (abst_capt_1 : abst_T) :
+    abst_T := abst_capt_1.
+  
+  (* From species num_capteur#Imp_capteur. *)
+  (* Section for proof of theorem 'equal_reflexive'. *)
+  Section Proof_of_equal_reflexive.
+    Variable _p_P_T : Set.
+    Variable _p_P_equal : _p_P_T -> _p_P_T -> basics.bool__t.
+    Variable _p_P_equal_reflexive :
+      forall x : _p_P_T, Is_true ((_p_P_equal x x)).
+    Let abst_T := _p_P_T.
+    Let abst_equal := equal _p_P_T
+    _p_P_equal.
+    %%begin-auto-proof
+    %%location: [File "num_capteur.fcl", line 74, characters 4-53]
+    %%name: for_zenon_equal_reflexive
+    
+    
+    
+    (* Methods to use for automated proof. *)
+    (* For species parameter method used via "by property num_capteur#P!equal_reflexive". *)
+    Parameter _p_P_equal_reflexive :
+      forall x : _p_P_T, Is_true ((_p_P_equal x x)).
+    (* For method of Self used via "by definition of !equal". *)
+    Definition abst_equal (x : abst_T) (y : abst_T) : basics.bool__t :=
+      (_p_P_equal x y).
+    (* Theorem's body. *)
+    Theorem for_zenon_equal_reflexive :
+    forall x : abst_T, Is_true ((abst_equal x x)).
+    %%end-auto-proof
+    (* Dummy theorem to enforce Coq abstractions. *)
+    Theorem for_zenon_abstracted_equal_reflexive :
+      forall x : abst_T, Is_true ((abst_equal x x)).
+    assert (__force_use_p_P_T := _p_P_T).
+    assert (__force_use__p_P_equal := _p_P_equal).
+    assert (__force_use__p_P_equal_reflexive := _p_P_equal_reflexive).
+    assert (__force_use_abst_T := abst_T).
+    assert (__force_use_abst_equal := abst_equal).
+    apply for_zenon_equal_reflexive;
+    auto.
+    Qed.
+    End Proof_of_equal_reflexive.
+  
+  Theorem equal_reflexive  (_p_P_T : Set) (_p_P_equal :
+    _p_P_T -> _p_P_T -> basics.bool__t) (_p_P_equal_reflexive :
+    forall x : _p_P_T, Is_true ((_p_P_equal x x))) (abst_T := _p_P_T)
+    (abst_equal := equal _p_P_T _p_P_equal):
+    forall x : abst_T, Is_true ((abst_equal x x)).
+  apply for_zenon_abstracted_equal_reflexive;
+  auto.
+  Qed.
+  
+  (* From species num_capteur#Imp_capteur. *)
+  (* Section for proof of theorem 'equal_symmetric'. *)
+  Section Proof_of_equal_symmetric.
+    Variable _p_P_T : Set.
+    Variable _p_P_equal : _p_P_T -> _p_P_T -> basics.bool__t.
+    Variable _p_P_equal_symmetric :
+      forall x  y : _p_P_T,
+        Is_true ((_p_P_equal x y)) -> Is_true ((_p_P_equal y x)).
+    Let abst_T := _p_P_T.
+    Let abst_equal := equal _p_P_T
+    _p_P_equal.
+    %%begin-auto-proof
+    %%location: [File "num_capteur.fcl", line 72, characters 4-53]
+    %%name: for_zenon_equal_symmetric
+    
+    
+    
+    (* Methods to use for automated proof. *)
+    (* For species parameter method used via "by property num_capteur#P!equal_symmetric". *)
+    Parameter _p_P_equal_symmetric :
+      forall x  y : _p_P_T,
+        Is_true ((_p_P_equal x y)) -> Is_true ((_p_P_equal y x)).
+    (* For method of Self used via "by definition of !equal". *)
+    Definition abst_equal (x : abst_T) (y : abst_T) : basics.bool__t :=
+      (_p_P_equal x y).
+    (* Theorem's body. *)
+    Theorem for_zenon_equal_symmetric :
+    forall x  y : abst_T,
+      Is_true ((abst_equal x y)) -> Is_true ((abst_equal y x)).
+    %%end-auto-proof
+    (* Dummy theorem to enforce Coq abstractions. *)
+    Theorem for_zenon_abstracted_equal_symmetric :
+      forall x  y : abst_T,
+        Is_true ((abst_equal x y)) -> Is_true ((abst_equal y x)).
+    assert (__force_use_p_P_T := _p_P_T).
+    assert (__force_use__p_P_equal := _p_P_equal).
+    assert (__force_use__p_P_equal_symmetric := _p_P_equal_symmetric).
+    assert (__force_use_abst_T := abst_T).
+    assert (__force_use_abst_equal := abst_equal).
+    apply for_zenon_equal_symmetric;
+    auto.
+    Qed.
+    End Proof_of_equal_symmetric.
+  
+  Theorem equal_symmetric  (_p_P_T : Set) (_p_P_equal :
+    _p_P_T -> _p_P_T -> basics.bool__t) (_p_P_equal_symmetric :
+    forall x  y : _p_P_T,
+      Is_true ((_p_P_equal x y)) -> Is_true ((_p_P_equal y x)))
+    (abst_T := _p_P_T) (abst_equal := equal _p_P_T _p_P_equal):
+    forall x  y : abst_T,
+      Is_true ((abst_equal x y)) -> Is_true ((abst_equal y x)).
+  apply for_zenon_abstracted_equal_symmetric;
+  auto.
+  Qed.
+  
+  (* From species num_capteur#Imp_capteur. *)
+  (* Section for proof of theorem 'equal_transitive'. *)
+  Section Proof_of_equal_transitive.
+    Variable _p_P_T : Set.
+    Variable _p_P_equal : _p_P_T -> _p_P_T -> basics.bool__t.
+    Variable _p_P_equal_transitive :
+      forall x  y  z : _p_P_T,
+        (Is_true ((_p_P_equal x y)) /\ Is_true ((_p_P_equal y z))) ->
+          Is_true ((_p_P_equal x z)).
+    Let abst_T := _p_P_T.
+    Let abst_equal := equal _p_P_T
+    _p_P_equal.
+    %%begin-auto-proof
+    %%location: [File "num_capteur.fcl", line 70, characters 4-54]
+    %%name: for_zenon_equal_transitive
+    
+    
+    
+    (* Methods to use for automated proof. *)
+    (* For species parameter method used via "by property num_capteur#P!equal_transitive". *)
+    Parameter _p_P_equal_transitive :
+      forall x  y  z : _p_P_T,
+        (Is_true ((_p_P_equal x y)) /\ Is_true ((_p_P_equal y z))) ->
+          Is_true ((_p_P_equal x z)).
+    (* For method of Self used via "by definition of !equal". *)
+    Definition abst_equal (x : abst_T) (y : abst_T) : basics.bool__t :=
+      (_p_P_equal x y).
+    (* Theorem's body. *)
+    Theorem for_zenon_equal_transitive :
+    forall x  y  z : abst_T,
+      Is_true ((abst_equal x y)) ->
+        Is_true ((abst_equal y z)) -> Is_true ((abst_equal x z)).
+    %%end-auto-proof
+    (* Dummy theorem to enforce Coq abstractions. *)
+    Theorem for_zenon_abstracted_equal_transitive :
+      forall x  y  z : abst_T,
+        Is_true ((abst_equal x y)) ->
+          Is_true ((abst_equal y z)) -> Is_true ((abst_equal x z)).
+    assert (__force_use_p_P_T := _p_P_T).
+    assert (__force_use__p_P_equal := _p_P_equal).
+    assert (__force_use__p_P_equal_transitive := _p_P_equal_transitive).
+    assert (__force_use_abst_T := abst_T).
+    assert (__force_use_abst_equal := abst_equal).
+    apply for_zenon_equal_transitive;
+    auto.
+    Qed.
+    End Proof_of_equal_transitive.
+  
+  Theorem equal_transitive  (_p_P_T : Set) (_p_P_equal :
+    _p_P_T -> _p_P_T -> basics.bool__t) (_p_P_equal_transitive :
+    forall x  y  z : _p_P_T,
+      (Is_true ((_p_P_equal x y)) /\ Is_true ((_p_P_equal y z))) ->
+        Is_true ((_p_P_equal x z)))
+    (abst_T := _p_P_T) (abst_equal := equal _p_P_T _p_P_equal):
+    forall x  y  z : abst_T,
+      Is_true ((abst_equal x y)) ->
+        Is_true ((abst_equal y z)) -> Is_true ((abst_equal x z)).
+  apply for_zenon_abstracted_equal_transitive;
+  auto.
+  Qed.
+  
+  (* From species num_capteur#Imp_capteur. *)
+  (* Section for proof of theorem 'all_field_different_0_1'. *)
+  Section Proof_of_all_field_different_0_1.
+    Variable _p_P_T : Set.
+    Variable _p_P_equal : _p_P_T -> _p_P_T -> basics.bool__t.
+    Variable _p_P_s : _p_P_T -> _p_P_T.
+    Variable _p_P_zero : _p_P_T.
+    Variable _p_P_zero_is_not_successor :
+      forall x : _p_P_T, ~Is_true ((_p_P_equal _p_P_zero (_p_P_s x))).
+    Let abst_T := _p_P_T.
+    Let abst_capt_1 := capt_1 _p_P_T _p_P_zero.
+    Let abst_equal := equal _p_P_T _p_P_equal.
+    Let abst_capt_2 := capt_2 _p_P_T _p_P_s
+    abst_capt_1.
+    %%begin-auto-proof
+    %%location: [File "num_capteur.fcl", line 77, character 4, line 78, character 36]
+    %%name: for_zenon_all_field_different_0_1
+    
+    
+    
+    (* Methods to use for automated proof. *)
+    (* For method of Self used via "by definition of !capt_1". *)
+    Definition abst_capt_1 : abst_T := _p_P_zero.
+    (* For method of Self used via "by definition of !capt_2". *)
+    Definition abst_capt_2 : abst_T := (_p_P_s abst_capt_1).
+    (* For method of Self used via "by definition of !equal". *)
+    Definition abst_equal (x : abst_T) (y : abst_T) : basics.bool__t :=
+      (_p_P_equal x y).
+    (* For species parameter method used via "by property num_capteur#P!zero_is_not_successor". *)
+    Parameter _p_P_zero_is_not_successor :
+      forall x : _p_P_T, ~Is_true ((_p_P_equal _p_P_zero (_p_P_s x))).
+    (* Theorem's body. *)
+    Theorem for_zenon_all_field_different_0_1 :
+    ~Is_true (((abst_equal abst_capt_1 abst_capt_2))).
+    %%end-auto-proof
+    (* Dummy theorem to enforce Coq abstractions. *)
+    Theorem for_zenon_abstracted_all_field_different_0_1 :
+      ~Is_true (((abst_equal abst_capt_1 abst_capt_2))).
+    assert (__force_use_p_P_T := _p_P_T).
+    assert (__force_use__p_P_equal := _p_P_equal).
+    assert (__force_use__p_P_s := _p_P_s).
+    assert (__force_use__p_P_zero := _p_P_zero).
+    assert (__force_use__p_P_zero_is_not_successor :=
+      _p_P_zero_is_not_successor).
+    assert (__force_use_abst_T := abst_T).
+    assert (__force_use_abst_capt_1 := abst_capt_1).
+    assert (__force_use_abst_equal := abst_equal).
+    assert (__force_use_abst_capt_2 := abst_capt_2).
+    apply for_zenon_all_field_different_0_1;
+    auto.
+    Qed.
+    End Proof_of_all_field_different_0_1.
+  
+  Theorem all_field_different_0_1  (_p_P_T : Set) (_p_P_equal :
+    _p_P_T -> _p_P_T -> basics.bool__t) (_p_P_s : _p_P_T -> _p_P_T)
+    (_p_P_zero : _p_P_T) (_p_P_zero_is_not_successor :
+    forall x : _p_P_T, ~Is_true ((_p_P_equal _p_P_zero (_p_P_s x))))
+    (abst_T := _p_P_T) (abst_capt_1 := capt_1 _p_P_T _p_P_zero)
+    (abst_equal := equal _p_P_T _p_P_equal) (abst_capt_2 := capt_2 _p_P_T
+    _p_P_s abst_capt_1): ~Is_true (((abst_equal abst_capt_1 abst_capt_2))).
+  apply for_zenon_abstracted_all_field_different_0_1;
+  auto.
+  Qed.
+  Definition capt_3 (_p_P_T : Set) (_p_P_s : _p_P_T -> _p_P_T)
+    (abst_T := _p_P_T) (abst_capt_2 : abst_T) : abst_T :=
+    (_p_P_s abst_capt_2).
+  
+  (* From species num_capteur#Imp_capteur. *)
+  (* Section for proof of theorem 'all_field_different_0_2'. *)
+  Section Proof_of_all_field_different_0_2.
+    Variable _p_P_T : Set.
+    Variable _p_P_equal : _p_P_T -> _p_P_T -> basics.bool__t.
+    Variable _p_P_s : _p_P_T -> _p_P_T.
+    Variable _p_P_zero : _p_P_T.
+    Variable _p_P_zero_is_not_successor :
+      forall x : _p_P_T, ~Is_true ((_p_P_equal _p_P_zero (_p_P_s x))).
+    Let abst_T := _p_P_T.
+    Let abst_capt_1 := capt_1 _p_P_T _p_P_zero.
+    Let abst_equal := equal _p_P_T
+    _p_P_equal.
+    Variable abst_capt_2 : abst_T.
+    Let abst_capt_3 := capt_3 _p_P_T _p_P_s
+    abst_capt_2.
+    %%begin-auto-proof
+    %%location: [File "num_capteur.fcl", line 82, character 4, line 83, character 36]
+    %%name: for_zenon_all_field_different_0_2
+    
+    
+    
+    (* Methods to use for automated proof. *)
+    (* For method of Self used via "by definition of !capt_1". *)
+    Definition abst_capt_1 : abst_T := _p_P_zero.
+    (* For method of Self used via "by definition of !capt_3". *)
+    Definition abst_capt_3 : abst_T := (_p_P_s abst_capt_2).
+    (* For method of Self used via "by definition of !equal". *)
+    Definition abst_equal (x : abst_T) (y : abst_T) : basics.bool__t :=
+      (_p_P_equal x y).
+    (* For species parameter method used via "by property num_capteur#P!zero_is_not_successor". *)
+    Parameter _p_P_zero_is_not_successor :
+      forall x : _p_P_T, ~Is_true ((_p_P_equal _p_P_zero (_p_P_s x))).
+    (* Theorem's body. *)
+    Theorem for_zenon_all_field_different_0_2 :
+    ~Is_true (((abst_equal abst_capt_1 abst_capt_3))).
+    %%end-auto-proof
+    (* Dummy theorem to enforce Coq abstractions. *)
+    Theorem for_zenon_abstracted_all_field_different_0_2 :
+      ~Is_true (((abst_equal abst_capt_1 abst_capt_3))).
+    assert (__force_use_p_P_T := _p_P_T).
+    assert (__force_use__p_P_equal := _p_P_equal).
+    assert (__force_use__p_P_s := _p_P_s).
+    assert (__force_use__p_P_zero := _p_P_zero).
+    assert (__force_use__p_P_zero_is_not_successor :=
+      _p_P_zero_is_not_successor).
+    assert (__force_use_abst_T := abst_T).
+    assert (__force_use_abst_capt_1 := abst_capt_1).
+    assert (__force_use_abst_equal := abst_equal).
+    assert (__force_use_abst_capt_2 := abst_capt_2).
+    assert (__force_use_abst_capt_3 := abst_capt_3).
+    apply for_zenon_all_field_different_0_2;
+    auto.
+    Qed.
+    End Proof_of_all_field_different_0_2.
+  
+  Theorem all_field_different_0_2  (_p_P_T : Set) (_p_P_equal :
+    _p_P_T -> _p_P_T -> basics.bool__t) (_p_P_s : _p_P_T -> _p_P_T)
+    (_p_P_zero : _p_P_T) (_p_P_zero_is_not_successor :
+    forall x : _p_P_T, ~Is_true ((_p_P_equal _p_P_zero (_p_P_s x))))
+    (abst_T := _p_P_T) (abst_capt_1 := capt_1 _p_P_T _p_P_zero)
+    (abst_equal := equal _p_P_T _p_P_equal) (abst_capt_2 : abst_T)
+    (abst_capt_3 := capt_3 _p_P_T _p_P_s abst_capt_2):
+    ~Is_true (((abst_equal abst_capt_1 abst_capt_3))).
+  apply for_zenon_abstracted_all_field_different_0_2;
+  auto.
+  Qed.
+  
+  (* From species num_capteur#Imp_capteur. *)
+  (* Section for proof of theorem 'all_field_different_1_2'. *)
+  Section Proof_of_all_field_different_1_2.
+    Variable _p_P_T : Set.
+    Variable _p_P_equal : _p_P_T -> _p_P_T -> basics.bool__t.
+    Variable _p_P_s : _p_P_T -> _p_P_T.
+    Variable _p_P_zero : _p_P_T.
+    Variable _p_P_succ_is_an_injection :
+      forall x  y : _p_P_T,
+        Is_true ((_p_P_equal (_p_P_s x) (_p_P_s y))) ->
+          Is_true ((_p_P_equal x y)).
+    Variable _p_P_zero_is_not_successor :
+      forall x : _p_P_T, ~Is_true ((_p_P_equal _p_P_zero (_p_P_s x))).
+    Let abst_T := _p_P_T.
+    Let abst_capt_1 := capt_1 _p_P_T _p_P_zero.
+    Let abst_equal := equal _p_P_T _p_P_equal.
+    Let abst_capt_2 := capt_2 _p_P_T _p_P_s abst_capt_1.
+    Let abst_capt_3 := capt_3 _p_P_T _p_P_s
+    abst_capt_2.
+    %%begin-auto-proof
+    %%location: [File "num_capteur.fcl", line 87, character 4, line 88, character 60]
+    %%name: for_zenon_all_field_different_1_2
+    
+    
+    
+    (* Methods to use for automated proof. *)
+    (* For method of Self used via "by definition of !capt_1". *)
+    Definition abst_capt_1 : abst_T := _p_P_zero.
+    (* For method of Self used via "by definition of !capt_2". *)
+    Definition abst_capt_2 : abst_T := (_p_P_s abst_capt_1).
+    (* For method of Self used via "by definition of !capt_3". *)
+    Definition abst_capt_3 : abst_T := (_p_P_s abst_capt_2).
+    (* For method of Self used via "by definition of !equal". *)
+    Definition abst_equal (x : abst_T) (y : abst_T) : basics.bool__t :=
+      (_p_P_equal x y).
+    (* For species parameter method used via "by property num_capteur#P!zero_is_not_successor". *)
+    Parameter _p_P_zero_is_not_successor :
+      forall x : _p_P_T, ~Is_true ((_p_P_equal _p_P_zero (_p_P_s x))).
+    (* For species parameter method used via "by property num_capteur#P!succ_is_an_injection". *)
+    Parameter _p_P_succ_is_an_injection :
+      forall x  y : _p_P_T,
+        Is_true ((_p_P_equal (_p_P_s x) (_p_P_s y))) ->
+          Is_true ((_p_P_equal x y)).
+    (* Theorem's body. *)
+    Theorem for_zenon_all_field_different_1_2 :
+    ~Is_true (((abst_equal abst_capt_2 abst_capt_3))).
+    %%end-auto-proof
+    (* Dummy theorem to enforce Coq abstractions. *)
+    Theorem for_zenon_abstracted_all_field_different_1_2 :
+      ~Is_true (((abst_equal abst_capt_2 abst_capt_3))).
+    assert (__force_use_p_P_T := _p_P_T).
+    assert (__force_use__p_P_equal := _p_P_equal).
+    assert (__force_use__p_P_s := _p_P_s).
+    assert (__force_use__p_P_zero := _p_P_zero).
+    assert (__force_use__p_P_succ_is_an_injection :=
+      _p_P_succ_is_an_injection).
+    assert (__force_use__p_P_zero_is_not_successor :=
+      _p_P_zero_is_not_successor).
+    assert (__force_use_abst_T := abst_T).
+    assert (__force_use_abst_capt_1 := abst_capt_1).
+    assert (__force_use_abst_equal := abst_equal).
+    assert (__force_use_abst_capt_2 := abst_capt_2).
+    assert (__force_use_abst_capt_3 := abst_capt_3).
+    apply for_zenon_all_field_different_1_2;
+    auto.
+    Qed.
+    End Proof_of_all_field_different_1_2.
+  
+  Theorem all_field_different_1_2  (_p_P_T : Set) (_p_P_equal :
+    _p_P_T -> _p_P_T -> basics.bool__t) (_p_P_s : _p_P_T -> _p_P_T)
+    (_p_P_zero : _p_P_T) (_p_P_succ_is_an_injection :
+    forall x  y : _p_P_T,
+      Is_true ((_p_P_equal (_p_P_s x) (_p_P_s y))) ->
+        Is_true ((_p_P_equal x y)))
+    (_p_P_zero_is_not_successor :
+    forall x : _p_P_T, ~Is_true ((_p_P_equal _p_P_zero (_p_P_s x))))
+    (abst_T := _p_P_T) (abst_capt_1 := capt_1 _p_P_T _p_P_zero)
+    (abst_equal := equal _p_P_T _p_P_equal) (abst_capt_2 := capt_2 _p_P_T
+    _p_P_s abst_capt_1) (abst_capt_3 := capt_3 _p_P_T _p_P_s abst_capt_2):
+    ~Is_true (((abst_equal abst_capt_2 abst_capt_3))).
+  apply for_zenon_abstracted_all_field_different_1_2;
+  auto.
+  Qed.
+  
+  (* From species num_capteur#Imp_capteur. *)
+  Theorem all_value  (_p_P_T : Set) (abst_T : Set) (abst_capt_1 : abst_T)
+    (abst_equal : abst_T -> abst_T -> basics.bool__t) (abst_capt_2 : abst_T)
+    (abst_capt_3 : abst_T):
+    forall e : abst_T,
+      Is_true ((abst_equal e abst_capt_1)) \/
+        Is_true ((abst_equal e abst_capt_2)) \/
+          Is_true ((abst_equal e abst_capt_3)).
+  (* Proof was flagged as assumed *)
+  apply coq_builtins.magic_prove.
+  Qed.
+  Definition print (_p_P_T : Set) (abst_T : Set) (abst_capt_1 : abst_T)
+    (abst_equal : abst_T -> abst_T -> basics.bool__t) (abst_capt_2 : abst_T)
+    (abst_capt_3 : abst_T) (x : abst_T) : basics.string__t :=
+    (if (abst_equal x abst_capt_1) then "capt_1"%string
+      else (if (abst_equal x abst_capt_2) then "capt_2"%string
+             else (if (abst_equal x abst_capt_3) then "capt_3"%string
+                    else "Erreur capteur"%string))).
+  
+  (* Fully defined 'Imp_capteur' species's collection generator. *)
+  Definition collection_create (_p_P_T : Set) _p_P_equal _p_P_s _p_P_zero
+    _p_P_equal_reflexive _p_P_equal_symmetric _p_P_equal_transitive
+    _p_P_succ_is_an_injection _p_P_zero_is_not_successor :=
+    let local_rep := _p_P_T in
+    (* From species num_capteur#Imp_capteur. *)
+    let local_capt_1 := capt_1 _p_P_T _p_P_zero in
+    (* From species num_capteur#Imp_capteur. *)
+    let local_equal := equal _p_P_T _p_P_equal in
+    (* From species basics#Basic_object. *)
+    let local_parse := basics.Basic_object.parse local_rep in
+    (* From species num_capteur#Imp_capteur. *)
+    let local_capt_2 := capt_2 _p_P_T _p_P_s local_capt_1 in
+    (* From species num_capteur#Imp_capteur. *)
+    let local_element := element _p_P_T local_rep local_capt_1 in
+    (* From species sets#Setoid. *)
+    let local_different := sets.Setoid.different local_rep local_equal in
+    (* From species num_capteur#Imp_capteur. *)
+    let local_equal_reflexive := equal_reflexive _p_P_T _p_P_equal
+      _p_P_equal_reflexive in
+    (* From species num_capteur#Imp_capteur. *)
+    let local_equal_symmetric := equal_symmetric _p_P_T _p_P_equal
+      _p_P_equal_symmetric in
+    (* From species num_capteur#Imp_capteur. *)
+    let local_equal_transitive := equal_transitive _p_P_T _p_P_equal
+      _p_P_equal_transitive in
+    (* From species num_capteur#Imp_capteur. *)
+    let local_all_field_different_0_1 := all_field_different_0_1 _p_P_T
+      _p_P_equal _p_P_s _p_P_zero _p_P_zero_is_not_successor in
+    (* From species num_capteur#Imp_capteur. *)
+    let local_capt_3 := capt_3 _p_P_T _p_P_s local_capt_2 in
+    (* From species sets#Setoid. *)
+    let local_same_is_not_different := sets.Setoid.same_is_not_different
+      local_rep local_equal in
+    (* From species num_capteur#Imp_capteur. *)
+    let local_all_field_different_0_2 := all_field_different_0_2 _p_P_T
+      _p_P_equal _p_P_s _p_P_zero _p_P_zero_is_not_successor local_capt_2 in
+    (* From species num_capteur#Imp_capteur. *)
+    let local_all_field_different_1_2 := all_field_different_1_2 _p_P_T
+      _p_P_equal _p_P_s _p_P_zero _p_P_succ_is_an_injection
+      _p_P_zero_is_not_successor in
+    (* From species num_capteur#Imp_capteur. *)
+    let local_all_value := all_value _p_P_T local_rep local_capt_1
+      local_equal local_capt_2 local_capt_3 in
+    (* From species num_capteur#Imp_capteur. *)
+    let local_print := print _p_P_T local_rep local_capt_1 local_equal
+      local_capt_2 local_capt_3 in
+    (* From species sets#Setoid. *)
+    let local_different_is_complete := sets.Setoid.different_is_complete
+      local_rep local_equal local_different local_equal_reflexive
+      local_equal_symmetric local_equal_transitive
+      local_same_is_not_different in
+    (* From species sets#Setoid. *)
+    let local_different_is_irreflexive :=
+      sets.Setoid.different_is_irreflexive local_rep local_equal
+      local_different local_equal_reflexive local_same_is_not_different in
+    (* From species sets#Setoid. *)
+    let local_different_is_symmetric := sets.Setoid.different_is_symmetric
+      local_rep local_equal local_different local_equal_symmetric
+      local_same_is_not_different in
+    mk_record (_p_P_T : Set) local_rep local_capt_1 local_equal local_parse
+    local_capt_2 local_element local_different local_equal_reflexive
+    local_equal_symmetric local_equal_transitive
+    local_all_field_different_0_1 local_capt_3 local_same_is_not_different
+    local_all_field_different_0_2 local_all_field_different_1_2
+    local_all_value local_print local_different_is_complete
+    local_different_is_irreflexive local_different_is_symmetric.
+  
+End Imp_capteur.
+
+Module Coll_capteur.
+  Let effective_collection := Imp_capteur.collection_create
+    peano.Coll_peano.me_as_carrier peano.Coll_peano.equal peano.Coll_peano.s
+    peano.Coll_peano.zero peano.Coll_peano.equal_reflexive
+    peano.Coll_peano.equal_symmetric peano.Coll_peano.equal_transitive
+    peano.Coll_peano.succ_is_an_injection
+    peano.Coll_peano.zero_is_not_successor.
+  (* Carrier's structure explicitly given by "rep". *)
+  Definition me_as_carrier := peano.Coll_peano.me_as_carrier.
+  Definition capt_1 := effective_collection.(Imp_capteur.rf_capt_1 _).
+  Definition equal := effective_collection.(Imp_capteur.rf_equal _).
+  Definition parse := effective_collection.(Imp_capteur.rf_parse _).
+  Definition capt_2 := effective_collection.(Imp_capteur.rf_capt_2 _).
+  Definition element := effective_collection.(Imp_capteur.rf_element _).
+  Definition different := effective_collection.(Imp_capteur.rf_different _).
+  Definition equal_reflexive :=
+    effective_collection.(Imp_capteur.rf_equal_reflexive _).
+  Definition equal_symmetric :=
+    effective_collection.(Imp_capteur.rf_equal_symmetric _).
+  Definition equal_transitive :=
+    effective_collection.(Imp_capteur.rf_equal_transitive _).
+  Definition all_field_different_0_1 :=
+    effective_collection.(Imp_capteur.rf_all_field_different_0_1 _).
+  Definition capt_3 := effective_collection.(Imp_capteur.rf_capt_3 _).
+  Definition same_is_not_different :=
+    effective_collection.(Imp_capteur.rf_same_is_not_different _).
+  Definition all_field_different_0_2 :=
+    effective_collection.(Imp_capteur.rf_all_field_different_0_2 _).
+  Definition all_field_different_1_2 :=
+    effective_collection.(Imp_capteur.rf_all_field_different_1_2 _).
+  Definition all_value := effective_collection.(Imp_capteur.rf_all_value _).
+  Definition print := effective_collection.(Imp_capteur.rf_print _).
+  Definition different_is_complete :=
+    effective_collection.(Imp_capteur.rf_different_is_complete _).
+  Definition different_is_irreflexive :=
+    effective_collection.(Imp_capteur.rf_different_is_irreflexive _).
+  Definition different_is_symmetric :=
+    effective_collection.(Imp_capteur.rf_different_is_symmetric _).
+  
+End Coll_capteur.
+

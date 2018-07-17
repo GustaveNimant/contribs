@@ -1,0 +1,601 @@
+"diag.ml" 27 886 892 "diag.ml" 27 886 897
+type(
+  ('a -> 'b -> bool) -> 'b -> 'b -> 'b -> ('abst_T -> 'a) -> 'abst_T -> bool
+)
+ident(
+  def valid "diag.ml" 33 1262 1264 "diag.ml" 66 2640 2645
+)
+"diag.ml" 27 886 898 "diag.ml" 27 886 908
+type(
+  'a -> 'b -> bool
+)
+ident(
+  def _p_E_equal "diag.ml" 27 886 909 "diag.ml" 31 1135 1191
+)
+"diag.ml" 27 886 909 "diag.ml" 27 886 927
+type(
+  'b
+)
+ident(
+  def _p_E_partial_match "diag.ml" 27 886 928 "diag.ml" 31 1135 1191
+)
+"diag.ml" 27 886 928 "diag.ml" 27 886 946
+type(
+  'b
+)
+ident(
+  def _p_E_perfect_match "diag.ml" 27 886 947 "diag.ml" 31 1135 1191
+)
+"diag.ml" 27 886 947 "diag.ml" 27 886 963
+type(
+  'b
+)
+ident(
+  def _p_E_range_match "diag.ml" 28 964 968 "diag.ml" 31 1135 1191
+)
+"diag.ml" 28 964 968 "diag.ml" 28 964 978
+type(
+  'abst_T -> 'a
+)
+ident(
+  def abst_prj_b "diag.ml" 28 964 979 "diag.ml" 31 1135 1191
+)
+"diag.ml" 28 964 980 "diag.ml" 28 964 981
+type(
+  'abst_T
+)
+ident(
+  def x "diag.ml" 29 995 999 "diag.ml" 31 1135 1191
+)
+"diag.ml" 29 995 1000 "diag.ml" 29 995 1017
+type(
+  bool -> bool -> bool
+)
+ident(
+  ext_ref Basics._bar__bar_
+)
+"diag.ml" 29 995 1019 "diag.ml" 29 995 1029
+type(
+  'a -> 'b -> bool
+)
+ident(
+  int_ref _p_E_equal "diag.ml" 27 886 898 "diag.ml" 27 886 908
+)
+"diag.ml" 29 995 1031 "diag.ml" 29 995 1041
+type(
+  'abst_T -> 'a
+)
+ident(
+  int_ref abst_prj_b "diag.ml" 28 964 968 "diag.ml" 28 964 978
+)
+"diag.ml" 29 995 1042 "diag.ml" 29 995 1043
+type(
+  'abst_T
+)
+ident(
+  int_ref x "diag.ml" 28 964 980 "diag.ml" 28 964 981
+)
+"diag.ml" 29 995 1030 "diag.ml" 29 995 1044
+call(
+  stack
+)
+type(
+  'a
+)
+"diag.ml" 29 995 1045 "diag.ml" 29 995 1061
+type(
+  'b
+)
+ident(
+  int_ref _p_E_range_match "diag.ml" 27 886 947 "diag.ml" 27 886 963
+)
+"diag.ml" 29 995 1018 "diag.ml" 29 995 1062
+call(
+  stack
+)
+type(
+  bool
+)
+"diag.ml" 30 1063 1070 "diag.ml" 30 1063 1087
+type(
+  bool -> bool -> bool
+)
+ident(
+  ext_ref Basics._bar__bar_
+)
+"diag.ml" 30 1063 1089 "diag.ml" 30 1063 1099
+type(
+  'a -> 'b -> bool
+)
+ident(
+  int_ref _p_E_equal "diag.ml" 27 886 898 "diag.ml" 27 886 908
+)
+"diag.ml" 30 1063 1101 "diag.ml" 30 1063 1111
+type(
+  'abst_T -> 'a
+)
+ident(
+  int_ref abst_prj_b "diag.ml" 28 964 968 "diag.ml" 28 964 978
+)
+"diag.ml" 30 1063 1112 "diag.ml" 30 1063 1113
+type(
+  'abst_T
+)
+ident(
+  int_ref x "diag.ml" 28 964 980 "diag.ml" 28 964 981
+)
+"diag.ml" 30 1063 1100 "diag.ml" 30 1063 1114
+call(
+  stack
+)
+type(
+  'a
+)
+"diag.ml" 30 1063 1115 "diag.ml" 30 1063 1133
+type(
+  'b
+)
+ident(
+  int_ref _p_E_partial_match "diag.ml" 27 886 909 "diag.ml" 27 886 927
+)
+"diag.ml" 30 1063 1088 "diag.ml" 30 1063 1134
+call(
+  stack
+)
+type(
+  bool
+)
+"diag.ml" 31 1135 1144 "diag.ml" 31 1135 1154
+type(
+  'a -> 'b -> bool
+)
+ident(
+  int_ref _p_E_equal "diag.ml" 27 886 898 "diag.ml" 27 886 908
+)
+"diag.ml" 31 1135 1156 "diag.ml" 31 1135 1166
+type(
+  'abst_T -> 'a
+)
+ident(
+  int_ref abst_prj_b "diag.ml" 28 964 968 "diag.ml" 28 964 978
+)
+"diag.ml" 31 1135 1167 "diag.ml" 31 1135 1168
+type(
+  'abst_T
+)
+ident(
+  int_ref x "diag.ml" 28 964 980 "diag.ml" 28 964 981
+)
+"diag.ml" 31 1135 1155 "diag.ml" 31 1135 1169
+call(
+  stack
+)
+type(
+  'a
+)
+"diag.ml" 31 1135 1170 "diag.ml" 31 1135 1188
+type(
+  'b
+)
+ident(
+  int_ref _p_E_perfect_match "diag.ml" 27 886 928 "diag.ml" 27 886 946
+)
+"diag.ml" 31 1135 1143 "diag.ml" 31 1135 1189
+call(
+  stack
+)
+type(
+  bool
+)
+"diag.ml" 30 1063 1069 "diag.ml" 31 1135 1190
+call(
+  stack
+)
+type(
+  bool
+)
+"diag.ml" 29 995 999 "diag.ml" 31 1135 1191
+call(
+  tail
+)
+type(
+  bool
+)
+"diag.ml" 33 1262 1268 "diag.ml" 33 1262 1285
+type(
+  unit ->
+  'c ->
+  ('c -> 'c -> bool) ->
+  'd ->
+  ('d -> 'd -> bool) -> 'd -> 'd -> 'd -> ('d, 'c, 'c * 'd) me_as_species
+)
+ident(
+  def collection_create "diag.ml" 64 2626 2634 "diag.ml" 66 2640 2645
+)
+"diag.ml" 33 1262 1286 "diag.ml" 33 1262 1288
+type(
+  unit
+)
+"diag.ml" 33 1262 1289 "diag.ml" 33 1262 1301
+type(
+  'c
+)
+ident(
+  def _p_C_element "diag.ml" 33 1262 1302 "diag.ml" 64 2626 2634
+)
+"diag.ml" 33 1262 1302 "diag.ml" 33 1262 1312
+type(
+  'c -> 'c -> bool
+)
+ident(
+  def _p_C_equal "diag.ml" 33 1262 1313 "diag.ml" 64 2626 2634
+)
+"diag.ml" 33 1262 1313 "diag.ml" 33 1262 1325
+type(
+  'd
+)
+ident(
+  def _p_E_element "diag.ml" 33 1262 1326 "diag.ml" 64 2626 2634
+)
+"diag.ml" 33 1262 1326 "diag.ml" 33 1262 1336
+type(
+  'd -> 'd -> bool
+)
+ident(
+  def _p_E_equal "diag.ml" 34 1337 1341 "diag.ml" 64 2626 2634
+)
+"diag.ml" 34 1337 1341 "diag.ml" 34 1337 1359
+type(
+  'd
+)
+ident(
+  def _p_E_partial_match "diag.ml" 34 1337 1360 "diag.ml" 64 2626 2634
+)
+"diag.ml" 34 1337 1360 "diag.ml" 34 1337 1378
+type(
+  'd
+)
+ident(
+  def _p_E_perfect_match "diag.ml" 34 1337 1379 "diag.ml" 64 2626 2634
+)
+"diag.ml" 34 1337 1379 "diag.ml" 34 1337 1395
+type(
+  'd
+)
+ident(
+  def _p_E_range_match "diag.ml" 36 1436 1440 "diag.ml" 64 2626 2634
+)
+"diag.ml" 36 1436 1444 "diag.ml" 36 1436 1456
+type(
+  'e -> 'f -> 'e * 'f
+)
+ident(
+  def local_constr "diag.ml" 38 1521 1525 "diag.ml" 64 2626 2634
+)
+"diag.ml" 36 1436 1459 "diag.ml" 36 1436 1479
+type(
+  'e -> 'f -> 'e * 'f
+)
+ident(
+  ext_ref Pair.Imp_pair.constr
+)
+"diag.ml" 38 1521 1529 "diag.ml" 38 1521 1540
+type(
+  'c * 'd -> 'c * 'd -> bool
+)
+ident(
+  def local_equal "diag.ml" 40 1632 1636 "diag.ml" 64 2626 2634
+)
+"diag.ml" 38 1521 1543 "diag.ml" 38 1521 1562
+type(
+  ('c -> 'c -> bool) -> ('d -> 'd -> bool) -> 'c * 'd -> 'c * 'd -> bool
+)
+ident(
+  ext_ref Pair.Imp_pair.equal
+)
+"diag.ml" 38 1521 1563 "diag.ml" 38 1521 1573
+type(
+  'c -> 'c -> bool
+)
+ident(
+  int_ref _p_C_equal "diag.ml" 33 1262 1302 "diag.ml" 33 1262 1312
+)
+"diag.ml" 38 1521 1574 "diag.ml" 38 1521 1584
+type(
+  'd -> 'd -> bool
+)
+ident(
+  int_ref _p_E_equal "diag.ml" 33 1262 1326 "diag.ml" 33 1262 1336
+)
+"diag.ml" 38 1521 1543 "diag.ml" 38 1521 1584
+call(
+  stack
+)
+type(
+  'c * 'd -> 'c * 'd -> bool
+)
+"diag.ml" 40 1632 1640 "diag.ml" 40 1632 1651
+type(
+  Basics._focty_string -> 'g
+)
+ident(
+  def local_parse "diag.ml" 42 1727 1731 "diag.ml" 64 2626 2634
+)
+"diag.ml" 40 1632 1654 "diag.ml" 40 1632 1679
+type(
+  Basics._focty_string -> 'g
+)
+ident(
+  ext_ref Basics.Basic_object.parse
+)
+"diag.ml" 42 1727 1735 "diag.ml" 42 1727 1746
+type(
+  'h -> string
+)
+ident(
+  def local_print "diag.ml" 44 1816 1820 "diag.ml" 64 2626 2634
+)
+"diag.ml" 42 1727 1749 "diag.ml" 42 1727 1774
+type(
+  'h -> string
+)
+ident(
+  ext_ref Basics.Basic_object.print
+)
+"diag.ml" 44 1816 1824 "diag.ml" 44 1816 1835
+type(
+  'i * 'j -> 'i
+)
+ident(
+  def local_prj_a "diag.ml" 46 1899 1903 "diag.ml" 64 2626 2634
+)
+"diag.ml" 44 1816 1838 "diag.ml" 44 1816 1857
+type(
+  'i * 'j -> 'i
+)
+ident(
+  ext_ref Pair.Imp_pair.prj_a
+)
+"diag.ml" 46 1899 1907 "diag.ml" 46 1899 1918
+type(
+  'k * 'l -> 'l
+)
+ident(
+  def local_prj_b "diag.ml" 48 1982 1986 "diag.ml" 64 2626 2634
+)
+"diag.ml" 46 1899 1921 "diag.ml" 46 1899 1940
+type(
+  'k * 'l -> 'l
+)
+ident(
+  ext_ref Pair.Imp_pair.prj_b
+)
+"diag.ml" 48 1982 1990 "diag.ml" 48 1982 2003
+type(
+  'c * 'd
+)
+ident(
+  def local_element "diag.ml" 51 2112 2116 "diag.ml" 64 2626 2634
+)
+"diag.ml" 48 1982 2006 "diag.ml" 48 1982 2027
+type(
+  'c -> 'd -> ('c -> 'd -> 'c * 'd) -> 'c * 'd
+)
+ident(
+  ext_ref Pair.Imp_pair.element
+)
+"diag.ml" 48 1982 2028 "diag.ml" 48 1982 2040
+type(
+  'c
+)
+ident(
+  int_ref _p_C_element "diag.ml" 33 1262 1289 "diag.ml" 33 1262 1301
+)
+"diag.ml" 48 1982 2041 "diag.ml" 48 1982 2053
+type(
+  'd
+)
+ident(
+  int_ref _p_E_element "diag.ml" 33 1262 1313 "diag.ml" 33 1262 1325
+)
+"diag.ml" 49 2054 2060 "diag.ml" 49 2054 2072
+type(
+  'c -> 'd -> 'c * 'd
+)
+ident(
+  int_ref local_constr "diag.ml" 36 1436 1444 "diag.ml" 36 1436 1456
+)
+"diag.ml" 48 1982 2006 "diag.ml" 49 2054 2072
+call(
+  stack
+)
+type(
+  'c * 'd
+)
+"diag.ml" 51 2112 2120 "diag.ml" 51 2112 2135
+type(
+  'c * 'd -> 'c * 'd -> bool
+)
+ident(
+  def local_different "diag.ml" 53 2218 2222 "diag.ml" 64 2626 2634
+)
+"diag.ml" 51 2112 2138 "diag.ml" 51 2112 2159
+type(
+  ('c * 'd -> 'c * 'd -> bool) -> 'c * 'd -> 'c * 'd -> bool
+)
+ident(
+  ext_ref Sets.Setoid.different
+)
+"diag.ml" 51 2112 2160 "diag.ml" 51 2112 2171
+type(
+  'c * 'd -> 'c * 'd -> bool
+)
+ident(
+  int_ref local_equal "diag.ml" 38 1521 1529 "diag.ml" 38 1521 1540
+)
+"diag.ml" 51 2112 2138 "diag.ml" 51 2112 2171
+call(
+  stack
+)
+type(
+  'c * 'd -> 'c * 'd -> bool
+)
+"diag.ml" 53 2218 2226 "diag.ml" 53 2218 2237
+type(
+  'c * 'd -> bool
+)
+ident(
+  def local_valid "diag.ml" 55 2333 2337 "diag.ml" 64 2626 2634
+)
+"diag.ml" 53 2218 2240 "diag.ml" 53 2218 2245
+type(
+  ('d -> 'd -> bool) -> 'd -> 'd -> 'd -> ('c * 'd -> 'd) -> 'c * 'd -> bool
+)
+ident(
+  int_ref valid "diag.ml" 27 886 892 "diag.ml" 27 886 897
+)
+"diag.ml" 53 2218 2246 "diag.ml" 53 2218 2256
+type(
+  'd -> 'd -> bool
+)
+ident(
+  int_ref _p_E_equal "diag.ml" 33 1262 1326 "diag.ml" 33 1262 1336
+)
+"diag.ml" 53 2218 2257 "diag.ml" 53 2218 2275
+type(
+  'd
+)
+ident(
+  int_ref _p_E_partial_match "diag.ml" 34 1337 1341 "diag.ml" 34 1337 1359
+)
+"diag.ml" 53 2218 2276 "diag.ml" 53 2218 2294
+type(
+  'd
+)
+ident(
+  int_ref _p_E_perfect_match "diag.ml" 34 1337 1360 "diag.ml" 34 1337 1378
+)
+"diag.ml" 54 2295 2301 "diag.ml" 54 2295 2317
+type(
+  'd
+)
+ident(
+  int_ref _p_E_range_match "diag.ml" 34 1337 1379 "diag.ml" 34 1337 1395
+)
+"diag.ml" 54 2295 2318 "diag.ml" 54 2295 2329
+type(
+  'c * 'd -> 'd
+)
+ident(
+  int_ref local_prj_b "diag.ml" 46 1899 1907 "diag.ml" 46 1899 1918
+)
+"diag.ml" 53 2218 2240 "diag.ml" 54 2295 2329
+call(
+  stack
+)
+type(
+  'c * 'd -> bool
+)
+"diag.ml" 55 2333 2351 "diag.ml" 55 2333 2363
+type(
+  'c -> 'd -> 'c * 'd
+)
+ident(
+  int_ref local_constr "diag.ml" 36 1436 1444 "diag.ml" 36 1436 1456
+)
+"diag.ml" 56 2366 2383 "diag.ml" 56 2366 2394
+type(
+  'c * 'd -> 'c * 'd -> Basics._focty_bool
+)
+ident(
+  int_ref local_equal "diag.ml" 38 1521 1529 "diag.ml" 38 1521 1540
+)
+"diag.ml" 57 2397 2414 "diag.ml" 57 2397 2425
+type(
+  Basics._focty_string -> 'c * 'd
+)
+ident(
+  int_ref local_parse "diag.ml" 40 1632 1640 "diag.ml" 40 1632 1651
+)
+"diag.ml" 58 2428 2445 "diag.ml" 58 2428 2456
+type(
+  'c * 'd -> Basics._focty_string
+)
+ident(
+  int_ref local_print "diag.ml" 42 1727 1735 "diag.ml" 42 1727 1746
+)
+"diag.ml" 59 2459 2476 "diag.ml" 59 2459 2487
+type(
+  'c * 'd -> 'c
+)
+ident(
+  int_ref local_prj_a "diag.ml" 44 1816 1824 "diag.ml" 44 1816 1835
+)
+"diag.ml" 60 2490 2507 "diag.ml" 60 2490 2518
+type(
+  'c * 'd -> 'd
+)
+ident(
+  int_ref local_prj_b "diag.ml" 46 1899 1907 "diag.ml" 46 1899 1918
+)
+"diag.ml" 61 2521 2540 "diag.ml" 61 2521 2553
+type(
+  'c * 'd
+)
+ident(
+  int_ref local_element "diag.ml" 48 1982 1990 "diag.ml" 48 1982 2003
+)
+"diag.ml" 62 2556 2577 "diag.ml" 62 2556 2592
+type(
+  'c * 'd -> 'c * 'd -> Basics._focty_bool
+)
+ident(
+  int_ref local_different "diag.ml" 51 2112 2120 "diag.ml" 51 2112 2135
+)
+"diag.ml" 63 2595 2612 "diag.ml" 63 2595 2623
+type(
+  'c * 'd -> Basics._focty_bool
+)
+ident(
+  int_ref local_valid "diag.ml" 53 2218 2226 "diag.ml" 53 2218 2237
+)
+"diag.ml" 55 2333 2337 "diag.ml" 64 2626 2634
+type(
+  ('d, 'c, 'c * 'd) me_as_species
+)
+"diag.ml" 53 2218 2222 "diag.ml" 64 2626 2634
+type(
+  ('d, 'c, 'c * 'd) me_as_species
+)
+"diag.ml" 51 2112 2116 "diag.ml" 64 2626 2634
+type(
+  ('d, 'c, 'c * 'd) me_as_species
+)
+"diag.ml" 48 1982 1986 "diag.ml" 64 2626 2634
+type(
+  ('d, 'c, 'c * 'd) me_as_species
+)
+"diag.ml" 46 1899 1903 "diag.ml" 64 2626 2634
+type(
+  ('d, 'c, 'c * 'd) me_as_species
+)
+"diag.ml" 44 1816 1820 "diag.ml" 64 2626 2634
+type(
+  ('d, 'c, 'c * 'd) me_as_species
+)
+"diag.ml" 42 1727 1731 "diag.ml" 64 2626 2634
+type(
+  ('d, 'c, 'c * 'd) me_as_species
+)
+"diag.ml" 40 1632 1636 "diag.ml" 64 2626 2634
+type(
+  ('d, 'c, 'c * 'd) me_as_species
+)
+"diag.ml" 38 1521 1525 "diag.ml" 64 2626 2634
+type(
+  ('d, 'c, 'c * 'd) me_as_species
+)
+"diag.ml" 36 1436 1440 "diag.ml" 64 2626 2634
+type(
+  ('d, 'c, 'c * 'd) me_as_species
+)

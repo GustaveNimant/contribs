@@ -1,0 +1,1992 @@
+(* Coq >= 8.3pl2: disable automatic introduction of hypotheses. *)
+Global Unset Automatic Introduction.
+(* Coq >= 8.5: allow sum constructors without explicit types in patterns. *)
+Global Set Asymmetric Patterns.
+Require Export Bool.
+Require Export ZArith.
+Open Scope Z_scope.
+Require Export Reals.
+Require Export Ascii.
+Require Export String.
+Require Export List.
+Require Import Wellfounded.
+Require Export Recdef.
+Require Export coq_builtins.
+Require Import Relations.
+Require Import Zwf.
+
+(* Below: to prevent Function to apply heuristics that would
+the expected aim in recursive functions termination proofs. *)
+
+Set Function_raw_tcc.
+
+Require basics.
+Require sets.
+Require orders.
+Module Sp_pair.
+  
+End Sp_pair.
+
+Module Imp_pair.
+  Record me_as_species (S1_T : Set) (S2_T : Set) (_p_S1_equal : S1_T ->
+                                                                  S1_T ->
+                                                                    basics.bool__t)
+    (_p_S2_equal : S2_T -> S2_T -> basics.bool__t) : Type :=
+    mk_record {
+    rf_T : Set ;
+    (* From species pair#Imp_pair. *)
+    rf_constr : S1_T -> S2_T -> rf_T ;
+    (* From species pair#Imp_pair. *)
+    rf_equal : rf_T -> rf_T -> basics.bool__t ;
+    (* From species basics#Basic_object. *)
+    rf_parse : basics.string__t -> rf_T ;
+    (* From species basics#Basic_object. *)
+    rf_print : rf_T -> basics.string__t ;
+    (* From species pair#Imp_pair. *)
+    rf_prj_a : rf_T -> S1_T ;
+    (* From species pair#Imp_pair. *)
+    rf_prj_b : rf_T -> S2_T ;
+    (* From species pair#Imp_pair. *)
+    rf_element : rf_T ;
+    (* From species sets#Setoid. *)
+    rf_different : rf_T -> rf_T -> basics.bool__t ;
+    (* From species pair#Imp_pair. *)
+    rf_prj_a_is_first_of_pair :
+      forall n1 : S1_T,
+        forall n2 : S2_T,
+          Is_true ((_p_S1_equal (rf_prj_a (rf_constr n1 n2)) n1)) ;
+    (* From species pair#Imp_pair. *)
+    rf_def_equal :
+      forall p1  p2 : rf_T,
+        Is_true ((rf_equal p1 p2)) <->
+          (Is_true ((_p_S1_equal (rf_prj_a p1) (rf_prj_a p2))) /\
+             Is_true ((_p_S2_equal (rf_prj_b p1) (rf_prj_b p2)))) ;
+    (* From species pair#Imp_pair. *)
+    rf_prj_b_is_snd_of_pair :
+      forall n1 : S1_T,
+        forall n2 : S2_T,
+          Is_true ((_p_S2_equal (rf_prj_b (rf_constr n1 n2)) n2)) ;
+    (* From species pair#Imp_pair. *)
+    rf_unicite_1 :
+      forall a : rf_T,
+        Is_true ((rf_equal (rf_constr (rf_prj_a a) (rf_prj_b a)) a)) ;
+    (* From species pair#Imp_pair. *)
+    rf_unicite_2 :
+      forall a : rf_T,
+        Is_true ((rf_equal a (rf_constr (rf_prj_a a) (rf_prj_b a)))) ;
+    (* From species sets#Setoid. *)
+    rf_same_is_not_different :
+      forall x  y : rf_T,
+        Is_true ((rf_different x y)) <-> ~Is_true (((rf_equal x y))) ;
+    (* From species pair#Imp_pair. *)
+    rf_equal_transitive :
+      forall x  y  z : rf_T,
+        Is_true ((rf_equal x y)) ->
+          Is_true ((rf_equal y z)) -> Is_true ((rf_equal x z)) ;
+    (* From species pair#Imp_pair. *)
+    rf_def_equal1 :
+      forall n1  n3 : S1_T,
+        forall n2  n4 : S2_T,
+          Is_true ((rf_equal (rf_constr n1 n2) (rf_constr n3 n4))) <->
+            (Is_true ((_p_S1_equal n1 n3)) /\ Is_true ((_p_S2_equal n2 n4))) ;
+    (* From species pair#Imp_pair. *)
+    rf_equal_reflexive : forall x : rf_T, Is_true ((rf_equal x x)) ;
+    (* From species pair#Imp_pair. *)
+    rf_equal_reflexive2 :
+      forall n1 : S1_T,
+        forall n2 : S2_T,
+          Is_true ((rf_equal (rf_constr n1 n2) (rf_constr n1 n2))) ;
+    (* From species pair#Imp_pair. *)
+    rf_equal_symmetric2 :
+      forall n1  n3 : S1_T,
+        forall n2  n4 : S2_T,
+          Is_true ((rf_equal (rf_constr n1 n2) (rf_constr n3 n4))) ->
+            Is_true ((rf_equal (rf_constr n3 n4) (rf_constr n1 n2))) ;
+    (* From species pair#Imp_pair. *)
+    rf_equal_transitive2 :
+      forall n1  n3  n5 : S1_T,
+        forall n2  n4  n6 : S2_T,
+          Is_true ((rf_equal (rf_constr n1 n2) (rf_constr n3 n4))) ->
+            Is_true ((rf_equal (rf_constr n3 n4) (rf_constr n5 n6))) ->
+              Is_true ((rf_equal (rf_constr n1 n2) (rf_constr n5 n6))) ;
+    (* From species sets#Setoid. *)
+    rf_different_is_irreflexive :
+      forall x : rf_T, ~Is_true (((rf_different x x))) ;
+    (* From species pair#Imp_pair. *)
+    rf_equal_symmetric :
+      forall x  y : rf_T,
+        Is_true ((rf_equal x y)) -> Is_true ((rf_equal y x)) ;
+    (* From species sets#Setoid. *)
+    rf_different_is_complete :
+      forall x  y  z : rf_T,
+        Is_true ((rf_different x y)) ->
+          (Is_true ((rf_different x z)) \/ Is_true ((rf_different y z))) ;
+    (* From species sets#Setoid. *)
+    rf_different_is_symmetric :
+      forall x  y : rf_T,
+        Is_true ((rf_different x y)) -> Is_true ((rf_different y x))
+    }.
+  
+  Definition constr (_p_S1_T : Set) (_p_S2_T : Set)
+    (abst_T := (Datatypes.prod _p_S1_T _p_S2_T)) (n1 : _p_S1_T)
+    (n2 : _p_S2_T) : abst_T := ((basics.pair _ _) n1 n2).
+  Definition equal (_p_S1_T : Set) (_p_S2_T : Set) (_p_S1_equal :
+    _p_S1_T -> _p_S1_T -> basics.bool__t) (_p_S2_equal :
+    _p_S2_T -> _p_S2_T -> basics.bool__t)
+    (abst_T := (Datatypes.prod _p_S1_T _p_S2_T)) (n1 : abst_T)
+    (n2 : abst_T) : basics.bool__t :=
+    (basics._amper__amper_
+      ((_p_S1_equal ((basics.fst _ _) n1) ((basics.fst _ _) n2)))
+      ((_p_S2_equal ((basics.snd _ _) n1) ((basics.snd _ _) n2)))).
+  Definition prj_a (_p_S1_T : Set) (_p_S2_T : Set)
+    (abst_T := (Datatypes.prod _p_S1_T _p_S2_T)) (nn : abst_T) : _p_S1_T :=
+    ((basics.fst _ _) nn).
+  Definition prj_b (_p_S1_T : Set) (_p_S2_T : Set)
+    (abst_T := (Datatypes.prod _p_S1_T _p_S2_T)) (nn : abst_T) : _p_S2_T :=
+    ((basics.snd _ _) nn).
+  Definition element (_p_S1_T : Set) (_p_S2_T : Set) (_p_S1_element :
+    _p_S1_T) (_p_S2_element : _p_S2_T) (abst_T : Set)
+    (abst_constr : _p_S1_T -> _p_S2_T -> abst_T) : abst_T :=
+    (abst_constr _p_S1_element _p_S2_element).
+  
+  (* From species pair#Imp_pair. *)
+  Theorem prj_a_is_first_of_pair  (_p_S1_T : Set) (_p_S2_T : Set)
+    (_p_S1_equal : _p_S1_T -> _p_S1_T -> basics.bool__t) (abst_T : Set)
+    (abst_constr : _p_S1_T -> _p_S2_T -> abst_T)
+    (abst_prj_a : abst_T -> _p_S1_T):
+    forall n1 : _p_S1_T,
+      forall n2 : _p_S2_T,
+        Is_true ((_p_S1_equal (abst_prj_a (abst_constr n1 n2)) n1)).
+  (* Proof was flagged as assumed *)
+  apply coq_builtins.magic_prove.
+  Qed.
+  
+  (* From species pair#Imp_pair. *)
+  Theorem def_equal  (_p_S1_T : Set) (_p_S2_T : Set) (_p_S1_equal :
+    _p_S1_T -> _p_S1_T -> basics.bool__t) (_p_S2_equal :
+    _p_S2_T -> _p_S2_T -> basics.bool__t) (abst_T : Set)
+    (abst_equal : abst_T -> abst_T -> basics.bool__t)
+    (abst_prj_a : abst_T -> _p_S1_T) (abst_prj_b : abst_T -> _p_S2_T):
+    forall p1  p2 : abst_T,
+      Is_true ((abst_equal p1 p2)) <->
+        (Is_true ((_p_S1_equal (abst_prj_a p1) (abst_prj_a p2))) /\
+           Is_true ((_p_S2_equal (abst_prj_b p1) (abst_prj_b p2)))).
+  (* Proof was flagged as assumed *)
+  apply coq_builtins.magic_prove.
+  Qed.
+  
+  (* From species pair#Imp_pair. *)
+  Theorem prj_b_is_snd_of_pair  (_p_S1_T : Set) (_p_S2_T : Set)
+    (_p_S2_equal : _p_S2_T -> _p_S2_T -> basics.bool__t) (abst_T : Set)
+    (abst_constr : _p_S1_T -> _p_S2_T -> abst_T)
+    (abst_prj_b : abst_T -> _p_S2_T):
+    forall n1 : _p_S1_T,
+      forall n2 : _p_S2_T,
+        Is_true ((_p_S2_equal (abst_prj_b (abst_constr n1 n2)) n2)).
+  (* Proof was flagged as assumed *)
+  apply coq_builtins.magic_prove.
+  Qed.
+  
+  (* From species pair#Imp_pair. *)
+  Theorem unicite_1  (_p_S1_T : Set) (_p_S2_T : Set) (abst_T : Set)
+    (abst_constr : _p_S1_T -> _p_S2_T -> abst_T)
+    (abst_equal : abst_T -> abst_T -> basics.bool__t)
+    (abst_prj_a : abst_T -> _p_S1_T) (abst_prj_b : abst_T -> _p_S2_T):
+    forall a : abst_T,
+      Is_true ((abst_equal (abst_constr (abst_prj_a a) (abst_prj_b a)) a)).
+  (* Proof was flagged as assumed *)
+  apply coq_builtins.magic_prove.
+  Qed.
+  
+  (* From species pair#Imp_pair. *)
+  Theorem unicite_2  (_p_S1_T : Set) (_p_S2_T : Set) (abst_T : Set)
+    (abst_constr : _p_S1_T -> _p_S2_T -> abst_T)
+    (abst_equal : abst_T -> abst_T -> basics.bool__t)
+    (abst_prj_a : abst_T -> _p_S1_T) (abst_prj_b : abst_T -> _p_S2_T):
+    forall a : abst_T,
+      Is_true ((abst_equal a (abst_constr (abst_prj_a a) (abst_prj_b a)))).
+  (* Proof was flagged as assumed *)
+  apply coq_builtins.magic_prove.
+  Qed.
+  
+  (* From species pair#Imp_pair. *)
+  (* Section for proof of theorem 'equal_transitive'. *)
+  Section Proof_of_equal_transitive.
+    Variable _p_S1_T : Set.
+    Variable _p_S2_T : Set.
+    Variable _p_S1_equal : _p_S1_T -> _p_S1_T -> basics.bool__t.
+    Variable _p_S1_equal_transitive :
+      forall x  y  z : _p_S1_T,
+        Is_true ((_p_S1_equal x y)) ->
+          Is_true ((_p_S1_equal y z)) -> Is_true ((_p_S1_equal x z)).
+    Variable _p_S2_equal : _p_S2_T -> _p_S2_T -> basics.bool__t.
+    Variable _p_S2_equal_transitive :
+      forall x  y  z : _p_S2_T,
+        Is_true ((_p_S2_equal x y)) ->
+          Is_true ((_p_S2_equal y z)) -> Is_true ((_p_S2_equal x z)).
+    Variable abst_T : Set.
+    Variable abst_equal : abst_T -> abst_T -> basics.bool__t.
+    Variable abst_prj_a : abst_T -> _p_S1_T.
+    Variable abst_prj_b : abst_T -> _p_S2_T.
+    Hypothesis abst_def_equal :
+      forall p1  p2 : abst_T,
+        Is_true ((abst_equal p1 p2)) <->
+          (Is_true ((_p_S1_equal (abst_prj_a p1) (abst_prj_a p2))) /\
+             Is_true ((_p_S2_equal (abst_prj_b p1) (abst_prj_b p2)))).
+    Section __A_1.
+      Variable p1 : abst_T.
+      Variable p2 : abst_T.
+      Variable p3 : abst_T.
+      Variable H1 : Is_true ((abst_equal p1 p2)).
+      Variable H2 : Is_true ((abst_equal p2 p3)).
+      Section __A_1_1.
+        %%begin-auto-proof
+        %%location: [File "pair.fcl", line 279, characters 9-44]
+        %%name: for_zenon___A_1_1_LEMMA
+        
+        
+        
+        (* Methods to use for automated proof. *)
+        (* For hypothesis "H1". *)
+        Parameter H1 : Is_true ((abst_equal p1 p2)).
+        (* For method of Self used via "by property !def_equal". *)
+        Parameter abst_def_equal :
+          forall p1  p2 : abst_T,
+            Is_true ((abst_equal p1 p2)) <->
+              (Is_true ((_p_S1_equal (abst_prj_a p1) (abst_prj_a p2))) /\
+                 Is_true ((_p_S2_equal (abst_prj_b p1) (abst_prj_b p2)))).
+        (* Theorem's body. *)
+        Theorem for_zenon___A_1_1_LEMMA :
+        (Is_true ((_p_S1_equal (abst_prj_a p1) (abst_prj_a p2))) /\
+           Is_true ((_p_S2_equal (abst_prj_b p1) (abst_prj_b p2)))).
+        %%end-auto-proof
+        Theorem __A_1_1_LEMMA :
+          (Is_true ((_p_S1_equal (abst_prj_a p1) (abst_prj_a p2))) /\
+             Is_true ((_p_S2_equal (abst_prj_b p1) (abst_prj_b p2)))).
+        assert (__force_use_H1 := H1).
+        assert (__force_use_H2 := H2).
+        apply for_zenon___A_1_1_LEMMA;
+        auto.
+        Qed.
+        End __A_1_1.
+      Section __A_1_2.
+        %%begin-auto-proof
+        %%location: [File "pair.fcl", line 281, characters 9-44]
+        %%name: for_zenon___A_1_2_LEMMA
+        
+        
+        
+        (* Methods to use for automated proof. *)
+        (* For hypothesis "H2". *)
+        Parameter H2 : Is_true ((abst_equal p2 p3)).
+        (* For method of Self used via "by property !def_equal". *)
+        Parameter abst_def_equal :
+          forall p1  p2 : abst_T,
+            Is_true ((abst_equal p1 p2)) <->
+              (Is_true ((_p_S1_equal (abst_prj_a p1) (abst_prj_a p2))) /\
+                 Is_true ((_p_S2_equal (abst_prj_b p1) (abst_prj_b p2)))).
+        (* Theorem's body. *)
+        Theorem for_zenon___A_1_2_LEMMA :
+        (Is_true ((_p_S1_equal (abst_prj_a p2) (abst_prj_a p3))) /\
+           Is_true ((_p_S2_equal (abst_prj_b p2) (abst_prj_b p3)))).
+        %%end-auto-proof
+        Theorem __A_1_2_LEMMA :
+          (Is_true ((_p_S1_equal (abst_prj_a p2) (abst_prj_a p3))) /\
+             Is_true ((_p_S2_equal (abst_prj_b p2) (abst_prj_b p3)))).
+        assert (__force_use_H1 := H1).
+        assert (__force_use_H2 := H2).
+        apply for_zenon___A_1_2_LEMMA;
+        auto.
+        Qed.
+        End __A_1_2.
+      Section __A_1_3.
+        %%begin-auto-proof
+        %%location: [File "pair.fcl", line 283, characters 6-74]
+        %%name: for_zenon___A_1_3_LEMMA
+        
+        
+        
+        (* Methods to use for automated proof. *)
+        (* For step <2>1. *)
+        Parameter __A_1_1_LEMMA :
+          ((Is_true ((_p_S1_equal (abst_prj_a p1) (abst_prj_a p2))) /\
+              Is_true ((_p_S2_equal (abst_prj_b p1) (abst_prj_b p2))))).
+        (* For step <2>2. *)
+        Parameter __A_1_2_LEMMA :
+          ((Is_true ((_p_S1_equal (abst_prj_a p2) (abst_prj_a p3))) /\
+              Is_true ((_p_S2_equal (abst_prj_b p2) (abst_prj_b p3))))).
+        (* For species parameter method used via "by property pair#S1!equal_transitive". *)
+        Parameter _p_S1_equal_transitive :
+          forall x  y  z : _p_S1_T,
+            Is_true ((_p_S1_equal x y)) ->
+              Is_true ((_p_S1_equal y z)) -> Is_true ((_p_S1_equal x z)).
+        (* For species parameter method used via "by property pair#S2!equal_transitive". *)
+        Parameter _p_S2_equal_transitive :
+          forall x  y  z : _p_S2_T,
+            Is_true ((_p_S2_equal x y)) ->
+              Is_true ((_p_S2_equal y z)) -> Is_true ((_p_S2_equal x z)).
+        (* Theorem's body. *)
+        Theorem for_zenon___A_1_3_LEMMA :
+        (Is_true ((_p_S1_equal (abst_prj_a p1) (abst_prj_a p3))) /\
+           Is_true ((_p_S2_equal (abst_prj_b p1) (abst_prj_b p3)))).
+        %%end-auto-proof
+        Theorem __A_1_3_LEMMA :
+          (Is_true ((_p_S1_equal (abst_prj_a p1) (abst_prj_a p3))) /\
+             Is_true ((_p_S2_equal (abst_prj_b p1) (abst_prj_b p3)))).
+        assert (__force_use_H1 := H1).
+        assert (__force_use_H2 := H2).
+        apply for_zenon___A_1_3_LEMMA;
+        auto.
+        Qed.
+        End __A_1_3.
+      %%begin-auto-proof
+      %%location: [File "pair.fcl", line 284, characters 13-44]
+      %%name: for_zenon___A_1_LEMMA
+      
+      
+      
+      (* Methods to use for automated proof. *)
+      (* For step <2>3. *)
+      Parameter __A_1_3_LEMMA :
+        ((Is_true ((_p_S1_equal (abst_prj_a p1) (abst_prj_a p3))) /\
+            Is_true ((_p_S2_equal (abst_prj_b p1) (abst_prj_b p3))))).
+      (* For method of Self used via "by property !def_equal". *)
+      Parameter abst_def_equal :
+        forall p1  p2 : abst_T,
+          Is_true ((abst_equal p1 p2)) <->
+            (Is_true ((_p_S1_equal (abst_prj_a p1) (abst_prj_a p2))) /\
+               Is_true ((_p_S2_equal (abst_prj_b p1) (abst_prj_b p2)))).
+      (* Theorem's body. *)
+      Theorem for_zenon___A_1_LEMMA :
+      Is_true ((abst_equal p1 p3)).
+      %%end-auto-proof
+      Theorem __A_1_LEMMA : Is_true ((abst_equal p1 p3)).
+      assert (__force_use_H1 := H1).
+      assert (__force_use_H2 := H2).
+      apply for_zenon___A_1_LEMMA;
+      auto.
+      Qed.
+      End __A_1.
+    %%begin-auto-proof
+    %%location: [File "pair.fcl", line 285, characters 2-15]
+    %%name: for_zenon_equal_transitive
+    
+    
+    
+    (* Methods to use for automated proof. *)
+    (* For step <1>1. *)
+    Parameter __A_1_LEMMA : forall p1 : abst_T, forall p2 : abst_T,
+      forall p3 : abst_T,
+      (Is_true ((abst_equal p1 p2))) -> (Is_true ((abst_equal p2 p3))) -> (
+      Is_true ((abst_equal p1 p3))).
+    (* Theorem's body. *)
+    Theorem for_zenon_equal_transitive :
+    forall x  y  z : abst_T,
+      Is_true ((abst_equal x y)) ->
+        Is_true ((abst_equal y z)) -> Is_true ((abst_equal x z)).
+    %%end-auto-proof
+    (* Dummy theorem to enforce Coq abstractions. *)
+    Theorem for_zenon_abstracted_equal_transitive :
+      forall x  y  z : abst_T,
+        Is_true ((abst_equal x y)) ->
+          Is_true ((abst_equal y z)) -> Is_true ((abst_equal x z)).
+    assert (__force_use_p_S1_T := _p_S1_T).
+    assert (__force_use_p_S2_T := _p_S2_T).
+    assert (__force_use__p_S1_equal := _p_S1_equal).
+    assert (__force_use__p_S1_equal_transitive := _p_S1_equal_transitive).
+    assert (__force_use__p_S2_equal := _p_S2_equal).
+    assert (__force_use__p_S2_equal_transitive := _p_S2_equal_transitive).
+    assert (__force_use_abst_T := abst_T).
+    assert (__force_use_abst_equal := abst_equal).
+    assert (__force_use_abst_prj_a := abst_prj_a).
+    assert (__force_use_abst_prj_b := abst_prj_b).
+    assert (__force_use_abst_def_equal := abst_def_equal).
+    apply for_zenon_equal_transitive;
+    auto.
+    Qed.
+    End Proof_of_equal_transitive.
+  
+  Theorem equal_transitive  (_p_S1_T : Set) (_p_S2_T : Set) (_p_S1_equal :
+    _p_S1_T -> _p_S1_T -> basics.bool__t) (_p_S1_equal_transitive :
+    forall x  y  z : _p_S1_T,
+      Is_true ((_p_S1_equal x y)) ->
+        Is_true ((_p_S1_equal y z)) -> Is_true ((_p_S1_equal x z)))
+    (_p_S2_equal : _p_S2_T -> _p_S2_T -> basics.bool__t)
+    (_p_S2_equal_transitive :
+    forall x  y  z : _p_S2_T,
+      Is_true ((_p_S2_equal x y)) ->
+        Is_true ((_p_S2_equal y z)) -> Is_true ((_p_S2_equal x z)))
+    (abst_T : Set) (abst_equal : abst_T -> abst_T -> basics.bool__t)
+    (abst_prj_a : abst_T -> _p_S1_T) (abst_prj_b : abst_T -> _p_S2_T)
+    (abst_def_equal :
+    forall p1  p2 : abst_T,
+      Is_true ((abst_equal p1 p2)) <->
+        (Is_true ((_p_S1_equal (abst_prj_a p1) (abst_prj_a p2))) /\
+           Is_true ((_p_S2_equal (abst_prj_b p1) (abst_prj_b p2))))):
+    forall x  y  z : abst_T,
+      Is_true ((abst_equal x y)) ->
+        Is_true ((abst_equal y z)) -> Is_true ((abst_equal x z)).
+  apply for_zenon_abstracted_equal_transitive;
+  auto.
+  Qed.
+  
+  (* From species pair#Imp_pair. *)
+  (* Section for proof of theorem 'def_equal1'. *)
+  Section Proof_of_def_equal1.
+    Variable _p_S1_T : Set.
+    Variable _p_S2_T : Set.
+    Variable _p_S1_equal : _p_S1_T -> _p_S1_T -> basics.bool__t.
+    Variable _p_S1_equal_symmetric :
+      forall x  y : _p_S1_T,
+        Is_true ((_p_S1_equal x y)) -> Is_true ((_p_S1_equal y x)).
+    Variable _p_S1_equal_transitive :
+      forall x  y  z : _p_S1_T,
+        Is_true ((_p_S1_equal x y)) ->
+          Is_true ((_p_S1_equal y z)) -> Is_true ((_p_S1_equal x z)).
+    Variable _p_S2_equal : _p_S2_T -> _p_S2_T -> basics.bool__t.
+    Variable _p_S2_equal_symmetric :
+      forall x  y : _p_S2_T,
+        Is_true ((_p_S2_equal x y)) -> Is_true ((_p_S2_equal y x)).
+    Variable _p_S2_equal_transitive :
+      forall x  y  z : _p_S2_T,
+        Is_true ((_p_S2_equal x y)) ->
+          Is_true ((_p_S2_equal y z)) -> Is_true ((_p_S2_equal x z)).
+    Variable abst_T : Set.
+    Variable abst_constr : _p_S1_T -> _p_S2_T -> abst_T.
+    Variable abst_equal : abst_T -> abst_T -> basics.bool__t.
+    Variable abst_prj_a : abst_T -> _p_S1_T.
+    Variable abst_prj_b : abst_T -> _p_S2_T.
+    Hypothesis abst_prj_a_is_first_of_pair :
+      forall n1 : _p_S1_T,
+        forall n2 : _p_S2_T,
+          Is_true ((_p_S1_equal (abst_prj_a (abst_constr n1 n2)) n1)).
+    Hypothesis abst_def_equal :
+      forall p1  p2 : abst_T,
+        Is_true ((abst_equal p1 p2)) <->
+          (Is_true ((_p_S1_equal (abst_prj_a p1) (abst_prj_a p2))) /\
+             Is_true ((_p_S2_equal (abst_prj_b p1) (abst_prj_b p2)))).
+    Hypothesis abst_prj_b_is_snd_of_pair :
+      forall n1 : _p_S1_T,
+        forall n2 : _p_S2_T,
+          Is_true ((_p_S2_equal (abst_prj_b (abst_constr n1 n2)) n2)).
+    Section __B_1.
+      Variable n1 : _p_S1_T.
+      Variable n3 : _p_S1_T.
+      Variable n2 : _p_S2_T.
+      Variable n4 : _p_S2_T.
+      Variable H1 :
+        Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n3 n4))).
+      Section __B_1_1.
+        %%begin-auto-proof
+        %%location: [File "pair.fcl", line 150, characters 9-44]
+        %%name: for_zenon___B_1_1_LEMMA
+        
+        
+        
+        (* Methods to use for automated proof. *)
+        (* For hypothesis "H1". *)
+        Parameter H1 :
+          Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n3 n4))).
+        (* For method of Self used via "by property !def_equal". *)
+        Parameter abst_def_equal :
+          forall p1  p2 : abst_T,
+            Is_true ((abst_equal p1 p2)) <->
+              (Is_true ((_p_S1_equal (abst_prj_a p1) (abst_prj_a p2))) /\
+                 Is_true ((_p_S2_equal (abst_prj_b p1) (abst_prj_b p2)))).
+        (* Theorem's body. *)
+        Theorem for_zenon___B_1_1_LEMMA :
+        (Is_true ((_p_S1_equal (abst_prj_a (abst_constr n1 n2))
+                    (abst_prj_a (abst_constr n3 n4)))) /\
+           Is_true ((_p_S2_equal (abst_prj_b (abst_constr n1 n2))
+                      (abst_prj_b (abst_constr n3 n4))))).
+        %%end-auto-proof
+        Theorem __B_1_1_LEMMA :
+          (Is_true ((_p_S1_equal (abst_prj_a (abst_constr n1 n2))
+                      (abst_prj_a (abst_constr n3 n4)))) /\
+             Is_true ((_p_S2_equal (abst_prj_b (abst_constr n1 n2))
+                        (abst_prj_b (abst_constr n3 n4))))).
+        assert (__force_use_H1 := H1).
+        apply for_zenon___B_1_1_LEMMA;
+        auto.
+        Qed.
+        End __B_1_1.
+      Section __B_1_2.
+        %%begin-auto-proof
+        %%location: [File "pair.fcl", line 153, characters 4-16]
+        %%name: for_zenon___B_1_2_LEMMA
+        
+        
+        
+        (* Methods to use for automated proof. *)
+        (* For step <2>1. *)
+        Parameter __B_1_1_LEMMA :
+          ((Is_true ((_p_S1_equal (abst_prj_a (abst_constr n1 n2))
+                       (abst_prj_a (abst_constr n3 n4)))) /\
+              Is_true ((_p_S2_equal (abst_prj_b (abst_constr n1 n2))
+                         (abst_prj_b (abst_constr n3 n4)))))).
+        (* Theorem's body. *)
+        Theorem for_zenon___B_1_2_LEMMA :
+        Is_true ((_p_S1_equal (abst_prj_a (abst_constr n1 n2))
+                   (abst_prj_a (abst_constr n3 n4)))).
+        %%end-auto-proof
+        Theorem __B_1_2_LEMMA :
+          Is_true ((_p_S1_equal (abst_prj_a (abst_constr n1 n2))
+                     (abst_prj_a (abst_constr n3 n4)))).
+        assert (__force_use_H1 := H1).
+        apply for_zenon___B_1_2_LEMMA;
+        auto.
+        Qed.
+        End __B_1_2.
+      Section __B_1_3.
+        %%begin-auto-proof
+        %%location: [File "pair.fcl", line 156, characters 4-16]
+        %%name: for_zenon___B_1_3_LEMMA
+        
+        
+        
+        (* Methods to use for automated proof. *)
+        (* For step <2>1. *)
+        Parameter __B_1_1_LEMMA :
+          ((Is_true ((_p_S1_equal (abst_prj_a (abst_constr n1 n2))
+                       (abst_prj_a (abst_constr n3 n4)))) /\
+              Is_true ((_p_S2_equal (abst_prj_b (abst_constr n1 n2))
+                         (abst_prj_b (abst_constr n3 n4)))))).
+        (* Theorem's body. *)
+        Theorem for_zenon___B_1_3_LEMMA :
+        Is_true ((_p_S2_equal (abst_prj_b (abst_constr n1 n2))
+                   (abst_prj_b (abst_constr n3 n4)))).
+        %%end-auto-proof
+        Theorem __B_1_3_LEMMA :
+          Is_true ((_p_S2_equal (abst_prj_b (abst_constr n1 n2))
+                     (abst_prj_b (abst_constr n3 n4)))).
+        assert (__force_use_H1 := H1).
+        apply for_zenon___B_1_3_LEMMA;
+        auto.
+        Qed.
+        End __B_1_3.
+      Section __B_1_4.
+        %%begin-auto-proof
+        %%location: [File "pair.fcl", line 160, characters 4-69]
+        %%name: for_zenon___B_1_4_LEMMA
+        
+        
+        
+        (* Methods to use for automated proof. *)
+        (* For step <2>2. *)
+        Parameter __B_1_2_LEMMA :
+          (Is_true ((_p_S1_equal (abst_prj_a (abst_constr n1 n2))
+                      (abst_prj_a (abst_constr n3 n4))))).
+        (* For method of Self used via "by property !prj_a_is_first_of_pair". *)
+        Parameter abst_prj_a_is_first_of_pair :
+          forall n1 : _p_S1_T,
+            forall n2 : _p_S2_T,
+              Is_true ((_p_S1_equal (abst_prj_a (abst_constr n1 n2)) n1)).
+        (* For species parameter method used via "by property pair#S1!equal_transitive". *)
+        Parameter _p_S1_equal_transitive :
+          forall x  y  z : _p_S1_T,
+            Is_true ((_p_S1_equal x y)) ->
+              Is_true ((_p_S1_equal y z)) -> Is_true ((_p_S1_equal x z)).
+        (* Theorem's body. *)
+        Theorem for_zenon___B_1_4_LEMMA :
+        Is_true ((_p_S1_equal (abst_prj_a (abst_constr n1 n2)) n3)).
+        %%end-auto-proof
+        Theorem __B_1_4_LEMMA :
+          Is_true ((_p_S1_equal (abst_prj_a (abst_constr n1 n2)) n3)).
+        assert (__force_use_H1 := H1).
+        apply for_zenon___B_1_4_LEMMA;
+        auto.
+        Qed.
+        End __B_1_4.
+      Section __B_1_5.
+        %%begin-auto-proof
+        %%location: [File "pair.fcl", line 163, characters 4-68]
+        %%name: for_zenon___B_1_5_LEMMA
+        
+        
+        
+        (* Methods to use for automated proof. *)
+        (* For step <2>3. *)
+        Parameter __B_1_3_LEMMA :
+          (Is_true ((_p_S2_equal (abst_prj_b (abst_constr n1 n2))
+                      (abst_prj_b (abst_constr n3 n4))))).
+        (* For method of Self used via "by property !prj_b_is_snd_of_pair". *)
+        Parameter abst_prj_b_is_snd_of_pair :
+          forall n1 : _p_S1_T,
+            forall n2 : _p_S2_T,
+              Is_true ((_p_S2_equal (abst_prj_b (abst_constr n1 n2)) n2)).
+        (* For species parameter method used via "by property pair#S2!equal_transitive". *)
+        Parameter _p_S2_equal_transitive :
+          forall x  y  z : _p_S2_T,
+            Is_true ((_p_S2_equal x y)) ->
+              Is_true ((_p_S2_equal y z)) -> Is_true ((_p_S2_equal x z)).
+        (* Theorem's body. *)
+        Theorem for_zenon___B_1_5_LEMMA :
+        Is_true ((_p_S2_equal (abst_prj_b (abst_constr n1 n2)) n4)).
+        %%end-auto-proof
+        Theorem __B_1_5_LEMMA :
+          Is_true ((_p_S2_equal (abst_prj_b (abst_constr n1 n2)) n4)).
+        assert (__force_use_H1 := H1).
+        apply for_zenon___B_1_5_LEMMA;
+        auto.
+        Qed.
+        End __B_1_5.
+      Section __B_1_6.
+        %%begin-auto-proof
+        %%location: [File "pair.fcl", line 166, characters 4-89]
+        %%name: for_zenon___B_1_6_LEMMA
+        
+        
+        
+        (* Methods to use for automated proof. *)
+        (* For step <2>4. *)
+        Parameter __B_1_4_LEMMA :
+          (Is_true ((_p_S1_equal (abst_prj_a (abst_constr n1 n2)) n3))).
+        (* For method of Self used via "by property !prj_a_is_first_of_pair". *)
+        Parameter abst_prj_a_is_first_of_pair :
+          forall n1 : _p_S1_T,
+            forall n2 : _p_S2_T,
+              Is_true ((_p_S1_equal (abst_prj_a (abst_constr n1 n2)) n1)).
+        (* For species parameter method used via "by property pair#S1!equal_transitive". *)
+        Parameter _p_S1_equal_transitive :
+          forall x  y  z : _p_S1_T,
+            Is_true ((_p_S1_equal x y)) ->
+              Is_true ((_p_S1_equal y z)) -> Is_true ((_p_S1_equal x z)).
+        (* For species parameter method used via "by property pair#S1!equal_symmetric". *)
+        Parameter _p_S1_equal_symmetric :
+          forall x  y : _p_S1_T,
+            Is_true ((_p_S1_equal x y)) -> Is_true ((_p_S1_equal y x)).
+        (* Theorem's body. *)
+        Theorem for_zenon___B_1_6_LEMMA :
+        Is_true ((_p_S1_equal n1 n3)).
+        %%end-auto-proof
+        Theorem __B_1_6_LEMMA : Is_true ((_p_S1_equal n1 n3)).
+        assert (__force_use_H1 := H1).
+        apply for_zenon___B_1_6_LEMMA;
+        auto.
+        Qed.
+        End __B_1_6.
+      Section __B_1_7.
+        %%begin-auto-proof
+        %%location: [File "pair.fcl", line 169, characters 4-87]
+        %%name: for_zenon___B_1_7_LEMMA
+        
+        
+        
+        (* Methods to use for automated proof. *)
+        (* For step <2>5. *)
+        Parameter __B_1_5_LEMMA :
+          (Is_true ((_p_S2_equal (abst_prj_b (abst_constr n1 n2)) n4))).
+        (* For method of Self used via "by property !prj_b_is_snd_of_pair". *)
+        Parameter abst_prj_b_is_snd_of_pair :
+          forall n1 : _p_S1_T,
+            forall n2 : _p_S2_T,
+              Is_true ((_p_S2_equal (abst_prj_b (abst_constr n1 n2)) n2)).
+        (* For species parameter method used via "by property pair#S2!equal_transitive". *)
+        Parameter _p_S2_equal_transitive :
+          forall x  y  z : _p_S2_T,
+            Is_true ((_p_S2_equal x y)) ->
+              Is_true ((_p_S2_equal y z)) -> Is_true ((_p_S2_equal x z)).
+        (* For species parameter method used via "by property pair#S2!equal_symmetric". *)
+        Parameter _p_S2_equal_symmetric :
+          forall x  y : _p_S2_T,
+            Is_true ((_p_S2_equal x y)) -> Is_true ((_p_S2_equal y x)).
+        (* Theorem's body. *)
+        Theorem for_zenon___B_1_7_LEMMA :
+        Is_true ((_p_S2_equal n2 n4)).
+        %%end-auto-proof
+        Theorem __B_1_7_LEMMA : Is_true ((_p_S2_equal n2 n4)).
+        assert (__force_use_H1 := H1).
+        apply for_zenon___B_1_7_LEMMA;
+        auto.
+        Qed.
+        End __B_1_7.
+      %%begin-auto-proof
+      %%location: [File "pair.fcl", line 171, characters 13-31]
+      %%name: for_zenon___B_1_LEMMA
+      
+      
+      
+      (* Methods to use for automated proof. *)
+      (* For step <2>6. *)
+      Parameter __B_1_6_LEMMA : (Is_true ((_p_S1_equal n1 n3))).
+      (* For step <2>7. *)
+      Parameter __B_1_7_LEMMA : (Is_true ((_p_S2_equal n2 n4))).
+      (* Theorem's body. *)
+      Theorem for_zenon___B_1_LEMMA :
+      (Is_true ((_p_S1_equal n1 n3)) /\ Is_true ((_p_S2_equal n2 n4))).
+      %%end-auto-proof
+      Theorem __B_1_LEMMA :
+        (Is_true ((_p_S1_equal n1 n3)) /\ Is_true ((_p_S2_equal n2 n4))).
+      assert (__force_use_H1 := H1).
+      apply for_zenon___B_1_LEMMA;
+      auto.
+      Qed.
+      End __B_1.
+    Section __B_2.
+      Variable n1 : _p_S1_T.
+      Variable n3 : _p_S1_T.
+      Variable n2 : _p_S2_T.
+      Variable n4 : _p_S2_T.
+      Variable H12 : Is_true ((_p_S1_equal n1 n3)).
+      Variable H22 : Is_true ((_p_S2_equal n2 n4)).
+      Section __B_2_1.
+        %%begin-auto-proof
+        %%location: [File "pair.fcl", line 183, characters 4-74]
+        %%name: for_zenon___B_2_1_LEMMA
+        
+        
+        
+        (* Methods to use for automated proof. *)
+        (* For hypothesis "H12". *)
+        Parameter H12 : Is_true ((_p_S1_equal n1 n3)).
+        (* For method of Self used via "by property !prj_a_is_first_of_pair". *)
+        Parameter abst_prj_a_is_first_of_pair :
+          forall n1 : _p_S1_T,
+            forall n2 : _p_S2_T,
+              Is_true ((_p_S1_equal (abst_prj_a (abst_constr n1 n2)) n1)).
+        (* For species parameter method used via "by property pair#S1!equal_transitive". *)
+        Parameter _p_S1_equal_transitive :
+          forall x  y  z : _p_S1_T,
+            Is_true ((_p_S1_equal x y)) ->
+              Is_true ((_p_S1_equal y z)) -> Is_true ((_p_S1_equal x z)).
+        (* Theorem's body. *)
+        Theorem for_zenon___B_2_1_LEMMA :
+        Is_true ((_p_S1_equal (abst_prj_a (abst_constr n1 n2)) n3)).
+        %%end-auto-proof
+        Theorem __B_2_1_LEMMA :
+          Is_true ((_p_S1_equal (abst_prj_a (abst_constr n1 n2)) n3)).
+        assert (__force_use_H12 := H12).
+        assert (__force_use_H22 := H22).
+        apply for_zenon___B_2_1_LEMMA;
+        auto.
+        Qed.
+        End __B_2_1.
+      Section __B_2_2.
+        %%begin-auto-proof
+        %%location: [File "pair.fcl", line 186, characters 4-73]
+        %%name: for_zenon___B_2_2_LEMMA
+        
+        
+        
+        (* Methods to use for automated proof. *)
+        (* For hypothesis "H22". *)
+        Parameter H22 : Is_true ((_p_S2_equal n2 n4)).
+        (* For method of Self used via "by property !prj_b_is_snd_of_pair". *)
+        Parameter abst_prj_b_is_snd_of_pair :
+          forall n1 : _p_S1_T,
+            forall n2 : _p_S2_T,
+              Is_true ((_p_S2_equal (abst_prj_b (abst_constr n1 n2)) n2)).
+        (* For species parameter method used via "by property pair#S2!equal_transitive". *)
+        Parameter _p_S2_equal_transitive :
+          forall x  y  z : _p_S2_T,
+            Is_true ((_p_S2_equal x y)) ->
+              Is_true ((_p_S2_equal y z)) -> Is_true ((_p_S2_equal x z)).
+        (* Theorem's body. *)
+        Theorem for_zenon___B_2_2_LEMMA :
+        Is_true ((_p_S2_equal (abst_prj_b (abst_constr n1 n2)) n4)).
+        %%end-auto-proof
+        Theorem __B_2_2_LEMMA :
+          Is_true ((_p_S2_equal (abst_prj_b (abst_constr n1 n2)) n4)).
+        assert (__force_use_H12 := H12).
+        assert (__force_use_H22 := H22).
+        apply for_zenon___B_2_2_LEMMA;
+        auto.
+        Qed.
+        End __B_2_2.
+      Section __B_2_3.
+        %%begin-auto-proof
+        %%location: [File "pair.fcl", line 189, character 4, line 190, character 23]
+        %%name: for_zenon___B_2_3_LEMMA
+        
+        
+        
+        (* Methods to use for automated proof. *)
+        (* For step <2>1. *)
+        Parameter __B_2_1_LEMMA :
+          (Is_true ((_p_S1_equal (abst_prj_a (abst_constr n1 n2)) n3))).
+        (* For method of Self used via "by property !prj_a_is_first_of_pair". *)
+        Parameter abst_prj_a_is_first_of_pair :
+          forall n1 : _p_S1_T,
+            forall n2 : _p_S2_T,
+              Is_true ((_p_S1_equal (abst_prj_a (abst_constr n1 n2)) n1)).
+        (* For species parameter method used via "by property pair#S1!equal_transitive". *)
+        Parameter _p_S1_equal_transitive :
+          forall x  y  z : _p_S1_T,
+            Is_true ((_p_S1_equal x y)) ->
+              Is_true ((_p_S1_equal y z)) -> Is_true ((_p_S1_equal x z)).
+        (* For species parameter method used via "by property pair#S1!equal_symmetric". *)
+        Parameter _p_S1_equal_symmetric :
+          forall x  y : _p_S1_T,
+            Is_true ((_p_S1_equal x y)) -> Is_true ((_p_S1_equal y x)).
+        (* Theorem's body. *)
+        Theorem for_zenon___B_2_3_LEMMA :
+        Is_true ((_p_S1_equal (abst_prj_a (abst_constr n1 n2))
+                   (abst_prj_a (abst_constr n3 n4)))).
+        %%end-auto-proof
+        Theorem __B_2_3_LEMMA :
+          Is_true ((_p_S1_equal (abst_prj_a (abst_constr n1 n2))
+                     (abst_prj_a (abst_constr n3 n4)))).
+        assert (__force_use_H12 := H12).
+        assert (__force_use_H22 := H22).
+        apply for_zenon___B_2_3_LEMMA;
+        auto.
+        Qed.
+        End __B_2_3.
+      Section __B_2_4.
+        %%begin-auto-proof
+        %%location: [File "pair.fcl", line 193, character 4, line 194, character 23]
+        %%name: for_zenon___B_2_4_LEMMA
+        
+        
+        
+        (* Methods to use for automated proof. *)
+        (* For step <2>2. *)
+        Parameter __B_2_2_LEMMA :
+          (Is_true ((_p_S2_equal (abst_prj_b (abst_constr n1 n2)) n4))).
+        (* For method of Self used via "by property !prj_b_is_snd_of_pair". *)
+        Parameter abst_prj_b_is_snd_of_pair :
+          forall n1 : _p_S1_T,
+            forall n2 : _p_S2_T,
+              Is_true ((_p_S2_equal (abst_prj_b (abst_constr n1 n2)) n2)).
+        (* For species parameter method used via "by property pair#S2!equal_transitive". *)
+        Parameter _p_S2_equal_transitive :
+          forall x  y  z : _p_S2_T,
+            Is_true ((_p_S2_equal x y)) ->
+              Is_true ((_p_S2_equal y z)) -> Is_true ((_p_S2_equal x z)).
+        (* For species parameter method used via "by property pair#S2!equal_symmetric". *)
+        Parameter _p_S2_equal_symmetric :
+          forall x  y : _p_S2_T,
+            Is_true ((_p_S2_equal x y)) -> Is_true ((_p_S2_equal y x)).
+        (* Theorem's body. *)
+        Theorem for_zenon___B_2_4_LEMMA :
+        Is_true ((_p_S2_equal (abst_prj_b (abst_constr n1 n2))
+                   (abst_prj_b (abst_constr n3 n4)))).
+        %%end-auto-proof
+        Theorem __B_2_4_LEMMA :
+          Is_true ((_p_S2_equal (abst_prj_b (abst_constr n1 n2))
+                     (abst_prj_b (abst_constr n3 n4)))).
+        assert (__force_use_H12 := H12).
+        assert (__force_use_H22 := H22).
+        apply for_zenon___B_2_4_LEMMA;
+        auto.
+        Qed.
+        End __B_2_4.
+      %%begin-auto-proof
+      %%location: [File "pair.fcl", line 196, characters 13-50]
+      %%name: for_zenon___B_2_LEMMA
+      
+      
+      
+      (* Methods to use for automated proof. *)
+      (* For step <2>3. *)
+      Parameter __B_2_3_LEMMA :
+        (Is_true ((_p_S1_equal (abst_prj_a (abst_constr n1 n2))
+                    (abst_prj_a (abst_constr n3 n4))))).
+      (* For step <2>4. *)
+      Parameter __B_2_4_LEMMA :
+        (Is_true ((_p_S2_equal (abst_prj_b (abst_constr n1 n2))
+                    (abst_prj_b (abst_constr n3 n4))))).
+      (* For method of Self used via "by property !def_equal". *)
+      Parameter abst_def_equal :
+        forall p1  p2 : abst_T,
+          Is_true ((abst_equal p1 p2)) <->
+            (Is_true ((_p_S1_equal (abst_prj_a p1) (abst_prj_a p2))) /\
+               Is_true ((_p_S2_equal (abst_prj_b p1) (abst_prj_b p2)))).
+      (* Theorem's body. *)
+      Theorem for_zenon___B_2_LEMMA :
+      Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n3 n4))).
+      %%end-auto-proof
+      Theorem __B_2_LEMMA :
+        Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n3 n4))).
+      assert (__force_use_H12 := H12).
+      assert (__force_use_H22 := H22).
+      apply for_zenon___B_2_LEMMA;
+      auto.
+      Qed.
+      End __B_2.
+    %%begin-auto-proof
+    %%location: [File "pair.fcl", line 198, characters 2-15]
+    %%name: for_zenon_def_equal1
+    
+    
+    
+    (* Methods to use for automated proof. *)
+    (* For step <1>1. *)
+    Parameter __B_1_LEMMA : forall n1 : _p_S1_T, forall n3 : _p_S1_T,
+      forall n2 : _p_S2_T, forall n4 : _p_S2_T,
+      (Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n3 n4)))) -> (
+      (Is_true ((_p_S1_equal n1 n3)) /\ Is_true ((_p_S2_equal n2 n4)))).
+    (* For step <1>2. *)
+    Parameter __B_2_LEMMA : forall n1 : _p_S1_T, forall n3 : _p_S1_T,
+      forall n2 : _p_S2_T, forall n4 : _p_S2_T,
+      (Is_true ((_p_S1_equal n1 n3))) -> (Is_true ((_p_S2_equal n2 n4))) -> (
+      Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n3 n4)))).
+    (* Theorem's body. *)
+    Theorem for_zenon_def_equal1 :
+    forall n1  n3 : _p_S1_T,
+      forall n2  n4 : _p_S2_T,
+        Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n3 n4))) <->
+          (Is_true ((_p_S1_equal n1 n3)) /\ Is_true ((_p_S2_equal n2 n4))).
+    %%end-auto-proof
+    (* Dummy theorem to enforce Coq abstractions. *)
+    Theorem for_zenon_abstracted_def_equal1 :
+      forall n1  n3 : _p_S1_T,
+        forall n2  n4 : _p_S2_T,
+          Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n3 n4))) <->
+            (Is_true ((_p_S1_equal n1 n3)) /\ Is_true ((_p_S2_equal n2 n4))).
+    assert (__force_use_p_S1_T := _p_S1_T).
+    assert (__force_use_p_S2_T := _p_S2_T).
+    assert (__force_use__p_S1_equal := _p_S1_equal).
+    assert (__force_use__p_S1_equal_symmetric := _p_S1_equal_symmetric).
+    assert (__force_use__p_S1_equal_transitive := _p_S1_equal_transitive).
+    assert (__force_use__p_S2_equal := _p_S2_equal).
+    assert (__force_use__p_S2_equal_symmetric := _p_S2_equal_symmetric).
+    assert (__force_use__p_S2_equal_transitive := _p_S2_equal_transitive).
+    assert (__force_use_abst_T := abst_T).
+    assert (__force_use_abst_constr := abst_constr).
+    assert (__force_use_abst_equal := abst_equal).
+    assert (__force_use_abst_prj_a := abst_prj_a).
+    assert (__force_use_abst_prj_b := abst_prj_b).
+    assert (__force_use_abst_prj_a_is_first_of_pair :=
+      abst_prj_a_is_first_of_pair).
+    assert (__force_use_abst_def_equal := abst_def_equal).
+    assert (__force_use_abst_prj_b_is_snd_of_pair :=
+      abst_prj_b_is_snd_of_pair).
+    apply for_zenon_def_equal1;
+    auto.
+    Qed.
+    End Proof_of_def_equal1.
+  
+  Theorem def_equal1  (_p_S1_T : Set) (_p_S2_T : Set) (_p_S1_equal :
+    _p_S1_T -> _p_S1_T -> basics.bool__t) (_p_S1_equal_symmetric :
+    forall x  y : _p_S1_T,
+      Is_true ((_p_S1_equal x y)) -> Is_true ((_p_S1_equal y x)))
+    (_p_S1_equal_transitive :
+    forall x  y  z : _p_S1_T,
+      Is_true ((_p_S1_equal x y)) ->
+        Is_true ((_p_S1_equal y z)) -> Is_true ((_p_S1_equal x z)))
+    (_p_S2_equal : _p_S2_T -> _p_S2_T -> basics.bool__t)
+    (_p_S2_equal_symmetric :
+    forall x  y : _p_S2_T,
+      Is_true ((_p_S2_equal x y)) -> Is_true ((_p_S2_equal y x)))
+    (_p_S2_equal_transitive :
+    forall x  y  z : _p_S2_T,
+      Is_true ((_p_S2_equal x y)) ->
+        Is_true ((_p_S2_equal y z)) -> Is_true ((_p_S2_equal x z)))
+    (abst_T : Set) (abst_constr : _p_S1_T -> _p_S2_T -> abst_T)
+    (abst_equal : abst_T -> abst_T -> basics.bool__t)
+    (abst_prj_a : abst_T -> _p_S1_T) (abst_prj_b : abst_T -> _p_S2_T)
+    (abst_prj_a_is_first_of_pair :
+    forall n1 : _p_S1_T,
+      forall n2 : _p_S2_T,
+        Is_true ((_p_S1_equal (abst_prj_a (abst_constr n1 n2)) n1)))
+    (abst_def_equal :
+    forall p1  p2 : abst_T,
+      Is_true ((abst_equal p1 p2)) <->
+        (Is_true ((_p_S1_equal (abst_prj_a p1) (abst_prj_a p2))) /\
+           Is_true ((_p_S2_equal (abst_prj_b p1) (abst_prj_b p2)))))
+    (abst_prj_b_is_snd_of_pair :
+    forall n1 : _p_S1_T,
+      forall n2 : _p_S2_T,
+        Is_true ((_p_S2_equal (abst_prj_b (abst_constr n1 n2)) n2))):
+    forall n1  n3 : _p_S1_T,
+      forall n2  n4 : _p_S2_T,
+        Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n3 n4))) <->
+          (Is_true ((_p_S1_equal n1 n3)) /\ Is_true ((_p_S2_equal n2 n4))).
+  apply for_zenon_abstracted_def_equal1;
+  auto.
+  Qed.
+  
+  (* From species pair#Imp_pair. *)
+  (* Section for proof of theorem 'equal_reflexive'. *)
+  Section Proof_of_equal_reflexive.
+    Variable _p_S1_T : Set.
+    Variable _p_S2_T : Set.
+    Variable abst_T : Set.
+    Variable abst_constr : _p_S1_T -> _p_S2_T -> abst_T.
+    Variable abst_equal : abst_T -> abst_T -> basics.bool__t.
+    Variable abst_prj_a : abst_T -> _p_S1_T.
+    Variable abst_prj_b : abst_T -> _p_S2_T.
+    Hypothesis abst_unicite_1 :
+      forall a : abst_T,
+        Is_true ((abst_equal (abst_constr (abst_prj_a a) (abst_prj_b a)) a)).
+    Hypothesis abst_unicite_2 :
+      forall a : abst_T,
+        Is_true ((abst_equal a (abst_constr (abst_prj_a a) (abst_prj_b a)))).
+    Hypothesis abst_equal_transitive :
+      forall x  y  z : abst_T,
+        Is_true ((abst_equal x y)) ->
+          Is_true ((abst_equal y z)) -> Is_true ((abst_equal x z)).
+    Section __C_1.
+      Variable p : abst_T.
+      Section __C_1_1.
+        %%begin-auto-proof
+        %%location: [File "pair.fcl", line 208, characters 7-28]
+        %%name: for_zenon___C_1_1_LEMMA
+        
+        
+        
+        (* Methods to use for automated proof. *)
+        (* For method of Self used via "by property !unicite_2". *)
+        Parameter abst_unicite_2 :
+          forall a : abst_T,
+            Is_true ((abst_equal a
+                       (abst_constr (abst_prj_a a) (abst_prj_b a)))).
+        (* Theorem's body. *)
+        Theorem for_zenon___C_1_1_LEMMA :
+        Is_true ((abst_equal p (abst_constr (abst_prj_a p) (abst_prj_b p)))).
+        %%end-auto-proof
+        Theorem __C_1_1_LEMMA :
+          Is_true ((abst_equal p (abst_constr (abst_prj_a p) (abst_prj_b p)))).
+        apply for_zenon___C_1_1_LEMMA;
+        auto.
+        Qed.
+        End __C_1_1.
+      %%begin-auto-proof
+      %%location: [File "pair.fcl", line 210, characters 14-63]
+      %%name: for_zenon___C_1_LEMMA
+      
+      
+      
+      (* Methods to use for automated proof. *)
+      (* For step <2>1. *)
+      Parameter __C_1_1_LEMMA :
+        (Is_true ((abst_equal p (abst_constr (abst_prj_a p) (abst_prj_b p))))).
+      (* For method of Self used via "by property !unicite_1". *)
+      Parameter abst_unicite_1 :
+        forall a : abst_T,
+          Is_true ((abst_equal (abst_constr (abst_prj_a a) (abst_prj_b a)) a)).
+      (* For method of Self used via "by property !equal_transitive". *)
+      Parameter abst_equal_transitive :
+        forall x  y  z : abst_T,
+          Is_true ((abst_equal x y)) ->
+            Is_true ((abst_equal y z)) -> Is_true ((abst_equal x z)).
+      (* Theorem's body. *)
+      Theorem for_zenon___C_1_LEMMA :
+      Is_true ((abst_equal p p)).
+      %%end-auto-proof
+      Theorem __C_1_LEMMA : Is_true ((abst_equal p p)).
+      apply for_zenon___C_1_LEMMA;
+      auto.
+      Qed.
+      End __C_1.
+    %%begin-auto-proof
+    %%location: [File "pair.fcl", line 212, characters 2-15]
+    %%name: for_zenon_equal_reflexive
+    
+    
+    
+    (* Methods to use for automated proof. *)
+    (* For step <1>1. *)
+    Parameter __C_1_LEMMA : forall p : abst_T, (Is_true ((abst_equal p p))).
+    (* Theorem's body. *)
+    Theorem for_zenon_equal_reflexive :
+    forall x : abst_T, Is_true ((abst_equal x x)).
+    %%end-auto-proof
+    (* Dummy theorem to enforce Coq abstractions. *)
+    Theorem for_zenon_abstracted_equal_reflexive :
+      forall x : abst_T, Is_true ((abst_equal x x)).
+    assert (__force_use_p_S1_T := _p_S1_T).
+    assert (__force_use_p_S2_T := _p_S2_T).
+    assert (__force_use_abst_T := abst_T).
+    assert (__force_use_abst_constr := abst_constr).
+    assert (__force_use_abst_equal := abst_equal).
+    assert (__force_use_abst_prj_a := abst_prj_a).
+    assert (__force_use_abst_prj_b := abst_prj_b).
+    assert (__force_use_abst_unicite_1 := abst_unicite_1).
+    assert (__force_use_abst_unicite_2 := abst_unicite_2).
+    assert (__force_use_abst_equal_transitive := abst_equal_transitive).
+    apply for_zenon_equal_reflexive;
+    auto.
+    Qed.
+    End Proof_of_equal_reflexive.
+  
+  Theorem equal_reflexive  (_p_S1_T : Set) (_p_S2_T : Set) (abst_T : Set)
+    (abst_constr : _p_S1_T -> _p_S2_T -> abst_T)
+    (abst_equal : abst_T -> abst_T -> basics.bool__t)
+    (abst_prj_a : abst_T -> _p_S1_T) (abst_prj_b : abst_T -> _p_S2_T)
+    (abst_unicite_1 :
+    forall a : abst_T,
+      Is_true ((abst_equal (abst_constr (abst_prj_a a) (abst_prj_b a)) a)))
+    (abst_unicite_2 :
+    forall a : abst_T,
+      Is_true ((abst_equal a (abst_constr (abst_prj_a a) (abst_prj_b a)))))
+    (abst_equal_transitive :
+    forall x  y  z : abst_T,
+      Is_true ((abst_equal x y)) ->
+        Is_true ((abst_equal y z)) -> Is_true ((abst_equal x z))):
+    forall x : abst_T, Is_true ((abst_equal x x)).
+  apply for_zenon_abstracted_equal_reflexive;
+  auto.
+  Qed.
+  
+  (* From species pair#Imp_pair. *)
+  (* Section for proof of theorem 'equal_reflexive2'. *)
+  Section Proof_of_equal_reflexive2.
+    Variable _p_S1_T : Set.
+    Variable _p_S2_T : Set.
+    Variable _p_S1_equal : _p_S1_T -> _p_S1_T -> basics.bool__t.
+    Variable _p_S1_equal_reflexive :
+      forall x : _p_S1_T, Is_true ((_p_S1_equal x x)).
+    Variable _p_S2_equal : _p_S2_T -> _p_S2_T -> basics.bool__t.
+    Variable _p_S2_equal_reflexive :
+      forall x : _p_S2_T, Is_true ((_p_S2_equal x x)).
+    Variable abst_T : Set.
+    Variable abst_constr : _p_S1_T -> _p_S2_T -> abst_T.
+    Variable abst_equal : abst_T -> abst_T -> basics.bool__t.
+    Hypothesis abst_def_equal1 :
+      forall n1  n3 : _p_S1_T,
+        forall n2  n4 : _p_S2_T,
+          Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n3 n4))) <->
+            (Is_true ((_p_S1_equal n1 n3)) /\ Is_true ((_p_S2_equal n2 n4))).
+    %%begin-auto-proof
+    %%location: [File "pair.fcl", line 216, characters 2-64]
+    %%name: for_zenon_equal_reflexive2
+    
+    
+    
+    (* Methods to use for automated proof. *)
+    (* For method of Self used via "by property !def_equal1". *)
+    Parameter abst_def_equal1 :
+      forall n1  n3 : _p_S1_T,
+        forall n2  n4 : _p_S2_T,
+          Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n3 n4))) <->
+            (Is_true ((_p_S1_equal n1 n3)) /\ Is_true ((_p_S2_equal n2 n4))).
+    (* For species parameter method used via "by property pair#S1!equal_reflexive". *)
+    Parameter _p_S1_equal_reflexive :
+      forall x : _p_S1_T, Is_true ((_p_S1_equal x x)).
+    (* For species parameter method used via "by property pair#S2!equal_reflexive". *)
+    Parameter _p_S2_equal_reflexive :
+      forall x : _p_S2_T, Is_true ((_p_S2_equal x x)).
+    (* Theorem's body. *)
+    Theorem for_zenon_equal_reflexive2 :
+    forall n1 : _p_S1_T,
+      forall n2 : _p_S2_T,
+        Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n1 n2))).
+    %%end-auto-proof
+    (* Dummy theorem to enforce Coq abstractions. *)
+    Theorem for_zenon_abstracted_equal_reflexive2 :
+      forall n1 : _p_S1_T,
+        forall n2 : _p_S2_T,
+          Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n1 n2))).
+    assert (__force_use_p_S1_T := _p_S1_T).
+    assert (__force_use_p_S2_T := _p_S2_T).
+    assert (__force_use__p_S1_equal := _p_S1_equal).
+    assert (__force_use__p_S1_equal_reflexive := _p_S1_equal_reflexive).
+    assert (__force_use__p_S2_equal := _p_S2_equal).
+    assert (__force_use__p_S2_equal_reflexive := _p_S2_equal_reflexive).
+    assert (__force_use_abst_T := abst_T).
+    assert (__force_use_abst_constr := abst_constr).
+    assert (__force_use_abst_equal := abst_equal).
+    assert (__force_use_abst_def_equal1 := abst_def_equal1).
+    apply for_zenon_equal_reflexive2;
+    auto.
+    Qed.
+    End Proof_of_equal_reflexive2.
+  
+  Theorem equal_reflexive2  (_p_S1_T : Set) (_p_S2_T : Set) (_p_S1_equal :
+    _p_S1_T -> _p_S1_T -> basics.bool__t) (_p_S1_equal_reflexive :
+    forall x : _p_S1_T, Is_true ((_p_S1_equal x x))) (_p_S2_equal :
+    _p_S2_T -> _p_S2_T -> basics.bool__t) (_p_S2_equal_reflexive :
+    forall x : _p_S2_T, Is_true ((_p_S2_equal x x))) (abst_T : Set)
+    (abst_constr : _p_S1_T -> _p_S2_T -> abst_T)
+    (abst_equal : abst_T -> abst_T -> basics.bool__t) (abst_def_equal1 :
+    forall n1  n3 : _p_S1_T,
+      forall n2  n4 : _p_S2_T,
+        Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n3 n4))) <->
+          (Is_true ((_p_S1_equal n1 n3)) /\ Is_true ((_p_S2_equal n2 n4)))):
+    forall n1 : _p_S1_T,
+      forall n2 : _p_S2_T,
+        Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n1 n2))).
+  apply for_zenon_abstracted_equal_reflexive2;
+  auto.
+  Qed.
+  
+  (* From species pair#Imp_pair. *)
+  (* Section for proof of theorem 'equal_symmetric2'. *)
+  Section Proof_of_equal_symmetric2.
+    Variable _p_S1_T : Set.
+    Variable _p_S2_T : Set.
+    Variable _p_S1_equal : _p_S1_T -> _p_S1_T -> basics.bool__t.
+    Variable _p_S1_equal_symmetric :
+      forall x  y : _p_S1_T,
+        Is_true ((_p_S1_equal x y)) -> Is_true ((_p_S1_equal y x)).
+    Variable _p_S2_equal : _p_S2_T -> _p_S2_T -> basics.bool__t.
+    Variable _p_S2_equal_symmetric :
+      forall x  y : _p_S2_T,
+        Is_true ((_p_S2_equal x y)) -> Is_true ((_p_S2_equal y x)).
+    Variable abst_T : Set.
+    Variable abst_constr : _p_S1_T -> _p_S2_T -> abst_T.
+    Variable abst_equal : abst_T -> abst_T -> basics.bool__t.
+    Hypothesis abst_def_equal1 :
+      forall n1  n3 : _p_S1_T,
+        forall n2  n4 : _p_S2_T,
+          Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n3 n4))) <->
+            (Is_true ((_p_S1_equal n1 n3)) /\ Is_true ((_p_S2_equal n2 n4))).
+    Section __E_1.
+      Variable n1 : _p_S1_T.
+      Variable n3 : _p_S1_T.
+      Variable n2 : _p_S2_T.
+      Variable n4 : _p_S2_T.
+      Variable H1 :
+        Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n3 n4))).
+      Section __E_1_1.
+        %%begin-auto-proof
+        %%location: [File "pair.fcl", line 256, characters 4-40]
+        %%name: for_zenon___E_1_1_LEMMA
+        
+        
+        
+        (* Methods to use for automated proof. *)
+        (* For hypothesis "H1". *)
+        Parameter H1 :
+          Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n3 n4))).
+        (* For method of Self used via "by property !def_equal1". *)
+        Parameter abst_def_equal1 :
+          forall n1  n3 : _p_S1_T,
+            forall n2  n4 : _p_S2_T,
+              Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n3 n4))) <->
+                (Is_true ((_p_S1_equal n1 n3)) /\
+                   Is_true ((_p_S2_equal n2 n4))).
+        (* Theorem's body. *)
+        Theorem for_zenon___E_1_1_LEMMA :
+        (Is_true ((_p_S1_equal n1 n3)) /\ Is_true ((_p_S2_equal n2 n4))).
+        %%end-auto-proof
+        Theorem __E_1_1_LEMMA :
+          (Is_true ((_p_S1_equal n1 n3)) /\ Is_true ((_p_S2_equal n2 n4))).
+        assert (__force_use_H1 := H1).
+        apply for_zenon___E_1_1_LEMMA;
+        auto.
+        Qed.
+        End __E_1_1.
+      Section __E_1_2.
+        %%begin-auto-proof
+        %%location: [File "pair.fcl", line 260, characters 6-56]
+        %%name: for_zenon___E_1_2_LEMMA
+        
+        
+        
+        (* Methods to use for automated proof. *)
+        (* For species parameter method used via "by property pair#S1!equal_symmetric". *)
+        Parameter _p_S1_equal_symmetric :
+          forall x  y : _p_S1_T,
+            Is_true ((_p_S1_equal x y)) -> Is_true ((_p_S1_equal y x)).
+        (* For species parameter method used via "by property pair#S2!equal_symmetric". *)
+        Parameter _p_S2_equal_symmetric :
+          forall x  y : _p_S2_T,
+            Is_true ((_p_S2_equal x y)) -> Is_true ((_p_S2_equal y x)).
+        (* Theorem's body. *)
+        Theorem for_zenon___E_1_2_LEMMA :
+        (Is_true ((_p_S1_equal n1 n3)) /\ Is_true ((_p_S2_equal n2 n4))) ->
+          (Is_true ((_p_S1_equal n3 n1)) /\ Is_true ((_p_S2_equal n4 n2))).
+        %%end-auto-proof
+        Theorem __E_1_2_LEMMA :
+          (Is_true ((_p_S1_equal n1 n3)) /\ Is_true ((_p_S2_equal n2 n4))) ->
+            (Is_true ((_p_S1_equal n3 n1)) /\ Is_true ((_p_S2_equal n4 n2))).
+        assert (__force_use_H1 := H1).
+        apply for_zenon___E_1_2_LEMMA;
+        auto.
+        Qed.
+        End __E_1_2.
+      Section __E_1_3.
+        %%begin-auto-proof
+        %%location: [File "pair.fcl", line 264, characters 4-26]
+        %%name: for_zenon___E_1_3_LEMMA
+        
+        
+        
+        (* Methods to use for automated proof. *)
+        (* For method of Self used via "by property !def_equal1". *)
+        Parameter abst_def_equal1 :
+          forall n1  n3 : _p_S1_T,
+            forall n2  n4 : _p_S2_T,
+              Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n3 n4))) <->
+                (Is_true ((_p_S1_equal n1 n3)) /\
+                   Is_true ((_p_S2_equal n2 n4))).
+        (* Theorem's body. *)
+        Theorem for_zenon___E_1_3_LEMMA :
+        (Is_true ((_p_S1_equal n3 n1)) /\ Is_true ((_p_S2_equal n4 n2))) ->
+          Is_true ((abst_equal (abst_constr n3 n4) (abst_constr n1 n2))).
+        %%end-auto-proof
+        Theorem __E_1_3_LEMMA :
+          (Is_true ((_p_S1_equal n3 n1)) /\ Is_true ((_p_S2_equal n4 n2))) ->
+            Is_true ((abst_equal (abst_constr n3 n4) (abst_constr n1 n2))).
+        assert (__force_use_H1 := H1).
+        apply for_zenon___E_1_3_LEMMA;
+        auto.
+        Qed.
+        End __E_1_3.
+      %%begin-auto-proof
+      %%location: [File "pair.fcl", line 266, characters 13-51]
+      %%name: for_zenon___E_1_LEMMA
+      
+      
+      
+      (* Methods to use for automated proof. *)
+      (* For hypothesis "H1". *)
+      Parameter H1 :
+        Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n3 n4))).
+      (* For step <2>1. *)
+      Parameter __E_1_1_LEMMA :
+        ((Is_true ((_p_S1_equal n1 n3)) /\ Is_true ((_p_S2_equal n2 n4)))).
+      (* For step <2>2. *)
+      Parameter __E_1_2_LEMMA :
+        ((Is_true ((_p_S1_equal n1 n3)) /\ Is_true ((_p_S2_equal n2 n4))) ->
+           (Is_true ((_p_S1_equal n3 n1)) /\ Is_true ((_p_S2_equal n4 n2)))).
+      (* For step <2>3. *)
+      Parameter __E_1_3_LEMMA :
+        ((Is_true ((_p_S1_equal n3 n1)) /\ Is_true ((_p_S2_equal n4 n2))) ->
+           Is_true ((abst_equal (abst_constr n3 n4) (abst_constr n1 n2)))).
+      (* Theorem's body. *)
+      Theorem for_zenon___E_1_LEMMA :
+      Is_true ((abst_equal (abst_constr n3 n4) (abst_constr n1 n2))).
+      %%end-auto-proof
+      Theorem __E_1_LEMMA :
+        Is_true ((abst_equal (abst_constr n3 n4) (abst_constr n1 n2))).
+      assert (__force_use_H1 := H1).
+      apply for_zenon___E_1_LEMMA;
+      auto.
+      Qed.
+      End __E_1.
+    %%begin-auto-proof
+    %%location: [File "pair.fcl", line 267, characters 2-15]
+    %%name: for_zenon_equal_symmetric2
+    
+    
+    
+    (* Methods to use for automated proof. *)
+    (* For step <1>1. *)
+    Parameter __E_1_LEMMA : forall n1 : _p_S1_T, forall n3 : _p_S1_T,
+      forall n2 : _p_S2_T, forall n4 : _p_S2_T,
+      (Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n3 n4)))) -> (
+      Is_true ((abst_equal (abst_constr n3 n4) (abst_constr n1 n2)))).
+    (* Theorem's body. *)
+    Theorem for_zenon_equal_symmetric2 :
+    forall n1  n3 : _p_S1_T,
+      forall n2  n4 : _p_S2_T,
+        Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n3 n4))) ->
+          Is_true ((abst_equal (abst_constr n3 n4) (abst_constr n1 n2))).
+    %%end-auto-proof
+    (* Dummy theorem to enforce Coq abstractions. *)
+    Theorem for_zenon_abstracted_equal_symmetric2 :
+      forall n1  n3 : _p_S1_T,
+        forall n2  n4 : _p_S2_T,
+          Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n3 n4))) ->
+            Is_true ((abst_equal (abst_constr n3 n4) (abst_constr n1 n2))).
+    assert (__force_use_p_S1_T := _p_S1_T).
+    assert (__force_use_p_S2_T := _p_S2_T).
+    assert (__force_use__p_S1_equal := _p_S1_equal).
+    assert (__force_use__p_S1_equal_symmetric := _p_S1_equal_symmetric).
+    assert (__force_use__p_S2_equal := _p_S2_equal).
+    assert (__force_use__p_S2_equal_symmetric := _p_S2_equal_symmetric).
+    assert (__force_use_abst_T := abst_T).
+    assert (__force_use_abst_constr := abst_constr).
+    assert (__force_use_abst_equal := abst_equal).
+    assert (__force_use_abst_def_equal1 := abst_def_equal1).
+    apply for_zenon_equal_symmetric2;
+    auto.
+    Qed.
+    End Proof_of_equal_symmetric2.
+  
+  Theorem equal_symmetric2  (_p_S1_T : Set) (_p_S2_T : Set) (_p_S1_equal :
+    _p_S1_T -> _p_S1_T -> basics.bool__t) (_p_S1_equal_symmetric :
+    forall x  y : _p_S1_T,
+      Is_true ((_p_S1_equal x y)) -> Is_true ((_p_S1_equal y x)))
+    (_p_S2_equal : _p_S2_T -> _p_S2_T -> basics.bool__t)
+    (_p_S2_equal_symmetric :
+    forall x  y : _p_S2_T,
+      Is_true ((_p_S2_equal x y)) -> Is_true ((_p_S2_equal y x)))
+    (abst_T : Set) (abst_constr : _p_S1_T -> _p_S2_T -> abst_T)
+    (abst_equal : abst_T -> abst_T -> basics.bool__t) (abst_def_equal1 :
+    forall n1  n3 : _p_S1_T,
+      forall n2  n4 : _p_S2_T,
+        Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n3 n4))) <->
+          (Is_true ((_p_S1_equal n1 n3)) /\ Is_true ((_p_S2_equal n2 n4)))):
+    forall n1  n3 : _p_S1_T,
+      forall n2  n4 : _p_S2_T,
+        Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n3 n4))) ->
+          Is_true ((abst_equal (abst_constr n3 n4) (abst_constr n1 n2))).
+  apply for_zenon_abstracted_equal_symmetric2;
+  auto.
+  Qed.
+  
+  (* From species pair#Imp_pair. *)
+  (* Section for proof of theorem 'equal_transitive2'. *)
+  Section Proof_of_equal_transitive2.
+    Variable _p_S1_T : Set.
+    Variable _p_S2_T : Set.
+    Variable _p_S1_equal : _p_S1_T -> _p_S1_T -> basics.bool__t.
+    Variable _p_S1_equal_transitive :
+      forall x  y  z : _p_S1_T,
+        Is_true ((_p_S1_equal x y)) ->
+          Is_true ((_p_S1_equal y z)) -> Is_true ((_p_S1_equal x z)).
+    Variable _p_S2_equal : _p_S2_T -> _p_S2_T -> basics.bool__t.
+    Variable _p_S2_equal_transitive :
+      forall x  y  z : _p_S2_T,
+        Is_true ((_p_S2_equal x y)) ->
+          Is_true ((_p_S2_equal y z)) -> Is_true ((_p_S2_equal x z)).
+    Variable abst_T : Set.
+    Variable abst_constr : _p_S1_T -> _p_S2_T -> abst_T.
+    Variable abst_equal : abst_T -> abst_T -> basics.bool__t.
+    Hypothesis abst_def_equal1 :
+      forall n1  n3 : _p_S1_T,
+        forall n2  n4 : _p_S2_T,
+          Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n3 n4))) <->
+            (Is_true ((_p_S1_equal n1 n3)) /\ Is_true ((_p_S2_equal n2 n4))).
+    Section __F_1.
+      Variable n1 : _p_S1_T.
+      Variable n3 : _p_S1_T.
+      Variable n5 : _p_S1_T.
+      Variable n2 : _p_S2_T.
+      Variable n4 : _p_S2_T.
+      Variable n6 : _p_S2_T.
+      Variable H1 :
+        Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n3 n4))).
+      Variable H2 :
+        Is_true ((abst_equal (abst_constr n3 n4) (abst_constr n5 n6))).
+      Section __F_1_1.
+        %%begin-auto-proof
+        %%location: [File "pair.fcl", line 300, characters 6-28]
+        %%name: for_zenon___F_1_1_LEMMA
+        
+        
+        
+        (* Methods to use for automated proof. *)
+        (* For method of Self used via "by property !def_equal1". *)
+        Parameter abst_def_equal1 :
+          forall n1  n3 : _p_S1_T,
+            forall n2  n4 : _p_S2_T,
+              Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n3 n4))) <->
+                (Is_true ((_p_S1_equal n1 n3)) /\
+                   Is_true ((_p_S2_equal n2 n4))).
+        (* Theorem's body. *)
+        Theorem for_zenon___F_1_1_LEMMA :
+        (Is_true ((_p_S1_equal n1 n5)) /\ Is_true ((_p_S2_equal n2 n6))) ->
+          Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n5 n6))).
+        %%end-auto-proof
+        Theorem __F_1_1_LEMMA :
+          (Is_true ((_p_S1_equal n1 n5)) /\ Is_true ((_p_S2_equal n2 n6))) ->
+            Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n5 n6))).
+        assert (__force_use_H1 := H1).
+        assert (__force_use_H2 := H2).
+        apply for_zenon___F_1_1_LEMMA;
+        auto.
+        Qed.
+        End __F_1_1.
+      Section __F_1_2.
+        %%begin-auto-proof
+        %%location: [File "pair.fcl", line 302, characters 6-42]
+        %%name: for_zenon___F_1_2_LEMMA
+        
+        
+        
+        (* Methods to use for automated proof. *)
+        (* For hypothesis "H1". *)
+        Parameter H1 :
+          Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n3 n4))).
+        (* For method of Self used via "by property !def_equal1". *)
+        Parameter abst_def_equal1 :
+          forall n1  n3 : _p_S1_T,
+            forall n2  n4 : _p_S2_T,
+              Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n3 n4))) <->
+                (Is_true ((_p_S1_equal n1 n3)) /\
+                   Is_true ((_p_S2_equal n2 n4))).
+        (* Theorem's body. *)
+        Theorem for_zenon___F_1_2_LEMMA :
+        (Is_true ((_p_S1_equal n1 n3)) /\ Is_true ((_p_S2_equal n2 n4))).
+        %%end-auto-proof
+        Theorem __F_1_2_LEMMA :
+          (Is_true ((_p_S1_equal n1 n3)) /\ Is_true ((_p_S2_equal n2 n4))).
+        assert (__force_use_H1 := H1).
+        assert (__force_use_H2 := H2).
+        apply for_zenon___F_1_2_LEMMA;
+        auto.
+        Qed.
+        End __F_1_2.
+      Section __F_1_3.
+        %%begin-auto-proof
+        %%location: [File "pair.fcl", line 304, characters 6-42]
+        %%name: for_zenon___F_1_3_LEMMA
+        
+        
+        
+        (* Methods to use for automated proof. *)
+        (* For hypothesis "H2". *)
+        Parameter H2 :
+          Is_true ((abst_equal (abst_constr n3 n4) (abst_constr n5 n6))).
+        (* For method of Self used via "by property !def_equal1". *)
+        Parameter abst_def_equal1 :
+          forall n1  n3 : _p_S1_T,
+            forall n2  n4 : _p_S2_T,
+              Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n3 n4))) <->
+                (Is_true ((_p_S1_equal n1 n3)) /\
+                   Is_true ((_p_S2_equal n2 n4))).
+        (* Theorem's body. *)
+        Theorem for_zenon___F_1_3_LEMMA :
+        (Is_true ((_p_S1_equal n3 n5)) /\ Is_true ((_p_S2_equal n4 n6))).
+        %%end-auto-proof
+        Theorem __F_1_3_LEMMA :
+          (Is_true ((_p_S1_equal n3 n5)) /\ Is_true ((_p_S2_equal n4 n6))).
+        assert (__force_use_H1 := H1).
+        assert (__force_use_H2 := H2).
+        apply for_zenon___F_1_3_LEMMA;
+        auto.
+        Qed.
+        End __F_1_3.
+      %%begin-auto-proof
+      %%location: [File "pair.fcl", line 305, character 15, line 306, character 62]
+      %%name: for_zenon___F_1_LEMMA
+      
+      
+      
+      (* Methods to use for automated proof. *)
+      (* For step <2>1. *)
+      Parameter __F_1_1_LEMMA :
+        ((Is_true ((_p_S1_equal n1 n5)) /\ Is_true ((_p_S2_equal n2 n6))) ->
+           Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n5 n6)))).
+      (* For step <2>2. *)
+      Parameter __F_1_2_LEMMA :
+        ((Is_true ((_p_S1_equal n1 n3)) /\ Is_true ((_p_S2_equal n2 n4)))).
+      (* For step <2>3. *)
+      Parameter __F_1_3_LEMMA :
+        ((Is_true ((_p_S1_equal n3 n5)) /\ Is_true ((_p_S2_equal n4 n6)))).
+      (* For species parameter method used via "by property pair#S1!equal_transitive". *)
+      Parameter _p_S1_equal_transitive :
+        forall x  y  z : _p_S1_T,
+          Is_true ((_p_S1_equal x y)) ->
+            Is_true ((_p_S1_equal y z)) -> Is_true ((_p_S1_equal x z)).
+      (* For species parameter method used via "by property pair#S2!equal_transitive". *)
+      Parameter _p_S2_equal_transitive :
+        forall x  y  z : _p_S2_T,
+          Is_true ((_p_S2_equal x y)) ->
+            Is_true ((_p_S2_equal y z)) -> Is_true ((_p_S2_equal x z)).
+      (* Theorem's body. *)
+      Theorem for_zenon___F_1_LEMMA :
+      Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n5 n6))).
+      %%end-auto-proof
+      Theorem __F_1_LEMMA :
+        Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n5 n6))).
+      assert (__force_use_H1 := H1).
+      assert (__force_use_H2 := H2).
+      apply for_zenon___F_1_LEMMA;
+      auto.
+      Qed.
+      End __F_1.
+    %%begin-auto-proof
+    %%location: [File "pair.fcl", line 307, characters 2-15]
+    %%name: for_zenon_equal_transitive2
+    
+    
+    
+    (* Methods to use for automated proof. *)
+    (* For step <1>1. *)
+    Parameter __F_1_LEMMA : forall n1 : _p_S1_T, forall n3 : _p_S1_T,
+      forall n5 : _p_S1_T, forall n2 : _p_S2_T, forall n4 : _p_S2_T,
+      forall n6 : _p_S2_T,
+      (Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n3 n4)))) ->
+       (Is_true ((abst_equal (abst_constr n3 n4) (abst_constr n5 n6)))) -> (
+      Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n5 n6)))).
+    (* Theorem's body. *)
+    Theorem for_zenon_equal_transitive2 :
+    forall n1  n3  n5 : _p_S1_T,
+      forall n2  n4  n6 : _p_S2_T,
+        Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n3 n4))) ->
+          Is_true ((abst_equal (abst_constr n3 n4) (abst_constr n5 n6))) ->
+            Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n5 n6))).
+    %%end-auto-proof
+    (* Dummy theorem to enforce Coq abstractions. *)
+    Theorem for_zenon_abstracted_equal_transitive2 :
+      forall n1  n3  n5 : _p_S1_T,
+        forall n2  n4  n6 : _p_S2_T,
+          Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n3 n4))) ->
+            Is_true ((abst_equal (abst_constr n3 n4) (abst_constr n5 n6))) ->
+              Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n5 n6))).
+    assert (__force_use_p_S1_T := _p_S1_T).
+    assert (__force_use_p_S2_T := _p_S2_T).
+    assert (__force_use__p_S1_equal := _p_S1_equal).
+    assert (__force_use__p_S1_equal_transitive := _p_S1_equal_transitive).
+    assert (__force_use__p_S2_equal := _p_S2_equal).
+    assert (__force_use__p_S2_equal_transitive := _p_S2_equal_transitive).
+    assert (__force_use_abst_T := abst_T).
+    assert (__force_use_abst_constr := abst_constr).
+    assert (__force_use_abst_equal := abst_equal).
+    assert (__force_use_abst_def_equal1 := abst_def_equal1).
+    apply for_zenon_equal_transitive2;
+    auto.
+    Qed.
+    End Proof_of_equal_transitive2.
+  
+  Theorem equal_transitive2  (_p_S1_T : Set) (_p_S2_T : Set) (_p_S1_equal :
+    _p_S1_T -> _p_S1_T -> basics.bool__t) (_p_S1_equal_transitive :
+    forall x  y  z : _p_S1_T,
+      Is_true ((_p_S1_equal x y)) ->
+        Is_true ((_p_S1_equal y z)) -> Is_true ((_p_S1_equal x z)))
+    (_p_S2_equal : _p_S2_T -> _p_S2_T -> basics.bool__t)
+    (_p_S2_equal_transitive :
+    forall x  y  z : _p_S2_T,
+      Is_true ((_p_S2_equal x y)) ->
+        Is_true ((_p_S2_equal y z)) -> Is_true ((_p_S2_equal x z)))
+    (abst_T : Set) (abst_constr : _p_S1_T -> _p_S2_T -> abst_T)
+    (abst_equal : abst_T -> abst_T -> basics.bool__t) (abst_def_equal1 :
+    forall n1  n3 : _p_S1_T,
+      forall n2  n4 : _p_S2_T,
+        Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n3 n4))) <->
+          (Is_true ((_p_S1_equal n1 n3)) /\ Is_true ((_p_S2_equal n2 n4)))):
+    forall n1  n3  n5 : _p_S1_T,
+      forall n2  n4  n6 : _p_S2_T,
+        Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n3 n4))) ->
+          Is_true ((abst_equal (abst_constr n3 n4) (abst_constr n5 n6))) ->
+            Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n5 n6))).
+  apply for_zenon_abstracted_equal_transitive2;
+  auto.
+  Qed.
+  
+  (* From species pair#Imp_pair. *)
+  (* Section for proof of theorem 'equal_symmetric'. *)
+  Section Proof_of_equal_symmetric.
+    Variable _p_S1_T : Set.
+    Variable _p_S2_T : Set.
+    Variable abst_T : Set.
+    Variable abst_constr : _p_S1_T -> _p_S2_T -> abst_T.
+    Variable abst_equal : abst_T -> abst_T -> basics.bool__t.
+    Variable abst_prj_a : abst_T -> _p_S1_T.
+    Variable abst_prj_b : abst_T -> _p_S2_T.
+    Hypothesis abst_unicite_1 :
+      forall a : abst_T,
+        Is_true ((abst_equal (abst_constr (abst_prj_a a) (abst_prj_b a)) a)).
+    Hypothesis abst_unicite_2 :
+      forall a : abst_T,
+        Is_true ((abst_equal a (abst_constr (abst_prj_a a) (abst_prj_b a)))).
+    Hypothesis abst_equal_transitive :
+      forall x  y  z : abst_T,
+        Is_true ((abst_equal x y)) ->
+          Is_true ((abst_equal y z)) -> Is_true ((abst_equal x z)).
+    Hypothesis abst_equal_symmetric2 :
+      forall n1  n3 : _p_S1_T,
+        forall n2  n4 : _p_S2_T,
+          Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n3 n4))) ->
+            Is_true ((abst_equal (abst_constr n3 n4) (abst_constr n1 n2))).
+    Section __G_1.
+      Variable p1 : abst_T.
+      Variable p2 : abst_T.
+      Variable H1 : Is_true ((abst_equal p1 p2)).
+      Section __G_1_1.
+        %%begin-auto-proof
+        %%location: [File "pair.fcl", line 229, characters 9-62]
+        %%name: for_zenon___G_1_1_LEMMA
+        
+        
+        
+        (* Methods to use for automated proof. *)
+        (* For hypothesis "H1". *)
+        Parameter H1 : Is_true ((abst_equal p1 p2)).
+        (* For method of Self used via "by property !unicite_1". *)
+        Parameter abst_unicite_1 :
+          forall a : abst_T,
+            Is_true ((abst_equal (abst_constr (abst_prj_a a) (abst_prj_b a))
+                       a)).
+        (* For method of Self used via "by property !equal_transitive". *)
+        Parameter abst_equal_transitive :
+          forall x  y  z : abst_T,
+            Is_true ((abst_equal x y)) ->
+              Is_true ((abst_equal y z)) -> Is_true ((abst_equal x z)).
+        (* Theorem's body. *)
+        Theorem for_zenon___G_1_1_LEMMA :
+        Is_true ((abst_equal (abst_constr (abst_prj_a p1) (abst_prj_b p1))
+                   p2)).
+        %%end-auto-proof
+        Theorem __G_1_1_LEMMA :
+          Is_true ((abst_equal (abst_constr (abst_prj_a p1) (abst_prj_b p1))
+                     p2)).
+        assert (__force_use_H1 := H1).
+        apply for_zenon___G_1_1_LEMMA;
+        auto.
+        Qed.
+        End __G_1_1.
+      Section __G_1_2.
+        %%begin-auto-proof
+        %%location: [File "pair.fcl", line 232, characters 9-58]
+        %%name: for_zenon___G_1_2_LEMMA
+        
+        
+        
+        (* Methods to use for automated proof. *)
+        (* For step <2>1. *)
+        Parameter __G_1_1_LEMMA :
+          (Is_true ((abst_equal (abst_constr (abst_prj_a p1) (abst_prj_b p1))
+                      p2))).
+        (* For method of Self used via "by property !unicite_2". *)
+        Parameter abst_unicite_2 :
+          forall a : abst_T,
+            Is_true ((abst_equal a
+                       (abst_constr (abst_prj_a a) (abst_prj_b a)))).
+        (* For method of Self used via "by property !equal_transitive". *)
+        Parameter abst_equal_transitive :
+          forall x  y  z : abst_T,
+            Is_true ((abst_equal x y)) ->
+              Is_true ((abst_equal y z)) -> Is_true ((abst_equal x z)).
+        (* Theorem's body. *)
+        Theorem for_zenon___G_1_2_LEMMA :
+        Is_true ((abst_equal (abst_constr (abst_prj_a p1) (abst_prj_b p1))
+                   (abst_constr (abst_prj_a p2) (abst_prj_b p2)))).
+        %%end-auto-proof
+        Theorem __G_1_2_LEMMA :
+          Is_true ((abst_equal (abst_constr (abst_prj_a p1) (abst_prj_b p1))
+                     (abst_constr (abst_prj_a p2) (abst_prj_b p2)))).
+        assert (__force_use_H1 := H1).
+        apply for_zenon___G_1_2_LEMMA;
+        auto.
+        Qed.
+        End __G_1_2.
+      Section __G_1_3.
+        %%begin-auto-proof
+        %%location: [File "pair.fcl", line 235, characters 9-47]
+        %%name: for_zenon___G_1_3_LEMMA
+        
+        
+        
+        (* Methods to use for automated proof. *)
+        (* For step <2>2. *)
+        Parameter __G_1_2_LEMMA :
+          (Is_true ((abst_equal (abst_constr (abst_prj_a p1) (abst_prj_b p1))
+                      (abst_constr (abst_prj_a p2) (abst_prj_b p2))))).
+        (* For method of Self used via "by property !equal_symmetric2". *)
+        Parameter abst_equal_symmetric2 :
+          forall n1  n3 : _p_S1_T,
+            forall n2  n4 : _p_S2_T,
+              Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n3 n4))) ->
+                Is_true ((abst_equal (abst_constr n3 n4) (abst_constr n1 n2))).
+        (* Theorem's body. *)
+        Theorem for_zenon___G_1_3_LEMMA :
+        Is_true ((abst_equal (abst_constr (abst_prj_a p2) (abst_prj_b p2))
+                   (abst_constr (abst_prj_a p1) (abst_prj_b p1)))).
+        %%end-auto-proof
+        Theorem __G_1_3_LEMMA :
+          Is_true ((abst_equal (abst_constr (abst_prj_a p2) (abst_prj_b p2))
+                     (abst_constr (abst_prj_a p1) (abst_prj_b p1)))).
+        assert (__force_use_H1 := H1).
+        apply for_zenon___G_1_3_LEMMA;
+        auto.
+        Qed.
+        End __G_1_3.
+      Section __G_1_4.
+        %%begin-auto-proof
+        %%location: [File "pair.fcl", line 238, characters 9-58]
+        %%name: for_zenon___G_1_4_LEMMA
+        
+        
+        
+        (* Methods to use for automated proof. *)
+        (* For step <2>3. *)
+        Parameter __G_1_3_LEMMA :
+          (Is_true ((abst_equal (abst_constr (abst_prj_a p2) (abst_prj_b p2))
+                      (abst_constr (abst_prj_a p1) (abst_prj_b p1))))).
+        (* For method of Self used via "by property !unicite_2". *)
+        Parameter abst_unicite_2 :
+          forall a : abst_T,
+            Is_true ((abst_equal a
+                       (abst_constr (abst_prj_a a) (abst_prj_b a)))).
+        (* For method of Self used via "by property !equal_transitive". *)
+        Parameter abst_equal_transitive :
+          forall x  y  z : abst_T,
+            Is_true ((abst_equal x y)) ->
+              Is_true ((abst_equal y z)) -> Is_true ((abst_equal x z)).
+        (* Theorem's body. *)
+        Theorem for_zenon___G_1_4_LEMMA :
+        Is_true ((abst_equal p2
+                   (abst_constr (abst_prj_a p1) (abst_prj_b p1)))).
+        %%end-auto-proof
+        Theorem __G_1_4_LEMMA :
+          Is_true ((abst_equal p2
+                     (abst_constr (abst_prj_a p1) (abst_prj_b p1)))).
+        assert (__force_use_H1 := H1).
+        apply for_zenon___G_1_4_LEMMA;
+        auto.
+        Qed.
+        End __G_1_4.
+      %%begin-auto-proof
+      %%location: [File "pair.fcl", line 240, characters 13-62]
+      %%name: for_zenon___G_1_LEMMA
+      
+      
+      
+      (* Methods to use for automated proof. *)
+      (* For step <2>4. *)
+      Parameter __G_1_4_LEMMA :
+        (Is_true ((abst_equal p2
+                    (abst_constr (abst_prj_a p1) (abst_prj_b p1))))).
+      (* For method of Self used via "by property !unicite_1". *)
+      Parameter abst_unicite_1 :
+        forall a : abst_T,
+          Is_true ((abst_equal (abst_constr (abst_prj_a a) (abst_prj_b a)) a)).
+      (* For method of Self used via "by property !equal_transitive". *)
+      Parameter abst_equal_transitive :
+        forall x  y  z : abst_T,
+          Is_true ((abst_equal x y)) ->
+            Is_true ((abst_equal y z)) -> Is_true ((abst_equal x z)).
+      (* Theorem's body. *)
+      Theorem for_zenon___G_1_LEMMA :
+      Is_true ((abst_equal p2 p1)).
+      %%end-auto-proof
+      Theorem __G_1_LEMMA : Is_true ((abst_equal p2 p1)).
+      assert (__force_use_H1 := H1).
+      apply for_zenon___G_1_LEMMA;
+      auto.
+      Qed.
+      End __G_1.
+    %%begin-auto-proof
+    %%location: [File "pair.fcl", line 242, characters 2-15]
+    %%name: for_zenon_equal_symmetric
+    
+    
+    
+    (* Methods to use for automated proof. *)
+    (* For step <1>1. *)
+    Parameter __G_1_LEMMA : forall p1 : abst_T, forall p2 : abst_T,
+      (Is_true ((abst_equal p1 p2))) -> (Is_true ((abst_equal p2 p1))).
+    (* Theorem's body. *)
+    Theorem for_zenon_equal_symmetric :
+    forall x  y : abst_T,
+      Is_true ((abst_equal x y)) -> Is_true ((abst_equal y x)).
+    %%end-auto-proof
+    (* Dummy theorem to enforce Coq abstractions. *)
+    Theorem for_zenon_abstracted_equal_symmetric :
+      forall x  y : abst_T,
+        Is_true ((abst_equal x y)) -> Is_true ((abst_equal y x)).
+    assert (__force_use_p_S1_T := _p_S1_T).
+    assert (__force_use_p_S2_T := _p_S2_T).
+    assert (__force_use_abst_T := abst_T).
+    assert (__force_use_abst_constr := abst_constr).
+    assert (__force_use_abst_equal := abst_equal).
+    assert (__force_use_abst_prj_a := abst_prj_a).
+    assert (__force_use_abst_prj_b := abst_prj_b).
+    assert (__force_use_abst_unicite_1 := abst_unicite_1).
+    assert (__force_use_abst_unicite_2 := abst_unicite_2).
+    assert (__force_use_abst_equal_transitive := abst_equal_transitive).
+    assert (__force_use_abst_equal_symmetric2 := abst_equal_symmetric2).
+    apply for_zenon_equal_symmetric;
+    auto.
+    Qed.
+    End Proof_of_equal_symmetric.
+  
+  Theorem equal_symmetric  (_p_S1_T : Set) (_p_S2_T : Set) (abst_T : Set)
+    (abst_constr : _p_S1_T -> _p_S2_T -> abst_T)
+    (abst_equal : abst_T -> abst_T -> basics.bool__t)
+    (abst_prj_a : abst_T -> _p_S1_T) (abst_prj_b : abst_T -> _p_S2_T)
+    (abst_unicite_1 :
+    forall a : abst_T,
+      Is_true ((abst_equal (abst_constr (abst_prj_a a) (abst_prj_b a)) a)))
+    (abst_unicite_2 :
+    forall a : abst_T,
+      Is_true ((abst_equal a (abst_constr (abst_prj_a a) (abst_prj_b a)))))
+    (abst_equal_transitive :
+    forall x  y  z : abst_T,
+      Is_true ((abst_equal x y)) ->
+        Is_true ((abst_equal y z)) -> Is_true ((abst_equal x z)))
+    (abst_equal_symmetric2 :
+    forall n1  n3 : _p_S1_T,
+      forall n2  n4 : _p_S2_T,
+        Is_true ((abst_equal (abst_constr n1 n2) (abst_constr n3 n4))) ->
+          Is_true ((abst_equal (abst_constr n3 n4) (abst_constr n1 n2)))):
+    forall x  y : abst_T,
+      Is_true ((abst_equal x y)) -> Is_true ((abst_equal y x)).
+  apply for_zenon_abstracted_equal_symmetric;
+  auto.
+  Qed.
+  
+  (* Fully defined 'Imp_pair' species's collection generator. *)
+  Definition collection_create (_p_S1_T : Set) (_p_S2_T : Set) _p_S1_element
+    _p_S1_equal _p_S1_equal_reflexive _p_S1_equal_symmetric
+    _p_S1_equal_transitive _p_S2_element _p_S2_equal _p_S2_equal_reflexive
+    _p_S2_equal_symmetric _p_S2_equal_transitive :=
+    let local_rep := (Datatypes.prod _p_S1_T _p_S2_T) in
+    (* From species pair#Imp_pair. *)
+    let local_constr := constr _p_S1_T _p_S2_T in
+    (* From species pair#Imp_pair. *)
+    let local_equal := equal _p_S1_T _p_S2_T _p_S1_equal _p_S2_equal in
+    (* From species basics#Basic_object. *)
+    let local_parse := basics.Basic_object.parse local_rep in
+    (* From species basics#Basic_object. *)
+    let local_print := basics.Basic_object.print local_rep in
+    (* From species pair#Imp_pair. *)
+    let local_prj_a := prj_a _p_S1_T _p_S2_T in
+    (* From species pair#Imp_pair. *)
+    let local_prj_b := prj_b _p_S1_T _p_S2_T in
+    (* From species pair#Imp_pair. *)
+    let local_element := element _p_S1_T _p_S2_T _p_S1_element _p_S2_element
+      local_rep local_constr in
+    (* From species sets#Setoid. *)
+    let local_different := sets.Setoid.different local_rep local_equal in
+    (* From species pair#Imp_pair. *)
+    let local_prj_a_is_first_of_pair := prj_a_is_first_of_pair _p_S1_T
+      _p_S2_T _p_S1_equal local_rep local_constr local_prj_a in
+    (* From species pair#Imp_pair. *)
+    let local_def_equal := def_equal _p_S1_T _p_S2_T _p_S1_equal _p_S2_equal
+      local_rep local_equal local_prj_a local_prj_b in
+    (* From species pair#Imp_pair. *)
+    let local_prj_b_is_snd_of_pair := prj_b_is_snd_of_pair _p_S1_T _p_S2_T
+      _p_S2_equal local_rep local_constr local_prj_b in
+    (* From species pair#Imp_pair. *)
+    let local_unicite_1 := unicite_1 _p_S1_T _p_S2_T local_rep local_constr
+      local_equal local_prj_a local_prj_b in
+    (* From species pair#Imp_pair. *)
+    let local_unicite_2 := unicite_2 _p_S1_T _p_S2_T local_rep local_constr
+      local_equal local_prj_a local_prj_b in
+    (* From species sets#Setoid. *)
+    let local_same_is_not_different := sets.Setoid.same_is_not_different
+      local_rep local_equal in
+    (* From species pair#Imp_pair. *)
+    let local_equal_transitive := equal_transitive _p_S1_T _p_S2_T
+      _p_S1_equal _p_S1_equal_transitive _p_S2_equal _p_S2_equal_transitive
+      local_rep local_equal local_prj_a local_prj_b local_def_equal in
+    (* From species pair#Imp_pair. *)
+    let local_def_equal1 := def_equal1 _p_S1_T _p_S2_T _p_S1_equal
+      _p_S1_equal_symmetric _p_S1_equal_transitive _p_S2_equal
+      _p_S2_equal_symmetric _p_S2_equal_transitive local_rep local_constr
+      local_equal local_prj_a local_prj_b local_prj_a_is_first_of_pair
+      local_def_equal local_prj_b_is_snd_of_pair in
+    (* From species pair#Imp_pair. *)
+    let local_equal_reflexive := equal_reflexive _p_S1_T _p_S2_T local_rep
+      local_constr local_equal local_prj_a local_prj_b local_unicite_1
+      local_unicite_2 local_equal_transitive in
+    (* From species pair#Imp_pair. *)
+    let local_equal_reflexive2 := equal_reflexive2 _p_S1_T _p_S2_T
+      _p_S1_equal _p_S1_equal_reflexive _p_S2_equal _p_S2_equal_reflexive
+      local_rep local_constr local_equal local_def_equal1 in
+    (* From species pair#Imp_pair. *)
+    let local_equal_symmetric2 := equal_symmetric2 _p_S1_T _p_S2_T
+      _p_S1_equal _p_S1_equal_symmetric _p_S2_equal _p_S2_equal_symmetric
+      local_rep local_constr local_equal local_def_equal1 in
+    (* From species pair#Imp_pair. *)
+    let local_equal_transitive2 := equal_transitive2 _p_S1_T _p_S2_T
+      _p_S1_equal _p_S1_equal_transitive _p_S2_equal _p_S2_equal_transitive
+      local_rep local_constr local_equal local_def_equal1 in
+    (* From species sets#Setoid. *)
+    let local_different_is_irreflexive :=
+      sets.Setoid.different_is_irreflexive local_rep local_equal
+      local_different local_equal_reflexive local_same_is_not_different in
+    (* From species pair#Imp_pair. *)
+    let local_equal_symmetric := equal_symmetric _p_S1_T _p_S2_T local_rep
+      local_constr local_equal local_prj_a local_prj_b local_unicite_1
+      local_unicite_2 local_equal_transitive local_equal_symmetric2 in
+    (* From species sets#Setoid. *)
+    let local_different_is_complete := sets.Setoid.different_is_complete
+      local_rep local_equal local_different local_equal_reflexive
+      local_equal_symmetric local_equal_transitive
+      local_same_is_not_different in
+    (* From species sets#Setoid. *)
+    let local_different_is_symmetric := sets.Setoid.different_is_symmetric
+      local_rep local_equal local_different local_equal_symmetric
+      local_same_is_not_different in
+    mk_record (_p_S1_T : Set) (_p_S2_T : Set) _p_S1_equal _p_S2_equal
+    local_rep local_constr local_equal local_parse local_print local_prj_a
+    local_prj_b local_element local_different local_prj_a_is_first_of_pair
+    local_def_equal local_prj_b_is_snd_of_pair local_unicite_1
+    local_unicite_2 local_same_is_not_different local_equal_transitive
+    local_def_equal1 local_equal_reflexive local_equal_reflexive2
+    local_equal_symmetric2 local_equal_transitive2
+    local_different_is_irreflexive local_equal_symmetric
+    local_different_is_complete local_different_is_symmetric.
+  
+End Imp_pair.
+
