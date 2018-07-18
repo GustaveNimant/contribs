@@ -16,7 +16,7 @@ FOCALIZE_SRC=\
   Un_Elu_S.fcl \
   Un_Parlementaire_S.fcl \
   Un_Depute_S.fcl \
-  Usubsetn_Senateur_S.fcl \
+  Un_Senateur_S.fcl \
   Les_Fonctions_de_conversion.fcl \
   Le_Droit_francais_S.fcl \
   Le_Territoire_francais_S.fcl \

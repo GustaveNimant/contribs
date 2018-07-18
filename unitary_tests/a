@@ -1,0 +1,27 @@
+theorem find_added_not_fails: all k : Key, all v : Value, all m1 m2 : Self,
+  m2 = add (k, v, m1) ->  ̃ OptValue!eq (find (k, m2), OptValue!none)
+proof =
+  <1>1 assume k : Key,
+       assume v : Value,
+       assume m1 m2 : Self,
+       hypothesis H1: m2 = add (k, v, m1),
+       prove  ~OptValue!eq (find (k, m2), OptValue!none)
+       <2>1 prove OptValue!eq (find (k, m2), OptValue!some (v))
+            <3>0 prove Key!eq (k, k) by property Key!eq_reflexive
+            <3>1 prove
+                   OptValue!eq (find (k, add (k, v, m1)), OptValue!some (v))
+                   <4>1 prove
+                          OptValue!eq (find (k, Node (k, v, m1)),
+                                       OptValue!some (v))
+                          by definition of find type pair_list_t
+                             property OptValue!eq_reflexive step <3>0
+                   <4>e qed by step <4>1 type pair_list_t definition of add
+             <3>e qed by step <3>1 hypothesis H1
+       <2>2 prove  ̃ OptValue!eq (OptValue!none, OptValue!some (v))
+            by property OptValue!none_different_some,
+                        (* Eh yes, in none_different_some the statement is in
+                           the inverse order of our goal. *)
+                        OptValue!eq_symmetric
+       <2>e qed by step <2>1, <2>2
+                property OptValue!eq_symmetric, OptValue!eq_transitive
+<1>e conclude ;
