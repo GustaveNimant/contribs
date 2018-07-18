@@ -6,8 +6,27 @@ species Un_Citoyen_S (UTfr is Un_Territoire_francais_S) =
 
   inherit Un_Francais_S (UTfr);	
 
+-- volonté générale
+  signature la_volonte_generale_a_pour_objet_l_interet_general : Self -> bool;
+
+  signature obeit_a_la_volonte_generale : Self -> bool;
+
+  signature a_une_volonte_particuliere : Self -> bool;
+
+  signature n_obeit_pas_a_une_volonte_particuliere : Self -> bool;
+
+-- souveraineté
   signature participe_a_l_expression_de_l_interet_general : Self -> bool;
 
+
+
+
+-- délibération
+-- une délibération rationnelle exige un accès à l'information
+-- une délibération rationnelle exige des citoyens libres
+-- une délibération rationnelle exige des citoyens indépendants
+
+-- existence décente
   signature a_acces_a_un_logement_decent : Self -> bool;    
 
   signature a_une_alimentation_suffisante : Self -> bool;  
@@ -34,7 +53,6 @@ species Un_Citoyen_S (UTfr is Un_Territoire_francais_S) =
   logical let est_un_sdf (cit : Self) =
     (a_acces_a_un_logement_decent (cit)) 
     /\ (a_une_alimentation_saine (cit));
-
 
   property est_conforme_pr : all cit : Self,
     est_un_sdf (cit) -> a_une_existence_decente (cit);
