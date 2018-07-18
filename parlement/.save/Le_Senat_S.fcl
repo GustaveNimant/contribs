@@ -1,5 +1,5 @@
 open "basics";;
-open "Finite_Set_S";;
+open "Basic_Sets";;
 open "Les_Fonctions_de_conversion";;
 open "Un_Bureau_de_vote_S";;
 open "Un_Electeur_S";;

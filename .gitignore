@@ -15,6 +15,7 @@
 *.out
 *.output
 *.pfc
+.save
 *.sk
 *.v
 *.vo

@@ -1,5 +1,5 @@
 open "basics";;
-open "Finite_Set_S";;
+open "Basic_Sets";;
 open "L_Assemblee_nationale_S";;
 open "Le_Senat_S";;
 open "Les_Fonctions_de_conversion";;
@@ -67,11 +67,5 @@ species Le_Parlement_S (
   let le_parlement (par : Self) : UPar_set =
       union (UParOfUDep!to_super_set (les_deputes (par)), 
              UParOfUSen!to_super_set (les_senateurs (par))) ;
-
---  let UParOfLAna (ana : LAna) : UPar = UParOfUDep(UDepOfLAna (ana);
-      
---  let le_parlement_2 (par : Self) : Self =
---      union (l_assemblee_nationale (par), 
---             le_senat (par));
 
 end;;

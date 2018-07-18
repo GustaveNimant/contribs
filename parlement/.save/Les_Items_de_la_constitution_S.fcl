@@ -1,6 +1,6 @@
 open "basics";;
 open "sets";;
-open "Finite_Set_S";;
+open "Basic_Sets";;
 
 -- tous les items utilisés dans le texte de la Constitution 
 

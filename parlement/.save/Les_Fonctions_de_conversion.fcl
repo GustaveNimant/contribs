@@ -2,7 +2,7 @@
 
 open "basics";;
 open "sets";;
-open "Finite_Set_S";;
+open "Basic_Sets";;
 open "Un_Bureau_de_vote_S";;
 open "Un_Depute_S";;
 open "Un_Electeur_S";;
