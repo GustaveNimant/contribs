@@ -4,6 +4,7 @@ open "Les_Fonctions_de_conversion";;
 open "Un_Bureau_de_vote_S";;
 open "Un_Electeur_S";;
 open "Un_Elu_S";;
+open "Une_Proposition_de_loi_S";;
 open "Un_Scrutin_S";;
 open "Un_Parlementaire_S";;
 open "Un_Senateur_S";;
@@ -24,24 +25,28 @@ open "Une_Loi_S";;
 --                v
 --           Un_Francais
 
-species Le_Senat_S (UScr is Un_Scrutin_S, 
-                    UTfr is Un_Territoire_francais_S,
-		    UBvo is Un_Bureau_de_vote_S (UTfr),
-                    ULoi is Une_Loi_S,
-                    UEle is Un_Electeur_S (UScr, UTfr, UBvo),
-                    UEle_set is Finite_set (UEle),
-                    UElu is Un_Elu_S (UScr, UTfr, UBvo, UEle),
-                    UElu_set is Finite_set (UElu),
-                    UPar is Un_Parlementaire_S (UScr, UTfr, UBvo, UEle, ULoi), 
-                    UPar_set is Finite_set (UPar),
-                    USen is Un_Senateur_S (UScr, UTfr, UBvo, UEle, ULoi),
-                    USen_set is Finite_set (USen),
-                    UParOfUSen is Un_Parlementaire_subtype (UScr, UTfr, UBvo, UEle, ULoi, USen, USen_set, UPar, UPar_set),
-                    UEluOfUPar is Un_Elu_subtype (UScr, UTfr, UBvo, UEle, UPar, UPar_set, UElu, UElu_set),
-                    UEleOfUElu is Un_Electeur_subtype (UScr, UTfr, UBvo, UElu, UElu_set, UEle, UEle_set)
-                    ) =
-
+species Le_Senat_S (
+  UScr is Un_Scrutin_S, 
+  UTfr is Un_Territoire_francais_S,
+  UBvo is Un_Bureau_de_vote_S (UTfr),
+  UPlo is Une_Proposition_de_loi_S,
+  ULoi is Une_Loi_S,
+  UEle is Un_Electeur_S (UScr, UTfr, UBvo),
+  UEle_set is Finite_set (UEle),
+  UElu is Un_Elu_S (UScr, UTfr, UBvo, UEle),
+  UElu_set is Finite_set (UElu),
+  UPar is Un_Parlementaire_S (UScr, UTfr, UBvo, UEle, ULoi), 
+  UPar_set is Finite_set (UPar),
+  USen is Un_Senateur_S (UScr, UTfr, UBvo, UEle, ULoi),
+  USen_set is Finite_set (USen),
+  UParOfUSen is Un_Parlementaire_subtype (UScr, UTfr, UBvo, UEle, ULoi, USen, USen_set, UPar, UPar_set),
+  UEluOfUPar is Un_Elu_subtype (UScr, UTfr, UBvo, UEle, UPar, UPar_set, UElu, UElu_set),
+  UEleOfUElu is Un_Electeur_subtype (UScr, UTfr, UBvo, UElu, UElu_set, UEle, UEle_set)
+) =
+    
   inherit Finite_set (USen);
+
+  signature examine_une_proposition_de_loi : Self -> UPlo -> bool;
 
   let ne_peut_pas_etre_dissous (s : Self) = false;
 

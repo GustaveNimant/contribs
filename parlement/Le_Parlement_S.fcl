@@ -5,12 +5,14 @@ open "Le_Senat_S";;
 open "Les_Fonctions_de_conversion";;
 open "Un_Bureau_de_vote_S";;
 open "Un_Depute_S";;
+open "Un_Elu_S";;
 open "Un_Electeur_S";;
 open "Un_Parlementaire_S";;
 open "Un_Scrutin_S";;
 open "Un_Senateur_S";;
 open "Un_Territoire_francais_S";;
 open "Une_Loi_S";;
+open "Une_Proposition_de_loi_S";;
 
 --  Un_Depute           Un_Senateur
 --      \                  /
@@ -23,29 +25,47 @@ open "Une_Loi_S";;
 --                v
 --           Un_Francais
 
-species Le_Parlement_S (UScr is Un_Scrutin_S,
-                        UTfr is Un_Territoire_francais_S,
-                        UBvo is Un_Bureau_de_vote_S (UTfr), 
-                        UEle is Un_Electeur_S (UScr, UTfr, UBvo),
-                        ULoi is Une_Loi_S,
-                        USen is Un_Senateur_S (UScr, UTfr, UBvo, UEle, ULoi),
-                        USen_set is Finite_set (USen),
-                        UDep is Un_Depute_S (UScr, UTfr, UBvo, UEle, ULoi),
-                        UDep_set is Finite_set (UDep),
-                        UPar is Un_Parlementaire_S (UScr, UTfr, UBvo, UEle, ULoi),
-                        UPar_set is Finite_set (UPar),
-			UParOfUDep is Un_Parlementaire_subtype (UScr, UTfr, UBvo, UEle, ULoi, UDep, UDep_set, UPar, UPar_set),
-			UParOfUSen is Un_Parlementaire_subtype (UScr, UTfr, UBvo, UEle, ULoi, USen, USen_set, UPar, UPar_set)
-                        ) = 
+species Le_Parlement_S (
+  UScr is Un_Scrutin_S,
+  UTfr is Un_Territoire_francais_S,
+  UBvo is Un_Bureau_de_vote_S (UTfr), 
+  UEle is Un_Electeur_S (UScr, UTfr, UBvo),
+  UEle_set is Finite_set (UEle),
+  UElu is Un_Elu_S (UScr, UTfr, UBvo, UEle),
+  UElu_set is Finite_set (UElu),
+  UPlo is Une_Proposition_de_loi_S,
+  ULoi is Une_Loi_S,
+  USen is Un_Senateur_S (UScr, UTfr, UBvo, UEle, ULoi),
+  USen_set is Finite_set (USen),
+  UDep is Un_Depute_S (UScr, UTfr, UBvo, UEle, ULoi),
+  UDep_set is Finite_set (UDep),
+  UPar is Un_Parlementaire_S (UScr, UTfr, UBvo, UEle, ULoi),
+  UPar_set is Finite_set (UPar),
+  UParOfUDep is Un_Parlementaire_subtype (UScr, UTfr, UBvo, UEle, ULoi, UDep, UDep_set, UPar, UPar_set),
+  UParOfUSen is Un_Parlementaire_subtype (UScr, UTfr, UBvo, UEle, ULoi, USen, USen_set, UPar, UPar_set),
+  UEluOfUPar is Un_Elu_subtype (UScr, UTfr, UBvo, UEle, UPar, UPar_set, UElu, UElu_set),
+  UEleOfUElu is Un_Electeur_subtype (UScr, UTfr, UBvo, UElu, UElu_set, UEle, UEle_set),
+  LAna is L_Assemblee_nationale_S (UScr, UTfr, UBvo, ULoi, UPlo, UEle, UDep, UDep_set),
+  LSen is Le_Senat_S (UScr, UTfr, UBvo, UPlo, ULoi, UEle, UEle_set, UElu, UElu_set, UPar, UPar_set, USen, USen_set, UParOfUSen, UEluOfUPar, UEleOfUElu)
+
+) = 
 
   inherit UPar_set;
+  
+  signature l_assemblee_nationale : Self -> LAna;
 
-  signature l_assemblee_nationale : Self -> UDep_set;
+  signature les_deputes : Self -> UDep_set;
+  
+  signature le_senat : Self -> LSen;
 
-  signature le_senat : Self -> USen_set;
+  signature les_senateurs : Self -> USen_set;
 
-  let le_parlement (s : Self) : UPar_set =
-      UPar_set!union (UParOfUDep!to_super_set (!l_assemblee_nationale (s)), 
-                      UParOfUSen!to_super_set (!le_senat (s))) ;
+  logical let examine_une_proposition_de_loi (par : Self, plo : UPlo) =
+    LAna!examine_une_proposition_de_loi (l_assemblee_nationale (par), plo)
+    /\ LSen!examine_une_proposition_de_loi (le_senat (par), plo);
+  
+  let le_parlement (par : Self) : UPar_set =
+      union (UParOfUDep!to_super_set (!les_deputes (par)), 
+             UParOfUSen!to_super_set (!les_senateurs (par))) ;
 
 end;;

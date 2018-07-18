@@ -90,3 +90,20 @@ logical let trustworthy (p : U_person) =
     ((!min_portion(s) * Up_set!cardinal(!unescortedPersons_in_sra(area, s))) /
      !upper)) /\ U_person!backgroundChecked(p);
 -------------------------------------------------------------------
+(** Hidden Assumption: 5. Armed personnel have authorized access to departing
+    aircraft, only if their identity are verified, their movement to departing
+    aircraft are supervised, their travel on board the corresponding aircraft
+    has obtained appropriate agreement, and their seat number is known to the
+    pilot in command. *)
+
+property hidden_assumption_5 : all p : Arm_personnel, all a : D_aircraft,
+  all s : Self, 
+  Dep_ac_set!member(a, !departingAircraft(s)) ->
+  Cp_set!member(!apeToCp(p), D_aircraft!onboardPersons(a)) ->
+  Arm_personnel!identityVerified(p) ->
+  D_aircraft!movementSupervised(!apeToAs(p), a) ->
+  D_aircraft!obtainedAgreement(ApeToArm!to_super(p), a) ->
+  Seat_set!member(Arm_personnel!seat_number(p),
+                  A_pilot!informed_armed(D_aircraft!pilot_in_command(a))) ->
+  D_aircraft!access_authorized(!apeToAs(p), a);
+-------------------------------------------------------------------
