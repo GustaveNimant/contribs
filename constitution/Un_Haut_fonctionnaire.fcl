@@ -1,9 +1,0 @@
-open "basics";;
-open "Un_Francais";;
-open "Un_Territoire_francais";;
-
-species Un_Haut_fonctionnaire_S ( UTfr is Un_Territoire_francais_S) = 
-
-  inherit Un_Francais_S (UTfr);
-
-end;;

@@ -1,8 +1,0 @@
-open "basics";;
-open "sets";;
-
-species Un_Territoire_francais_S =
-
-  inherit Setoid;
-
-end;;

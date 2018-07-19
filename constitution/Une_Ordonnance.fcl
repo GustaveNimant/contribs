@@ -1,8 +1,0 @@
-open "basics";;
-open "Un_Acte_de_l_executif";;
-
-species Une_Ordonnance_S =
-
-  inherit Un_Acte_de_l_executif_S;
-
-end;;

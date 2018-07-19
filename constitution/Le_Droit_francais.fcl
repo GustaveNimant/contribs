@@ -1,9 +1,0 @@
-open "basics";;
-open "Basic_Sets";;
-open "Une_Loi";;
-
-species Le_Droit_francais (ULoi is Une_Loi_S) = 
-
-  inherit Finite_set (ULoi);
-
-end;;

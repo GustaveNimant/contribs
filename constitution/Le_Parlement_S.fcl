@@ -1,0 +1,77 @@
+open "basics";;
+open "Finite_Set_S";;
+open "L_Assemblee_nationale_S";;
+open "Le_Senat_S";;
+open "Les_Fonctions_de_conversion";;
+open "Un_Bureau_de_vote_S";;
+open "Un_Depute_S";;
+open "Un_Elu_S";;
+open "Un_Electeur_S";;
+open "Un_Parlementaire_S";;
+open "Un_Scrutin_S";;
+open "Un_Senateur_S";;
+open "Un_Territoire_francais_S";;
+open "Une_Loi_S";;
+open "Une_Proposition_de_loi_S";;
+
+--  Un_Depute           Un_Senateur
+--      \                  /
+--       v                v
+--        Un_Parlementaire            Le_President_de_la_republique Un_Elu_europeen Un_Elu_regional Un_Elu_cantonal Un_Elu_municipal  
+--                |
+--                v
+--             Un_Elu
+--                |
+--                v
+--           Un_Francais
+
+species Le_Parlement_S (
+  UScr is Un_Scrutin_S,
+  UTfr is Un_Territoire_francais_S,
+  UBvo is Un_Bureau_de_vote_S (UTfr), 
+  UEle is Un_Electeur_S (UScr, UTfr, UBvo),
+  UEle_set is Finite_Set_S (UEle),
+  UElu is Un_Elu_S (UScr, UTfr, UBvo, UEle),
+  UElu_set is Finite_Set_S (UElu),
+  UPlo is Une_Proposition_de_loi_S,
+  ULoi is Une_Loi_S,
+  USen is Un_Senateur_S (UScr, UTfr, UBvo, UEle, ULoi),
+  USen_set is Finite_Set_S (USen),
+  UDep is Un_Depute_S (UScr, UTfr, UBvo, UEle, ULoi),
+  UDep_set is Finite_Set_S (UDep),
+  UPar is Un_Parlementaire_S (UScr, UTfr, UBvo, UEle, ULoi),
+  UPar_set is Finite_Set_S (UPar),
+  UParOfUDep is Un_Parlementaire_subtype (UScr, UTfr, UBvo, UEle, ULoi, UDep, UDep_set, UPar, UPar_set),
+  UParOfUSen is Un_Parlementaire_subtype (UScr, UTfr, UBvo, UEle, ULoi, USen, USen_set, UPar, UPar_set),
+  UEluOfUPar is Un_Elu_subtype (UScr, UTfr, UBvo, UEle, UPar, UPar_set, UElu, UElu_set),
+  UEleOfUElu is Un_Electeur_subtype (UScr, UTfr, UBvo, UElu, UElu_set, UEle, UEle_set),
+  LAna is L_Assemblee_nationale_S (UScr, UTfr, UBvo, ULoi, UPlo, UEle, UDep, UDep_set),
+  LSen is Le_Senat_S (UScr, UTfr, UBvo, UPlo, ULoi, UEle, UEle_set, UElu, UElu_set, UPar, UPar_set, USen, USen_set, UParOfUSen, UEluOfUPar, UEleOfUElu)
+
+) = 
+
+  inherit UPar_set;
+  
+  signature l_assemblee_nationale : Self -> LAna;
+
+  signature les_deputes : Self -> UDep_set;
+  
+  signature le_senat : Self -> LSen;
+
+  signature les_senateurs : Self -> USen_set;
+
+  logical let examine_une_proposition_de_loi (par : Self, plo : UPlo) =
+    LAna!examine_une_proposition_de_loi (l_assemblee_nationale (par), plo)
+    /\ LSen!examine_une_proposition_de_loi (le_senat (par), plo);
+  
+  let le_parlement (par : Self) : UPar_set =
+      union (UParOfUDep!to_super_set (les_deputes (par)), 
+             UParOfUSen!to_super_set (les_senateurs (par))) ;
+
+--  let UParOfLAna (ana : LAna) : UPar = UParOfUDep(UDepOfLAna (ana);
+      
+--  let le_parlement_2 (par : Self) : Self =
+--      union (l_assemblee_nationale (par), 
+--             le_senat (par));
+
+end;;

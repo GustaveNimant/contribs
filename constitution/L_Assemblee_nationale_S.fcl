@@ -1,0 +1,40 @@
+open "basics";;
+open "Finite_Set_S";;
+open "Un_Depute_S";;
+open "Un_Scrutin_S";;
+open "Un_Territoire_francais_S";;
+open "Une_Loi_S";;
+open "Une_Proposition_de_loi_S";;
+open "Un_Electeur_S";;
+open "Un_Bureau_de_vote_S";;
+
+--  Un_Depute_S           Un_Senateur_S
+--       \                  /
+--        v                v
+--        Un_Parlementaire_S   Le_President_de_la_republique Un_Elu_europeen Un_Elu_regional Un_Elu_cantonalUn_Elu_municipal  
+--                |
+--                v
+--             Un_Elu_S
+--                |
+--                v
+--           Un_Electeur_S
+--                |
+--                v
+--           Un_Francais_S
+
+species L_Assemblee_nationale_S (
+  UScr is Un_Scrutin_S, 
+  UTfr is Un_Territoire_francais_S,
+  UBvo is Un_Bureau_de_vote_S (UTfr),
+  ULoi is Une_Loi_S,
+  UPlo is Une_Proposition_de_loi_S,
+  UEle is Un_Electeur_S (UScr, UTfr, UBvo),
+  UDep is Un_Depute_S (UScr, UTfr, UBvo, UEle, ULoi),
+  UDep_set is Finite_Set_S (UDep)
+) = 
+
+  inherit UDep_set;
+  
+  signature examine_une_proposition_de_loi : Self -> UPlo -> bool;
+
+end;;

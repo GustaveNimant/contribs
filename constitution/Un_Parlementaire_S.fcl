@@ -1,0 +1,46 @@
+open "basics";;
+open "Un_Bureau_de_vote_S";;
+open "Un_Electeur_S";;
+open "Un_Elu_S";;
+open "Un_Scrutin_S";;
+open "Un_Territoire_francais_S";;
+open "Une_Loi_S";;
+--
+--  Un_Depute           Un_Senateur
+--      \                  /
+--       v                v
+--        Un_Parlementaire   Le_President_de_la_republique Un_Elu_europeen Un_Elu_regional Un_Elu_cantonalUn_Elu_municipal  
+--                |
+--                v
+--             Un_Elu
+--                |
+--                v
+--           Un_Electeur
+--                |
+--                v
+--           Un_Francais
+
+species Un_Parlementaire_S (UScr is Un_Scrutin_S,
+                            UTfr is Un_Territoire_francais_S,
+                            UBvo is Un_Bureau_de_vote_S (UTfr),
+                            UEle is Un_Electeur_S (UScr, UTfr, UBvo),
+                            ULoi is Une_Loi_S
+                            ) = 
+
+  inherit Un_Elu_S (UScr, UTfr, UBvo, UEle);
+
+  signature est_un_depute : Self -> bool;
+
+  signature est_un_senateur : Self -> bool;
+
+  signature depose_un_projet_de_loi : Self -> ULoi -> bool;
+
+  signature redige_un_texte_de_loi : Self -> ULoi -> bool;
+
+  signature vote_une_loi : Self -> ULoi -> bool;
+
+  signature delibere_sur_une_loi : Self -> ULoi -> bool;
+  
+  signature exerce_sa_souverainete : Self -> bool;
+
+end;;

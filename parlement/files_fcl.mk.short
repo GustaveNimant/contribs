@@ -14,16 +14,10 @@ FOCALIZE_SRC=\
   Un_Scrutin_indirect_S.fcl \
   Un_Electeur_S.fcl \
   Un_Elu_S.fcl \
-  Un_Parlementaire_S.fcl \
   Un_Depute_S.fcl \
   Un_Senateur_S.fcl \
   Les_Fonctions_de_conversion.fcl \
-  Le_Droit_francais_S.fcl \
   Le_Territoire_francais_S.fcl \
-  Le_Peuple_francais_S.fcl \
-  L_Electorat_S.fcl \
-  Une_Circonscription_S.fcl \
   L_Assemblee_nationale_S.fcl \
   Le_Senat_S.fcl \
-  Le_Parlement_S.fcl \
  
