@@ -12,10 +12,9 @@ foreach $reffil (<*.fcl>) {
     
     $is_on = 0 ;
     $record = 0;	
-    $print_line = 0 ;
     
     foreach $_ (@Tout) {
-#	    print "current line is >$_<" if $print_line ;
+#	    print "current line is >$_<";
 	
 	$record = $record + 1;
 	

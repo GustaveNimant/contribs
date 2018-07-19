@@ -64,9 +64,35 @@ species Le_Parlement_S (
     LAna!examine_une_proposition_de_loi (l_assemblee_nationale (par), plo)
     /\ LSen!examine_une_proposition_de_loi (le_senat (par), plo);
   
+  -- Titre IV Article 24 a-1 - Le Parlement vote la loi. 
+
+  logical let vote_une_loi (lpa : Self, loi : ULoi) = 
+    all upa : is_a_member_of (upa, Self) -> 
+       UPar!vote_une_loi (upa, loi); 
+
+  property article_24_a_1 :
+  all lpa : Self, all loi : Uloi, 
+  vote_une_loi (lpa, loi);
+
+  -- Titre IV Article 24 a-2 - Il contrôle l'action du Gouvernement. 
+
+  logical let controle_l_action_du_gouvernement (lpa : Self, loi : ULoi) = 
+    all upa : is_a_member_of (upa, Self) -> 
+       UPar!controle_l_action_du_gouvernement (upa, loi); 
+
+  -- Titre IV Article 24 a-3 - Il évalue les politiques publiques.
+
+  logical let evalue_les_politiques_publiques (lpa : Self, loi : ULoi) = 
+    all upa : is_a_member_of (upa, Self) -> 
+       UPar!evalue_les_politiques_publiques (upa, loi); 
+
+  -- Titre IV Article 24 b - Il comprend l'Assemblée nationale et le Sénat.
+
   let le_parlement (par : Self) : UPar_set =
       union (UParOfUDep!to_super_set (les_deputes (par)), 
              UParOfUSen!to_super_set (les_senateurs (par))) ;
+
+  -- Titre IV Article 24 c - 
 
 --  let UParOfLAna (ana : LAna) : UPar = UParOfUDep(UDepOfLAna (ana);
       

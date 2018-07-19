@@ -74,7 +74,9 @@ species Le_President_de_la_republique_S (
 
   signature demissionne_premier_ministre : Self -> LPmi -> bool;
 
-  property article_8 : all p : Self, all g : LGou, demissionne_le_gouvernement (p, g) -> all pm : LPmi, demissionne_premier_ministre (p, pm);
+  property article_8 : all p : Self, all g : LGou, 
+  demissionne_le_gouvernement (p, g) -> 
+  all pm : LPmi, demissionne_premier_ministre (p, pm);
 
 -- Article 9 - Le Président de la République préside le conseil des ministres.
 
