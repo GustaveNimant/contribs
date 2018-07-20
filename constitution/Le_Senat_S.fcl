@@ -48,7 +48,7 @@ species Le_Senat_S (
 
   signature examine_une_proposition_de_loi : Self -> UPlo -> bool;
 
-  let ne_peut_pas_etre_dissous (sen : Self) = false;
+  let ne_peut_pas_etre_dissous (lse : Self) = false;
 
   let l_UEluOfUSen (sen : USen) : UElu = 
     UEluOfUPar!to_super (UParOfUSen!to_super (sen));
@@ -56,13 +56,24 @@ species Le_Senat_S (
   let l_UEleOfUElu (elu : UElu) : UEle = 
     (UEleOfUElu!to_super (elu));
   
-  property sont_elus_par_un_electeur_quelconque : 
-  all ele : UEle, all sen : USen, 
-  UElu!est_elu_par_un_electeur (l_UEluOfUSen(sen), ele);
+  -- Titre IV Article 24 c-1 - Le Sénat, dont le nombre de membres ne peut excéder trois cent quarante-huit, est élu au suffrage indirect.
+
+  logical let le_nombre_de_senateur_est_inferieur_ou_egal_a_348 (lse: Self) =
+    cardinal (lse) >= 348;
+
+  logical let est_elu_au_suffrage_indirect (lse : Self, elu : UElu) = 
+    all sen : USen,
+    is_a_member_of (sen, lse) ->
+    UElu!est_elu_par_un_electeur (l_UEluOfUSen (sen), l_UEleOfUElu (elu)) ->
+    UElu!est_un_grand_electeur (elu);
   
-  property sont_elus_par_des_grands_electeurs : all elu : UElu, all sen : USen, 
-  UElu!est_elu_par_un_electeur (l_UEluOfUSen (sen), l_UEleOfUElu (elu))
-  -> UElu!est_un_grand_electeur (elu);
+  property article_24_c_1 : 
+  all lse : Self, all elu : UElu,
+  (le_nombre_de_senateur_est_inferieur_ou_egal_a_348 (lse)) 
+  /\
+  (est_elu_au_suffrage_indirect (lse, elu));
+
+  -- Titre IV Article 24 c-2 Il assure la représentation des collectivités territoriales de la République.
 
 
  (*

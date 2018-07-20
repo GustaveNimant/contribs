@@ -5,28 +5,25 @@ open "Un_Elu_S";;
 open "Un_Electeur_S";;
 open "Le_Parlement_S";;
 open "Un_Territoire_francais_S";;
-open "Un_Bureau_de_vote_S";;
 
-species La_Souverainete_nationale_S (
-  UScr is Un_Scrutin_S, 
-  UTfr is Un_Territoire_francais_S,
-  UBvo is Un_Bureau_de_vote_S (UTfr),
-  UEle is Un_Electeur_S (UScr, UTfr, UBvo),
-  UEle_set is Finite_Set_S (UEle),
-  UElu is Un_Elu_S (UScr, UTfr, UBvo, UEle)
-) =
+species La_Souverainete_nationale_S (UScr is Un_Scrutin_S, 
+                                     UTfr is Un_Territoire_francais_S,
+                                     UELu is Un_Elu_S (UScr, UTfr), 
+                                     UEle is Un_Electeur_S (UScr, UTfr, UELu),
+                                     UEle_set is Finite_Set_S (UEle)
+                                     ) =
 
 -- Article 3 a - La souveraineté nationale appartient au peuple qui l'exerce par ses représentants et par la voie du référendum. 
 
   signature souverainete_nationale_appartient_au_peuple : UEle_set -> bool;
 
-  signature souverainete_nationale_exercee_par_representant : UElu -> bool;
+  signature souverainete_nationale_exercee_par_representant : UELu -> bool;
 
   signature souverainete_nationale_exercee_par_referendum : UEle -> bool;
 
   property article_3_a_souverainete_nationale_appartient_au_peuple : all e : UEle_set, (souverainete_nationale_appartient_au_peuple (e));
 
-  property article_3_a_souverainete_nationale_exercee_par_representant : all e : UElu, (souverainete_nationale_exercee_par_representant (e));
+  property article_3_a_souverainete_nationale_exercee_par_representant : all e : UELu, (souverainete_nationale_exercee_par_representant (e));
 
   property article_3_a_souverainete_nationale_exercee_par_referendum : all e : UEle, (souverainete_nationale_exercee_par_referendum (e));
 

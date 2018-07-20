@@ -29,12 +29,14 @@ species L_Assemblee_nationale_S (
   ULoi is Une_Loi_S,
   UPlo is Une_Proposition_de_loi_S,
   UEle is Un_Electeur_S (UScr, UTfr, UBvo),
-  UDep is Un_Depute_S (UScr, UTfr, UBvo, UEle, ULoi),
-  UDep_set is Finite_Set_S (UDep)
+  UDep is Un_Depute_S (UScr, UTfr, UBvo, UEle, ULoi)
 ) = 
 
-  inherit UDep_set;
+  inherit Finite_Set_S (UDep);
   
   signature examine_une_proposition_de_loi : Self -> UPlo -> bool;
+
+  let un_depute_est_membre (lan : Self, ude : UDep) =
+    is_a_member_of (ude, lan); 
 
 end;;

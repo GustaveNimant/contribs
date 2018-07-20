@@ -37,6 +37,10 @@ species Un_Senateur_S (UScr is Un_Scrutin_S,
 
   signature vote_une_loi : Self -> ULoi -> bool;
 
+  signature controle_l_action_du_gouvernement : Self -> ULoi -> bool;
+
+  signature evalue_les_politiques_publiques : Self -> ULoi -> bool;
+
   signature delibere_sur_une_loi : Self -> ULoi -> bool;
   
   signature exerce_sa_souverainete : Self -> bool;

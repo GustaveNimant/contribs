@@ -50,7 +50,7 @@ species Le_Parlement_S (
 
 ) = 
 
-  inherit UPar_set;
+  inherit Finite_Set_S (UPar);
   
   signature l_assemblee_nationale : Self -> LAna;
 
@@ -60,44 +60,53 @@ species Le_Parlement_S (
 
   signature les_senateurs : Self -> USen_set;
 
-  logical let examine_une_proposition_de_loi (par : Self, plo : UPlo) =
-    LAna!examine_une_proposition_de_loi (l_assemblee_nationale (par), plo)
-    /\ LSen!examine_une_proposition_de_loi (le_senat (par), plo);
+  logical let examine_une_proposition_de_loi (lpa : Self, plo : UPlo) =
+    LAna!examine_une_proposition_de_loi (l_assemblee_nationale (lpa), plo)
+    /\ 
+    LSen!examine_une_proposition_de_loi (le_senat (lpa), plo);
   
   -- Titre IV Article 24 a-1 - Le Parlement vote la loi. 
 
-  logical let vote_une_loi (lpa : Self, loi : ULoi) = 
-    all upa : is_a_member_of (upa, Self) -> 
-       UPar!vote_une_loi (upa, loi); 
+  logical let vote_une_loi (lpa : Self, ulo : ULoi) =
+    LAna!vote_une_loi (l_assemblee_nationale (lpa), ulo)
+    /\ 
+    LSen!vote_une_loi (le_senat (lpa), ulo);
+  
+  logical let vote_une_loi_2 (lpa : Self, loi : ULoi) =
+    all upa : UPar, 
+    is_a_member_of (upa, lpa) -> 
+    UPar!vote_une_loi (upa, loi); 
 
   property article_24_a_1 :
-  all lpa : Self, all loi : Uloi, 
+  all lpa : Self, all loi : ULoi, 
   vote_une_loi (lpa, loi);
 
   -- Titre IV Article 24 a-2 - Il contrôle l'action du Gouvernement. 
 
   logical let controle_l_action_du_gouvernement (lpa : Self, loi : ULoi) = 
-    all upa : is_a_member_of (upa, Self) -> 
-       UPar!controle_l_action_du_gouvernement (upa, loi); 
+    all upa : UPar,
+    is_a_member_of (upa, Self) -> 
+    UPar!controle_l_action_du_gouvernement (upa, loi); 
 
   -- Titre IV Article 24 a-3 - Il évalue les politiques publiques.
 
   logical let evalue_les_politiques_publiques (lpa : Self, loi : ULoi) = 
-    all upa : is_a_member_of (upa, Self) -> 
-       UPar!evalue_les_politiques_publiques (upa, loi); 
+    all upa : UPar,
+    is_a_member_of (upa, Self) -> 
+    UPar!evalue_les_politiques_publiques (upa, loi); 
 
   -- Titre IV Article 24 b - Il comprend l'Assemblée nationale et le Sénat.
-
-  let le_parlement (par : Self) : UPar_set =
-      union (UParOfUDep!to_super_set (les_deputes (par)), 
-             UParOfUSen!to_super_set (les_senateurs (par))) ;
+  
+  let le_parlement (lpa : Self) : UPar_set =
+      union (UParOfUDep!to_super_set (les_deputes (lpa)), 
+             UParOfUSen!to_super_set (les_senateurs (lpa))) ;
 
   -- Titre IV Article 24 c - 
 
 --  let UParOfLAna (ana : LAna) : UPar = UParOfUDep(UDepOfLAna (ana);
       
---  let le_parlement_2 (par : Self) : Self =
---      union (l_assemblee_nationale (par), 
---             le_senat (par));
+--  let le_parlement_2 (lpa : Self) : Self =
+--      union (l_assemblee_nationale (lpa), 
+--             le_senat (lpa));
 
 end;;

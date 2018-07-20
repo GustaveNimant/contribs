@@ -1,0 +1,16 @@
+open "basics";;
+open "Finite_Set_S";;
+open "Un_Depute_S";;
+
+species L_Assemblee_nationale_S (
+  UDep is Un_Depute_S
+) = 
+    
+  inherit Finite_Set_S (UDep);
+  
+  signature vote_une_loi : Self -> bool;
+
+  let un_depute_est_membre_de_assemblee_nationale (lan : Self, ude : UDep) =
+  is_a_member_of (ude, lan); 
+
+end;;

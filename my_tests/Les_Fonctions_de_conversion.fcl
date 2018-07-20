@@ -2,7 +2,7 @@
 
 open "basics";;
 open "sets";;
-open "Basic_Sets";;
+open "Finite_Set_S";;
 open "Un_Bureau_de_vote_S";;
 open "Un_Depute_S";;
 open "Un_Electeur_S";;
@@ -123,8 +123,8 @@ species Un_Depute_subtype (UScr is Un_Scrutin_S,
 
   inherit Un_Parlementaire_subtype (UScr, UTfr, UBvo, UEle, ULoi, Sub, Sub_set, Super, Super_set);
 
-  property to_super_un_depute_redige_une_loi : all ap : Sub, all l : ULoi,
-    Sub!delibere_sur_une_loi (ap, l) = Super!delibere_sur_une_loi (!to_super(ap), l); 
+  property to_super_un_depute_redige_une_loi : all dep : Sub, all l : ULoi,
+    Sub!delibere_sur_une_loi (dep, l) = Super!delibere_sur_une_loi (!to_super(dep), l); 
 
 end;;
 
@@ -141,8 +141,8 @@ species Un_Senateur_subtype (UScr is Un_Scrutin_S,
 
   inherit Un_Parlementaire_subtype (UScr, UTfr, UBvo, UEle, ULoi, Sub, Sub_set, Super, Super_set);
 
-  property to_super_un_depute_redige_une_loi : all ap : Sub, all l : ULoi,
-    Sub!delibere_sur_une_loi (ap, l) = Super!delibere_sur_une_loi (!to_super(ap), l); 
+  property to_super_un_senateur_redige_une_loi : all sen : Sub, all loi : ULoi,
+    Sub!delibere_sur_une_loi (sen, loi) = Super!delibere_sur_une_loi (!to_super(sen), loi); 
 
 end;;
 
