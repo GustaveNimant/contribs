@@ -17,7 +17,7 @@ FOCALIZE_SRC= \
   Un_Scrutin_S.fcl \
   Un_Scrutin_direct_S.fcl \
   Un_Scrutin_indirect_S.fcl \
-  Un_Electeur_S.fcl \
+  Un_Citoyen_electeur_S.fcl \
   L_Electorat_S.fcl \
   Une_Circonscription_S.fcl \
   Un_Elu_S.fcl \

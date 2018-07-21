@@ -5,7 +5,7 @@ open "Un_Scrutin_S";;
 open "Un_Territoire_francais_S";;
 open "Une_Loi_S";;
 open "Une_Proposition_de_loi_S";;
-open "Un_Electeur_S";;
+open "Un_Citoyen_electeur_S";;
 open "Un_Bureau_de_vote_S";;
 
 --  Un_Depute_S           Un_Senateur_S
@@ -17,7 +17,7 @@ open "Un_Bureau_de_vote_S";;
 --             Un_Elu_S
 --                |
 --                v
---           Un_Electeur_S
+--           Un_Citoyen_electeur_S
 --                |
 --                v
 --           Un_Francais_S
@@ -28,8 +28,8 @@ species L_Assemblee_nationale_S (
   UBvo is Un_Bureau_de_vote_S (UTfr),
   ULoi is Une_Loi_S,
   UPlo is Une_Proposition_de_loi_S,
-  UEle is Un_Electeur_S (UScr, UTfr, UBvo),
-  UDep is Un_Depute_S (UScr, UTfr, UBvo, UEle, ULoi)
+  UCel is Un_Citoyen_electeur_S (UScr, UTfr, UBvo),
+  UDep is Un_Depute_S (UScr, UTfr, UBvo, UCel, ULoi)
 ) = 
 
   inherit Finite_Set_S (UDep);

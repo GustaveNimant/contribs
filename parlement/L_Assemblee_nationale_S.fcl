@@ -1,12 +1,13 @@
 open "basics";;
 open "Finite_Set_S";;
+open "Un_Acte_de_l_executif_S";;
+open "Un_Bureau_de_vote_S";;
 open "Un_Depute_S";;
+open "Un_Citoyen_electeur_S";;
 open "Un_Scrutin_S";;
 open "Un_Territoire_francais_S";;
 open "Une_Loi_S";;
 open "Une_Proposition_de_loi_S";;
-open "Un_Electeur_S";;
-open "Un_Bureau_de_vote_S";;
 
 --  Un_Depute_S           Un_Senateur_S
 --       \                  /
@@ -17,7 +18,7 @@ open "Un_Bureau_de_vote_S";;
 --             Un_Elu_S
 --                |
 --                v
---           Un_Electeur_S
+--           Un_Citoyen_electeur_S
 --                |
 --                v
 --           Un_Francais_S
@@ -26,17 +27,47 @@ species L_Assemblee_nationale_S (
   UScr is Un_Scrutin_S, 
   UTfr is Un_Territoire_francais_S,
   UBvo is Un_Bureau_de_vote_S (UTfr),
-  ULoi is Une_Loi_S,
+  UCel is Un_Citoyen_electeur_S (UScr, UTfr, UBvo),
   UPlo is Une_Proposition_de_loi_S,
-  UEle is Un_Electeur_S (UScr, UTfr, UBvo),
-  UDep is Un_Depute_S (UScr, UTfr, UBvo, UEle, ULoi)
+  ULoi is Une_Loi_S,
+  UAex is Un_Acte_de_l_executif_S,
+  UDep is Un_Depute_S (UScr, UTfr, UBvo, UCel, UPlo, ULoi, UAex)
 ) = 
 
   inherit Finite_Set_S (UDep);
   
   signature examine_une_proposition_de_loi : Self -> UPlo -> bool;
 
-  let un_depute_est_membre (lan : Self, ude : UDep) =
+  let un_depute_est_membre_de_l_assemblee_nationale (lan : Self, ude : UDep) =
     is_a_member_of (ude, lan); 
+
+  logical let vote_une_loi (lan : Self, loi : ULoi) =
+    all ude : UDep, 
+    un_depute_est_membre_de_l_assemblee_nationale (lan, ude) ->
+    UDep!vote_une_loi (ude, loi); 
+
+  logical let controle_l_action_du_gouvernement (lan : Self, uae : UAex) =
+    all ude : UDep, 
+    un_depute_est_membre_de_l_assemblee_nationale (lan, ude) ->
+    UDep!controle_l_action_du_gouvernement (ude, uae); 
+
+  -- Titre IV Article 24 c-1 - Les députés à l'Assemblée nationale, dont le nombre ne peut excéder cinq cent soixante-dix-sept, ...
+
+  logical let le_nombre_de_deputes_est_inferieur_ou_egal_a_577 (lse: Self) =
+    cardinal (lse) >= 577;
+
+  -- Titre IV Article 24 c-2 - [ Les députés à l'Assemblée nationale ] ..., sont élus au suffrage direct
+
+  logical let est_elu_au_suffrage_direct (lan : Self, scr : UScr) = 
+    all dep : UDep,
+    is_a_member_of (dep, lan) ->
+    UDep!est_elu_au_suffrage_direct (dep, scr); 
+  
+  property article_24_c : 
+  all lan : Self, all scr : UScr,
+  (le_nombre_de_deputes_est_inferieur_ou_egal_a_577 (lan)) 
+  /\
+  (est_elu_au_suffrage_direct (lan, scr));
+
 
 end;;

@@ -5,7 +5,7 @@ open "sets";;
 open "Finite_Set_S";;
 open "Un_Bureau_de_vote_S";;
 open "Un_Depute_S";;
-open "Un_Electeur_S";;
+open "Un_Citoyen_electeur_S";;
 open "Un_Elu_S";;
 open "Un_Parlementaire_S";;
 open "Un_Scrutin_S";;
@@ -61,9 +61,9 @@ end;;
 species Un_Electeur_subtype (UScr is Un_Scrutin_S,
                              UTfr is Un_Territoire_francais_S,
                              UBvo is Un_Bureau_de_vote_S (UTfr),
-                             Sub is Un_Electeur_S (UScr, UTfr, UBvo),
+                             Sub is Un_Citoyen_electeur_S (UScr, UTfr, UBvo),
                              Sub_set is Finite_Set_S(Sub),
-                             Super is Un_Electeur_S (UScr, UTfr, UBvo),
+                             Super is Un_Citoyen_electeur_S (UScr, UTfr, UBvo),
                              Super_set is Finite_Set_S(Super)
                         ) =
 
@@ -77,10 +77,10 @@ end;;
 species Un_Elu_subtype (UScr is Un_Scrutin_S,
                         UTfr is Un_Territoire_francais_S,
 		        UBvo is Un_Bureau_de_vote_S (UTfr),
-                        UEle is Un_Electeur_S (UScr, UTfr, UBvo),
-                        Sub is Un_Elu_S (UScr, UTfr, UBvo, UEle),
+                        UCel is Un_Citoyen_electeur_S (UScr, UTfr, UBvo),
+                        Sub is Un_Elu_S (UScr, UTfr, UBvo, UCel),
                         Sub_set is Finite_Set_S(Sub),
-                        Super is Un_Elu_S (UScr, UTfr, UBvo, UEle),
+                        Super is Un_Elu_S (UScr, UTfr, UBvo, UCel),
                         Super_set is Finite_Set_S(Super)
                         ) =
 
@@ -94,16 +94,16 @@ end;;
 species Un_Parlementaire_subtype (UScr is Un_Scrutin_S,
                                   UTfr is Un_Territoire_francais_S,
 				  UBvo is Un_Bureau_de_vote_S (UTfr),
-                                  UEle is Un_Electeur_S (UScr, UTfr, UBvo),
+                                  UCel is Un_Citoyen_electeur_S (UScr, UTfr, UBvo),
                                   ULoi is Une_Loi_S,
 
-                                  Sub is Un_Parlementaire_S (UScr, UTfr, UBvo, UEle, ULoi),
+                                  Sub is Un_Parlementaire_S (UScr, UTfr, UBvo, UCel, ULoi),
                                   Sub_set is Finite_Set_S(Sub),
-                                  Super is Un_Parlementaire_S (UScr, UTfr, UBvo, UEle, ULoi),
+                                  Super is Un_Parlementaire_S (UScr, UTfr, UBvo, UCel, ULoi),
                                   Super_set is Finite_Set_S(Super)
                                   ) =
 
-  inherit Un_Elu_subtype (UScr, UTfr, UBvo, UEle, Sub, Sub_set, Super, Super_set);
+  inherit Un_Elu_subtype (UScr, UTfr, UBvo, UCel, Sub, Sub_set, Super, Super_set);
 
   property to_super_un_parlementaire_redige_une_loi : all ap : Sub, all l : ULoi,
     Sub!delibere_sur_une_loi (ap, l) = Super!delibere_sur_une_loi (!to_super(ap), l); 
@@ -113,15 +113,15 @@ end;;
 species Un_Depute_subtype (UScr is Un_Scrutin_S,
                            UTfr is Un_Territoire_francais_S,
                            UBvo is Un_Bureau_de_vote_S (UTfr),
-                           UEle is Un_Electeur_S (UScr, UTfr, UBvo),
+                           UCel is Un_Citoyen_electeur_S (UScr, UTfr, UBvo),
                            ULoi is Une_Loi_S,
-                           Sub is Un_Depute_S (UScr, UTfr, UBvo, UEle, ULoi),
+                           Sub is Un_Depute_S (UScr, UTfr, UBvo, UCel, ULoi),
                            Sub_set is Finite_Set_S(Sub),
-                           Super is Un_Depute_S (UScr, UTfr, UBvo, UEle, ULoi),
+                           Super is Un_Depute_S (UScr, UTfr, UBvo, UCel, ULoi),
                            Super_set is Finite_Set_S(Super)
                            ) =
 
-  inherit Un_Parlementaire_subtype (UScr, UTfr, UBvo, UEle, ULoi, Sub, Sub_set, Super, Super_set);
+  inherit Un_Parlementaire_subtype (UScr, UTfr, UBvo, UCel, ULoi, Sub, Sub_set, Super, Super_set);
 
   property to_super_un_depute_redige_une_loi : all dep : Sub, all l : ULoi,
     Sub!delibere_sur_une_loi (dep, l) = Super!delibere_sur_une_loi (!to_super(dep), l); 
@@ -131,15 +131,15 @@ end;;
 species Un_Senateur_subtype (UScr is Un_Scrutin_S,
                              UTfr is Un_Territoire_francais_S,
                              UBvo is Un_Bureau_de_vote_S (UTfr),
-                             UEle is Un_Electeur_S (UScr, UTfr, UBvo),
+                             UCel is Un_Citoyen_electeur_S (UScr, UTfr, UBvo),
                              ULoi is Une_Loi_S,
-                             Sub is Un_Senateur_S (UScr, UTfr, UBvo, UEle, ULoi),
+                             Sub is Un_Senateur_S (UScr, UTfr, UBvo, UCel, ULoi),
                              Sub_set is Finite_Set_S(Sub),
-                             Super is Un_Senateur_S (UScr, UTfr, UBvo, UEle, ULoi),
+                             Super is Un_Senateur_S (UScr, UTfr, UBvo, UCel, ULoi),
                              Super_set is Finite_Set_S(Super)
                              ) =
 
-  inherit Un_Parlementaire_subtype (UScr, UTfr, UBvo, UEle, ULoi, Sub, Sub_set, Super, Super_set);
+  inherit Un_Parlementaire_subtype (UScr, UTfr, UBvo, UCel, ULoi, Sub, Sub_set, Super, Super_set);
 
   property to_super_un_senateur_redige_une_loi : all sen : Sub, all loi : ULoi,
     Sub!delibere_sur_une_loi (sen, loi) = Super!delibere_sur_une_loi (!to_super(sen), loi); 
@@ -150,11 +150,11 @@ end;;
 species Un_EluOfUn_Parlementaire (UScr is Un_Scrutin_S,
                                   UTfr is Un_Territoire_francais_S,
 				  UBvo is Un_Bureau_de_vote_S (UTfr),   
-                                  UEle is Un_Electeur_S (UScr, UTfr, UBvo),
+                                  UCel is Un_Citoyen_electeur_S (UScr, UTfr, UBvo),
                                   ULoi is Une_Loi_S,
-                                  UPar is Un_Parlementaire_S (UScr, UTfr, UBvo, UEle, ULoi), 
+                                  UPar is Un_Parlementaire_S (UScr, UTfr, UBvo, UCel, ULoi), 
                                   UPar_set is Finite_Set_S (UPar),
-                                  UElu is Un_Elu_S (UScr, UTfr, UBvo, UEle), 
+                                  UElu is Un_Elu_S (UScr, UTfr, UBvo, UCel), 
                                   UElu_set is Finite_Set_S (UElu)
                                   ) =
 
@@ -168,30 +168,30 @@ end;;
 species Un_ParlementaireOfUn_Depute (UScr is Un_Scrutin_S,
                                      UTfr is Un_Territoire_francais_S,
                                      UBvo is Un_Bureau_de_vote_S (UTfr), 
-                                     UEle is Un_Electeur_S (UScr, UTfr, UBvo),
+                                     UCel is Un_Citoyen_electeur_S (UScr, UTfr, UBvo),
                                      ULoi is Une_Loi_S,
-                                     UDep is Un_Depute_S (UScr, UTfr, UBvo, UEle, ULoi), 
+                                     UDep is Un_Depute_S (UScr, UTfr, UBvo, UCel, ULoi), 
                                      UDep_set is Finite_Set_S (UDep),
-                                     UPar is Un_Parlementaire_S (UScr, UTfr, UBvo, UEle, ULoi), 
+                                     UPar is Un_Parlementaire_S (UScr, UTfr, UBvo, UCel, ULoi), 
                                      UPar_set is Finite_Set_S (UPar)
                                      ) =
 
-  inherit Un_EluOfUn_Parlementaire (UScr, UTfr, UBvo, UEle, ULoi, UDep, UDep_set, UPar, UPar_set);
+  inherit Un_EluOfUn_Parlementaire (UScr, UTfr, UBvo, UCel, ULoi, UDep, UDep_set, UPar, UPar_set);
 
 end;;
 
 species Un_ParlementaireOfUn_Senateur (UScr is Un_Scrutin_S,
                                        UTfr is Un_Territoire_francais_S,
                                        UBvo is Un_Bureau_de_vote_S (UTfr), 
-                                       UEle is Un_Electeur_S (UScr, UTfr, UBvo),
+                                       UCel is Un_Citoyen_electeur_S (UScr, UTfr, UBvo),
                                        ULoi is Une_Loi_S,
-                                       USen is Un_Senateur_S (UScr, UTfr, UBvo, UEle, ULoi), 
+                                       USen is Un_Senateur_S (UScr, UTfr, UBvo, UCel, ULoi), 
                                        USen_set is Finite_Set_S (USen),
-                                       UPar is Un_Parlementaire_S (UScr, UTfr, UBvo, UEle, ULoi), 
+                                       UPar is Un_Parlementaire_S (UScr, UTfr, UBvo, UCel, ULoi), 
                                        UPar_set is Finite_Set_S (UPar)
                                        ) =
 
-  inherit Un_EluOfUn_Parlementaire (UScr, UTfr, UBvo, UEle, ULoi, USen, USen_set, UPar, UPar_set);
+  inherit Un_EluOfUn_Parlementaire (UScr, UTfr, UBvo, UCel, ULoi, USen, USen_set, UPar, UPar_set);
 
 end;;
 

@@ -1,8 +1,9 @@
 open "basics";;
 open "Finite_Set_S";;
+open "Un_Acte_de_l_executif_S";;
 open "Les_Fonctions_de_conversion";;
 open "Un_Bureau_de_vote_S";;
-open "Un_Electeur_S";;
+open "Un_Citoyen_electeur_S";;
 open "Un_Elu_S";;
 open "Une_Proposition_de_loi_S";;
 open "Un_Scrutin_S";;
@@ -29,19 +30,20 @@ species Le_Senat_S (
   UScr is Un_Scrutin_S, 
   UTfr is Un_Territoire_francais_S,
   UBvo is Un_Bureau_de_vote_S (UTfr),
+  UCel is Un_Citoyen_electeur_S (UScr, UTfr, UBvo),
+  UEle_set is Finite_Set_S (UCel),
   UPlo is Une_Proposition_de_loi_S,
   ULoi is Une_Loi_S,
-  UEle is Un_Electeur_S (UScr, UTfr, UBvo),
-  UEle_set is Finite_Set_S (UEle),
-  UElu is Un_Elu_S (UScr, UTfr, UBvo, UEle),
+  UAex is Un_Acte_de_l_executif_S, 
+  UElu is Un_Elu_S (UScr, UTfr, UBvo),
   UElu_set is Finite_Set_S (UElu),
-  UPar is Un_Parlementaire_S (UScr, UTfr, UBvo, UEle, ULoi), 
+  UPar is Un_Parlementaire_S (UScr, UTfr, UBvo, UCel, UPlo, ULoi, UAex), 
   UPar_set is Finite_Set_S (UPar),
-  USen is Un_Senateur_S (UScr, UTfr, UBvo, UEle, ULoi),
+  USen is Un_Senateur_S (UScr, UTfr, UBvo, UCel, UPlo, ULoi, UAex),
   USen_set is Finite_Set_S (USen),
-  UParOfUSen is Un_Parlementaire_subtype (UScr, UTfr, UBvo, UEle, ULoi, USen, USen_set, UPar, UPar_set),
-  UEluOfUPar is Un_Elu_subtype (UScr, UTfr, UBvo, UEle, UPar, UPar_set, UElu, UElu_set),
-  UEleOfUElu is Un_Electeur_subtype (UScr, UTfr, UBvo, UElu, UElu_set, UEle, UEle_set)
+  UParOfUSen is Un_Parlementaire_subtype (UScr, UTfr, UBvo, UCel, UPlo, ULoi, UAex,USen, USen_set, UPar, UPar_set),
+  UEluOfUPar is Un_Elu_subtype (UScr, UTfr, UBvo, UCel, UPar, UPar_set, UElu, UElu_set),
+  UEleOfUElu is Un_Citoyen_electeur_subtype (UScr, UTfr, UBvo, UElu, UElu_set, UCel, UEle_set)
 ) =
     
   inherit Finite_Set_S (USen);
@@ -53,21 +55,34 @@ species Le_Senat_S (
   let l_UEluOfUSen (sen : USen) : UElu = 
     UEluOfUPar!to_super (UParOfUSen!to_super (sen));
   
-  let l_UEleOfUElu (elu : UElu) : UEle = 
+  let l_UEleOfUElu (elu : UElu) : UCel = 
     (UEleOfUElu!to_super (elu));
+
+  let un_senateur_est_membre_du_senat (lse : Self, sen : USen) =
+    is_a_member_of (sen, lse); 
+
+  logical let vote_une_loi (lse : Self, loi : ULoi) =
+    all sen : USen, 
+    un_senateur_est_membre_du_senat (lse, sen) ->
+    USen!vote_une_loi (sen, loi); 
   
-  -- Titre IV Article 24 c-1 - Le Sénat, dont le nombre de membres ne peut excéder trois cent quarante-huit, est élu au suffrage indirect.
+  -- Titre IV Article 24 d-1 - Le Sénat, dont le nombre de membres ne peut excéder trois cent quarante-huit, ...
 
   logical let le_nombre_de_senateur_est_inferieur_ou_egal_a_348 (lse: Self) =
     cardinal (lse) >= 348;
 
+  -- Titre IV Article 24 d-2 - [ Le Sénat ] ..., est élu au suffrage indirect.
+
+  logical let est_elu_par_des_grands_electeur (lse : Self, elu : UElu) = 
+    UElu!est_elu_par_un_electeur (elu, elu) ->
+    UElu!est_un_grand_electeur (elu);
+
   logical let est_elu_au_suffrage_indirect (lse : Self, elu : UElu) = 
     all sen : USen,
     is_a_member_of (sen, lse) ->
-    UElu!est_elu_par_un_electeur (l_UEluOfUSen (sen), l_UEleOfUElu (elu)) ->
-    UElu!est_un_grand_electeur (elu);
+    est_elu_par_des_grands_electeur (lse, elu);
   
-  property article_24_c_1 : 
+  property article_24_d : 
   all lse : Self, all elu : UElu,
   (le_nombre_de_senateur_est_inferieur_ou_egal_a_348 (lse)) 
   /\
@@ -78,17 +93,8 @@ species Le_Senat_S (
 
  (*
 
-  property sont_elus_par_un_elu_non_senateur : all elu : UElu, all sen : USen, 
-           UElu!est_elu_par_un_electeur (l_UEluOfUSen (sen), l_UEleOfUElu (elu))
-           -> ~(UElu!est_un_senateur (elu));
-
-
-  let l_UEluOfUSen (s : USen) : UElu = 
-        UEluOfUPar!to_super (UParOfUSen!to_super (s));
-
-
-  property est_elu_par_des_elus : all s : Self, all e : UEle,
-        (l_UEluOfUSen(s)!est_elu_par_un_electeur (s, e)) -> ~(l_UEluOfUSen(s)!est_un_senateur (e));
+  property est_elu_par_des_elus : all s : Self, all e : UCel,
+        (l_UEluOfUSen(s)!est_elu_par_des_citoyens_electeurs (s, e)) -> ~(l_UEluOfUSen(s)!est_un_senateur (e));
 
 
   property est_elu_par_une_senatoriale : all sen : Self, all scr : UScr,

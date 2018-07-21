@@ -1,6 +1,6 @@
 open "basics";;
 open "Finite_Set_S";;
-open "Un_Electeur_S";;
+open "Un_Citoyen_electeur_S";;
 open "Un_Elu_S";;
 open "Un_Scrutin_S";;
 open "Un_Territoire_francais_S";;
@@ -9,23 +9,23 @@ open "Un_Bureau_de_vote_S";;
 species L_Electorat_S (UScr is Un_Scrutin_S, 
                        UTfr is Un_Territoire_francais_S,
                        UBvo is Un_Bureau_de_vote_S (UTfr),
-                       UEle is Un_Electeur_S (UScr, UTfr, UBvo), 
-                       UElu is Un_Elu_S (UScr, UTfr, UBvo, UEle)
+                       UCel is Un_Citoyen_electeur_S (UScr, UTfr, UBvo), 
+                       UElu is Un_Elu_S (UScr, UTfr, UBvo, UCel)
                       ) =
 
-  inherit Finite_Set_S (UEle); 
+  inherit Finite_Set_S (UCel); 
 
-  signature vote_au_referendum : UEle -> bool;
+  signature vote_au_referendum : UCel -> bool;
 
-  property participe_au_referendum : all e : UEle, (vote_au_referendum (e));
+  property participe_au_referendum : all e : UCel, (vote_au_referendum (e));
 
-  property suffrage_universel : all e : UEle, all s : UScr, (UEle!participe_au_scrutin (e, s));
+  property suffrage_universel : all e : UCel, all s : UScr, (UCel!participe_au_scrutin (e, s));
 
   property suffrage_direct : all s : UScr, UScr!est_scrutin_direct (s); 
 
 -- Article 4 d - Sont électeurs, dans les conditions déterminées par la loi, tous les nationaux français majeurs des deux sexes, jouissant de leurs droits civils et politiques. 
 
---  let francais_majeurs (s : Self) : all e : UEle, UFraOfUEle!to_super(e); 
+--  let francais_majeurs (s : Self) : all e : UCel, UFraOfUEle!to_super(e); 
 
 end;;
 

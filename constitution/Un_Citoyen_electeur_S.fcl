@@ -4,7 +4,7 @@ open "Un_Scrutin_S";;
 open "Un_Bureau_de_vote_S";;
 open "Un_Territoire_francais_S";;
 
-species Un_Electeur_S (UScr is Un_Scrutin_S, 
+species Un_Citoyen_electeur_S (UScr is Un_Scrutin_S, 
                        UTfr is Un_Territoire_francais_S,
                        UBvo is Un_Bureau_de_vote_S (UTfr)
                        ) =

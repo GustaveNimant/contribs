@@ -6,7 +6,7 @@ open "Les_Fonctions_de_conversion";;
 open "Un_Bureau_de_vote_S";;
 open "Un_Depute_S";;
 open "Un_Elu_S";;
-open "Un_Electeur_S";;
+open "Un_Citoyen_electeur_S";;
 open "Un_Parlementaire_S";;
 open "Un_Scrutin_S";;
 open "Un_Senateur_S";;
@@ -29,24 +29,24 @@ species Le_Parlement_S (
   UScr is Un_Scrutin_S,
   UTfr is Un_Territoire_francais_S,
   UBvo is Un_Bureau_de_vote_S (UTfr), 
-  UEle is Un_Electeur_S (UScr, UTfr, UBvo),
-  UEle_set is Finite_Set_S (UEle),
-  UElu is Un_Elu_S (UScr, UTfr, UBvo, UEle),
+  UCel is Un_Citoyen_electeur_S (UScr, UTfr, UBvo),
+  UEle_set is Finite_Set_S (UCel),
+  UElu is Un_Elu_S (UScr, UTfr, UBvo, UCel),
   UElu_set is Finite_Set_S (UElu),
   UPlo is Une_Proposition_de_loi_S,
   ULoi is Une_Loi_S,
-  USen is Un_Senateur_S (UScr, UTfr, UBvo, UEle, ULoi),
+  USen is Un_Senateur_S (UScr, UTfr, UBvo, UCel, ULoi),
   USen_set is Finite_Set_S (USen),
-  UDep is Un_Depute_S (UScr, UTfr, UBvo, UEle, ULoi),
+  UDep is Un_Depute_S (UScr, UTfr, UBvo, UCel, ULoi),
   UDep_set is Finite_Set_S (UDep),
-  UPar is Un_Parlementaire_S (UScr, UTfr, UBvo, UEle, ULoi),
+  UPar is Un_Parlementaire_S (UScr, UTfr, UBvo, UCel, ULoi),
   UPar_set is Finite_Set_S (UPar),
-  UParOfUDep is Un_Parlementaire_subtype (UScr, UTfr, UBvo, UEle, ULoi, UDep, UDep_set, UPar, UPar_set),
-  UParOfUSen is Un_Parlementaire_subtype (UScr, UTfr, UBvo, UEle, ULoi, USen, USen_set, UPar, UPar_set),
-  UEluOfUPar is Un_Elu_subtype (UScr, UTfr, UBvo, UEle, UPar, UPar_set, UElu, UElu_set),
-  UEleOfUElu is Un_Electeur_subtype (UScr, UTfr, UBvo, UElu, UElu_set, UEle, UEle_set),
-  LAna is L_Assemblee_nationale_S (UScr, UTfr, UBvo, ULoi, UPlo, UEle, UDep, UDep_set),
-  LSen is Le_Senat_S (UScr, UTfr, UBvo, UPlo, ULoi, UEle, UEle_set, UElu, UElu_set, UPar, UPar_set, USen, USen_set, UParOfUSen, UEluOfUPar, UEleOfUElu)
+  UParOfUDep is Un_Parlementaire_subtype (UScr, UTfr, UBvo, UCel, ULoi, UDep, UDep_set, UPar, UPar_set),
+  UParOfUSen is Un_Parlementaire_subtype (UScr, UTfr, UBvo, UCel, ULoi, USen, USen_set, UPar, UPar_set),
+  UEluOfUPar is Un_Elu_subtype (UScr, UTfr, UBvo, UCel, UPar, UPar_set, UElu, UElu_set),
+  UEleOfUElu is Un_Electeur_subtype (UScr, UTfr, UBvo, UElu, UElu_set, UCel, UEle_set),
+  LAna is L_Assemblee_nationale_S (UScr, UTfr, UBvo, ULoi, UPlo, UCel, UDep),
+  LSen is Le_Senat_S (UScr, UTfr, UBvo, UPlo, ULoi, UCel, UEle_set, UElu, UElu_set, UPar, UPar_set, USen, USen_set, UParOfUSen, UEluOfUPar, UEleOfUElu)
 
 ) = 
 

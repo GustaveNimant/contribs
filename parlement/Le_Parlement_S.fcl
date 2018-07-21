@@ -3,10 +3,11 @@ open "Finite_Set_S";;
 open "L_Assemblee_nationale_S";;
 open "Le_Senat_S";;
 open "Les_Fonctions_de_conversion";;
+open "Un_Acte_de_l_executif_S";;
 open "Un_Bureau_de_vote_S";;
 open "Un_Depute_S";;
+open "Un_Citoyen_electeur_S";;
 open "Un_Elu_S";;
-open "Un_Electeur_S";;
 open "Un_Parlementaire_S";;
 open "Un_Scrutin_S";;
 open "Un_Senateur_S";;
@@ -29,25 +30,25 @@ species Le_Parlement_S (
   UScr is Un_Scrutin_S,
   UTfr is Un_Territoire_francais_S,
   UBvo is Un_Bureau_de_vote_S (UTfr), 
-  UEle is Un_Electeur_S (UScr, UTfr, UBvo),
-  UEle_set is Finite_Set_S (UEle),
-  UElu is Un_Elu_S (UScr, UTfr, UBvo, UEle),
+  UCel is Un_Citoyen_electeur_S (UScr, UTfr, UBvo),
+  UEle_set is Finite_Set_S (UCel),
+  UElu is Un_Elu_S (UScr, UTfr, UBvo),
   UElu_set is Finite_Set_S (UElu),
   UPlo is Une_Proposition_de_loi_S,
   ULoi is Une_Loi_S,
-  USen is Un_Senateur_S (UScr, UTfr, UBvo, UEle, ULoi),
+  UAex is Un_Acte_de_l_executif_S,
+  USen is Un_Senateur_S (UScr, UTfr, UBvo, UCel, UPlo, ULoi, UAex),
   USen_set is Finite_Set_S (USen),
-  UDep is Un_Depute_S (UScr, UTfr, UBvo, UEle, ULoi),
+  UDep is Un_Depute_S (UScr, UTfr, UBvo, UCel, UPlo, ULoi, UAex),
   UDep_set is Finite_Set_S (UDep),
-  UPar is Un_Parlementaire_S (UScr, UTfr, UBvo, UEle, ULoi),
+  UPar is Un_Parlementaire_S (UScr, UTfr, UBvo, UCel, UPlo, ULoi, UAex),
   UPar_set is Finite_Set_S (UPar),
-  UParOfUDep is Un_Parlementaire_subtype (UScr, UTfr, UBvo, UEle, ULoi, UDep, UDep_set, UPar, UPar_set),
-  UParOfUSen is Un_Parlementaire_subtype (UScr, UTfr, UBvo, UEle, ULoi, USen, USen_set, UPar, UPar_set),
-  UEluOfUPar is Un_Elu_subtype (UScr, UTfr, UBvo, UEle, UPar, UPar_set, UElu, UElu_set),
-  UEleOfUElu is Un_Electeur_subtype (UScr, UTfr, UBvo, UElu, UElu_set, UEle, UEle_set),
-  LAna is L_Assemblee_nationale_S (UScr, UTfr, UBvo, ULoi, UPlo, UEle, UDep, UDep_set),
-  LSen is Le_Senat_S (UScr, UTfr, UBvo, UPlo, ULoi, UEle, UEle_set, UElu, UElu_set, UPar, UPar_set, USen, USen_set, UParOfUSen, UEluOfUPar, UEleOfUElu)
-
+  UParOfUDep is Un_Parlementaire_subtype (UScr, UTfr, UBvo, UCel, UPlo, ULoi, UAex, UDep, UDep_set, UPar, UPar_set),
+  UParOfUSen is Un_Parlementaire_subtype (UScr, UTfr, UBvo, UCel, UPlo, ULoi, UAex, USen, USen_set, UPar, UPar_set),
+  UEluOfUPar is Un_Elu_subtype (UScr, UTfr, UBvo, UCel, UPar, UPar_set, UElu, UElu_set),
+  UEleOfUElu is Un_Citoyen_electeur_subtype (UScr, UTfr, UBvo, UElu, UElu_set, UCel, UEle_set),
+  LAna is L_Assemblee_nationale_S (UScr, UTfr, UBvo, UCel, UPlo, ULoi, UAex, UDep),
+  LSen is Le_Senat_S (UScr, UTfr, UBvo, UCel, UEle_set, UPlo, ULoi, UAex, UElu, UElu_set, UPar, UPar_set, USen, USen_set, UParOfUSen, UEluOfUPar, UEleOfUElu)
 ) = 
 
   inherit Finite_Set_S (UPar);
@@ -60,6 +61,9 @@ species Le_Parlement_S (
 
   signature les_senateurs : Self -> USen_set;
 
+  let un_parlementaire_est_membre_du_parlement (lpa : Self, upa : UPar) =
+    is_a_member_of (upa, lpa); 
+
   logical let examine_une_proposition_de_loi (lpa : Self, plo : UPlo) =
     LAna!examine_une_proposition_de_loi (l_assemblee_nationale (lpa), plo)
     /\ 
@@ -67,12 +71,12 @@ species Le_Parlement_S (
   
   -- Titre IV Article 24 a-1 - Le Parlement vote la loi. 
 
-  logical let vote_une_loi (lpa : Self, ulo : ULoi) =
+  logical let vote_une_loi_2 (lpa : Self, ulo : ULoi) =
     LAna!vote_une_loi (l_assemblee_nationale (lpa), ulo)
     /\ 
     LSen!vote_une_loi (le_senat (lpa), ulo);
   
-  logical let vote_une_loi_2 (lpa : Self, loi : ULoi) =
+  logical let vote_une_loi (lpa : Self, loi : ULoi) =
     all upa : UPar, 
     is_a_member_of (upa, lpa) -> 
     UPar!vote_une_loi (upa, loi); 
@@ -83,19 +87,28 @@ species Le_Parlement_S (
 
   -- Titre IV Article 24 a-2 - Il contrôle l'action du Gouvernement. 
 
-  logical let controle_l_action_du_gouvernement (lpa : Self, loi : ULoi) = 
+  logical let controle_l_action_du_gouvernement (lpa : Self, uag : UAex) = 
     all upa : UPar,
     is_a_member_of (upa, Self) -> 
-    UPar!controle_l_action_du_gouvernement (upa, loi); 
+    UPar!controle_l_action_du_gouvernement (upa, uag); 
 
   -- Titre IV Article 24 a-3 - Il évalue les politiques publiques.
 
-  logical let evalue_les_politiques_publiques (lpa : Self, loi : ULoi) = 
+  logical let evalue_les_politiques_publiques (lpa : Self, uag : UAex) = 
     all upa : UPar,
     is_a_member_of (upa, Self) -> 
-    UPar!evalue_les_politiques_publiques (upa, loi); 
+    UPar!evalue_les_politiques_publiques (upa, uag); 
 
   -- Titre IV Article 24 b - Il comprend l'Assemblée nationale et le Sénat.
+
+  let l_UEluOfUSen (sen : USen) : UElu = 
+    UEluOfUPar!to_super (UParOfUSen!to_super (sen));
+  
+  let l_UEluOfUDep (dep : UDep) : UElu = 
+    UEluOfUPar!to_super (UParOfUDep!to_super (dep));
+
+  let le_xxx (lpa : Self) : UPar_set =
+    UParOfUDep!to_super_set (les_deputes (lpa)); 
   
   let le_parlement (lpa : Self) : UPar_set =
       union (UParOfUDep!to_super_set (les_deputes (lpa)), 

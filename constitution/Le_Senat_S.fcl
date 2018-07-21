@@ -2,7 +2,7 @@ open "basics";;
 open "Finite_Set_S";;
 open "Les_Fonctions_de_conversion";;
 open "Un_Bureau_de_vote_S";;
-open "Un_Electeur_S";;
+open "Un_Citoyen_electeur_S";;
 open "Un_Elu_S";;
 open "Une_Proposition_de_loi_S";;
 open "Un_Scrutin_S";;
@@ -31,17 +31,17 @@ species Le_Senat_S (
   UBvo is Un_Bureau_de_vote_S (UTfr),
   UPlo is Une_Proposition_de_loi_S,
   ULoi is Une_Loi_S,
-  UEle is Un_Electeur_S (UScr, UTfr, UBvo),
-  UEle_set is Finite_Set_S (UEle),
-  UElu is Un_Elu_S (UScr, UTfr, UBvo, UEle),
+  UCel is Un_Citoyen_electeur_S (UScr, UTfr, UBvo),
+  UEle_set is Finite_Set_S (UCel),
+  UElu is Un_Elu_S (UScr, UTfr, UBvo, UCel),
   UElu_set is Finite_Set_S (UElu),
-  UPar is Un_Parlementaire_S (UScr, UTfr, UBvo, UEle, ULoi), 
+  UPar is Un_Parlementaire_S (UScr, UTfr, UBvo, UCel, ULoi), 
   UPar_set is Finite_Set_S (UPar),
-  USen is Un_Senateur_S (UScr, UTfr, UBvo, UEle, ULoi),
+  USen is Un_Senateur_S (UScr, UTfr, UBvo, UCel, ULoi),
   USen_set is Finite_Set_S (USen),
-  UParOfUSen is Un_Parlementaire_subtype (UScr, UTfr, UBvo, UEle, ULoi, USen, USen_set, UPar, UPar_set),
-  UEluOfUPar is Un_Elu_subtype (UScr, UTfr, UBvo, UEle, UPar, UPar_set, UElu, UElu_set),
-  UEleOfUElu is Un_Electeur_subtype (UScr, UTfr, UBvo, UElu, UElu_set, UEle, UEle_set)
+  UParOfUSen is Un_Parlementaire_subtype (UScr, UTfr, UBvo, UCel, ULoi, USen, USen_set, UPar, UPar_set),
+  UEluOfUPar is Un_Elu_subtype (UScr, UTfr, UBvo, UCel, UPar, UPar_set, UElu, UElu_set),
+  UEleOfUElu is Un_Electeur_subtype (UScr, UTfr, UBvo, UElu, UElu_set, UCel, UEle_set)
 ) =
     
   inherit Finite_Set_S (USen);
@@ -53,7 +53,7 @@ species Le_Senat_S (
   let l_UEluOfUSen (sen : USen) : UElu = 
     UEluOfUPar!to_super (UParOfUSen!to_super (sen));
   
-  let l_UEleOfUElu (elu : UElu) : UEle = 
+  let l_UEleOfUElu (elu : UElu) : UCel = 
     (UEleOfUElu!to_super (elu));
   
   -- Titre IV Article 24 c-1 - Le Sénat, dont le nombre de membres ne peut excéder trois cent quarante-huit, est élu au suffrage indirect.
@@ -64,7 +64,7 @@ species Le_Senat_S (
   logical let est_elu_au_suffrage_indirect (lse : Self, elu : UElu) = 
     all sen : USen,
     is_a_member_of (sen, lse) ->
-    UElu!est_elu_par_un_electeur (l_UEluOfUSen (sen), l_UEleOfUElu (elu)) ->
+    UElu!est_elu_par_des_citoyens_electeurs (l_UEluOfUSen (sen), l_UEleOfUElu (elu)) ->
     UElu!est_un_grand_electeur (elu);
   
   property article_24_c_1 : 
@@ -79,7 +79,7 @@ species Le_Senat_S (
  (*
 
   property sont_elus_par_un_elu_non_senateur : all elu : UElu, all sen : USen, 
-           UElu!est_elu_par_un_electeur (l_UEluOfUSen (sen), l_UEleOfUElu (elu))
+           UElu!est_elu_par_des_citoyens_electeurs (l_UEluOfUSen (sen), l_UEleOfUElu (elu))
            -> ~(UElu!est_un_senateur (elu));
 
 
@@ -87,8 +87,8 @@ species Le_Senat_S (
         UEluOfUPar!to_super (UParOfUSen!to_super (s));
 
 
-  property est_elu_par_des_elus : all s : Self, all e : UEle,
-        (l_UEluOfUSen(s)!est_elu_par_un_electeur (s, e)) -> ~(l_UEluOfUSen(s)!est_un_senateur (e));
+  property est_elu_par_des_elus : all s : Self, all e : UCel,
+        (l_UEluOfUSen(s)!est_elu_par_des_citoyens_electeurs (s, e)) -> ~(l_UEluOfUSen(s)!est_un_senateur (e));
 
 
   property est_elu_par_une_senatoriale : all sen : Self, all scr : UScr,
