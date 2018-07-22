@@ -33,7 +33,7 @@ species L_Assemblee_nationale_S (
   UDep_set is Finite_Set_S (UDep)
 ) = 
 
-  inherit UDep_set;
+  inherit Finite_Set_S (UDep);
   
   signature examine_une_proposition_de_loi : Self -> UPlo -> bool;
 

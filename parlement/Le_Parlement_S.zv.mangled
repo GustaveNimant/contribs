@@ -1,0 +1,56 @@
+(* Coq >= 8.3pl2: disable automatic introduction of hypotheses. *)
+Global Unset Automatic Introduction.
+(* Coq >= 8.5: allow sum constructors without explicit types in patterns. *)
+Global Set Asymmetric Patterns.
+Require Export Bool.
+Require Export ZArith.
+Open Scope Z_scope.
+Require Export Reals.
+Require Export Ascii.
+Require Export String.
+Require Export List.
+Require Import Wellfounded.
+Require Export Recdef.
+Require Export coq_builtins.
+Require Import Relations.
+Require Import Zwf.
+
+(* Below: to prevent Function to apply heuristics that would
+the expected aim in recursive functions termination proofs. *)
+
+Set Function_raw_tcc.
+
+Require basics.
+Require Finite_Set_S.
+Require L_Assemblee_nationale_S.
+Require Le_Senat_S.
+Require Les_Fonctions_de_conversion.
+Require Un_Bureau_de_vote_S.
+Require Un_Depute_S.
+Require Un_Elu_S.
+Require Un_Electeur_S.
+Require Un_Parlementaire_S.
+Require Un_Scrutin_S.
+Require Un_Senateur_S.
+Require Un_Territoire_francais_S.
+Require Une_Loi_S.
+Require Une_Proposition_de_loi_S.
+Module Le_Parlement_S.
+  Definition examine_une_proposition_de_loi (_p_UPlo_T : Set) (_p_LAna_T :
+    Set) (_p_LSen_T : Set) (_p_LAna_examine_une_proposition_de_loi :
+    _p_LAna_T -> _p_UPlo_T -> basics.bool__t)
+    (_p_LSen_examine_une_proposition_de_loi :
+    _p_LSen_T -> _p_UPlo_T -> basics.bool__t) (abst_T : Set)
+    (abst_l_assemblee_nationale : abst_T -> _p_LAna_T)
+    (abst_le_senat : abst_T -> _p_LSen_T) (par : abst_T) (plo : _p_UPlo_T) :
+    coq_builtins.prop__t :=
+    Is_true ((_p_LAna_examine_une_proposition_de_loi
+               (abst_l_assemblee_nationale par) plo)) /\
+      Is_true ((_p_LSen_examine_une_proposition_de_loi (abst_le_senat par)
+                 plo)).
+  Definition vote_une_loi (_p_ULoi_T : Set) (_p_UPar_T : Set)
+    (_p_UPar_vote_une_loi : _p_UPar_T -> _p_ULoi_T -> basics.bool__t)
+    (abst_T : Set)
+    (abst_is_a_member_of : _p_UPar_T -> abst_T -> basics.bool__t)
+    (lpa : abst_T) (loi : _p_ULoi_T) : coq_builtins.prop__t :=
+    forall upa : _p_UPar_T, Is_true ((abst_is_a_member_of upa 

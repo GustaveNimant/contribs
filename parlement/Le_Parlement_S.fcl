@@ -50,7 +50,7 @@ species Le_Parlement_S (
 
 ) = 
 
-  inherit UPar_set;
+  inherit Finite_Set_S (UPar);
   
   signature l_assemblee_nationale : Self -> LAna;
 
@@ -63,33 +63,43 @@ species Le_Parlement_S (
   logical let examine_une_proposition_de_loi (par : Self, plo : UPlo) =
     LAna!examine_une_proposition_de_loi (l_assemblee_nationale (par), plo)
     /\ LSen!examine_une_proposition_de_loi (le_senat (par), plo);
-  
+
   -- Titre IV Article 24 a-1 - Le Parlement vote la loi. 
 
   logical let vote_une_loi (lpa : Self, loi : ULoi) = 
-    all upa : is_a_member_of (upa, Self) -> 
+    all upa : UPar, is_a_member_of (upa, lpa) -> 
        UPar!vote_une_loi (upa, loi); 
 
   property article_24_a_1 :
-  all lpa : Self, all loi : Uloi, 
+  all lpa : Self, all loi : ULoi, 
   vote_une_loi (lpa, loi);
 
   -- Titre IV Article 24 a-2 - Il contrôle l'action du Gouvernement. 
 
   logical let controle_l_action_du_gouvernement (lpa : Self, loi : ULoi) = 
-    all upa : is_a_member_of (upa, Self) -> 
+    all upa : UPar, is_a_member_of (upa, lpa) -> 
        UPar!controle_l_action_du_gouvernement (upa, loi); 
 
   -- Titre IV Article 24 a-3 - Il évalue les politiques publiques.
 
   logical let evalue_les_politiques_publiques (lpa : Self, loi : ULoi) = 
-    all upa : is_a_member_of (upa, Self) -> 
+    all upa : UPar, is_a_member_of (upa, lpa) -> 
        UPar!evalue_les_politiques_publiques (upa, loi); 
 
   -- Titre IV Article 24 b - Il comprend l'Assemblée nationale et le Sénat.
 
+  let les_deputes_comme_set (lpa : Self) : UPar_set =
+    UParOfUDep!to_super_set (les_deputes (lpa)); 
+  
+  let les_senateurs_comme_set (lpa : Self) : UPar_set =
+    UParOfUSen!to_super_set (les_senateurs (lpa)); 
+
   let le_parlement (par : Self) : UPar_set =
-      union (UParOfUDep!to_super_set (les_deputes (par)), 
+      UPar_set!union (les_deputes_comme_set (par), 
+             les_senateurs_comme_set (par));
+
+  let le_parlement_bis (par : Self) : UPar_set =
+      UPar_set!union (UParOfUDep!to_super_set (les_deputes (par)), 
              UParOfUSen!to_super_set (les_senateurs (par))) ;
 
   -- Titre IV Article 24 c - 
