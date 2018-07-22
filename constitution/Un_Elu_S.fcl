@@ -1,29 +1,33 @@
 open "basics";;
 open "Un_Bureau_de_vote_S";;
 open "Un_Citoyen_electeur_S";;
-open "Un_Citoyen_electeur_S";;
 open "Un_Scrutin_S";;
 open "Un_Territoire_francais_S";;
 
+--        Un_Grand_electeur_S
+--                |
+--                v
 --             Un_Elu
 --                |
 --                v
---           Un_Electeur
+--      Un_Citoyen_electeur_S  
 --                |
 --                v
 --           Un_Francais
 
-species Un_Elu_S (UScr is Un_Scrutin_S,
-                  UTfr is Un_Territoire_francais_S,
-                  UBvo is Un_Bureau_de_vote_S (UTfr),
-                  UCel is Un_Citoyen_electeur_S (UScr, UTfr, UBvo)
-                  ) = 
+species Un_Elu_S (
+  UScr is Un_Scrutin_S,
+  UTfr is Un_Territoire_francais_S,
+  UBvo is Un_Bureau_de_vote_S (UTfr)
+) = 
 
   inherit Un_Citoyen_electeur_S (UScr, UTfr, UBvo); 
 
   signature est_eligible_par_le_scrutin : Self -> UScr -> bool;
 
   signature est_elu_par_le_scrutin : Self -> UScr -> bool;
+
+  signature est_elu_par_un_electeur : Self -> Self -> bool;
 
   signature est_un_senateur : Self -> bool;
 
@@ -39,17 +43,17 @@ species Un_Elu_S (UScr is Un_Scrutin_S,
 
   signature est_elu_sur_un_territoire : Self -> UTfr -> bool;
 
-  signature represente_des_electeurs : Self -> UCel -> bool;
-
   signature represente_la_nation : Self -> bool;
 
-  signature est_elu_par_des_citoyens_electeurs : Self -> UCel -> bool;
+  logical let est_elu_au_suffrage_direct (elu : Self, scr : UScr) =
+    UScr!est_un_scrutin_direct (scr);
 
-  let est_un_grand_electeur (s : Self) =
-      est_un_depute (s)
-   || est_un_senateur (s)
-   || est_un_conseiller_regional (s)
-   || est_un_conseiller_departemental (s)
-   || est_un_conseiller_municipal_delegue (s) ;
+  let est_un_grand_electeur (gel : Self) =
+      est_un_depute (gel)
+   || est_un_senateur (gel)
+   || est_un_conseiller_regional (gel)
+   || est_un_conseiller_departemental (gel)
+   || est_un_conseiller_municipal_delegue (gel) ;
+
 
 end;;

@@ -19,9 +19,9 @@ species Un_Scrutin_S =
 
   signature est_une_election_senatoriale : Self -> bool;
 
-  signature est_scrutin_direct : Self -> bool;
+  signature est_un_scrutin_direct : Self -> bool;
 
-  signature est_scrutin_indirect : Self -> bool;
+  signature est_un_scrutin_indirect : Self -> bool;
 
 end;;
 

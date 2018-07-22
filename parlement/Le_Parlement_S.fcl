@@ -89,14 +89,14 @@ species Le_Parlement_S (
 
   logical let controle_l_action_du_gouvernement (lpa : Self, uag : UAex) = 
     all upa : UPar,
-    is_a_member_of (upa, Self) -> 
+    is_a_member_of (upa, lpa) -> 
     UPar!controle_l_action_du_gouvernement (upa, uag); 
 
   -- Titre IV Article 24 a-3 - Il évalue les politiques publiques.
 
   logical let evalue_les_politiques_publiques (lpa : Self, uag : UAex) = 
     all upa : UPar,
-    is_a_member_of (upa, Self) -> 
+    is_a_member_of (upa, lpa) -> 
     UPar!evalue_les_politiques_publiques (upa, uag); 
 
   -- Titre IV Article 24 b - Il comprend l'Assemblée nationale et le Sénat.
@@ -114,7 +114,7 @@ species Le_Parlement_S (
     UParOfUSen!to_super_set (les_senateurs (lpa)); 
   
   let le_parlement (lpa : Self) : UPar_set =
-      union (UParOfUDep!to_super_set (les_deputes (lpa)), 
+      UPar_set!union (UParOfUDep!to_super_set (les_deputes (lpa)), 
              UParOfUSen!to_super_set (les_senateurs (lpa))) ;
 
   -- Titre IV Article 24 c - 

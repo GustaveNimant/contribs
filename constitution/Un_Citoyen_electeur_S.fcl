@@ -4,10 +4,22 @@ open "Un_Scrutin_S";;
 open "Un_Bureau_de_vote_S";;
 open "Un_Territoire_francais_S";;
 
-species Un_Citoyen_electeur_S (UScr is Un_Scrutin_S, 
-                       UTfr is Un_Territoire_francais_S,
-                       UBvo is Un_Bureau_de_vote_S (UTfr)
-                       ) =
+--        Un_Grand_electeur_S
+--                |
+--                v
+--             Un_Elu
+--                |
+--                v
+--      Un_Citoyen_electeur_S  
+--                |
+--                v
+--           Un_Francais
+ 
+species Un_Citoyen_electeur_S (
+  UScr is Un_Scrutin_S, 
+  UTfr is Un_Territoire_francais_S,
+  UBvo is Un_Bureau_de_vote_S (UTfr)
+) =
 
   inherit Un_Francais_S (UTfr);	
   
@@ -17,13 +29,10 @@ species Un_Citoyen_electeur_S (UScr is Un_Scrutin_S,
 
   signature participe_au_scrutin : Self -> UScr -> bool;
 
-  property est_un_electeur_pr : all e : Self,  
-   ( est_un_adulte (e) /\ est_un_francais (e) ) -> (numero_carte_electeur (e) > 0);
-
---  theorem est_un_adulte_th : all e : Self, 
---     (numero_carte_electeur (e) > 0) -> est_un_adulte (e) 	 
---  proof = by property est_un_electeur_pr;
-
-end
-;;
+  logical let est_un_citoyen_electeur (ele : Self) =
+    numero_carte_electeur (ele) > 0 ->
+    est_un_francais (ele) -> 
+    est_un_adulte (ele); 
+  
+end;;
 

@@ -15,7 +15,6 @@ FOCALIZE_SRC= \
   Un_Scrutin_indirect_S.fcl \
   Un_Citoyen_electeur_S.fcl \
   Un_Elu_S.fcl \
-  Un_Grand_electeur_S.fcl \
   Un_Depute_S.fcl \
   Un_Senateur_S.fcl \
   Les_Fonctions_de_conversion.fcl \

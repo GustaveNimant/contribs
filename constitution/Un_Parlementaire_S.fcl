@@ -1,10 +1,13 @@
 open "basics";;
+open "Un_Acte_de_l_executif_S";;
 open "Un_Bureau_de_vote_S";;
 open "Un_Citoyen_electeur_S";;
 open "Un_Elu_S";;
 open "Un_Scrutin_S";;
 open "Un_Territoire_francais_S";;
 open "Une_Loi_S";;
+open "Une_Proposition_de_loi_S";;
+
 --
 --  Un_Depute           Un_Senateur
 --      \                  /
@@ -20,20 +23,25 @@ open "Une_Loi_S";;
 --                v
 --           Un_Francais
 
-species Un_Parlementaire_S (UScr is Un_Scrutin_S,
-                            UTfr is Un_Territoire_francais_S,
-                            UBvo is Un_Bureau_de_vote_S (UTfr),
-                            UCel is Un_Citoyen_electeur_S (UScr, UTfr, UBvo),
-                            ULoi is Une_Loi_S
-                            ) = 
+species Un_Parlementaire_S (
+  UScr is Un_Scrutin_S,
+  UTfr is Un_Territoire_francais_S,
+  UBvo is Un_Bureau_de_vote_S (UTfr),
+  UCel is Un_Citoyen_electeur_S (UScr, UTfr, UBvo),
+  UPlo is Une_Proposition_de_loi_S,
+  ULoi is Une_Loi_S,
+  UAex is Un_Acte_de_l_executif_S
+) = 
 
-  inherit Un_Elu_S (UScr, UTfr, UBvo, UCel);
+  inherit Un_Elu_S (UScr, UTfr, UBvo);
 
   signature est_un_depute : Self -> bool;
 
   signature est_un_senateur : Self -> bool;
 
-  signature depose_un_projet_de_loi : Self -> ULoi -> bool;
+  signature examine_une_proposition_de_loi : Self -> UPlo -> bool;
+
+  signature depose_un_projet_de_loi : Self -> UPlo -> bool;
 
   signature redige_un_texte_de_loi : Self -> ULoi -> bool;
 
@@ -41,6 +49,10 @@ species Un_Parlementaire_S (UScr is Un_Scrutin_S,
 
   signature delibere_sur_une_loi : Self -> ULoi -> bool;
   
+  signature controle_l_action_du_gouvernement : Self -> UAex -> bool;
+
+  signature evalue_les_politiques_publiques : Self -> UAex -> bool;
+
   signature exerce_sa_souverainete : Self -> bool;
 
 end;;

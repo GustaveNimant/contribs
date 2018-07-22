@@ -6,11 +6,13 @@ open "Un_Parlementaire_S";;
 open "Un_Scrutin_S";;
 open "Un_Territoire_francais_S";;
 open "Une_Loi_S";;
+open "Un_Acte_de_l_executif_S";;
+open "Une_Proposition_de_loi_S";;
 
 --  Un_Depute           Un_Senateur
 --      \                  /
 --       v                v
---        Un_Parlementaire   Le_President_de_la_republique Un_Elu_europeen Un_Elu_regional Un_Elu_cantonalUn_Elu_municipal  
+--        Un_Parlementaire   Le_President_de_la_republique Un_Elu_europeen Un_Elu_regional Un_Elu_cantonalUn_Elu_municipal  Un_Grand_electeur
 --                |
 --                v
 --             Un_Elu
@@ -18,31 +20,32 @@ open "Une_Loi_S";;
 --                v
 --           Un_Electeur
 
-species Un_Senateur_S (UScr is Un_Scrutin_S, 
-                       UTfr is Un_Territoire_francais_S,
-		       UBvo is Un_Bureau_de_vote_S (UTfr),
-                       UCel is Un_Citoyen_electeur_S (UScr, UTfr, UBvo),
-                       ULoi is Une_Loi_S                       
-                       ) = 
+species Un_Senateur_S (
+  UScr is Un_Scrutin_S, 
+  UTfr is Un_Territoire_francais_S,
+  UBvo is Un_Bureau_de_vote_S (UTfr),
+  UCel is Un_Citoyen_electeur_S (UScr, UTfr, UBvo),
+  UPlo is Une_Proposition_de_loi_S,
+  ULoi is Une_Loi_S,
+  UAex is Un_Acte_de_l_executif_S
+) = 
 
-  inherit Un_Parlementaire_S (UScr, UTfr, UBvo, UCel, ULoi);
+  inherit Un_Parlementaire_S (UScr, UTfr, UBvo, UCel, UPlo, ULoi, UAex);
 
   let est_un_depute (s : Self) = false;
 
   let est_un_senateur (s : Self) = true;
 
---  signature departement_d_election : UDep;
-
   signature redige_un_texte_de_loi : Self -> ULoi -> bool;
 
   signature vote_une_loi : Self -> ULoi -> bool;
 
-  signature controle_l_action_du_gouvernement : Self -> ULoi -> bool;
-
-  signature evalue_les_politiques_publiques : Self -> ULoi -> bool;
-
   signature delibere_sur_une_loi : Self -> ULoi -> bool;
   
+  signature controle_l_action_du_gouvernement : Self -> UAex -> bool;
+
+  signature evalue_les_politiques_publiques : Self -> UAex -> bool;
+
   signature exerce_sa_souverainete : Self -> bool;
 
 end;;

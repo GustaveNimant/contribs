@@ -10,7 +10,7 @@ species L_Electorat_S (UScr is Un_Scrutin_S,
                        UTfr is Un_Territoire_francais_S,
                        UBvo is Un_Bureau_de_vote_S (UTfr),
                        UCel is Un_Citoyen_electeur_S (UScr, UTfr, UBvo), 
-                       UElu is Un_Elu_S (UScr, UTfr, UBvo, UCel)
+                       UElu is Un_Elu_S (UScr, UTfr, UBvo)
                       ) =
 
   inherit Finite_Set_S (UCel); 
