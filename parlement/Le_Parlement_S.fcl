@@ -107,8 +107,11 @@ species Le_Parlement_S (
   let l_UEluOfUDep (dep : UDep) : UElu = 
     UEluOfUPar!to_super (UParOfUDep!to_super (dep));
 
-  let le_xxx (lpa : Self) : UPar_set =
+  let les_deputes_comme_UPar_set (lpa : Self) : UPar_set =
     UParOfUDep!to_super_set (les_deputes (lpa)); 
+  
+  let les_senateurs_comme_UPar_set (lpa : Self) : UPar_set =
+    UParOfUSen!to_super_set (les_senateurs (lpa)); 
   
   let le_parlement (lpa : Self) : UPar_set =
       union (UParOfUDep!to_super_set (les_deputes (lpa)), 
