@@ -21,7 +21,7 @@ species L_Electorat_S (UScr is Un_Scrutin_S,
 
   property suffrage_universel : all e : UCel, all s : UScr, (UCel!participe_au_scrutin (e, s));
 
-  property suffrage_direct : all s : UScr, UScr!est_scrutin_direct (s); 
+  property suffrage_direct : all s : UScr, UScr!est_un_scrutin_direct (s); 
 
 -- Article 4 d - Sont électeurs, dans les conditions déterminées par la loi, tous les nationaux français majeurs des deux sexes, jouissant de leurs droits civils et politiques. 
 
