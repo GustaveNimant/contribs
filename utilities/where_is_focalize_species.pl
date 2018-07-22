@@ -1,4 +1,5 @@
-#!/usr/bin/perl 
+#!/usr/bin/perl -w
+
 die "Usage:\n perl $0 <species> \n" if $#ARGV < 0 ;
 
 $a_species = shift (@ARGV);

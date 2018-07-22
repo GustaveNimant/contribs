@@ -1,0 +1,11 @@
+open "basics";;
+open "sets";;
+open "Finite_Set_S";;
+
+species Un_Depute_S =
+
+  inherit Setoid;
+  
+  signature vote_une_loi : Self -> bool;
+ 
+end;;
