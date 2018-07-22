@@ -1,0 +1,23 @@
+open "basics";;
+open "Un_Bureau_de_vote_S";;
+open "Un_Citoyen_electeur_S";;
+open "Un_Elu_S";;
+open "Un_Membre_du_gouvernement_S";;
+open "Un_Scrutin_S";;
+open "Un_Territoire_francais_S";;
+
+species Un_Ministre_S (
+  UScr is Un_Scrutin_S,
+  UTfr is Un_Territoire_francais_S,
+  UBvo is Un_Bureau_de_vote_S (UTfr),
+  UCel is Un_Citoyen_electeur_S (UScr, UTfr, UBvo),
+  UElu is Un_Elu_S (UScr, UTfr, UBvo, UCel)
+) =
+
+  inherit Un_Membre_du_gouvernement_S (UScr, UTfr, UBvo, UCel, UElu);
+  
+  let est_premier_ministre (p : Self) = false;
+
+  let est_un_ministre (p : Self) = true;
+
+end;;

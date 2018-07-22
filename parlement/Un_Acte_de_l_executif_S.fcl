@@ -1,0 +1,12 @@
+open "basics";;
+open "Un_Texte_legislatif_S";;
+
+species Un_Acte_de_l_executif_S =
+
+  inherit Un_Texte_legislatif_S;
+
+  signature est_un_decret : Self -> bool;
+
+  signature est_une_ordonnance : Self -> bool;
+
+end;;

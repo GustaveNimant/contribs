@@ -1,0 +1,77 @@
+open "basics";;
+open "Finite_Set_S";;
+open "L_Assemblee_nationale_S";;
+open "Le_Parlement_S";;
+open "Le_Senat_S";;
+open "Les_Fonctions_de_conversion";;
+open "Un_Acte_de_l_executif_S";;
+open "Un_Bureau_de_vote_S";;
+open "Un_Decret_S";;
+open "Un_Depute_S";;
+open "Un_Citoyen_electeur_S";;
+open "Un_Elu_S";;
+open "Un_Membre_du_gouvernement_S";;
+open "Un_Organe_deliberant_S";;
+open "Un_Parlementaire_S";;
+open "Un_Scrutin_S";;
+open "Un_Senateur_S";;
+open "Un_Territoire_francais_S";;
+open "Une_Loi_S";;
+open "Une_Proposition_de_loi_S";;
+open "Une_Ordonnance_S";;
+
+species Le_Gouvernement_S (
+  UScr is Un_Scrutin_S,
+  UTfr is Un_Territoire_francais_S,
+  UAex is Un_Acte_de_l_executif_S,
+  ULoi is Une_Loi_S,
+  UPlo is Une_Proposition_de_loi_S,
+  UOrd is Une_Ordonnance_S,
+  UDec is Un_Decret_S,
+  UBvo is Un_Bureau_de_vote_S (UTfr),
+  UCel is Un_Citoyen_electeur_S (UScr, UTfr, UBvo),
+  UEle_set is Finite_Set_S (UCel),
+  UElu is Un_Elu_S (UScr, UTfr, UBvo, UCel),
+  UElu_set is Finite_Set_S (UElu),
+  UMgo is Un_Membre_du_gouvernement_S (UScr, UTfr, UBvo, UCel, UElu),
+  UDep is Un_Depute_S (UScr, UTfr, UBvo, UCel, ULoi),
+  UDep_set is Finite_Set_S (UDep),
+  USen is Un_Senateur_S (UScr, UTfr, UBvo, UCel, ULoi),
+  USen_set is Finite_Set_S (USen),
+  UPar is Un_Parlementaire_S (UScr, UTfr, UBvo, UCel, ULoi),
+  UPar_set is Finite_Set_S (UPar),
+  UParOfUDep is Un_Parlementaire_subtype (UScr, UTfr, UBvo, UCel, ULoi, UDep, UDep_set, UPar, UPar_set),
+  UParOfUSen is Un_Parlementaire_subtype (UScr, UTfr, UBvo, UCel, ULoi, USen, USen_set, UPar, UPar_set),
+  UEluOfUPar is Un_Elu_subtype (UScr, UTfr, UBvo, UCel, UPar, UPar_set, UElu, UElu_set),
+  UEleOfUElu is Un_Electeur_subtype (UScr, UTfr, UBvo, UElu, UElu_set, UCel, UEle_set),
+  LAna is L_Assemblee_nationale_S (UScr, UTfr, UBvo, ULoi, UPlo, UCel, UDep, UDep_set),
+  LSen is Le_Senat_S (UScr, UTfr, UBvo, UPlo, ULoi, UCel, UEle_set, UElu, UElu_set, UPar, UPar_set, USen, USen_set, UParOfUSen, UEluOfUPar, UEleOfUElu),
+  LPar is Le_Parlement_S (UScr, UTfr, UBvo, UCel, UEle_set, UElu, UElu_set, UPlo, ULoi, USen, USen_set, UDep, UDep_set, UPar, UPar_set, UParOfUDep, UParOfUSen, UEluOfUPar, UEleOfUElu, LAna, LSen)
+  ) =
+
+  inherit Un_Organe_deliberant_S (UAex), Finite_Set_S (UMgo);
+
+  signature delibere_sur_un_decret : Self -> UDec -> bool;
+
+-- Article 20 a - Le Gouvernement détermine et conduit la politique de la nation 
+
+-- Article 23 a - Les fonctions de membre du Gouvernement sont incompatibles avec l'exercice de tout mandat parlementaire, de toute fonction de représentation professionnelle à caractère national et de tout emploi public ou de toute activité professionnelle.
+
+  let est_eligible_par_le_scrutin (p : UPar, s : UScr) = UPar!est_eligible_par_le_scrutin (p, s);
+ 
+  property article_23_a_1 : all s : UScr, all p : UPar, UPar!est_eligible_par_le_scrutin (p, s) -> all mg : UMgo, all g : Self, Self!is_a_member_of (mg, g); 
+
+-- Article 38 a - Le Gouvernement peut, pour l'exécution de son programme, demander au Parlement l'autorisation de prendre par ordonnances, pendant un délai limité, des mesures qui sont normalement du domaine de la loi.
+
+  signature delibere_sur_une_ordonnance : Self -> UOrd -> bool;
+
+  signature prend_une_ordonnance : Self -> UOrd -> bool;
+
+  signature est_autorise_par_le_parlement_a_prendre_une_ordonnance : Self -> LPar -> UOrd -> bool;
+
+  property article_38_a : all g : Self, all p : LPar, all o : UOrd, 
+                                  prend_une_ordonnance (g, o) ->
+                                  delibere_sur_une_ordonnance (g, o) ->
+                                  est_autorise_par_le_parlement_a_prendre_une_ordonnance (g, p, o) ;
+
+end;;

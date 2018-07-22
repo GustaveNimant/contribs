@@ -1,0 +1,16 @@
+
+Cb_set is Finite_set(C_baggage)
+C_person is CabinPerson(Obj, Obj_set, 
+                        C_baggage, Cb_set),
+Cp_set is Finite_set(C_person),
+
+
+(** Conversion function from Dis_passenger to C_person *)
+
+let disToCp (p : Dis_passenger) : C_person = !depToCp((DisToDep!to_super(p)));
+
+(** conversion function from Dep_passenger to C_person *)
+
+let depToCp (p : Dep_passenger) : C_person =
+  CpaToCp!to_super(DepToCpa!to_super(p));
+

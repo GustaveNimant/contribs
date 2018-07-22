@@ -1,0 +1,22 @@
+open "basics";;
+open "Un_Elu_S";;
+open "Un_Membre_du_gouvernement_S";;
+open "Un_Scrutin_S";;
+open "Un_Territoire_francais_S";;
+
+species Le_Premier_ministre_S (UScr is Un_Scrutin_S,
+                               UTfr is Un_Territoire_francais_S,
+                               UElu is Un_Elu_S (UScr, UTfr),
+
+  inherit Un_Membre_du_gouvernement_S (UScr, UTfr, UElu);
+
+  let est_le_premier_ministre (p : Self) = true;
+
+  let est_un_ministre (p : Self) = false;
+
+-- Article 21 a 1 - Le Premier ministre dirige l'action du Gouvernement.
+
+
+  signature premier_ministre_demissionne : Self -> bool;
+
+end;;
