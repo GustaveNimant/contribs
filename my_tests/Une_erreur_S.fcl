@@ -1,0 +1,19 @@
+open "basics";;
+
+(*
+make
+../../toplevel/focalizec -zvtovopt -script  -no-stdlib-path -I ../../stdlib -I ../../extlib/algebra -I ../utils -coq-version 8.8.0 -focalize-doc Une_erreur_S.fcl
+Error: Unexpected error:
+"File "species_record_type_coq_generation.ml", line 992, characters 9-15: Assertion failed".
+Please report.
+make: *** [Une_erreur_S.zv] Erreur 2
+*)
+
+species Une_Erreur_S =
+
+  signature une_fonction : Self -> bool;
+ 
+  logical let erreur (s : Self) = 
+    une_fonction (Self); 
+  
+end;;
