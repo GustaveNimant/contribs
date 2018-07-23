@@ -4,7 +4,6 @@ open "Le_Premier_ministre_S";;
 open "Un_Acte_de_l_executif_S";;
 open "Un_Bureau_de_vote_S";;
 open "Un_Decret_S";;
-open "Un_Citoyen_electeur_S";;
 open "Un_Elu_S";;
 open "Un_Membre_de_l_executif_S";;
 open "Un_Organe_deliberant_S";;
@@ -22,10 +21,9 @@ species L_Executif_S (
   UTle is Un_Texte_legislatif_S,
   UTfr is Un_Territoire_francais_S,
   UBvo is Un_Bureau_de_vote_S (UTfr),
-  UCel is Un_Citoyen_electeur_S (UScr, UTfr, UBvo),
-  UElu is Un_Elu_S (UScr, UTfr, UBvo, UCel),
+  UElu is Un_Elu_S (UScr, UTfr, UBvo),
   UAex is Un_Acte_de_l_executif_S,
-  LPmi is Le_Premier_ministre_S (UScr, UTfr, UBvo, UCel, UElu)
+  LPmi is Le_Premier_ministre_S (UScr, UTfr, UBvo, UElu)
 ) = 
     
   inherit Un_Organe_deliberant_S (UTle);

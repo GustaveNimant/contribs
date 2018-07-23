@@ -11,10 +11,10 @@ species Un_Ministre_S (
   UTfr is Un_Territoire_francais_S,
   UBvo is Un_Bureau_de_vote_S (UTfr),
   UCel is Un_Citoyen_electeur_S (UScr, UTfr, UBvo),
-  UElu is Un_Elu_S (UScr, UTfr, UBvo, UCel)
+  UElu is Un_Elu_S (UScr, UTfr, UBvo)
 ) =
 
-  inherit Un_Membre_du_gouvernement_S (UScr, UTfr, UBvo, UCel, UElu);
+  inherit Un_Membre_du_gouvernement_S (UScr, UTfr, UBvo, UElu);
   
   let est_premier_ministre (p : Self) = false;
 

@@ -27,11 +27,11 @@ species Le_Conseil_des_ministres_S (
   UTle is Un_Texte_legislatif_S,
   UBvo is Un_Bureau_de_vote_S (UTfr),
   UCel is Un_Citoyen_electeur_S (UScr, UTfr, UBvo),
-  UElu is Un_Elu_S (UScr, UTfr, UBvo, UCel),
-  LPmi is Le_Premier_ministre_S (UScr, UTfr, UBvo, UCel, UElu)
+  UElu is Un_Elu_S (UScr, UTfr, UBvo),
+  LPmi is Le_Premier_ministre_S (UScr, UTfr, UBvo, UElu)
 ) =
     
-  inherit L_Executif_S (UScr, UMem, UMem_set, UDec, UOrd, UTle, UTfr, UBvo, UCel, UElu, UAex, LPmi);
+  inherit L_Executif_S (UScr, UMem, UMem_set, UDec, UOrd, UTle, UTfr, UBvo, UElu, UAex, LPmi);
 
   signature delibere_sur_acte_de_l_executif : Self -> UAex -> bool;
 

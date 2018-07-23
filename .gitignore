@@ -17,6 +17,7 @@
 *.fo
 *.glob
 *.info
+*.mangled
 *.mk
 *.ml
 *.modules
