@@ -4,7 +4,7 @@ open "Un_Citoyen_electeur_S";;
 open "Un_Elu_S";;
 open "Un_Parlementaire_S";;
 open "Un_Scrutin_S";;
-open "Un_Territoire_francais_S";;
+open "Un_Territoire_S";;
 open "Une_Loi_S";;
 open "Un_Acte_de_l_executif_S";;
 open "Une_Proposition_de_loi_S";;
@@ -22,15 +22,15 @@ open "Une_Proposition_de_loi_S";;
 
 species Un_Senateur_S (
   UScr is Un_Scrutin_S, 
-  UTfr is Un_Territoire_francais_S,
-  UBvo is Un_Bureau_de_vote_S (UTfr),
-  UCel is Un_Citoyen_electeur_S (UScr, UTfr, UBvo),
+  UTer is Un_Territoire_S,
+  UBvo is Un_Bureau_de_vote_S (UTer),
+  UCel is Un_Citoyen_electeur_S (UScr, UTer, UBvo),
   UPlo is Une_Proposition_de_loi_S,
   ULoi is Une_Loi_S,
   UAex is Un_Acte_de_l_executif_S
 ) = 
 
-  inherit Un_Parlementaire_S (UScr, UTfr, UBvo, UCel, UPlo, ULoi, UAex);
+  inherit Un_Parlementaire_S (UScr, UTer, UBvo, UCel, UPlo, ULoi, UAex);
 
   let est_un_depute (s : Self) = false;
 

@@ -1,21 +1,18 @@
 open "basics";;
 open "Finite_Set_S";;
-open "Le_Parlement_S";;
-open "Un_Bureau_de_vote_S";;
-open "Un_Citoyen_electeur_S";;
-open "Un_Elu_S";;
 open "Un_Scrutin_S";;
-open "Un_Territoire_francais_S";;
+open "Un_Elu_S";;
+open "Un_Citoyen_electeur_S";;
+open "Le_Parlement_S";;
+open "Un_Territoire_S";;
 
-species La_Souverainete_nationale_S (
-  UScr is Un_Scrutin_S, 
-  UTfr is Un_Territoire_francais_S,
-  UBvo is Un_Bureau_de_vote_S (UTfr),
-  UELu is Un_Elu_S (UScr, UTfr, UBvo), 
-  UCel is Un_Citoyen_electeur_S (UScr, UTfr, UELu),
-  UEle_set is Finite_Set_S (UCel)
-) =
-    
+species La_Souverainete_nationale_S (UScr is Un_Scrutin_S, 
+                                     UTer is Un_Territoire_S,
+                                     UELu is Un_Elu_S (UScr, UTer), 
+                                     UCel is Un_Citoyen_electeur_S (UScr, UTer, UELu),
+                                     UEle_set is Finite_Set_S (UCel)
+                                     ) =
+
 -- Article 3 a - La souveraineté nationale appartient au peuple qui l'exerce par ses représentants et par la voie du référendum. 
 
   signature souverainete_nationale_appartient_au_peuple : UEle_set -> bool;

@@ -8,7 +8,7 @@ open "Un_Elu_S";;
 open "Un_Membre_de_l_executif_S";;
 open "Un_Organe_deliberant_S";;
 open "Un_Scrutin_S";;
-open "Un_Territoire_francais_S";;
+open "Un_Territoire_S";;
 open "Un_Texte_legislatif_S";;
 open "Une_Ordonnance_S";;
 
@@ -19,11 +19,11 @@ species L_Executif_S (
   UDec is Un_Decret_S,
   UOrd is Une_Ordonnance_S,
   UTle is Un_Texte_legislatif_S,
-  UTfr is Un_Territoire_francais_S,
-  UBvo is Un_Bureau_de_vote_S (UTfr),
-  UElu is Un_Elu_S (UScr, UTfr, UBvo),
+  UTer is Un_Territoire_S,
+  UBvo is Un_Bureau_de_vote_S (UTer),
+  UElu is Un_Elu_S (UScr, UTer, UBvo),
   UAex is Un_Acte_de_l_executif_S,
-  LPmi is Le_Premier_ministre_S (UScr, UTfr, UBvo, UElu)
+  LPmi is Le_Premier_ministre_S (UScr, UTer, UBvo, UElu)
 ) = 
     
   inherit Un_Organe_deliberant_S (UTle);

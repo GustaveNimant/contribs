@@ -2,7 +2,6 @@ FOCALIZE_SRC= \
   Finite_Set_S.fcl \
   Finite_Anti_set_S.fcl \
   Un_Territoire_S.fcl \
-  Un_Territoire_francais_S.fcl \
   Un_Bureau_de_vote_S.fcl \
   Un_Texte_legislatif_S.fcl \
   Un_Acte_de_l_executif_S.fcl \

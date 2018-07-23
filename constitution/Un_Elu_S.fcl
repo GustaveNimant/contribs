@@ -2,7 +2,7 @@ open "basics";;
 open "Un_Bureau_de_vote_S";;
 open "Un_Citoyen_electeur_S";;
 open "Un_Scrutin_S";;
-open "Un_Territoire_francais_S";;
+open "Un_Territoire_S";;
 
 --        Un_Grand_electeur_S
 --                |
@@ -17,11 +17,11 @@ open "Un_Territoire_francais_S";;
 
 species Un_Elu_S (
   UScr is Un_Scrutin_S,
-  UTfr is Un_Territoire_francais_S,
-  UBvo is Un_Bureau_de_vote_S (UTfr)
+  UTer is Un_Territoire_S,
+  UBvo is Un_Bureau_de_vote_S (UTer)
 ) = 
 
-  inherit Un_Citoyen_electeur_S (UScr, UTfr, UBvo); 
+  inherit Un_Citoyen_electeur_S (UScr, UTer, UBvo); 
 
   signature est_eligible_par_le_scrutin : Self -> UScr -> bool;
 
@@ -41,7 +41,7 @@ species Un_Elu_S (
 
   signature est_un_conseiller_municipal_delegue : Self -> bool;
 
-  signature est_elu_sur_un_territoire : Self -> UTfr -> bool;
+  signature est_elu_sur_un_territoire : Self -> UTer -> bool;
 
   signature represente_la_nation : Self -> bool;
 

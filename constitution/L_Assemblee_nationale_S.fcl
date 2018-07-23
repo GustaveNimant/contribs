@@ -5,7 +5,7 @@ open "Un_Bureau_de_vote_S";;
 open "Un_Depute_S";;
 open "Un_Citoyen_electeur_S";;
 open "Un_Scrutin_S";;
-open "Un_Territoire_francais_S";;
+open "Un_Territoire_S";;
 open "Une_Loi_S";;
 open "Une_Proposition_de_loi_S";;
 
@@ -25,13 +25,13 @@ open "Une_Proposition_de_loi_S";;
 
 species L_Assemblee_nationale_S (
   UScr is Un_Scrutin_S, 
-  UTfr is Un_Territoire_francais_S,
-  UBvo is Un_Bureau_de_vote_S (UTfr),
-  UCel is Un_Citoyen_electeur_S (UScr, UTfr, UBvo),
+  UTer is Un_Territoire_S,
+  UBvo is Un_Bureau_de_vote_S (UTer),
+  UCel is Un_Citoyen_electeur_S (UScr, UTer, UBvo),
   UPlo is Une_Proposition_de_loi_S,
   ULoi is Une_Loi_S,
   UAex is Un_Acte_de_l_executif_S,
-  UDep is Un_Depute_S (UScr, UTfr, UBvo, UCel, UPlo, ULoi, UAex)
+  UDep is Un_Depute_S (UScr, UTer, UBvo, UCel, UPlo, ULoi, UAex)
 ) = 
 
   inherit Finite_Set_S (UDep);
@@ -69,5 +69,9 @@ species L_Assemblee_nationale_S (
   /\
   (est_elu_au_suffrage_direct (lan, scr));
 
+  -- Titre IV Article 24-e-1 - Les Français établis hors de France sont représentés à l'Assemblée nationale ...
+
+  
+--   UCel!est_etabli_hors_de_france
 
 end;;

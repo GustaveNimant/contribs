@@ -2,7 +2,7 @@ open "basics";;
 open "Un_Francais_S";;
 open "Un_Scrutin_S";;
 open "Un_Bureau_de_vote_S";;
-open "Un_Territoire_francais_S";;
+open "Un_Territoire_S";;
 
 --        Un_Grand_electeur_S
 --                |
@@ -17,11 +17,11 @@ open "Un_Territoire_francais_S";;
  
 species Un_Citoyen_electeur_S (
   UScr is Un_Scrutin_S, 
-  UTfr is Un_Territoire_francais_S,
-  UBvo is Un_Bureau_de_vote_S (UTfr)
+  UTer is Un_Territoire_S,
+  UBvo is Un_Bureau_de_vote_S (UTer)
 ) =
 
-  inherit Un_Francais_S (UTfr);	
+  inherit Un_Francais_S (UTer);	
   
   signature numero_carte_electeur : Self -> int;
 

@@ -2,17 +2,17 @@ open "basics";;
 open "Un_Elu_S";;
 open "Un_Membre_du_gouvernement_S";;
 open "Un_Scrutin_S";;
-open "Un_Territoire_francais_S";;
+open "Un_Territoire_S";;
 open "Un_Bureau_de_vote_S";;
 
 species Le_Premier_ministre_S (
   UScr is Un_Scrutin_S,
-  UTfr is Un_Territoire_francais_S,
-  UBvo is Un_Bureau_de_vote_S (UTfr),
-  UElu is Un_Elu_S (UScr, UTfr, UBvo)
+  UTer is Un_Territoire_S,
+  UBvo is Un_Bureau_de_vote_S (UTer),
+  UElu is Un_Elu_S (UScr, UTer, UBvo)
 ) =
 
-  inherit Un_Membre_du_gouvernement_S (UScr, UTfr, UBvo, UElu);
+  inherit Un_Membre_du_gouvernement_S (UScr, UTer, UBvo, UElu);
 
   let est_le_premier_ministre (p : Self) = true;
 

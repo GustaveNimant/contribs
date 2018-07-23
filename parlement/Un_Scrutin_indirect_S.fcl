@@ -19,7 +19,7 @@ species Un_Scrutin_indirect_S =
 
   let est_election_senatoriale (s: Self) = true;
 
-  let est_scrutin_direct (s: Self) = false;
+  let est_un_scrutin_direct (s: Self) = false;
 
   let est_scrutin_indirect (s: Self) = true;
 

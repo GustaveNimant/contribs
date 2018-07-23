@@ -17,43 +17,43 @@ open "Un_Membre_du_gouvernement_S";;
 open "Un_Parlementaire_S";;
 open "Un_Scrutin_S";;
 open "Un_Senateur_S";;
-open "Un_Territoire_francais_S";;
+open "Un_Territoire_S";;
 open "Une_Loi_S";;
 open "Une_Proposition_de_loi_S";;
 open "Une_Ordonnance_S";;
 
 species Le_President_de_la_republique_S (
   UScr is Un_Scrutin_S,
-  UTfr is Un_Territoire_francais_S,
-  UBvo is Un_Bureau_de_vote_S (UTfr),
-  UCel is Un_Citoyen_electeur_S (UScr, UTfr, UBvo),
+  UTer is Un_Territoire_S,
+  UBvo is Un_Bureau_de_vote_S (UTer),
+  UCel is Un_Citoyen_electeur_S (UScr, UTer, UBvo),
   UEle_set is Finite_Set_S (UCel),
-  UElu is Un_Elu_S (UScr, UTfr, UBvo),
+  UElu is Un_Elu_S (UScr, UTer, UBvo),
   UElu_set is Finite_Set_S (UElu),
   UAex is Un_Acte_de_l_executif_S,
-  UMgo is Un_Membre_du_gouvernement_S (UScr, UTfr, UBvo, UElu),
-  LPmi is Le_Premier_ministre_S (UScr, UTfr, UBvo, UElu),
+  UMgo is Un_Membre_du_gouvernement_S (UScr, UTer, UBvo, UElu),
+  LPmi is Le_Premier_ministre_S (UScr, UTer, UBvo, UElu),
   UOrd is Une_Ordonnance_S,
   UDec is Un_Decret_S,
   ULoi is Une_Loi_S,
   UPlo is Une_Proposition_de_loi_S,
-  UDep is Un_Depute_S (UScr, UTfr, UBvo, UCel, UPlo, ULoi, UAex),
+  UDep is Un_Depute_S (UScr, UTer, UBvo, UCel, UPlo, ULoi, UAex),
   UDep_set is Finite_Set_S (UDep),
-  USen is Un_Senateur_S (UScr, UTfr, UBvo, UCel, UPlo, ULoi, UAex),
+  USen is Un_Senateur_S (UScr, UTer, UBvo, UCel, UPlo, ULoi, UAex),
   USen_set is Finite_Set_S (USen),
-  LAna is L_Assemblee_nationale_S (UScr, UTfr, UBvo, UCel, UPlo, ULoi, UAex, UDep),
-  UPar is Un_Parlementaire_S (UScr, UTfr, UBvo, UCel, UPlo, ULoi, UAex),
+  LAna is L_Assemblee_nationale_S (UScr, UTer, UBvo, UCel, UPlo, ULoi, UAex, UDep),
+  UPar is Un_Parlementaire_S (UScr, UTer, UBvo, UCel, UPlo, ULoi, UAex),
   UPar_set is Finite_Set_S (UPar),
-  UParOfUDep is Un_Parlementaire_subtype (UScr, UTfr, UBvo, UCel, UPlo, ULoi, UAex, UDep, UDep_set, UPar, UPar_set),
-  UParOfUSen is Un_Parlementaire_subtype (UScr, UTfr, UBvo, UCel, UPlo, ULoi, UAex, USen, USen_set, UPar, UPar_set),
-  UEluOfUPar is Un_Elu_subtype (UScr, UTfr, UBvo, UCel, UPar, UPar_set, UElu, UElu_set),
-  UEleOfUElu is Un_Citoyen_electeur_subtype (UScr, UTfr, UBvo, UElu, UElu_set, UCel, UEle_set),
-  LSen is Le_Senat_S (UScr, UTfr, UBvo, UCel, UEle_set, UPlo, ULoi, UAex, UElu, UElu_set, UPar, UPar_set, USen, USen_set, UParOfUSen, UEluOfUPar, UEleOfUElu),
-  LPar is Le_Parlement_S (UScr, UTfr, UBvo, UCel, UEle_set, UElu, UElu_set, UPlo, ULoi, UAex, USen, USen_set, UDep, UDep_set, UPar, UPar_set, UParOfUDep, UParOfUSen, UEluOfUPar, UEleOfUElu, LAna, LSen),
-  LGou is Le_Gouvernement_S (UScr, UTfr, UAex, ULoi, UPlo, UOrd, UDec, UBvo, UCel, UEle_set, UElu, UElu_set, UMgo, UDep, UDep_set, USen, USen_set, UPar, UPar_set, UParOfUDep, UParOfUSen, UEluOfUPar, UEleOfUElu, LAna, LSen, LPar)
+  UParOfUDep is Un_Parlementaire_subtype (UScr, UTer, UBvo, UCel, UPlo, ULoi, UAex, UDep, UDep_set, UPar, UPar_set),
+  UParOfUSen is Un_Parlementaire_subtype (UScr, UTer, UBvo, UCel, UPlo, ULoi, UAex, USen, USen_set, UPar, UPar_set),
+  UEluOfUPar is Un_Elu_subtype (UScr, UTer, UBvo, UCel, UPar, UPar_set, UElu, UElu_set),
+  UEleOfUElu is Un_Citoyen_electeur_subtype (UScr, UTer, UBvo, UElu, UElu_set, UCel, UEle_set),
+  LSen is Le_Senat_S (UScr, UTer, UBvo, UCel, UEle_set, UPlo, ULoi, UAex, UElu, UElu_set, UPar, UPar_set, USen, USen_set, UParOfUSen, UEluOfUPar, UEleOfUElu),
+  LPar is Le_Parlement_S (UScr, UTer, UBvo, UCel, UEle_set, UElu, UElu_set, UPlo, ULoi, UAex, USen, USen_set, UDep, UDep_set, UPar, UPar_set, UParOfUDep, UParOfUSen, UEluOfUPar, UEleOfUElu, LAna, LSen),
+  LGou is Le_Gouvernement_S (UScr, UTer, UAex, ULoi, UPlo, UOrd, UDec, UBvo, UCel, UEle_set, UElu, UElu_set, UMgo, UDep, UDep_set, USen, USen_set, UPar, UPar_set, UParOfUDep, UParOfUSen, UEluOfUPar, UEleOfUElu, LAna, LSen, LPar)
 ) =
     
-  inherit Un_Elu_S (UScr, UTfr, UBvo), Un_Membre_de_l_executif_S;
+  inherit Un_Elu_S (UScr, UTer, UBvo), Un_Membre_de_l_executif_S;
   
 -- Article 6 a - Le Président de la République est élu [ pour cinq ans ] au suffrage universel direct.
 
