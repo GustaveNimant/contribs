@@ -2,7 +2,7 @@ open "basics";;
 open "Finite_Set_S";;
 open "Un_Citoyen_S";;
 open "Un_Francais_S";;
-open "Un_Territoire_francais_S";;
+open "Un_Territoire_S";;
 open "Une_Phrase_d_un_paragraphe_S";;
 open "Un_Theme_politique_S";;
 open "Une_Assertion_constitutionnelle_S";;
@@ -15,7 +15,7 @@ species La_Souverainete_d_un_citoyen_S (
   UPpa is Une_Phrase_d_un_paragraphe_S,
   UZge is Une_Zone_geographique_S,
   UTpo is Un_Theme_politique_S,
-  UTfr is Un_Territoire_francais_S,
+  UTfr is Un_Territoire_S,
   UCit is Un_Citoyen_S (UTfr),
   UDol is Une_Doleance_S (UPpa, UZge, UTpo),
   UAco is Une_Assertion_constitutionnelle_S,

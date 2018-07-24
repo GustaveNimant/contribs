@@ -1,7 +1,7 @@
 open "basics";;
 open "Finite_Set_S";;
 open "Un_Citoyen_S";;
-open "Un_Territoire_francais_S";;
+open "Un_Territoire_S";;
 open "Une_Phrase_d_un_paragraphe_S";;
 
 -- Une_Phrase_d_un_paragraphe_S
@@ -11,7 +11,7 @@ open "Une_Phrase_d_un_paragraphe_S";;
 -- Un_Texte_legislatif_S
 
 species Un_Axiome_de_l_interet_general_S (
-           UTfr is Un_Territoire_francais_S,
+           UTfr is Un_Territoire_S,
            UCit is Un_Citoyen_S (UTfr) ,
            UCit_set is Finite_Set_S (UCit)
            ) =
