@@ -37,6 +37,7 @@
 .cvsignore
 .depend
 .gitignore
+.metadata
 .save
 .temp
 .*.aux
