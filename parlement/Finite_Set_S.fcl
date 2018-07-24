@@ -16,7 +16,8 @@ signature cardinal : Self -> int;
 signature empty : Self;
 signature for_all : (Param -> bool) -> Self -> bool;
 signature filter : (Param -> bool) -> Self -> Self;
-let element = !empty;
+
+let element = Self!empty;
 
 let equal(x, y) = !is_a_subset_of(x, y) && !is_a_subset_of(y, x);
 
