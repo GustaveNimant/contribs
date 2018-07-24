@@ -2,6 +2,7 @@ open "basics";;
 open "Finite_Set_S";;
 open "Un_Acte_de_l_executif_S";;
 open "Les_Fonctions_de_conversion";;
+open "Un_Francais_S";;
 open "Un_Bureau_de_vote_S";;
 open "Un_Citoyen_electeur_S";;
 open "Un_Elu_S";;
@@ -29,6 +30,7 @@ open "Une_Loi_S";;
 species Le_Senat_S (
   UScr is Un_Scrutin_S, 
   UTer is Un_Territoire_S,
+  UFra is Un_Francais_S (UTer),
   UBvo is Un_Bureau_de_vote_S (UTer),
   UCel is Un_Citoyen_electeur_S (UScr, UTer, UBvo),
   UEle_set is Finite_Set_S (UCel),
@@ -39,7 +41,7 @@ species Le_Senat_S (
   UElu_set is Finite_Set_S (UElu),
   UPar is Un_Parlementaire_S (UScr, UTer, UBvo, UCel, UPlo, ULoi, UAex), 
   UPar_set is Finite_Set_S (UPar),
-  USen is Un_Senateur_S (UScr, UTer, UBvo, UCel, UPlo, ULoi, UAex),
+  USen is Un_Senateur_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex),
   USen_set is Finite_Set_S (USen),
   UParOfUSen is Un_Parlementaire_subtype (UScr, UTer, UBvo, UCel, UPlo, ULoi, UAex,USen, USen_set, UPar, UPar_set),
   UEluOfUPar is Un_Elu_subtype (UScr, UTer, UBvo, UCel, UPar, UPar_set, UElu, UElu_set),
@@ -90,6 +92,16 @@ species Le_Senat_S (
 
   -- Titre IV Article 24 c-2 Il assure la représentation des collectivités territoriales de la République.
 
+
+  -- Titre IV Article 24-e-1 - Les Français établis hors de France sont représentés ... au Sénat.
+
+  logical let un_francais_etabli_hors_de_france_est_represente_a_l_assemblee_nationale =
+     all usen : USen, all ufra : UFra, all uter : UTer,
+     (UFra!est_etabli_hors_de_france (ufra, uter)) 
+     /\ 
+     (USen!represente_un_francais (usen, ufra));
+
+  property article_24_e_1 : un_francais_etabli_hors_de_france_est_represente_a_l_assemblee_nationale ;
 
  (*
 
