@@ -20,7 +20,6 @@
 *.mangled
 *.mk
 *.ml
-.metadata
 *.modules
 *.o
 *.orig
@@ -37,7 +36,6 @@
 *~
 .cvsignore
 .depend
-.gitignore
 .metadata
 .save
 .temp
