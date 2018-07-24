@@ -18,7 +18,7 @@ species La_Republique_francaise_S (UScr is Un_Scrutin_S,
                                    LDfr is Le_Droit_francais (ULoi),
                                    UFra is Un_Francais_S (UTer) ,
                                    UFra_set is Finite_Set_S (UFra),
-                                   LPfr is Le_Peuple_francais_S (UTer, UTer_set, UFra, UFra_set),
+                                   LPfr is Le_Peuple_francais_S (UTer, UTfr_set, UFra, UFra_set),
                                    UPar_set is Finite_Set_S (UPar),
                                    ) =
                                      

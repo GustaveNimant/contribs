@@ -3,6 +3,7 @@ FOCALIZE_SRC= \
   Finite_Anti_set_S.fcl \
   Les_Fonctions_de_conversion.fcl \
   Un_Territoire_S.fcl \
+  Le_Territoire_francais_S.fcl \
   Un_Texte_legislatif_S.fcl \
   Un_Organe_deliberant_S.fcl \
   Une_Loi_S.fcl \

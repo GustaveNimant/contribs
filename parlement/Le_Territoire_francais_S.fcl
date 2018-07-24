@@ -2,11 +2,8 @@ open "basics";;
 open "Finite_Set_S";;
 open "Un_Territoire_S";;
 
-species Le_Territoire_francais_S (
-  UTer is Un_Territoire_S
-) =
+species Le_Territoire_francais_S (UTer is Un_Territoire_S) =
  
   inherit Finite_Set_S (UTer);
 
--- le_territoire_francais est l'union des territoires francais
 end;;

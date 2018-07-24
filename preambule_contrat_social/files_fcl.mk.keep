@@ -37,7 +37,6 @@ FOCALIZE_SRC=\
   Un_Reseau_S.fcl \
   Un_Sous_reseau_S.fcl \
   Le_Reseau_constituant_S.fcl \
-  Un_Territoire_francais_S.fcl \
   Un_Citoyen_S.fcl \
   La_Souverainete_d_un_citoyen_S.fcl \
   La_Souverainete_des_citoyens_S.fcl \

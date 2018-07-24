@@ -69,9 +69,5 @@ species L_Assemblee_nationale_S (
   /\
   (est_elu_au_suffrage_direct (lan, scr));
 
-  -- Titre IV Article 24-e-1 - Les Français établis hors de France sont représentés à l'Assemblée nationale ...
-
-  
---   UCel!est_etabli_hors_de_france
 
 end;;

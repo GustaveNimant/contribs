@@ -5,7 +5,7 @@ open "Un_Territoire_S";;
 
 species Le_Peuple_francais_S (
                               UTer is Un_Territoire_S,
-                              UTer_set is Finite_Set_S (UTer),
+                              UTfr_set is Finite_Set_S (UTer),
                               UFra is Un_Francais_S (UTer),
                               UFra_set is Finite_Set_S (UFra)
                               ) = 

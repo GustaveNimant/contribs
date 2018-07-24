@@ -1,9 +1,9 @@
 open "basics";;
 open "Finite_Set_S";;
 open "Un_Citoyen_S";;
-open "Un_Territoire_francais_S";;
+open "Un_Territoire_S";;
 
-species La_Souverainete_des_citoyens_S (UTfr is Un_Territoire_francais_S,
+species La_Souverainete_des_citoyens_S (UTfr is Un_Territoire_S,
                     UCit is Un_Citoyen_S (UTfr), 
                     UCit_set is Finite_Set_S (UCit)
                                        ) =

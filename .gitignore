@@ -39,6 +39,7 @@
 .gitignore
 .save
 .temp
+.*.aux
 KEEP
 [A-Z]
 [a-z]

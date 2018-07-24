@@ -25,7 +25,7 @@ Set Function_raw_tcc.
 
 Require basics.
 Require Un_Etre_humain_S.
-Require Un_Territoire_francais_S.
+Require Un_Territoire_S.
 Module Un_Francais_S.
   Definition est_un_francais (abst_T : Set) (s : abst_T) : basics.bool__t :=
     true.
