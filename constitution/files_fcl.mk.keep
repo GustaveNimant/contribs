@@ -3,8 +3,10 @@ FOCALIZE_SRC= \
   Finite_Anti_set_S.fcl \
   Les_Fonctions_de_conversion.fcl \
   Un_Territoire_S.fcl \
+  Un_Bureau_de_vote_S.fcl \
   Le_Territoire_francais_S.fcl \
   Un_Texte_legislatif_S.fcl \
+  Une_Proposition_de_loi_S.fcl \
   Un_Organe_deliberant_S.fcl \
   Une_Loi_S.fcl \
   Le_Droit_francais_S.fcl \
@@ -17,6 +19,7 @@ FOCALIZE_SRC= \
   Un_Scrutin_S.fcl \
   Un_Scrutin_direct_S.fcl \
   Un_Scrutin_indirect_S.fcl \
+  La_Republique_francaise_S.fcl \
   Un_Citoyen_electeur_S.fcl \
   L_Electorat_S.fcl \
   Une_Circonscription_S.fcl \
