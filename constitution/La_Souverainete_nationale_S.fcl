@@ -5,14 +5,14 @@ open "Un_Bureau_de_vote_S";;
 open "Un_Citoyen_electeur_S";;
 open "Un_Elu_S";;
 open "Un_Scrutin_S";;
-open "Un_Territoire_francais_S";;
+open "Un_Territoire_S";;
 
 species La_Souverainete_nationale_S (
   UScr is Un_Scrutin_S, 
-  UTfr is Un_Territoire_francais_S,
-  UBvo is Un_Bureau_de_vote_S (UTfr),
-  UELu is Un_Elu_S (UScr, UTfr, UBvo), 
-  UCel is Un_Citoyen_electeur_S (UScr, UTfr, UELu),
+  UTer is Un_Territoire_S,
+  UBvo is Un_Bureau_de_vote_S (UTer),
+  UELu is Un_Elu_S (UScr, UTer, UBvo), 
+  UCel is Un_Citoyen_electeur_S (UScr, UTer, UELu),
   UEle_set is Finite_Set_S (UCel)
 ) =
     

@@ -5,20 +5,20 @@ open "Le_Peuple_francais_S";;
 open "Un_Francais_S";;
 open "Un_Parlementaire_S";;
 open "Un_Scrutin_S";;
-open "Un_Territoire_francais_S";;
-open "Un_Territoire_francais_S";;
+open "Un_Territoire_S";;
+open "Un_Territoire_S";;
 open "Un_Texte_legislatif_S";;
 open "Une_Loi_S";;
 open "Le_Droit_francais_S";;
 
 species La_Republique_francaise_S (UScr is Un_Scrutin_S,
-                                   UTfr is Un_Territoire_francais_S,
+                                   UTer is Un_Territoire_S,
                                    LTfr_set is Le_Territoire_francais_S,  
                                    ULoi is Une_Loi_S,
                                    LDfr is Le_Droit_francais (ULoi),
-                                   UFra is Un_Francais_S (UTfr) ,
+                                   UFra is Un_Francais_S (UTer) ,
                                    UFra_set is Finite_Set_S (UFra),
-                                   LPfr is Le_Peuple_francais_S (UTfr, UTfr_set, UFra, UFra_set),
+                                   LPfr is Le_Peuple_francais_S (UTer, UTfr_set, UFra, UFra_set),
                                    UPar_set is Finite_Set_S (UPar),
                                    ) =
                                      
