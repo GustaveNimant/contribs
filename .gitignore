@@ -20,6 +20,7 @@
 *.mangled
 *.mk
 *.ml
+.metadata
 *.modules
 *.o
 *.orig
