@@ -2,6 +2,7 @@ open "basics";;
 open "Un_Bureau_de_vote_S";;
 open "Un_Citoyen_electeur_S";;
 open "Un_Elu_S";;
+open "Un_Francais_S";;
 open "Un_Parlementaire_S";;
 open "Un_Scrutin_S";;
 open "Un_Territoire_S";;
@@ -23,6 +24,7 @@ open "Une_Proposition_de_loi_S";;
 species Un_Senateur_S (
   UScr is Un_Scrutin_S, 
   UTer is Un_Territoire_S,
+  UFra is Un_Francais_S (UTer),
   UBvo is Un_Bureau_de_vote_S (UTer),
   UCel is Un_Citoyen_electeur_S (UScr, UTer, UBvo),
   UPlo is Une_Proposition_de_loi_S,
@@ -35,6 +37,8 @@ species Un_Senateur_S (
   let est_un_depute (s : Self) = false;
 
   let est_un_senateur (s : Self) = true;
+
+  signature represente_un_francais : Self -> UFra -> bool;
 
   signature redige_un_texte_de_loi : Self -> ULoi -> bool;
 

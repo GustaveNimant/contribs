@@ -29,10 +29,15 @@ species Un_Citoyen_electeur_S (
 
   signature participe_au_scrutin : Self -> UScr -> bool;
 
-  logical let est_un_citoyen_electeur (ele : Self) =
-    numero_carte_electeur (ele) > 0 ->
-    est_un_francais (ele) -> 
-    est_un_adulte (ele); 
+  logical let est_un_citoyen_electeur (ucel : Self) =
+    numero_carte_electeur (ucel) > 0 ->
+    est_un_francais (ucel) -> 
+    est_un_adulte (ucel); 
+
+  logical let vote_a_l_election_presidentielle (ucel : Self, uscr : UScr) =
+    UScr!est_une_election_presidentielle (uscr) ->
+    est_un_citoyen_electeur (ucel);
+
   
 end;;
 
