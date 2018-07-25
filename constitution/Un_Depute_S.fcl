@@ -8,6 +8,7 @@ open "Un_Scrutin_S";;
 open "Un_Territoire_S";;
 open "Une_Loi_S";;
 open "Une_Proposition_de_loi_S";;
+open "Un_Francais_S";;
 
 --  Un_Depute           Un_Senateur
 --      \                  /
@@ -23,6 +24,7 @@ open "Une_Proposition_de_loi_S";;
 species Un_Depute_S (
   UScr is Un_Scrutin_S, 
   UTer is Un_Territoire_S,
+  UFra is Un_Francais_S (UTer),
   UBvo is Un_Bureau_de_vote_S (UTer),
   UCel is Un_Citoyen_electeur_S (UScr, UTer, UBvo),
   UPlo is Une_Proposition_de_loi_S,
@@ -32,11 +34,11 @@ species Un_Depute_S (
   
   inherit Un_Parlementaire_S (UScr, UTer, UBvo, UCel, UPlo, ULoi, UAex);
   
-  let est_un_depute (s : Self) = true;
+  let est_un_depute (udep : Self) = true;
 
-  let est_un_senateur (s : Self) = false;
+  let est_un_senateur (udep : Self) = false;
 
-  signature represente_un_electeur : Self -> UCel -> bool;
+  signature represente_un_francais : Self -> UFra -> bool;
 
   signature redige_un_texte_de_loi : Self -> ULoi -> bool;
 
@@ -50,8 +52,8 @@ species Un_Depute_S (
 
   signature exerce_sa_souverainete : Self -> bool;
 
-  logical let est_elu_au_suffrage_direct (dep : Self, scr : UScr) =
-        est_elu_par_le_scrutin (dep, scr) ->
-        UScr!est_une_election_legislative (scr);
+  logical let est_elu_au_suffrage_direct (udep : Self, uscr : UScr) =
+        est_elu_par_le_scrutin (udep, uscr) ->
+        UScr!est_une_election_legislative (uscr);
 
 end;;

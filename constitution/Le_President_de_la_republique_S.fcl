@@ -12,6 +12,7 @@ open "Un_Acte_de_l_executif_S";;
 open "Un_Decret_S";;
 open "Un_Depute_S";;
 open "Un_Elu_S";;
+open "Un_Francais_S";;
 open "Un_Membre_de_l_executif_S";;
 open "Un_Membre_du_gouvernement_S";;
 open "Un_Parlementaire_S";;
@@ -25,6 +26,7 @@ open "Une_Ordonnance_S";;
 species Le_President_de_la_republique_S (
   UScr is Un_Scrutin_S,
   UTer is Un_Territoire_S,
+  UFra is Un_Francais_S (UTer),
   UBvo is Un_Bureau_de_vote_S (UTer),
   UCel is Un_Citoyen_electeur_S (UScr, UTer, UBvo),
   UEle_set is Finite_Set_S (UCel),
@@ -37,31 +39,28 @@ species Le_President_de_la_republique_S (
   UDec is Un_Decret_S,
   ULoi is Une_Loi_S,
   UPlo is Une_Proposition_de_loi_S,
-  UDep is Un_Depute_S (UScr, UTer, UBvo, UCel, UPlo, ULoi, UAex),
+  UDep is Un_Depute_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex),
   UDep_set is Finite_Set_S (UDep),
-  USen is Un_Senateur_S (UScr, UTer, UBvo, UCel, UPlo, ULoi, UAex),
+  USen is Un_Senateur_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex),
   USen_set is Finite_Set_S (USen),
-  LAna is L_Assemblee_nationale_S (UScr, UTer, UBvo, UCel, UPlo, ULoi, UAex, UDep),
+  LAna is L_Assemblee_nationale_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, UDep),
   UPar is Un_Parlementaire_S (UScr, UTer, UBvo, UCel, UPlo, ULoi, UAex),
   UPar_set is Finite_Set_S (UPar),
   UParOfUDep is Un_Parlementaire_subtype (UScr, UTer, UBvo, UCel, UPlo, ULoi, UAex, UDep, UDep_set, UPar, UPar_set),
   UParOfUSen is Un_Parlementaire_subtype (UScr, UTer, UBvo, UCel, UPlo, ULoi, UAex, USen, USen_set, UPar, UPar_set),
   UEluOfUPar is Un_Elu_subtype (UScr, UTer, UBvo, UCel, UPar, UPar_set, UElu, UElu_set),
   UEleOfUElu is Un_Citoyen_electeur_subtype (UScr, UTer, UBvo, UElu, UElu_set, UCel, UEle_set),
-  LSen is Le_Senat_S (UScr, UTer, UBvo, UCel, UEle_set, UPlo, ULoi, UAex, UElu, UElu_set, UPar, UPar_set, USen, USen_set, UParOfUSen, UEluOfUPar, UEleOfUElu),
-  LPar is Le_Parlement_S (UScr, UTer, UBvo, UCel, UEle_set, UElu, UElu_set, UPlo, ULoi, UAex, USen, USen_set, UDep, UDep_set, UPar, UPar_set, UParOfUDep, UParOfUSen, UEluOfUPar, UEleOfUElu, LAna, LSen),
-  LGou is Le_Gouvernement_S (UScr, UTer, UAex, ULoi, UPlo, UOrd, UDec, UBvo, UCel, UEle_set, UElu, UElu_set, UMgo, UDep, UDep_set, USen, USen_set, UPar, UPar_set, UParOfUDep, UParOfUSen, UEluOfUPar, UEleOfUElu, LAna, LSen, LPar)
+  LSen is Le_Senat_S (UScr, UTer, UFra, UBvo, UCel, UEle_set, UPlo, ULoi, UAex, UElu, UElu_set, UPar, UPar_set, USen, USen_set, UParOfUSen, UEluOfUPar, UEleOfUElu),
+  LPar is Le_Parlement_S (UScr, UTer, UFra, UBvo, UCel, UEle_set, UElu, UElu_set, UPlo, ULoi, UAex, USen, USen_set, UDep, UDep_set, UPar, UPar_set, UParOfUDep, UParOfUSen, UEluOfUPar, UEleOfUElu, LAna, LSen),
+  LGou is Le_Gouvernement_S (UScr, UTer, UFra, UAex, ULoi, UPlo, UOrd, UDec, UBvo, UCel, UEle_set, UElu, UElu_set, UMgo, UDep, UDep_set, USen, USen_set, UPar, UPar_set, UParOfUDep, UParOfUSen, UEluOfUPar, UEleOfUElu, LAna, LSen, LPar)
 ) =
     
   inherit Un_Elu_S (UScr, UTer, UBvo), Un_Membre_de_l_executif_S;
   
 -- Article 6 a - Le Président de la République est élu [ pour cinq ans ] au suffrage universel direct.
 
-  signature vote_a_l_election_presidentielle : UCel -> bool;
-
-  property participe_vote_president : all e : UCel, (vote_a_l_election_presidentielle (e));
-
-  property article_6_a : all e : UCel, vote_a_l_election_presidentielle (e) -> participe_vote_president;
+  property article_6_a : all ucel : UCel, all uscr : UScr, 
+  UCel!vote_a_l_election_presidentielle (ucel, uscr);
 
 
 -- Article 8 a - Le Président de la République nomme le Premier ministre. 
@@ -74,9 +73,9 @@ species Le_President_de_la_republique_S (
 
   signature demissionne_premier_ministre : Self -> LPmi -> bool;
 
-  property article_8 : all p : Self, all g : LGou, 
-  demissionne_le_gouvernement (p, g) -> 
-  all pm : LPmi, demissionne_premier_ministre (p, pm);
+  property article_8 : all lpre : Self, all lgou : LGou, 
+  demissionne_le_gouvernement (lpre, lgou) -> 
+  all lpmi : LPmi, demissionne_premier_ministre (lpre, lpmi);
 
 -- Article 9 - Le Président de la République préside le conseil des ministres.
 
@@ -84,7 +83,8 @@ species Le_President_de_la_republique_S (
 
   signature promulge_une_loi : Self -> ULoi -> bool;
 
-  property article_10_a : all p : Self, all l : ULoi, promulge_une_loi (p, l);
+  property article_10_a : all lpre : Self, all uloi : ULoi, 
+  promulge_une_loi (lpre, uloi);
 
 -- Article 12 a - Le Président de la République peut, après consultation du Premier ministre et des présidents des assemblées, prononcer la dissolution de l'Assemblée nationale.
 
@@ -92,22 +92,25 @@ species Le_President_de_la_republique_S (
 
   signature peut_dissoudre_l_assemblee : Self -> LAna -> bool;
 
-  property article_12_a : all p : Self, all a : LAna, all pm : LPmi, peut_dissoudre_l_assemblee (p, a) -> consulte_premier_ministre_avant_dissolution (p, pm);
+  property article_12_a : all lpre : Self, all lana : LAna, all lpmi : LPmi, 
+  peut_dissoudre_l_assemblee (lpre, lana) -> 
+  consulte_premier_ministre_avant_dissolution (lpre, lpmi);
 
 -- Article 13 a - Le Président de la République signe les ordonnances et les décrets délibérés en conseil des ministres. 
 
   signature signe_un_acte_de_l_executif : Self -> UAex -> bool;
 
-  property article_13_a : all p : Self, all a : UAex, all g : LGou, signe_un_acte_de_l_executif (p, a) -> LGou!delibere_sur (g, a);
+  property article_13_a : all lpre : Self, all lana : UAex, all lgou : LGou, 
+  signe_un_acte_de_l_executif (lpre, lana) -> LGou!delibere_sur (lgou, lana);
 
   signature exerce_sa_souverainete : Self -> bool;
 
-  property est_souverain : all pdr : Self, all pm : LPmi,  all ae : UAex, all an : LAna,
-     exerce_sa_souverainete (pdr) ->
-      nomme_le_premier_ministre (pdr, pm) ->  
-       signe_un_acte_de_l_executif (pdr, ae) ->
-        peut_dissoudre_l_assemblee (pdr, an) -> 
-        all l : ULoi, promulge_une_loi (pdr, l)
+  property est_souverain : all lpre : Self, all lpmi : LPmi,  all uaex : UAex, all lana : LAna,
+     exerce_sa_souverainete (lpre) ->
+      nomme_le_premier_ministre (lpre, lpmi) ->  
+       signe_un_acte_de_l_executif (lpre, uaex) ->
+        peut_dissoudre_l_assemblee (lpre, lana) -> 
+        all uloi : ULoi, promulge_une_loi (lpre, uloi)
   ;
 
 end;;

@@ -17,9 +17,9 @@ species Un_Scrutin_direct_S =
 
   signature est_election_cantonale : Self -> bool;
 
-  let est_un_scrutin_direct (s: Self) = true;
+  let est_un_scrutin_direct (usdi : Self) = true;
 
-  let est_scrutin_indirect (s: Self) = false;
+  let est_scrutin_indirect (usdi : Self) = false;
 
 end;;
 

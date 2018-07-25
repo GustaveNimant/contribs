@@ -15,6 +15,7 @@ open "Un_Organe_deliberant_S";;
 open "Un_Parlementaire_S";;
 open "Un_Scrutin_S";;
 open "Un_Senateur_S";;
+open "Un_Francais_S";;
 open "Un_Territoire_S";;
 open "Une_Loi_S";;
 open "Une_Proposition_de_loi_S";;
@@ -23,6 +24,7 @@ open "Une_Ordonnance_S";;
 species Le_Gouvernement_S (
   UScr is Un_Scrutin_S,
   UTer is Un_Territoire_S,
+  UFra is Un_Francais_S (UTer),
   UAex is Un_Acte_de_l_executif_S,
   ULoi is Une_Loi_S,
   UPlo is Une_Proposition_de_loi_S,
@@ -34,9 +36,9 @@ species Le_Gouvernement_S (
   UElu is Un_Elu_S (UScr, UTer, UBvo),
   UElu_set is Finite_Set_S (UElu),
   UMgo is Un_Membre_du_gouvernement_S (UScr, UTer, UBvo, UElu),
-  UDep is Un_Depute_S (UScr, UTer, UBvo, UCel, UPlo, ULoi, UAex), 
+  UDep is Un_Depute_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex), 
   UDep_set is Finite_Set_S (UDep),
-  USen is Un_Senateur_S (UScr, UTer, UBvo, UCel, UPlo, ULoi, UAex),
+  USen is Un_Senateur_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex),
   USen_set is Finite_Set_S (USen),
   UPar is Un_Parlementaire_S (UScr, UTer, UBvo, UCel, UPlo, ULoi, UAex),
   UPar_set is Finite_Set_S (UPar),
@@ -44,9 +46,9 @@ species Le_Gouvernement_S (
   UParOfUSen is Un_Parlementaire_subtype (UScr, UTer, UBvo, UCel, UPlo, ULoi, UAex, USen, USen_set, UPar, UPar_set),
   UEluOfUPar is Un_Elu_subtype (UScr, UTer, UBvo, UCel, UPar, UPar_set, UElu, UElu_set),
   UEleOfUElu is Un_Citoyen_electeur_subtype (UScr, UTer, UBvo, UElu, UElu_set, UCel, UEle_set),
-  LAna is L_Assemblee_nationale_S (UScr, UTer, UBvo, UCel, UPlo, ULoi, UAex, UDep),
-  LSen is Le_Senat_S (UScr, UTer, UBvo, UCel, UEle_set, UPlo, ULoi, UAex, UElu, UElu_set, UPar, UPar_set, USen, USen_set, UParOfUSen, UEluOfUPar, UEleOfUElu),
-  LPar is Le_Parlement_S (UScr, UTer, UBvo, UCel, UEle_set, UElu, UElu_set, UPlo, ULoi, UAex, USen, USen_set, UDep, UDep_set, UPar, UPar_set, UParOfUDep, UParOfUSen, UEluOfUPar, UEleOfUElu, LAna, LSen)
+  LAna is L_Assemblee_nationale_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, UDep),
+  LSen is Le_Senat_S (UScr, UTer, UFra, UBvo, UCel, UEle_set, UPlo, ULoi, UAex, UElu, UElu_set, UPar, UPar_set, USen, USen_set, UParOfUSen, UEluOfUPar, UEleOfUElu),
+  LPar is Le_Parlement_S (UScr, UTer, UFra, UBvo, UCel, UEle_set, UElu, UElu_set, UPlo, ULoi, UAex, USen, USen_set, UDep, UDep_set, UPar, UPar_set, UParOfUDep, UParOfUSen, UEluOfUPar, UEleOfUElu, LAna, LSen)
   ) =
 
   inherit Un_Organe_deliberant_S (UAex), Finite_Set_S (UMgo);

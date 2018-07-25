@@ -66,48 +66,48 @@ species Le_Parlement_S (
   let un_parlementaire_est_membre_du_parlement (lpar : Self, upa : UPar) =
     is_a_member_of (upa, lpar); 
 
-  logical let examine_une_proposition_de_loi (lpar : Self, plo : UPlo) =
-    LAna!examine_une_proposition_de_loi (l_assemblee_nationale (lpar), plo)
+  logical let examine_une_proposition_de_loi (lpar : Self, uplo : UPlo) =
+    LAna!examine_une_proposition_de_loi (l_assemblee_nationale (lpar), uplo)
     /\ 
-    LSen!examine_une_proposition_de_loi (le_senat (lpar), plo);
+    LSen!examine_une_proposition_de_loi (le_senat (lpar), uplo);
   
-  -- Titre IV Article 24 a-1 - Le Parlement vote la loi. 
+  -- Titre IV Article 24 a-1 - Le Parlement vote la uloi. 
 
   logical let vote_une_loi_2 (lpar : Self, uloi : ULoi) =
     LAna!vote_une_loi (l_assemblee_nationale (lpar), uloi)
     /\ 
     LSen!vote_une_loi (le_senat (lpar), uloi);
   
-  logical let vote_une_loi (lpar : Self, loi : ULoi) =
+  logical let vote_une_loi (lpar : Self, uloi : ULoi) =
     all upa : UPar, 
     is_a_member_of (upa, lpar) -> 
-    UPar!vote_une_loi (upa, loi); 
+    UPar!vote_une_loi (upa, uloi); 
 
   property article_24_a_1 :
-  all lpar : Self, all loi : ULoi, 
-  vote_une_loi (lpar, loi);
+  all lpar : Self, all uloi : ULoi, 
+  vote_une_loi (lpar, uloi);
 
   -- Titre IV Article 24 a-2 - Il contrôle l'action du Gouvernement. 
 
-  logical let controle_l_action_du_gouvernement (lpar : Self, uag : UAex) = 
+  logical let controle_l_action_du_gouvernement (lpar : Self, uaex : UAex) = 
     all upa : UPar,
     is_a_member_of (upa, lpar) -> 
-    UPar!controle_l_action_du_gouvernement (upa, uag); 
+    UPar!controle_l_action_du_gouvernement (upa, uaex); 
 
   -- Titre IV Article 24 a-3 - Il évalue les politiques publiques.
 
-  logical let evalue_les_politiques_publiques (lpar : Self, uag : UAex) = 
+  logical let evalue_les_politiques_publiques (lpar : Self, uaex : UAex) = 
     all upa : UPar,
     is_a_member_of (upa, lpar) -> 
-    UPar!evalue_les_politiques_publiques (upa, uag); 
+    UPar!evalue_les_politiques_publiques (upa, uaex); 
 
   -- Titre IV Article 24 b - Il comprend l'Assemblée nationale et le Sénat.
 
-  let l_UEluOfUSen (sen : USen) : UElu = 
-    UEluOfUPar!to_super (UParOfUSen!to_super (sen));
+  let l_UEluOfUSen (usen : USen) : UElu = 
+    UEluOfUPar!to_super (UParOfUSen!to_super (usen));
   
-  let l_UEluOfUDep (dep : UDep) : UElu = 
-    UEluOfUPar!to_super (UParOfUDep!to_super (dep));
+  let l_UEluOfUDep (udep : UDep) : UElu = 
+    UEluOfUPar!to_super (UParOfUDep!to_super (udep));
 
   let les_deputes_comme_UPar_set (lpar : Self) : UPar_set =
     UParOfUDep!to_super_set (les_deputes (lpar)); 
@@ -121,7 +121,7 @@ species Le_Parlement_S (
 
   -- Titre IV Article 24 c - 
 
---  let UParOfLAna (ana : LAna) : UPar = UParOfUDep(UDepOfLAna (ana);
+--  let UParOfLAna (lana : LAna) : UPar = UParOfUDep(UDepOfLAna (ana);
       
 --  let le_parlement_2 (lpar : Self) : Self =
 --      union (l_assemblee_nationale (lpar), 

@@ -2,22 +2,25 @@ open "basics";;
 open "Un_Etre_humain_S";;
 open "Un_Territoire_S";;
 
-species Un_Francais_S (UTer is Un_Territoire_S
-                       ) =
+species Un_Francais_S (
+  UTer is Un_Territoire_S
+) =
 
   inherit Un_Etre_humain_S (UTer);
 
-  let est_un_francais (s : Self) = true;
+  let est_un_francais (ufra : Self) = true;
 
   signature a_la_liberte_d_expression : Self -> bool;
 
-  property habite_un_territoire_francais_pr : all fra : Self, all ter : UTer,
-     Self!habite_un_territoire (fra, ter) ->      
-     UTer!est_un_territoire_francais (ter);
+  logical let habite_un_territoire_francais (ufra : Self, uter : UTer) =
+     habite_un_territoire (ufra, uter)       
+     /\
+     UTer!est_un_territoire_francais (uter);
 
-  let habite_un_territoire_francais (fra : Self, ter : UTer) =
-     Self!habite_un_territoire (fra, ter) &&      
-     UTer!est_un_territoire_francais (ter);
+  logical let est_etabli_hors_de_france (ufra : Self, uter : UTer) =
+     habite_un_territoire (ufra, uter)       
+     /\
+     (~~(UTer!est_un_territoire_francais (uter)));
 
 end;;
 
