@@ -5,6 +5,6 @@ contribs
 
 Les contibutions de Gustave Nimant sont :
 
-parlement
-constitution
-preambule_contrat_social
+* constitution
+* parlement
+* preambule_contrat_social
