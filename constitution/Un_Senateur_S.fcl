@@ -34,9 +34,9 @@ species Un_Senateur_S (
 
   inherit Un_Parlementaire_S (UScr, UTer, UBvo, UCel, UPlo, ULoi, UAex);
 
-  let est_un_depute (s : Self) = false;
+  let est_un_depute (usen : Self) = false;
 
-  let est_un_senateur (s : Self) = true;
+  let est_un_senateur (usen : Self) = true;
 
   signature represente_un_francais : Self -> UFra -> bool;
 

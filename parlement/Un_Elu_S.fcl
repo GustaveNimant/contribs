@@ -45,15 +45,15 @@ species Un_Elu_S (
 
   signature represente_la_nation : Self -> bool;
 
-  logical let est_elu_au_suffrage_direct (elu : Self, scr : UScr) =
-    UScr!est_un_scrutin_direct (scr);
+  logical let est_elu_au_suffrage_direct (uelu : Self, uscr : UScr) =
+    UScr!est_un_scrutin_direct (uscr);
 
-  let est_un_grand_electeur (gel : Self) =
-      est_un_depute (gel)
-   || est_un_senateur (gel)
-   || est_un_conseiller_regional (gel)
-   || est_un_conseiller_departemental (gel)
-   || est_un_conseiller_municipal_delegue (gel) ;
+  let est_un_grand_electeur (uelu : Self) =
+      est_un_depute (uelu)
+   || est_un_senateur (uelu)
+   || est_un_conseiller_regional (uelu)
+   || est_un_conseiller_departemental (uelu)
+   || est_un_conseiller_municipal_delegue (uelu) ;
 
 
 end;;
