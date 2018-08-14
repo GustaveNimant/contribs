@@ -19,7 +19,6 @@ FOCALIZE_SRC= \
   Un_Scrutin_S.fcl \
   Un_Scrutin_direct_S.fcl \
   Un_Scrutin_indirect_S.fcl \
-  La_Republique_francaise_S.fcl \
   Un_Citoyen_electeur_S.fcl \
   L_Electorat_S.fcl \
   Une_Circonscription_S.fcl \
@@ -41,4 +40,5 @@ FOCALIZE_SRC= \
   La_Constitution_S.fcl \
   La_Souverainete_nationale_S.fcl \
   Le_President_de_la_republique_S.fcl \
+  La_Republique_francaise_S.fcl \
  

@@ -39,11 +39,11 @@ species Le_Senat_S (
   UAex is Un_Acte_de_l_executif_S, 
   UElu is Un_Elu_S (UScr, UTer, UBvo),
   UElu_set is Finite_Set_S (UElu),
-  UPar is Un_Parlementaire_S (UScr, UTer, UBvo, UCel, UPlo, ULoi, UAex), 
+  UPar is Un_Parlementaire_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex), 
   UPar_set is Finite_Set_S (UPar),
   USen is Un_Senateur_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex),
   USen_set is Finite_Set_S (USen),
-  UParOfUSen is Un_Parlementaire_subtype (UScr, UTer, UBvo, UCel, UPlo, ULoi, UAex,USen, USen_set, UPar, UPar_set),
+  UParOfUSen is Un_Parlementaire_subtype (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex,USen, USen_set, UPar, UPar_set),
   UEluOfUPar is Un_Elu_subtype (UScr, UTer, UBvo, UCel, UPar, UPar_set, UElu, UElu_set),
   UEleOfUElu is Un_Citoyen_electeur_subtype (UScr, UTer, UBvo, UElu, UElu_set, UCel, UEle_set)
 ) =
@@ -93,15 +93,15 @@ species Le_Senat_S (
   -- Titre IV Article 24 c-2 Il assure la représentation des collectivités territoriales de la République.
 
 
-  -- Titre IV Article 24-e-1 - Les Français établis hors de France sont représentés ... au Sénat.
+  -- Titre IV Article 24-e-2 - Les Français établis hors de France sont représentés ... au Sénat.
 
-  logical let un_francais_etabli_hors_de_france_est_represente_a_l_assemblee_nationale =
+  logical let un_francais_etabli_hors_de_france_est_represente_au_senat =
      all usen : USen, all ufra : UFra, all uter : UTer,
      (UFra!est_etabli_hors_de_france (ufra, uter)) 
      /\ 
      (USen!represente_un_francais (usen, ufra));
 
-  property article_24_e_1 : un_francais_etabli_hors_de_france_est_represente_a_l_assemblee_nationale ;
+  property article_24_e_1 : un_francais_etabli_hors_de_france_est_represente_au_senat ;
 
 (*
   property est_elu_par_une_senatoriale : all lsen : Self, all uscr : UScr,

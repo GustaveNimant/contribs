@@ -3,6 +3,7 @@ open "Un_Acte_de_l_executif_S";;
 open "Un_Bureau_de_vote_S";;
 open "Un_Citoyen_electeur_S";;
 open "Un_Elu_S";;
+open "Un_Francais_S";;
 open "Un_Scrutin_S";;
 open "Un_Territoire_S";;
 open "Une_Loi_S";;
@@ -26,6 +27,7 @@ open "Une_Proposition_de_loi_S";;
 species Un_Parlementaire_S (
   UScr is Un_Scrutin_S,
   UTer is Un_Territoire_S,
+  UFra is Un_Francais_S (UTer),
   UBvo is Un_Bureau_de_vote_S (UTer),
   UCel is Un_Citoyen_electeur_S (UScr, UTer, UBvo),
   UPlo is Une_Proposition_de_loi_S,
@@ -54,5 +56,7 @@ species Un_Parlementaire_S (
   signature evalue_les_politiques_publiques : Self -> UAex -> bool;
 
   signature exerce_sa_souverainete : Self -> bool;
+
+  signature represente_un_francais : Self -> UFra -> bool;
 
 end;;
