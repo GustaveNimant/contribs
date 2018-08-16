@@ -43,10 +43,15 @@ species Un_Elu_S (
 
   signature est_elu_sur_un_territoire : Self -> UTer -> bool;
 
+  signature est_elu_pour_cinq_ans : Self -> bool;
+
   signature represente_la_nation : Self -> bool;
 
   logical let est_elu_au_suffrage_direct (uelu : Self, uscr : UScr) =
     UScr!est_un_scrutin_direct (uscr);
+
+  logical let est_elu_au_suffrage_universel (uelu : Self, uscr : UScr) =
+    UScr!est_un_scrutin_universel (uscr);
 
   let est_un_grand_electeur (uelu : Self) =
       est_un_depute (uelu)
@@ -55,5 +60,11 @@ species Un_Elu_S (
    || est_un_conseiller_departemental (uelu)
    || est_un_conseiller_municipal_delegue (uelu) ;
 
+  logical let est_un_president_de_la_republique (uelu : Self, uscr : UScr) =
+    est_elu_au_suffrage_direct (uelu, uscr)
+    /\
+    est_elu_au_suffrage_universel (uelu, uscr)
+    /\
+   UScr!est_une_election_presidentielle (uscr);
 
 end;;

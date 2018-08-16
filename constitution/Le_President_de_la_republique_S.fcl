@@ -57,11 +57,58 @@ species Le_President_de_la_republique_S (
     
   inherit Un_Elu_S (UScr, UTer, UBvo), Un_Membre_de_l_executif_S;
   
--- Article 6 a - Le Président de la République est élu [ pour cinq ans ] au suffrage universel direct.
+-- Article 5 a - Le Président de la République veille au respect de la Constitution. Il assure, par son arbitrage, le fonctionnement régulier des pouvoirs publics ainsi que la continuité de l'État.
 
-  property article_6_a : all ucel : UCel, all uscr : UScr, 
-  UCel!vote_a_l_election_presidentielle (ucel, uscr);
+-- Article 5 a-1 - Le Président de la République veille au respect de la Constitution. 
 
+  signature veille_au_respect_de_la_constitution : Self -> bool;
+
+-- Article 5 a-2 - Il assure, par son arbitrage, le fonctionnement régulier des pouvoirs publics 
+
+  signature assure_le_fonctionnement_des_pouvoirs_publics : Self -> bool;
+
+-- Article 5 a-3 - [assure] ... la continuité de l'État.
+
+  signature assure_la_continuite_de_l_etat : Self -> bool;
+ 
+  property article_5_a : all lpre : Self, 
+  veille_au_respect_de_la_constitution (lpre)
+  /\
+  assure_le_fonctionnement_des_pouvoirs_publics (lpre) 
+  /\
+  assure_la_continuite_de_l_etat (lpre);
+
+-- Article 5 b - Il est garant de l'indépendance nationale, de l'intégrité du territoire et du respect des traités.
+
+-- Article 5 b-1 - Il est garant de l'indépendance nationale
+
+  signature est_garant_de_l_independance_nationale : Self -> bool;
+
+-- Article 5 b-2 - Il est garant de l'intégrité du territoire 
+
+  signature est_garant_de_l_integrite_du_territoire : Self -> bool;
+
+-- Article 5 b-3 - Il est garant du respect des traités.
+
+  signature est_garant_du_respect_des_traites : Self -> bool;
+
+  property article_5_b : all lpre : Self, 
+  est_garant_de_l_independance_nationale (lpre)
+  /\
+  est_garant_de_l_integrite_du_territoire (lpre)
+  /\
+  est_garant_du_respect_des_traites (lpre);
+
+-- Article 6 a-1 - Le Président de la République est élu pour cinq ans.
+
+  signature est_elu_pour_cinq_ans : Self -> bool;
+
+-- Article 6 a-2 - Le Président de la République est élu au suffrage universel direct.
+
+  property article_6_a : all lpre : Self, all uscr : UScr, 
+   est_elu_pour_cinq_ans (lpre) 
+   /\
+   est_elu_au_suffrage_universel (lpre, uscr);
 
 -- Article 8 a - Le Président de la République nomme le Premier ministre. 
 

@@ -12,6 +12,8 @@ species Un_Francais_S (
 
   signature a_la_liberte_d_expression : Self -> bool;
 
+  signature est_dechu_de_ses_droits : Self -> bool;
+
   logical let habite_un_territoire_francais (ufra : Self, uter : UTer) =
      habite_un_territoire (ufra, uter)       
      /\
