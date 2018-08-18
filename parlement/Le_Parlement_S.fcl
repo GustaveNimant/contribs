@@ -43,10 +43,10 @@ species Le_Parlement_S (
   USen_set is Finite_Set_S (USen),
   UDep is Un_Depute_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex),
   UDep_set is Finite_Set_S (UDep),
-  UPar is Un_Parlementaire_S (UScr, UTer, UBvo, UCel, UPlo, ULoi, UAex),
+  UPar is Un_Parlementaire_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex),
   UPar_set is Finite_Set_S (UPar),
-  UParOfUDep is Un_Parlementaire_subtype (UScr, UTer, UBvo, UCel, UPlo, ULoi, UAex, UDep, UDep_set, UPar, UPar_set),
-  UParOfUSen is Un_Parlementaire_subtype (UScr, UTer, UBvo, UCel, UPlo, ULoi, UAex, USen, USen_set, UPar, UPar_set),
+  UParOfUDep is Un_Parlementaire_subtype (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, UDep, UDep_set, UPar, UPar_set),
+  UParOfUSen is Un_Parlementaire_subtype (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, USen, USen_set, UPar, UPar_set),
   UEluOfUPar is Un_Elu_subtype (UScr, UTer, UBvo, UCel, UPar, UPar_set, UElu, UElu_set),
   UEleOfUElu is Un_Citoyen_electeur_subtype (UScr, UTer, UBvo, UElu, UElu_set, UCel, UEle_set),
   LAna is L_Assemblee_nationale_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, UDep),
@@ -119,12 +119,12 @@ species Le_Parlement_S (
       UPar_set!union (UParOfUDep!to_super_set (les_deputes (lpar)), 
              UParOfUSen!to_super_set (les_senateurs (lpar))) ;
 
-  -- Titre IV Article 24 c - 
+  -- Titre IV Article 24 e - Les Français établis hors de France sont représentés à l'Assemblée nationale et au Sénat.
 
---  let UParOfLAna (lana : LAna) : UPar = UParOfUDep(UDepOfLAna (ana);
-      
---  let le_parlement_2 (lpar : Self) : Self =
---      union (l_assemblee_nationale (lpar), 
---             le_senat (lpar));
+  logical let un_francais_etabli_hors_de_france_est_represente_au_parlement =
+     all upar : UPar, all ufra : UFra, all uter : UTer,
+     (UFra!est_etabli_hors_de_france (ufra, uter)) 
+     /\ 
+     (UPar!represente_un_francais (upar, ufra));
 
 end;;

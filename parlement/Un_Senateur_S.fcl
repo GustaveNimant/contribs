@@ -32,7 +32,7 @@ species Un_Senateur_S (
   UAex is Un_Acte_de_l_executif_S
 ) = 
 
-  inherit Un_Parlementaire_S (UScr, UTer, UBvo, UCel, UPlo, ULoi, UAex);
+  inherit Un_Parlementaire_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex);
 
   let est_un_depute (usen : Self) = false;
 
