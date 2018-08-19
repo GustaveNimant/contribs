@@ -45,10 +45,10 @@ species La_Republique_francaise_S (
   UParOfUDep is Un_Parlementaire_subtype (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, UDep, UDep_set, UPar, UPar_set),
   UParOfUSen is Un_Parlementaire_subtype (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, USen, USen_set, UPar, UPar_set),
   UEluOfUPar is Un_Elu_subtype (UScr, UTer, UBvo, UCel, UPar, UPar_set, UElu, UElu_set),
-  UEleOfUElu is Un_Citoyen_electeur_subtype (UScr, UTer, UBvo, UElu, UElu_set, UCel, UCel_set),
+  UCelOfUElu is Un_Citoyen_electeur_subtype (UScr, UTer, UBvo, UElu, UElu_set, UCel, UCel_set),
   LAna is L_Assemblee_nationale_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, UDep),
-  LSen is Le_Senat_S (UScr, UTer, UFra, UBvo, UCel, UCel_set, UPlo, ULoi, UAex, UElu, UElu_set, UPar, UPar_set, USen, USen_set, UParOfUSen, UEluOfUPar, UEleOfUElu),
-  LPar is Le_Parlement_S (UScr, UTer, UFra, UBvo, UCel, UCel_set, UElu, UElu_set, UPlo, ULoi, UAex, USen, USen_set, UDep, UDep_set, UPar, UPar_set, UParOfUDep, UParOfUSen, UEluOfUPar, UEleOfUElu, LAna, LSen)
+  LSen is Le_Senat_S (UScr, UTer, UFra, UBvo, UCel, UCel_set, UPlo, ULoi, UAex, UElu, UElu_set, UPar, UPar_set, USen, USen_set, UParOfUSen, UEluOfUPar, UCelOfUElu),
+  LPar is Le_Parlement_S (UScr, UTer, UFra, UBvo, UCel, UCel_set, UElu, UElu_set, UPlo, ULoi, UAex, USen, USen_set, UDep, UDep_set, UPar, UPar_set, UParOfUDep, UParOfUSen, UEluOfUPar, UCelOfUElu, LAna, LSen)
 ) =
 
 -- Article 1 a 1 - La France est une République indivisible, laïque, démocratique et sociale. 

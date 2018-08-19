@@ -29,7 +29,7 @@ species Le_President_de_la_republique_S (
   UFra is Un_Francais_S (UTer),
   UBvo is Un_Bureau_de_vote_S (UTer),
   UCel is Un_Citoyen_electeur_S (UScr, UTer, UBvo),
-  UEle_set is Finite_Set_S (UCel),
+  UCel_set is Finite_Set_S (UCel),
   UElu is Un_Elu_S (UScr, UTer, UBvo),
   UElu_set is Finite_Set_S (UElu),
   UAex is Un_Acte_de_l_executif_S,
@@ -49,10 +49,10 @@ species Le_President_de_la_republique_S (
   UParOfUDep is Un_Parlementaire_subtype (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, UDep, UDep_set, UPar, UPar_set),
   UParOfUSen is Un_Parlementaire_subtype (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, USen, USen_set, UPar, UPar_set),
   UEluOfUPar is Un_Elu_subtype (UScr, UTer, UBvo, UCel, UPar, UPar_set, UElu, UElu_set),
-  UEleOfUElu is Un_Citoyen_electeur_subtype (UScr, UTer, UBvo, UElu, UElu_set, UCel, UEle_set),
-  LSen is Le_Senat_S (UScr, UTer, UFra, UBvo, UCel, UEle_set, UPlo, ULoi, UAex, UElu, UElu_set, UPar, UPar_set, USen, USen_set, UParOfUSen, UEluOfUPar, UEleOfUElu),
-  LPar is Le_Parlement_S (UScr, UTer, UFra, UBvo, UCel, UEle_set, UElu, UElu_set, UPlo, ULoi, UAex, USen, USen_set, UDep, UDep_set, UPar, UPar_set, UParOfUDep, UParOfUSen, UEluOfUPar, UEleOfUElu, LAna, LSen),
-  LGou is Le_Gouvernement_S (UScr, UTer, UFra, UAex, ULoi, UPlo, UOrd, UDec, UBvo, UCel, UEle_set, UElu, UElu_set, UMgo, UDep, UDep_set, USen, USen_set, UPar, UPar_set, UParOfUDep, UParOfUSen, UEluOfUPar, UEleOfUElu, LAna, LSen, LPar)
+  UCelOfUElu is Un_Citoyen_electeur_subtype (UScr, UTer, UBvo, UElu, UElu_set, UCel, UCel_set),
+  LSen is Le_Senat_S (UScr, UTer, UFra, UBvo, UCel, UCel_set, UPlo, ULoi, UAex, UElu, UElu_set, UPar, UPar_set, USen, USen_set, UParOfUSen, UEluOfUPar, UCelOfUElu),
+  LPar is Le_Parlement_S (UScr, UTer, UFra, UBvo, UCel, UCel_set, UElu, UElu_set, UPlo, ULoi, UAex, USen, USen_set, UDep, UDep_set, UPar, UPar_set, UParOfUDep, UParOfUSen, UEluOfUPar, UCelOfUElu, LAna, LSen),
+  LGou is Le_Gouvernement_S (UScr, UTer, UFra, UAex, ULoi, UPlo, UOrd, UDec, UBvo, UCel, UCel_set, UElu, UElu_set, UMgo, UDep, UDep_set, USen, USen_set, UPar, UPar_set, UParOfUDep, UParOfUSen, UEluOfUPar, UCelOfUElu, LAna, LSen, LPar)
 ) =
     
   inherit Un_Elu_S (UScr, UTer, UBvo), Un_Membre_de_l_executif_S;

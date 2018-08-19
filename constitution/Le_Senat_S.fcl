@@ -33,7 +33,7 @@ species Le_Senat_S (
   UFra is Un_Francais_S (UTer),
   UBvo is Un_Bureau_de_vote_S (UTer),
   UCel is Un_Citoyen_electeur_S (UScr, UTer, UBvo),
-  UEle_set is Finite_Set_S (UCel),
+  UCel_set is Finite_Set_S (UCel),
   UPlo is Une_Proposition_de_loi_S,
   ULoi is Une_Loi_S,
   UAex is Un_Acte_de_l_executif_S, 
@@ -45,7 +45,7 @@ species Le_Senat_S (
   USen_set is Finite_Set_S (USen),
   UParOfUSen is Un_Parlementaire_subtype (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex,USen, USen_set, UPar, UPar_set),
   UEluOfUPar is Un_Elu_subtype (UScr, UTer, UBvo, UCel, UPar, UPar_set, UElu, UElu_set),
-  UEleOfUElu is Un_Citoyen_electeur_subtype (UScr, UTer, UBvo, UElu, UElu_set, UCel, UEle_set)
+  UCelOfUElu is Un_Citoyen_electeur_subtype (UScr, UTer, UBvo, UElu, UElu_set, UCel, UCel_set)
 ) =
     
   inherit Finite_Set_S (USen);
@@ -57,8 +57,8 @@ species Le_Senat_S (
   let l_UEluOfUSen (usen : USen) : UElu = 
     UEluOfUPar!to_super (UParOfUSen!to_super (usen));
   
-  let l_UEleOfUElu (uelu : UElu) : UCel = 
-    (UEleOfUElu!to_super (uelu));
+  let l_UCelOfUElu (uelu : UElu) : UCel = 
+    (UCelOfUElu!to_super (uelu));
 
   let un_senateur_est_membre_du_senat (lsen : Self, usen : USen) =
     is_a_member_of (usen, lsen); 
