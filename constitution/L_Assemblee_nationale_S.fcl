@@ -40,10 +40,10 @@ species L_Assemblee_nationale_S (
   
   signature examine_une_proposition_de_loi : Self -> UPlo -> bool;
 
-  logical let vote_une_loi (lana : Self, uloi : ULoi) =
+  logical let adopte_une_loi (lana : Self, uloi : ULoi) =
     all udep : UDep, 
     is_a_member_of (udep, lana) ->
-    UDep!vote_une_loi (udep, uloi); 
+    UDep!adopte_une_loi (udep, uloi); 
 
   logical let controle_l_action_du_gouvernement (lana : Self, uae : UAex) =
     all udep : UDep, 

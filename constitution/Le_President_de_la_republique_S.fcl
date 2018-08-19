@@ -15,6 +15,7 @@ open "Un_Elu_S";;
 open "Un_Francais_S";;
 open "Un_Membre_de_l_executif_S";;
 open "Un_Membre_du_gouvernement_S";;
+open "Un_Ministre_S";;
 open "Un_Parlementaire_S";;
 open "Un_Scrutin_S";;
 open "Un_Senateur_S";;
@@ -35,6 +36,8 @@ species Le_President_de_la_republique_S (
   UAex is Un_Acte_de_l_executif_S,
   UMgo is Un_Membre_du_gouvernement_S (UScr, UTer, UBvo, UElu),
   LPmi is Le_Premier_ministre_S (UScr, UTer, UBvo, UElu),
+  UMin is Un_Ministre_S (UScr, UTer, UBvo, UCel, UElu),
+  UMin_set is Finite_Set_S (UMin),
   UOrd is Une_Ordonnance_S,
   UDec is Un_Decret_S,
   ULoi is Une_Loi_S,
@@ -110,6 +113,16 @@ species Le_President_de_la_republique_S (
    /\
    est_elu_au_suffrage_universel (lpre, uscr);
 
+-- Article 6 b - Nul ne peut exercer plus de deux mandats consécutifs.
+
+  signature predecesseur_de : Self -> Self;
+
+  property article_6_b : all lpre : Self, 
+  equal (lpre, (predecesseur_de (lpre))) ->
+  ~~(equal (lpre, predecesseur_de (predecesseur_de (lpre))));
+
+-- Article 6 c - Les modalités d'application du présent article sont fixées par une loi organique.
+
 -- Article 8 a - Le Président de la République nomme le Premier ministre. 
 
   signature nomme_le_premier_ministre : Self -> LPmi -> bool;
@@ -126,12 +139,22 @@ species Le_President_de_la_republique_S (
 
 -- Article 9 - Le Président de la République préside le conseil des ministres.
 
+  signature preside_le_conseil_des_ministres : Self -> UMin_set -> bool;
+
+  property article_9 : all lpre : Self, all umin_set : UMin_set,
+  preside_le_conseil_des_ministres (lpre, umin_set);
+
 -- Article 10 a - Le Président de la République promulgue les lois dans les quinze jours qui suivent la transmission au Gouvernement de la loi définitivement adoptée. 
 
   signature promulge_une_loi : Self -> ULoi -> bool;
 
-  property article_10_a : all lpre : Self, all uloi : ULoi, 
-  promulge_une_loi (lpre, uloi);
+  property article_10_a : all lpre : Self, all lpar : LPar, all uloi : ULoi,
+  promulge_une_loi (lpre, uloi) ->
+  LPar!adopte_une_loi (lpar, uloi);
+
+-- Article 10 b-1 - Il peut, avant l'expiration de ce délai, demander au Parlement une nouvelle délibération de la loi ou de certains de ses articles. 
+
+-- Article 10 b-2 - Cette nouvelle délibération ne peut être refusée.
 
 -- Article 12 a - Le Président de la République peut, après consultation du Premier ministre et des présidents des assemblées, prononcer la dissolution de l'Assemblée nationale.
 

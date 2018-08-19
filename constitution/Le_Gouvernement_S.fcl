@@ -53,6 +53,15 @@ species Le_Gouvernement_S (
 
   inherit Un_Organe_deliberant_S (UAex), Finite_Set_S (UMgo);
 
+
+-- Article 11 b-1 - Lorsque le référendum est organisé sur proposition du Gouvernement ...
+
+  signature propose_un_referendum : UScr -> bool;
+ 
+  property article_11_b_1 : all lgou : Self, uscr : UScr,
+  propose_un_referendum (uscr) ->
+  UScr!est_un_referendum (uscr); 
+
   signature delibere_sur_un_decret : Self -> UDec -> bool;
 
 -- Article 20 a - Le Gouvernement détermine et conduit la politique de la nation 

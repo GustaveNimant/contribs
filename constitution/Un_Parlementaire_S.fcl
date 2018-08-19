@@ -47,7 +47,7 @@ species Un_Parlementaire_S (
 
   signature redige_un_texte_de_loi : Self -> ULoi -> bool;
 
-  signature vote_une_loi : Self -> ULoi -> bool;
+  signature adopte_une_loi : Self -> ULoi -> bool;
 
   signature delibere_sur_une_loi : Self -> ULoi -> bool;
   

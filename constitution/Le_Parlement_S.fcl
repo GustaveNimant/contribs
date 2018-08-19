@@ -71,18 +71,18 @@ species Le_Parlement_S (
   -- Titre IV Article 24 a-1 - Le Parlement vote la uloi. 
 
   logical let vote_une_loi_2 (lpar : Self, uloi : ULoi) =
-    LAna!vote_une_loi (l_assemblee_nationale (lpar), uloi)
+    LAna!adopte_une_loi (l_assemblee_nationale (lpar), uloi)
     /\ 
-    LSen!vote_une_loi (le_senat (lpar), uloi);
+    LSen!adopte_une_loi (le_senat (lpar), uloi);
   
-  logical let vote_une_loi (lpar : Self, uloi : ULoi) =
+  logical let adopte_une_loi (lpar : Self, uloi : ULoi) =
     all upar : UPar, 
     is_a_member_of (upar, lpar) -> 
-    UPar!vote_une_loi (upar, uloi); 
+    UPar!adopte_une_loi (upar, uloi); 
 
   property article_24_a_1 :
   all lpar : Self, all uloi : ULoi, 
-  vote_une_loi (lpar, uloi);
+  adopte_une_loi (lpar, uloi);
 
   -- Titre IV Article 24 a-2 - Il contrôle l'action du Gouvernement. 
 
