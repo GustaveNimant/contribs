@@ -61,7 +61,10 @@ species Le_Gouvernement_S (
 
   let est_eligible_par_le_scrutin (p : UPar, s : UScr) = UPar!est_eligible_par_le_scrutin (p, s);
  
-  property article_23_a_1 : all s : UScr, all p : UPar, UPar!est_eligible_par_le_scrutin (p, s) -> all mg : UMgo, all g : Self, Self!is_a_member_of (mg, g); 
+  property article_23_a_1 : all upar : UPar, all uscr : UScr, 
+  UPar!est_eligible_par_le_scrutin (upar, uscr) -> 
+  all umgo : UMgo, all lgou : Self, 
+  is_a_member_of (umgo, lgou); 
 
 -- Article 38 a - Le Gouvernement peut, pour l'exécution de son programme, demander au Parlement l'autorisation de prendre par ordonnances, pendant un délai limité, des mesures qui sont normalement du domaine de la loi.
 

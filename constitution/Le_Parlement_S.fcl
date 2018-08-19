@@ -63,9 +63,6 @@ species Le_Parlement_S (
 
   signature les_senateurs : Self -> USen_set;
 
-  let un_parlementaire_est_membre_du_parlement (lpar : Self, upa : UPar) =
-    is_a_member_of (upa, lpar); 
-
   logical let examine_une_proposition_de_loi (lpar : Self, uplo : UPlo) =
     LAna!examine_une_proposition_de_loi (l_assemblee_nationale (lpar), uplo)
     /\ 
@@ -79,9 +76,9 @@ species Le_Parlement_S (
     LSen!vote_une_loi (le_senat (lpar), uloi);
   
   logical let vote_une_loi (lpar : Self, uloi : ULoi) =
-    all upa : UPar, 
-    is_a_member_of (upa, lpar) -> 
-    UPar!vote_une_loi (upa, uloi); 
+    all upar : UPar, 
+    is_a_member_of (upar, lpar) -> 
+    UPar!vote_une_loi (upar, uloi); 
 
   property article_24_a_1 :
   all lpar : Self, all uloi : ULoi, 
@@ -90,16 +87,16 @@ species Le_Parlement_S (
   -- Titre IV Article 24 a-2 - Il contrôle l'action du Gouvernement. 
 
   logical let controle_l_action_du_gouvernement (lpar : Self, uaex : UAex) = 
-    all upa : UPar,
-    is_a_member_of (upa, lpar) -> 
-    UPar!controle_l_action_du_gouvernement (upa, uaex); 
+    all upar : UPar,
+    is_a_member_of (upar, lpar) -> 
+    UPar!controle_l_action_du_gouvernement (upar, uaex); 
 
   -- Titre IV Article 24 a-3 - Il évalue les politiques publiques.
 
   logical let evalue_les_politiques_publiques (lpar : Self, uaex : UAex) = 
-    all upa : UPar,
-    is_a_member_of (upa, lpar) -> 
-    UPar!evalue_les_politiques_publiques (upa, uaex); 
+    all upar : UPar,
+    is_a_member_of (upar, lpar) -> 
+    UPar!evalue_les_politiques_publiques (upar, uaex); 
 
   -- Titre IV Article 24 b - Il comprend l'Assemblée nationale et le Sénat.
 

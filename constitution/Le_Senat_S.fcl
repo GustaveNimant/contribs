@@ -60,12 +60,9 @@ species Le_Senat_S (
   let l_UCelOfUElu (uelu : UElu) : UCel = 
     (UCelOfUElu!to_super (uelu));
 
-  let un_senateur_est_membre_du_senat (lsen : Self, usen : USen) =
-    is_a_member_of (usen, lsen); 
-
   logical let vote_une_loi (lsen : Self, uloi : ULoi) =
     all usen : USen, 
-    un_senateur_est_membre_du_senat (lsen, usen) ->
+    is_a_member_of (usen, lsen) ->
     USen!vote_une_loi (usen, uloi); 
   
   -- Titre IV Article 24 d-1 - Le Sénat, dont le nombre de membres ne peut excéder trois cent quarante-huit, ...
