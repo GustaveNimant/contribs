@@ -24,6 +24,10 @@ open "Une_Loi_S";;
 open "Une_Proposition_de_loi_S";;
 open "Une_Ordonnance_S";;
 
+(* QUESTION Le_President_de_la_republique ou Un_President_de_la republique ? *)
+(* QUESTION Le_ caractérise un ensemble  Ex : Les_Presidents_de_la_republique *)
+(* QUESTION Un_ caractérise un élément d'un ensemble *)
+
 species Le_President_de_la_republique_S (
   UScr is Un_Scrutin_S,
   UTer is Un_Territoire_S,
@@ -34,9 +38,9 @@ species Le_President_de_la_republique_S (
   UElu is Un_Elu_S (UScr, UTer, UBvo),
   UElu_set is Finite_Set_S (UElu),
   UAex is Un_Acte_de_l_executif_S,
-  UMgo is Un_Membre_du_gouvernement_S (UScr, UTer, UBvo, UElu),
-  LPmi is Le_Premier_ministre_S (UScr, UTer, UBvo, UElu),
-  UMin is Un_Ministre_S (UScr, UTer, UBvo, UCel, UElu),
+  UMgo is Un_Membre_du_gouvernement_S (UScr, UTer, UBvo),
+  LPmi is Le_Premier_ministre_S (UScr, UTer, UBvo),
+  UMin is Un_Ministre_S (UScr, UTer, UBvo, UCel),
   UMin_set is Finite_Set_S (UMin),
   UOrd is Une_Ordonnance_S,
   UDec is Un_Decret_S,
@@ -58,10 +62,8 @@ species Le_President_de_la_republique_S (
   LGou is Le_Gouvernement_S (UScr, UTer, UFra, UAex, ULoi, UPlo, UOrd, UDec, UBvo, UCel, UCel_set, UElu, UElu_set, UMgo, UDep, UDep_set, USen, USen_set, UPar, UPar_set, UParOfUDep, UParOfUSen, UEluOfUPar, UCelOfUElu, LAna, LSen, LPar)
 ) =
     
-  inherit Un_Elu_S (UScr, UTer, UBvo), Un_Membre_de_l_executif_S;
+  inherit Un_Elu_S (UScr, UTer, UBvo), Un_Membre_de_l_executif_S (UScr, UTer, UBvo);
   
--- Article 5 a - Le Président de la République veille au respect de la Constitution. Il assure, par son arbitrage, le fonctionnement régulier des pouvoirs publics ainsi que la continuité de l'État.
-
 -- Article 5 a-1 - Le Président de la République veille au respect de la Constitution. 
 
   signature veille_au_respect_de_la_constitution : Self -> bool;
@@ -74,14 +76,14 @@ species Le_President_de_la_republique_S (
 
   signature assure_la_continuite_de_l_etat : Self -> bool;
  
+-- Article 5 a - Le Président de la République veille au respect de la Constitution. Il assure, par son arbitrage, le fonctionnement régulier des pouvoirs publics ainsi que la continuité de l'État.
+
   property article_5_a : all lpre : Self, 
   veille_au_respect_de_la_constitution (lpre)
   /\
   assure_le_fonctionnement_des_pouvoirs_publics (lpre) 
   /\
   assure_la_continuite_de_l_etat (lpre);
-
--- Article 5 b - Il est garant de l'indépendance nationale, de l'intégrité du territoire et du respect des traités.
 
 -- Article 5 b-1 - Il est garant de l'indépendance nationale
 
@@ -95,6 +97,8 @@ species Le_President_de_la_republique_S (
 
   signature est_garant_du_respect_des_traites : Self -> bool;
 
+-- Article 5 b - Il est garant de l'indépendance nationale, de l'intégrité du territoire et du respect des traités.
+
   property article_5_b : all lpre : Self, 
   est_garant_de_l_independance_nationale (lpre)
   /\
@@ -107,6 +111,8 @@ species Le_President_de_la_republique_S (
   signature est_elu_pour_cinq_ans : Self -> bool;
 
 -- Article 6 a-2 - Le Président de la République est élu au suffrage universel direct.
+
+-- Article 6 a - Le Président de la République est élu pour cinq ans au suffrage universel direct.
 
   property article_6_a : all lpre : Self, all uscr : UScr, 
    est_elu_pour_cinq_ans (lpre) 

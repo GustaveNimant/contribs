@@ -22,7 +22,7 @@ open "Une_Loi_S";;
 --             Un_Elu
 --                |
 --                v
---           Un_Electeur
+--           Un_Citoyen_electeur
 --                |
 --                v
 --           Un_Francais

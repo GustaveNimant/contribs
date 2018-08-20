@@ -19,7 +19,7 @@ open "Une_Proposition_de_loi_S";;
 --             Un_Elu
 --                |
 --                v
---           Un_Electeur
+--           Un_Citoyen_electeur
 
 species Un_Senateur_S (
   UScr is Un_Scrutin_S, 

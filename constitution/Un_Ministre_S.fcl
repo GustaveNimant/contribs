@@ -1,7 +1,6 @@
 open "basics";;
 open "Un_Bureau_de_vote_S";;
 open "Un_Citoyen_electeur_S";;
-open "Un_Elu_S";;
 open "Un_Membre_du_gouvernement_S";;
 open "Un_Scrutin_S";;
 open "Un_Territoire_S";;
@@ -10,11 +9,10 @@ species Un_Ministre_S (
   UScr is Un_Scrutin_S,
   UTer is Un_Territoire_S,
   UBvo is Un_Bureau_de_vote_S (UTer),
-  UCel is Un_Citoyen_electeur_S (UScr, UTer, UBvo),
-  UElu is Un_Elu_S (UScr, UTer, UBvo)
+  UCel is Un_Citoyen_electeur_S (UScr, UTer, UBvo)
 ) =
 
-  inherit Un_Membre_du_gouvernement_S (UScr, UTer, UBvo, UElu);
+  inherit Un_Membre_du_gouvernement_S (UScr, UTer, UBvo);
   
   let est_premier_ministre (umin : Self) = false;
 
