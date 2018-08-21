@@ -14,6 +14,9 @@ open "Un_Territoire_S";;
 open "Un_Texte_legislatif_S";;
 open "Une_Ordonnance_S";;
 
+-- Définition : Le Conseil des ministres est le nom généralement donné à la réunion régulière, le plus souvent hebdomadaire, d'un gouvernement (chef du gouvernement et ministres). Parfois, il s'agit de la réunion d'une partie seulement du gouvernement (http://fr.wikipedia.org/wiki/Conseil_des_ministres)
+-- Propriété : Le Conseil des ministres est la formation prévue par la Constitution pour l'exercice collégial de la fonction gouvernementale (principe de collégialité limité).
+
 species Le_Conseil_des_ministres_S (
   UScr is Un_Scrutin_S,
   UTer is Un_Territoire_S,
@@ -31,7 +34,7 @@ species Le_Conseil_des_ministres_S (
     
   inherit L_Executif_S (UScr, UTer, UBvo, UMem, UMem_set, UDec, UOrd, UTle, UAex, LPmi);
 
-  signature delibere_sur_acte_de_l_executif : Self -> UAex -> bool;
+  signature delibere_sur_un_acte_de_l_executif : Self -> UAex -> bool;
 
   signature nomme_les_hauts_fonctionnaires : Self -> UHfo -> bool;
 

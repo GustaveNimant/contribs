@@ -24,9 +24,12 @@ open "Une_Loi_S";;
 open "Une_Proposition_de_loi_S";;
 open "Une_Ordonnance_S";;
 
+(* QUESTION Un_ caractérise un élément d'un ensemble ? *)
+
 (* QUESTION Le_President_de_la_republique ou Un_President_de_la republique ? *)
 (* QUESTION Le_ caractérise un ensemble  Ex : Les_Presidents_de_la_republique *)
-(* QUESTION Un_ caractérise un élément d'un ensemble *)
+(* QUESTION Le conseil des ministres ou UMin_set ? *)
+(* QUESTION L_Electorat ou UCel_set ? *)
 
 species Le_President_de_la_republique_S (
   UScr is Un_Scrutin_S,
