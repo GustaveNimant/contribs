@@ -25,5 +25,7 @@ species Un_Scrutin_S =
 
   signature est_un_scrutin_universel : Self -> bool;
 
+  signature est_un_referendum : Self -> bool;
+
 end;;
 

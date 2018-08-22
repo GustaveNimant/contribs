@@ -2,6 +2,7 @@ open "basics";;
 open "Finite_Set_S";;
 open "Un_Acte_de_l_executif_S";;
 open "Les_Fonctions_de_conversion";;
+open "L_Electorat_S";;
 open "Un_Francais_S";;
 open "Un_Bureau_de_vote_S";;
 open "Un_Citoyen_electeur_S";;
@@ -22,7 +23,7 @@ open "Une_Loi_S";;
 --             Un_Elu
 --                |
 --                v
---           Un_Electeur
+--           Un_Citoyen_electeur
 --                |
 --                v
 --           Un_Francais
@@ -33,19 +34,11 @@ species Le_Senat_S (
   UFra is Un_Francais_S (UTer),
   UBvo is Un_Bureau_de_vote_S (UTer),
   UCel is Un_Citoyen_electeur_S (UScr, UTer, UBvo),
-  UEle_set is Finite_Set_S (UCel),
+  UElu is Un_Elu_S (UScr, UTer, UBvo),
   UPlo is Une_Proposition_de_loi_S,
   ULoi is Une_Loi_S,
   UAex is Un_Acte_de_l_executif_S, 
-  UElu is Un_Elu_S (UScr, UTer, UBvo),
-  UElu_set is Finite_Set_S (UElu),
-  UPar is Un_Parlementaire_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex), 
-  UPar_set is Finite_Set_S (UPar),
-  USen is Un_Senateur_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex),
-  USen_set is Finite_Set_S (USen),
-  UParOfUSen is Un_Parlementaire_subtype (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex,USen, USen_set, UPar, UPar_set),
-  UEluOfUPar is Un_Elu_subtype (UScr, UTer, UBvo, UCel, UPar, UPar_set, UElu, UElu_set),
-  UEleOfUElu is Un_Citoyen_electeur_subtype (UScr, UTer, UBvo, UElu, UElu_set, UCel, UEle_set)
+  USen is Un_Senateur_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex)
 ) =
     
   inherit Finite_Set_S (USen);
@@ -54,19 +47,10 @@ species Le_Senat_S (
 
   let ne_peut_pas_etre_dissous (lsen : Self) = false;
 
-  let l_UEluOfUSen (usen : USen) : UElu = 
-    UEluOfUPar!to_super (UParOfUSen!to_super (usen));
-  
-  let l_UEleOfUElu (uelu : UElu) : UCel = 
-    (UEleOfUElu!to_super (uelu));
-
-  let un_senateur_est_membre_du_senat (lsen : Self, usen : USen) =
-    is_a_member_of (usen, lsen); 
-
-  logical let vote_une_loi (lsen : Self, uloi : ULoi) =
+  logical let adopte_une_loi (lsen : Self, uloi : ULoi) =
     all usen : USen, 
-    un_senateur_est_membre_du_senat (lsen, usen) ->
-    USen!vote_une_loi (usen, uloi); 
+    is_a_member_of (usen, lsen) ->
+    USen!adopte_une_loi (usen, uloi); 
   
   -- Titre IV Article 24 d-1 - Le Sénat, dont le nombre de membres ne peut excéder trois cent quarante-huit, ...
 

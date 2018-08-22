@@ -13,6 +13,7 @@ FOCALIZE_SRC= \
   Un_Scrutin_direct_S.fcl \
   Un_Scrutin_indirect_S.fcl \
   Un_Citoyen_electeur_S.fcl \
+  L_Electorat_S.fcl \
   Un_Elu_S.fcl \
   Un_Parlementaire_S.fcl \
   Un_Depute_S.fcl \

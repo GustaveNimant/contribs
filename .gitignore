@@ -2,7 +2,7 @@
 #.depend-rebuild
 *#
 [a-z]
-[A_Z]
+[A-Z]
 *.#
 *.[oa]
 *.annot
@@ -43,8 +43,6 @@
 .temp
 .*.aux
 KEEP
-[A-Z]
-[a-z]
 _darcs
 a.out
 temp
