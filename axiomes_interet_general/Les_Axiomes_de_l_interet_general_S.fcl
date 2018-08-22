@@ -1,0 +1,25 @@
+open "basics";;
+open "Finite_Set_S";;
+open "Un_Citoyen_S";;
+
+species Les_Axiomes_de_l_interet_general_S (
+  UCit is Un_Citoyen_S
+) =
+
+  logical let un_citoyen_a_un_logement_decent (ucit : UCit) =
+    UCit!a_un_logement_decent (ucit);    
+
+  property un_citoyen_a_un_logement_decent_pr : all ucit : UCit,
+  un_citoyen_a_un_logement_decent (ucit);
+
+  logical let un_citoyen_a_une_existence_decente (ucit : UCit) =
+    UCit!a_un_logement_decent (ucit) ->    
+    UCit!a_une_alimentation_suffisante (ucit) ->              
+    UCit!a_une_alimentation_saine (ucit) ->
+    UCit!est_habille_suffisamment (ucit) ->              
+    UCit!est_habille_decemment (ucit) ->              
+    UCit!est_maintenu_en_bonne_sante (ucit) ->              
+    UCit!a_acces_a_une_education_de_qualite (ucit);
+  
+end;;
+

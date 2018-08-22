@@ -1,0 +1,22 @@
+open "basics";;
+open "Les_Axiomes_de_l_interet_general_S";;
+open "Un_Citoyen_S";;
+
+species Cette_Doleance_S (
+  UCit is Un_Citoyen_S,
+  LAig is Les_Axiomes_de_l_interet_general_S (UCit)
+) =
+
+  logical let ce_citoyen_est_loge_decemment (ucit : UCit) =
+    (UCit!a_un_logement_decent (ucit));
+  
+   theorem est_conforme_th :
+  all ucit : UCit,
+  LAig!un_citoyen_a_un_logement_decent (ucit)
+  proof = by property LAig!un_citoyen_a_un_logement_decent_pr
+  definition of ce_citoyen_est_loge_decemment  
+  ;
+
+end
+;;
+
