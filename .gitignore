@@ -1,6 +1,8 @@
 #.depend
 #.depend-rebuild
 *#
+[a-z]
+[A_Z]
 *.#
 *.[oa]
 *.annot
@@ -17,8 +19,8 @@
 *.fo
 *.glob
 *.info
+*.keep
 *.mangled
-*.mk
 *.ml
 *.modules
 *.o

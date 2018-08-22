@@ -47,17 +47,14 @@ species Le_Gouvernement_S (
   UEluOfUPar is Un_Elu_subtype (UScr, UTer, UBvo, UCel, UPar, UPar_set, UElu, UElu_set),
   UCelOfUElu is Un_Citoyen_electeur_subtype (UScr, UTer, UBvo, UElu, UElu_set, UCel, UCel_set),
   LAna is L_Assemblee_nationale_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, UDep),
-  LSen is Le_Senat_S (UScr, UTer, UFra, UBvo, UCel, UCel_set, UPlo, ULoi, UAex, UElu, UElu_set, UPar, UPar_set, USen, USen_set, UParOfUSen, UEluOfUPar, UCelOfUElu),
-  LPar is Le_Parlement_S (UScr, UTer, UFra, UBvo, UCel, UCel_set, UElu, UElu_set, UPlo, ULoi, UAex, USen, USen_set, UDep, UDep_set, UPar, UPar_set, UParOfUDep, UParOfUSen, UEluOfUPar, UCelOfUElu, LAna, LSen)
+  LSen is Le_Senat_S (UScr, UTer, UFra, UBvo, UCel, UElu, UPlo, ULoi, UAex, USen),
+  LPar is Le_Parlement_S (UScr, UTer, UFra, UBvo, UCel, UCel_set, UElu, UElu_set, UPlo, ULoi, UAex, UDep, UDep_set, USen, USen_set, UPar, UPar_set, UParOfUDep, UParOfUSen, UEluOfUPar, UCelOfUElu, LAna, LSen)
   ) =
 
-(* QUESTION UMgo_set dans la liste d'arguments ? *)
-
-  inherit Un_Organe_deliberant_S (UAex), Finite_Set_S (UMgo);
+  inherit Finite_Set_S (UMgo), Un_Organe_deliberant_S (UAex);
 
 -- Article 11 b-1 - Lorsque le référendum est organisé sur proposition du Gouvernement ...
 
-(* QUESTION Self est-il nécessaire ? *)
   signature propose_un_referendum : Self -> UScr -> bool;
  
   property article_11_b_1 : all lgou : Self, all uscr : UScr,

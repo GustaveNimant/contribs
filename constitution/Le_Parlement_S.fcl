@@ -1,6 +1,7 @@
 open "basics";;
 open "Finite_Set_S";;
 open "L_Assemblee_nationale_S";;
+open "L_Electorat_S";;
 open "Le_Senat_S";;
 open "Les_Fonctions_de_conversion";;
 open "Un_Acte_de_l_executif_S";;
@@ -39,10 +40,10 @@ species Le_Parlement_S (
   UPlo is Une_Proposition_de_loi_S,
   ULoi is Une_Loi_S,
   UAex is Un_Acte_de_l_executif_S,
-  USen is Un_Senateur_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex),
-  USen_set is Finite_Set_S (USen),
   UDep is Un_Depute_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex),
   UDep_set is Finite_Set_S (UDep),
+  USen is Un_Senateur_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex),
+  USen_set is Finite_Set_S (USen),
   UPar is Un_Parlementaire_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex),
   UPar_set is Finite_Set_S (UPar),
   UParOfUDep is Un_Parlementaire_subtype (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, UDep, UDep_set, UPar, UPar_set),
@@ -50,7 +51,7 @@ species Le_Parlement_S (
   UEluOfUPar is Un_Elu_subtype (UScr, UTer, UBvo, UCel, UPar, UPar_set, UElu, UElu_set),
   UCelOfUElu is Un_Citoyen_electeur_subtype (UScr, UTer, UBvo, UElu, UElu_set, UCel, UCel_set),
   LAna is L_Assemblee_nationale_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, UDep),
-  LSen is Le_Senat_S (UScr, UTer, UFra, UBvo, UCel, UCel_set, UPlo, ULoi, UAex, UElu, UElu_set, UPar, UPar_set, USen, USen_set, UParOfUSen, UEluOfUPar, UCelOfUElu)
+  LSen is Le_Senat_S (UScr, UTer, UFra, UBvo, UCel, UElu, UPlo, ULoi, UAex, USen)
 ) = 
 
   inherit Finite_Set_S (UPar);

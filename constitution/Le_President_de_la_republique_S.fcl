@@ -29,7 +29,7 @@ open "Une_Ordonnance_S";;
 (* QUESTION Le_President_de_la_republique ou Un_President_de_la republique ? *)
 (* QUESTION Le_ caractérise un ensemble  Ex : Les_Presidents_de_la_republique *)
 (* QUESTION Le conseil des ministres ou UMin_set ? *)
-(* QUESTION L_Electorat ou UCel_set ? *)
+(* QUESTION L_Electorat ou LEle ? *)
 
 species Le_President_de_la_republique_S (
   UScr is Un_Scrutin_S,
@@ -53,15 +53,15 @@ species Le_President_de_la_republique_S (
   UDep_set is Finite_Set_S (UDep),
   USen is Un_Senateur_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex),
   USen_set is Finite_Set_S (USen),
-  LAna is L_Assemblee_nationale_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, UDep),
   UPar is Un_Parlementaire_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex),
   UPar_set is Finite_Set_S (UPar),
   UParOfUDep is Un_Parlementaire_subtype (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, UDep, UDep_set, UPar, UPar_set),
   UParOfUSen is Un_Parlementaire_subtype (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, USen, USen_set, UPar, UPar_set),
   UEluOfUPar is Un_Elu_subtype (UScr, UTer, UBvo, UCel, UPar, UPar_set, UElu, UElu_set),
   UCelOfUElu is Un_Citoyen_electeur_subtype (UScr, UTer, UBvo, UElu, UElu_set, UCel, UCel_set),
-  LSen is Le_Senat_S (UScr, UTer, UFra, UBvo, UCel, UCel_set, UPlo, ULoi, UAex, UElu, UElu_set, UPar, UPar_set, USen, USen_set, UParOfUSen, UEluOfUPar, UCelOfUElu),
-  LPar is Le_Parlement_S (UScr, UTer, UFra, UBvo, UCel, UCel_set, UElu, UElu_set, UPlo, ULoi, UAex, USen, USen_set, UDep, UDep_set, UPar, UPar_set, UParOfUDep, UParOfUSen, UEluOfUPar, UCelOfUElu, LAna, LSen),
+  LAna is L_Assemblee_nationale_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, UDep),
+  LSen is Le_Senat_S (UScr, UTer, UFra, UBvo, UCel, UElu, UPlo, ULoi, UAex, USen),
+  LPar is Le_Parlement_S (UScr, UTer, UFra, UBvo, UCel, UCel_set, UElu, UElu_set, UPlo, ULoi, UAex, UDep, UDep_set, USen, USen_set, UPar, UPar_set, UParOfUDep, UParOfUSen, UEluOfUPar, UCelOfUElu, LAna, LSen),
   LGou is Le_Gouvernement_S (UScr, UTer, UFra, UAex, ULoi, UPlo, UOrd, UDec, UBvo, UCel, UCel_set, UElu, UElu_set, UMgo, UDep, UDep_set, USen, USen_set, UPar, UPar_set, UParOfUDep, UParOfUSen, UEluOfUPar, UCelOfUElu, LAna, LSen, LPar)
 ) =
     
@@ -142,9 +142,9 @@ species Le_President_de_la_republique_S (
 
   signature demissionne_premier_ministre : Self -> LPmi -> bool;
 
-  property article_8 : all lpre : Self, all lgou : LGou, 
+  property article_8 : all lpre : Self, all lgou : LGou, all lpmi : LPmi,
   demissionne_le_gouvernement (lpre, lgou) -> 
-  all lpmi : LPmi, demissionne_premier_ministre (lpre, lpmi);
+  demissionne_premier_ministre (lpre, lpmi);
 
 -- Article 9 - Le Président de la République préside le conseil des ministres.
 
@@ -184,12 +184,12 @@ species Le_President_de_la_republique_S (
 
   signature exerce_sa_souverainete : Self -> bool;
 
-  property est_souverain : all lpre : Self, all lpmi : LPmi,  all uaex : UAex, all lana : LAna,
-     exerce_sa_souverainete (lpre) ->
-      nomme_le_premier_ministre (lpre, lpmi) ->  
-       signe_un_acte_de_l_executif (lpre, uaex) ->
-        peut_dissoudre_l_assemblee (lpre, lana) -> 
-        all uloi : ULoi, promulge_une_loi (lpre, uloi)
+  property est_souverain : all lpre : Self, all lpmi : LPmi, all uaex : UAex, all lana : LAna, all uloi : ULoi,
+  exerce_sa_souverainete (lpre) ->
+  nomme_le_premier_ministre (lpre, lpmi) ->  
+  signe_un_acte_de_l_executif (lpre, uaex) ->
+  peut_dissoudre_l_assemblee (lpre, lana) -> 
+  promulge_une_loi (lpre, uloi)
   ;
 
 end;;

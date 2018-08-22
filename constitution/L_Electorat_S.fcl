@@ -13,8 +13,6 @@ species L_Electorat_S (UScr is Un_Scrutin_S,
                        UElu is Un_Elu_S (UScr, UTer, UBvo)
                       ) =
 
-(* QUESTION UCel_set dans la liste d'arguments ? *)
-
   inherit Finite_Set_S (UCel); 
 
   signature vote_au_referendum : UCel -> bool;

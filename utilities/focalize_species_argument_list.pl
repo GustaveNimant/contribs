@@ -2,7 +2,8 @@
 die "Usage:\n perl $0 <file.fcl> \n" if $#ARGV < 0 ;
 
 use File::Basename;
-
+use List::Uniq ':all';
+ 
 $a_file = shift (@ARGV);
 # print "file >$a_file<\n";
 if ($a_file =~ /_S\.fcl$/) {
@@ -30,7 +31,7 @@ if ( ! ( -s $a_file )) {
 $path = "";
 $suffix = "";
 
-($name, $path, $suffix) = fileparse ($a_file,'.\w+');
+($species_name, $path, $suffix) = fileparse ($a_file,'.\w+');
 
 open(INP, "<$a_file");
 @Tout=(<INP>);
@@ -96,7 +97,7 @@ foreach $_ (@missing_open_file_l) {
 print "\n";
 foreach $_ (@argument_l) {
     $s = $species_and_argument_list_by_argument_h{$_};
-    print "            $_ is $s\n";
+    print "  $_ is $s\n";
 
     if ( ! ($s =~ /Finite_set/)){ 
 	($spe = $s) =~ s/,//;
@@ -119,17 +120,78 @@ foreach $_ (@argument_l) {
 @file_l = sort (@open_file_l);
 $top = pop @file_l;
 @open_file_l = ($top, @file_l);
+@open_file_l = uniq(@open_file_l);
+
 
 print "\n";
 foreach $_ (@open_file_l) { 
     if ( $_ ne "Setoid" ) {
-	print "open \"$_\";;\n";
+	if ($_ =~ /_subtype/) {
+	    if (! grep /Les_Fonctions_de_conversion/, @open_file_l) {
+		print "open \"Les_Fonctions_de_conversion\";;\n";
+	    }
+	}
+	else {
+	    print "open \"$_\";;\n";
+	}
     }
 }
 
 print "\n";
 
-print " ${name} (";
+$abbreviated_species_name = &abbreviated_name ($species_name);
+print "  $abbreviated_species_name is ";
+
+print "${species_name} (";
 print join (', ', @argument_l);
 print "),\n";
+
+sub clean_word_list {
+    @my_word_l = @_;
+    @result_l = ();
+    foreach $_ (@my_word_l) {
+#	print "word >$_<\n";
+	if ( !(($_ eq "S")
+	    || ($_ eq "de") 
+	    || ($_ eq "des") 
+	    || ($_ eq "du") 
+	    || ($_ eq "l") 
+	    || ($_ eq "la") 
+	    || ($_ eq "les") 
+	    || ($_ eq "le") 
+	    )) {
+	    push @result_l, $_;
+	}
+    }
+
+    return @result_l;
+}
+
+sub abbreviated_name {
+    $my_name = shift @_;
+
+    @word_list = split /_/, $my_name;
+    @word_l = &clean_word_list (@word_list);
+
+    $count = 0;
+    $result = "";
+    foreach $_ (@word_l) {
+	$count = $count +1;
+	$word_count = $#word_l+1;
+
+	$result .= substr $_,0,1;
+	if ($count == 4) {
+	    last;
+	}
+	$last_word = $_;
+    }
+
+    $end = substr ($last_word,1,(4-$count));
+
+    $result .= $end;
+
+    return $result;
+
+}; # abbreviated_name
+
 exit;

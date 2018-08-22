@@ -31,24 +31,24 @@ species La_Republique_francaise_S (
   UFra_set is Finite_Set_S (UFra),
   LPfr is Le_Peuple_francais_S (UTer, LTfr, UFra, UFra_set),
   UCel is Un_Citoyen_electeur_S (UScr, UTer, UBvo),
-  UCel_set is Finite_Set_S (UCel),
+  LEle is L_Electorat_S (UScr, UTer, UBvo, UCel, UElu),
   UPlo is Une_Proposition_de_loi_S,
   ULoi is Une_Loi_S,
   LDfr is Le_Droit_francais_S (ULoi),
   UAex is Un_Acte_de_l_executif_S,
   USen is Un_Senateur_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex),
-  USen_set is Finite_Set_S (USen),
+  LSen is Le_Senat_S (UScr, UTer, UFra, UBvo, UCel, LEle, UPlo, ULoi, UAex, UElu, UElu_set, UPar, UPar_set, USen, LSen, UParOfUSen, UEluOfUPar, UCelOfUElu),
   UDep is Un_Depute_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex),
-  UDep_set is Finite_Set_S (UDep),
+  LAna is L_Assemblee_nationale_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, UDep),
   UPar is Un_Parlementaire_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex),
-  UPar_set is Finite_Set_S (UPar),
+  LPar is Le_Parlement_S (UScr, UTer, UFra, UBvo, UCel, UElu, LEle, UElu_set, UPlo, ULoi, UAex, USen, UDep, LAna, UPar, UPar_set, UParOfUDep, UParOfUSen, UEluOfUPar, UCelOfUElu, LAna, LSen),
   UParOfUDep is Un_Parlementaire_subtype (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, UDep, UDep_set, UPar, UPar_set),
   UParOfUSen is Un_Parlementaire_subtype (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, USen, USen_set, UPar, UPar_set),
   UEluOfUPar is Un_Elu_subtype (UScr, UTer, UBvo, UCel, UPar, UPar_set, UElu, UElu_set),
-  UCelOfUElu is Un_Citoyen_electeur_subtype (UScr, UTer, UBvo, UElu, UElu_set, UCel, UCel_set),
+  UCelOfUElu is Un_Citoyen_electeur_subtype (UScr, UTer, UBvo, UElu, UElu_set, UCel, UEle_set),
   LAna is L_Assemblee_nationale_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, UDep),
-  LSen is Le_Senat_S (UScr, UTer, UFra, UBvo, UCel, UCel_set, UPlo, ULoi, UAex, UElu, UElu_set, UPar, UPar_set, USen, USen_set, UParOfUSen, UEluOfUPar, UCelOfUElu),
-  LPar is Le_Parlement_S (UScr, UTer, UFra, UBvo, UCel, UCel_set, UElu, UElu_set, UPlo, ULoi, UAex, USen, USen_set, UDep, UDep_set, UPar, UPar_set, UParOfUDep, UParOfUSen, UEluOfUPar, UCelOfUElu, LAna, LSen)
+  LSen is Le_Senat_S (UScr, UTer, UFra, UBvo, UCel, LEle, UPlo, ULoi, UAex, UElu, UElu_set, UPar, UPar_set, USen, LSen, UParOfUSen, UEluOfUPar, UCelOfUElu),
+  LPar is Le_Parlement_S (UScr, UTer, UFra, UBvo, UCel, LEle, UElu, UElu_set, UPlo, ULoi, UAex, USen, LSen, UDep, LAna, UPar, UPar_set, UParOfUDep, UParOfUSen, UEluOfUPar, UCelOfUElu, LAna, LSen)
 ) =
 
 -- Article 1 a 1 - La France est une République indivisible, laïque, démocratique et sociale. 

@@ -2,6 +2,7 @@ open "basics";;
 open "Finite_Set_S";;
 open "Un_Acte_de_l_executif_S";;
 open "Les_Fonctions_de_conversion";;
+open "L_Electorat_S";;
 open "Un_Francais_S";;
 open "Un_Bureau_de_vote_S";;
 open "Un_Citoyen_electeur_S";;
@@ -33,19 +34,11 @@ species Le_Senat_S (
   UFra is Un_Francais_S (UTer),
   UBvo is Un_Bureau_de_vote_S (UTer),
   UCel is Un_Citoyen_electeur_S (UScr, UTer, UBvo),
-  UCel_set is Finite_Set_S (UCel),
+  UElu is Un_Elu_S (UScr, UTer, UBvo),
   UPlo is Une_Proposition_de_loi_S,
   ULoi is Une_Loi_S,
   UAex is Un_Acte_de_l_executif_S, 
-  UElu is Un_Elu_S (UScr, UTer, UBvo),
-  UElu_set is Finite_Set_S (UElu),
-  UPar is Un_Parlementaire_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex), 
-  UPar_set is Finite_Set_S (UPar),
-  USen is Un_Senateur_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex),
-  USen_set is Finite_Set_S (USen),
-  UParOfUSen is Un_Parlementaire_subtype (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex,USen, USen_set, UPar, UPar_set),
-  UEluOfUPar is Un_Elu_subtype (UScr, UTer, UBvo, UCel, UPar, UPar_set, UElu, UElu_set),
-  UCelOfUElu is Un_Citoyen_electeur_subtype (UScr, UTer, UBvo, UElu, UElu_set, UCel, UCel_set)
+  USen is Un_Senateur_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex)
 ) =
     
   inherit Finite_Set_S (USen);
@@ -53,12 +46,6 @@ species Le_Senat_S (
   signature examine_une_proposition_de_loi : Self -> UPlo -> bool;
 
   let ne_peut_pas_etre_dissous (lsen : Self) = false;
-
-  let l_UEluOfUSen (usen : USen) : UElu = 
-    UEluOfUPar!to_super (UParOfUSen!to_super (usen));
-  
-  let l_UCelOfUElu (uelu : UElu) : UCel = 
-    (UCelOfUElu!to_super (uelu));
 
   logical let adopte_une_loi (lsen : Self, uloi : ULoi) =
     all usen : USen, 
