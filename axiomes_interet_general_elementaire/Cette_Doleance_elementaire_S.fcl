@@ -1,0 +1,32 @@
+open "basics";;
+open "Les_Axiomes_de_l_interet_general_elementaire_S";;
+open "Un_Citoyen_elementaire_S";;
+
+species Cette_Doleance_elementaire_S (
+  UCit is Un_Citoyen_elementaire_S,
+  LAig is Les_Axiomes_de_l_interet_general_elementaire_S (UCit)
+) =
+
+  logical let ce_citoyen_est_loge_decemment (ucit : UCit) =
+    (UCit!a_un_logement_decent (ucit));
+  
+  logical let ce_citoyen_n_est_pas_loge_decemment (ucit : UCit) =
+    ~~(UCit!a_un_logement_decent (ucit));
+  
+  theorem est_conforme_th :
+  all ucit : UCit,
+  LAig!un_citoyen_a_un_logement_decent (ucit)
+  proof = by property LAig!un_citoyen_a_un_logement_decent_pr
+  definition of ce_citoyen_est_loge_decemment  
+  ;
+
+  theorem n_est_pas_conforme_th :
+  all ucit : UCit,
+  ~(LAig!un_citoyen_a_un_logement_decent (ucit))
+  proof = by property LAig!un_citoyen_n_a_pas_un_logement_decent_pr
+  definition of ce_citoyen_n_est_pas_loge_decemment  
+  ;
+
+end
+;;
+
