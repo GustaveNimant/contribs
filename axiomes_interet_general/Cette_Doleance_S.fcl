@@ -11,7 +11,7 @@ species Cette_Doleance_S (
     (UCit!a_un_logement_decent (ucit));
   
   logical let ce_citoyen_n_est_pas_loge_decemment (ucit : UCit) =
-    ~~(UCit!a_un_logement_decent (ucit));
+    ~(UCit!a_un_logement_disposant_de_sanitaire (ucit));
   
   theorem est_conforme_th :
   all ucit : UCit,
