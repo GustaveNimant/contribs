@@ -7,4 +7,6 @@ species Un_Territoire_S =
 
   signature est_un_territoire_francais : Self -> bool;
 
+  signature est_un_indivisible : Self -> bool;
+
 end;;
