@@ -12,6 +12,9 @@ species Les_Axiomes_de_l_interet_general_S (
   property un_citoyen_a_un_logement_decent_pr : all ucit : UCit,
   un_citoyen_a_un_logement_decent (ucit);
 
+  property un_citoyen_n_a_pas_un_logement_decent_pr : all ucit : UCit,
+  ~(un_citoyen_a_un_logement_decent (ucit));
+
   logical let un_citoyen_a_une_existence_decente (ucit : UCit) =
     UCit!a_un_logement_decent (ucit) ->    
     UCit!a_une_alimentation_suffisante (ucit) ->              
