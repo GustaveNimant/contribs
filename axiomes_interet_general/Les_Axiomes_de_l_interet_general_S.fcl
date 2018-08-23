@@ -6,14 +6,14 @@ species Les_Axiomes_de_l_interet_general_S (
   UCit is Un_Citoyen_S
 ) =
 
-  logical let un_citoyen_a_un_logement_decent (ucit : UCit, surf : int) =
-    UCit!a_un_logement_decent (ucit, surf);    
-
-  property un_citoyen_a_un_logement_decent_pr : all ucit : UCit, ex surf : int,
-  un_citoyen_a_un_logement_decent (ucit, surf);
-
-  property un_citoyen_n_a_pas_un_logement_decent_pr : all ucit : UCit, ex surf : int,
-  ~(un_citoyen_a_un_logement_decent (ucit, surf));
-
+  logical let un_citoyen_a_un_logement_decent (ucit : UCit) =
+    UCit!a_un_logement_decent (ucit);    
+  
+  property un_citoyen_a_un_logement_decent_pr : all ucit : UCit, 
+  un_citoyen_a_un_logement_decent (ucit);
+  
+  property un_citoyen_n_a_pas_un_logement_decent_pr : all ucit : UCit,
+  ~(un_citoyen_a_un_logement_decent (ucit));
+  
 end;;
 

@@ -7,24 +7,24 @@ species Cette_Doleance_S (
   LAig is Les_Axiomes_de_l_interet_general_S (UCit)
 ) =
 
-  logical let ce_citoyen_est_loge_decemment (ucit : UCit, surf : int) =
-    (UCit!a_un_logement_decent (ucit, surf));
+  logical let ce_citoyen_est_loge_decemment (ucit : UCit) =
+    (UCit!a_un_logement_decent (ucit));
   
-  logical let ce_citoyen_n_est_pas_loge_decemment (ucit : UCit, surf : int) =
+  logical let ce_citoyen_n_est_pas_loge_decemment (ucit : UCit) =
     ~(UCit!a_un_logement_disposant_de_sanitaire (ucit));
   
   theorem est_conforme_th :
   all ucit : UCit,
-  LAig!un_citoyen_a_un_logement_decent (ucit, 100)
+  LAig!un_citoyen_a_un_logement_decent (ucit)
   proof = by property LAig!un_citoyen_a_un_logement_decent_pr
-  definition of ce_citoyen_est_loge_decemment  
+          definition of ce_citoyen_est_loge_decemment  
   ;
 
   theorem n_est_pas_conforme_th :
   all ucit : UCit,
-  ~(LAig!un_citoyen_a_un_logement_decent (ucit, 10))
+  ~(LAig!un_citoyen_a_un_logement_decent (ucit))
   proof = by property LAig!un_citoyen_n_a_pas_un_logement_decent_pr
-  definition of ce_citoyen_n_est_pas_loge_decemment  
+          definition of ce_citoyen_n_est_pas_loge_decemment  
   ;
 
 end

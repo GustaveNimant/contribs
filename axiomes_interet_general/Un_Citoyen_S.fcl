@@ -19,20 +19,18 @@ species Un_Citoyen_S =
 -- une délibération rationnelle exige des citoyens libres
 -- une délibération rationnelle exige des citoyens indépendants
 
--- existence décente
-  let a_un_logement_de_surface_suffisante (ucit, surf) =
-    surf > 20;
-
+-- axiomes d'un logement décent.
+  signature a_un_logement_de_surface_suffisante : Self -> bool;
   signature a_un_logement_disposant_de_sanitaire : Self -> bool;
   signature a_un_logement_disposant_de_chauffage : Self -> bool;
-  signature a_un_logement_disposant_de_climatisation : Self -> bool;    
+  signature a_un_logement_disposant_de_climatisation : Self -> bool;  
   signature a_un_logement_disposant_d_un_acces_handicape : Self -> bool;
 
-  logical let a_un_logement_decent (ucit : Self, surf : int) =
-  a_un_logement_de_surface_suffisante (ucit, surf) ->    
+  logical let a_un_logement_decent (ucit : Self) =
+  a_un_logement_de_surface_suffisante (ucit) ->  
   a_un_logement_disposant_de_sanitaire (ucit) ->
   a_un_logement_disposant_de_chauffage (ucit) ->
-  a_un_logement_disposant_de_climatisation (ucit) ->    
+  a_un_logement_disposant_de_climatisation (ucit) ->  
   a_un_logement_disposant_d_un_acces_handicape (ucit);
 
   signature a_une_alimentation_suffisante : Self -> bool;  
@@ -47,5 +45,16 @@ species Un_Citoyen_S =
 
   signature a_acces_a_une_education_de_qualite : Self -> bool;  
 
+-- axiomes d'une existence décente.
+
+  logical let a_une_existence_decente (ucit : Self) =
+  a_un_logement_decent (ucit) ->
+  a_acces_a_une_education_de_qualite (ucit) ->  
+  a_une_alimentation_saine (ucit) ->
+  a_une_alimentation_suffisante (ucit) ->  
+  est_habille_decemment (ucit) ->  
+  est_habille_suffisamment (ucit) ->  
+  est_maintenu_en_bonne_sante (ucit);  
+  
 end;;
 
