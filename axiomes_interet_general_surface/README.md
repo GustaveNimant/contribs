@@ -1,4 +1,4 @@
-# Essai de conformité d'une assertion à une liste d'axiomes
+# Essai de conformité d'une assertion avec une liste d'axiomes
 
 Une version minimale des __axiomes de l'intérêt général__ est pré-définie
 
