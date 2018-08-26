@@ -1,0 +1,15 @@
+open "basics";;
+
+theorem and_ors : 
+  all a b c : bool, ((a \/ b) /\ (b \/ c)) -> (~ b -> c)
+  proof =
+    <1>1 assume a : bool, b : bool, c : bool,
+         hypothesis h1 : (a \/ b) /\ (b \/ c),
+         prove ~ b -> c
+         <2>1 hypothesis h2: ~ b,
+              prove c
+              by hypothesis h1, h2  (* Indeed, (~ b /\ (b \/ c)) -> c *)
+         <2>2 qed
+              by step <2>1
+  <1>2 conclude
+;;

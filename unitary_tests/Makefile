@@ -104,7 +104,6 @@ STD_BIN_OBJS=\
 
 BIN_EXE=build.bin
 
-
 all: $(BIN_EXE)
 
 lib: all
@@ -169,6 +168,7 @@ clean:
 	$(FOCALIZE_ZDKS) $(FOCALIZE_DKS)
 	$(RM) *.cm* *.o *.a *.annot *.out *.output *.bin *.byt *.zv *.vo *.dko *.sk.*
 	$(RM) *.glob *.fcd *.pfc *.fo .depend
+	$(RM) *.ml *.v 
 
 depend: .depend
 

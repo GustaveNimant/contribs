@@ -1,7 +1,6 @@
 open "basics";;
 open "sets";;
 
-species Finite_Anti_set_S (Param is Anti_setoid) =
 
   inherit Anti_setoid;
 

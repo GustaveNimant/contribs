@@ -1,5 +1,4 @@
 open "basics";;
-open "Finite_Set_S";;
 open "Un_Citoyen_S";;
 
 species Les_Axiomes_de_l_interet_general_S (

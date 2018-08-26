@@ -1,0 +1,7 @@
+open "basics";;
+  
+  theorem a_to_b_th : all a b : bool 
+  proof = 
+    hypothesis h1 : a,
+    prove a -> b; 
+

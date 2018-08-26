@@ -1,4 +1,6 @@
 FOCALIZE_SRC=\
-  Finite_Set_S.fcl \
-  Un_Depute_S.fcl \
-  L_Assemblee_nationale_S.fcl \
+Modus_ponens.fcl \
+#  Une_preuve_S.fcl \
+#  Un_Depute_S.fcl \
+#  Une_erreur_S.fcl \
+

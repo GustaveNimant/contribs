@@ -1,3 +1,3 @@
 FOCALIZE_SRC=\
-  lemmas.fcl \
+  or_id_com_shortest.fcl \
 

@@ -13,7 +13,7 @@ fi
 echo "FOCALIZE_SRC=\\" > files_fcl.mk
 for i in $args
 do
-echo "  $i \\" >> files_fcl.mk
+    echo "  $i \\" >> files_fcl.mk
 done
 echo "" >> files_fcl.mk
 

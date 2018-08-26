@@ -1,6 +1,6 @@
 open "basics";;
 
-species Entier =
+species Entier_S =
 
  representation = basics#int ;
 
@@ -12,7 +12,7 @@ end ;;
 
 collection Entier_C =
 
- implement Entier;
+ implement Entier_S;
 
 end ;;
 

@@ -1,0 +1,6 @@
+open "basics";;
+
+theorem And_Or :
+  all a b : bool, (a /\ b) -> (a \/ b)
+  proof = conclude
+;;

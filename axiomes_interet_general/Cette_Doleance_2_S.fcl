@@ -13,10 +13,10 @@ species Cette_Doleance_S (
   logical let ce_citoyen_n_est_pas_loge_decemment (ucit : UCit) =
     ~(UCit!a_un_logement_disposant_de_sanitaire (ucit));
  
-  theorem est_conforme_1 :
-  all ucit : UCit,
-  LAig!un_citoyen_a_un_logement_decent (ucit)
+  theorem est_conforme_th :
+  LAig!un_citoyen_a_un_logement_decent_pr
   proof = by property LAig!un_citoyen_a_un_logement_decent_pr
+             definition of ce_citoyen_est_loge_decemment
   ;
 
 end
