@@ -1,0 +1,6 @@
+open "basics";;
+
+theorem modus_ponens : 
+  all a b : bool, b
+  proof = assumed
+;;

@@ -18,23 +18,33 @@ species Un_Seul_test =
   logical let un_citoyen_est_loge_decemment (ucit : Self) =
     (a_un_logement_decent (ucit));
   
-  logical let un_citoyen_n_est_pas_loge_decemment (ucit : Self) =
-    ~(a_un_logement_disposant_de_sanitaire (ucit));
- 
   property un_citoyen_est_loge_decemment_pr : all ucit : Self,
   un_citoyen_est_loge_decemment (ucit);
 
+  logical let un_citoyen_n_est_pas_loge_decemment (ucit : Self) =
+    ~(a_un_logement_disposant_de_sanitaire (ucit));
+ 
+  property un_citoyen_n_est_pas_loge_decemment_pr : all ucit : Self,
+  un_citoyen_n_est_pas_loge_decemment (ucit);
+
   theorem est_conforme_1 :
+  all ucit : Self,
+  un_citoyen_est_loge_decemment (ucit)
+  proof = by property un_citoyen_n_est_pas_loge_decemment_pr
+  ;
+
+  theorem est_non_conforme_1 :
   all ucit : Self,
   un_citoyen_est_loge_decemment (ucit)
   proof = by property un_citoyen_est_loge_decemment_pr
   ;
 
+(*
   theorem est_conforme_2 :
   un_citoyen_est_loge_decemment_pr
   proof = by property un_citoyen_est_loge_decemment_pr
   ;
-
+*)
 end
 ;;
 
