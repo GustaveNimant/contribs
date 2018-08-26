@@ -54,50 +54,33 @@ species La_Republique_francaise_S (
 -- Article 1 a-1 - La France est une République indivisible, laïque, démocratique et sociale. 
 --                 http://www.france-republicaine.fr/republique-indivisible.php
     
-  signature l_etat_a_une_forme_unitaire : Self -> bool;
-    
-  signature le_droit_est_applique_uniformement_sur_le_territoire_national : Self -> bool;
-
-  signature le_peuple_francais_est_un : Self -> bool;
+  signature la_france_est_une_republique : Self -> bool;
 
   signature les_citoyens_sont_egaux_devant_la_loi : Self -> bool;
 
-  signature la_langue_de_la_republique_est_le_francais : Self -> bool;
+  signature est_indivisible : Self -> bool;
 
-  signature la_france_est_une_republique : Self -> bool;
+-- Wikipedia L'indivisibilité de la République
+-- L'indivisibilité de la République induit l'unicité du peuple français.
+
+  signature l_etat_a_une_forme_unitaire : Self -> bool;
+    
+  signature le_droit_est_applique_uniformement_sur_le_territoire_francais : Self -> bool;
+ 
+  logical let le_peuple_francais_est_un_sur_le_territoire (lrfr : Self) =
+   all lpfr : LPfr, all ltfr : LTfr,
+   LPfr!le_peuple_francais_est_un_sur_le_territoire (lpfr, ltfr);
+
 
 -- Article 1 a-1-1 - La France est une République indivisible
 
   logical let la_france_est_une_republique_indivisible (lrfr : Self) =
     la_france_est_une_republique (lrfr) ->
     l_etat_a_une_forme_unitaire (lrfr) ->
-    le_droit_est_applique_uniformement_sur_le_territoire_national (lrfr) ->
+    le_droit_est_applique_uniformement_sur_le_territoire_francais (lrfr) ->
     le_peuple_francais_est_un (lrfr) ->
     les_citoyens_sont_egaux_devant_la_loi (lrfr) ->
     la_langue_de_la_republique_est_le_francais (lrfr);
-
--- Article 1 a-1-2 - La France est une République laïque.
-
-  signature la_france_est_une_republique_laique : Self -> bool;
-
-  signature est_democratique : Self -> bool;
-
-  signature la_france_est_une_republique_democratique : Self -> bool;
-    la_france_est_une_republique (lrfr) ->
-    est_democratique (lrfr);
-
-  signature la_france_est_une_republique_sociale : Self -> bool;
-
-  signature le_peuple_francais_est_un_sur_le_territoire : Self -> LPfr -> LTfr -> bool;
-
-  signature le_droit_francais_est_uniforme_sur_le_territoire : Self -> LDfr -> LTfr -> bool;
-   
-  signature seul_le_parlement_produit_le_droit_francais : Self -> LPar -> LDfr -> bool;
-
--- Wikipedia L'indivisibilité de la République
--- L'indivisibilité de la République induit l'unicité du peuple français.
-
-   signature est_indivisible : Self -> bool;
 
    property article_1_a_1 : 
     all lrfr : Self, all t : LTfr, all l : LDfr, all pf : LPfr, all p : LPar,
@@ -105,6 +88,32 @@ species La_Republique_francaise_S (
         le_droit_francais_est_uniforme_sur_le_territoire (lrfr, l, t) ->
         seul_le_parlement_produit_le_droit_francais (lrfr, p, l) ->
         est_indivisible (lrfr);
+
+-- Article 1 a-1-2 - La France est une République laïque.
+
+  signature est_laic : Self -> bool;
+
+  logical let la_france_est_une_republique_laique (lrfr : Self) =
+    la_france_est_une_republique (lrfr) ->
+    est_laic (lrfr);
+
+-- Article 1 a-1-3 - La France est une République démocratique.
+
+  signature est_democratique : Self -> bool;
+
+  logical let la_france_est_une_republique_democratique (lrfr : Self) =
+    la_france_est_une_republique (lrfr) ->
+    est_democratique (lrfr);
+
+-- Article 1 a-1-4 - La France est une République social.
+
+  signature est_social : Self -> bool;
+
+  signature la_france_est_une_republique_sociale (lrfr : Self) =
+    la_france_est_une_republique (lrfr) ->
+    est_social (lrfr);
+
+  signature seul_le_parlement_produit_le_droit_francais : Self -> LPar -> LDfr -> bool;
 
 -- Article 1 a 2 - Elle assure l'égalité devant la loi de tous les citoyens sans distinction d'origine, de race ou de religion. 
 
@@ -115,5 +124,33 @@ species La_Republique_francaise_S (
   property article_4_c : all ufra : UFra, UFra!a_la_liberte_d_expression (ufra);
 
 -- Article 1 b - En vertu de ces principes et de celui de la libre détermination des peuples, la République offre aux territoires d'outre-mer qui manifestent la volonté d'y adhérer des institutions nouvelles fondées sur l'idéal commun de liberté, d'égalité et de fraternité et conçues en vue de leur évolution démocratique.
+
+-- Article 2 a - La langue de la République est le français.
+
+  signature la_langue_de_la_republique_est_le_francais : Self -> bool;
+
+-- Article 2 b - L'emblème national est le drapeau tricolore, bleu, blanc, rouge
+
+  signature l_embleme_national_est_le_drapeau_tricolore_bleu_blanc_rouge : Self -> bool;
+
+-- Article 2 c - L'hymne national est « La Marseillaise ».
+
+  signature l_hymne_national_est_la_marseillaise : Self -> bool;
+
+-- Article 2 d - La devise de la République est « Liberté, Égalité, Fraternité ».
+
+  signature la_devise_de_la_republique_est_liberte_egalite_fraternite : Self -> bool;
+
+-- Article 2 e-1 - Son principe est : gouvernement du peuple
+
+  signature son_principe_est_gouvernement_du_peuple : Self -> bool;
+
+-- Article 2 e-2 - Son principe est : gouvernement par le peuple
+
+  signature son_principe_est_gouvernement_par_le_peuple : Self -> bool;
+
+-- Article 2 e-3 - Son principe est : gouvernement pour le peuple.
+
+  signature son_principe_est_gouvernement_pour_le_peuple : Self -> bool;
 
 end;;

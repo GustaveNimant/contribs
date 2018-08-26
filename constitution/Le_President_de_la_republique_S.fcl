@@ -68,7 +68,6 @@ species Le_President_de_la_republique_S (
   inherit Un_Elu_S (UScr, UTer, UBvo), Un_Membre_de_l_executif_S (UScr, UTer, UBvo);
   
 -- Article 5 a-1 - Le Président de la République veille au respect de la Constitution. 
-
   signature veille_au_respect_de_la_constitution : Self -> bool;
 
 -- Article 5 a-2 - Il assure, par son arbitrage, le fonctionnement régulier des pouvoirs publics 
