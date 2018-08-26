@@ -1,3 +1,3 @@
 FOCALIZE_SRC=\
-  And_Or_short.fcl \
+  And_Or.fcl \
 

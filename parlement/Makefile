@@ -11,6 +11,9 @@
 #  Copyright 2008 LIP6 and INRIA                                       #
 #  Distributed only by permission.                                     #
 #                                                                      #
+#  Modified Version by Gustave Nimant 2018                             #
+#      include files_fcl.mk                                            #
+#      $(RM) *.ml *.v *.mangled                                        #
 #**********************************************************************#
 
 
@@ -168,7 +171,7 @@ clean:
 	$(FOCALIZE_ZDKS) $(FOCALIZE_DKS)
 	$(RM) *.cm* *.o *.a *.annot *.out *.output *.bin *.byt *.zv *.vo *.dko *.sk.*
 	$(RM) *.glob *.fcd *.pfc *.fo .depend
-	$(RM) *.ml .*.aux *.ml *.v
+	$(RM) *.ml *.v *.mangled 
 
 depend: .depend
 

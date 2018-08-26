@@ -11,6 +11,9 @@
 #  Copyright 2008 LIP6 and INRIA                                       #
 #  Distributed only by permission.                                     #
 #                                                                      #
+#  Modified Version by Gustave Nimant 2018                             #
+#      include files_fcl.mk                                            #
+#      $(RM) *.ml *.v *.mangled                                        #
 #**********************************************************************#
 
 
