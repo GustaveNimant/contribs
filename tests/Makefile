@@ -11,6 +11,9 @@
 #  Copyright 2008 LIP6 and INRIA                                       #
 #  Distributed only by permission.                                     #
 #                                                                      #
+#  Modified Version by Gustave Nimant 2018                             #
+#      include files_fcl.mk                                            #
+#      $(RM) *.ml *.v *.mangled                                        #
 #**********************************************************************#
 
 
@@ -18,15 +21,15 @@
 
 ROOT_DIR=../../../..
 
-LIB_INSTALL_DIR=$(LIB_DIR)/tests
+LIB_INSTALL_DIR=$(LIB_DIR)/mylibrary
 
 STDLIB_DIR=../../stdlib
 
 ALGEBRALIB_DIR=../../extlib/algebra
 
-UTILSLIB_DIR=../utils
+UTILSLIB_DIR=../../contribs/utils
 
-FOCALIZEC=../../toplevel/focalizec
+FOCALIZEC=../../toplevel/focalizec -zvtovopt -script 
 FOCALIZEDEP=../../focalizedep/focalizedep
 
 FOCALIZE_COMP_FLAGS=\
@@ -53,11 +56,7 @@ include $(ROOT_DIR)/Makefile.common
 ZVTOV=zvtov
 ZVTOV_COMP_FLAGS=-new -z '-x induct'
 
-FOCALIZE_SRC=\
- superset.fcl \
- subset.fcl \
- mylist.fcl \
- main.fcl
+include files_fcl.mk
 
 FOCALIZE_FOS=$(FOCALIZE_SRC:.fcl=.fo)
 
@@ -87,14 +86,14 @@ endif
 endif
 
 EXTERNAL_BYT_OBJS=\
- ../utils/pair.cmo\
- ../utils/peano.cmo
+ ../../contribs/utils/pair.cmo\
+ ../../contribs/utils/peano.cmo
 
 EXTERNAL_BIN_OBJS=$(EXTERNAL_BYT_OBJS:.cmo=.cmx)
 
 EXTERNAL_VOS=\
- ../utils/pair.vo\
- ../utils/peano.vo
+ ../../contribs/utils/pair.vo\
+ ../../contribs/utils/peano.vo
 
 STD_BIN_OBJS=\
  ml_builtins.cmx basics.cmx\
@@ -107,7 +106,6 @@ STD_BIN_OBJS=\
  rings_fields.cmx
 
 BIN_EXE=build.bin
-
 
 all: $(BIN_EXE)
 
@@ -173,6 +171,7 @@ clean:
 	$(FOCALIZE_ZDKS) $(FOCALIZE_DKS)
 	$(RM) *.cm* *.o *.a *.annot *.out *.output *.bin *.byt *.zv *.vo *.dko *.sk.*
 	$(RM) *.glob *.fcd *.pfc *.fo .depend
+	$(RM) *.ml *.v *.mangled 
 
 depend: .depend
 

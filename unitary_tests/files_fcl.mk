@@ -1,3 +1,3 @@
 FOCALIZE_SRC=\
-  or_id_com_shortest.fcl \
+  or_id_com1.fcl \
 

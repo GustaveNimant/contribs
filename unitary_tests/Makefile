@@ -21,13 +21,13 @@
 
 ROOT_DIR=../../../..
 
-LIB_INSTALL_DIR=$(LIB_DIR)/constitution
+LIB_INSTALL_DIR=$(LIB_DIR)/mylibrary
 
 STDLIB_DIR=../../stdlib
 
 ALGEBRALIB_DIR=../../extlib/algebra
 
-UTILSLIB_DIR=../utils
+UTILSLIB_DIR=../../contribs/utils
 
 FOCALIZEC=../../toplevel/focalizec -zvtovopt -script 
 FOCALIZEDEP=../../focalizedep/focalizedep
@@ -86,14 +86,14 @@ endif
 endif
 
 EXTERNAL_BYT_OBJS=\
- ../utils/pair.cmo\
- ../utils/peano.cmo
+ ../../contribs/utils/pair.cmo\
+ ../../contribs/utils/peano.cmo
 
 EXTERNAL_BIN_OBJS=$(EXTERNAL_BYT_OBJS:.cmo=.cmx)
 
 EXTERNAL_VOS=\
- ../utils/pair.vo\
- ../utils/peano.vo
+ ../../contribs/utils/pair.vo\
+ ../../contribs/utils/peano.vo
 
 STD_BIN_OBJS=\
  ml_builtins.cmx basics.cmx\

@@ -1,3 +1,3 @@
 FOCALIZE_SRC=\
-  Modus_Ponens.fcl \
+  And_Or.fcl \
 

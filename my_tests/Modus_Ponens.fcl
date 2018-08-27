@@ -1,16 +1,12 @@
 open "basics";;
 
-theorem modus_ponens : 
+theorem Modus_Ponens : 
   all a b : bool, b
   proof = 
-  <1>1 assume a : bool, b : bool,
-       hypothesis h1 : a,
-       prove b
-     <2>1 prove a 
-          by hypothesis h1
-     <2>2 hypothesis h2 : a -> b,
-          by hypothesis h1, h2
-     <2>3 qed 
-          by step <2>2
-   <1>2 conclude
+    <1>1 assume a b : bool,
+         hypothesis h1 : (a),
+         hypothesis h2 : (a -> b),
+         prove b 
+         by hypothesis h1, h2
+    <1>2 qed by step <1>1
 ;;
