@@ -1,4 +1,4 @@
-contribs
+mycontribs
 ==
 
 <p>Ce répertoire contient le code source de divers contributions en FoCaLiZe</p>
