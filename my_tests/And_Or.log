@@ -1,21 +1,0 @@
-rm -rf And_Or.ml And_Or.zv And_Or.v \
-	 
-rm -rf *.cm* *.o *.a *.annot *.out *.output *.bin *.byt *.zv *.vo *.dko *.sk.*
-rm -rf *.glob *.fcd *.pfc *.fo .depend
-rm -rf *.ml *.v *.mangled 
-ocamldep *.mli *.ml > ./.depend
-../../focalizedep/focalizedep *.fcl >> ./.depend
-../../toplevel/focalizec -zvtovopt -script  -no-stdlib-path -I ../../stdlib -I ../../extlib/algebra -I ../../contribs/utils -coq-version 8.8.0 -focalize-doc And_Or.fcl
-Invoking ocamlc...
->> ocamlc -I ../../stdlib -I ../../extlib/algebra -I ../../contribs/utils -c And_Or.ml
-Invoking zvtov...
->> /usr/local/bin/zvtov -zenon zenon -new  -script -z '-x induct' And_Or.zv
-10                                                              -12                                                              -14                                                              -15                                                              -Invoking coqc...
->> coqc  -Q ../../stdlib "" -Q ../../extlib/algebra "" -Q ../../contribs/utils ""  -Q /home/colonna/.opam/4.05.0/lib/zenon "" And_Or.v
-File "./And_Or.v", line 2, characters 0-36:
-Warning: Option Automatic Introduction is deprecated
-[deprecated-option,deprecated]
-File "./And_Or.v", line 40, characters 17-19:
-Error: The reference _s was not found in the current environment.
-
-make: *** [And_Or.ml] Erreur 1

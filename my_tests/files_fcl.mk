@@ -1,3 +1,3 @@
 FOCALIZE_SRC=\
-  And_Or.fcl \
+  A_implies_B_implies_Not_A_Or_B.fcl \
 

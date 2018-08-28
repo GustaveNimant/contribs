@@ -1,0 +1,8 @@
+(* Introduction à la logique standard Denis Vernant page 350 *)
+
+open "basics";;
+
+theorem A_implies_Not_A_implies_Not_A : 
+  all a : bool, (a -> ~ a) -> ~ a
+  proof = conclude
+;;

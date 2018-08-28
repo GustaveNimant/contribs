@@ -1,11 +1,11 @@
 open "basics";;
 
 theorem A_implies_Not_A_implies_Not_A : 
-  all a : bool, (a -> ~(a)) -> ~(a)
+  all a : bool, (a -> ~ a) -> ~ a
   proof = 
     <1>1 assume a : bool,
-         hypothesis h1 : (a -> ~(a)),
-         prove ~(a) 
+         hypothesis h1 : (a -> ~ a),
+         prove ~ a 
          by hypothesis h1
     <1>2 conclude
 ;;

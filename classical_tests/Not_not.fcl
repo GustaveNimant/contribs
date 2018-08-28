@@ -1,6 +1,6 @@
 open "basics";;
 
 theorem Not_not :
-  all a : bool, (a -> ~(a)) -> ~(a)
+  all a : bool, ~(~ a) -> a
   proof = conclude
 ;;
