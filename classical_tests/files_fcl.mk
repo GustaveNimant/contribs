@@ -1,3 +1,3 @@
 FOCALIZE_SRC=\
-  Not_not.fcl \
+  Modus_Ponens.fcl \
 
