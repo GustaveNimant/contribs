@@ -4,6 +4,7 @@ open "L_Assemblee_nationale_S";;
 open "Le_Gouvernement_S";;
 open "Le_Parlement_S";;
 open "Le_Premier_ministre_S";;
+open "Le_Conseil_des_ministres_S";;
 open "Le_Senat_S";;
 open "Un_Bureau_de_vote_S";;
 open "Un_Citoyen_electeur_S";;
@@ -13,6 +14,7 @@ open "Un_Decret_S";;
 open "Un_Depute_S";;
 open "Un_Elu_S";;
 open "Un_Francais_S";;
+open "Un_Haut_fonctionnaire_S";;
 open "Un_Membre_de_l_executif_S";;
 open "Un_Membre_du_gouvernement_S";;
 open "Un_Ministre_S";;
@@ -20,6 +22,7 @@ open "Un_Parlementaire_S";;
 open "Un_Scrutin_S";;
 open "Un_Senateur_S";;
 open "Un_Territoire_S";;
+open "Un_Texte_legislatif_S";;
 open "Une_Loi_S";;
 open "Une_Proposition_de_loi_S";;
 open "Une_Ordonnance_S";;
@@ -28,7 +31,7 @@ open "Une_Ordonnance_S";;
 
 (* QUESTION Le_President_de_la_republique ou Un_President_de_la republique ? *)
 (* QUESTION Le_ caractérise un ensemble  Ex : Les_Presidents_de_la_republique *)
-(* QUESTION Le conseil des ministres ou UMin_set ? *)
+(* QUESTION Le conseil des ministres ou LCmi ? *)
 (* QUESTION L_Electorat ou LEle ? *)
 
 species Le_President_de_la_republique_S (
@@ -36,19 +39,22 @@ species Le_President_de_la_republique_S (
   UTer is Un_Territoire_S,
   UFra is Un_Francais_S (UTer),
   UBvo is Un_Bureau_de_vote_S (UTer),
+  UHfo is Un_Haut_fonctionnaire_S (UTer),
   UCel is Un_Citoyen_electeur_S (UScr, UTer, UBvo),
   UCel_set is Finite_Set_S (UCel),
   UElu is Un_Elu_S (UScr, UTer, UBvo),
   UElu_set is Finite_Set_S (UElu),
   UAex is Un_Acte_de_l_executif_S,
+  UMex is Un_Membre_de_l_executif_S (UScr, UTer, UBvo),
   UMgo is Un_Membre_du_gouvernement_S (UScr, UTer, UBvo),
   LPmi is Le_Premier_ministre_S (UScr, UTer, UBvo),
   UMin is Un_Ministre_S (UScr, UTer, UBvo, UCel),
-  UMin_set is Finite_Set_S (UMin),
   UOrd is Une_Ordonnance_S,
   UDec is Un_Decret_S,
   ULoi is Une_Loi_S,
   UPlo is Une_Proposition_de_loi_S,
+  UTle is Un_Texte_legislatif_S,
+  LCmi is Le_Conseil_des_ministres_S (UScr, UTer, UBvo, UHfo, UCel, LPmi, UMin, UAex, UDec, UOrd, UTle),
   UDep is Un_Depute_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex),
   UDep_set is Finite_Set_S (UDep),
   USen is Un_Senateur_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex),
@@ -131,6 +137,8 @@ species Le_President_de_la_republique_S (
 
 -- Article 6 c - Les modalités d'application du présent article sont fixées par une loi organique.
 
+-- Article 7 - ...
+
 -- Article 8 a - Le Président de la République nomme le Premier ministre. 
 
   signature nomme_le_premier_ministre : Self -> LPmi -> bool;
@@ -147,9 +155,9 @@ species Le_President_de_la_republique_S (
 
 -- Article 9 - Le Président de la République préside le conseil des ministres.
 
-  signature preside_le_conseil_des_ministres : Self -> UMin_set -> bool;
+  signature preside_le_conseil_des_ministres : Self -> LCmi -> bool;
 
-  property article_9 : all lpre : Self, all umin_set : UMin_set,
+  property article_9 : all lpre : Self, all umin_set : LCmi,
   preside_le_conseil_des_ministres (lpre, umin_set);
 
 -- Article 10 a - Le Président de la République promulgue les lois dans les quinze jours qui suivent la transmission au Gouvernement de la loi définitivement adoptée. 

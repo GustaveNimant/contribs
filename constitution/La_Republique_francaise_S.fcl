@@ -1,6 +1,7 @@
 open "basics";;
 open "Finite_Set_S";;
 open "L_Assemblee_nationale_S";;
+open "L_Electorat_S";;
 open "Le_Senat_S";;
 open "Le_Parlement_S";;
 open "Le_Droit_francais_S";;
@@ -28,8 +29,7 @@ species La_Republique_francaise_S (
   UElu is Un_Elu_S (UScr, UTer, UBvo),
   UElu_set is Finite_Set_S (UElu),
   LTfr is Le_Territoire_francais_S (UTer),  
-  UFra_set is Finite_Set_S (UFra),
-  LPfr is Le_Peuple_francais_S (UTer, LTfr, UFra, UFra_set),
+  LPfr is Le_Peuple_francais_S (UTer, LTfr, UFra),
   UCel is Un_Citoyen_electeur_S (UScr, UTer, UBvo),
   LEle is L_Electorat_S (UScr, UTer, UBvo, UCel, UElu),
   UPlo is Une_Proposition_de_loi_S,
@@ -37,7 +37,7 @@ species La_Republique_francaise_S (
   LDfr is Le_Droit_francais_S (ULoi),
   UAex is Un_Acte_de_l_executif_S,
   USen is Un_Senateur_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex),
-  LSen is Le_Senat_S (UScr, UTer, UFra, UBvo, UCel, LEle, UPlo, ULoi, UAex, UElu, UElu_set, UPar, UPar_set, USen, LSen, UParOfUSen, UEluOfUPar, UCelOfUElu),
+  LSen is Le_Senat_S (UScr, UTer, UFra, UBvo, UCel, UElu, UPlo, ULoi, UAex, USen),
   UDep is Un_Depute_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex),
   LAna is L_Assemblee_nationale_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, UDep),
   UPar is Un_Parlementaire_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex),
@@ -109,7 +109,7 @@ species La_Republique_francaise_S (
 
   signature est_social : Self -> bool;
 
-  signature la_france_est_une_republique_sociale (lrfr : Self) =
+  logical let la_france_est_une_republique_sociale (lrfr : Self) =
     la_france_est_une_republique (lrfr) ->
     est_social (lrfr);
 

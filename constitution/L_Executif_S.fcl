@@ -16,7 +16,6 @@ species L_Executif_S (
   UTer is Un_Territoire_S,
   UBvo is Un_Bureau_de_vote_S (UTer),
   UMex is Un_Membre_de_l_executif_S(UScr, UTer, UBvo),
-  UMex_set is Finite_Set_S (UMex),
   UDec is Un_Decret_S,
   UOrd is Une_Ordonnance_S,
   UTle is Un_Texte_legislatif_S,
@@ -24,7 +23,7 @@ species L_Executif_S (
   LPmi is Le_Premier_ministre_S (UScr, UTer, UBvo)
 ) = 
     
-  inherit Un_Organe_deliberant_S (UTle);
+  inherit Finite_Set_S (UMex), Un_Organe_deliberant_S (UTle); 
 
   signature est_le_premier_ministre : Self -> LPmi -> bool;
 

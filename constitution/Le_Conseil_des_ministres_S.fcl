@@ -22,19 +22,17 @@ species Le_Conseil_des_ministres_S (
   UScr is Un_Scrutin_S,
   UTer is Un_Territoire_S,
   UBvo is Un_Bureau_de_vote_S (UTer),
-  UCel is Un_Citoyen_electeur_S (UScr, UTer, UBvo),
-  UMin is Un_Ministre_S (UScr, UTer, UBvo, UCel),
-  LPmi is Le_Premier_ministre_S (UScr, UTer, UBvo),
-  UAex is Un_Acte_de_l_executif_S,
-  UMex is Un_Membre_de_l_executif_S (UScr, UTer, UBvo),
-  UMex_set is Finite_Set_S (UMex),
   UHfo is Un_Haut_fonctionnaire_S (UTer),
+  UCel is Un_Citoyen_electeur_S (UScr, UTer, UBvo),
+  LPmi is Le_Premier_ministre_S (UScr, UTer, UBvo),
+  UMin is Un_Ministre_S (UScr, UTer, UBvo, UCel),
+  UAex is Un_Acte_de_l_executif_S,
   UDec is Un_Decret_S,
   UOrd is Une_Ordonnance_S,
   UTle is Un_Texte_legislatif_S
 ) =
     
-  inherit Finite_Set_S (UMin), L_Executif_S (UScr, UTer, UBvo, UMex, UMex_set, UDec, UOrd, UTle, UAex, LPmi);
+  inherit Finite_Set_S (UMin);
 
   signature delibere_sur_un_acte_de_l_executif : Self -> UAex -> bool;
 

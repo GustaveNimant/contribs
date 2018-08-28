@@ -34,22 +34,15 @@ species Le_Parlement_S (
   UFra is Un_Francais_S (UTer),
   UBvo is Un_Bureau_de_vote_S (UTer), 
   UCel is Un_Citoyen_electeur_S (UScr, UTer, UBvo),
-  UCel_set is Finite_Set_S (UCel),
   UElu is Un_Elu_S (UScr, UTer, UBvo),
+  LEle is L_Electorat_S (UScr, UTer, UBvo, UCel, UElu),
   UElu_set is Finite_Set_S (UElu),
   UPlo is Une_Proposition_de_loi_S,
   ULoi is Une_Loi_S,
   UAex is Un_Acte_de_l_executif_S,
   UDep is Un_Depute_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex),
-  UDep_set is Finite_Set_S (UDep),
   USen is Un_Senateur_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex),
-  USen_set is Finite_Set_S (USen),
   UPar is Un_Parlementaire_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex),
-  UPar_set is Finite_Set_S (UPar),
-  UParOfUDep is Un_Parlementaire_subtype (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, UDep, UDep_set, UPar, UPar_set),
-  UParOfUSen is Un_Parlementaire_subtype (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, USen, USen_set, UPar, UPar_set),
-  UEluOfUPar is Un_Elu_subtype (UScr, UTer, UBvo, UCel, UPar, UPar_set, UElu, UElu_set),
-  UCelOfUElu is Un_Citoyen_electeur_subtype (UScr, UTer, UBvo, UElu, UElu_set, UCel, UCel_set),
   LAna is L_Assemblee_nationale_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, UDep),
   LSen is Le_Senat_S (UScr, UTer, UFra, UBvo, UCel, UElu, UPlo, ULoi, UAex, USen)
 ) = 
@@ -58,11 +51,7 @@ species Le_Parlement_S (
   
   signature l_assemblee_nationale : Self -> LAna;
 
-  signature les_deputes : Self -> UDep_set;
-  
   signature le_senat : Self -> LSen;
-
-  signature les_senateurs : Self -> USen_set;
 
   logical let examine_une_proposition_de_loi (lpar : Self, uplo : UPlo) =
     LAna!examine_une_proposition_de_loi (l_assemblee_nationale (lpar), uplo)
@@ -100,22 +89,13 @@ species Le_Parlement_S (
     UPar!evalue_les_politiques_publiques (upar, uaex); 
 
   -- Titre IV Article 24 b - Il comprend l'Assemblée nationale et le Sénat.
-
+(*
   let l_UEluOfUSen (usen : USen) : UElu = 
     UEluOfUPar!to_super (UParOfUSen!to_super (usen));
   
   let l_UEluOfUDep (udep : UDep) : UElu = 
     UEluOfUPar!to_super (UParOfUDep!to_super (udep));
-
-  let les_deputes_comme_UPar_set (lpar : Self) : UPar_set =
-    UParOfUDep!to_super_set (les_deputes (lpar)); 
-  
-  let les_senateurs_comme_UPar_set (lpar : Self) : UPar_set =
-    UParOfUSen!to_super_set (les_senateurs (lpar)); 
-  
-  let le_parlement (lpar : Self) : UPar_set =
-      UPar_set!union (UParOfUDep!to_super_set (les_deputes (lpar)), 
-             UParOfUSen!to_super_set (les_senateurs (lpar))) ;
+*)
 
   -- Titre IV Article 24 e - Les Français établis hors de France sont représentés à l'Assemblée nationale et au Sénat.
 
