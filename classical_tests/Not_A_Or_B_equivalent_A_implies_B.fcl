@@ -10,7 +10,7 @@ theorem Not_A_Or_B_equivalent_A_implies_B :
          by hypothesis h1
     <1>2 assume a : bool, b : bool,
          hypothesis h2 : (a -> b),  
-         prove (~ a \/ b),
+         prove (~ a \/ b)
          by hypothesis h2
-    <1>3 qed by step <1>1,<1>2 
+    <1>3 qed by step <1>1, <1>2 
 ;;
