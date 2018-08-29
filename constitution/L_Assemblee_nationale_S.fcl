@@ -1,19 +1,16 @@
 open "basics";;
 open "Finite_Set_S";;
-open "Un_Acte_de_l_executif_S";;
 open "Un_Bureau_de_vote_S";;
 open "Un_Depute_S";;
 open "Un_Citoyen_electeur_S";;
 open "Un_Scrutin_S";;
 open "Un_Territoire_S";;
-open "Une_Loi_S";;
-open "Une_Proposition_de_loi_S";;
-open "Un_Francais_S";;
+open "Une_Chambre_legislative_S";;
 
 --  Un_Depute_S           Un_Senateur_S
 --       \                  /
 --        v                v
---        Un_Parlementaire_S   Le_President_de_la_republique Un_Elu_europeen Un_Elu_regional Un_Elu_cantonalUn_Elu_municipal  
+--        Un_Parlementaire_S 
 --                |
 --                v
 --             Un_Elu_S
@@ -27,56 +24,11 @@ open "Un_Francais_S";;
 species L_Assemblee_nationale_S (
   UScr is Un_Scrutin_S, 
   UTer is Un_Territoire_S,
-  UFra is Un_Francais_S (UTer),
   UBvo is Un_Bureau_de_vote_S (UTer),
   UCel is Un_Citoyen_electeur_S (UScr, UTer, UBvo),
-  UPlo is Une_Proposition_de_loi_S,
-  ULoi is Une_Loi_S,
-  UAex is Un_Acte_de_l_executif_S,
-  UDep is Un_Depute_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex)
+  UDep is Un_Depute_S (UScr, UTer, UBvo, UCel)
 ) = 
 
-  inherit Finite_Set_S (UDep);
+  inherit Finite_Set_S (UDep), Une_Chambre_legislative_S;
   
-  signature examine_une_proposition_de_loi : Self -> UPlo -> bool;
-
-  logical let adopte_une_loi (lana : Self, uloi : ULoi) =
-    all udep : UDep, 
-    is_a_member_of (udep, lana) ->
-    UDep!adopte_une_loi (udep, uloi); 
-
-  logical let controle_l_action_du_gouvernement (lana : Self, uae : UAex) =
-    all udep : UDep, 
-    is_a_member_of (udep, lana) ->
-    UDep!controle_l_action_du_gouvernement (udep, uae); 
-
-  -- Titre IV Article 24 c-1 - Les députés à l'Assemblée nationale, dont le nombre ne peut excéder cinq cent soixante-dix-sept, ...
-
-  logical let le_nombre_de_deputes_est_inferieur_ou_egal_a_577 (lana: Self) =
-    cardinal (lana) >= 577;
-
-  -- Titre IV Article 24 c-2 - [ Les députés à l'Assemblée nationale ] ..., sont élus au suffrage direct
-
-  logical let est_elu_au_suffrage_direct (lana : Self, uscr : UScr) = 
-    all udep : UDep,
-    is_a_member_of (udep, lana) ->
-    UDep!est_elu_au_suffrage_direct (udep, uscr); 
-  
-  property article_24_c : 
-  all lana : Self, all uscr : UScr,
-  (le_nombre_de_deputes_est_inferieur_ou_egal_a_577 (lana)) 
-  /\
-  (est_elu_au_suffrage_direct (lana, uscr));
-
-  -- Titre IV Article 24-e-1 - Les Français établis hors de France sont représentés à l'Assemblée nationale ...
-
-  logical let un_francais_etabli_hors_de_france_est_represente_a_l_assemblee_nationale =
-     all udep : UDep, all ufra : UFra, all uter : UTer,
-     (UFra!est_etabli_hors_de_france (ufra, uter)) 
-     /\ 
-     (UDep!represente_un_francais (udep, ufra));
-
-  property article_24_e_1 : un_francais_etabli_hors_de_france_est_represente_a_l_assemblee_nationale ;
-
-
 end;;

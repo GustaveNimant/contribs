@@ -1,19 +1,15 @@
 open "basics";;
 open "Un_Bureau_de_vote_S";;
 open "Un_Citoyen_electeur_S";;
-open "Un_Elu_S";;
 open "Un_Francais_S";;
 open "Un_Parlementaire_S";;
 open "Un_Scrutin_S";;
 open "Un_Territoire_S";;
-open "Une_Loi_S";;
-open "Un_Acte_de_l_executif_S";;
-open "Une_Proposition_de_loi_S";;
 
 --  Un_Depute           Un_Senateur
 --      \                  /
 --       v                v
---        Un_Parlementaire   Le_President_de_la_republique Un_Elu_europeen Un_Elu_regional Un_Elu_cantonalUn_Elu_municipal  Un_Grand_electeur
+--        Un_Parlementaire  
 --                |
 --                v
 --             Un_Elu
@@ -24,32 +20,14 @@ open "Une_Proposition_de_loi_S";;
 species Un_Senateur_S (
   UScr is Un_Scrutin_S, 
   UTer is Un_Territoire_S,
-  UFra is Un_Francais_S (UTer),
   UBvo is Un_Bureau_de_vote_S (UTer),
   UCel is Un_Citoyen_electeur_S (UScr, UTer, UBvo),
-  UPlo is Une_Proposition_de_loi_S,
-  ULoi is Une_Loi_S,
-  UAex is Un_Acte_de_l_executif_S
 ) = 
 
-  inherit Un_Parlementaire_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex);
+  inherit Un_Parlementaire_S (UScr, UTer, UBvo, UCel);
 
   let est_un_depute (usen : Self) = false;
 
   let est_un_senateur (usen : Self) = true;
-
-  signature represente_un_francais : Self -> UFra -> bool;
-
-  signature redige_un_texte_de_loi : Self -> ULoi -> bool;
-
-  signature adopte_une_loi : Self -> ULoi -> bool;
-
-  signature delibere_sur_une_loi : Self -> ULoi -> bool;
   
-  signature controle_l_action_du_gouvernement : Self -> UAex -> bool;
-
-  signature evalue_les_politiques_publiques : Self -> UAex -> bool;
-
-  signature exerce_sa_souverainete : Self -> bool;
-
 end;;

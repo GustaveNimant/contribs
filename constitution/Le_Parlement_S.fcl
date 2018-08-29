@@ -4,23 +4,19 @@ open "L_Assemblee_nationale_S";;
 open "L_Electorat_S";;
 open "Le_Senat_S";;
 open "Les_Fonctions_de_conversion";;
-open "Un_Acte_de_l_executif_S";;
 open "Un_Bureau_de_vote_S";;
 open "Un_Depute_S";;
-open "Un_Francais_S";;
 open "Un_Citoyen_electeur_S";;
 open "Un_Elu_S";;
 open "Un_Parlementaire_S";;
 open "Un_Scrutin_S";;
 open "Un_Senateur_S";;
 open "Un_Territoire_S";;
-open "Une_Loi_S";;
-open "Une_Proposition_de_loi_S";;
 
 --  Un_Depute           Un_Senateur
 --      \                  /
 --       v                v
---        Un_Parlementaire            Le_President_de_la_republique Un_Elu_europeen Un_Elu_regional Un_Elu_cantonal Un_Elu_municipal  
+--        Un_Parlementaire 
 --                |
 --                v
 --             Un_Elu
@@ -31,20 +27,16 @@ open "Une_Proposition_de_loi_S";;
 species Le_Parlement_S (
   UScr is Un_Scrutin_S,
   UTer is Un_Territoire_S,
-  UFra is Un_Francais_S (UTer),
   UBvo is Un_Bureau_de_vote_S (UTer), 
   UCel is Un_Citoyen_electeur_S (UScr, UTer, UBvo),
   UElu is Un_Elu_S (UScr, UTer, UBvo),
   LEle is L_Electorat_S (UScr, UTer, UBvo, UCel),
   UElu_set is Finite_Set_S (UElu),
-  UPlo is Une_Proposition_de_loi_S,
-  ULoi is Une_Loi_S,
-  UAex is Un_Acte_de_l_executif_S,
-  UDep is Un_Depute_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex),
-  USen is Un_Senateur_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex),
-  UPar is Un_Parlementaire_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex),
+  UDep is Un_Depute_S (UScr, UTer, UBvo, UCel),
+  USen is Un_Senateur_S (UScr, UTer, UBvo, UCel),
+  UPar is Un_Parlementaire_S (UScr, UTer, UBvo, UCel),
   LAna is L_Assemblee_nationale_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, UDep),
-  LSen is Le_Senat_S (UScr, UTer, UFra, UBvo, UCel, UElu, UPlo, ULoi, UAex, USen)
+  LSen is Le_Senat_S (UScr, UTer, UBvo, UCel, UElu, USen)
 ) = 
 
   inherit Finite_Set_S (UPar);
@@ -52,44 +44,5 @@ species Le_Parlement_S (
   signature l_assemblee_nationale : Self -> LAna;
 
   signature le_senat : Self -> LSen;
-
-  logical let examine_une_proposition_de_loi (lpar : Self, uplo : UPlo) =
-    LAna!examine_une_proposition_de_loi (l_assemblee_nationale (lpar), uplo)
-    /\ 
-    LSen!examine_une_proposition_de_loi (le_senat (lpar), uplo);
-  
-  -- Titre IV Article 24 a-1 - Le Parlement vote la uloi. 
-
-  logical let vote_une_loi_2 (lpar : Self, uloi : ULoi) =
-    LAna!adopte_une_loi (l_assemblee_nationale (lpar), uloi)
-    /\ 
-    LSen!adopte_une_loi (le_senat (lpar), uloi);
-  
-  logical let adopte_une_loi (lpar : Self, uloi : ULoi) =
-    all upar : UPar, 
-    is_a_member_of (upar, lpar) -> 
-    UPar!adopte_une_loi (upar, uloi); 
-
-  -- Titre IV Article 24 a-2 - Il contrôle l'action du Gouvernement. 
-
-  logical let controle_l_action_du_gouvernement (lpar : Self, uaex : UAex) = 
-    all upar : UPar,
-    is_a_member_of (upar, lpar) -> 
-    UPar!controle_l_action_du_gouvernement (upar, uaex); 
-
-  -- Titre IV Article 24 a-3 - Il évalue les politiques publiques.
-
-  logical let evalue_les_politiques_publiques (lpar : Self, uaex : UAex) = 
-    all upar : UPar,
-    is_a_member_of (upar, lpar) -> 
-    UPar!evalue_les_politiques_publiques (upar, uaex); 
-
-  -- Titre IV Article 24 e - Les Français établis hors de France sont représentés à l'Assemblée nationale et au Sénat.
-
-  logical let un_francais_etabli_hors_de_france_est_represente_au_parlement =
-     all upar : UPar, all ufra : UFra, all uter : UTer,
-     (UFra!est_etabli_hors_de_france (ufra, uter)) 
-     /\ 
-     (UPar!represente_un_francais (upar, ufra));
 
 end;;

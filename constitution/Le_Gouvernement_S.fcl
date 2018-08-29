@@ -39,12 +39,12 @@ species Le_Gouvernement_S (
   UMgo is Un_Membre_du_gouvernement_S (UScr, UTer, UBvo),
   UDep is Un_Depute_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex), 
   UDep_set is Finite_Set_S (UDep),
-  USen is Un_Senateur_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex),
+  USen is Un_Senateur_S (UScr, UTer, UBvo, UCel),
   USen_set is Finite_Set_S (USen),
   UPar is Un_Parlementaire_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex),
   UPar_set is Finite_Set_S (UPar),
-  LAna is L_Assemblee_nationale_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, UDep),
-  LSen is Le_Senat_S (UScr, UTer, UFra, UBvo, UCel, UElu, UPlo, ULoi, UAex, USen),
+  LAna is L_Assemblee_nationale_S (UScr, UTer, UBvo, UCel),
+  LSen is Le_Senat_S (UScr, UTer, UBvo, UCel, UElu, USen),
   LPar is Le_Parlement_S (UScr, UTer, UFra, UBvo, UCel, UElu, LEle, UElu_set, UPlo, ULoi, UAex, UDep, USen, UPar, LAna, LSen)
   ) =
 

@@ -150,9 +150,9 @@ species Un_Senateur_subtype (
   UPlo is Une_Proposition_de_loi_S,
   ULoi is Une_Loi_S,
   UAex is Un_Acte_de_l_executif_S,
-  Sub is Un_Senateur_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex),
+  Sub is Un_Senateur_S (UScr, UTer, UBvo, UCel),
   Sub_set is Finite_Set_S(Sub),
-  Super is Un_Senateur_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex),
+  Super is Un_Senateur_S (UScr, UTer, UBvo, UCel),
   Super_set is Finite_Set_S(Super)
 ) =
     
@@ -214,7 +214,7 @@ species Un_ParlementaireOfUn_Senateur (
   UPlo is Une_Proposition_de_loi_S,
   ULoi is Une_Loi_S,
   UAex is Un_Acte_de_l_executif_S,
-  USen is Un_Senateur_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex), 
+  USen is Un_Senateur_S (UScr, UTer, UBvo, UCel), 
   USen_set is Finite_Set_S (USen),
   UPar is Un_Parlementaire_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex), 
   UPar_set is Finite_Set_S (UPar)

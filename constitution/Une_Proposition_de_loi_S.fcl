@@ -1,8 +1,15 @@
 open "basics";;
 open "Un_Texte_legislatif_S";;
 
-species Une_Proposition_de_loi_S = 
+species Une_Proposition_de_loi_S (
+
+  LAna is L_Assemblee_nationale_S (UScr, UTer, UBvo, UCel),
+  LSen is Le_Senat_S (UScr, UTer, UFra, UBvo, UCel, UElu, USen)
+  = 
 
   inherit Un_Texte_legislatif_S;
 
+  signature une_proposition_de_loi_est_examinee_par_l_assemblee_nationale : LAna -> bool;
+
+  signature une_proposition_de_loi_est_examinee_par_le_senat : LSen -> bool;
 end;;

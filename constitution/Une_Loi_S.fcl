@@ -5,4 +5,19 @@ species Une_Loi_S =
 
   inherit Un_Texte_legislatif_S;
 
+  signature une_loi_est_adoptee_par_l_assemblee_nationale : Self -> bool;
+
+  signature une_loi_est_adoptee_par_le_senat : Self -> bool;
+
+  signature examine_une_proposition_de_loi : Self -> UPlo -> bool;
+
+  signature depose_un_projet_de_loi : Self -> UPlo -> bool;
+
+  signature redige_un_texte_de_loi : Self -> ULoi -> bool;
+
+  signature adopte_une_loi : Self -> ULoi -> bool;
+
+  signature delibere_sur_une_loi : Self -> ULoi -> bool;
+  
+
 end;;
