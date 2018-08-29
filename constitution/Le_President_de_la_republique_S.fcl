@@ -2,6 +2,7 @@ open "basics";;
 open "Finite_Set_S";;
 open "L_Assemblee_nationale_S";;
 open "Le_Gouvernement_S";;
+open "L_Electorat_S";;
 open "Le_Parlement_S";;
 open "Le_Premier_ministre_S";;
 open "Le_Conseil_des_ministres_S";;
@@ -41,9 +42,9 @@ species Le_President_de_la_republique_S (
   UBvo is Un_Bureau_de_vote_S (UTer),
   UHfo is Un_Haut_fonctionnaire_S (UTer),
   UCel is Un_Citoyen_electeur_S (UScr, UTer, UBvo),
-  UCel_set is Finite_Set_S (UCel),
   UElu is Un_Elu_S (UScr, UTer, UBvo),
   UElu_set is Finite_Set_S (UElu),
+  LEle is L_Electorat_S (UScr, UTer, UBvo, UCel),
   UAex is Un_Acte_de_l_executif_S,
   UMex is Un_Membre_de_l_executif_S (UScr, UTer, UBvo),
   UMgo is Un_Membre_du_gouvernement_S (UScr, UTer, UBvo),
@@ -61,14 +62,10 @@ species Le_President_de_la_republique_S (
   USen_set is Finite_Set_S (USen),
   UPar is Un_Parlementaire_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex),
   UPar_set is Finite_Set_S (UPar),
-  UParOfUDep is Un_Parlementaire_subtype (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, UDep, UDep_set, UPar, UPar_set),
-  UParOfUSen is Un_Parlementaire_subtype (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, USen, USen_set, UPar, UPar_set),
-  UEluOfUPar is Un_Elu_subtype (UScr, UTer, UBvo, UCel, UPar, UPar_set, UElu, UElu_set),
-  UCelOfUElu is Un_Citoyen_electeur_subtype (UScr, UTer, UBvo, UElu, UElu_set, UCel, UCel_set),
   LAna is L_Assemblee_nationale_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, UDep),
   LSen is Le_Senat_S (UScr, UTer, UFra, UBvo, UCel, UElu, UPlo, ULoi, UAex, USen),
-  LPar is Le_Parlement_S (UScr, UTer, UFra, UBvo, UCel, UCel_set, UElu, UElu_set, UPlo, ULoi, UAex, UDep, UDep_set, USen, USen_set, UPar, UPar_set, UParOfUDep, UParOfUSen, UEluOfUPar, UCelOfUElu, LAna, LSen),
-  LGou is Le_Gouvernement_S (UScr, UTer, UFra, UAex, ULoi, UPlo, UOrd, UDec, UBvo, UCel, UCel_set, UElu, UElu_set, UMgo, UDep, UDep_set, USen, USen_set, UPar, UPar_set, UParOfUDep, UParOfUSen, UEluOfUPar, UCelOfUElu, LAna, LSen, LPar)
+  LPar is Le_Parlement_S (UScr, UTer, UFra, UBvo, UCel, UElu, LEle, UElu_set, UPlo, ULoi, UAex, UDep, USen, UPar, LAna, LSen),
+  LGou is Le_Gouvernement_S (UScr, UTer, UFra, UAex, ULoi, UPlo, UOrd, UDec, UBvo, UCel, UElu, UElu_set, LEle, UMgo, UDep, UDep_set, USen, USen_set, UPar, UPar_set, LAna, LSen, LPar)
 ) =
     
   inherit Un_Elu_S (UScr, UTer, UBvo), Un_Membre_de_l_executif_S (UScr, UTer, UBvo);
@@ -160,7 +157,7 @@ species Le_President_de_la_republique_S (
   property article_9 : all lpre : Self, all umin_set : LCmi,
   preside_le_conseil_des_ministres (lpre, umin_set);
 
--- Article 10 a - Le Président de la République promulgue les lois dans les quinze jours qui suivent la transmission au Gouvernement de la loi définitivement adoptée. 
+-- Titre I Article 10 a - Le Président de la République promulgue les lois dans les quinze jours qui suivent la transmission au Gouvernement de la loi définitivement adoptée. 
 
   signature promulge_une_loi : Self -> ULoi -> bool;
 
@@ -168,11 +165,11 @@ species Le_President_de_la_republique_S (
   promulge_une_loi (lpre, uloi) ->
   LPar!adopte_une_loi (lpar, uloi);
 
--- Article 10 b-1 - Il peut, avant l'expiration de ce délai, demander au Parlement une nouvelle délibération de la loi ou de certains de ses articles. 
+-- Titre I Article 10 b-1 - Il peut, avant l'expiration de ce délai, demander au Parlement une nouvelle délibération de la loi ou de certains de ses articles. 
 
--- Article 10 b-2 - Cette nouvelle délibération ne peut être refusée.
+-- Titre I Article 10 b-2 - Cette nouvelle délibération ne peut être refusée.
 
--- Article 12 a - Le Président de la République peut, après consultation du Premier ministre et des présidents des assemblées, prononcer la dissolution de l'Assemblée nationale.
+-- Titre I Article 12 a - Le Président de la République peut, après consultation du Premier ministre et des présidents des assemblées, prononcer la dissolution de l'Assemblée nationale.
 
   signature consulte_premier_ministre_avant_dissolution : Self -> LPmi -> bool;
 
@@ -182,7 +179,7 @@ species Le_President_de_la_republique_S (
   peut_dissoudre_l_assemblee (lpre, lana) -> 
   consulte_premier_ministre_avant_dissolution (lpre, lpmi);
 
--- Article 13 a - Le Président de la République signe les ordonnances et les décrets délibérés en conseil des ministres. 
+-- Titre I Article 13 a - Le Président de la République signe les ordonnances et les décrets délibérés en conseil des ministres. 
 
   signature signe_un_acte_de_l_executif : Self -> UAex -> bool;
 

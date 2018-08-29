@@ -6,4 +6,5 @@ species Le_Territoire_francais_S (UTer is Un_Territoire_S) =
  
   inherit Finite_Set_S (UTer);
 
+  signature le_territoire_francais_est_un : Self -> bool;
 end;;

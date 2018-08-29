@@ -25,4 +25,20 @@ FOCALIZE_SRC= \
   Un_Elu_S.fcl \
   Un_Parlementaire_S.fcl \
   Le_Parlement_S.fcl \
- 
+  Un_Depute_S.fcl \
+  Un_Senateur_S.fcl \
+  Le_Senat_S.fcl \
+  Un_Acte_de_l_executif_S.fcl \
+  Un_Membre_de_l_executif_S.fcl \
+  Un_Ministre_S.fcl \
+  Un_Membre_du_gouvernement_S.fcl \
+  Le_Premier_ministre_S.fcl \
+  L_Executif_S.fcl \
+  L_Assemblee_nationale_S.fcl \
+  Le_Gouvernement_S.fcl \
+  Le_Conseil_des_ministres_S.fcl \
+  La_Constitution_S.fcl \
+  La_Souverainete_nationale_S.fcl \
+  Le_President_de_la_republique_S.fcl \
+  La_Republique_francaise_S.fcl \
+  Article_24_S.fcl \

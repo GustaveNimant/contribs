@@ -2,25 +2,37 @@ open "basics";;
 open "Finite_Set_S";;
 open "L_Assemblee_nationale_S";;
 open "L_Electorat_S";;
+open "Le_Conseil_des_ministres_S";;
+open "Le_Gouvernement_S";;
+open "Le_Parlement_S";;
+open "Le_Premier_ministre_S";;
+open "Le_President_de_la_republique_S";;
 open "Le_Senat_S";;
 open "Les_Fonctions_de_conversion";;
 open "Un_Acte_de_l_executif_S";;
 open "Un_Bureau_de_vote_S";;
-open "Un_Depute_S";;
-open "Un_Francais_S";;
 open "Un_Citoyen_electeur_S";;
+open "Un_Decret_S";;
+open "Un_Depute_S";;
 open "Un_Elu_S";;
+open "Un_Francais_S";;
+open "Un_Haut_fonctionnaire_S";;
+open "Un_Membre_de_l_executif_S";;
+open "Un_Membre_du_gouvernement_S";;
+open "Un_Ministre_S";;
 open "Un_Parlementaire_S";;
 open "Un_Scrutin_S";;
 open "Un_Senateur_S";;
 open "Un_Territoire_S";;
+open "Un_Texte_legislatif_S";;
 open "Une_Loi_S";;
+open "Une_Ordonnance_S";;
 open "Une_Proposition_de_loi_S";;
 
 --  Un_Depute           Un_Senateur
 --      \                  /
 --       v                v
---        Un_Parlementaire            Le_President_de_la_republique Un_Elu_europeen Un_Elu_regional Un_Elu_cantonal Un_Elu_municipal  
+--        Un_Parlementaire            Le_President_de_la_republique 
 --                |
 --                v
 --             Un_Elu
@@ -28,23 +40,38 @@ open "Une_Proposition_de_loi_S";;
 --                v
 --           Un_Francais
 
-species Le_Parlement_S (
+species Les_Representants_du_peuple_S (
+  UAex is Un_Acte_de_l_executif_S,
+  UDec is Un_Decret_S,
+  ULoi is Une_Loi_S,
+  UOrd is Une_Ordonnance_S,
+  UPlo is Une_Proposition_de_loi_S,
   UScr is Un_Scrutin_S,
   UTer is Un_Territoire_S,
+  UTle is Un_Texte_legislatif_S,
   UFra is Un_Francais_S (UTer),
   UBvo is Un_Bureau_de_vote_S (UTer), 
+  UHfo is Un_Haut_fonctionnaire_S (UTer),
   UCel is Un_Citoyen_electeur_S (UScr, UTer, UBvo),
   UElu is Un_Elu_S (UScr, UTer, UBvo),
-  LEle is L_Electorat_S (UScr, UTer, UBvo, UCel),
   UElu_set is Finite_Set_S (UElu),
-  UPlo is Une_Proposition_de_loi_S,
-  ULoi is Une_Loi_S,
-  UAex is Un_Acte_de_l_executif_S,
+  UMex is Un_Membre_de_l_executif_S (UScr, UTer, UBvo),
+  UMgo is Un_Membre_du_gouvernement_S (UScr, UTer, UBvo),
+  LPmi is Le_Premier_ministre_S (UScr, UTer, UBvo),
+  LEle is L_Electorat_S (UScr, UTer, UBvo, UCel),
+  UMin is Un_Ministre_S (UScr, UTer, UBvo, UCel),
+  LCmi is Le_Conseil_des_ministres_S (UScr, UTer, UBvo, UHfo, UCel, LPmi, UMin, UAex, UDec, UOrd, UTle),
   UDep is Un_Depute_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex),
+  UDep_set is Finite_Set_S (UDep),
   USen is Un_Senateur_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex),
+  USen_set is Finite_Set_S (USen),
   UPar is Un_Parlementaire_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex),
+  UPar_set is Finite_Set_S (UPar),
   LAna is L_Assemblee_nationale_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, UDep),
-  LSen is Le_Senat_S (UScr, UTer, UFra, UBvo, UCel, UElu, UPlo, ULoi, UAex, USen)
+  LSen is Le_Senat_S (UScr, UTer, UFra, UBvo, UCel, UElu, UPlo, ULoi, UAex, USen),
+  LPar is Le_Parlement_S (UScr, UTer, UFra, UBvo, UCel, UElu, LEle, UElu_set, UPlo, ULoi, UAex, UDep, USen, UPar, LAna, LSen),
+  LGou is Le_Gouvernement_S (UScr, UTer, UFra, UAex, ULoi, UPlo, UOrd, UDec, UBvo, UCel, UElu, UElu_set, LEle, UMgo, UDep, UDep_set, USen, USen_set, UPar, UPar_set, LAna, LSen, LPar),
+  LPre is Le_President_de_la_republique_S (UScr, UTer, UFra, UBvo, UHfo, UCel, UElu, UElu_set, LEle, UAex, UMex, UMgo, LPmi, UMin, UOrd, UDec, ULoi, UPlo, UTle, LCmi, UDep, UDep_set, USen, USen_set, UPar, UPar_set, LAna, LSen, LPar, LGou)
 ) = 
 
   inherit Finite_Set_S (UPar);

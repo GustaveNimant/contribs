@@ -1,0 +1,34 @@
+open "basics";;
+open "Finite_Set_S";;
+open "Un_Francais_S";;
+open "Le_Peuple_francais_S";;
+open "Un_Territoire_S";;
+open "Le_Territoire_francais_S";;
+
+-- La souveraineté nationale appartient au peuple qui l'exerce par ses représentants et par la voie du référendum.
+-- Aucune section du peuple ni aucun individu ne peut s'en attribuer l'exercice.
+-- Le suffrage peut être direct ou indirect dans les conditions prévues par la Constitution. Il est toujours universel, égal et secret.
+-- Sont électeurs, dans les conditions déterminées par la loi, tous les nationaux français majeurs des deux sexes, jouissant de leurs droits civils et politiques.
+
+species Article_3_S (
+  UScr is Un_Scrutin_S,
+  UTer is Un_Territoire_S,
+  UBvo is Un_Bureau_de_vote_S (UTer),
+  UCel is Un_Citoyen_electeur_S (UScr, UTer, UBvo),
+  LEle is L_Electorat_S (UScr, UTer, UBvo, UCel),
+  LSna is La_Souverainete_nationale_S (UScr, UTer, UBvo, UCel, UElu, LEle)
+) = 
+
+-- Article 3-a - La souveraineté nationale appartient au peuple qui l'exerce par ses représentants et par la voie du référendum.
+
+   property article_3_a :
+   all lele : LEle, 
+   LSna!la_souverainete_nationale_appartient_au_peuple (lele) -> 
+   LSna!la_souverainete_nationale_est_exercee_par_les_representants ->
+   LSna!la_souverainete_nationale_est_exercee_par_referendum ->
+
+-- Article 3-b - Aucune section du peuple ni aucun individu ne peut s'en attribuer l'exercice.
+-- Article 3-c - Le suffrage peut être direct ou indirect dans les conditions prévues par la Constitution. Il est toujours universel, égal et secret.
+-- Article 3-d - Sont électeurs, dans les conditions déterminées par la loi, tous les nationaux français majeurs des deux sexes, jouissant de leurs droits civils et politiques.
+
+end;;

@@ -1,6 +1,7 @@
 open "basics";;
 open "Finite_Set_S";;
 open "L_Assemblee_nationale_S";;
+open "L_Electorat_S";;
 open "Le_Parlement_S";;
 open "Le_Senat_S";;
 open "Les_Fonctions_de_conversion";;
@@ -32,9 +33,9 @@ species Le_Gouvernement_S (
   UDec is Un_Decret_S,
   UBvo is Un_Bureau_de_vote_S (UTer),
   UCel is Un_Citoyen_electeur_S (UScr, UTer, UBvo),
-  UCel_set is Finite_Set_S (UCel),
   UElu is Un_Elu_S (UScr, UTer, UBvo),
   UElu_set is Finite_Set_S (UElu),
+  LEle is L_Electorat_S (UScr, UTer, UBvo, UCel),
   UMgo is Un_Membre_du_gouvernement_S (UScr, UTer, UBvo),
   UDep is Un_Depute_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex), 
   UDep_set is Finite_Set_S (UDep),
@@ -42,18 +43,14 @@ species Le_Gouvernement_S (
   USen_set is Finite_Set_S (USen),
   UPar is Un_Parlementaire_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex),
   UPar_set is Finite_Set_S (UPar),
-  UParOfUDep is Un_Parlementaire_subtype (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, UDep, UDep_set, UPar, UPar_set),
-  UParOfUSen is Un_Parlementaire_subtype (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, USen, USen_set, UPar, UPar_set),
-  UEluOfUPar is Un_Elu_subtype (UScr, UTer, UBvo, UCel, UPar, UPar_set, UElu, UElu_set),
-  UCelOfUElu is Un_Citoyen_electeur_subtype (UScr, UTer, UBvo, UElu, UElu_set, UCel, UCel_set),
   LAna is L_Assemblee_nationale_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, UDep),
   LSen is Le_Senat_S (UScr, UTer, UFra, UBvo, UCel, UElu, UPlo, ULoi, UAex, USen),
-  LPar is Le_Parlement_S (UScr, UTer, UFra, UBvo, UCel, UCel_set, UElu, UElu_set, UPlo, ULoi, UAex, UDep, UDep_set, USen, USen_set, UPar, UPar_set, UParOfUDep, UParOfUSen, UEluOfUPar, UCelOfUElu, LAna, LSen)
+  LPar is Le_Parlement_S (UScr, UTer, UFra, UBvo, UCel, UElu, LEle, UElu_set, UPlo, ULoi, UAex, UDep, USen, UPar, LAna, LSen)
   ) =
 
   inherit Finite_Set_S (UMgo), Un_Organe_deliberant_S (UAex);
 
--- Article 11 b-1 - Lorsque le référendum est organisé sur proposition du Gouvernement ...
+-- Titre I Article 11 b-1 - Lorsque le référendum est organisé sur proposition du Gouvernement ...
 
   signature propose_un_referendum : Self -> UScr -> bool;
  
