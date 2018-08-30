@@ -4,12 +4,18 @@ open "Le_Territoire_francais_S";;
 open "Le_Peuple_francais_S";;
 open "Un_Francais_S";;
 open "Un_Territoire_S";;
+open "Une_Origine_S";;
+open "Une_Race_S";;
+open "Une_Religion_S";;
 
 species La_Republique_francaise_S (
+  URac is Une_Race_S,
+  UOri is Une_Origine_S,
+  URel is Une_Religion_S,
   UTer is Un_Territoire_S,
-  UFra is Un_Francais_S (UTer) ,
   LTfr is Le_Territoire_francais_S (UTer),  
-  LPfr is Le_Peuple_francais_S (UTer, LTfr, UFra)
+  UFra is Un_Francais_S (URac, UOri, URel, UTer) ,
+  LPfr is Le_Peuple_francais_S (URac, UOri, URel, UTer, LTfr, UFra)
 ) =
 
 -- Titre I Article 1-a-1 - La France est une République indivisible, laïque, démocratique et sociale. 
