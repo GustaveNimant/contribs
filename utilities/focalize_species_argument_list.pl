@@ -152,6 +152,7 @@ sub clean_word_list {
     foreach $_ (@my_word_l) {
 #	print "word >$_<\n";
 	if ( !(($_ eq "S")
+	    || ($_ eq "d") 
 	    || ($_ eq "de") 
 	    || ($_ eq "des") 
 	    || ($_ eq "du") 
@@ -159,6 +160,8 @@ sub clean_word_list {
 	    || ($_ eq "la") 
 	    || ($_ eq "les") 
 	    || ($_ eq "le") 
+	    || ($_ eq "un") 
+	    || ($_ eq "une") 
 	    )) {
 	    push @result_l, $_;
 	}

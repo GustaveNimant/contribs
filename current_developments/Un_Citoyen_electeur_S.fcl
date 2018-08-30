@@ -1,0 +1,43 @@
+open "basics";;
+open "Un_Francais_S";;
+open "Un_Scrutin_S";;
+open "Un_Bureau_de_vote_S";;
+open "Un_Territoire_S";;
+
+--        Un_Grand_electeur_S
+--                |
+--                v
+--             Un_Elu
+--                |
+--                v
+--      Un_Citoyen_electeur_S  
+--                |
+--                v
+--           Un_Francais
+ 
+species Un_Citoyen_electeur_S (
+  UScr is Un_Scrutin_S, 
+  UTer is Un_Territoire_S,
+  UBvo is Un_Bureau_de_vote_S (UTer)
+) =
+
+  inherit Un_Francais_S (UTer);	
+  
+  signature numero_carte_electeur : Self -> int;
+
+  signature vote_a_un_bureau_de_vote : Self -> UBvo;
+
+  signature participe_au_scrutin : Self -> UScr -> bool;
+
+  logical let est_un_citoyen_electeur (ucel : Self) =
+    est_un_francais (ucel) -> 
+    est_un_adulte (ucel) ->
+    (~~(est_dechu_de_ses_droits (ucel))) ->
+    (numero_carte_electeur (ucel) > 0);
+ 
+  logical let vote_a_l_election_presidentielle (ucel : Self, uscr : UScr) =
+    UScr!est_une_election_presidentielle (uscr) ->
+    est_un_citoyen_electeur (ucel);
+  
+end;;
+

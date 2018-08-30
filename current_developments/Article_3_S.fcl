@@ -35,7 +35,9 @@ species Article_3_S (
     LSna!la_souverainete_nationale_est_exercee_par_les_representants_ou_par_referendum (lrpe, lele, uscr);
 
 -- Titre I Article 3-b - Aucune section du peuple ni aucun individu ne peut s'en attribuer l'exercice.
+
 -- Titre I Article 3-c - Le suffrage peut être direct ou indirect dans les conditions prévues par la Constitution. Il est toujours universel, égal et secret.
+
 -- Titre I Article 3-d - Sont électeurs, dans les conditions déterminées par la loi, tous les nationaux français majeurs des deux sexes, jouissant de leurs droits civils et politiques.
 
 end;;

@@ -1,0 +1,14 @@
+open "basics";;
+open "Un_Francais_S";;
+open "Un_Territoire_S";;
+
+species Un_Membre_d_une_formation_politique_S (
+  UTer is Un_Territoire_S
+) =
+
+  inherit Un_Francais_S (UTer);
+
+  signature a_une_opinion_politique : Self -> bool;
+
+end;;
+

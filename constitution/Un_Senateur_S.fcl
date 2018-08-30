@@ -21,7 +21,7 @@ species Un_Senateur_S (
   UScr is Un_Scrutin_S, 
   UTer is Un_Territoire_S,
   UBvo is Un_Bureau_de_vote_S (UTer),
-  UCel is Un_Citoyen_electeur_S (UScr, UTer, UBvo),
+  UCel is Un_Citoyen_electeur_S (UScr, UTer, UBvo)
 ) = 
 
   inherit Un_Parlementaire_S (UScr, UTer, UBvo, UCel);

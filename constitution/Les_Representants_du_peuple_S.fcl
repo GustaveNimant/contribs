@@ -67,9 +67,9 @@ species Les_Representants_du_peuple_S (
   USen_set is Finite_Set_S (USen),
   UPar is Un_Parlementaire_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex),
   UPar_set is Finite_Set_S (UPar),
-  LAna is L_Assemblee_nationale_S (UScr, UTer, UBvo, UCel),
-  LSen is Le_Senat_S (UScr, UTer, UBvo, UCel, UElu, USen),
-  LPar is Le_Parlement_S (UScr, UTer, UFra, UBvo, UCel, UElu, LEle, UElu_set, UPlo, ULoi, UAex, UDep, USen, UPar, LAna, LSen),
+  LAna is L_Assemblee_nationale_S (UScr, UTer, UBvo, UCel, UDep, UPar),
+  LSen is Le_Senat_S (UScr, UTer, UBvo, UCel, UElu, USen, UPar),
+  LPar is Le_Parlement_S (UScr, UTer, UBvo, UCel, UElu, LEle, UElu_set, UDep, USen, UPar, LAna, LSen),
   LGou is Le_Gouvernement_S (UScr, UTer, UFra, UAex, ULoi, UPlo, UOrd, UDec, UBvo, UCel, UElu, UElu_set, LEle, UMgo, UDep, UDep_set, USen, USen_set, UPar, UPar_set, LAna, LSen, LPar),
   LPre is Le_President_de_la_republique_S (UScr, UTer, UFra, UBvo, UHfo, UCel, UElu, UElu_set, LEle, UAex, UMex, UMgo, LPmi, UMin, UOrd, UDec, ULoi, UPlo, UTle, LCmi, UDep, UDep_set, USen, USen_set, UPar, UPar_set, LAna, LSen, LPar, LGou)
 ) = 
@@ -85,7 +85,7 @@ species Les_Representants_du_peuple_S (
     /\ 
     LSen!examine_une_proposition_de_loi (le_senat (lpar), uplo);
   
-  -- Titre IV Article 24 a-1 - Le Parlement vote la uloi. 
+  -- Titre IV Article 24-a-1 - Le Parlement vote la uloi. 
 
   logical let vote_une_loi_2 (lpar : Self, uloi : ULoi) =
     LAna!adopte_une_loi (l_assemblee_nationale (lpar), uloi)
@@ -97,21 +97,21 @@ species Les_Representants_du_peuple_S (
     is_a_member_of (upar, lpar) -> 
     UPar!adopte_une_loi (upar, uloi); 
 
-  -- Titre IV Article 24 a-2 - Il contrôle l'action du Gouvernement. 
+  -- Titre IV Article 24-a-2 - Il contrôle l'action du Gouvernement. 
 
   logical let controle_l_action_du_gouvernement (lpar : Self, uaex : UAex) = 
     all upar : UPar,
     is_a_member_of (upar, lpar) -> 
     UPar!controle_l_action_du_gouvernement (upar, uaex); 
 
-  -- Titre IV Article 24 a-3 - Il évalue les politiques publiques.
+  -- Titre IV Article 24-a-3 - Il évalue les politiques publiques.
 
   logical let evalue_les_politiques_publiques (lpar : Self, uaex : UAex) = 
     all upar : UPar,
     is_a_member_of (upar, lpar) -> 
     UPar!evalue_les_politiques_publiques (upar, uaex); 
 
-  -- Titre IV Article 24 e - Les Français établis hors de France sont représentés à l'Assemblée nationale et au Sénat.
+  -- Titre IV Article 24-e - Les Français établis hors de France sont représentés à l'Assemblée nationale et au Sénat.
 
   logical let un_francais_etabli_hors_de_france_est_represente_au_parlement =
      all upar : UPar, all ufra : UFra, all uter : UTer,

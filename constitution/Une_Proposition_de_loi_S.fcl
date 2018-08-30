@@ -3,7 +3,7 @@ open "Un_Texte_legislatif_S";;
 
 species Une_Proposition_de_loi_S (
 
-  LAna is L_Assemblee_nationale_S (UScr, UTer, UBvo, UCel),
+  LAna is L_Assemblee_nationale_S (UScr, UTer, UBvo, UCel, UDep, UPar),
   LSen is Le_Senat_S (UScr, UTer, UFra, UBvo, UCel, UElu, USen)
   = 
 

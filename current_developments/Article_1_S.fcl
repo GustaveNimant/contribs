@@ -28,7 +28,11 @@ species Article_1_S (
 
 -- Titre I Article 1-a-2 Elle assure l'égalité devant la loi de tous les citoyens sans distinction d'origine, de race ou de religion.
 
-  signature les_citoyens_sont_egaux_devant_la_loi : Self -> bool;
+  signature quelque_soit_leur_origine_tous_les_citoyens_sont_egaux_devant_la_loi : Self -> bool;
+
+  signature quelque_soit_leur_race_tous_les_citoyens_sont_egaux_devant_la_loi : Self -> bool;
+
+  signature quelque_soit_leur_religion_tous_les_citoyens_sont_egaux_devant_la_loi : Self -> bool;
 
   signature le_droit_est_applique_uniformement_sur_le_territoire_francais : Self -> bool;
  
@@ -36,6 +40,8 @@ species Article_1_S (
 
 -- Titre I Article 1-a-4 - Son organisation est décentralisée.
 
--- Titre I Article 1-b - En vertu de ces principes et de celui de la libre détermination des peuples, la République offre aux territoires d'outre-mer qui manifestent la volonté d'y adhérer des institutions nouvelles fondées sur l'idéal commun de liberté, d'égalité et de fraternité et conçues en vue de leur évolution démocratique.
+-- Titre I Article 1-b - La loi favorise l'égal accès des femmes et des hommes aux mandats électoraux et fonctions électives, ainsi qu'aux responsabilités professionnelles et sociales.
+
+  signature la_parite_homme_femme_des_elus_est_assuree_par_loi : Self -> bool;
 
 end;;

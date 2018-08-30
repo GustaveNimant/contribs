@@ -52,10 +52,9 @@ species Article_24_S (
   UParOfUSen is Un_Parlementaire_subtype (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, USen, USen_set, UPar, UPar_set),
   UEluOfUPar is Un_Elu_subtype (UScr, UTer, UBvo, UCel, UPar, UPar_set, UElu, UElu_set),
   UCelOfUElu is Un_Citoyen_electeur_subtype (UScr, UTer, UBvo, UElu, UElu_set, UCel, UCel_set),
-  LAna is L_Assemblee_nationale_S (UScr, UTer, UBvo, UCel),
-  LSen is Le_Senat_S (UScr, UTer, UFra, UBvo, UCel, UElu, UPlo, ULoi, UAex, USen
-),
-  LPar is Le_Parlement_S (UScr, UTer, UFra, UBvo, UCel, UElu, LEle, UElu_set, UPlo, ULoi, UAex, UDep, USen, UPar, LAna, LSen)
+  LAna is L_Assemblee_nationale_S (UScr, UTer, UBvo, UCel, UDep, UPar),
+  LSen is Le_Senat_S (UScr, UTer, UBvo, UCel, UElu, USen, UPar),
+  LPar is Le_Parlement_S (UScr, UTer, UBvo, UCel, UElu, LEle, UElu_set, UDep, USen, UPar, LAna, LSen)
 ) = 
 
   signature l_assemblee_nationale : Self -> LAna;
@@ -71,7 +70,7 @@ species Article_24_S (
     /\ 
     LSen!examine_une_proposition_de_loi (le_senat (lpar), uplo);
   
-  -- Titre IV Article 24 a-1 - Le Parlement vote la uloi. 
+  -- Titre IV Article 24-a-1 - Le Parlement vote la uloi. 
 
   logical let vote_une_loi_2 (lpar : Self, uloi : ULoi) =
     LAna!adopte_une_loi (l_assemblee_nationale (lpar), uloi)
@@ -83,39 +82,39 @@ species Article_24_S (
     is_a_member_of (upar, lpar) -> 
     UPar!adopte_une_loi (upar, uloi); 
 
-  -- Titre IV Article 24 a-2 - Il contrôle l'action du Gouvernement. 
+  -- Titre IV Article 24-a-2 - Il contrôle l'action du Gouvernement. 
 
   logical let controle_l_action_du_gouvernement (lpar : Self, uaex : UAex) = 
     all upar : UPar,
     is_a_member_of (upar, lpar) -> 
     UPar!controle_l_action_du_gouvernement (upar, uaex); 
 
-  -- Titre IV Article 24 a-3 - Il évalue les politiques publiques.
+  -- Titre IV Article 24-a-3 - Il évalue les politiques publiques.
 
   logical let evalue_les_politiques_publiques (lpar : Self, uaex : UAex) = 
     all upar : UPar,
     is_a_member_of (upar, lpar) -> 
     UPar!evalue_les_politiques_publiques (upar, uaex); 
 
-  -- Titre IV Article 24 a-1 - Le Parlement vote la loi. 
+  -- Titre IV Article 24-a-1 - Le Parlement vote la loi. 
 
   property article_24_a_1 :
   all lpar : LPar, all uloi : ULoi, 
   LPar!adopte_une_loi (lpar, uloi);
 
-  -- Titre IV Article 24 a-2 - Il contrôle l'action du Gouvernement. 
+  -- Titre IV Article 24-a-2 - Il contrôle l'action du Gouvernement. 
 
   property article_24_a_2 :
     all lpar : LPar, all uaex : UAex,
     LPar!controle_l_action_du_gouvernement (lpar, uaex);
 
-  -- Titre IV Article 24 a-3 - Il évalue les politiques publiques.
+  -- Titre IV Article 24-a-3 - Il évalue les politiques publiques.
 
   property article_24_a_3 :
     all lpar : LPar, all uaex : UAex,
     LPar!evalue_les_politiques_publiques (lpar, uaex); 
 
-  -- Titre IV Article 24 b - Il comprend l'Assemblée nationale et le Sénat.
+  -- Titre IV Article 24-b - Il comprend l'Assemblée nationale et le Sénat.
 
   let l_UEluOfUSen (usen : USen) : UElu = 
     UEluOfUPar!to_super (UParOfUSen!to_super (usen));
@@ -133,12 +132,12 @@ species Article_24_S (
       UPar_set!union (UParOfUDep!to_super_set (les_deputes (lpar)), 
              UParOfUSen!to_super_set (les_senateurs (lpar))) ;
 
-  -- Titre IV Article 24 c-1 - Les députés à l'Assemblée nationale, dont le nombre ne peut excéder cinq cent soixante-dix-sept, ...
+  -- Titre IV Article 24-c-1 - Les députés à l'Assemblée nationale, dont le nombre ne peut excéder cinq cent soixante-dix-sept, ...
 
   logical let le_nombre_de_deputes_est_inferieur_ou_egal_a_577 (lana: Self) =
     cardinal (lana) >= 577;
 
-  -- Titre IV Article 24 c-2 - [ Les députés à l'Assemblée nationale ] ..., sont élus au suffrage direct
+  -- Titre IV Article 24-c-2 - [ Les députés à l'Assemblée nationale ] ..., sont élus au suffrage direct
 
   logical let est_elu_au_suffrage_direct (lana : Self, uscr : UScr) = 
     all udep : UDep,
@@ -152,12 +151,12 @@ species Article_24_S (
   (est_elu_au_suffrage_direct (lana, uscr));
 
 
-  -- Titre IV Article 24 d-1 - Le Sénat, dont le nombre de membres ne peut excéder trois cent quarante-huit, ...
+  -- Titre IV Article 24-d-1 - Le Sénat, dont le nombre de membres ne peut excéder trois cent quarante-huit, ...
 
   logical let le_nombre_de_senateur_est_inferieur_ou_egal_a_348 (lsen: Self) =
     cardinal (lsen) >= 348;
 
-  -- Titre IV Article 24 d-2 - [ Le Sénat ] ..., est élu au suffrage indirect.
+  -- Titre IV Article 24-d-2 - [ Le Sénat ] ..., est élu au suffrage indirect.
 
   logical let est_elu_par_des_grands_electeur (lsen : Self, uelu : UElu) = 
     UElu!est_elu_par_un_electeur (uelu, uelu) ->
@@ -174,7 +173,7 @@ species Article_24_S (
   /\
   (est_elu_au_suffrage_indirect (lsen, uelu));
 
-  -- Titre IV Article 24 c-2 Il assure la représentation des collectivités territoriales de la République.
+  -- Titre IV Article 24-c-2 Il assure la représentation des collectivités territoriales de la République.
 
   -- Titre IV Article 24-e-1 - Les Français établis hors de France sont représentés à l'Assemblée nationale ...
 
@@ -204,7 +203,7 @@ species Article_24_S (
         UScr!est_une_election_senatoriale (uscr);
 *)
   
-  -- Titre IV Article 24 e - Les Français établis hors de France sont représentés à l'Assemblée nationale et au Sénat.
+  -- Titre IV Article 24-e - Les Français établis hors de France sont représentés à l'Assemblée nationale et au Sénat.
 
   logical let un_francais_etabli_hors_de_france_est_represente_au_parlement =
      all upar : UPar, all ufra : UFra, all uter : UTer,
@@ -213,7 +212,7 @@ species Article_24_S (
      (UPar!represente_un_francais (upar, ufra));
 
 
-  -- Titre IV Article 24 e - Les Français établis hors de France sont représentés à l'Assemblée nationale et au Sénat.
+  -- Titre IV Article 24-e - Les Français établis hors de France sont représentés à l'Assemblée nationale et au Sénat.
 
   logical let un_francais_etabli_hors_de_france_est_represente_au_parlement =
      all upar : UPar, all ufra : UFra, all uter : UTer,

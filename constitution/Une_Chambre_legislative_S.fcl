@@ -7,11 +7,16 @@ open "Un_Scrutin_S";;
 open "Un_Territoire_S";;
 
 --  L_Assemblee_nationale_S  Le_Senat_S
---      \                  /
---       v                v
+--         \                  /
+--          v                v
 --        Une_Chambre_legislative_S
 
-species Le_Parlement_S (
+--  Un_Depute           Un_Senateur
+--      \                  /
+--       v                v
+--        Un_Parlementaire
+
+species Une_Chambre_legislative_S (
   UScr is Un_Scrutin_S,
   UTer is Un_Territoire_S,
   UBvo is Un_Bureau_de_vote_S (UTer), 

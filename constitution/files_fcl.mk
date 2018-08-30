@@ -1,3 +1,3 @@
 FOCALIZE_SRC=\
-  Une_Chambre_legislative_S.fcl \
+  Article_3_S.fcl \
 

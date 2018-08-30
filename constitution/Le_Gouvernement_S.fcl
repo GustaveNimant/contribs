@@ -43,14 +43,14 @@ species Le_Gouvernement_S (
   USen_set is Finite_Set_S (USen),
   UPar is Un_Parlementaire_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex),
   UPar_set is Finite_Set_S (UPar),
-  LAna is L_Assemblee_nationale_S (UScr, UTer, UBvo, UCel),
-  LSen is Le_Senat_S (UScr, UTer, UBvo, UCel, UElu, USen),
-  LPar is Le_Parlement_S (UScr, UTer, UFra, UBvo, UCel, UElu, LEle, UElu_set, UPlo, ULoi, UAex, UDep, USen, UPar, LAna, LSen)
+  LAna is L_Assemblee_nationale_S (UScr, UTer, UBvo, UCel, UDep, UPar),
+  LSen is Le_Senat_S (UScr, UTer, UBvo, UCel, UElu, USen, UPar),
+  LPar is Le_Parlement_S (UScr, UTer, UBvo, UCel, UElu, LEle, UElu_set, UDep, USen, UPar, LAna, LSen)
   ) =
 
   inherit Finite_Set_S (UMgo), Un_Organe_deliberant_S (UAex);
 
--- Titre I Article 11 b-1 - Lorsque le référendum est organisé sur proposition du Gouvernement ...
+-- Titre II Article 11 b-1 - Lorsque le référendum est organisé sur proposition du Gouvernement ...
 
   signature propose_un_referendum : Self -> UScr -> bool;
  
@@ -60,21 +60,21 @@ species Le_Gouvernement_S (
 
   signature delibere_sur_un_decret : Self -> UDec -> bool;
 
--- Article 20 a - Le Gouvernement détermine et conduit la politique de la nation 
+-- Titre I Article 20-a - Le Gouvernement détermine et conduit la politique de la nation 
 
--- Article 23 a-1 - Les fonctions de membre du Gouvernement sont incompatibles avec l'exercice de tout mandat parlementaire...
+-- Titre I Article 23-a-1 - Les fonctions de membre du Gouvernement sont incompatibles avec l'exercice de tout mandat parlementaire...
 
--- Article 23 a-2 - Les fonctions de membre du Gouvernement sont incompatibles avec l'exercice de toute fonction de représentation professionnelle à caractère national
+-- Titre I Article 23-a-2 - Les fonctions de membre du Gouvernement sont incompatibles avec l'exercice de toute fonction de représentation professionnelle à caractère national
 
--- Article 23 a-3 - Les fonctions de membre du Gouvernement sont incompatibles avec l'exercice de tout emploi public ou de toute activité professionnelle.
+-- Titre I Article 23-a-3 - Les fonctions de membre du Gouvernement sont incompatibles avec l'exercice de tout emploi public ou de toute activité professionnelle.
 
--- Article 23 a-4 - Les fonctions de membre du Gouvernement sont incompatibles avec l'exercice de toute activité professionnelle.
+-- Titre I Article 23-a-4 - Les fonctions de membre du Gouvernement sont incompatibles avec l'exercice de toute activité professionnelle.
 
--- Article 23 a - Les fonctions de membre du Gouvernement sont incompatibles avec l'exercice de tout mandat parlementaire, de toute fonction de représentation professionnelle à caractère national et de tout emploi public ou de toute activité professionnelle.
+-- Titre I Article 23-a - Les fonctions de membre du Gouvernement sont incompatibles avec l'exercice de tout mandat parlementaire, de toute fonction de représentation professionnelle à caractère national et de tout emploi public ou de toute activité professionnelle.
 
 (* QUESTION comment faire ? *)
 
--- Article 38 a - Le Gouvernement peut, pour l'exécution de son programme, demander au Parlement l'autorisation de prendre par ordonnances, pendant un délai limité, des mesures qui sont normalement du domaine de la loi.
+-- Article 38-a - Le Gouvernement peut, pour l'exécution de son programme, demander au Parlement l'autorisation de prendre par ordonnances, pendant un délai limité, des mesures qui sont normalement du domaine de la loi.
 
   signature delibere_sur_une_ordonnance : Self -> UOrd -> bool;
 

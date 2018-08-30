@@ -1,0 +1,14 @@
+open "basics";;
+open "Finite_Set_S";;
+open "Un_Territoire_S";;
+open "Un_Membre_d_une_formation_politique_S";;
+
+species Une_Formation_politique_S (
+  UTer is Un_Territoire_S,
+  UMfp is Un_Membre_d_une_formation_politique_S (UTer)
+) =
+
+  inherit Finite_Set_S (UMfp);
+
+end;;
+

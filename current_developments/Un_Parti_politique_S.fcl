@@ -1,0 +1,10 @@
+open "basics";;
+open "Une_Formation_politique_S";;
+
+species Un_Parti_politique_S (
+) =
+
+  inherit Une_Formation_politique_S;
+
+end;;
+

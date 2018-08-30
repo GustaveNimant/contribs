@@ -36,7 +36,7 @@ species Le_Parlement_S (
   USen is Un_Senateur_S (UScr, UTer, UBvo, UCel),
   UPar is Un_Parlementaire_S (UScr, UTer, UBvo, UCel),
   LAna is L_Assemblee_nationale_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, UDep),
-  LSen is Le_Senat_S (UScr, UTer, UBvo, UCel, UElu, USen)
+  LSen is Le_Senat_S (UScr, UTer, UBvo, UCel, UElu, USen, UPar)
 ) = 
 
   inherit Finite_Set_S (UPar);
