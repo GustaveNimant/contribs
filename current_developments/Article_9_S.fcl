@@ -1,0 +1,27 @@
+open "basics";;
+open "Un_President_de_la_republique_S";;
+
+-- Le Président de la République préside le conseil des ministres.
+
+species Article_9_S (
+  LCmi is Le_Conseil_des_ministres_S 
+  UPre is Un_President_de_la_republique_S
+)=
+
+-- Titre II Article 8-a - Le Président de la République nomme le Premier ministre. 
+
+  signature nomme_le_premier_ministre : Self -> LPmi -> bool;
+
+-- Titre II Article 8-b - ...Il met fin à ses fonctions sur la présentation par celui-ci de la démission du Gouvernement. 
+
+  signature demissionne_le_gouvernement : Self -> LGou -> bool;
+
+  signature demissionne_premier_ministre : Self -> LPmi -> bool;
+
+  property article_8 : all lpre : Self, all lgou : LGou, all lpmi : LPmi,
+  demissionne_le_gouvernement (lpre, lgou) -> 
+  demissionne_premier_ministre (lpre, lpmi);
+
+end;;
+
+

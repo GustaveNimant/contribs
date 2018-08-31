@@ -1,0 +1,47 @@
+open "basics";;
+
+open "La_Constitution_S";;
+open "Un_President_de_la_republique_S";;
+open "Un_Bureau_de_vote_S";;
+open "Un_Elu_S";;
+open "Un_Francais_S";;
+open "Un_Membre_de_l_executif_S";;
+open "Un_Scrutin_S";;
+open "Un_Territoire_S";;
+open "Une_Origine_S";;
+open "Une_Race_S";;
+open "Une_Religion_S";;
+
+
+-- Le Président de la République nomme le Premier ministre. Il met fin à ses fonctions sur la présentation par celui-ci de la démission du Gouvernement.
+
+-- Sur la proposition du Premier ministre, il nomme les autres membres du Gouvernement et met fin à leurs fonctions.
+
+species Article_8_S (
+  UScr is Un_Scrutin_S,
+  LCon is La_Constitution_S,
+  URac is Une_Race_S,
+  UOri is Une_Origine_S,
+  URel is Une_Religion_S,
+  UTer is Un_Territoire_S,
+  UBvo is Un_Bureau_de_vote_S (UTer),
+  UFra is Un_Francais_S (URac, UOri, URel, UTer),
+  UPmi is Un_Premier_ministre_S (UScr, URac, UOri, URel, UTer, UBvo),
+  UPre is Un_President_de_la_republique_S (UScr, URac, UOri, URel, UTer, UBvo, UFra)
+)=
+
+-- Titre II Article 8-a - Le Président de la République nomme le Premier ministre. 
+
+  signature nomme_le_premier_ministre : UPre -> UPmi -> bool;
+
+-- Titre II Article 8-b - ...Il met fin à ses fonctions sur la présentation par celui-ci de la démission du Gouvernement. 
+
+  signature demissionne_le_gouvernement : UPre -> LGou -> bool;
+
+  signature demissionne_premier_ministre : UPre -> UPmi -> bool;
+
+  property article_8 : all upre : UPre, all lgou : LGou, all upmi : UPmi,
+  demissionne_le_gouvernement (upre, lgou) -> 
+  demissionne_premier_ministre (upre, upmi);
+
+end;;

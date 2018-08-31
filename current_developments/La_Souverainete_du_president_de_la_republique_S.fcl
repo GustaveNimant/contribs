@@ -1,0 +1,15 @@
+open "basics";;
+
+
+species La_Souverainete_du_president_de_la_republique_S (
+
+) =
+
+  property president_de_la_republique_est_souverain : all lpre : Self, all lpmi : LPmi, all uaex : UAex, all lana : LAna, all uloi : ULoi,
+  exerce_sa_souverainete (lpre) ->
+  nomme_le_premier_ministre (lpre, lpmi) ->  
+  signe_un_acte_de_l_executif (lpre, uaex) ->
+  peut_dissoudre_l_assemblee (lpre, lana) -> 
+  promulge_une_loi (lpre, uloi)
+  ;
+

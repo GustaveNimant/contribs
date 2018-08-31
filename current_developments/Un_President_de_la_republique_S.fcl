@@ -1,0 +1,27 @@
+open "basics";;
+open "Un_Elu_S";;
+open "Un_Bureau_de_vote_S";;
+open "Un_Francais_S";;
+open "Un_Membre_de_l_executif_S";;
+open "Un_Scrutin_S";;
+open "Un_Territoire_S";;
+open "Une_Origine_S";;
+open "Une_Race_S";;
+open "Une_Religion_S";;
+
+species Un_President_de_la_republique_S (
+  UScr is Un_Scrutin_S,
+  URac is Une_Race_S,
+  UOri is Une_Origine_S,
+  URel is Une_Religion_S,
+  UTer is Un_Territoire_S,
+  UBvo is Un_Bureau_de_vote_S (UTer),
+  UFra is Un_Francais_S (URac, UOri, URel, UTer)
+) =
+    
+  inherit Un_Elu_S (UScr, URac, UOri, URel, UTer, UBvo), Un_Membre_de_l_executif_S (UScr, URac, UOri, URel, UTer, UBvo);
+  
+  signature le_president_de_la_republique_est_elu_pour_cinq_ans : Self -> bool;
+
+end;;
+

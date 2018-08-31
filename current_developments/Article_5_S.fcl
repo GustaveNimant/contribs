@@ -1,0 +1,71 @@
+open "basics";;
+open "La_Constitution_S";;
+open "Un_Bureau_de_vote_S";;
+open "Un_Elu_S";;
+open "Un_Francais_S";;
+open "Un_Membre_de_l_executif_S";;
+open "Un_President_de_la_republique_S";;
+open "Un_Scrutin_S";;
+open "Un_Territoire_S";;
+open "Une_Origine_S";;
+open "Une_Race_S";;
+open "Une_Religion_S";;
+
+-- Le Président de la République veille au respect de la Constitution. Il assure, par son arbitrage, le fonctionnement régulier des pouvoirs publics ainsi que la continuité de l'État.
+-- Il est le garant de l'indépendance nationale, de l'intégrité du territoire et du respect des traités
+
+species Article_5_S (
+  UScr is Un_Scrutin_S,
+  URac is Une_Race_S,
+  UOri is Une_Origine_S,
+  URel is Une_Religion_S,
+  UTer is Un_Territoire_S,
+  UBvo is Un_Bureau_de_vote_S (UTer),
+  UFra is Un_Francais_S (URac, UOri, URel, UTer),
+  LCon is La_Constitution_S,
+  UPre is Un_President_de_la_republique_S (UScr, URac, UOri, URel, UTer, UBvo, UFra)
+) = 
+
+-- Article 5-a-1 - Le Président de la République veille au respect de la Constitution. 
+  signature le_president_de_la_republique_veille_au_respect_de_la_constitution : UPre -> LCon -> bool;
+
+-- Article 5-a-2 - Il assure, par son arbitrage, le fonctionnement régulier des pouvoirs publics 
+
+  signature le_president_de_la_republique_assure_le_fonctionnement_des_pouvoirs_publics : UPre -> bool;
+
+-- Article 5-a-3 - [assure] ... la continuité de l'État.
+
+  signature le_president_de_la_republique_assure_la_continuite_de_l_etat : UPre -> bool;
+ 
+-- Article 5-a - Le Président de la République veille au respect de la Constitution. Il assure, par son arbitrage, le fonctionnement régulier des pouvoirs publics ainsi que la continuité de l'État.
+
+  property article_5_a : all upre : UPre, all lcon : LCon,
+  le_president_de_la_republique_veille_au_respect_de_la_constitution (upre, lcon)
+  /\
+  le_president_de_la_republique_assure_le_fonctionnement_des_pouvoirs_publics (upre) 
+  /\
+  le_president_de_la_republique_assure_la_continuite_de_l_etat (upre);
+
+-- Article 5-b-1 - Il est garant de l'indépendance nationale
+
+  signature le_president_de_la_republique_est_garant_de_l_independance_nationale : UPre -> bool;
+
+-- Article 5-b-2 - Il est garant de l'intégrité du territoire 
+
+  signature le_president_de_la_republique_est_garant_de_l_integrite_du_territoire : UPre -> bool;
+
+-- Article 5-b-3 - Il est garant du respect des traités.
+
+  signature le_president_de_la_republique_est_garant_du_respect_des_traites : UPre -> bool;
+
+-- Article 5-b - Il est garant de l'indépendance nationale, de l'intégrité du territoire et du respect des traités.
+
+  property article_5_b : all upre : UPre, 
+  le_president_de_la_republique_est_garant_de_l_independance_nationale (upre)
+  /\
+  le_president_de_la_republique_est_garant_de_l_integrite_du_territoire (upre)
+  /\
+  le_president_de_la_republique_est_garant_du_respect_des_traites (upre);
+
+
+end;;

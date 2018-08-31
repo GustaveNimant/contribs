@@ -1,0 +1,28 @@
+open "basics";;
+open "Un_President_de_la_republique_S";;
+
+-- Le Président de la République promulgue les lois dans les quinze jours qui suivent la transmission au Gouvernement de la loi définitivement adoptée.
+
+-- Il peut, avant l'expiration de ce délai, demander au Parlement une nouvelle délibération de la loi ou de certains de ses articles. Cette nouvelle délibération ne peut être refusée.
+
+species Article_10_S (
+  LCmi is Le_Conseil_des_ministres_S 
+  UPre is Un_President_de_la_republique_S
+)=
+
+-- Titre II Article 10-a - Le Président de la République promulgue les lois dans les quinze jours qui suivent la transmission au Gouvernement de la loi définitivement adoptée. 
+
+  signature promulge_une_loi : Self -> ULoi -> bool;
+
+  property article_10_a : all lpre : Self, all lpar : LPar, all uloi : ULoi,
+  promulge_une_loi (lpre, uloi) ->
+  LPar!adopte_une_loi (lpar, uloi);
+
+-- Titre II Article 10-b-1 - Il peut, avant l'expiration de ce délai, demander au Parlement une nouvelle délibération de la loi ou de certains de ses articles. 
+
+-- Titre II Article 10-b-2 - Cette nouvelle délibération ne peut être refusée.
+
+
+end;;
+
+

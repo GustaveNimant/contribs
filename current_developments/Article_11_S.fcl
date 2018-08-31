@@ -1,0 +1,54 @@
+open "basics";;
+
+open "Finite_Set_S";;
+open "Un_Bureau_de_vote_S";;
+open "Un_Decret_S";;
+open "Un_Gouvernement_S";;
+open "Un_Membre_du_gouvernement_S";;
+open "Un_Organe_deliberant_S";;
+open "Un_Scrutin_S";;
+open "Un_Territoire_S";;
+open "Un_Texte_legislatif_S";;
+open "Une_Ordonnance_S";;
+open "Une_Origine_S";;
+open "Une_Race_S";;
+open "Une_Religion_S";;
+
+-- Le Président de la République, sur proposition du Gouvernement pendant la durée des sessions ou sur proposition conjointe des deux Assemblées, publiées au Journal Officiel, peut soumettre au référendum tout projet de loi portant sur l'organisation des pouvoirs publics, sur des réformes relatives à la politique économique, sociale ou environnementale de la nation et aux services publics qui y concourent, ou tendant à autoriser la ratification d'un traité qui, sans être contraire à la Constitution, aurait des incidences sur le fonctionnement des institutions.
+
+-- Lorsque le référendum est organisé sur proposition du Gouvernement, celui-ci fait, devant chaque assemblée, une déclaration qui est suivie d'un débat.
+
+-- Un référendum portant sur un objet mentionné au premier alinéa peut être organisé à l'initiative d'un cinquième des membres du Parlement, soutenue par un dixième des électeurs inscrits sur les listes électorales. Cette initiative prend la forme d'une proposition de loi et ne peut avoir pour objet l'abrogation d'une disposition législative promulguée depuis moins d'un an.
+
+-- Les conditions de sa présentation et celles dans lesquelles le Conseil constitutionnel contrôle le respect des dispositions de l'alinéa précédent sont déterminées par une loi organique.
+
+-- Si la proposition de loi n'a pas été examinée par les deux assemblées dans un délai fixé par la loi organique, le Président de la République la soumet au référendum.
+
+-- Lorsque la proposition de loi n'est pas adoptée par le peuple français, aucune nouvelle proposition de référendum portant sur le même sujet ne peut être présentée avant l'expiration d'un délai de deux ans suivant la date du scrutin.
+
+-- Lorsque le référendum a conclu à l'adoption du projet ou de la proposition de loi, le Président de la République promulgue la loi dans les quinze jours qui suivent la proclamation des résultats de la consultation.
+
+species Article_11_S (
+  UScr is Un_Scrutin_S,
+  URac is Une_Race_S,
+  UOri is Une_Origine_S,
+  URel is Une_Religion_S,
+  UTle is Un_Texte_legislatif_S,
+  UOrd is Une_Ordonnance_S,
+  UDec is Un_Decret_S,
+  UTer is Un_Territoire_S,
+  UBvo is Un_Bureau_de_vote_S (UTer),
+  UOde is Un_Organe_deliberant_S (UTle),
+  UMgo is Un_Membre_du_gouvernement_S (UScr, URac, UOri, URel, UTer, UBvo),
+  UGou is Un_Gouvernement_S (UScr, URac, UOri, URel, UTle, UOrd, UDec, UTer, UBvo, UOde, UMgo)
+)=
+
+-- Titre II Article 11 b-1 - Lorsque le référendum est organisé sur proposition du Gouvernement ...
+
+  property article_11_b_1 : all ugou : UGou, all uscr : UScr,
+  UGou!le_gouvernement_propose_un_referendum (ugou, uscr) ->
+  UScr!est_un_referendum (uscr); 
+ 
+end;;
+
+

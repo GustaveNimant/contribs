@@ -1,0 +1,12 @@
+open "basics";;
+open "Un_President_de_la_republique_S";;
+
+-- Le Président de la République accrédite les ambassadeurs et les envoyés extraordinaires auprès des puissances étrangères ; les ambassadeurs et les envoyés extraordinaires étrangers sont accrédités auprès de lui.
+
+species Article_14_S (
+  UPre is Un_President_de_la_republique_S
+)=
+
+end;;
+
+

@@ -1,0 +1,52 @@
+open "basics";;
+
+open "La_Constitution_S";;
+open "Un_President_de_la_republique_S";;
+open "Un_Bureau_de_vote_S";;
+open "Un_Elu_S";;
+open "Un_Francais_S";;
+open "Un_Membre_de_l_executif_S";;
+open "Un_Scrutin_S";;
+open "Un_Territoire_S";;
+open "Une_Origine_S";;
+open "Une_Race_S";;
+open "Une_Religion_S";;
+
+-- Le Président de la République veille au respect de la Constitution. Il assure, par son arbitrage, le fonctionnement régulier des pouvoirs publics ainsi que la continuité de l'État.
+-- Il est le garant de l'indépendance nationale, de l'intégrité du territoire et du respect des traités
+
+species Article_6_S (
+  UScr is Un_Scrutin_S,
+  LCon is La_Constitution_S,
+  URac is Une_Race_S,
+  UOri is Une_Origine_S,
+  URel is Une_Religion_S,
+  UTer is Un_Territoire_S,
+  UBvo is Un_Bureau_de_vote_S (UTer),
+  UFra is Un_Francais_S (URac, UOri, URel, UTer),
+  UPre is Un_President_de_la_republique_S (UScr, URac, UOri, URel, UTer, UBvo, UFra)
+) = 
+
+-- Titre II Article 6-a-1 - Le Président de la République est élu pour cinq ans.
+
+-- Titre II Article 6-a-2 - Le Président de la République est élu au suffrage universel direct.
+
+-- Titre II Article 6-a - Le Président de la République est élu pour cinq ans au suffrage universel direct.
+
+  property article_6_a : all upre : UPre, all uscr : UScr, 
+   UPre!le_president_de_la_republique_est_elu_pour_cinq_ans (upre) 
+   /\
+   UPre!est_elu_au_suffrage_universel (upre, uscr);
+
+-- Titre II Article 6-b - Nul ne peut exercer plus de deux mandats consécutifs.
+
+  signature le_predecesseur_du_president_de_la_republique : UPre -> UPre;
+
+  property article_6_b : all upre : UPre, 
+  UPre!equal (upre, (le_predecesseur_du_president_de_la_republique (upre))) ->
+  ~~(UPre!equal (upre, le_predecesseur_du_president_de_la_republique (le_predecesseur_du_president_de_la_republique (upre))));
+
+-- Titre II Article 6-c - Les modalités d'application du présent article sont fixées par une loi organique.
+
+
+end;;
