@@ -1,0 +1,34 @@
+open "basics";;
+
+open "Un_Bureau_de_vote_S";;
+open "Un_Membre_du_gouvernement_S";;
+open "Un_Scrutin_S";;
+open "Un_Territoire_S";;
+open "Une_Origine_S";;
+open "Une_Race_S";;
+open "Une_Religion_S";;
+
+-- Titre III
+-- Le Premier ministre dirige l'action du Gouvernement. Il est responsable de la défense nationale. Il assure l'exécution des lois. Sous réserve des dispositions de l'article 13, il exerce le pouvoir réglementaire et nomme aux emplois civils et militaires.
+
+-- Il peut déléguer certains de ses pouvoirs aux ministres.
+
+-- Il supplée, le cas échéant, le Président de la République dans la présidence des conseils et comités prévus à l'article 15.
+
+-- Il peut, à titre exceptionnel, le suppléer pour la présidence d'un conseil des ministres en vertu d'une délégation expresse et pour un ordre du jour déterminé.
+
+
+species Article_21_S (
+  UScr is Un_Scrutin_S,
+  URac is Une_Race_S,
+  UOri is Une_Origine_S,
+  URel is Une_Religion_S,
+  UTer is Un_Territoire_S,
+  UBvo is Un_Bureau_de_vote_S (UTer),
+  UPmi is Un_Premier_ministre_S (UScr, URac, UOri, URel, UTer, UBvo)
+) =
+
+
+end;;
+
+

@@ -1,0 +1,39 @@
+open "basics";;
+open "Finite_Set_S";;
+open "Un_Bureau_de_vote_S";;
+open "Un_Citoyen_electeur_S";;
+open "Un_Parlementaire_S";;
+open "Un_Scrutin_S";;
+open "Un_Territoire_S";;
+open "Une_Origine_S";;
+open "Une_Race_S";;
+open "Une_Religion_S";;
+
+--  L_Assemblee_nationale_S  Le_Senat_S
+--         \                  /
+--          v                v
+--        Une_Chambre_legislative_S
+
+--  Un_Depute           Un_Senateur
+--      \                  /
+--       v                v
+--        Un_Parlementaire
+
+species Une_Chambre_legislative_S (
+  UScr is Un_Scrutin_S,
+  URac is Une_Race_S,
+  UOri is Une_Origine_S,
+  URel is Une_Religion_S,
+  UTer is Un_Territoire_S,
+  UBvo is Un_Bureau_de_vote_S (UTer), 
+  UCel is Un_Citoyen_electeur_S (UScr, URac, UOri, URel, UTer, UBvo),
+  UPar is Un_Parlementaire_S (UScr, URac, UOri, URel, UTer, UBvo, UCel)
+) = 
+
+  inherit Finite_Set_S (UPar);
+  
+  signature est_l_assemblee_nationale : Self -> bool;
+
+  signature est_le_senat : Self -> bool;
+
+end;;

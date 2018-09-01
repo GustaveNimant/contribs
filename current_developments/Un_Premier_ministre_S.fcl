@@ -14,7 +14,7 @@ species Un_Premier_ministre_S (
   UOri is Une_Origine_S,
   URel is Une_Religion_S,
   UTer is Un_Territoire_S,
-  UBvo is Un_Bureau_de_vote_S (UTer),
+  UBvo is Un_Bureau_de_vote_S (UTer)
 ) =
 
   inherit Un_Membre_du_gouvernement_S (UScr, URac, UOri, URel, UTer, UBvo);
@@ -22,8 +22,6 @@ species Un_Premier_ministre_S (
   let est_le_premier_ministre (upmi : Self) = true;
 
   let est_un_ministre (upmi : Self) = false;
-
--- Titre I Article 21-a 1 - Le Premier ministre dirige l'action du Gouvernement.
 
   signature le_premier_ministre_demissionne : Self -> bool;
 

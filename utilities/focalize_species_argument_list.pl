@@ -138,8 +138,10 @@ foreach $_ (@open_file_l) {
 }
 
 print "\n";
+print "open \"${species_name}\";;\n";
+print "\n";
 
-$abbreviated_species_name = &abbreviated_name ($species_name);
+$abbreviated_species_name = abbreviated_name ($species_name);
 print "  $abbreviated_species_name is ";
 
 print "${species_name} (";
@@ -167,20 +169,20 @@ sub clean_word_list {
 	}
     }
 
-    return @result_l;
+    @result_l;
 }
 
 sub abbreviated_name {
     $my_name = shift @_;
 
     @word_list = split /_/, $my_name;
-    @word_l = &clean_word_list (@word_list);
+    @word_l = clean_word_list (@word_list);
 
     $count = 0;
     $result = "";
     foreach $_ (@word_l) {
 	$count = $count +1;
-	$word_count = $#word_l+1;
+#	$word_count = $#word_l+1;
 
 	$result .= substr $_,0,1;
 	if ($count == 4) {
@@ -192,9 +194,6 @@ sub abbreviated_name {
     $end = substr ($last_word,1,(4-$count));
 
     $result .= $end;
-
-    return $result;
-
 }; # abbreviated_name
 
 exit;
