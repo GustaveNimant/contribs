@@ -1,5 +1,5 @@
 open "basics";;
-open "Un_President_de_la_republique_S";;
+open "Le_President_de_la_republique_S";;
 
 -- Le Président de la République promulgue les lois dans les quinze jours qui suivent la transmission au Gouvernement de la loi définitivement adoptée.
 
@@ -7,7 +7,7 @@ open "Un_President_de_la_republique_S";;
 
 species Article_10_S (
   LCmi is Le_Conseil_des_ministres_S 
-  UPre is Un_President_de_la_republique_S
+  LPre is Le_President_de_la_republique_S
 )=
 
 -- Titre II Article 10-a - Le Président de la République promulgue les lois dans les quinze jours qui suivent la transmission au Gouvernement de la loi définitivement adoptée. 

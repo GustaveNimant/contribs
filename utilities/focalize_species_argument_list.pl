@@ -3,33 +3,12 @@ die "Usage:\n perl $0 <file.fcl> \n" if $#ARGV < 0 ;
 
 use File::Basename;
 use List::Uniq ':all';
- 
-$a_file = shift (@ARGV);
-# print "file >$a_file<\n";
-if ($a_file =~ /_S\.fcl$/) {
-}
-elsif ($a_file =~ /_$/) {
-    $a_file = $a_file . "S.fcl";
-}
-elsif ($a_file =~ /_S$/) {
-    $a_file = $a_file . ".fcl";
-}
-elsif ($a_file =~ /_S\.$/) {
-    $a_file = $a_file . "fcl";
-}
-elsif (!($a_file =~ /_S\.fcl/) ) {
-    $a_file = $a_file . "_S.fcl";
-}
-else {
-    die "Usage:\n perl $0 <file.fcl> \n" ;
-}
-
-if ( ! ( -s $a_file )) {
-    die "input file >$a_file< does not exist\n";
-}
 
 $path = "";
 $suffix = "";
+
+$a_file = shift (@ARGV);
+$a_file = species_file_name ($a_file);
 
 ($species_name, $path, $suffix) = fileparse ($a_file,'.\w+');
 
@@ -148,6 +127,36 @@ print "${species_name} (";
 print join (', ', @argument_l);
 print "),\n";
 
+sub species_file_name {
+    my $file = shift @_;
+
+# print "file >$file<\n";
+    if ($file =~ /_S\.fcl$/) {
+    }
+    elsif ($file =~ /_$/) {
+	$file = $file . "S.fcl";
+    }
+    elsif ($file =~ /_S$/) {
+	$file = $file . ".fcl";
+    }
+    elsif ($file =~ /_S\.$/) {
+    $file = $file . "fcl";
+    }
+    elsif (!($file =~ /_S\.fcl/) ) {
+	$file = $file . "_S.fcl";
+    }
+    else {
+	die "Usage:\n perl $0 <file.fcl> \n" ;
+    }
+    
+    if ( ! ( -s $file )) {
+	die "input file >$file< does not exist\n";
+    }
+
+    $file;
+
+} # species_file_name
+
 sub clean_word_list {
     @my_word_l = @_;
     @result_l = ();
@@ -194,6 +203,7 @@ sub abbreviated_name {
     $end = substr ($last_word,1,(4-$count));
 
     $result .= $end;
+
 }; # abbreviated_name
 
 exit;

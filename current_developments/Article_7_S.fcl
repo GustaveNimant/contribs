@@ -1,7 +1,7 @@
 open "basics";;
 
 open "La_Constitution_S";;
-open "Un_President_de_la_republique_S";;
+open "Le_President_de_la_republique_S";;
 open "Un_Bureau_de_vote_S";;
 open "Un_Elu_S";;
 open "Un_Francais_S";;
@@ -43,7 +43,7 @@ species Article_7_S (
   UTer is Un_Territoire_S,
   UBvo is Un_Bureau_de_vote_S (UTer),
   UFra is Un_Francais_S (URac, UOri, URel, UTer),
-  UPre is Un_President_de_la_republique_S (UScr, URac, UOri, URel, UTer, UBvo, UFra)
+  LPre is Le_President_de_la_republique_S (UScr, URac, UOri, URel, UTer, UBvo, UFra)
 ) = 
 
 end;;

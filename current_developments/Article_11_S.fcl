@@ -3,7 +3,7 @@ open "basics";;
 open "Finite_Set_S";;
 open "Un_Bureau_de_vote_S";;
 open "Un_Decret_S";;
-open "Un_Gouvernement_S";;
+open "Le_Gouvernement_S";;
 open "Un_Membre_du_gouvernement_S";;
 open "Un_Organe_deliberant_S";;
 open "Un_Scrutin_S";;
@@ -40,13 +40,13 @@ species Article_11_S (
   UBvo is Un_Bureau_de_vote_S (UTer),
   UOde is Un_Organe_deliberant_S (UTle),
   UMgo is Un_Membre_du_gouvernement_S (UScr, URac, UOri, URel, UTer, UBvo),
-  UGou is Un_Gouvernement_S (UScr, URac, UOri, URel, UTle, UOrd, UDec, UTer, UBvo, UOde, UMgo)
+  LGou is Le_Gouvernement_S (UScr, URac, UOri, URel, UTle, UOrd, UDec, UTer, UBvo, UOde, UMgo)
 )=
 
 -- Titre II Article 11 b-1 - Lorsque le référendum est organisé sur proposition du Gouvernement ...
 
-  property article_11_b_1 : all ugou : UGou, all uscr : UScr,
-  UGou!le_gouvernement_propose_un_referendum (ugou, uscr) ->
+  property article_11_b_1 : all ugou : LGou, all uscr : UScr,
+  LGou!le_gouvernement_propose_un_referendum (ugou, uscr) ->
   UScr!est_un_referendum (uscr); 
  
 end;;

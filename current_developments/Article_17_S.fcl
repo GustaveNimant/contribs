@@ -1,10 +1,10 @@
 open "basics";;
-open "Un_President_de_la_republique_S";;
+open "Le_President_de_la_republique_S";;
 
 -- Le Président de la République a le droit de faire grâce à titre individuel.
 
 species Article_17_S (
-  UPre is Un_President_de_la_republique_S
+  LPre is Le_President_de_la_republique_S
 )=
 
 end;;

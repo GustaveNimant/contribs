@@ -1,5 +1,5 @@
 open "basics";;
-open "Un_President_de_la_republique_S";;
+open "Le_President_de_la_republique_S";;
 
 -- Le Président de la République communique avec les deux assemblées du Parlement par des messages qu'il fait lire et qui ne donnent lieu à aucun débat.
 
@@ -7,7 +7,7 @@ open "Un_President_de_la_republique_S";;
 
 -- Hors session, les assemblées parlementaires sont réunies spécialement à cet effet.
 species Article_18_S (
-  UPre is Un_President_de_la_republique_S
+  LPre is Le_President_de_la_republique_S
 )=
 
 end;;

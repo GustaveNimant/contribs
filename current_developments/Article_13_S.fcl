@@ -1,6 +1,28 @@
 open "basics";;
-open "Un_President_de_la_republique_S";;
 
+open "L_Assemblee_nationale_S";;
+open "Le_Conseil_des_ministres_S";;
+open "Le_Gouvernement_S";;
+open "Le_President_de_la_republique_S";;
+open "Un_Acte_de_l_executif_S";;
+open "Un_Bureau_de_vote_S";;
+open "Un_Citoyen_electeur_S";;
+open "Un_Conseiller_d_etat_S";;
+open "Un_Decret_S";;
+open "Un_Francais_S";;
+open "Un_Haut_fonctionnaire_S";;
+open "Un_Membre_du_gouvernement_S";;
+open "Un_Ministre_S";;
+open "Un_Organe_deliberant_S";;
+open "Un_Prefet_S";;
+open "Un_Premier_ministre_S";;
+open "Un_Scrutin_S";;
+open "Un_Territoire_S";;
+open "Un_Texte_legislatif_S";;
+open "Une_Origine_S";;
+open "Une_Ordonnance_S";;
+open "Une_Race_S";;
+open "Une_Religion_S";;
 
 -- Le Président de la République signe les ordonnances et les décrets délibérés en conseil des ministres.
 
@@ -13,15 +35,65 @@ open "Un_President_de_la_republique_S";;
 -- Une loi organique détermine les emplois ou fonctions, autres que ceux mentionnés au troisième alinéa, pour lesquels, en raison de leur importance pour la garantie des droits et libertés ou la vie économique et sociale de la Nation, le pouvoir de nomination du Président de la République s'exerce après avis public de la commission permanente compétente de chaque assemblée. Le Président de la République ne peut procéder à une nomination lorsque l'addition des votes négatifs dans chaque commission représente au moins trois cinquièmes des suffrages exprimés au sein des deux commissions. La loi détermine les commissions permanentes compétentes selon les emplois ou fonctions concernés.
 
 species Article_13_S (
-  UPre is Un_President_de_la_republique_S
+  UScr is Un_Scrutin_S,
+  URac is Une_Race_S,
+  UOri is Une_Origine_S,
+  URel is Une_Religion_S,
+  UOrd is Une_Ordonnance_S,
+  UDec is Un_Decret_S,
+  UAex is Un_Acte_de_l_executif_S,
+  UTle is Un_Texte_legislatif_S,
+  UTer is Un_Territoire_S,
+  UOde is Un_Organe_deliberant_S (UTle),
+  UBvo is Un_Bureau_de_vote_S (UTer),
+  UFra is Un_Francais_S (URac, UOri, URel, UTer),
+  UCet is Un_Conseiller_d_etat_S (URac, UOri, URel, UTer),
+  UPre is Un_Prefet_S (URac, UOri, URel, UTer),
+  UHfo is Un_Haut_fonctionnaire_S (URac, UOri, URel, UTer),
+  UCel is Un_Citoyen_electeur_S (UScr, URac, UOri, URel, UTer, UBvo),
+  UPmi is Un_Premier_ministre_S (UScr, URac, UOri, URel, UTer, UBvo),
+  UMin is Un_Ministre_S (UScr, URac, UOri, URel, UTer, UBvo),
+  UMgo is Un_Membre_du_gouvernement_S (UScr, URac, UOri, URel, UTer, UBvo),
+  LCmi is Le_Conseil_des_ministres_S (UScr, URac, UOri, URel, UTer, UBvo, UTle, UMin, UPmi),
+  LGou is Le_Gouvernement_S (UScr, URac, UOri, URel, UTle, UOrd, UDec, UTer, UBvo, UOde, UMgo),
+  LPre is Le_President_de_la_republique_S (UScr, URac, UOri, URel, UTer, UBvo, UFra)
 )=
 
--- Titre II Article 13-a - Le Président de la République signe les ordonnances et les décrets délibérés en conseil des ministres. 
+-- Titre II Article 13-a-1 - Le Président de la République signe les ordonnances ... délibérés en conseil des ministres. 
 
-  signature signe_un_acte_de_l_executif : Self -> UAex -> bool;
+-- Titre II Article 13-a-2 - Le Président de la République signe ... les décrets délibérés en conseil des ministres. 
 
-  property article_13_a : all lpre : Self, all lana : UAex, all lgou : LGou, 
-  signe_un_acte_de_l_executif (lpre, lana) -> LGou!delibere_sur (lgou, lana);
+  signature le_president_de_la_republique_signe_une_ordonnance : LPre -> UOrd -> bool;
+
+  signature le_president_de_la_republique_signe_un_decret : LPre -> UDec -> bool;
+
+  signature le_conseil_des_ministres_delibere_sur_une_ordonnance : LCmi -> UOrd -> bool;
+
+  signature le_conseil_des_ministres_delibere_sur_un_decret : LCmi -> UDec -> bool;
+
+  property article_13_a : all lpre : LPre, all uord : UOrd, all lcmi : LCmi,
+  le_president_de_la_republique_signe_une_ordonnance (lpre, uord) ->
+  le_conseil_des_ministres_delibere_sur_une_ordonnance (lcmi, uord);
+
+  property article_13_b : all lpre : LPre, all udec : UDec, all lcmi : LCmi,
+  le_president_de_la_republique_signe_un_decret (lpre, udec) ->
+  le_conseil_des_ministres_delibere_sur_un_decret (lcmi, udec);
+
+-- Titre II Article 13-c-1 - Les conseillers d'État, 
+-- le grand chancelier de la Légion d'honneur, 
+-- les ambassadeurs 
+-- et envoyés extraordinaires, 
+-- les conseillers maîtres à la Cour des comptes, 
+-- Titre II Article 13-c-6 - les préfets, 
+-- les représentants de l'État dans les collectivités d'outre-mer régies par l'article 74 et en Nouvelle-Calédonie, 
+-- les officiers généraux, 
+-- les recteurs des académies, 
+-- les directeurs des administrations centrales 
+-- ... sont nommés en conseil des ministres.
+
+  signature le_conseil_des_ministres_nomme_un_conseiller_d_etat : LCmi -> UCet -> bool;
+
+  signature le_conseil_des_ministres_nomme_un_prefet : LCmi -> UPre -> bool;
 
 end;;
 

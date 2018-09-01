@@ -9,7 +9,7 @@ open "Un_Francais_S";;
 open "Un_Membre_de_l_executif_S";;
 open "Un_Parlementaire_S";;
 open "Un_Premier_ministre_S";;
-open "Un_President_de_la_republique_S";;
+open "Le_President_de_la_republique_S";;
 open "Un_Scrutin_S";;
 open "Un_Territoire_S";;
 open "Une_Origine_S";;
@@ -37,18 +37,18 @@ species Article_12_S (
   UDep is Un_Depute_S (UScr, URac, UOri, URel, UTer, UBvo, UCel),
   UPar is Un_Parlementaire_S (UScr, URac, UOri, URel, UTer, UBvo, UCel),
   LAna is L_Assemblee_nationale_S (UScr, URac, UOri, URel, UTer, UBvo, UCel, UDep, UPar),
-  UPre is Un_President_de_la_republique_S (UScr, URac, UOri, URel, UTer, UBvo, UFra)
+  LPre is Le_President_de_la_republique_S (UScr, URac, UOri, URel, UTer, UBvo, UFra)
 )=
 
 -- Titre II Article 12-a - Le Président de la République peut, après consultation du Premier ministre et des présidents des assemblées, prononcer la dissolution de l'Assemblée nationale.
 
-  signature le_president_de_la_republique_consulte_le_premier_ministre_avant_la_dissolution_de_l_assemblee_nationale : UPre -> UPmi -> bool;
+  signature le_president_de_la_republique_consulte_le_premier_ministre_avant_la_dissolution_de_l_assemblee_nationale : LPre -> UPmi -> bool;
 
-  signature le_president_de_la_republique_peut_dissoudre_l_assemblee_nationale : UPre -> LAna -> bool;
+  signature le_president_de_la_republique_peut_dissoudre_l_assemblee_nationale : LPre -> LAna -> bool;
 
-  property article_12_a : all upre : UPre, all lana : LAna, all upmi : UPmi, 
-  le_president_de_la_republique_peut_dissoudre_l_assemblee_nationale (upre, lana) ->
-  le_president_de_la_republique_consulte_le_premier_ministre_avant_la_dissolution_de_l_assemblee_nationale (upre, upmi);
+  property article_12_a : all lpre : LPre, all lana : LAna, all upmi : UPmi, 
+  le_president_de_la_republique_peut_dissoudre_l_assemblee_nationale (lpre, lana) ->
+  le_president_de_la_republique_consulte_le_premier_ministre_avant_la_dissolution_de_l_assemblee_nationale (lpre, upmi);
 
 end;;
 

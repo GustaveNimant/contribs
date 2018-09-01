@@ -3,19 +3,19 @@ open "basics";;
 open "Finite_Set_S";;
 open "Une_Ordonnance_S";;
 open "Le_Parlement_S";;
-open "Un_Gouvernement_S";;
+open "Le_Gouvernement_S";;
 
 -- Article 38-a - Le Gouvernement peut, pour l'exécution de son programme, demander au Parlement l'autorisation de prendre par ordonnances, pendant un délai limité, des mesures qui sont normalement du domaine de la loi.
 
 species Article_38_S (
   UOrd is Une_Ordonnance_S,
   LPar is Le_Parlement_S (UScr, UTer, UBvo, UCel, UElu, LEle, UElu_set, UDep, USen, UPar, LAna, LSen),
-  UGou is Un_Gouvernement_S
+  LGou is Le_Gouvernement_S
 ) =
 
-  signature est_autorise_par_le_parlement_a_prendre_une_ordonnance : UGou -> LPar -> UOrd -> bool;
+  signature est_autorise_par_le_parlement_a_prendre_une_ordonnance : LGou -> LPar -> UOrd -> bool;
 
-  property article_38_a : all ugou : UGou, all lpar : LPar, all uord : UOrd, 
+  property article_38_a : all ugou : LGou, all lpar : LPar, all uord : UOrd, 
   prend_une_ordonnance (ugou, uord) ->
   delibere_sur_une_ordonnance (ugou, uord) ->
   est_autorise_par_le_parlement_a_prendre_une_ordonnance (ugou, lpar, uord) ;
