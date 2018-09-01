@@ -59,15 +59,15 @@ species Article_13_S (
   LPre is Le_President_de_la_republique_S (UScr, URac, UOri, URel, UTer, UBvo, UFra)
 )=
 
--- Titre II Article 13-a-1 - Le Président de la République signe les ordonnances ... délibérés en conseil des ministres. 
-
--- Titre II Article 13-a-2 - Le Président de la République signe ... les décrets délibérés en conseil des ministres. 
+-- Titre II Article 13-a-1 - Le Président de la République signe les ordonnances ... délibérées en conseil des ministres. 
 
   signature le_president_de_la_republique_signe_une_ordonnance : LPre -> UOrd -> bool;
 
-  signature le_president_de_la_republique_signe_un_decret : LPre -> UDec -> bool;
-
   signature le_conseil_des_ministres_delibere_sur_une_ordonnance : LCmi -> UOrd -> bool;
+
+-- Titre II Article 13-a-2 - Le Président de la République signe ... les décrets délibérés en conseil des ministres. 
+
+  signature le_president_de_la_republique_signe_un_decret : LPre -> UDec -> bool;
 
   signature le_conseil_des_ministres_delibere_sur_un_decret : LCmi -> UDec -> bool;
 
