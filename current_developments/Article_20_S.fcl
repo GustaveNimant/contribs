@@ -1,5 +1,6 @@
 open "basics";;
 
+open "L_Administration_S";;
 open "L_Assemblee_nationale_S";;
 open "L_Electorat_S";;
 open "La_Politique_de_la_nation_S";;
@@ -7,6 +8,8 @@ open "Le_Gouvernement_S";;
 open "Le_Parlement_S";;
 open "Le_President_de_la_republique_S";;
 open "Le_Senat_S";;
+open "Les_Forces_armees_S";;
+open "Un_Acte_de_l_executif_S";;
 open "Un_Bureau_de_vote_S";;
 open "Un_Citoyen_electeur_S";;
 open "Un_Decret_S";;
@@ -39,7 +42,10 @@ species Article_20_S (
   UTle is Un_Texte_legislatif_S,
   UOrd is Une_Ordonnance_S,
   UDec is Un_Decret_S,
-  LPna is La_Politique_de_la_nation_S,
+  LAmi is L_Administration_S,
+  LFar is Les_Forces_armees_S,
+  UAex is Un_Acte_de_l_executif_S,
+  LPna is La_Politique_de_la_nation_S (UAex),
   UTer is Un_Territoire_S,
   UBvo is Un_Bureau_de_vote_S (UTer),
   UOde is Un_Organe_deliberant_S (UTle),
@@ -58,12 +64,21 @@ species Article_20_S (
 
 -- Titre III Article 20-a-1 - Le Gouvernement détermine la politique de la nation.
 
+  signature le_gouvernement_determine_la_politique_de_la_nation : LGou -> LPna -> bool;
+
 -- Titre III Article 20-a-2 - Le Gouvernement conduit la politique de la nation.
 
--- Titre III Article 20-b-1 - Il dispose de l'administration et de la force armée.
+  signature le_gouvernement_conduit_la_politique_de_la_nation : LGou -> LPna -> bool;
+
+-- Titre III Article 20-b-1 - Il dispose de l'administration
+
+  signature le_gouvernement_dispose_de_l_administration : LGou -> LAmi -> bool;
 
 -- Titre III Article 20-b-2 - Il dispose de la force armée.
 
+  signature le_gouvernement_dispose_de_la_force_armee : LGou -> LFar -> bool;
+
 -- Titre III Article 20-c - Il est responsable devant le Parlement dans les conditions et suivant les procédures prévues aux articles 49 et 50.
 
+  signature le_gouvernement_est_responsable_devant_le_parlement : LGou -> LPar -> bool;
 end;;

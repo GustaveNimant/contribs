@@ -1,3 +1,3 @@
 FOCALIZE_SRC=\
-  Article_3_S.fcl \
+  Un_Membre_du_gouvernement_S.fcl \
 
