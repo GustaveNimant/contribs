@@ -1,0 +1,69 @@
+open "basics";;
+
+open "Finite_Set_S";;
+open "L_Assemblee_nationale_S";;
+open "L_Electorat_S";;
+open "Le_Gouvernement_S";;
+open "Le_Parlement_S";;
+open "Le_Senat_S";;
+open "Un_Bureau_de_vote_S";;
+open "Un_Citoyen_electeur_S";;
+open "Un_Decret_S";;
+open "Un_Depute_S";;
+open "Un_Elu_S";;
+open "Un_Membre_du_gouvernement_S";;
+open "Un_Organe_deliberant_S";;
+open "Un_Parlementaire_S";;
+open "Un_Scrutin_S";;
+open "Un_Senateur_S";;
+open "Un_Territoire_S";;
+open "Un_Texte_legislatif_S";;
+open "Une_Ordonnance_S";;
+open "Une_Origine_S";;
+open "Une_Race_S";;
+open "Une_Religion_S";;
+
+-- Les fonctions de membre du Gouvernement sont incompatibles avec l'exercice de tout mandat parlementaire, de toute fonction de représentation professionnelle à caractère national et de tout emploi public ou de toute activité professionnelle.
+
+-- Une loi organique fixe les conditions dans lesquelles il est pourvu au remplacement des titulaires de tels mandats, fonctions ou emplois.
+
+-- Le remplacement des membres du Parlement a lieu conformément aux dispositions de l'article 25.
+
+species Article_23_S (
+  UScr is Un_Scrutin_S,
+  URac is Une_Race_S,
+  UOri is Une_Origine_S,
+  URel is Une_Religion_S,
+  UOrd is Une_Ordonnance_S,
+  UTle is Un_Texte_legislatif_S,
+  UDec is Un_Decret_S,
+  UTer is Un_Territoire_S,
+  UBvo is Un_Bureau_de_vote_S (UTer),
+  UCel is Un_Citoyen_electeur_S (UScr, URac, UOri, URel, UTer, UBvo),
+  UElu is Un_Elu_S (UScr, URac, UOri, URel, UTer, UBvo),
+  LEle is L_Electorat_S (UScr, URac, UOri, URel, UTer, UBvo, UCel),
+  UPar is Un_Parlementaire_S (UScr, URac, UOri, URel, UTer, UBvo, UCel),
+  UDep is Un_Depute_S (UScr, URac, UOri, URel, UTer, UBvo, UCel),
+  LAna is L_Assemblee_nationale_S (UScr, URac, UOri, URel, UTer, UBvo, UCel, UDep, UPar),
+  USen is Un_Senateur_S (UScr, URac, UOri, URel, UTer, UBvo, UCel),
+  LSen is Le_Senat_S (UScr, URac, UOri, URel, UTer, UBvo, UCel, USen, UPar),
+  LPar is Le_Parlement_S (UScr, URac, UOri, URel, UTer, UBvo, UCel, UDep, USen, LEle, UElu, UPar, LAna, LSen),
+  UOde is Un_Organe_deliberant_S (UTle),
+  UMgo is Un_Membre_du_gouvernement_S (UScr, URac, UOri, URel, UTer, UBvo),
+  LGou is Le_Gouvernement_S (UScr, URac, UOri, URel, UTle, UOrd, UDec, UTer, UBvo, UOde, UMgo)
+  ) =
+
+-- Titre III Article 23-a-1 - Les fonctions de membre du Gouvernement sont incompatibles avec l'exercice de tout mandat parlementaire...
+
+-- logical let les_fonctions_de_membre_du_gouvernement_sont_incompatibles_avec_l_exercice_de_tout_mandat_parlementaire : 
+  
+
+
+-- Titre III Article 23-a-2 - Les fonctions de membre du Gouvernement sont incompatibles avec l'exercice de toute fonction de représentation professionnelle à caractère national
+
+-- Titre III Article 23-a-3 - Les fonctions de membre du Gouvernement sont incompatibles avec l'exercice de tout emploi public ou de toute activité professionnelle.
+
+-- Titre III Article 23-a-4 - Les fonctions de membre du Gouvernement sont incompatibles avec l'exercice de toute activité professionnelle.
+
+
+end;;

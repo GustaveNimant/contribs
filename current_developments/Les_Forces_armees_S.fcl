@@ -1,0 +1,5 @@
+open "basics";;
+
+species Les_Forces_armees_S =
+
+end;;
