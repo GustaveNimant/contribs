@@ -1,11 +1,33 @@
 open "basics";;
+
 open "Le_President_de_la_republique_S";;
+open "Un_Bureau_de_vote_S";;
+open "Un_Francais_S";;
+open "Un_Ministre_S";;
+open "Un_Premier_ministre_S";;
+open "Un_Scrutin_S";;
+open "Un_Territoire_S";;
+open "Une_Origine_S";;
+open "Une_Race_S";;
+open "Une_Religion_S";;
 
 -- Les actes du Président de la République autres que ceux prévus aux articles 8 (1er alinéa), 11, 12, 16, 18, 54, 56 et 61 sont contresignés par le Premier ministre et, le cas échéant, par les ministres responsables.
 
 species Article_19_S (
-  LPre is Le_President_de_la_republique_S
+  UScr is Un_Scrutin_S,
+  URac is Une_Race_S,
+  UOri is Une_Origine_S,
+  URel is Une_Religion_S,
+  UTer is Un_Territoire_S,
+  UBvo is Un_Bureau_de_vote_S (UTer),
+  UFra is Un_Francais_S (URac, UOri, URel, UTer),
+  UMin is Un_Ministre_S (UScr, URac, UOri, URel, UTer, UBvo),
+  UPmi is Un_Premier_ministre_S (UScr, URac, UOri, URel, UTer, UBvo),
+  LPre is Le_President_de_la_republique_S (UScr, URac, UOri, URel, UTer, UBvo, UFra)
 )=
+
+-- Titre II Article 19-a - Les actes du Président de la République autres que ceux prévus aux articles 8 (1er alinéa), 11, 12, 16, 18, 54, 56 et 61 sont contresignés par le Premier ministre et, le cas échéant, par les ministres responsables.
+
 
 end;;
 

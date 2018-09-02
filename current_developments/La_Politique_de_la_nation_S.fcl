@@ -1,0 +1,12 @@
+open "basics";;
+
+open "Finite_Set_S";;
+open "Un_Acte_de_l_executif_S";;
+
+species La_Politique_de_la_nation_S (
+  UAex is Un_Acte_de_l_executif_S
+) =
+
+  inherit Finite_Set_S (UAex); 
+
+end;;

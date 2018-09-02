@@ -1,3 +1,3 @@
 FOCALIZE_SRC=\
-  Article_18_S.fcl \
+  La_Politique_de_la_nation_S.fcl \
 
