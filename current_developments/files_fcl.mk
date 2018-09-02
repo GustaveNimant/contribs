@@ -1,3 +1,3 @@
 FOCALIZE_SRC=\
-  Article_13_S.fcl \
+  Article_18_S.fcl \
 

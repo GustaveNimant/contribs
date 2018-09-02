@@ -1,0 +1,50 @@
+open "basics";;
+
+open "Finite_Set_S";;
+open "Un_Bureau_de_vote_S";;
+open "Un_Citoyen_electeur_S";;
+open "Un_Parlementaire_S";;
+open "Un_Scrutin_S";;
+open "Un_Senateur_S";;
+open "Un_Territoire_S";;
+open "Une_Chambre_legislative_S";;
+open "Une_Origine_S";;
+open "Une_Race_S";;
+open "Une_Religion_S";;
+
+--  L_Assemblee_nationale_S  Le_Senat_S
+--         \                  /
+--          v                v
+--        Une_Chambre_legislative_S
+
+--  Un_Depute           Un_Senateur
+--      \                  /
+--       v                v
+--        Un_Parlementaire
+--                |
+--                v
+--             Un_Elu
+--                |
+--                v
+--           Un_Citoyen_electeur
+--                |
+--                v
+--           Un_Francais
+
+species Le_Senat_S (
+  UScr is Un_Scrutin_S, 
+  URac is Une_Race_S,
+  UOri is Une_Origine_S,
+  URel is Une_Religion_S,
+  UTer is Un_Territoire_S,
+  UBvo is Un_Bureau_de_vote_S (UTer),
+  UCel is Un_Citoyen_electeur_S (UScr, URac, UOri, URel, UTer, UBvo),
+  USen is Un_Senateur_S (UScr, URac, UOri, URel, UTer, UBvo, UCel),
+  UPar is Un_Parlementaire_S (UScr, URac, UOri, URel, UTer, UBvo, UCel)
+) =
+    
+  inherit Une_Chambre_legislative_S (UScr, URac, UOri, URel, UTer, UBvo, UCel, UPar);
+
+  let ne_peut_pas_etre_dissous (lsen : Self) = false;
+
+end;;
