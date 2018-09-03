@@ -33,14 +33,14 @@ species Article_18_S (
   UBvo is Un_Bureau_de_vote_S (UTer),
   UFra is Un_Francais_S (URac, UOri, URel, UTer),
   UCel is Un_Citoyen_electeur_S (UScr, URac, UOri, URel, UTer, UBvo),
-  UDep is Un_Depute_S (UScr, URac, UOri, URel, UTer, UBvo, UCel),
-  USen is Un_Senateur_S (UScr, URac, UOri, URel, UTer, UBvo, UCel),
-  UPar is Un_Parlementaire_S (UScr, URac, UOri, URel, UTer, UBvo, UCel),
+  UDep is Un_Depute_S (UScr, URac, UOri, URel, UTer, UBvo),
+  USen is Un_Senateur_S (UScr, URac, UOri, URel, UTer, UBvo),
+  UPar is Un_Parlementaire_S (UScr, URac, UOri, URel, UTer, UBvo),
   LEle is L_Electorat_S (UScr, URac, UOri, URel, UTer, UBvo, UCel),
   UElu is Un_Elu_S (UScr, URac, UOri, URel, UTer, UBvo),
-  LAna is L_Assemblee_nationale_S (UScr, URac, UOri, URel, UTer, UBvo, UCel, UDep, UPar),
-  LSen is Le_Senat_S (UScr, URac, UOri, URel, UTer, UBvo, UCel, USen, UPar),
-  LPar is Le_Parlement_S (UScr, URac, UOri, URel, UTer, UBvo, UCel, UDep, USen, LEle, UElu, UPar, LAna, LSen),
+  LAna is L_Assemblee_nationale_S (UScr, URac, UOri, URel, UTer, UBvo, UDep, UPar),
+  LSen is Le_Senat_S (UScr, URac, UOri, URel, UTer, UBvo, USen, UPar),
+  LPar is Le_Parlement_S (UScr, URac, UOri, URel, UTer, UBvo, UDep, USen, UElu, UPar, LAna, LSen),
   LPre is Le_President_de_la_republique_S (UScr, URac, UOri, URel, UTer, UBvo, UFra)
 )=
 

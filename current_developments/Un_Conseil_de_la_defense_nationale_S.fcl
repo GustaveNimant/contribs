@@ -1,0 +1,9 @@
+open "basics";;
+
+open "Un_Organe_de_la_defense_nationale_S";;
+
+species Un_Conseil_de_la_defense_nationale_S =
+
+  inherit Un_Organe_de_la_defense_nationale_S;
+
+end;;

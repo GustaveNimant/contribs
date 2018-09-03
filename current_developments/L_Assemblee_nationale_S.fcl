@@ -3,7 +3,6 @@ open "basics";;
 open "Finite_Set_S";;
 open "Un_Bureau_de_vote_S";;
 open "Un_Depute_S";;
-open "Un_Citoyen_electeur_S";;
 open "Un_Parlementaire_S";;
 open "Un_Scrutin_S";;
 open "Un_Territoire_S";;
@@ -33,11 +32,10 @@ species L_Assemblee_nationale_S (
   URel is Une_Religion_S,
   UTer is Un_Territoire_S,
   UBvo is Un_Bureau_de_vote_S (UTer),
-  UCel is Un_Citoyen_electeur_S (UScr, URac, UOri, URel, UTer, UBvo),
-  UDep is Un_Depute_S (UScr, URac, UOri, URel, UTer, UBvo, UCel),
-  UPar is Un_Parlementaire_S (UScr, URac, UOri, URel, UTer, UBvo, UCel)
+  UDep is Un_Depute_S (UScr, URac, UOri, URel, UTer, UBvo),
+  UPar is Un_Parlementaire_S (UScr, URac, UOri, URel, UTer, UBvo)
 ) = 
 
-  inherit Une_Chambre_legislative_S (UScr, URac, UOri, URel, UTer, UBvo, UCel, UPar);
+  inherit Une_Chambre_legislative_S (UScr, URac, UOri, URel, UTer, UBvo, UPar);
   
 end;;

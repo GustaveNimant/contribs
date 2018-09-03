@@ -1,6 +1,6 @@
 open "basics";;
+
 open "Un_Bureau_de_vote_S";;
-open "Un_Citoyen_electeur_S";;
 open "Un_Elu_S";;
 open "Un_Scrutin_S";;
 open "Un_Territoire_S";;
@@ -8,7 +8,6 @@ open "Une_Origine_S";;
 open "Une_Race_S";;
 open "Une_Religion_S";;
 
---
 -- InH:  Un_Depute           Un_Senateur
 -- InH:      \                  /
 -- InH:       v                v
@@ -18,10 +17,13 @@ open "Une_Religion_S";;
 -- InH:             Un_Elu
 -- InH:                |
 -- InH:                v
--- InH:           Un_Citoyen_electeur
+-- InH:        Un_Citoyen_electeur
 -- InH:                |
 -- InH:                v
 -- InH:           Un_Francais
+-- InH:                |
+-- InH:                v
+-- InH:         Un_Etre_humain_S
 
 species Un_Parlementaire_S (
   UScr is Un_Scrutin_S,
@@ -29,8 +31,7 @@ species Un_Parlementaire_S (
   UOri is Une_Origine_S,
   URel is Une_Religion_S,
   UTer is Un_Territoire_S,
-  UBvo is Un_Bureau_de_vote_S (UTer),
-  UCel is Un_Citoyen_electeur_S (UScr, URac, UOri, URel, UTer, UBvo)
+  UBvo is Un_Bureau_de_vote_S (UTer)
 ) = 
 
   inherit Un_Elu_S (UScr, URac, UOri, URel, UTer, UBvo);

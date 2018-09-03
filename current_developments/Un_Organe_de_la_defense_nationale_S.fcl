@@ -1,0 +1,5 @@
+open "basics";;
+
+species Un_Organe_de_la_defense_nationale_S =
+
+end;;

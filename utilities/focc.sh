@@ -27,6 +27,6 @@ do
 done
 echo "" >> files_fcl.mk
 
-make clean; make
+rm build.bin;make
 exit;
 

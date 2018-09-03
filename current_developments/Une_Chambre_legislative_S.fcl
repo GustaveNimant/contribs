@@ -1,7 +1,6 @@
 open "basics";;
 open "Finite_Set_S";;
 open "Un_Bureau_de_vote_S";;
-open "Un_Citoyen_electeur_S";;
 open "Un_Parlementaire_S";;
 open "Un_Scrutin_S";;
 open "Un_Territoire_S";;
@@ -17,7 +16,19 @@ open "Une_Religion_S";;
 -- InH:  Un_Depute           Un_Senateur
 -- InH:      \                  /
 -- InH:       v                v
--- InH:        Un_Parlementaire
+-- InH:        Un_Parlementaire  
+-- InH:                |
+-- InH:                v
+-- InH:             Un_Elu
+-- InH:                |
+-- InH:                v
+-- InH:        Un_Citoyen_electeur
+-- InH:                |
+-- InH:                v
+-- InH:           Un_Francais
+-- InH:                |
+-- InH:                v
+-- InH:         Un_Etre_humain_S
 
 species Une_Chambre_legislative_S (
   UScr is Un_Scrutin_S,
@@ -26,8 +37,7 @@ species Une_Chambre_legislative_S (
   URel is Une_Religion_S,
   UTer is Un_Territoire_S,
   UBvo is Un_Bureau_de_vote_S (UTer), 
-  UCel is Un_Citoyen_electeur_S (UScr, URac, UOri, URel, UTer, UBvo),
-  UPar is Un_Parlementaire_S (UScr, URac, UOri, URel, UTer, UBvo, UCel)
+  UPar is Un_Parlementaire_S (UScr, URac, UOri, URel, UTer, UBvo)
 ) = 
 
   inherit Finite_Set_S (UPar);

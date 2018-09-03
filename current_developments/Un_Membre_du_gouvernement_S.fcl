@@ -9,9 +9,18 @@ open "Une_Race_S";;
 open "Une_Religion_S";;
 
 -- InH: Un_Membre_du_gouvernement_S 
--- InH:          |
--- InH:          v
--- InH: Un_Membre_de_l_executif_S
+-- InH:              |
+-- InH:              v
+-- InH:  Un_Membre_de_l_executif_S
+-- InH:              |
+-- InH:              v
+-- InH:     Un_Citoyen_electeur_S
+-- InH:              |
+-- InH:              v
+-- InH:        Un_Francais_S
+-- InH:              |
+-- InH:              v
+-- InH:       Un_Etre_humain_S
 
 species Un_Membre_du_gouvernement_S (
   UScr is Un_Scrutin_S,
