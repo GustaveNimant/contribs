@@ -8,10 +8,10 @@ open "Une_Origine_S";;
 open "Une_Race_S";;
 open "Une_Religion_S";;
 
--- Un_Membre_de_l_executif_S
---           |
---           v
--- Un_Membre_du_gouvernement_S 
+-- InH: Un_Membre_du_gouvernement_S 
+-- InH:          |
+-- InH:          v
+-- InH: Un_Membre_de_l_executif_S
 
 species Un_Membre_du_gouvernement_S (
   UScr is Un_Scrutin_S,

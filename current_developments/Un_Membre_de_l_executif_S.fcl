@@ -7,10 +7,10 @@ open "Une_Race_S";;
 open "Une_Religion_S";;
 open "Un_Citoyen_electeur_S";;
 
---       Un_Membre_de_l_executif
---                |
---                v
---        Un_Citoyen_electeur
+-- InH:       Un_Membre_de_l_executif
+-- InH:                |
+-- InH:                v
+-- InH:        Un_Citoyen_electeur
 
 species Un_Membre_de_l_executif_S (
   UScr is Un_Scrutin_S,   

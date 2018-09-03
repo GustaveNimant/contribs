@@ -10,16 +10,16 @@ open "Une_Origine_S";;
 open "Une_Race_S";;
 open "Une_Religion_S";;
 
---  Un_Depute           Un_Senateur
---      \                  /
---       v                v
---        Un_Parlementaire  
---                |
---                v
---             Un_Elu
---                |
---                v
---           Un_Citoyen_electeur
+-- InH:  Un_Depute           Un_Senateur
+-- InH:      \                  /
+-- InH:       v                v
+-- InH:        Un_Parlementaire  
+-- InH:                |
+-- InH:                v
+-- InH:             Un_Elu
+-- InH:                |
+-- InH:                v
+-- InH:           Un_Citoyen_electeur
 
 species Un_Senateur_S (
   UScr is Un_Scrutin_S, 

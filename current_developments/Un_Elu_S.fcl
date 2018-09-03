@@ -7,16 +7,16 @@ open "Une_Origine_S";;
 open "Une_Race_S";;
 open "Une_Religion_S";;
 
---        Un_Grand_electeur_S
---                |
---                v
---             Un_Elu
---                |
---                v
---      Un_Citoyen_electeur_S  
---                |
---                v
---           Un_Francais
+-- InH:        Un_Grand_electeur_S
+-- InH:                |
+-- InH:                v
+-- InH:             Un_Elu
+-- InH:                |
+-- InH:                v
+-- InH:      Un_Citoyen_electeur_S  
+-- InH:                |
+-- InH:                v
+-- InH:           Un_Francais
 
 species Un_Elu_S (
   UScr is Un_Scrutin_S,

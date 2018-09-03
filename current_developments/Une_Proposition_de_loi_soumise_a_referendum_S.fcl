@@ -1,33 +1,28 @@
 open "basics";;
 
-open "Finite_Set_S";;
 open "L_Assemblee_nationale_S";;
 open "L_Electorat_S";;
+open "Le_Parlement_S";;
 open "Le_Senat_S";;
 open "Un_Bureau_de_vote_S";;
-open "Un_Depute_S";;
 open "Un_Citoyen_electeur_S";;
+open "Un_Depute_S";;
 open "Un_Elu_S";;
 open "Un_Parlementaire_S";;
 open "Un_Scrutin_S";;
 open "Un_Senateur_S";;
 open "Un_Territoire_S";;
+open "Un_Texte_legislatif_S";;
 open "Une_Origine_S";;
 open "Une_Race_S";;
 open "Une_Religion_S";;
 
--- InH:  Un_Depute           Un_Senateur
--- InH:      \                  /
--- InH:       v                v
--- InH:        Un_Parlementaire 
--- InH:                |
--- InH:                v
--- InH:             Un_Elu
--- InH:                |
--- InH:                v
--- InH:           Un_Francais
+-- InH: Une_Proposition_de_loi_S  Une_Loi_S
+-- InH:         \                  /
+-- InH:          v                v
+-- InH:         Un_Texte_legislatif_S
 
-species Le_Parlement_S (
+species Une_Proposition_de_loi_soumise_a_referendum_S (
   UScr is Un_Scrutin_S,
   URac is Une_Race_S,
   UOri is Une_Origine_S,
@@ -41,13 +36,14 @@ species Le_Parlement_S (
   UElu is Un_Elu_S (UScr, URac, UOri, URel, UTer, UBvo),
   UPar is Un_Parlementaire_S (UScr, URac, UOri, URel, UTer, UBvo, UCel),
   LAna is L_Assemblee_nationale_S (UScr, URac, UOri, URel, UTer, UBvo, UCel, UDep, UPar),
-  LSen is Le_Senat_S (UScr, URac, UOri, URel, UTer, UBvo, UCel, USen, UPar)
-) = 
+  LSen is Le_Senat_S (UScr, URac, UOri, URel, UTer, UBvo, UCel, USen, UPar),
+  LPar is Le_Parlement_S (UScr, URac, UOri, URel, UTer, UBvo, UCel, UDep, USen, LEle, UElu, UPar, LAna, LSen)
+)  = 
+    
+  inherit Une_Proposition_de_loi (UScr, URac, UOri, URel, UTer, UBvo, UCel, UDep, USen, LEle, UElu, UPar, LAna, LSen, LPar);
 
-  inherit Finite_Set_S (UPar);
-  
-  signature l_assemblee_nationale : Self -> LAna;
+  signature une_proposition_de_loi_soumise_a_referendum : Self -> LAna -> bool;
 
-  signature le_senat : Self -> LSen;
+  signature une_proposition_de_loi_est_examinee_par_le_senat : Self -> LSen -> bool;
 
 end;;

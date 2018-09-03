@@ -44,16 +44,16 @@ species Article_8_S (
 
 -- Titre II Article 8-a - Le Président de la République nomme le Premier ministre. 
 
-  signature nomme_le_premier_ministre : LPre -> UPmi -> bool;
+  signature le_president_de_la_republique_nomme_le_premier_ministre : LPre -> UPmi -> bool;
 
 -- Titre II Article 8-b - ...Il met fin à ses fonctions sur la présentation par celui-ci de la démission du Gouvernement. 
 
-  signature demissionne_le_gouvernement : LPre -> LGou -> bool;
+  signature le_president_de_la_republique_demissionne_le_gouvernement : LPre -> LGou -> bool;
 
-  signature demissionne_premier_ministre : LPre -> UPmi -> bool;
+  signature le_president_de_la_republique_demissionne_premier_ministre : LPre -> UPmi -> bool;
 
   property article_8 : all lpre : LPre, all lgou : LGou, all upmi : UPmi,
-  demissionne_le_gouvernement (lpre, lgou) -> 
-  demissionne_premier_ministre (lpre, upmi);
+  le_president_de_la_republique_demissionne_le_gouvernement (lpre, lgou) -> 
+  le_president_de_la_republique_demissionne_premier_ministre (lpre, upmi);
 
 end;;

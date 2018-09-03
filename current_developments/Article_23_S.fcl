@@ -55,7 +55,10 @@ species Article_23_S (
 
 -- Titre III Article 23-a-1 - Les fonctions de membre du Gouvernement sont incompatibles avec l'exercice de tout mandat parlementaire...
 
--- logical let les_fonctions_de_membre_du_gouvernement_sont_incompatibles_avec_l_exercice_de_tout_mandat_parlementaire : 
+  logical let les_fonctions_de_membre_du_gouvernement_sont_incompatibles_avec_l_exercice_de_tout_mandat_parlementaire (umgo : UMgo, lgou : LGou) =
+    all umgo : UMgo, all lgou : LGou,
+     LGou!is_a_member_of (umgo, lgou);
+
   
 
 
