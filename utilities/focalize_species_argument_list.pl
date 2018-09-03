@@ -101,24 +101,7 @@ $top = pop @file_l;
 @open_file_l = ($top, @file_l);
 @open_file_l = uniq(@open_file_l);
 
-
-print "\n";
-foreach $_ (@open_file_l) { 
-    if ( $_ ne "Setoid" ) {
-	if ($_ =~ /_subtype/) {
-	    if (! grep /Les_Fonctions_de_conversion/, @open_file_l) {
-		print "open \"Les_Fonctions_de_conversion\";;\n";
-	    }
-	}
-	else {
-	    print "open \"$_\";;\n";
-	}
-    }
-}
-
-print "\n";
-print "open \"${species_name}\";;\n";
-print "\n";
+print_opens (@open_file_l);
 
 $abbreviated_species_name = abbreviated_name ($species_name);
 print "  $abbreviated_species_name is ";
@@ -126,6 +109,28 @@ print "  $abbreviated_species_name is ";
 print "${species_name} (";
 print join (', ', @argument_l);
 print "),\n";
+
+sub print_opens {
+    my @species_name_l = @_;
+    
+    print "\n";
+    foreach $_ (@species_name_l) { 
+	if ( $_ ne "Setoid" ) {
+	    if ($_ =~ /_subtype/) {
+		if (! grep /Les_Fonctions_de_conversion/, @species_name_l) {
+		    print "open \"Les_Fonctions_de_conversion\";;\n";
+		}
+	    }
+	    else {
+		print "open \"$_\";;\n";
+	    }
+	}
+    }
+    
+    print "\n";
+    print "open \"${species_name}\";;\n";
+    print "\n";
+}
 
 sub species_file_name {
     my $file = shift @_;
