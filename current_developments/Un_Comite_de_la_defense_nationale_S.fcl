@@ -1,5 +1,10 @@
 open "basics";;
 
+-- InH: Un_Comite_de_la_defense_nationale_S   Un_Conseil_de_la_defense_nationale_S
+-- InH:                    \                                   /
+-- InH:                     v                                 v
+-- InH:                     Un_Organe_de_la_defense_nationale_S
+
 open "Un_Organe_de_la_defense_nationale_S";;
 
 species Un_Comite_de_la_defense_nationale_S =

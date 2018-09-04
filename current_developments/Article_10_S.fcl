@@ -41,7 +41,7 @@ species Article_10_S (
   LSen is Le_Senat_S (UScr, URac, UOri, URel, UTer, UBvo, USen, UPar),
   LPar is Le_Parlement_S (UScr, URac, UOri, URel, UTer, UBvo, UDep, USen, UElu, UPar, LAna, LSen),
   LPre is Le_President_de_la_republique_S (UScr, URac, UOri, URel, UTer, UBvo, UFra),
-  ULoi is Une_Loi_S (UScr, URac, UOri, URel, UTer, UBvo, UCel, UDep, USen, LEle, UElu, UPar, LAna, LSen, LPar)
+  ULoi is Une_Loi_S (UScr, URac, UOri, URel, UTer, UBvo, UDep, USen, UElu, UPar, LAna, LSen, LPar)
 )=
 
 -- Titre II Article 10-a - Le Président de la République promulgue les lois dans les quinze jours qui suivent la transmission au Gouvernement de la loi définitivement adoptée. 

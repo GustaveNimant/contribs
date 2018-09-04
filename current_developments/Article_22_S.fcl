@@ -1,7 +1,7 @@
 open "basics";;
 
 open "La_Politique_de_la_nation_S";;
-open "Un_Acte_de_l_executif_S";;
+open "Un_Acte_du_premier_ministre_S";;
 open "Un_Bureau_de_vote_S";;
 open "Un_Ministre_S";;
 open "Un_Premier_ministre_S";;
@@ -20,14 +20,13 @@ species Article_22_S (
   URel is Une_Religion_S,
   UTer is Un_Territoire_S,
   UBvo is Un_Bureau_de_vote_S (UTer),
-  UAex is Un_Acte_de_l_executif_S,
-  LPna is La_Politique_de_la_nation_S (UAex),
+  UApm is Un_Acte_du_premier_ministre_S,
   UMin is Un_Ministre_S (UScr, URac, UOri, URel, UTer, UBvo),
   UPmi is Un_Premier_ministre_S (UScr, URac, UOri, URel, UTer, UBvo)
 ) =
 
 -- Titre III Article 22-a-1 - Les actes du Premier ministre sont contresignés, le cas échéant, par les ministres chargés de leur exécution.
 
-  signature les_actes_du_premier_ministre_sont_contresignes_par_les_ministres_charges_de_leur_execution : UPmi -> UMin -> UAex -> bool; 
+  signature les_actes_du_premier_ministre_sont_contresignes_un_ministre_charge_de_leur_execution : UPmi -> UMin -> UApm -> bool; 
 
 end;;

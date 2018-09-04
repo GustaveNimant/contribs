@@ -1,7 +1,6 @@
 open "basics";;
 
-
-open "Un_Texte_legislatif_S";;
+open "Un_Acte_de_l_executif_S";;
 
 -- Documentation : http://www.toupie.org/Dictionnaire/Executif.htm
 -- Documentation : En France, le pouvoir exécutif est détenu par le Président de la République, le Premier_ministre et son gouvernement.
@@ -21,12 +20,10 @@ open "Un_Texte_legislatif_S";;
 -- InH:                                                       v
 -- InH:                                             Un_Texte_legislatif_S
 
-species Un_Acte_de_l_executif_S =
+species Un_Acte_d_un_ministre_S =
 
-  inherit Un_Texte_legislatif_S;
+  inherit Un_Acte_de_l_executif_S;
 
-  signature est_un_decret : Self -> bool;
-
-  signature est_une_ordonnance : Self -> bool;
-
+  signature est_une_nomination : Self -> bool;
+ 
 end;;

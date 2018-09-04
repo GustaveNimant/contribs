@@ -1,23 +1,31 @@
 open "basics";;
 
-open "L_Execution_des_lois_S";;
+open "L_Assemblee_nationale_S";;
 open "La_Defense_nationale_S";;
 open "La_Politique_de_la_nation_S";;
 open "Le_Gouvernement_S";;
+open "Le_Parlement_S";;
+open "Le_Senat_S";;
 open "Un_Acte_de_l_executif_S";;
 open "Un_Bureau_de_vote_S";;
 open "Un_Comite_de_la_defense_nationale_S";;
 open "Un_Conseil_de_la_defense_nationale_S";;
 open "Un_Decret_S";;
+open "Un_Depute_S";;
+open "Un_Elu_S";;
 open "Un_Emploi_civil_S";;
 open "Un_Emploi_militaire_S";;
 open "Un_Membre_du_gouvernement_S";;
+open "Un_Ministre_S";;
 open "Un_Organe_deliberant_S";;
+open "Un_Parlementaire_S";;
 open "Un_Premier_ministre_S";;
 open "Un_Reglement_S";;
 open "Un_Scrutin_S";;
+open "Un_Senateur_S";;
 open "Un_Territoire_S";;
 open "Un_Texte_legislatif_S";;
+open "Une_Loi_S";;
 open "Une_Ordonnance_S";;
 open "Une_Origine_S";;
 open "Une_Race_S";;
@@ -43,7 +51,6 @@ species Article_21_S (
   UTle is Un_Texte_legislatif_S,
   UOrd is Une_Ordonnance_S,
   UDec is Un_Decret_S,
-  LElo is L_Execution_des_lois_S,
   LDna is La_Defense_nationale_S,
   UCon is Un_Conseil_de_la_defense_nationale_S,
   UCom is Un_Comite_de_la_defense_nationale_S,
@@ -54,10 +61,19 @@ species Article_21_S (
   UOde is Un_Organe_deliberant_S (UTle),
   UEci is Un_Emploi_civil_S (URac, UOri, URel, UTer),
   UEmi is Un_Emploi_militaire_S (URac, UOri, URel, UTer),
+  UMin is Un_Ministre_S (UScr, URac, UOri, URel, UTer, UBvo),
   UPmi is Un_Premier_ministre_S (UScr, URac, UOri, URel, UTer, UBvo),
+  UDep is Un_Depute_S (UScr, URac, UOri, URel, UTer, UBvo),
+  USen is Un_Senateur_S (UScr, URac, UOri, URel, UTer, UBvo),
+  UPar is Un_Parlementaire_S (UScr, URac, UOri, URel, UTer, UBvo),
+  UElu is Un_Elu_S (UScr, URac, UOri, URel, UTer, UBvo),
   UMgo is Un_Membre_du_gouvernement_S (UScr, URac, UOri, URel, UTer, UBvo),
-  LGou is Le_Gouvernement_S (UScr, URac, UOri, URel, UTle, UOrd, UDec, UTer, UBvo, UOde, UMgo)
-  ) =
+  LGou is Le_Gouvernement_S (UScr, URac, UOri, URel, UTle, UOrd, UDec, UTer, UBvo, UOde, UMgo),
+  LAna is L_Assemblee_nationale_S (UScr, URac, UOri, URel, UTer, UBvo, UDep, UPar),
+  LSen is Le_Senat_S (UScr, URac, UOri, URel, UTer, UBvo, USen, UPar),
+  LPar is Le_Parlement_S (UScr, URac, UOri, URel, UTer, UBvo, UDep, USen, UElu, UPar, LAna, LSen),
+  ULoi is Une_Loi_S (UScr, URac, UOri, URel, UTer, UBvo, UDep, USen, UElu, UPar, LAna, LSen, LPar)
+) =
 
 -- Titre III Article 21-a-1 - Le Premier ministre dirige l'action du Gouvernement. 
 
@@ -69,30 +85,33 @@ species Article_21_S (
  
 -- Titre III Article 21-a-3 - Il assure l'exécution des lois. 
 
-  signature le_premier_ministre_assure_l_execution_des_lois : UPmi -> LElo -> bool; 
+  signature le_premier_ministre_assure_l_execution_d_une_loi : UPmi -> ULoi -> bool; 
 
 -- Titre III Article 21-a-4-1 - Sous réserve des dispositions de l'article 13, il exerce le pouvoir réglementaire
 
-  signature sous_reserve_des_dispositions_de_l_article_13_il_exerce_le_pouvoir_reglementaire : UPmi -> UReg -> bool; 
+  signature le_premier_ministre_sous_reserve_de_l_article_13_exerce_le_pouvoir_reglementaire : UPmi -> UReg -> bool; 
 
 -- Titre III Article 21-a-4-2-1 - Sous réserve des dispositions de l'article 13, il nomme aux emplois civils.
 
-  signature sous_reserve_des_dispositions_de_l_article_13_il_nomme_aux_emplois_civils : UPmi -> UEci -> bool;
+  signature le_premier_ministre_nomme_a_un_emploi_civil_selon_l_article_13 : UPmi -> UEci -> bool;
 
 -- Titre III Article 21-a-4-2-2 - Sous réserve des dispositions de l'article 13, il nomme aux emplois militaires.
 
-  signature sous_reserve_des_dispositions_de_l_article_13_il_nomme_aux_emplois_militaires : UPmi -> UEmi -> bool;
+  signature le_premier_ministre_nomme_a_un_emploi_militaire_selon_l_article_13 : UPmi -> UEmi -> bool;
 
 -- Titre III Article 21-b - Il peut déléguer certains de ses pouvoirs aux ministres.
 
+  signature le_premier_ministre_delegue_un_pouvoir_a_un_ministre : UPmi -> UMin -> bool;
+
 -- Titre III Article 21-c-1 - Il supplée, le cas échéant, le Président de la République dans la présidence des conseils prévus à l'article 15.
 
-  signature il_supplee_le_cas_echeant_le_president_de_la_republique_dans_la_presidence_des_conseils_prevus_a_l_article_15 : UPmi -> UCon -> bool;
+  signature le_premier_ministre_preside_un_conseil_selon_l_article_15 : UPmi -> UCon -> bool;
 
 -- Titre III Article 21-c-2 - Il supplée, le cas échéant, le Président de la République dans la présidence des comités prévus à l'article 15.
 
-  signature il_supplee_le_cas_echeant_le_president_de_la_republique_dans_la_presidence_des_comites_prevus_a_l_article_15 : UPmi -> UCom -> bool;
+  signature le_premier_ministre_preside_un_comite_selon_l_article_15 : UPmi -> UCom -> bool;
 
 -- Titre III Article 21-d-2 - Il peut, à titre exceptionnel, le suppléer pour la présidence d'un conseil des ministres en vertu d'une délégation expresse et pour un ordre du jour déterminé.
+
 
 end;;

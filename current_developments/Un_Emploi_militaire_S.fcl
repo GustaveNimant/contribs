@@ -6,10 +6,10 @@ open "Une_Origine_S";;
 open "Une_Race_S";;
 open "Une_Religion_S";;
 
--- InH:      Un_Reglement_S 
--- InH:            |
--- InH:            v
--- InH:  Un_Acte_de_l_executif_S
+-- InH: Un_Emploi_civil_S     Un_Emploi_militaire_S 
+-- InH:            \                  /
+-- InH:             v                v
+-- InH:             Un_Fonctionnaire_S
 
 species Un_Emploi_militaire_S (
   URac is Une_Race_S,
@@ -17,6 +17,7 @@ species Un_Emploi_militaire_S (
   URel is Une_Religion_S,
   UTer is Un_Territoire_S
 ) =
+
   inherit  Un_Fonctionnaire_S (URac, UOri, URel, UTer);
 
 end;;

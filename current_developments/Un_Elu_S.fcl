@@ -17,6 +17,9 @@ open "Une_Religion_S";;
 -- InH:                |
 -- InH:                v
 -- InH:           Un_Francais
+-- InH:                |
+-- InH:                v
+-- InH:         Un_Etre_humain_S
 
 species Un_Elu_S (
   UScr is Un_Scrutin_S,
