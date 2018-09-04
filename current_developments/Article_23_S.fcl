@@ -57,6 +57,7 @@ species Article_23_S (
 
   logical let les_fonctions_de_membre_du_gouvernement_sont_incompatibles_avec_l_exercice_de_tout_mandat_parlementaire (umgo : UMgo, lgou : LGou, upar : UPar, lpar : LPar) =
     all umgo : UMgo, all lgou : LGou,
+    all upar : UPar, all lpar : LPar,
      LGou!is_a_member_of (umgo, lgou) ->
      (~ LPar!is_a_member_of (upar, lpar));
 

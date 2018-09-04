@@ -1,0 +1,49 @@
+open "basics";;
+open "sets";;
+
+open "Finite_Set_S";;
+open "Un_Francais_S";;
+open "Un_Territoire_S";;
+open "Une_Origine_S";;
+open "Une_Race_S";;
+open "Une_Religion_S";;
+open "Un_Etre_humain_S";;
+open "Subtype_S";;
+
+-- InH:  Un_Depute           Un_Senateur
+-- InH:      \                  /
+-- InH:       v                v
+-- InH:        Un_Parlementaire   Le_President_de_la_republique Un_Elu_europeen Un_Elu_regional Un_Elu_cantonalUn_Elu_municipal  
+-- InH:                |
+-- InH:                v
+-- InH:             Un_Elu
+-- InH:                |
+-- InH:                v
+-- InH:        Un_Citoyen_electeur
+-- InH:                |
+-- InH:                v
+-- InH:           Un_Francais
+-- InH:                |
+-- InH:                v
+-- InH:         Un_Etre_humain_S
+
+species Un_Etre_humainOfUn_Francais_S (
+  URac is Une_Race_S,
+  UOri is Une_Origine_S,
+  URel is Une_Religion_S,
+  UTer is Un_Territoire_S,
+  UEhu is Un_Etre_humain_S (UTer),
+  UEhu_set is Finite_Set_S (UEhu),
+  UFra is Un_Francais_S (URac, UOri, URel, UTer),
+  UFra_set is Finite_Set_S (UFra)
+) =
+    
+  inherit Subtype_S (UFra, UFra_set, UEhu, UEhu_set);
+  
+(*  
+  property to_super_congruence2 : all p : UFra, all s : UScr,
+  UPar!est_elu_par_le_scrutin (p, s) = UFra!est_elu_par_le_scrutin (!to_super (p), s);
+ *)
+ 
+end;;
+

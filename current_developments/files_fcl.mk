@@ -1,3 +1,3 @@
 FOCALIZE_SRC=\
-  Article_23_S.fcl \
+  Un_Citoyen_electeurOfUn_Parlementaire_S.fcl \
 
