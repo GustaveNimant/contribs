@@ -24,6 +24,6 @@ species Un_Acte_du_premier_ministre_S =
 
   inherit Un_Acte_de_l_executif_S;
 
-  signature est_une_nomination : Self -> bool;
+  signature est_une_nomination_a_un_emploi_civil : Self -> bool;
  
 end;;
