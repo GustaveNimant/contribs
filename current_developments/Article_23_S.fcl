@@ -2,15 +2,12 @@ open "basics";;
 
 open "Finite_Set_S";;
 open "L_Assemblee_nationale_S";;
-open "L_Electorat_S";;
 open "Le_Gouvernement_S";;
 open "Le_Parlement_S";;
 open "Le_Senat_S";;
 open "Un_Bureau_de_vote_S";;
 open "Un_Citoyen_electeur_S";;
 open "Un_Citoyen_electeur_subtype_S";;
-open "Un_Citoyen_electeurOfUn_Membre_du_gouvernement_S";;
-open "Un_Citoyen_electeurOfUn_Parlementaire_S";;
 open "Un_Decret_S";;
 open "Un_Depute_S";;
 open "Un_Elu_S";;
@@ -45,13 +42,14 @@ species Article_23_S (
   UDec is Un_Decret_S,
   UTer is Un_Territoire_S,
   UBvo is Un_Bureau_de_vote_S (UTer),
-  UMex is Un_Membre_de_l_executif_S (UScr, URac, UOri, URel, UTer, UBvo),
-  UMex_set is Finite_Set_S (UMex),
   UCel is Un_Citoyen_electeur_S (UScr, URac, UOri, URel, UTer, UBvo),
   UCel_set is Finite_Set_S (UCel),
+  UMex is Un_Membre_de_l_executif_S (UScr, URac, UOri, URel, UTer, UBvo),
+  UMex_set is Finite_Set_S (UMex),
+  UMgo is Un_Membre_du_gouvernement_S (UScr, URac, UOri, URel, UTer, UBvo),
+  UMgo_set is Finite_Set_S (UMgo),
   UElu is Un_Elu_S (UScr, URac, UOri, URel, UTer, UBvo),
   UElu_set is Finite_Set_S (UElu),
-  LEle is L_Electorat_S (UScr, URac, UOri, URel, UTer, UBvo, UCel),
   UPar is Un_Parlementaire_S (UScr, URac, UOri, URel, UTer, UBvo),
   UPar_set is Finite_Set_S (UPar),
   UDep is Un_Depute_S (UScr, URac, UOri, URel, UTer, UBvo),
@@ -62,29 +60,36 @@ species Article_23_S (
   UOde is Un_Organe_deliberant_S (UTle),
   UEluOfUPar is Un_Elu_subtype_S (UScr, URac, UOri, URel, UTer, UBvo, UPar, UPar_set, UElu, UElu_set),
   UCelOfUElu is Un_Citoyen_electeur_subtype_S (UScr, URac, UOri, URel, UTer, UBvo, UElu, UElu_set, UCel, UCel_set),
-  UCelOfUPar is Un_Citoyen_electeurOfUn_Parlementaire_S (UScr, URac, UOri, URel, UTer, UBvo, UPar, UPar_set, UElu, UElu_set, UCel, UCel_set, UEluOfUPar, UCelOfUElu),
-  UMgo is Un_Membre_du_gouvernement_S (UScr, URac, UOri, URel, UTer, UBvo),
-  UMgo_set is Finite_Set_S (UMgo),
   LGou is Le_Gouvernement_S (UScr, URac, UOri, URel, UTle, UOrd, UDec, UTer, UBvo, UOde, UMgo),
   UMexOfUMgo is Un_Membre_de_l_executif_subtype_S (UScr, URac, UOri, URel, UTer, UBvo, UMgo, UMgo_set, UMex, UMex_set),
-  UCelOfUMex is Un_Citoyen_electeur_subtype_S (UScr, URac, UOri, URel, UTer, UBvo, UMex, UMex_set, UCel, UCel_set),
-  UCelOfUMgo is Un_Citoyen_electeurOfUn_Membre_du_gouvernement_S (UScr, URac, UOri, URel, UTer, UBvo, UMgo, UMgo_set, UMex, UMex_set, UCel, UCel_set, UMexOfUMgo, UCelOfUMex)
+  UCelOfUMex is Un_Citoyen_electeur_subtype_S (UScr, URac, UOri, URel, UTer, UBvo, UMex, UMex_set, UCel, UCel_set)
   ) =
 
--- Titre III Article 23-a-1 - Les fonctions de membre du Gouvernement sont incompatibles avec l'exercice de tout mandat parlementaire...
+  let un_elu_of_un_parlementaire (upar : UPar) =
+    UEluOfUPar!un_elu (upar);
+ 
+  let un_citoyen_electeur_of_un_parlementaire (upar : UPar) =
+    UCelOfUElu!to_super (un_elu_of_un_parlementaire (upar));
 
-  logical let les_fonctions_de_membre_ (umgo : UMgo, lgou : LGou, upar : UPar, lpar : LPar) =
+  let un_membre_de_l_executif_of_un_membre_du_gouvernement (umgo : UMgo) =
+    UMexOfUMgo!un_membre_de_l_executif (umgo);
+ 
+  let un_citoyen_electeur_of_un_membre_du_gouvernement (umgo : UMgo) =
+    UCelOfUMex!to_super (un_membre_de_l_executif_of_un_membre_du_gouvernement (umgo));
+
+  logical let essai (umgo : UMgo, lgou : LGou, upar : UPar, lpar : LPar) =
     all umgo : UMgo, all lgou : LGou,
     all upar : UPar, all lpar : LPar,
      LGou!is_a_member_of (umgo, lgou) ->
      (~ LPar!is_a_member_of (upar, lpar));
- 
+
+-- Titre III Article 23-a-1 - Les fonctions de membre du Gouvernement sont incompatibles avec l'exercice de tout mandat parlementaire...
 
   logical let les_fonctions_de_membre_du_gouvernement_sont_incompatibles_avec_l_exercice_de_tout_mandat_parlementaire (umgo : UMgo, upar : UPar, ucel_set : UCel_set) =
     all umgo : UMgo, 
     all upar : UPar, 
-     UCel_set!is_a_member_of (UCelOfUPar!un_citoyen_electeur_of_un_parlementaire (upar), ucel_set) ->
-     UCel_set!is_a_member_of (UCelOfUMgo!un_citoyen_electeur_of_un_membre_du_gouvernement (umgo), ucel_set);
+     UCel_set!is_a_member_of (un_citoyen_electeur_of_un_parlementaire (upar), ucel_set) ->
+     ~ UCel_set!is_a_member_of (un_citoyen_electeur_of_un_membre_du_gouvernement (umgo), ucel_set);
 
 -- Titre III Article 23-a-2 - Les fonctions de membre du Gouvernement sont incompatibles avec l'exercice de toute fonction de représentation professionnelle à caractère national
 
