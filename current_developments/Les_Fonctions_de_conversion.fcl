@@ -74,7 +74,7 @@ species Un_Elu_subtype (
 
 end;;
 
-species Un_Parlementaire_subtype (
+species Un_Parlementaire_subtype_S (
   UScr is Un_Scrutin_S,
   URac is Une_Race_S,
   UOri is Une_Origine_S,
@@ -114,7 +114,7 @@ species Un_Depute_subtype (
   Super_set is Finite_Set_S(Super)
 ) =
     
-  inherit Un_Parlementaire_subtype (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, Sub, Sub_set, Super, Super_set);
+  inherit Un_Parlementaire_subtype_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, Sub, Sub_set, Super, Super_set);
 
   property to_super_un_depute_redige_une_loi : all udep : Sub, all l : ULoi,
     Sub!delibere_sur_une_loi (udep, l) = Super!delibere_sur_une_loi (!to_super(udep), l); 
@@ -139,7 +139,7 @@ species Un_Senateur_subtype (
   Super_set is Finite_Set_S(Super)
 ) =
     
-  inherit Un_Parlementaire_subtype (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, Sub, Sub_set, Super, Super_set);
+  inherit Un_Parlementaire_subtype_S (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, Sub, Sub_set, Super, Super_set);
   
   property to_super_un_senateur_redige_une_loi : all usen : Sub, all uloi : ULoi,
   Sub!delibere_sur_une_loi (usen, uloi) = Super!delibere_sur_une_loi (!to_super(usen), uloi); 

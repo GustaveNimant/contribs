@@ -49,6 +49,9 @@ species Un_EluOfUn_Parlementaire_S (
     
   inherit Subtype_S (UPar, UPar_set, UElu, UElu_set);
   
+  let un_elu (upar : UPar) =
+    to_super (upar);
+
   property to_super_congruence2 : all p : UPar, all s : UScr,
   UPar!est_elu_par_le_scrutin (p, s) = UElu!est_elu_par_le_scrutin (!to_super (p), s);
   

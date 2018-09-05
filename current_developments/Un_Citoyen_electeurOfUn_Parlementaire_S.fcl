@@ -2,22 +2,20 @@ open "basics";;
 open "sets";;
 
 open "Finite_Set_S";;
+open "Subtype_S";;
 open "Un_Bureau_de_vote_S";;
-open "Un_Depute_S";;
 open "Un_Citoyen_electeur_S";;
+open "Un_Citoyen_electeur_subtype_S";;
+open "Un_Depute_S";;
 open "Un_Elu_S";;
+open "Un_Elu_subtype_S";;
 open "Un_Parlementaire_S";;
 open "Un_Scrutin_S";;
 open "Un_Senateur_S";;
 open "Un_Territoire_S";;
-open "Une_Loi_S";;
 open "Une_Origine_S";;
 open "Une_Race_S";;
 open "Une_Religion_S";;
-open "Subtype_S";;
-
-open "Un_EluOfUn_Parlementaire_S";;
-open "Un_Citoyen_electeurOfUn_Elu_S";;
 
 -- Documentation : species SuperOfSub_S
 
@@ -45,17 +43,21 @@ species Un_Citoyen_electeurOfUn_Parlementaire_S (
   URel is Une_Religion_S,
   UTer is Un_Territoire_S,
   UBvo is Un_Bureau_de_vote_S (UTer),   
+  UPar is Un_Parlementaire_S (UScr, URac, UOri, URel, UTer, UBvo),
+  UPar_set is Finite_Set_S (UPar),
+  UElu is Un_Elu_S (UScr, URac, UOri, URel, UTer, UBvo),
+  UElu_set is Finite_Set_S (UElu),
   UCel is Un_Citoyen_electeur_S (UScr, URac, UOri, URel, UTer, UBvo),
   UCel_set is Finite_Set_S (UCel),
-  UPar is Un_Parlementaire_S (UScr, URac, UOri, URel, UTer, UBvo),
-  UPar_set is Finite_Set_S (UPar)
+  UEluOfUPar is Un_Elu_subtype_S (UScr, URac, UOri, URel, UTer, UBvo, UPar, UPar_set, UElu, UElu_set),
+  UCelOfUElu is Un_Citoyen_electeur_subtype_S (UScr, URac, UOri, URel, UTer, UBvo, UElu, UElu_set, UCel, UCel_set)
 ) =
     
-  let un_elu (upar : UPar) =
-    Un_EluOfUn_Parlementaire_S!to_super (upar);
+  let un_elu_of_un_parlementaire (upar : UPar) =
+    UEluOfUPar!un_elu (upar);
  
-  let un_citoyen_electeur (upar : UPar) =
-    Un_Citoyen_electeurOfUn_Elu_S!to_super (un_elu (upar));
+  let un_citoyen_electeur_of_un_parlementaire (upar : UPar) =
+    UCelOfUElu!to_super (un_elu_of_un_parlementaire (upar));
 
 end;;
 

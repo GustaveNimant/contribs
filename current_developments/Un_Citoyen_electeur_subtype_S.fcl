@@ -3,19 +3,14 @@ open "sets";;
 
 open "Finite_Set_S";;
 open "Un_Bureau_de_vote_S";;
-open "Un_Depute_S";;
 open "Un_Citoyen_electeur_S";;
-open "Un_Elu_S";;
-open "Un_Parlementaire_S";;
 open "Un_Scrutin_S";;
-open "Un_Senateur_S";;
 open "Un_Territoire_S";;
-open "Une_Loi_S";;
 open "Une_Origine_S";;
 open "Une_Race_S";;
 open "Une_Religion_S";;
+open "Subtype_S";;
 
---
 -- InH:  Un_Depute           Un_Senateur
 -- InH:      \                  /
 -- InH:       v                v
@@ -33,7 +28,7 @@ open "Une_Religion_S";;
 -- InH:                v
 -- InH:         Un_Etre_humain_S
 
-species Un_Citoyen_electeur_subtype (
+species Un_Citoyen_electeur_subtype_S (
   UScr is Un_Scrutin_S,
   URac is Une_Race_S,
   UOri is Une_Origine_S,
@@ -47,102 +42,13 @@ species Un_Citoyen_electeur_subtype (
 ) =
     
   inherit Subtype_S (Sub, Sub_set, Super, Super_set);
+
+  let un_citoyen_electeur (sub) =
+    to_super (sub);
   
   property to_super_participe_au_scrutin : all e : Sub, all s : UScr,
   Sub!participe_au_scrutin (e, s) = Super!participe_au_scrutin (!to_super(e), s); 
   
 end;;
 
-species Un_Elu_subtype (
-  UScr is Un_Scrutin_S,
-  URac is Une_Race_S,
-  UOri is Une_Origine_S,
-  URel is Une_Religion_S,
-  UTer is Un_Territoire_S,
-  UBvo is Un_Bureau_de_vote_S (UTer),
-  UCel is Un_Citoyen_electeur_S (UScr, URac, UOri, URel, UTer, UBvo),
-  Sub is Un_Elu_S (UScr, URac, UOri, URel, UTer, UBvo),
-  Sub_set is Finite_Set_S(Sub),
-  Super is Un_Elu_S (UScr, URac, UOri, URel, UTer, UBvo),
-  Super_set is Finite_Set_S(Super)
-) =
-    
-  inherit Subtype_S (Sub, Sub_set, Super, Super_set);
-  
-  property to_super_est_elu_sur_un_territoire : all e : Sub, all t : UTer,
-    Sub!est_elu_sur_un_territoire (e, t) = Super!est_elu_sur_un_territoire (!to_super(e), t); 
-
-end;;
-
-species Un_Parlementaire_subtype (
-  UScr is Un_Scrutin_S,
-  URac is Une_Race_S,
-  UOri is Une_Origine_S,
-  URel is Une_Religion_S,
-  UTer is Un_Territoire_S,
-  UFra is Un_Francais_S (UTer),
-  UBvo is Un_Bureau_de_vote_S (UTer),
-  UCel is Un_Citoyen_electeur_S (UScr, URac, UOri, URel, UTer, UBvo),
-  Sub  is Un_Parlementaire_S (UScr, URac, UOri, URel, UTer, UBvo),
-  Sub_set is Finite_Set_S(Sub),
-  Super is Un_Parlementaire_S (UScr, URac, UOri, URel, UTer, UBvo),
-  Super_set is Finite_Set_S(Super)
-) =
-    
-  inherit Un_Elu_subtype (UScr, UTer, UBvo, UCel, Sub, Sub_set, Super, Super_set);
-
-  property to_super_un_parlementaire_redige_une_loi : all ap : Sub, all l : ULoi,
-  Sub!delibere_sur_une_loi (ap, l) = Super!delibere_sur_une_loi (!to_super(ap), l); 
-  
-end;;
-
-species Un_Depute_subtype (
-  UScr is Un_Scrutin_S,
-  URac is Une_Race_S,
-  UOri is Une_Origine_S,
-  URel is Une_Religion_S,
-  UTer is Un_Territoire_S,
-  UFra is Un_Francais_S (UTer),
-  UBvo is Un_Bureau_de_vote_S (UTer),
-  UCel is Un_Citoyen_electeur_S (UScr, URac, UOri, URel, UTer, UBvo),
-  UPlo is Une_Proposition_de_loi_S,
-  ULoi is Une_Loi_S,
-  UAex is Un_Acte_de_l_executif_S,
-  Sub  is Un_Depute_S (UScr, URac, UOri, URel, UTer, UBvo),
-  Sub_set is Finite_Set_S(Sub),
-  Super is Un_Depute_S (UScr, URac, UOri, URel, UTer, UBvo),
-  Super_set is Finite_Set_S(Super)
-) =
-    
-  inherit Un_Parlementaire_subtype (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, Sub, Sub_set, Super, Super_set);
-
-  property to_super_un_depute_redige_une_loi : all udep : Sub, all l : ULoi,
-    Sub!delibere_sur_une_loi (udep, l) = Super!delibere_sur_une_loi (!to_super(udep), l); 
-
-end;;
-
-species Un_Senateur_subtype (
-  UScr is Un_Scrutin_S,
-  URac is Une_Race_S,
-  UOri is Une_Origine_S,
-  URel is Une_Religion_S,
-  UTer is Un_Territoire_S,
-  UFra is Un_Francais_S (UTer),
-  UBvo is Un_Bureau_de_vote_S (UTer),
-  UCel is Un_Citoyen_electeur_S (UScr, URac, UOri, URel, UTer, UBvo),
-  UPlo is Une_Proposition_de_loi_S,
-  ULoi is Une_Loi_S,
-  UAex is Un_Acte_de_l_executif_S,
-  Sub is Un_Senateur_S (UScr, UTer, UBvo, UCel),
-  Sub_set is Finite_Set_S(Sub),
-  Super is Un_Senateur_S (UScr, UTer, UBvo, UCel),
-  Super_set is Finite_Set_S(Super)
-) =
-    
-  inherit Un_Parlementaire_subtype (UScr, UTer, UFra, UBvo, UCel, UPlo, ULoi, UAex, Sub, Sub_set, Super, Super_set);
-  
-  property to_super_un_senateur_redige_une_loi : all usen : Sub, all uloi : ULoi,
-  Sub!delibere_sur_une_loi (usen, uloi) = Super!delibere_sur_une_loi (!to_super(usen), uloi); 
-  
-end;;
 

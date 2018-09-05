@@ -1,0 +1,189 @@
+open "basics";;
+open "sets";;
+
+--
+--  Niveau_3 
+--     |
+--     v
+--  Niveau_2
+--     |
+--     v
+--  Niveau_1
+
+species Finite_Set (Param is Setoid) =
+
+  inherit Setoid;
+
+  signature is_empty : Self -> bool;
+  signature is_a_member_of : Param -> Self -> bool;
+  signature singleton  : Param -> Self;
+  signature union : Self -> Self -> Self;
+  signature inter : Self -> Self -> Self;
+  signature diff : Self -> Self -> Self;
+  signature is_a_subset_of : Self -> Self -> bool;
+  signature cardinal : Self -> int;
+  signature empty : Self;
+  signature for_all : (Param -> bool) -> Self -> bool;
+  signature filter : (Param -> bool) -> Self -> Self;
+  let element = !empty;
+
+  let equal(x, y) = !is_a_subset_of(x, y) && !is_a_subset_of(y, x);
+
+  property equal_member1 : all x y : Param, all s : Self,
+                        Param!equal(x, y) -> !is_a_member_of(x, s) -> !is_a_member_of(y, s);
+
+  property equal_member2 : all x y : Param, all s : Self,
+  Param!equal(x, y) -> !is_a_member_of(y, s) -> !is_a_member_of(x, s);
+  
+  property empty1 : all x : Param, ~ (!is_a_member_of(x, !empty));
+  
+  
+end;;
+
+species Subtype (
+  Sub is Setoid, 
+  Sub_set is Finite_Set(Sub),
+  Super is Setoid,
+  Super_set is Finite_Set(Super)
+) =
+
+  representation = unit;
+
+  signature to_super : Sub -> Super; 
+
+  property to_super_congruence : all x y : Sub,
+  Sub!equal(x, y) -> Super!equal(!to_super(x), !to_super(y));
+
+  signature to_super_set : Sub_set -> Super_set; 
+
+  property to_super_set_congruence : all x y : Sub_set,
+  Sub_set!equal(x, y) -> Super_set!equal(!to_super_set(x), !to_super_set(y));
+  
+  property to_super_set_const1 : all x_set : Sub_set, all y : Super,
+  Super_set!is_a_member_of(y, !to_super_set(x_set)) ->
+  (ex x : Sub,
+  Sub_set!is_a_member_of(x, x_set) /\
+  Super!equal(!to_super(x), y));
+  
+  property to_super_set_const2 : all x_set : Sub_set, all x : Sub,
+  Sub_set!is_a_member_of(x, x_set) ->
+  Super_set!is_a_member_of(!to_super(x), !to_super_set(x_set));
+
+end;;
+
+species Niveau_1 =
+
+  inherit Setoid;
+
+  signature existe : Self -> bool;
+
+end;;
+
+species Niveau_2 =
+
+  inherit Niveau_1;
+
+  signature existe : Self -> bool;
+
+end;;
+
+species Niveau_3 =
+
+  inherit Niveau_2;
+
+  signature existe : Self -> bool;
+
+end;;
+
+species Niveau_1_subtype (
+  Sub is Niveau_1,
+  Sub_set is Finite_Set (Sub),
+  Super is Niveau_1,
+  Super_set is Finite_Set (Super)
+) =
+
+  inherit Subtype (Sub, Sub_set, Super, Super_set);
+
+  let niveau_1 (sub : Sub) =
+    to_super (sub);
+
+ end;;
+
+species Niveau_2_subtype (
+  Sub is Niveau_2,
+  Sub_set is Finite_Set(Sub),
+  Super is Niveau_2,
+  Super_set is Finite_Set(Super)
+) =
+
+  inherit Niveau_1_subtype (Sub, Sub_set, Super, Super_set);
+
+  let niveau_2 (sub : Sub) =
+    to_super (sub);
+
+end;;
+
+species Niveau_3_subtype (
+  Sub is Niveau_3,
+  Sub_set is Finite_Set(Sub),
+  Super is Niveau_3,
+  Super_set is Finite_Set(Super)
+) =
+
+  inherit Niveau_2_subtype (Sub, Sub_set, Super, Super_set);
+
+  let niveau_3 (sub : Sub) =
+    to_super (sub);
+
+end;;
+
+species Niveau_1OfNiveau_2 (
+  Niv2 is Niveau_2,
+  Niv2_set is Finite_Set (Niv2),
+  Niv1 is Niveau_1,
+  Niv1_set is Finite_Set (Niv1)
+) =
+
+  inherit Subtype (Niv2, Niv2_set, Niv1, Niv1_set);
+
+  let niveau_1 (niv2 : Niv2) =
+    to_super (niv2);
+
+end;;
+
+species Niveau_2OfNiveau_3 (
+  Niv3 is Niveau_3,
+  Niv3_set is Finite_Set (Niv3),
+  Niv2 is Niveau_2,
+  Niv2_set is Finite_Set (Niv2)
+) =
+
+  inherit Niveau_1OfNiveau_2 (Niv3, Niv3_set, Niv2, Niv2_set);
+
+  let niveau_2 (niv3 : Niv3) =
+    to_super (niv3);
+
+end;;
+
+species Niveau_1OfNiveau_3 (
+  Niv3 is Niveau_3,
+  Niv3_set is Finite_Set (Niv3),
+  Niv2 is Niveau_2,
+  Niv2_set is Finite_Set (Niv2),
+  Niv1 is Niveau_1,
+  Niv1_set is Finite_Set (Niv1),
+  Niv1OfNiv2 is Niveau_1_subtype (Niv2, Niv2_set, Niv1, Niv1_set),
+  Niv2OfNiv3 is Niveau_2_subtype (Niv3, Niv3_set, Niv2, Niv2_set)
+) =
+
+  let niveau_1_of_niveau_2 (niv2 : Niv2) =
+    Niv1OfNiv2!niveau_1 (niv2);
+
+  let niveau_2_of_niveau_3 (niv3 : Niv3) =
+    Niv2OfNiv3!niveau_2 (niv3);
+
+  let niveau_1_of_niveau_3 (niv3 : Niv3) =
+   niveau_1_of_niveau_2 (niveau_2_of_niveau_3 (niv3));
+
+end;;
+
