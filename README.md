@@ -3,7 +3,7 @@ mycontribs
 
 <p>Ce répertoire contient le code source de divers contributions en FoCaLiZe</p>
 
-# Les contibutions de Gustave Nimant sont :
+# Les contributions de Gustave Nimant sont :
 
 * __constitution__ : formalisation de la constitution.
 * __parlement__ : formalisation des articles de la constitution concernant le parlement 
