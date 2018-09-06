@@ -7,13 +7,13 @@ open "Le_Parlement_S";;
 open "Le_Senat_S";;
 open "Un_Bureau_de_vote_S";;
 open "Un_Citoyen_electeur_S";;
-open "Les_Fonctions_de_conversion";;
+open "Un_Citoyen_electeur_subtype_S";;
 open "Un_Decret_S";;
 open "Un_Depute_S";;
 open "Un_Elu_S";;
-open "Les_Fonctions_de_conversion";;
+open "Un_Elu_subtype_S";;
 open "Un_Membre_de_l_executif_S";;
-open "Les_Fonctions_de_conversion";;
+open "Un_Membre_de_l_executif_subtype_S";;
 open "Un_Membre_du_gouvernement_S";;
 open "Un_Organe_deliberant_S";;
 open "Un_Parlementaire_S";;
@@ -25,4 +25,7 @@ open "Une_Ordonnance_S";;
 open "Une_Origine_S";;
 open "Une_Race_S";;
 open "Une_Religion_S";;
+
+
+
 

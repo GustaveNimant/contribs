@@ -116,14 +116,8 @@ sub print_opens {
     print "\n";
     foreach $_ (@species_name_l) { 
 	if ( $_ ne "Setoid" ) {
-	    if ($_ =~ /_subtype/) {
-		if (! grep /Les_Fonctions_de_conversion/, @species_name_l) {
-		    print "open \"Les_Fonctions_de_conversion\";;\n";
-		}
-	    }
-	    else {
-		print "open \"$_\";;\n";
-	    }
+	    print "open \"$_\";;\n";
+
 	}
     }
     

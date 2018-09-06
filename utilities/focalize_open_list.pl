@@ -43,7 +43,7 @@ if ($debug) {
 @non_lowercase_file_l = non_lowercase_file_names (@open_files_l);
 
 print_opens (@lowercase_file_l);
-
+print "\n";
 print_opens (@non_lowercase_file_l);
 
 sub lowercase_file_names {
@@ -75,17 +75,9 @@ sub print_opens {
     
     foreach $_ (@species_name_l) { 
 	if ( $_ ne "Setoid" ) {
-	    if ($_ =~ /_subtype/) {
-		if (! grep /Les_Fonctions_de_conversion/, @species_name_l) {
-		    print "open \"Les_Fonctions_de_conversion\";;\n";
-		}
-	    }
-	    else {
-		print "open \"$_\";;\n";
-	    }
+	    print "open \"$_\";;\n";
 	}
     }
-    print "\n";
 }
 
 sub species_file_name {
