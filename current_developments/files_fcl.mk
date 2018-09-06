@@ -1,3 +1,3 @@
 FOCALIZE_SRC=\
-  Article_23_S.fcl \
+  Un_Acte_du_premier_ministre_S.fcl \
 

@@ -14,4 +14,3 @@
 -- InH:                |
 -- InH:                v
 -- InH:         Un_Etre_humain_S
- 

@@ -101,6 +101,11 @@ species Article_23_S (
 
 -- Titre III Article 23-b-1 - Une loi organique fixe les conditions dans lesquelles il est pourvu au remplacement des titulaires de tels mandats, fonctions ou emplois.
 
+(*
+  property une_loi_organique_fixe_les_conditions_dans_lesquelles_il_est_pourvu_
+           le_remplacement_des_titulaires_de_tels_mandats_fonctions_ou_emplois
+*)
+  
 -- Titre III Article 23-c-1 - Le remplacement des membres du Parlement a lieu conformément aux dispositions de l'article 25.
 
 end;;

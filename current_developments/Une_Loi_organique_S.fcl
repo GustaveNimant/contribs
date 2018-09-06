@@ -1,7 +1,23 @@
+open "basics";;
+
+open "Une_Loi_S";;
+
 -- Documentation : Wikipédia :
 -- Documentation : Une loi organique est une loi relative à l'organisation des pouvoirs administratifs (Wikipédia).
 -- Documentation : En France une loi organique est une loi complétant la Constitution afin de préciser l'organisation des pouvoirs publics.
 -- Documentation : Une loi organique est, dans la hiérarchie des normes, placée en dessous de la Constitution mais au-dessus des lois ordinaires.
 -- Documentation : Les lois organiques autorisent une rédaction « à trous » de la Constitution qui contribue à sa pérennité. En effet, lorsqu'une disposition constitutionnelle est de nature à changer avec le temps, une loi organique est ainsi prévue pour déléguer au Parlement le pouvoir de la modifier. En ce sens, une loi organique est à la Constitution ce qu'un décret d'application est à une loi.
 
--- InH:     Une_Loi_S
+
+-- InH:            Une_Loi_ordinaire_S  Une_Loi_organique_S
+-- InH:                             \      /
+-- InH:                              v   v
+-- InH: Une_Proposition_de_loi_S  Une_Loi_S
+-- InH:         \                    /
+-- InH:          v                  v
+-- InH:          Un_Texte_legislatif_S
+species Une_Loi_organique_S =
+
+  inherit Une_Loi_S;
+
+end;;

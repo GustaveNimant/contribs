@@ -27,6 +27,9 @@ species Article_22_S (
 
 -- Titre III Article 22-a-1 - Les actes du Premier ministre sont contresignés, le cas échéant, par les ministres chargés de leur exécution.
 
-  signature un_acte_du_premier_ministre_est_contresigne_par_un_ministre_charge_de_son_execution : UPmi -> UMin -> UApm -> bool; 
+  property un_acte_du_premier_ministre_est_contresigne_par_un_ministre_charge_de_son_execution :
+  all uapm : UApm, umin : Umin,
+  UApm!un_acte_du_premier_ministre_est_contresigne_par_un_ministre (uapm, umin) ->
+  UApm!un_acte_du_premier_ministre_est_execute_par_un_ministre (uapm, umin)
 
 end;;
