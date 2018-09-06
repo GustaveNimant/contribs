@@ -1,4 +1,5 @@
 open "basics";;
+
 open "Finite_Set_S";;
 open "Un_Bureau_de_vote_S";;
 open "Un_Citoyen_electeur_S";;
@@ -19,17 +20,6 @@ species L_Electorat_S (
 ) =
 
   inherit Finite_Set_S (UCel); 
-
-  logical let participe_a_un_referendum (lele : Self, uscr : UScr) =
-    UScr!est_un_referendum (uscr);
-
-  signature participe_a_un_suffrage_universel : Self -> bool;
-
-  signature participe_a_un_suffrage_direct : Self -> bool;
-
--- Article 4-d - Sont électeurs, dans les conditions déterminées par la loi, tous les nationaux français majeurs des deux sexes, jouissant de leurs droits civils et politiques. 
-
---  let francais_majeurs (s : Self) : all e : UCel, UFraOfUEle!to_super(e); 
 
 end;;
 

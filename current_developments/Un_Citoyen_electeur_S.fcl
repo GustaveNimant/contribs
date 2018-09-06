@@ -41,6 +41,17 @@ species Un_Citoyen_electeur_S (
 
   signature participe_au_scrutin : Self -> UScr -> bool;
 
+  logical let participe_a_un_referendum (ucel : Self, uscr : UScr) =
+    participe_au_scrutin (ucel, uscr) 
+    /\
+    UScr!est_un_referendum (uscr);
+
+  signature participe_a_un_suffrage_universel : Self -> bool;
+
+  signature participe_a_un_suffrage_direct : Self -> bool;
+
+  signature est_un_representant_du_peuple : Self -> bool;
+
   logical let est_un_citoyen_electeur (ucel : Self) =
     est_un_francais (ucel) -> 
     est_un_adulte (ucel) ->

@@ -2,5 +2,7 @@ open "basics";;
 
 species Une_Religion_S =
 
+  signature il_existe_une_religion_d_etat : Self -> bool;
+
 end;;
 

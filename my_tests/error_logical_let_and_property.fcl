@@ -1,0 +1,24 @@
+open "basics";;
+
+species Some_species =
+
+  signature is_something : Self -> bool;
+
+  signature is_another_thing : Self -> bool;
+
+end;;
+
+species A_species (S is Some_species) =
+
+property property_1 : all s : S,
+  S!is_something (s);
+
+logical let has_property (s : S) =
+  S!is_another_thing (s);
+
+logical let has_properties =
+  all s : S,
+  property_1 \/
+  has_property (s);
+
+end;;

@@ -36,7 +36,9 @@ species La_Republique_francaise_S (
 
 -- Titre I Article 1-a-1-2 - La France est une République laïque.
 
-  signature est_une_republique_laique : Self -> bool;
+  logical let est_une_republique_laique (lrfr : Self) =
+    all urel : URel,
+   ~~ URel!il_existe_une_religion_d_etat (urel);
 
   logical let la_france_est_une_republique_laique (lrfr : Self) =
     la_france_est_une_republique (lrfr) ->

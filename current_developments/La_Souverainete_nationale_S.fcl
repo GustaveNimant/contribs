@@ -1,4 +1,5 @@
 open "basics";;
+
 open "Finite_Set_S";;
 open "L_Electorat_S";;
 open "Un_Bureau_de_vote_S";;
@@ -9,6 +10,8 @@ open "Un_Territoire_S";;
 open "Une_Origine_S";;
 open "Une_Race_S";;
 open "Une_Religion_S";;
+
+-- Documentation : https://www.doc-du-juriste.com/droit-public-et-international/droit-constitutionnel/dissertation/la-souverainete-nationale-appartient-au-peuple-droit-474283.html
 
 species La_Souverainete_nationale_S (
   URac is Une_Race_S,
@@ -25,19 +28,36 @@ species La_Souverainete_nationale_S (
 
 -- Titre I Article 3-a - La souveraineté nationale appartient au peuple qui l'exerce par ses représentants et par la voie du référendum. 
 
+  signature un_citoyen_exerce_la_souverainete_nationale : UCel -> bool;
+
   signature la_souverainete_nationale_appartient_au_peuple : LEle -> bool;
 
-  signature la_souverainete_nationale_est_exercee_par_les_representants : LRpe -> bool;
+  property la_souverainete_nationale_est_exercee_par_les_representants :
+  all ucel : UCel,
+  un_citoyen_exerce_la_souverainete_nationale (ucel) ->
+  UCel!est_un_representant_du_peuple (ucel);
 
-  logical let la_souverainete_nationale_est_exercee_par_referendum (lele : LEle, uscr : UScr) =
-    LEle!participe_a_un_referendum (lele, uscr);
+  logical let la_souverainete_nationale_est_exercee_par_referendum (uscr : UScr) =
+    all ucel : UCel,
+    UCel!participe_a_un_referendum (ucel, uscr);
+
+  property la_souverainete_nationale_est_exercee_par_les_representants_ou_par_referendum :
+  all uscr : UScr,
+  la_souverainete_nationale_est_exercee_par_les_representants
+  \/ 
+  la_souverainete_nationale_est_exercee_par_referendum (uscr);
   
-  logical let la_souverainete_nationale_est_exercee_par_les_representants_ou_par_referendum (lrpe : LRpe, lele : LEle, uscr : UScr) = 
-    la_souverainete_nationale_est_exercee_par_les_representants (lrpe)
-    \/ 
-    la_souverainete_nationale_est_exercee_par_referendum (lele, uscr);
-  
--- Titre I Article 3-b - Aucune section du peuple ni aucun individu ne peut s'en attribuer l'exercice.
+-- Titre I Article 3-b-1 - Aucune section du peuple ... ne peut s'en attribuer l'exercice.
+
+-- Titre I Article 3-b - Aucun individu ne peut s'en attribuer l'exercice.
+
+  logical let aucune_section_du_peuple_ne_peut_exercer_la_souverainete_nationale (ucel : UCel) =
+  ex ucel : UCel, 
+  ~~ un_citoyen_exerce_la_souverainete_nationale (ucel); 
+
+  logical let aucun_individu_ne_peut_exercer_la_souverainete_nationale (ucel : UCel) =
+    ex ucel : UCel, 
+    ~~ un_citoyen_exerce_la_souverainete_nationale (ucel); 
 
 end;;
 

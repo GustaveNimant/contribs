@@ -1,3 +1,3 @@
 FOCALIZE_SRC=\
-  Conversions_entre_niveaux.fcl \
+  error_logical_let_and_property.fcl \
 
