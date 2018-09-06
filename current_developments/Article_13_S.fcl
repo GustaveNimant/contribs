@@ -35,7 +35,6 @@ open "Une_Religion_S";;
 -- Une loi organique détermine les emplois ou fonctions, autres que ceux mentionnés au troisième alinéa, pour lesquels, en raison de leur importance pour la garantie des droits et libertés ou la vie économique et sociale de la Nation, le pouvoir de nomination du Président de la République s'exerce après avis public de la commission permanente compétente de chaque assemblée. Le Président de la République ne peut procéder à une nomination lorsque l'addition des votes négatifs dans chaque commission représente au moins trois cinquièmes des suffrages exprimés au sein des deux commissions. La loi détermine les commissions permanentes compétentes selon les emplois ou fonctions concernés.
 
 species Article_13_S (
-  UScr is Un_Scrutin_S,
   URac is Une_Race_S,
   UOri is Une_Origine_S,
   URel is Une_Religion_S,
@@ -44,19 +43,20 @@ species Article_13_S (
   UAex is Un_Acte_de_l_executif_S,
   UTle is Un_Texte_legislatif_S,
   UTer is Un_Territoire_S,
+  UScr is Un_Scrutin_S,
   UOde is Un_Organe_deliberant_S (UTle),
   UBvo is Un_Bureau_de_vote_S (UTer),
   UFra is Un_Francais_S (URac, UOri, URel, UTer),
   UCet is Un_Conseiller_d_etat_S (URac, UOri, URel, UTer),
   UPre is Un_Prefet_S (URac, UOri, URel, UTer),
   UHfo is Un_Haut_fonctionnaire_S (URac, UOri, URel, UTer),
-  UCel is Un_Citoyen_electeur_S (UScr, URac, UOri, URel, UTer, UBvo),
-  UPmi is Un_Premier_ministre_S (UScr, URac, UOri, URel, UTer, UBvo),
-  UMin is Un_Ministre_S (UScr, URac, UOri, URel, UTer, UBvo),
-  UMgo is Un_Membre_du_gouvernement_S (UScr, URac, UOri, URel, UTer, UBvo),
-  LCmi is Le_Conseil_des_ministres_S (UScr, URac, UOri, URel, UTer, UBvo, UTle, UMin, UPmi),
-  LGou is Le_Gouvernement_S (UScr, URac, UOri, URel, UTle, UOrd, UDec, UTer, UBvo, UOde, UMgo),
-  LPre is Le_President_de_la_republique_S (UScr, URac, UOri, URel, UTer, UBvo, UFra)
+  UCel is Un_Citoyen_electeur_S (URac, UOri, URel, UTer, UScr, UBvo),
+  UPmi is Un_Premier_ministre_S (URac, UOri, URel, UTer, UScr, UBvo),
+  UMin is Un_Ministre_S (URac, UOri, URel, UTer, UScr, UBvo),
+  UMgo is Un_Membre_du_gouvernement_S (URac, UOri, URel, UTer, UScr, UBvo),
+  LCmi is Le_Conseil_des_ministres_S (URac, UOri, URel, UTer, UScr, UBvo, UTle, UMin, UPmi),
+  LGou is Le_Gouvernement_S (URac, UOri, URel, UTle, UOrd, UDec, UTer, UScr, UBvo, UOde, UMgo),
+  LPre is Le_President_de_la_republique_S (URac, UOri, URel, UTer, UScr, UBvo, UFra)
 )=
 
 -- Titre II Article 13-a-1 - Le Président de la République signe les ordonnances ... délibérées en conseil des ministres. 

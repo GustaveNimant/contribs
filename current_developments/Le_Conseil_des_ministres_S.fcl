@@ -16,15 +16,15 @@ open "Un_Bureau_de_vote_S";;
 -- Propriété : Le Conseil des ministres est la formation prévue par la Constitution pour l'exercice collégial de la fonction gouvernementale (principe de collégialité limité).
 
 species Le_Conseil_des_ministres_S (
-  UScr is Un_Scrutin_S,
   URac is Une_Race_S,
   UOri is Une_Origine_S,
   URel is Une_Religion_S,
   UTer is Un_Territoire_S,
+  UScr is Un_Scrutin_S,
   UBvo is Un_Bureau_de_vote_S (UTer),
   UTle is Un_Texte_legislatif_S,
-  UMin is Un_Ministre_S (UScr, URac, UOri, URel, UTer, UBvo),
-  UPmi is Un_Premier_ministre_S (UScr, URac, UOri, URel, UTer, UBvo)
+  UMin is Un_Ministre_S (URac, UOri, URel, UTer, UScr, UBvo),
+  UPmi is Un_Premier_ministre_S (URac, UOri, URel, UTer, UScr, UBvo)
 ) =
     
   inherit Finite_Set_S (UMin), Un_Organe_deliberant_S (UTle);

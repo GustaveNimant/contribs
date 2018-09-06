@@ -22,14 +22,14 @@ open "Une_Religion_S";;
 -- Après trente jours d'exercice des pouvoirs exceptionnels, le Conseil constitutionnel peut être saisi par le Président de l'Assemblée nationale, le Président du Sénat, soixante députés ou soixante sénateurs, aux fins d'examiner si les conditions énoncées au premier alinéa demeurent réunies. Il se prononce dans les délais les plus brefs par un avis public. Il procède de plein droit à cet examen et se prononce dans les mêmes conditions au terme de soixante jours d'exercice des pouvoirs exceptionnels et à tout moment au-delà de cette durée.
 
 species Article_16_S (
-  UScr is Un_Scrutin_S,
   URac is Une_Race_S,
   UOri is Une_Origine_S,
   URel is Une_Religion_S,
   UTer is Un_Territoire_S,
+  UScr is Un_Scrutin_S,
   UBvo is Un_Bureau_de_vote_S (UTer),
   UFra is Un_Francais_S (URac, UOri, URel, UTer),
-  LPre is Le_President_de_la_republique_S (UScr, URac, UOri, URel, UTer, UBvo, UFra)
+  LPre is Le_President_de_la_republique_S (URac, UOri, URel, UTer, UScr, UBvo, UFra)
 )=
 
 

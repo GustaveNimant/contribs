@@ -25,19 +25,19 @@ open "Une_Religion_S";;
 -- Il ne peut être procédé à une nouvelle dissolution dans l'année qui suit ces élections.
 
 species Article_12_S (
-  UScr is Un_Scrutin_S,
   URac is Une_Race_S,
   UOri is Une_Origine_S,
   URel is Une_Religion_S,
   UTer is Un_Territoire_S,
+  UScr is Un_Scrutin_S,
   UBvo is Un_Bureau_de_vote_S (UTer),
   UFra is Un_Francais_S (URac, UOri, URel, UTer),
-  UCel is Un_Citoyen_electeur_S (UScr, URac, UOri, URel, UTer, UBvo),
-  UPmi is Un_Premier_ministre_S (UScr, URac, UOri, URel, UTer, UBvo),
-  UDep is Un_Depute_S (UScr, URac, UOri, URel, UTer, UBvo),
-  UPar is Un_Parlementaire_S (UScr, URac, UOri, URel, UTer, UBvo),
-  LAna is L_Assemblee_nationale_S (UScr, URac, UOri, URel, UTer, UBvo, UDep, UPar),
-  LPre is Le_President_de_la_republique_S (UScr, URac, UOri, URel, UTer, UBvo, UFra)
+  UCel is Un_Citoyen_electeur_S (URac, UOri, URel, UTer, UScr, UBvo),
+  UPmi is Un_Premier_ministre_S (URac, UOri, URel, UTer, UScr, UBvo),
+  UDep is Un_Depute_S (URac, UOri, URel, UTer, UScr, UBvo),
+  UPar is Un_Parlementaire_S (URac, UOri, URel, UTer, UScr, UBvo),
+  LAna is L_Assemblee_nationale_S (URac, UOri, URel, UTer, UScr, UBvo, UDep, UPar),
+  LPre is Le_President_de_la_republique_S (URac, UOri, URel, UTer, UScr, UBvo, UFra)
 )=
 
 -- Titre II Article 12-a - Le Président de la République peut, après consultation du Premier ministre et des présidents des assemblées, prononcer la dissolution de l'Assemblée nationale.

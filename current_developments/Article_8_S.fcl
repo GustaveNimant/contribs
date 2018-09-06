@@ -24,7 +24,6 @@ open "Une_Religion_S";;
 -- Sur la proposition du Premier ministre, il nomme les autres membres du Gouvernement et met fin à leurs fonctions.
 
 species Article_8_S (
-  UScr is Un_Scrutin_S,
   LCon is La_Constitution_S,
   URac is Une_Race_S,
   UOri is Une_Origine_S,
@@ -33,13 +32,14 @@ species Article_8_S (
   UDec is Un_Decret_S,
   UTle is Un_Texte_legislatif_S,
   UTer is Un_Territoire_S,
+  UScr is Un_Scrutin_S,
   UBvo is Un_Bureau_de_vote_S (UTer),
   UFra is Un_Francais_S (URac, UOri, URel, UTer),
-  UPmi is Un_Premier_ministre_S (UScr, URac, UOri, URel, UTer, UBvo),
+  UPmi is Un_Premier_ministre_S (URac, UOri, URel, UTer, UScr, UBvo),
   UOde is Un_Organe_deliberant_S (UTle),
-  UMgo is Un_Membre_du_gouvernement_S (UScr, URac, UOri, URel, UTer, UBvo),
-  LGou is Le_Gouvernement_S (UScr, URac, UOri, URel, UTle, UOrd, UDec, UTer, UBvo, UOde, UMgo),
-  LPre is Le_President_de_la_republique_S (UScr, URac, UOri, URel, UTer, UBvo, UFra)
+  UMgo is Un_Membre_du_gouvernement_S (URac, UOri, URel, UTer, UScr, UBvo),
+  LGou is Le_Gouvernement_S (URac, UOri, URel, UTle, UOrd, UDec, UTer, UScr, UBvo, UOde, UMgo),
+  LPre is Le_President_de_la_republique_S (URac, UOri, URel, UTer, UScr, UBvo, UFra)
 )=
 
 -- Titre II Article 8-a - Le Président de la République nomme le Premier ministre. 

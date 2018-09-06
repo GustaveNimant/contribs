@@ -9,7 +9,7 @@ open "Le_Gouvernement_S";;
 
 species Article_38_S (
   UOrd is Une_Ordonnance_S,
-  LPar is Le_Parlement_S (UScr, UTer, UBvo, UCel, UElu, LEle, UElu_set, UDep, USen, UPar, LAna, LSen),
+  LPar is Le_Parlement_S (UTer, UBvo, UCel, UScr, UElu, LEle, UElu_set, UDep, USen, UPar, LAna, LSen),
   LGou is Le_Gouvernement_S
 ) =
 

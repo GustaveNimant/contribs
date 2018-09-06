@@ -16,15 +16,15 @@ open "Une_Religion_S";;
 -- Il est le garant de l'indépendance nationale, de l'intégrité du territoire et du respect des traités
 
 species Article_6_S (
-  UScr is Un_Scrutin_S,
   LCon is La_Constitution_S,
   URac is Une_Race_S,
   UOri is Une_Origine_S,
   URel is Une_Religion_S,
   UTer is Un_Territoire_S,
+  UScr is Un_Scrutin_S,
   UBvo is Un_Bureau_de_vote_S (UTer),
   UFra is Un_Francais_S (URac, UOri, URel, UTer),
-  LPre is Le_President_de_la_republique_S (UScr, URac, UOri, URel, UTer, UBvo, UFra)
+  LPre is Le_President_de_la_republique_S (URac, UOri, URel, UTer, UScr, UBvo, UFra)
 ) = 
 
 -- Titre II Article 6-a-1 - Le Président de la République est élu pour cinq ans.

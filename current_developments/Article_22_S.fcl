@@ -14,15 +14,15 @@ open "Une_Religion_S";;
 -- Les actes du Premier ministre sont contresignés, le cas échéant, par les ministres chargés de leur exécution.
 
 species Article_22_S (
-  UScr is Un_Scrutin_S,
   URac is Une_Race_S,
   UOri is Une_Origine_S,
   URel is Une_Religion_S,
   UTer is Un_Territoire_S,
+  UScr is Un_Scrutin_S,
   UBvo is Un_Bureau_de_vote_S (UTer),
   UApm is Un_Acte_du_premier_ministre_S,
-  UMin is Un_Ministre_S (UScr, URac, UOri, URel, UTer, UBvo),
-  UPmi is Un_Premier_ministre_S (UScr, URac, UOri, URel, UTer, UBvo)
+  UMin is Un_Ministre_S (URac, UOri, URel, UTer, UScr, UBvo),
+  UPmi is Un_Premier_ministre_S (URac, UOri, URel, UTer, UScr, UBvo)
 ) =
 
 -- Titre III Article 22-a-1 - Les actes du Premier ministre sont contresignés, le cas échéant, par les ministres chargés de leur exécution.

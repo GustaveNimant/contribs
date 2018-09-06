@@ -11,37 +11,40 @@ open "Une_Origine_S";;
 open "Une_Race_S";;
 open "Une_Religion_S";;
 
+-- InH:  Un_Depute_S           Un_Senateur_S
+-- InH:      \                  /
+-- InH:       v                v
+-- InH:       Un_Parlementaire_S  Le_President_de_la_republique_S  Un_Elu_europeen_S  Un_Elu_regional_S  Un_Elu_cantonal_S  Un_Elu_municipal_S  
+-- InH:                |
+-- InH:                v
+-- InH:             Un_Elu_S
+-- InH:                |
+-- InH:                v
+-- InH:        Un_Citoyen_electeur_S
+-- InH:                |
+-- InH:                v
+-- InH:           Un_Francais_S
+-- InH:                |
+-- InH:                v
+-- InH:         Un_Etre_humain_S
+ 
 -- InH:  L_Assemblee_nationale_S  Le_Senat_S
 -- InH:         \                  /
 -- InH:          v                v
 -- InH:        Une_Chambre_legislative_S
-
--- InH:  Un_Depute           Un_Senateur
--- InH:      \                  /
--- InH:       v                v
--- InH:        Un_Parlementaire
--- InH:                |
--- InH:                v
--- InH:             Un_Elu
--- InH:                |
--- InH:                v
--- InH:           Un_Citoyen_electeur
--- InH:                |
--- InH:                v
--- InH:           Un_Francais
-
+ 
 species Le_Senat_S (
-  UScr is Un_Scrutin_S, 
   URac is Une_Race_S,
   UOri is Une_Origine_S,
   URel is Une_Religion_S,
   UTer is Un_Territoire_S,
+  UScr is Un_Scrutin_S,
   UBvo is Un_Bureau_de_vote_S (UTer),
-  USen is Un_Senateur_S (UScr, URac, UOri, URel, UTer, UBvo),
-  UPar is Un_Parlementaire_S (UScr, URac, UOri, URel, UTer, UBvo)
+  USen is Un_Senateur_S (URac, UOri, URel, UTer, UScr, UBvo),
+  UPar is Un_Parlementaire_S (URac, UOri, URel, UTer, UScr, UBvo)
 ) =
     
-  inherit Une_Chambre_legislative_S (UScr, URac, UOri, URel, UTer, UBvo, UPar);
+  inherit Une_Chambre_legislative_S (URac, UOri, URel, UTer, UScr, UBvo, UPar);
 
   let ne_peut_pas_etre_dissous (lsen : Self) = false;
 

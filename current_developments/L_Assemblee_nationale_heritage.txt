@@ -1,0 +1,5 @@
+-- InH:  L_Assemblee_nationale_S  Le_Senat_S
+-- InH:         \                  /
+-- InH:          v                v
+-- InH:        Une_Chambre_legislative_S
+ 

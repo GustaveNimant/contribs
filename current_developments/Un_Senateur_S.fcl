@@ -27,15 +27,15 @@ open "Une_Religion_S";;
 -- InH:         Un_Etre_humain_S
 
 species Un_Senateur_S (
-  UScr is Un_Scrutin_S, 
   URac is Une_Race_S,
   UOri is Une_Origine_S,
   URel is Une_Religion_S,
   UTer is Un_Territoire_S,
+  UScr is Un_Scrutin_S,
   UBvo is Un_Bureau_de_vote_S (UTer)
 ) = 
 
-  inherit Un_Parlementaire_S (UScr, URac, UOri, URel, UTer, UBvo);
+  inherit Un_Parlementaire_S (URac, UOri, URel, UTer, UScr, UBvo);
 
   let est_un_depute (usen : Self) = false;
 

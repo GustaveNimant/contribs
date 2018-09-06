@@ -29,19 +29,19 @@ open "Un_Parlementaire_subtype_S";;
 -- InH:         Un_Etre_humain_S
 
 species Un_Depute_subtype (
-  UScr is Un_Scrutin_S,
   URac is Une_Race_S,
   UOri is Une_Origine_S,
   URel is Une_Religion_S,
   UTer is Un_Territoire_S,
+  UScr is Un_Scrutin_S,
   UBvo is Un_Bureau_de_vote_S (UTer),
-  Sub  is Un_Depute_S (UScr, URac, UOri, URel, UTer, UBvo),
+  Sub  is Un_Depute_S (URac, UOri, URel, UTer, UScr, UBvo),
   Sub_set is Finite_Set_S(Sub),
-  Super is Un_Depute_S (UScr, URac, UOri, URel, UTer, UBvo),
+  Super is Un_Depute_S (URac, UOri, URel, UTer, UScr, UBvo),
   Super_set is Finite_Set_S(Super)
 ) =
     
-  inherit Un_Parlementaire_subtype_S (UScr, URac, UOri, URel, UTer, UBvo, Sub, Sub_set, Super, Super_set);
+  inherit Un_Parlementaire_subtype_S (URac, UOri, URel, UTer, UScr, UBvo, Sub, Sub_set, Super, Super_set);
 
   let un_depute (sub : Sub) =
     to_super (sub);

@@ -12,9 +12,15 @@ fi
 
 for i in $args
 do
-  x=`egrep '^species ' $i | egrep -v '_S \(|_S|_subtype '` 
+  x=`egrep -h '^species |^  inherit' $i | egrep -v '_S \(|_S'` 
   if [ "$x" != "" ]
   then
-    echo "No _S in file $i : $x"
+      string=`echo $x | cut -d" " -f2`
+      species=`echo $string | sed 's/;//'`
+      if [ "$species" != "Setoid" ]
+      then
+	  echo "No _S for in file $i : $x"
+	  echo "mw $species ${species}_S *.fcl"
+      fi
   fi
 done

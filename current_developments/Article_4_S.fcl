@@ -22,20 +22,20 @@ open "Un_Membre_d_une_formation_politique_S";;
 -- La loi garantit les expressions pluralistes des opinions et la participation équitable des partis et groupements politiques à la vie démocratique de la Nation.
 
 species Article_4_S (
-  UScr is Un_Scrutin_S,  
   URac is Une_Race_S,
   UOri is Une_Origine_S,
   URel is Une_Religion_S,
   UTer is Un_Territoire_S,
+  UScr is Un_Scrutin_S,
   UBvo is Un_Bureau_de_vote_S (UTer),
   UMfp is Un_Membre_d_une_formation_politique_S (URac, UOri, URel, UTer),
   UPpo is Un_Parti_politique_S (URac, UOri, URel, UTer, UMfp),
   UGpo is Un_Groupement_politique_S (URac, UOri, URel, UTer, UMfp),
-  UCel is Un_Citoyen_electeur_S (UScr, URac, UOri, URel, UTer, UBvo),
-  UElu is Un_Elu_S (UScr, URac, UOri, URel, UTer, UBvo),
-  LEle is L_Electorat_S (UScr, URac, UOri, URel, UTer, UBvo, UCel),
+  UCel is Un_Citoyen_electeur_S (URac, UOri, URel, UTer, UScr, UBvo),
+  UElu is Un_Elu_S (URac, UOri, URel, UTer, UScr, UBvo),
+  LEle is L_Electorat_S (URac, UOri, URel, UTer, UScr, UBvo, UCel),
   LRpe is Finite_Set_S (UElu), -- REVOIR Les_Representants_du_peuple_S ?
-  LSna is La_Souverainete_nationale_S (UScr, URac, UOri, URel, UTer, UBvo, UCel, UElu, LEle, LRpe)
+  LSna is La_Souverainete_nationale_S (URac, UOri, URel, UTer, UScr, UBvo, UCel, UElu, LEle, LRpe)
 ) = 
 
 -- Titre I Article 4-a - Les partis et groupements politiques concourent à l'expression du suffrage. Ils se forment et exercent leur activité librement. Ils doivent respecter les principes de la souveraineté nationale et de la démocratie.

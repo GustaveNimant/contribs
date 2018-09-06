@@ -1,3 +1,3 @@
 FOCALIZE_SRC=\
-  Une_Ordonnance_S.fcl \
+  Article_23_S.fcl \
 
