@@ -55,7 +55,7 @@ sub lowercase_file_names {
 	    push @lc_l, $_;
 	}
     }
-    sort @lc_l;
+    uniq (sort @lc_l);
 }
 
 sub non_lowercase_file_names {
@@ -67,7 +67,7 @@ sub non_lowercase_file_names {
 	    push @lc_l, $_;
 	}
     }
-    sort @lc_l;
+    uniq (sort @lc_l);
 }
 
 sub print_opens {

@@ -3,15 +3,13 @@ open "sets";;
 
 open "Finite_Set_S";;
 open "Un_Bureau_de_vote_S";;
-open "Les_Fonctions_de_conversion";;
+open "Un_Citoyen_electeur_subtype_S";;
 open "Un_Membre_de_l_executif_S";;
 open "Un_Scrutin_S";;
 open "Un_Territoire_S";;
 open "Une_Origine_S";;
 open "Une_Race_S";;
 open "Une_Religion_S";;
-
-
 
 -- Documentation : species SuperOfSub_S
 

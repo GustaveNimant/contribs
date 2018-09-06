@@ -1,0 +1,17 @@
+-- InH:  Un_Depute_S           Un_Senateur_S
+-- InH:      \                  /
+-- InH:       v                v
+-- InH:       Un_Parlementaire_S  Le_President_de_la_republique_S  Un_Elu_europeen_S  Un_Elu_regional_S  Un_Elu_cantonal_S  Un_Elu_municipal_S  
+-- InH:                |
+-- InH:                v
+-- InH:             Un_Elu_S
+-- InH:                |
+-- InH:                v
+-- InH:        Un_Citoyen_electeur_S
+-- InH:                |
+-- InH:                v
+-- InH:           Un_Francais_S
+-- InH:                |
+-- InH:                v
+-- InH:         Un_Etre_humain_S
+ 

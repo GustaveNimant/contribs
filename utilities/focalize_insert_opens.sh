@@ -15,4 +15,5 @@ focalize_open_list.pl $file > opens
 delete_lines_where.pl 'open "' $file 
 
 cat opens $file > new_file
-mv new_file  $file
+mv new_file $file
+rm opens 

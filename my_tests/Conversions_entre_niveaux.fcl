@@ -1,7 +1,6 @@
 open "basics";;
 open "sets";;
 
---
 --  Niveau_3 
 --     |
 --     v
