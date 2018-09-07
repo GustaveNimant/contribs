@@ -1,48 +1,51 @@
 open "basics";;
 
-species Un_Seul_test =
+species Un_Logement =
 
-  signature a_un_logement_de_surface_suffisante : Self -> bool;
-  signature a_un_logement_disposant_de_sanitaire : Self -> bool;
-  signature a_un_logement_disposant_de_chauffage : Self -> bool;
-  signature a_un_logement_disposant_de_climatisation : Self -> bool;  
-  signature a_un_logement_disposant_d_un_acces_handicape : Self -> bool;
+  signature dispose_d_une_surface_suffisante : Self -> bool;
+  signature dispose_de_sanitaire : Self -> bool;
+  signature dispose_de_chauffage : Self -> bool;
+  signature dispose_de_climatisation : Self -> bool;  
 
-  logical let a_un_logement_decent (ucit : Self) =
-  a_un_logement_de_surface_suffisante (ucit) ->  
-  a_un_logement_disposant_de_sanitaire (ucit) ->
-  a_un_logement_disposant_de_chauffage (ucit) ->
-  a_un_logement_disposant_de_climatisation (ucit) ->  
-  a_un_logement_disposant_d_un_acces_handicape (ucit);
+  logical let est_un_logement_decent (ulog : Self) =
+  dispose_d_une_surface_suffisante (ulog) ->  
+  dispose_de_sanitaire (ulog) ->
+  dispose_de_chauffage (ulog) ->
+  dispose_de_climatisation (ulog);
 
-  logical let un_citoyen_est_loge_decemment (ucit : Self) =
-    (a_un_logement_decent (ucit));
-  
-  property un_citoyen_est_loge_decemment_pr : all ucit : Self,
-  un_citoyen_est_loge_decemment (ucit);
+  property les_citoyens_sont_loges_decemment_pr : all ulog : Self,
+  est_un_logement_decent (ulog);
 
-  logical let un_citoyen_n_est_pas_loge_decemment (ucit : Self) =
-    ~(a_un_logement_disposant_de_sanitaire (ucit));
+  logical let un_citoyen_n_est_pas_loge_decemment (ulog : Self) =
+    ~(dispose_de_sanitaire (ulog));
  
-  property un_citoyen_n_est_pas_loge_decemment_pr : all ucit : Self,
-  un_citoyen_n_est_pas_loge_decemment (ucit);
+  property un_citoyen_n_est_pas_loge_decemment_pr : ex ulog : Self,
+  un_citoyen_n_est_pas_loge_decemment (ulog);
 
   theorem est_conforme_1 :
-  all ucit : Self,
-  un_citoyen_est_loge_decemment (ucit)
-  proof = by property un_citoyen_n_est_pas_loge_decemment_pr
+  all ulog : Self,
+    est_un_logement_decent (ulog)
+  proof = by property les_citoyens_sont_loges_decemment_pr
   ;
 
-  theorem est_non_conforme_1 :
-  all ucit : Self,
-  un_citoyen_est_loge_decemment (ucit)
-  proof = by property un_citoyen_est_loge_decemment_pr
+  theorem est_conforme_2 :
+  all ulog : Self,
+  dispose_d_une_surface_suffisante (ulog)
+  proof = by property les_citoyens_sont_loges_decemment_pr
   ;
 
 (*
+
+  theorem est_non_conforme_1 :
+  all ulog : Self,
+  un_citoyen_est_loge_decemment (ulog)
+  proof = by property les_citoyens_sont_loges_decemment_pr
+  ;
+
+
   theorem est_conforme_2 :
-  un_citoyen_est_loge_decemment_pr
-  proof = by property un_citoyen_est_loge_decemment_pr
+  les_citoyens_sont_loges_decemment_pr
+  proof = by property les_citoyens_sont_loges_decemment_pr
   ;
 *)
 end

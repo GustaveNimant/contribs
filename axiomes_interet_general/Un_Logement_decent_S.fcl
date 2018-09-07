@@ -1,0 +1,35 @@
+open "basics";;
+
+species Un_Logement_decent = 
+
+  signature est_un_logement_de_surface_suffisante : Self -> bool;
+  signature est_un_logement_disposant_de_sanitaire : Self -> bool;
+  signature est_un_logement_disposant_de_chauffage : Self -> bool;
+  signature est_un_logement_disposant_de_climatisation : Self -> bool;  
+  signature est_un_logement_disposant_d_un_acces_handicape : Self -> bool;
+
+  logical let est_un_logement_decent (ulog : Self) =
+  est_un_logement_de_surface_suffisante (ulog) ->  
+  est_un_logement_disposant_de_sanitaire (ulog) ->
+  est_un_logement_disposant_de_chauffage (ulog) ->
+  est_un_logement_disposant_de_climatisation (ulog) ->  
+  est_un_logement_disposant_d_un_acces_handicape (ulog);
+
+  property les_logements_sont_decents_pr :
+  all ulog : Self,
+  est_un_logement_decent (ulog);
+  
+  theorem est_conforme_th :
+  all ulog : Self,
+  Self!est_un_logement_decent (ulog)
+  proof = by property Self!les_logements_sont_decents_pr
+  ;
+
+  theorem n_est_pas_conforme_th :
+  ex ulog : Self,
+  ~(Self!est_un_logement_decent (ulog))
+  proof = by property les_logements_sont_decents_pr
+  ;
+
+end;;
+
