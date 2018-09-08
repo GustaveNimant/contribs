@@ -1,0 +1,28 @@
+open "basics";;
+
+species Des_Axiomes =
+
+  signature est_a : Self -> bool;
+  signature est_b : Self -> bool;
+
+  theorem est_a_th :
+  all s : Self, est_a (s)
+  proof = assumed 
+  ;
+
+  theorem est_b_th :
+  all s : Self, est_a (s) -> est_b (s)
+  proof = assumed
+  ;
+
+  theorem a_et_b_th :
+  all s : Self, (est_a (s) -> est_b (s)) -> est_a (s)
+  proof =  
+  <1>1 assume s : Self,
+       prove est_a (s)
+       by theorem est_a_th
+  <1>2 conclude
+  ;
+
+end;;
+

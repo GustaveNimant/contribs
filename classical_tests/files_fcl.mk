@@ -1,3 +1,3 @@
 FOCALIZE_SRC=\
-  And_Or.fcl \
+  Modus_Tollens.fcl \
 

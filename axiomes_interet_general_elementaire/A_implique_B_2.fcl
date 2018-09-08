@@ -1,0 +1,30 @@
+open "basics";;
+
+species Des_Axiomes =
+
+  signature est_a : Self -> bool;
+  signature est_b : Self -> bool;
+
+  theorem est_a_th :
+  all s : Self, est_a (s)
+  proof = assumed 
+  ;
+
+  theorem a_implique_b_th :
+  all s : Self, est_a (s) -> est_b (s)
+  proof = assumed
+  ;
+
+  theorem est_b_th :
+  all s : Self, est_a (s) -> est_b (s)
+  proof =
+  <1>1 assume s : Self,
+       hypothesis h : ~ est_a (s),
+       prove est_b (s)
+       by theorem est_a_th, a_implique_b_th
+  <1>2 qed by step <1>1
+  ;
+
+
+end;;
+

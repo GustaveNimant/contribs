@@ -1,13 +1,13 @@
-(* Modus Ponens si a et a -> b alors b *)
+(* Modus Tollens si ~ b et a -> b alors ~ a*)
 
 open "basics";;
 
-theorem Modus_Ponens : 
-  all a b : bool, ((a -> b) /\ ( a )) -> b
+theorem Modus_Tollens : 
+  all a b : bool, ((a -> b) /\ (~ b)) -> ~ a
   proof = 
     <1>1 assume a b : bool,
-         hypothesis h1 : a,
-         prove a
+         hypothesis h1 : ~ b,
+         prove ~ b
          by hypothesis h1
     <1>2 assume a : bool, b : bool,
          hypothesis h2 : (a -> b),

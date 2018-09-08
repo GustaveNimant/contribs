@@ -1,0 +1,9 @@
+(* Modus Tollens si ~ b et a -> b alors ~ a*)
+
+open "basics";;
+
+theorem Modus_Tollens : 
+  all a b : bool, a -> b
+  proof = 
+
+;;

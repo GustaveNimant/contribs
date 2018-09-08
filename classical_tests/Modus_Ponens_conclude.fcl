@@ -1,0 +1,9 @@
+(* Modus Ponens si a et a -> b alors b *)
+
+open "basics";;
+
+theorem Modus_Ponens : 
+  all a b : bool, ((a -> b) /\ ( a )) -> b
+  proof = 
+      conclude
+;;

@@ -1,0 +1,40 @@
+open "basics";;
+
+species Consistency_ABC =
+
+  signature est_a : Self -> bool;
+  signature est_b : Self -> bool;
+  signature est_c : Self -> bool;
+
+  property est_a_pr :
+  all s : Self, est_a (s)
+  ;
+
+  property est_b_pr :
+  all s : Self, est_b (s)
+  ;
+
+  property est_c_pr :
+  all s : Self, est_c (s)
+  ;
+
+  property a_et_b_et_c_pr :
+  all s : Self, est_a (s) /\ est_b (s) /\ est_c (s)
+  ;
+
+  theorem check_consistency : a_et_b_et_c_pr
+  proof =  
+    <1>1 assume s : Self,
+         prove est_a (s)
+         by property est_a_pr
+    <1>2 assume s : Self,
+         prove est_b (s)
+         by property est_b_pr
+    <1>3 assume s : Self,
+         prove est_c (s)
+         by property est_c_pr
+    <1>4 conclude
+  ;
+
+end;;
+
