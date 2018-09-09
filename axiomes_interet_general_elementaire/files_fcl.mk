@@ -1,3 +1,3 @@
 FOCALIZE_SRC=\
-  Consistency_ABC.fcl \
+  C.fcl \
 

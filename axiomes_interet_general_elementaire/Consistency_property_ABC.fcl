@@ -18,12 +18,8 @@ species Consistency_ABC =
   all s : Self, est_c (s)
   ;
 
-  property a_et_b_et_c_pr :
-  all s : Self, est_a (s) /\ est_b (s) /\ est_c (s)
-  ;
-
   theorem a_et_b_et_c_th :
-  all s : Self, est_a (s) /\ est_b (s) /\ est_c (s)
+  all s : Self, est_a (s) -> est_b (s) -> est_c (s)
   proof =  
     <1>1 assume s : Self,
          prove est_a (s)
