@@ -22,7 +22,8 @@ species Consistency_ABC =
   all s : Self, est_a (s) /\ est_b (s) /\ est_c (s)
   ;
 
-  theorem check_consistency : a_et_b_et_c_pr
+  theorem a_et_b_et_c_th :
+  a_et_b_et_c_pr
   proof =  
     <1>1 assume s : Self,
          prove est_a (s)
@@ -33,8 +34,21 @@ species Consistency_ABC =
     <1>3 assume s : Self,
          prove est_c (s)
          by property est_c_pr
-    <1>4 conclude
+    <1>4 qed by step <1>1, <1>2, <1>3
   ;
 
+(*
+  theorem check_consistency : 
+  a_et_b_et_c_pr /\ (all s : Self, est_c (s))
+  proof =  
+    <1>1 assume s : Self,
+         prove a_et_b_et_c_pr
+         by property a_et_b_et_c_pr
+    <1>2 assume s : Self,
+         prove est_c (s)
+         by property est_c_pr
+    <1>4 conclude 
+  ;
+*)
 end;;
 

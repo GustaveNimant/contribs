@@ -21,6 +21,8 @@ species La_Republique_francaise_S (
 -- Titre I Article 1-a-1 - La France est une République indivisible, laïque, démocratique et sociale. 
 --                 http://www.france-republicaine.fr/republique-indivisible.php
     
+  (* QUESTION : pourquoi le paramètre Self ? pourquoi pas une consta *)
+
   signature la_france_est_une_republique : Self -> bool;
 
   signature la_langue_de_la_republique_est_unique : Self -> bool;

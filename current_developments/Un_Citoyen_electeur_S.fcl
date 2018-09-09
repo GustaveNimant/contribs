@@ -53,7 +53,7 @@ species Un_Citoyen_electeur_S (
   signature est_un_representant_du_peuple : Self -> bool;
 
   logical let est_un_citoyen_electeur (ucel : Self) =
-    est_un_francais (ucel) -> 
+    a_la_nationalite_francaise (ucel) -> 
     est_un_adulte (ucel) ->
     (~~(est_dechu_de_ses_droits (ucel))) ->
     (numero_carte_electeur (ucel) > 0);
