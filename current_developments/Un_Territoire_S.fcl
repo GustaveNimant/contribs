@@ -5,14 +5,26 @@ species Un_Territoire_S =
 
   inherit Setoid;
 
-  signature est_le_territoire_francais : Self -> bool;
-
   signature est_un_territoire_francais : Self -> bool;
 
   signature est_un_indivisible : Self -> bool;
 
-  signature est_une_region : Self -> bool;
+  signature est_connexe : Self -> bool;
+
+  signature est_un_arrondissement : Self -> bool;
+
+  signature est_un_canton : Self -> bool;
 
   signature est_un_departement : Self -> bool;
+
+  signature est_un_district : Self -> bool;
+
+  signature est_une_communaute_de_communes : Self -> bool;
+
+  signature est_une_commune : Self -> bool;
+
+  signature est_une_ile : Self -> bool;
+
+  signature est_une_region : Self -> bool;
 
 end;;

@@ -3,6 +3,11 @@ open "Finite_Set_S";;
 
 open "Un_Territoire_S";;
 
+-- InH: Un_Territoire_francais_S
+-- InH:       |
+-- InH:       v
+-- InH: Un_Territoire_S
+
 species Le_Territoire_francais_S (
   UTer is Un_Territoire_S
 ) =

@@ -15,19 +15,19 @@ species Un_Francais_S (
 
   inherit Un_Etre_humain_S (UTer);
 
-  let a_la_nationalite_francaise (ufra : Self) = true;
+  let a_la_nationalite_francaise (self : Self) = true;
 
   signature a_la_liberte_d_expression : Self -> bool;
 
   signature est_dechu_de_ses_droits : Self -> bool;
 
-  logical let habite_un_territoire_francais (ufra : Self, uter : UTer) =
-     habite_un_territoire (ufra, uter)       
+  logical let habite_un_territoire_francais (self : Self, uter : UTer) =
+     habite_un_territoire (self, uter)       
      /\
      UTer!est_un_territoire_francais (uter);
 
-  logical let est_etabli_hors_de_france (ufra : Self, uter : UTer) =
-     habite_un_territoire (ufra, uter)       
+  logical let est_etabli_hors_de_france (self : Self, uter : UTer) =
+     habite_un_territoire (self, uter)       
      /\
      (~~(UTer!est_un_territoire_francais (uter)));
 
