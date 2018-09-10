@@ -6,7 +6,7 @@ open "Un_Decret_S";;
 open "Un_Membre_du_gouvernement_S";;
 open "Un_Organe_deliberant_S";;
 open "Un_Scrutin_S";;
-open "Un_Territoire_S";;
+open "Un_Territoire_francais_S";;
 open "Un_Texte_legislatif_S";;
 open "Une_Ordonnance_S";;
 open "Une_Origine_S";;
@@ -20,11 +20,11 @@ species Le_Gouvernement_S (
   UTle is Un_Texte_legislatif_S,
   UOrd is Une_Ordonnance_S,
   UDec is Un_Decret_S,
-  UTer is Un_Territoire_S,
+  UTfr is Un_Territoire_francais_S,
   UScr is Un_Scrutin_S,
-  UBvo is Un_Bureau_de_vote_S (UTer),
+  UBvo is Un_Bureau_de_vote_S (UTfr),
   UOde is Un_Organe_deliberant_S (UTle),
-  UMgo is Un_Membre_du_gouvernement_S (URac, UOri, URel, UTer, UScr, UBvo)
+  UMgo is Un_Membre_du_gouvernement_S (URac, UOri, URel, UTfr, UScr, UBvo)
   ) =
 
   inherit Finite_Set_S (UMgo), Un_Organe_deliberant_S (UTle);

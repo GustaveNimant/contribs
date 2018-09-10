@@ -35,10 +35,11 @@ species Article_3_S (
 
 -- Titre I Article 3-a - La souveraineté nationale appartient au peuple qui l'exerce par ses représentants et par la voie du référendum.
 
-  property article_3_a :
-    all lrpe : LRpe, all lele : LEle, all uscr : UScr,
-    LSna!la_souverainete_nationale_appartient_au_peuple (lele) -> 
-    LSna!la_souverainete_nationale_est_exercee_par_les_representants_ou_par_referendum (lrpe, lele, uscr);
+  property article_3_a : 
+  all uelu : UElu, all uscr : UScr, all ucel : UCel,
+  LSna!un_elu_participe_a_l_exercice_de_la_souverainete_nationale (uelu)
+  \/ 
+  LSna!un_citoyen_participe_a_l_exercice_de_la_souverainete_nationale_lors_d_un_referendum (ucel, uscr);
 
 -- Titre I Article 3-b - Aucune section du peuple ni aucun individu ne peut s'en attribuer l'exercice.
 

@@ -19,9 +19,9 @@ species Article_2_S (
   UOri is Une_Origine_S,
   URel is Une_Religion_S,
   UTer is Un_Territoire_S,
-  UFra is Un_Francais_S (URac, UOri, URel, UTer),
+  UFra is Un_Francais_S (URac, UOri, URel),
   LTfr is Le_Territoire_francais_S (UTer),
-  LPfr is Le_Peuple_francais_S (URac, UOri, URel, UTer, LTfr, UFra)
+  LPfr is Le_Peuple_francais_S (URac, UOri, URel, UFra)
 ) = 
 
 -- Titre I Article 2-a - La langue de la République est le français.

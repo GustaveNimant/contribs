@@ -34,7 +34,7 @@ species Article_8_S (
   UTer is Un_Territoire_S,
   UScr is Un_Scrutin_S,
   UBvo is Un_Bureau_de_vote_S (UTer),
-  UFra is Un_Francais_S (URac, UOri, URel, UTer),
+  UFra is Un_Francais_S (URac, UOri, URel),
   UPmi is Un_Premier_ministre_S (URac, UOri, URel, UTer, UScr, UBvo),
   UOde is Un_Organe_deliberant_S (UTle),
   UMgo is Un_Membre_du_gouvernement_S (URac, UOri, URel, UTer, UScr, UBvo),

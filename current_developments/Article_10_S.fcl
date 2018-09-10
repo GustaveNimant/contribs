@@ -30,7 +30,7 @@ species Article_10_S (
   UTer is Un_Territoire_S,
   UScr is Un_Scrutin_S,
   UBvo is Un_Bureau_de_vote_S (UTer), 
-  UFra is Un_Francais_S (URac, UOri, URel, UTer),
+  UFra is Un_Francais_S (URac, UOri, URel),
   UCel is Un_Citoyen_electeur_S (URac, UOri, URel, UTer, UScr, UBvo),
   UDep is Un_Depute_S (URac, UOri, URel, UTer, UScr, UBvo),
   USen is Un_Senateur_S (URac, UOri, URel, UTer, UScr, UBvo),

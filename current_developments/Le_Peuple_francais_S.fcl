@@ -1,8 +1,6 @@
 open "basics";;
 open "Finite_Set_S";;
 open "Un_Francais_S";;
-open "Un_Territoire_S";;
-open "Le_Territoire_francais_S";;
 open "Une_Origine_S";;
 open "Une_Race_S";;
 open "Une_Religion_S";;
@@ -11,18 +9,14 @@ species Le_Peuple_francais_S (
   URac is Une_Race_S,
   UOri is Une_Origine_S,
   URel is Une_Religion_S,
-  UTer is Un_Territoire_S,
-  LTfr is Le_Territoire_francais_S (UTer),
-  UFra is Un_Francais_S (URac, UOri, URel, UTer)
+  UFra is Un_Francais_S (URac, UOri, URel)
 ) = 
 
   inherit Finite_Set_S (UFra);
 
-  logical let le_peuple_francais_est_un_sur_le_territoire (lpfr : Self, ltfr : LTfr) = 
-    all ufra : UFra, all uter : UTer,
-    is_a_member_of (ufra, lpfr) ->
-    LTfr!is_a_member_of (uter, ltfr) ->
-    UFra!habite_un_territoire_francais (ufra, uter);
+  logical let le_peuple_francais_est_un (self : Self) = 
+    all ufra : UFra,
+    is_a_member_of (ufra, self);
 
 end;;
 

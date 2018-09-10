@@ -12,7 +12,7 @@ species Un_Membre_d_une_formation_politique_S (
   UTer is Un_Territoire_S
 ) =
 
-  inherit Un_Francais_S (URac, UOri, URel, UTer);
+  inherit Un_Francais_S (URac, UOri, URel);
 
   let exerce_une_activite_politique (umfp : Self) = true;
 

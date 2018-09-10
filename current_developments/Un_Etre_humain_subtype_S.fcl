@@ -3,7 +3,6 @@ open "sets";;
 
 open "Finite_Set_S";;
 open "Un_Etre_humain_S";;
-open "Un_Territoire_S";;
 open "Une_Origine_S";;
 open "Une_Race_S";;
 open "Une_Religion_S";;
@@ -30,10 +29,9 @@ species Un_Etre_humain_subtype_S (
   URac is Une_Race_S,
   UOri is Une_Origine_S,
   URel is Une_Religion_S,
-  UTer is Un_Territoire_S,
-  Sub is Un_Etre_humain_S (UTer),
+  Sub is Un_Etre_humain_S,
   Sub_set is Finite_Set_S(Sub),
-  Super is Un_Etre_humain_S (UTer),
+  Super is Un_Etre_humain_S,
   Super_set is Finite_Set_S(Super)
 ) =
     

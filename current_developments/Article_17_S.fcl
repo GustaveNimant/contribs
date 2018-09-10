@@ -4,7 +4,7 @@ open "Le_President_de_la_republique_S";;
 open "Un_Bureau_de_vote_S";;
 open "Un_Francais_S";;
 open "Un_Scrutin_S";;
-open "Un_Territoire_S";;
+open "Un_Territoire_francais_S";;
 open "Une_Origine_S";;
 open "Une_Race_S";;
 open "Une_Religion_S";;
@@ -15,11 +15,11 @@ species Article_17_S (
   URac is Une_Race_S,
   UOri is Une_Origine_S,
   URel is Une_Religion_S,
-  UTer is Un_Territoire_S,
+  UTFr is Un_Territoire_francais_S,
   UScr is Un_Scrutin_S,
-  UBvo is Un_Bureau_de_vote_S (UTer),
-  UFra is Un_Francais_S (URac, UOri, URel, UTer),
-  LPre is Le_President_de_la_republique_S (URac, UOri, URel, UTer, UScr, UBvo, UFra)
+  UBvo is Un_Bureau_de_vote_S (UTFr),
+  UFra is Un_Francais_S (URac, UOri, URel),
+  LPre is Le_President_de_la_republique_S (URac, UOri, URel, UTFr, UScr, UBvo, UFra)
 )=
 
 -- Titre II Article 17 - Le Président de la République a le droit de faire grâce à titre individuel.

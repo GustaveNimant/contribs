@@ -21,7 +21,7 @@ species Article_5_S (
   UTer is Un_Territoire_S,
   UScr is Un_Scrutin_S,
   UBvo is Un_Bureau_de_vote_S (UTer),
-  UFra is Un_Francais_S (URac, UOri, URel, UTer),
+  UFra is Un_Francais_S (URac, UOri, URel),
   LCon is La_Constitution_S,
   LPre is Le_President_de_la_republique_S (URac, UOri, URel, UTer, UScr, UBvo, UFra)
 ) = 

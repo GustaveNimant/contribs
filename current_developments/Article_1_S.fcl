@@ -20,8 +20,8 @@ species Article_1_S (
   URel is Une_Religion_S,
   UTer is Un_Territoire_S,
   LTfr is Le_Territoire_francais_S (UTer), 
-  UFra is Un_Francais_S (URac, UOri, URel, UTer),
-  LPfr is Le_Peuple_francais_S (URac, UOri, URel, UTer, LTfr, UFra),
+  UFra is Un_Francais_S (URac, UOri, URel),
+  LPfr is Le_Peuple_francais_S (URac, UOri, URel, UFra),
   LRfr is La_Republique_francaise_S (URac, UOri, URel, UTer, LTfr, UFra, LPfr)
 ) = 
 

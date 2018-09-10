@@ -1,3 +1,3 @@
 FOCALIZE_SRC=\
-  La_Metropole_S.fcl \
+  Article_24_S.fcl \
 

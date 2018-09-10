@@ -6,7 +6,7 @@ open "Un_Bureau_de_vote_S";;
 open "Un_Ministre_S";;
 open "Un_Premier_ministre_S";;
 open "Un_Scrutin_S";;
-open "Un_Territoire_S";;
+open "Un_Territoire_francais_S";;
 open "Une_Origine_S";;
 open "Une_Race_S";;
 open "Une_Religion_S";;
@@ -17,19 +17,19 @@ species Article_22_S (
   URac is Une_Race_S,
   UOri is Une_Origine_S,
   URel is Une_Religion_S,
-  UTer is Un_Territoire_S,
+  UTfr is Un_Territoire_francais_S,
   UScr is Un_Scrutin_S,
-  UBvo is Un_Bureau_de_vote_S (UTer),
-  UApm is Un_Acte_du_premier_ministre_S,
-  UMin is Un_Ministre_S (URac, UOri, URel, UTer, UScr, UBvo),
-  UPmi is Un_Premier_ministre_S (URac, UOri, URel, UTer, UScr, UBvo)
+  UBvo is Un_Bureau_de_vote_S (UTfr),
+  UMin is Un_Ministre_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UPmi is Un_Premier_ministre_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UApm is Un_Acte_du_premier_ministre_S (URac, UOri, URel, UTfr, UScr, UBvo, UMin, UPmi)
 ) =
 
 -- Titre III Article 22-a-1 - Les actes du Premier ministre sont contresignés, le cas échéant, par les ministres chargés de leur exécution.
 
   property un_acte_du_premier_ministre_est_contresigne_par_un_ministre_charge_de_son_execution :
-  all uapm : UApm, umin : Umin,
+  all uapm : UApm, all umin : UMin,
   UApm!un_acte_du_premier_ministre_est_contresigne_par_un_ministre (uapm, umin) ->
-  UApm!un_acte_du_premier_ministre_est_execute_par_un_ministre (uapm, umin)
+  UApm!un_acte_du_premier_ministre_est_execute_par_un_ministre (uapm, umin);
 
 end;;

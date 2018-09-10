@@ -1,0 +1,14 @@
+open "basics";;
+
+theorem A_Or_B_And_Not_A_Or_C_implies_B_Or_C :
+  all a b c : bool, ((a \/ b) /\ (~ a \/ c)) -> (b \/ c)
+  proof = 
+    <1>1 assume a b c : bool,
+         hypothesis h1 : (a \/ b) /\ (~ a \/ c),
+         prove  b \/ c
+         <2>1 hypothesis h2 : c,
+              prove c 
+              by hypothesis h1, h2 
+         <2>2 qed by step <2>1
+    <1>2 conclude 
+;;
