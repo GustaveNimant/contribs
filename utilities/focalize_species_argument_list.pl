@@ -4,6 +4,10 @@ die "Usage:\n perl $0 <file.fcl> \n" if $#ARGV < 0 ;
 use File::Basename;
 use List::Uniq ':all';
 
+$debug = "";
+($debug) = grep /debug/,@ARGV;
+@ARGV = grep !/debug/, @ARGV;
+
 $path = "";
 $suffix = "";
 
@@ -25,7 +29,7 @@ $record = 0;
 %species_and_argument_list_by_argument_h = ();
 
 foreach $_ (@Tout) {
-#	    print "current line is >$_<" if $print_line ;
+    print "current line is >$_<" if $debug ;
     
     $record = $record + 1;
     
@@ -41,7 +45,6 @@ foreach $_ (@Tout) {
     
     if ( $is_on ) {	
 	print $_;
-
 
 	if (($s, $t) = ($_ =~ /^species\s+\b\w+\b\s*\(\s*(\w+) is (.*)(\,)?\s*$/)) {
 	    push @argument_l, $s;
@@ -191,7 +194,7 @@ sub abbreviated_name {
     foreach $_ (@word_l) {
 	$count = $count +1;
 #	$word_count = $#word_l+1;
-
+	print "word >$_<\n" if $debug;
 	$result .= substr $_,0,1;
 	if ($count == 4) {
 	    last;

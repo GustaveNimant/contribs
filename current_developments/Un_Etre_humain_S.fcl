@@ -38,6 +38,8 @@ species Un_Etre_humain_S (
 
   signature a_la_nationalite_francaise : Self -> bool;
 
+  signature a_plusieurs_nationalite : Self -> bool;
+
   property est_un_adulte_ou_un_mineur_pr : all uehu : Self,
            est_un_adulte (uehu) \/ est_un_mineur (uehu);
 

@@ -1,3 +1,3 @@
 FOCALIZE_SRC=\
-  Un_Francais_S.fcl \
+  Article_1_S.fcl \
 

@@ -15,8 +15,6 @@ species Un_Francais_S (
 
   inherit Un_Etre_humain_S (UTer);
 
-  let a_la_nationalite_francaise (self : Self) = true;
-
   signature a_la_liberte_d_expression : Self -> bool;
 
   signature est_dechu_de_ses_droits : Self -> bool;

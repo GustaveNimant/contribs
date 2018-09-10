@@ -17,11 +17,16 @@ do
     then
 	echo "  $i \\" >> files_fcl.mk
     else
-	if [ `echo $i | grep -c '\.'` == "0" ]
+	if [ `echo $i | grep -c '\.'` != "0" ]
 	then
-	    echo "  ${i}.fcl \\" >> files_fcl.mk
-	else
 	    echo "  ${i}fcl \\" >> files_fcl.mk
+	else
+	    if [ `echo $i | grep -c '_S'` != "0" ]
+	    then
+		echo "  ${i}.fcl \\" >> files_fcl.mk
+	    else
+		echo "  ${i}_S.fcl \\" >> files_fcl.mk
+	    fi
 	fi
     fi
 done

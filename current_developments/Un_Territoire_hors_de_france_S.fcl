@@ -1,5 +1,5 @@
 open "basics";;
-open "Finite_Set_S";;
+open "sets";;
 
 open "Un_Territoire_S";;
 
@@ -12,12 +12,8 @@ open "Un_Territoire_S";;
 -- InH:                       v              v
 -- InH:                        Un_Territoire_S
  
-species Le_Territoire_francais_S (
-  UTer is Un_Territoire_S
-) =
- 
-  inherit Finite_Set_S (UTer);
+species Un_Territoire_francais_S =
 
-  signature le_territoire_francais_est_un : Self -> bool;
+  inherit Un_Territoire_S;
 
 end;;
