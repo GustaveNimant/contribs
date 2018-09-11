@@ -1,5 +1,6 @@
 open "basics";;
 
+open "Finite_Set_S";;
 open "L_Assemblee_nationale_S";;
 open "Le_Conseil_des_ministres_S";;
 open "Le_Gouvernement_S";;
@@ -39,6 +40,7 @@ species Article_13_S (
   UOri is Une_Origine_S,
   URel is Une_Religion_S,
   UOrd is Une_Ordonnance_S,
+  UOrd_set is Finite_Set_S (UOrd),
   UDec is Un_Decret_S,
   UAex is Un_Acte_de_l_executif_S,
   UTle is Un_Texte_legislatif_S,
@@ -61,6 +63,8 @@ species Article_13_S (
 
 -- Titre II Article 13-a-1 - Le Président de la République signe les ordonnances ... délibérées en conseil des ministres. 
 
+  signature les_ordonnances : Self -> UOrd_set;
+
   signature le_president_de_la_republique_signe_une_ordonnance : LPre -> UOrd -> bool;
 
   signature le_conseil_des_ministres_delibere_sur_une_ordonnance : LCmi -> UOrd -> bool;
@@ -72,9 +76,11 @@ species Article_13_S (
   signature le_conseil_des_ministres_delibere_sur_un_decret : LCmi -> UDec -> bool;
 
   property article_13_a : all lpre : LPre, all uord : UOrd, all lcmi : LCmi,
+  all self : Self,
+  UOrd_set!is_a_member_of (uord, les_ordonnances (self)) ->
   le_president_de_la_republique_signe_une_ordonnance (lpre, uord) ->
   le_conseil_des_ministres_delibere_sur_une_ordonnance (lcmi, uord);
-
+  
   property article_13_b : all lpre : LPre, all udec : UDec, all lcmi : LCmi,
   le_president_de_la_republique_signe_un_decret (lpre, udec) ->
   le_conseil_des_ministres_delibere_sur_un_decret (lcmi, udec);

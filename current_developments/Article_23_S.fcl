@@ -78,20 +78,14 @@ species Article_23_S (
   let un_citoyen_electeur_of_un_membre_du_gouvernement (umgo : UMgo) =
     UCelOfUMex!to_super (un_membre_de_l_executif_of_un_membre_du_gouvernement (umgo));
 
-  logical let essai (umgo : UMgo, lgou : LGou, upar : UPar, lpar : LPar) =
-    all umgo : UMgo, all lgou : LGou,
-    all upar : UPar, all lpar : LPar,
-     LGou!is_a_member_of (umgo, lgou) ->
-     (~ LPar!is_a_member_of (upar, lpar));
-
 -- Titre III Article 23-a-1 - Les fonctions de membre du Gouvernement sont incompatibles avec l'exercice de tout mandat parlementaire...
 
+  signature les_citoyens_electeurs : Self -> UCel_set;
+
   property les_fonctions_de_membre_du_gouvernement_sont_incompatibles_avec_l_exercice_de_tout_mandat_parlementaire :
-    all umgo : UMgo, 
-    all upar : UPar, 
-    all ucel_set : UCel_set, 
-     UCel_set!is_a_member_of (un_citoyen_electeur_of_un_parlementaire (upar), ucel_set) ->
-     ~ UCel_set!is_a_member_of (un_citoyen_electeur_of_un_membre_du_gouvernement (umgo), ucel_set);
+  all umgo : UMgo, all upar : UPar, all self : Self, 
+  UCel_set!is_a_member_of (un_citoyen_electeur_of_un_parlementaire (upar), les_citoyens_electeurs (self)) ->
+     ~ UCel_set!is_a_member_of (un_citoyen_electeur_of_un_membre_du_gouvernement (umgo), les_citoyens_electeurs (self));
 
 -- Titre III Article 23-a-2 - Les fonctions de membre du Gouvernement sont incompatibles avec l'exercice de toute fonction de représentation professionnelle à caractère national
 

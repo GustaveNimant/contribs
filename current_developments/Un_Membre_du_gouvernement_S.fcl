@@ -33,7 +33,7 @@ species Un_Membre_du_gouvernement_S (
 
   inherit Un_Membre_de_l_executif_S (URac, UOri, URel, UTfr, UScr, UBvo);
  
-  signature est_premier_ministre : Self -> bool;
+  signature est_un_premier_ministre : Self -> bool;
 
   signature est_un_ministre : Self -> bool;
 

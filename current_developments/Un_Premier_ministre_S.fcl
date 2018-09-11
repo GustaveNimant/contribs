@@ -19,10 +19,6 @@ species Un_Premier_ministre_S (
 
   inherit Un_Membre_du_gouvernement_S (URac, UOri, URel, UTfr, UScr, UBvo);
 
-  let est_le_premier_ministre (upmi : Self) = true;
-
-  let est_un_ministre (upmi : Self) = false;
-
   signature le_premier_ministre_demissionne : Self -> bool;
 
 end;;
