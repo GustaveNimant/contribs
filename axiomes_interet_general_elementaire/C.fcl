@@ -2,33 +2,14 @@ open "basics";;
 
 species Consistency_ABC =
 
-  signature est_a : Self -> bool;
-  signature est_b : Self -> bool;
-  signature est_c : Self -> bool;
-
-  theorem est_a_th :
-  all s : Self, est_a (s)
-  proof = assumed
-  ;
-
-  theorem est_b_th :
-  all s : Self, est_b (s)
-  proof = assumed
-  ;
-
-  theorem est_c_th :
-  all s : Self, est_c (s)
-  proof = assumed
-  ;
-
   theorem a_et_b_et_c_th :
-  all s : Self, est_a (s) /\ est_b (s) /\ est_c (s)
-  proof =  
-    <1>1 assume s : Self,
-         hypothesis h1 : (est_a (s) /\ est_b (s)),
-         prove est_c (s)
-         by theorem est_c_th
-    <1>2 conclude
+  all a b c : bool, a -> b -> c
+    proof =  
+    <1>1 assume a b c : bool,
+         hypothesis h1 : a -> b,
+         prove c
+         by hypothesis h1
+    <1>2 qed by step <1>1
   ;
 
 end;;

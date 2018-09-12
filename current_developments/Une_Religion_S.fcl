@@ -1,6 +1,9 @@
 open "basics";;
+open "sets";;
 
 species Une_Religion_S =
+
+  inherit Setoid;
 
   signature il_existe_une_religion_d_etat : Self -> bool;
 

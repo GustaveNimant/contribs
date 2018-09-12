@@ -17,5 +17,7 @@ species Un_Francais_S (
 
   signature est_dechu_de_ses_droits : Self -> bool;
 
+  signature origine_d_un_francais : Self -> UOri;
+
 end;;
 

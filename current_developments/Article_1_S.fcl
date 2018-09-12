@@ -1,11 +1,23 @@
 open "basics";;
 
 open "Finite_Set_S";;
+open "L_Assemblee_nationale_S";;
 open "La_Republique_francaise_S";;
+open "Le_Droit_francais_S";;
+open "Le_Parlement_S";;
 open "Le_Peuple_francais_S";;
+open "Le_Senat_S";;
 open "Le_Territoire_francais_S";;
+open "Un_Bureau_de_vote_S";;
+open "Un_Depute_S";;
+open "Un_Elu_S";;
 open "Un_Francais_S";;
+open "Un_Parlementaire_S";;
+open "Un_Scrutin_S";;
+open "Un_Senateur_S";;
 open "Un_Territoire_francais_S";;
+open "Un_Texte_legislatif_S";;
+open "Une_Loi_S";;
 open "Une_Origine_S";;
 open "Une_Race_S";;
 open "Une_Religion_S";;
@@ -16,33 +28,94 @@ open "Une_Religion_S";;
 
 species Article_1_S (
   URac is Une_Race_S,
+  URac_set is Finite_Set_S (URac),
   UOri is Une_Origine_S,
+  UOri_set is Finite_Set_S (UOri),
   URel is Une_Religion_S,
+  URel_set is Finite_Set_S (URel),
+  UScr is Un_Scrutin_S,
   UTfr is Un_Territoire_francais_S,
   LTfr is Le_Territoire_francais_S (UTfr), 
+  UBvo is Un_Bureau_de_vote_S (UTfr), 
   UFra is Un_Francais_S (URac, UOri, URel),
   LPfr is Le_Peuple_francais_S (URac, UOri, URel, UFra),
-  LRfr is La_Republique_francaise_S (URac, UOri, URel, UTfr, LTfr, UFra, LPfr)
+  LRfr is La_Republique_francaise_S (URac, UOri, URel, UTfr, LTfr, UFra, LPfr),
+  UDep is Un_Depute_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  USen is Un_Senateur_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UElu is Un_Elu_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UPar is Un_Parlementaire_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  LAna is L_Assemblee_nationale_S (URac, UOri, URel, UTfr, UScr, UBvo, UDep, UPar),
+  LSen is Le_Senat_S (URac, UOri, URel, UTfr, UScr, UBvo, USen, UPar),
+  LPar is Le_Parlement_S (URac, UOri, URel, UTfr, UScr, UBvo, UDep, USen, UElu, UPar, LAna, LSen),
+  ULoi is Une_Loi_S (URac, UOri, URel, UTfr, UScr, UBvo, UDep, USen, UElu, UPar, LAna, LSen, LPar),
+  LDfr is Le_Droit_francais_S (URac, UOri, URel, UTfr, UScr, UBvo, UDep, USen, UElu, UPar, LAna, LSen, LPar, ULoi)
+
 ) = 
 
 -- Titre I Article 1-a-1 - La France est une République indivisible, laïque, démocratique et sociale
 
 -- Titre I Article 1-a-1-1 - La France est une République indivisible
 
+-- Titre I Article 1-a-1-2 - La France est une République laïque
+
+-- Titre I Article 1-a-1-3 - La France est une République démocratique
+
+-- Titre I Article 1-a-1-4 - La France est une République sociale
+
    property article_1_a_1 : 
    all lrfr : LRfr, all ltfr : LTfr, all lpfr : LPfr,
-   LRfr!la_france_est_une_republique_indivisible (lrfr, ltfr, lpfr);
+   LRfr!la_france_est_une_republique_indivisible (lrfr, ltfr, lpfr) ->
+   LRfr!la_france_est_une_republique_laique (lrfr) ->
+   LRfr!la_france_est_une_republique_democratique (lrfr) ->
+   LRfr!la_france_est_une_republique_sociale (lrfr);
 
 -- Titre I Article 1-a-2 Elle assure l'égalité devant la loi de tous les citoyens sans distinction d'origine, de race ou de religion.
 
-  signature quelque_soit_leur_origine_tous_les_citoyens_sont_egaux_devant_la_loi : Self -> bool;
+  signature les_lois : Self -> LDfr;
 
-  signature quelque_soit_leur_race_tous_les_citoyens_sont_egaux_devant_la_loi : Self -> bool;
+  signature les_francais : Self -> LPfr;
 
-  signature quelque_soit_leur_religion_tous_les_citoyens_sont_egaux_devant_la_loi : Self -> bool;
+  signature les_origines : Self -> UOri_set;
 
-  signature le_droit_est_applique_uniformement_sur_le_territoire_francais : Self -> bool;
- 
+  signature les_races : Self -> URac_set;
+
+  signature les_religions : Self -> URel_set;
+  
+  signature obeit_a_une_loi : UFra -> ULoi -> bool;
+
+-- Titre I Article 1-a-2-1 Elle assure l'égalité devant la loi de tous les citoyens sans distinction d'origine
+
+  property article_1_a_2_1 : all self : Self,  all uloi : ULoi, all ufra_1 : UFra, all ufra_2 : UFra, all uori : UOri,
+  LPfr!is_a_member_of (ufra_1, les_francais (self)) ->
+  LPfr!is_a_member_of (ufra_2, les_francais (self)) ->
+  (~ UFra!equal (ufra_1, ufra_2)) ->
+  (UOri_set!is_a_member_of (uori, les_origines (self))) ->
+  (LDfr!is_a_member_of (uloi, les_lois (self)) ) ->
+  (obeit_a_une_loi (ufra_1, uloi)) ->
+  (obeit_a_une_loi (ufra_2, uloi));
+
+-- Titre I Article 1-a-2-2 Elle assure l'égalité devant la loi de tous les citoyens sans distinction de race ou de religion.
+
+  property article_1_a_2_2 : all self : Self,  all uloi : ULoi, all ufra_1 : UFra, all ufra_2 : UFra, all urac : URac,
+  LPfr!is_a_member_of (ufra_1, les_francais (self)) ->
+  LPfr!is_a_member_of (ufra_2, les_francais (self)) ->
+  (~ UFra!equal (ufra_1, ufra_2)) ->
+  (URac_set!is_a_member_of (urac, les_races (self))) ->
+  (LDfr!is_a_member_of (uloi, les_lois (self)) ) ->
+  (obeit_a_une_loi (ufra_1, uloi)) ->
+  (obeit_a_une_loi (ufra_2, uloi));
+
+-- Titre I Article 1-a-2-3 Elle assure l'égalité devant la loi de tous les citoyens sans distinction de religion.
+
+  property article_1_a_2_3 : all self : Self,  all uloi : ULoi, all ufra_1 : UFra, all ufra_2 : UFra, all urel : URel,
+  LPfr!is_a_member_of (ufra_1, les_francais (self)) ->
+  LPfr!is_a_member_of (ufra_2, les_francais (self)) ->
+  (~ UFra!equal (ufra_1, ufra_2)) ->
+  (URel_set!is_a_member_of (urel, les_religions (self))) ->
+  (LDfr!is_a_member_of (uloi, les_lois (self)) ) ->
+  (obeit_a_une_loi (ufra_1, uloi)) ->
+  (obeit_a_une_loi (ufra_2, uloi));
+
 -- Titre I Article 1-a-3 - Elle respecte toutes les croyances. 
 
 -- Titre I Article 1-a-4 - Son organisation est décentralisée.

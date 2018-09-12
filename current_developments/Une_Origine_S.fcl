@@ -1,6 +1,9 @@
 open "basics";;
+open "sets";;
 
 species Une_Origine_S =
+
+  inherit Setoid;
 
 end;;
 

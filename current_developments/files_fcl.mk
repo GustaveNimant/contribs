@@ -1,3 +1,3 @@
 FOCALIZE_SRC=\
-  Un_Fonctionnaire_S.fcl \
+  Article_1_S.fcl \
 
