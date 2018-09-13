@@ -2,14 +2,12 @@ open "basics";;
 
 species Consistency_ABC =
 
-  theorem a_et_b_et_c_th :
-  all a b c : bool, a -> b -> c
-    proof =  
-    <1>1 assume a b c : bool,
-         hypothesis h1 : a -> b,
-         prove c
-         by hypothesis h1
-    <1>2 qed by step <1>1
+  theorem a_th : all a : bool, a proof = assumed;
+  theorem b_th : all b : bool, b proof = assumed;
+  theorem c_th : all c : bool, c proof = assumed;
+
+  theorem a_et_b_et_c_th : true
+    proof = by theorem a_th, b_th
   ;
 
 end;;

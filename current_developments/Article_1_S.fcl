@@ -85,14 +85,16 @@ species Article_1_S (
 
 -- Titre I Article 1-a-2-1 Elle assure l'égalité devant la loi de tous les citoyens sans distinction d'origine
 
-  property article_1_a_2_1 : all self : Self,  all uloi : ULoi, all ufra_1 : UFra, all ufra_2 : UFra, all uori : UOri,
+  property article_1_a_2_1 : all self : Self,  all uloi_1 : ULoi, all uloi_2 : ULoi, all ufra_1 : UFra, all ufra_2 : UFra, all uori : UOri,
+  (UOri_set!is_a_member_of (uori, les_origines (self))) ->
+  (LDfr!is_a_member_of (uloi_1, les_lois (self)) ) ->
+  (LDfr!is_a_member_of (uloi_2, les_lois (self)) ) ->
+  (ULoi!equal (uloi_1, uloi_2)) ->
   LPfr!is_a_member_of (ufra_1, les_francais (self)) ->
+  (obeit_a_une_loi (ufra_1, uloi_1)) ->
   LPfr!is_a_member_of (ufra_2, les_francais (self)) ->
   (~ UFra!equal (ufra_1, ufra_2)) ->
-  (UOri_set!is_a_member_of (uori, les_origines (self))) ->
-  (LDfr!is_a_member_of (uloi, les_lois (self)) ) ->
-  (obeit_a_une_loi (ufra_1, uloi)) ->
-  (obeit_a_une_loi (ufra_2, uloi));
+  (obeit_a_une_loi (ufra_2, uloi_2));
 
 -- Titre I Article 1-a-2-2 Elle assure l'égalité devant la loi de tous les citoyens sans distinction de race ou de religion.
 
@@ -122,6 +124,6 @@ species Article_1_S (
 
 -- Titre I Article 1-b - La loi favorise l'égal accès des femmes et des hommes aux mandats électoraux et fonctions électives, ainsi qu'aux responsabilités professionnelles et sociales.
 
-  signature la_parite_homme_femme_des_elus_est_assuree_par_loi : Self -> bool;
+  signature la_parite_homme_femme_des_elus_est_favorisee_par_la_loi : Self -> bool;
 
 end;;
