@@ -10,7 +10,7 @@ open "Un_Ministre_S";;
 open "Un_Organe_deliberant_S";;
 open "Un_Premier_ministre_S";;
 open "Un_Scrutin_S";;
-open "Un_Territoire_S";;
+open "Un_Territoire_francais_S";;
 open "Un_Texte_legislatif_S";;
 open "Une_Ordonnance_S";;
 open "Une_Origine_S";;
@@ -27,15 +27,15 @@ species Article_9_S (
   UDec is Un_Decret_S,
   UAex is Un_Acte_de_l_executif_S,
   UTle is Un_Texte_legislatif_S,
-  UTer is Un_Territoire_S,
+  UTfr is Un_Territoire_francais_S,
   UScr is Un_Scrutin_S,
   UOde is Un_Organe_deliberant_S (UTle),
-  UBvo is Un_Bureau_de_vote_S (UTer),
+  UBvo is Un_Bureau_de_vote_S (UTfr),
   UFra is Un_Francais_S (URac, UOri, URel),
-  UPmi is Un_Premier_ministre_S (URac, UOri, URel, UTer, UScr, UBvo),
-  UMin is Un_Ministre_S (URac, UOri, URel, UTer, UScr, UBvo),
-  LCmi is Le_Conseil_des_ministres_S (URac, UOri, URel, UTer, UScr, UBvo, UTle, UMin, UPmi),
-  LPre is Le_President_de_la_republique_S (URac, UOri, URel, UTer, UScr, UBvo, UFra)
+  UPmi is Un_Premier_ministre_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UMin is Un_Ministre_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  LCmi is Le_Conseil_des_ministres_S (URac, UOri, URel, UTfr, UScr, UBvo, UTle, UMin, UPmi),
+  LPre is Le_President_de_la_republique_S (URac, UOri, URel, UTfr, UScr, UBvo, UFra)
 )=
 
 -- Titre II Article 9 - Le Président de la République préside le conseil des ministres.

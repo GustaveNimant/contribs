@@ -6,7 +6,7 @@ open "Un_Bureau_de_vote_S";;
 open "Un_Citoyen_electeur_S";;
 open "Un_Elu_S";;
 open "Un_Scrutin_S";;
-open "Un_Territoire_S";;
+open "Un_Territoire_francais_S";;
 open "Une_Origine_S";;
 open "Une_Race_S";;
 open "Une_Religion_S";;
@@ -17,14 +17,16 @@ species La_Souverainete_nationale_S (
   URac is Une_Race_S,
   UOri is Une_Origine_S,
   URel is Une_Religion_S,
-  UTer is Un_Territoire_S,
+  UTfr is Un_Territoire_francais_S,
   UScr is Un_Scrutin_S,
-  UBvo is Un_Bureau_de_vote_S (UTer),
-  UCel is Un_Citoyen_electeur_S (URac, UOri, URel, UTer, UScr, UBvo),
-  UElu is Un_Elu_S (URac, UOri, URel, UTer, UScr, UBvo), 
-  LEle is L_Electorat_S (URac, UOri, URel, UTer, UScr, UBvo, UCel),
+  UBvo is Un_Bureau_de_vote_S (UTfr),
+  UCel is Un_Citoyen_electeur_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  LEle is L_Electorat_S (URac, UOri, URel, UTfr, UScr, UBvo, UCel),
+  UElu is Un_Elu_S (URac, UOri, URel, UTfr, UScr, UBvo), 
   LRpe is Finite_Set_S (UElu) -- REVOIR Les_Representants_du_peuple_S ?
 ) =
+
+  signature les_electeurs : Self -> LEle;
 
 -- Titre I Article 3-a - La souveraineté nationale appartient au peuple qui l'exerce par ses représentants et par la voie du référendum. 
 
@@ -39,15 +41,18 @@ species La_Souverainete_nationale_S (
 
 -- Titre I Article 3-b-1 - Aucune section du peuple ... ne peut s'en attribuer l'exercice.
 
--- Titre I Article 3-b - Aucun individu ne peut s'en attribuer l'exercice.
-
-  logical let aucune_section_du_peuple_ne_peut_exercer_la_souverainete_nationale (ucel : UCel) =
-  ex ucel : UCel, 
-  ~~ un_citoyen_exerce_la_souverainete_nationale (ucel); 
-
-  logical let aucun_individu_ne_peut_exercer_la_souverainete_nationale (ucel : UCel) =
-    ex ucel : UCel, 
+    property article_3_b_1 : all self : Self, all ucel_set : LEle, all ucel : UCel, 
+    LEle!is_a_subset_of (ucel_set, les_electeurs (self)) ->
+    LEle!is_a_member_of (ucel, ucel_set) ->
     ~~ un_citoyen_exerce_la_souverainete_nationale (ucel); 
+
+-- Titre I Article 3-b-2 - Aucun individu ne peut s'en attribuer l'exercice.
+
+  property article_3_b_2 : all self : Self, ex ucel : UCel, 
+    LEle!is_a_member_of (ucel, les_electeurs (self)) ->
+    ~~ un_citoyen_exerce_la_souverainete_nationale (ucel); 
+
+  property article_3_b : article_3_b_1 /\ article_3_b_2;
 
 end;;
 
