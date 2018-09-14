@@ -19,5 +19,15 @@ species Un_Francais_S (
 
   signature origine_d_un_francais : Self -> UOri;
 
+  signature reside_en_metropole : Self -> UOri;
+
+  signature reside_en_permanence_a_l_etranger : Self -> bool;
+
+  signature reside_en_france_et_a_l_etranger : Self -> bool;
+
+  signature reside_en_territoire_d_outre_mer : Self -> bool;
+
+  signature vit_sous_le_seuil_de_pauvrete : Self -> bool;
+
 end;;
 

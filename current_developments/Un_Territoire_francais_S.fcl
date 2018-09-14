@@ -3,7 +3,6 @@ open "sets";;
 
 open "Un_Territoire_S";;
 
-
 -- InH: La_Metropole_S  Un_Territoire_d_outre_mer
 -- InH:       \                /      
 -- InH:        v              v

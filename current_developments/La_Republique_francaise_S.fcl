@@ -9,6 +9,8 @@ open "Une_Origine_S";;
 open "Une_Race_S";;
 open "Une_Religion_S";;
 
+-- Documentation : http://www.france-republicaine.fr/republique-sociale.php
+
 species La_Republique_francaise_S (
   URac is Une_Race_S,
   UOri is Une_Origine_S,
@@ -18,6 +20,8 @@ species La_Republique_francaise_S (
   UFra is Un_Francais_S (URac, UOri, URel) ,
   LPfr is Le_Peuple_francais_S (URac, UOri, URel, UFra)
 ) =
+
+  signature les_francais : Self -> LPfr;
 
 -- Titre I Article 1-a-1 - La France est une République indivisible, laïque, démocratique et sociale. 
 --                 http://www.france-republicaine.fr/republique-indivisible.php
@@ -60,5 +64,12 @@ species La_Republique_francaise_S (
   logical let la_france_est_une_republique_sociale (self : Self) =
     la_france_est_une_republique (self) ->
     est_une_republique_sociale (self);
+
+  property article_1_a_1_4 :
+  all self : Self, all ufra : UFra,  
+  la_france_est_une_republique_sociale (self) ->
+  LPfr!is_a_member_of (ufra, les_francais (self)) ->
+  (~ UFra!vit_sous_le_seuil_de_pauvrete (ufra)); 
+  
 
 end;;

@@ -1,3 +1,3 @@
 FOCALIZE_SRC=\
-  Article_38_S.fcl \
+  Un_Fait_de_pauvrete_S.fcl \
 
