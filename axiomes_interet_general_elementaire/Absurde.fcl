@@ -1,0 +1,38 @@
+open "basics";;
+open "sets";;
+open "Finite_Set_S";;
+
+species A_thingy =
+
+  inherit Setoid;
+
+end;;
+
+species Consistency (
+  A is A_thingy,
+  A_set is Finite_Set_S (A)
+) =
+
+  signature a : A;
+  signature s : Self;
+  signature a_set : Self -> A_set;
+ 
+  property fact_a : A_set!is_a_member_of (a, a_set (s));
+  property fact_n : ~ A_set!is_a_member_of (a, a_set (s));
+
+  property fact_b : A_set!is_a_member_of (a, a_set (s)) /\ (~ A_set!is_a_member_of (a, a_set (s)));
+
+  theorem vrai : true
+  proof = by property fact_a, fact_n;
+
+  theorem faux : false
+  proof = by property fact_a, fact_n;
+
+  theorem bizarre_vrai : true
+  proof = by property fact_b;
+
+  theorem bizarre_faux : false
+  proof = by property fact_b;
+
+end;;
+

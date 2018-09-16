@@ -1,0 +1,13 @@
+open "basics";;
+
+species Consistency_ABC =
+
+  theorem a_th : all a : bool, a proof = assumed;
+  theorem not_a_th : all a : bool, ~ a proof = assumed;
+
+  theorem essai : true
+    proof = by theorem a_th /\ not_a_th
+  ;
+
+end;;
+

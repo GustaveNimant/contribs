@@ -35,4 +35,23 @@ species Un_Fait_de_pauvrete_S (
   proof = by property LRfr!article_1_a_1_4, 
   il_existe_des_francais_pauvres_c_est_un_fait;
 
+  signature un_francais : UFra;
+  signature self : Self;
+
+  property il_existe_au_moins_un_francais_pauvre :
+  LPfr!is_a_member_of (un_francais, les_francais (self)) /\
+  UFra!vit_sous_le_seuil_de_pauvrete (un_francais); 
+
+  property il_n_existe_pas_de_francais_pauvres :
+  LPfr!is_a_member_of (un_francais, les_francais (self)) /\
+  (~ UFra!vit_sous_le_seuil_de_pauvrete (un_francais)); 
+  
+  theorem la_france_est_une_republique_tres_sociale : true
+  proof = by property il_n_existe_pas_de_francais_pauvres,
+  il_existe_au_moins_un_francais_pauvre;
+  
+  theorem la_france_n_est_pas_une_republique_sociale : false
+  proof = by property il_n_existe_pas_de_francais_pauvres,
+  il_existe_au_moins_un_francais_pauvre;
+  
 end;;

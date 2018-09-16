@@ -1,3 +1,4 @@
 FOCALIZE_SRC=\
-  C.fcl \
+  Absurd.fcl \
+  Absurde.fcl \
 

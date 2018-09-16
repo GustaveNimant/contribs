@@ -1,14 +1,27 @@
 open "basics";;
+open "sets";;
+open "Finite_Set_S";;
 
-species Consistency_ABC =
+species A_thingy =
 
-  theorem a_th : all a : bool, a proof = assumed;
-  theorem b_th : all b : bool, b proof = assumed;
-  theorem c_th : all c : bool, c proof = assumed;
+  inherit Setoid;
 
-  theorem a_et_b_et_c_th : true
-    proof = by theorem a_th, b_th
-  ;
+end;;
+
+species Consistency (
+  A is A_thingy,
+  A_set is Finite_Set_S (A)
+) =
+
+  signature a : A;
+  signature s : Self;
+  signature thingy_set : Self -> A_set;
+ 
+  property fact_a : A_set!is_a_member_of (a, thingy_set (s));
+  property fact_n : ~ A_set!is_a_member_of (a, thingy_set (s));
+
+  theorem essai : true
+  proof = by property fact_a, fact_n;
 
 end;;
 
