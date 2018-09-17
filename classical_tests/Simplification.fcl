@@ -1,7 +1,7 @@
 (* Introduction à la logique standard Denis Vernant page 62 *)
 open "basics";;
 
-theorem test :
+theorem Simplification :
   all a b : bool, (a /\ (b  \/ ~ b)) <-> (a)
   proof = 
     <1>1 assume a : bool,

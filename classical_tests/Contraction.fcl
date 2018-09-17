@@ -1,0 +1,8 @@
+(* Introduction à la logique standard Denis Vernant page 63 *)
+open "basics";;
+
+theorem Contraction :
+  all a b : bool, ((a /\ b) \/ (a /\ ~ b)) <-> (a)
+  proof = 
+    conclude
+;;
