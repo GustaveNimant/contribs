@@ -50,13 +50,11 @@ species Article_10_S (
 
   signature les_lois : Self -> ULoi_set;
 
-  signature le_president_de_la_republique_promulgue_une_loi : LPre -> ULoi -> bool;
-
   property article_10_a : 
   all lpre : LPre, all lpar : LPar, all uloi : ULoi, all self : Self,
   ULoi_set!is_a_member_of (uloi, les_lois (self)) ->
-  le_president_de_la_republique_promulgue_une_loi (lpre, uloi) ->
-  ULoi!une_loi_est_adoptee_par_le_parlement (uloi, lpar);
+  ULoi!une_loi_est_adoptee_par_le_parlement (uloi, lpar) ->
+  ULoi!une_loi_est_promulguee_par_le_president_de_la_republique (uloi);
 
 -- Titre II Article 10-b-1 - Il peut, avant l'expiration de ce délai, demander au Parlement une nouvelle délibération de la loi ou de certains de ses articles. 
 

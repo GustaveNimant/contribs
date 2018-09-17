@@ -29,4 +29,6 @@ species Le_Conseil_des_ministres_S (
     
   inherit Finite_Set_S (UMin), Un_Organe_deliberant_S (UTle);
 
+  signature le_president_de_la_republique_preside_le_conseil_des_ministres : Self -> bool;
+
 end;;

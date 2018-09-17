@@ -1,13 +1,11 @@
 open "basics";;
 
 open "Le_Conseil_des_ministres_S";;
-open "Le_President_de_la_republique_S";;
 open "Un_Acte_de_l_executif_S";;
 open "Un_Bureau_de_vote_S";;
 open "Un_Decret_S";;
 open "Un_Francais_S";;
 open "Un_Ministre_S";;
-open "Un_Organe_deliberant_S";;
 open "Un_Premier_ministre_S";;
 open "Un_Scrutin_S";;
 open "Un_Territoire_francais_S";;
@@ -29,19 +27,17 @@ species Article_9_S (
   UTle is Un_Texte_legislatif_S,
   UTfr is Un_Territoire_francais_S,
   UScr is Un_Scrutin_S,
-  UOde is Un_Organe_deliberant_S (UTle),
   UBvo is Un_Bureau_de_vote_S (UTfr),
   UFra is Un_Francais_S (URac, UOri, URel),
   UPmi is Un_Premier_ministre_S (URac, UOri, URel, UTfr, UScr, UBvo),
   UMin is Un_Ministre_S (URac, UOri, URel, UTfr, UScr, UBvo),
-  LCmi is Le_Conseil_des_ministres_S (URac, UOri, URel, UTfr, UScr, UBvo, UTle, UMin, UPmi),
-  LPre is Le_President_de_la_republique_S (URac, UOri, URel, UTfr, UScr, UBvo, UFra)
+  LCmi is Le_Conseil_des_ministres_S (URac, UOri, URel, UTfr, UScr, UBvo, UTle, UMin, UPmi)
 )=
 
 -- Titre II Article 9 - Le Président de la République préside le conseil des ministres.
 
-  signature le_president_de_la_republique_preside_le_conseil_des_ministres : LPre -> LCmi -> bool;
-
+  property article_9 : all lcmi : LCmi,
+  LCmi!le_president_de_la_republique_preside_le_conseil_des_ministres (lcmi);
 
 end;;
 

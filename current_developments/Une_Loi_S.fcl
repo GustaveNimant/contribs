@@ -15,7 +15,6 @@ open "Une_Origine_S";;
 open "Une_Race_S";;
 open "Une_Religion_S";;
 
-
 -- InH:            Une_Loi_ordinaire_S  Une_Loi_organique_S
 -- InH:                             \      /
 -- InH:                              v   v
@@ -47,5 +46,7 @@ species Une_Loi_S (
   signature une_loi_est_adoptee_par_le_senat : Self -> LSen -> bool;
 
   signature une_loi_est_adoptee_par_le_parlement : Self -> LPar -> bool;
+
+  signature une_loi_est_promulguee_par_le_president_de_la_republique : Self -> bool;
 
 end;;
