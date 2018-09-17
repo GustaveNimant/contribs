@@ -37,4 +37,7 @@ species Un_Membre_du_gouvernement_S (
 
   signature est_un_ministre : Self -> bool;
 
+  signature est_nomme_par_le_president_de_la_republique : Self -> bool;
+
+  signature est_demissionne_par_le_president_de_la_republique : Self -> bool;
 end;;

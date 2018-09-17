@@ -2,7 +2,6 @@ open "basics";;
 
 open "La_Constitution_S";;
 open "Le_Gouvernement_S";;
-open "Le_President_de_la_republique_S";;
 open "Un_Bureau_de_vote_S";;
 open "Un_Decret_S";;
 open "Un_Elu_S";;
@@ -38,22 +37,46 @@ species Article_8_S (
   UPmi is Un_Premier_ministre_S (URac, UOri, URel, UTfr, UScr, UBvo),
   UOde is Un_Organe_deliberant_S (UTle),
   UMgo is Un_Membre_du_gouvernement_S (URac, UOri, URel, UTfr, UScr, UBvo),
-  LGou is Le_Gouvernement_S (URac, UOri, URel, UTle, UOrd, UDec, UTfr, UScr, UBvo, UOde, UMgo),
-  LPre is Le_President_de_la_republique_S (URac, UOri, URel, UTfr, UScr, UBvo, UFra)
+  LGou is Le_Gouvernement_S (URac, UOri, URel, UTle, UOrd, UDec, UTfr, UScr, UBvo, UOde, UMgo)
 )=
 
--- Titre II Article 8-a - Le Président de la République nomme le Premier ministre. 
+  signature le_gouvernement : Self -> LGou;
 
-  signature le_president_de_la_republique_nomme_le_premier_ministre : LPre -> UPmi -> bool;
+-- Titre II Article 8-a-1 - Le Président de la République nomme le Premier ministre. 
 
--- Titre II Article 8-b - ...Il met fin à ses fonctions sur la présentation par celui-ci de la démission du Gouvernement. 
+  property article_8_a_1 : all self : Self, all umgo : UMgo,
+  (LGou!is_a_member_of (umgo, le_gouvernement (self)) 
+  /\ 
+  (UMgo!est_un_premier_ministre (umgo))) ->
+  UMgo!est_nomme_par_le_president_de_la_republique (umgo);
 
-  signature le_president_de_la_republique_demissionne_le_gouvernement : LPre -> LGou -> bool;
 
-  signature le_president_de_la_republique_demissionne_premier_ministre : LPre -> UPmi -> bool;
+-- Titre II Article 8-a-2 - ...Il met fin à ses fonctions sur la présentation par celui-ci de la démission du Gouvernement. 
 
-  property article_8 : all lpre : LPre, all lgou : LGou, all upmi : UPmi,
-  le_president_de_la_republique_demissionne_le_gouvernement (lpre, lgou) -> 
-  le_president_de_la_republique_demissionne_premier_ministre (lpre, upmi);
+  property article_8_a_2 : all lgou : LGou, all upmi : UPmi,
+  LGou!le_gouvernement_demissionne (lgou) ->
+  UPmi!le_premier_ministre_presente_la_demission_du_gouvernement (upmi) ->
+  UPmi!le_president_de_la_republique_met_fin_aux_fonctions_du_premier_ministre (upmi);
+
+  property article_8_a : 
+  article_8_a_1 \/ article_8_a_2;
+
+-- Titre II Article 8-b-1 - Sur la proposition du Premier ministre, il nomme les autres membres du Gouvernement et met fin à leurs fonctions.
+
+  property article_8_b_1 : all self : Self, all upmi : UPmi, all umgo : UMgo,
+  UPmi!le_premier_ministre_propose_les_membres_du_gouvernement (upmi) ->
+  (LGou!is_a_member_of (umgo, le_gouvernement (self)) 
+  /\ 
+  (~ UMgo!est_un_premier_ministre (umgo))) ->
+  UMgo!est_nomme_par_le_president_de_la_republique (umgo);
+
+-- Titre II Article 8-b-2 - Sur la proposition du Premier ministre, il met fin à leurs fonctions.
+
+  property article_8_b_2 : all self : Self, all upmi : UPmi, all umgo : UMgo,
+  UPmi!le_premier_ministre_propose_les_membres_du_gouvernement (upmi) ->
+  (LGou!is_a_member_of (umgo, le_gouvernement (self)) 
+  /\ 
+  (~ UMgo!est_un_premier_ministre (umgo))) ->
+  UMgo!est_demissionne_par_le_president_de_la_republique (umgo);
 
 end;;

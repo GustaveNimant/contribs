@@ -1,3 +1,3 @@
 FOCALIZE_SRC=\
-  Conditionnel.fcl \
+  And_Or_fake.fcl \
 

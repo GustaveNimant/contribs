@@ -37,4 +37,6 @@ species Le_Gouvernement_S (
 
   signature le_gouvernement_prend_une_ordonnance : Self -> UOrd -> bool;
 
+  signature le_gouvernement_demissionne : Self -> bool;
+
 end;;
