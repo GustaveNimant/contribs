@@ -1,3 +1,6 @@
+-- Another Tutorial for FoCaLiZe : Playing with Proofs François Pessaux March 2014
+-- Page 4
+
 open "basics";;
 
 theorem and_or :

@@ -6,7 +6,8 @@ species Test =
 
   signature est_b : Self -> bool;
  
-  theorem and_or : true
+  theorem and_or :
+  all s : Self, (est_a (s) /\ est_b (s)) -> (est_a (s) \/ est_b (s))
   proof =
     <1>1 assume s : Self,
     hypothesis h1: est_a (s) /\ est_b (s),
