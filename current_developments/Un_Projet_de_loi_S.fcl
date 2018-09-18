@@ -31,7 +31,6 @@ open "Une_Religion_S";;
 
 -- Documentation : Les domaines couverts par les propositions de loi sont les mêmes que pour les projets de loi. Cependant, le gouvernement peut s'opposer à une proposition de loi qui réduirait les ressources publiques ou augmenterait les dépenses publiques. En outre, les articles 47 et 47-1 de la Constitution prévoient que le budget de l'Etat, ainsi que celui de la Sécurité sociale sont définis dans des projets de loi et non dans des propositions de loi.
 
-
 -- InH: Une_Proposition_de_loi_S  Un_Projet_de_loi_S Une_Loi_S
 -- InH:         \                  |                  /
 -- InH:          v                 v                 v
@@ -65,7 +64,18 @@ species Un_Projet_de_loi_S (
     
   inherit Un_Texte_legislatif_S;
 
-  signature un_projet_de_loi_est_soumis_a_referendum_par_le_president_de_la_republique : Self -> LPre -> bool;
+  signature un_projet_de_loi_portant_sur_l_organisation_des_pouvoirs_publics : Self -> bool;
+  signature un_projet_de_loi_portant_sur_des_reformes_relatives_a_la_politique_economique_sociale_de_la_nation : Self -> bool;
+  signature un_projet_de_loi_portant_sur_des_reformes_relatives_a_la_politique_environnementale_de_la_nation : Self -> bool;
+  signature un_projet_de_loi_portant_sur_des_reformes_relatives_aux_services_publics : Self -> bool;
+  signature un_projet_de_loi_tendant_a_autoriser_la_ratification_d_un_traite_qui_sans_etre_contraire_a_la_constitution_aurait_des_incidences_sur_le_fonctionnement_des_institutions : Self -> bool;
+
+  logical let un_projet_de_loi_est_soumis_a_referendum_par_le_president_de_la_republique (self : Self) =
+    un_projet_de_loi_portant_sur_l_organisation_des_pouvoirs_publics (self) ->
+    un_projet_de_loi_portant_sur_des_reformes_relatives_a_la_politique_economique_sociale_de_la_nation (self) ->
+    un_projet_de_loi_portant_sur_des_reformes_relatives_a_la_politique_environnementale_de_la_nation (self) ->
+    un_projet_de_loi_portant_sur_des_reformes_relatives_aux_services_publics (self) ->
+    un_projet_de_loi_tendant_a_autoriser_la_ratification_d_un_traite_qui_sans_etre_contraire_a_la_constitution_aurait_des_incidences_sur_le_fonctionnement_des_institutions (self);
 
   signature un_projet_de_loi_est_examine_par_l_assemblee_nationale : Self -> LAna -> bool;
 

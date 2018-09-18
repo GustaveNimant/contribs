@@ -46,4 +46,6 @@ species Le_Parlement_S (
 
   signature le_senat : Self -> LSen;
 
+  signature le_parlement_propose_un_referendum : Self -> UScr -> bool;
+
 end;;
