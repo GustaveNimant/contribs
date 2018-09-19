@@ -79,7 +79,7 @@ species Article_11_S (
 
   signature les_projets_de_loi : Self -> UPjl_set;
 
-  logical let le_president_de_la_republique_soumet_au_referendum_un_projet_de_loi (self : Self, upjl : UPjl, lgou : LGou) =
+  logical let le_president_de_la_republique_soumet_un_projet_de_loi_a_referendum (self : Self, upjl : UPjl, lgou : LGou) =
     UPjl_set!is_a_member_of (upjl, les_projets_de_loi (self)) ->
     (UPjl!un_projet_de_loi_est_soumis_a_referendum_par_le_president_de_la_republique (upjl)) -> 
     (UPjl!un_projet_de_loi_est_fait_par_le_gouvernement (upjl, lgou));
@@ -87,19 +87,20 @@ species Article_11_S (
   property article_11_a_1 : all self : Self, all lgou : LGou, all uscr : UScr, all upjl : UPjl,
   LGou!le_gouvernement_propose_un_referendum (lgou, uscr) ->
   UScr!est_un_referendum (uscr) ->
-  le_president_de_la_republique_soumet_au_referendum_un_projet_de_loi (self, upjl, lgou);
+  le_president_de_la_republique_soumet_un_projet_de_loi_a_referendum (self, upjl, lgou);
 
   property article_11_a_2 : all self : Self, all lpar : LPar, all lgou : LGou, all uscr : UScr, all upjl : UPjl,
   LPar!le_parlement_propose_un_referendum (lpar, uscr) ->
   UScr!est_un_referendum (uscr) ->
-  le_president_de_la_republique_soumet_au_referendum_un_projet_de_loi (self, upjl, lgou);
+  le_president_de_la_republique_soumet_un_projet_de_loi_a_referendum (self, upjl, lgou);
 
   -- Titre II Article 11 b-1 - Lorsque le référendum est organisé sur proposition du Gouvernement celui-ci fait, devant chaque assemblée, une déclaration qui est suivie d'un débat.
 
-  property article_11_b_1 : all ugou : LGou, all uscr : UScr,
+  property article_11_b_1 : all lpre : LPre, all ugou : LGou, all uscr : UScr,
   LGou!le_gouvernement_propose_un_referendum (ugou, uscr) ->
-  UScr!est_un_referendum (uscr); 
- 
+  UScr!est_un_referendum (uscr) ->
+  LPre!le_president_de_la_republique_fait_une_declaration_devant_l_assemblee_nationale (lpre) ->
+  LPre!le_president_de_la_republique_fait_une_declaration_devant_le_senat (lpre);
 end;;
 
 

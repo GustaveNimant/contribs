@@ -23,5 +23,9 @@ species Le_President_de_la_republique_S (
   
   signature le_president_de_la_republique_est_elu_pour_cinq_ans : Self -> bool;
 
+  signature le_president_de_la_republique_fait_une_declaration_devant_l_assemblee_nationale : Self -> bool;
+
+  signature le_president_de_la_republique_fait_une_declaration_devant_le_senat : Self -> bool;
+
 end;;
 
