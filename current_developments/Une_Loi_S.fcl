@@ -15,7 +15,7 @@ open "Une_Origine_S";;
 open "Une_Race_S";;
 open "Une_Religion_S";;
 
--- InH:            Une_Loi_ordinaire_S  Une_Loi_organique_S
+-- InH:            Une_Loi_ordinaire_S  Une_Loi_organique_S  Une_Loi_constitutionnelle_S 
 -- InH:                             \      /
 -- InH:                              v   v
 -- InH: Une_Proposition_de_loi_S  Une_Loi_S

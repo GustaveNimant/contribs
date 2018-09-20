@@ -1,0 +1,5 @@
+open "basics";;
+ 
+species Le_Conseil_superieur_de_la_magistrature_S =
+ 
+end;;

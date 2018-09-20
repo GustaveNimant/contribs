@@ -1,7 +1,0 @@
--- InH:            Une_Loi_ordinaire_S  Une_Loi_organique_S
--- InH:                           \       /
--- InH:                            v     v
--- InH: Une_Proposition_de_loi_S  Une_Loi_S
--- InH:         \                    /
--- InH:          v                  v
--- InH:          Un_Texte_legislatif_S

@@ -1,0 +1,28 @@
+open "basics";;
+
+open "Un_Magistrat_S";;
+
+-- Documentation : https://justice.ooreka.fr/astuce/voir/627107/nomination-des-magistrats
+
+-- Documentation : Nomination des magistrats du siège. La procédure de nomination est différente pour les magistrats du siège (ou magistrature « assise »), appelés également « juges », chargés de rendre des décisions de justice, et pour les magistrats du parquet (ou magistrature « debout »), chargés de requérir l'application de la loi dans le respect de l'ordre public
+-- Documentation : Hauts magistrats du siège
+-- Documentation : Concernant les hauts magistrats du siège (magistrats du siège à la cour de cassation, premiers présidents de cours d'appel, présidents de tribunaux de grande instance), le conseil supérieur de la magistrature (dans sa formation compétente à l'égard des magistrats du siège) émet des propositions.
+-- Documentation : Le président de la République procède ensuite à la nomination par décret. 
+
+-- Documentation : À noter : la proposition du conseil supérieur de la magistrature lie le président de la république.
+
+-- Documentation : Autres magistrats du siège
+-- Documentation : Concernant les autres magistrats du siège, la proposition vient du garde des sceaux. Le conseil supérieur de la magistrature émet un avis « conforme » ou « non conforme ». Le président de la République procède ensuite à la nomination par décret en cas d'avis conforme.
+-- Documentation : Cette procédure s'applique donc aux juges d'instruction, aux juges des enfants, aux juges aux affaires familiales, aux juges d'application des peines, etc.
+-- Documentation : Elle concerne aussi les juges des libertés et de la détention (depuis la loi de modernisation de la justice du XXIème siècle du 18 novembre 2016. Auparavant, ce juge était nommé par le président du tribunal de grande instance).
+-- Documentation : Bon à savoir : les magistrats du siège ne peuvent pas être nommés à un autre poste sans leur accord. On dit qu'ils sont « inamovibles ».
+ 
+species Un_Magistrat_du_siege_S =
+ 
+  inherit Un_Magistrat_S;
+
+  signature un_magistrat_du_siege_est_inamovible : Self -> bool;
+
+end;;
+
+

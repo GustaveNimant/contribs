@@ -9,7 +9,7 @@ open "Une_Loi_S";;
 -- Documentation : Les lois organiques autorisent une rédaction « à trous » de la Constitution qui contribue à sa pérennité. En effet, lorsqu'une disposition constitutionnelle est de nature à changer avec le temps, une loi organique est ainsi prévue pour déléguer au Parlement le pouvoir de la modifier. En ce sens, une loi organique est à la Constitution ce qu'un décret d'application est à une loi.
 
 
--- InH:            Une_Loi_ordinaire_S  Une_Loi_organique_S
+-- InH:            Une_Loi_ordinaire_S  Une_Loi_organique_S  Une_Loi_constitutionnelle_S
 -- InH:                             \      /
 -- InH:                              v   v
 -- InH: Une_Proposition_de_loi_S  Une_Loi_S

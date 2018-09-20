@@ -1,0 +1,7 @@
+-- InH: Un_Acte_du_president_de_la_republique_S  Un_Acte_du_premier_ministre_S  Un_Acte_d_un_ministre_S
+-- InH:                                       \              |                 /
+-- InH:                                        v             v                v
+-- InH:         [Un_Projet_de_loi_S  Une_Loi_S]   Un_Acte_de_l_executif_S       [Une_Proposition_de_loi_S] 
+-- InH:                                                       |
+-- InH:                                                       v
+-- InH:                                             Un_Texte_legislatif_S

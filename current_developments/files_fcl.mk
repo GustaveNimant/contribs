@@ -1,3 +1,3 @@
 FOCALIZE_SRC=\
-  Article_11_S.fcl \
+  Un_Haut_magistrat_du_siege_S.fcl \
 
