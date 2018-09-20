@@ -6,7 +6,7 @@ script=`basename $0`
 
 if [ $# -lt 1 ]
 then
-    echo -e "Usage :\n${script} <file>\n"
+    echo -e "Usage :\n${script} <file> [héritage]\n"
     exit;
 fi 
 

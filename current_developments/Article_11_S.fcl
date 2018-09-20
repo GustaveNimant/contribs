@@ -96,8 +96,8 @@ species Article_11_S (
 
   -- Titre II Article 11 b-1 - Lorsque le référendum est organisé sur proposition du Gouvernement celui-ci fait, devant chaque assemblée, une déclaration qui est suivie d'un débat.
 
-  property article_11_b_1 : all lpre : LPre, all ugou : LGou, all uscr : UScr,
-  LGou!le_gouvernement_propose_un_referendum (ugou, uscr) ->
+  property article_11_b_1 : all lpre : LPre, all lgou : LGou, all uscr : UScr,
+  LGou!le_gouvernement_propose_un_referendum (lgou, uscr) ->
   UScr!est_un_referendum (uscr) ->
   LPre!le_president_de_la_republique_fait_une_declaration_devant_l_assemblee_nationale (lpre) ->
   LPre!le_president_de_la_republique_fait_une_declaration_devant_le_senat (lpre);

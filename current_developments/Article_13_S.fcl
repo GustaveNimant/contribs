@@ -10,6 +10,8 @@ open "Un_Bureau_de_vote_S";;
 open "Un_Citoyen_electeur_S";;
 open "Un_Conseiller_d_etat_S";;
 open "Un_Decret_S";;
+open "Un_Emploi_civil_S";;
+open "Un_Emploi_militaire_S";;
 open "Un_Francais_S";;
 open "Un_Haut_fonctionnaire_S";;
 open "Un_Membre_du_gouvernement_S";;
@@ -42,6 +44,7 @@ species Article_13_S (
   UOrd is Une_Ordonnance_S,
   UOrd_set is Finite_Set_S (UOrd),
   UDec is Un_Decret_S,
+  UDec_set is Finite_Set_S (UDec),
   UAex is Un_Acte_de_l_executif_S,
   UTle is Un_Texte_legislatif_S,
   UTfr is Un_Territoire_francais_S,
@@ -50,8 +53,13 @@ species Article_13_S (
   UBvo is Un_Bureau_de_vote_S (UTfr),
   UFra is Un_Francais_S (URac, UOri, URel),
   UCet is Un_Conseiller_d_etat_S (URac, UOri, URel),
+  UCet_set is Finite_Set_S (UCet),
   UPre is Un_Prefet_S (URac, UOri, URel, UTfr),
+  UPre_set is Finite_Set_S (UPre),
   UHfo is Un_Haut_fonctionnaire_S (URac, UOri, URel),
+  UHfo_set is Finite_Set_S (UHfo),
+  UEci is Un_Emploi_civil_S (URac, UOri, URel),
+  UEmi is Un_Emploi_militaire_S (URac, UOri, URel),
   UCel is Un_Citoyen_electeur_S (URac, UOri, URel, UTfr, UScr, UBvo),
   UPmi is Un_Premier_ministre_S (URac, UOri, URel, UTfr, UScr, UBvo),
   UMin is Un_Ministre_S (URac, UOri, URel, UTfr, UScr, UBvo),
@@ -67,29 +75,54 @@ species Article_13_S (
 
   signature le_president_de_la_republique_signe_une_ordonnance : LPre -> UOrd -> bool;
 
-  signature le_conseil_des_ministres_delibere_sur_une_ordonnance : LCmi -> UOrd -> bool;
+  signature le_conseil_des_ministres_a_delibere_sur_une_ordonnance : LCmi -> UOrd -> bool;
 
+  property article_13_a_1 : all self : Self, all lpre : LPre, all uord : UOrd, all lcmi : LCmi,
+  UOrd_set!is_a_member_of (uord, les_ordonnances (self)) ->
+  le_president_de_la_republique_signe_une_ordonnance (lpre, uord) ->
+  le_conseil_des_ministres_a_delibere_sur_une_ordonnance (lcmi, uord);
+  
 -- Titre II Article 13-a-2 - Le Président de la République signe ... les décrets délibérés en conseil des ministres. 
+
+  signature les_decrets : Self -> UDec_set;
 
   signature le_president_de_la_republique_signe_un_decret : LPre -> UDec -> bool;
 
-  signature le_conseil_des_ministres_delibere_sur_un_decret : LCmi -> UDec -> bool;
+  signature le_conseil_des_ministres_a_delibere_sur_un_decret : LCmi -> UDec -> bool;
 
-  property article_13_a : all lpre : LPre, all uord : UOrd, all lcmi : LCmi,
-  all self : Self,
-  UOrd_set!is_a_member_of (uord, les_ordonnances (self)) ->
-  le_president_de_la_republique_signe_une_ordonnance (lpre, uord) ->
-  le_conseil_des_ministres_delibere_sur_une_ordonnance (lcmi, uord);
-  
-  property article_13_b : all lpre : LPre, all udec : UDec, all lcmi : LCmi,
+  property article_13_a_2 : all self : Self, all lpre : LPre, all udec : UDec, all lcmi : LCmi,
+  UDec_set!is_a_member_of (udec, les_decrets (self)) ->
   le_president_de_la_republique_signe_un_decret (lpre, udec) ->
-  le_conseil_des_ministres_delibere_sur_un_decret (lcmi, udec);
+  le_conseil_des_ministres_a_delibere_sur_un_decret (lcmi, udec);
+
+-- Titre II Article 13-b-1 - Il nomme aux emplois civils de l'État.
+
+  signature le_president_de_la_republique_nomme_aux_emplois_civils_de_l_etat : LPre -> UEci -> bool;
+
+  property article_13_b_1 : all lpre : LPre, all ueci : UEci,
+  le_president_de_la_republique_nomme_aux_emplois_civils_de_l_etat (lpre, ueci);
+
+-- Titre II Article 13-b-2 - Il nomme aux emplois militaires de l'État.
+
+  signature le_president_de_la_republique_nomme_aux_emplois_militaires_de_l_etat : LPre -> UEmi -> bool;
+
+  property article_13_b_2 : all lpre : LPre, all uemi : UEmi,
+  le_president_de_la_republique_nomme_aux_emplois_militaires_de_l_etat (lpre, uemi);
 
 -- Titre II Article 13-c-1 - Les conseillers d'État, 
 -- le grand chancelier de la Légion d'honneur, 
 -- les ambassadeurs 
 -- et envoyés extraordinaires, 
--- les conseillers maîtres à la Cour des comptes, 
+-- les conseillers maîtres à la Cour des comptes,
+
+  signature les_conseillers_d_etat : Self -> UCet_set;
+
+  signature le_conseil_des_ministres_nomme_un_conseiller_d_etat : LCmi -> UCet -> bool;
+
+  property article_13_c_1 : all self : Self, all lcmi : LCmi, all ucet : UCet,
+  UCet_set!is_a_member_of (ucet, les_conseillers_d_etat (self)) ->
+  le_conseil_des_ministres_nomme_un_conseiller_d_etat (lcmi, ucet);
+ 
 -- Titre II Article 13-c-6 - les préfets, 
 -- les représentants de l'État dans les collectivités d'outre-mer régies par l'article 74 et en Nouvelle-Calédonie, 
 -- les officiers généraux, 
@@ -97,9 +130,13 @@ species Article_13_S (
 -- les directeurs des administrations centrales 
 -- ... sont nommés en conseil des ministres.
 
-  signature le_conseil_des_ministres_nomme_un_conseiller_d_etat : LCmi -> UCet -> bool;
+  signature les_prefets : Self -> UPre_set;
 
   signature le_conseil_des_ministres_nomme_un_prefet : LCmi -> UPre -> bool;
+
+  property article_13_c_6 : all self : Self, all lcmi : LCmi, all upre : UPre,
+  UPre_set!is_a_member_of (upre, les_prefets (self)) ->
+  le_conseil_des_ministres_nomme_un_prefet (lcmi, upre);
 
 end;;
 
