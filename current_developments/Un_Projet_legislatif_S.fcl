@@ -2,9 +2,7 @@ open "basics";;
 
 open "L_Assemblee_nationale_S";;
 open "L_Electorat_S";;
-open "Le_Gouvernement_S";;
 open "Le_Parlement_S";;
-open "Le_President_de_la_republique_S";;
 open "Le_Senat_S";;
 open "Un_Bureau_de_vote_S";;
 open "Un_Citoyen_electeur_S";;
@@ -12,10 +10,7 @@ open "Un_Decret_S";;
 open "Un_Depute_S";;
 open "Un_Elu_S";;
 open "Un_Francais_S";;
-open "Un_Membre_du_gouvernement_S";;
-open "Un_Organe_deliberant_S";;
 open "Un_Parlementaire_S";;
-open "Un_Projet_legislatif_S";;
 open "Un_Scrutin_S";;
 open "Un_Senateur_S";;
 open "Un_Territoire_francais_S";;
@@ -35,12 +30,12 @@ open "Une_Religion_S";;
 -- InH: Un_Projet_de_loi_S   Une_Proposition_de_loi_S  
 -- InH:         \                  /                 
 -- InH:          v                v                 
--- InH:        Un_Projet_legislatif_S      Une_Loi_S
+-- InH: Un_Projet_legislatif_S Une_Loi_S
 -- InH:               \                       /                 
 -- InH:                v                     v                 
 -- InH:                 Un_Texte_legislatif_S
 
-species Un_Projet_de_loi_S (
+species Un_Projet_legislatif_S (
   URac is Une_Race_S,
   UOri is Une_Origine_S,
   URel is Une_Religion_S,
@@ -50,7 +45,6 @@ species Un_Projet_de_loi_S (
   UTfr is Un_Territoire_francais_S,
   UScr is Un_Scrutin_S,
   UBvo is Un_Bureau_de_vote_S (UTfr), 
-  UOde is Un_Organe_deliberant_S (UTle),
   UFra is Un_Francais_S (URac, UOri, URel),
   UCel is Un_Citoyen_electeur_S (URac, UOri, URel, UTfr, UScr, UBvo),
   UDep is Un_Depute_S (URac, UOri, URel, UTfr, UScr, UBvo),
@@ -60,13 +54,26 @@ species Un_Projet_de_loi_S (
   UPar is Un_Parlementaire_S (URac, UOri, URel, UTfr, UScr, UBvo),
   LAna is L_Assemblee_nationale_S (URac, UOri, URel, UTfr, UScr, UBvo, UDep, UPar),
   LSen is Le_Senat_S (URac, UOri, URel, UTfr, UScr, UBvo, USen, UPar),
-  LPar is Le_Parlement_S (URac, UOri, URel, UTfr, UScr, UBvo, UDep, USen, UElu, UPar, LAna, LSen), 
-  UMgo is Un_Membre_du_gouvernement_S (URac, UOri, URel, UTfr, UScr, UBvo),
-  LGou is Le_Gouvernement_S (URac, UOri, URel, UTle, UOrd, UDec, UTfr, UScr, UBvo, UOde, UMgo),
-  LPre is Le_President_de_la_republique_S (URac, UOri, URel, UTfr, UScr, UBvo, UFra)
+  LPar is Le_Parlement_S (URac, UOri, URel, UTfr, UScr, UBvo, UDep, USen, UElu, UPar, LAna, LSen)
 )  = 
     
-  inherit Un_Projet_legislatif_S (URac, UOri, URel, UTle, UOrd, UDec, UTfr, UScr, UBvo, UFra, UCel, UDep, USen, LEle, UElu, UPar, LAna, LSen, LPar);
+  inherit Un_Texte_legislatif_S;
 
-  signature un_projet_de_loi_est_fait_par_le_gouvernement : Self -> LGou -> bool;
+  signature un_projet_legislatif_portant_sur_l_organisation_des_pouvoirs_publics : Self -> bool;
+  signature un_projet_legislatif_portant_sur_des_reformes_relatives_a_la_politique_economique_sociale_de_la_nation : Self -> bool;
+  signature un_projet_legislatif_portant_sur_des_reformes_relatives_a_la_politique_environnementale_de_la_nation : Self -> bool;
+  signature un_projet_legislatif_portant_sur_des_reformes_relatives_aux_services_publics : Self -> bool;
+  signature un_projet_legislatif_tendant_a_autoriser_la_ratification_d_un_traite_qui_sans_etre_contraire_a_la_constitution_aurait_des_incidences_sur_le_fonctionnement_des_institutions : Self -> bool;
+
+  logical let un_projet_legislatif_est_soumis_a_referendum_par_le_president_de_la_republique (self : Self) =
+    un_projet_legislatif_portant_sur_l_organisation_des_pouvoirs_publics (self) ->
+    un_projet_legislatif_portant_sur_des_reformes_relatives_a_la_politique_economique_sociale_de_la_nation (self) ->
+    un_projet_legislatif_portant_sur_des_reformes_relatives_a_la_politique_environnementale_de_la_nation (self) ->
+    un_projet_legislatif_portant_sur_des_reformes_relatives_aux_services_publics (self) ->
+    un_projet_legislatif_tendant_a_autoriser_la_ratification_d_un_traite_qui_sans_etre_contraire_a_la_constitution_aurait_des_incidences_sur_le_fonctionnement_des_institutions (self);
+
+  signature un_projet_legislatif_est_examine_par_l_assemblee_nationale : Self -> LAna -> bool;
+
+  signature un_projet_legislatif_est_examine_par_le_senat : Self -> LSen -> bool;
+
 end;;

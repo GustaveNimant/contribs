@@ -1,3 +1,3 @@
 FOCALIZE_SRC=\
-  Article_13_S.fcl \
+  Un_Projet_de_loi_subtype_S.fcl \
 
