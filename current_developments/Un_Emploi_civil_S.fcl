@@ -18,4 +18,5 @@ species Un_Emploi_civil_S (
 
   inherit  Un_Fonctionnaire_S (URac, UOri, URel);
 
+  signature le_president_de_la_republique_a_nomme_aux_emplois_civils_de_l_etat : Self -> bool;
 end;;

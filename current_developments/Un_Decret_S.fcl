@@ -11,4 +11,8 @@ species Un_Decret_S =
 
   inherit Un_Acte_de_l_executif_S;
 
+  signature le_president_de_la_republique_a_signe_un_decret : Self -> bool;
+
+  signature le_conseil_des_ministres_a_delibere_sur_un_decret : Self -> bool;
+
 end;;

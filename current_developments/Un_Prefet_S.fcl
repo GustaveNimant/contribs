@@ -15,6 +15,9 @@ species Un_Prefet_S (
 
   inherit Un_Haut_fonctionnaire_S (URac, UOri, URel);
 
+  signature le_conseil_des_ministres_nomme_un_prefet : Self -> bool;
+
   logical let un_prefet_represente_l_etat_dans_un_departement (utfr : UTfr) =
    UTfr!est_un_departement (utfr);
+
 end;;

@@ -13,4 +13,6 @@ species Un_Conseiller_d_etat_S (
 
   inherit Un_Haut_fonctionnaire_S (URac, UOri, URel);
 
+  signature le_conseil_des_ministres_nomme_un_conseiller_d_etat : Self -> bool;
+
 end;;

@@ -90,12 +90,12 @@ species Article_11_S (
   let les_projets_legislatifs_of_les_projets_de_loi (upjl_set : UPjl_set) =
     UPleOfUPjl!to_super_set (upjl_set);
 
-  let un_projet_legislatif_of_une_proposition_de_loi (uppl_set : UPpl_set) =
+  let les_projets_legislatifs_of_les_propositions_de_loi (uppl_set : UPpl_set) =
     UPleOfUPpl!to_super_set (uppl_set);
 
   let les_projets_legislatifs (self : Self ) : UPle_set =
     UPle_set!union (les_projets_legislatifs_of_les_projets_de_loi(les_projets_de_loi (self)), 
-                    un_projet_legislatif_of_une_proposition_de_loi (les_propositions_de_loi (self))
+                    les_projets_legislatifs_of_les_propositions_de_loi (les_propositions_de_loi (self))
     );
   
   logical let le_president_de_la_republique_a_soumis_un_projet_legislatif_a_referendum (self : Self, uple : UPle, upjl : UPjl, lgou : LGou) =

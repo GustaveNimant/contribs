@@ -21,7 +21,7 @@ species Un_Premier_ministre_S (
 
   signature le_premier_ministre_demissionne : Self -> bool;
 
-  signature le_premier_ministre_est_consulte_par_le_president_de_la_republique : Self -> bool;
+  signature le_premier_ministre_a_ete_consulte_par_le_president_de_la_republique : Self -> bool;
 
   signature le_premier_ministre_presente_la_demission_du_gouvernement : Self -> bool;
 

@@ -40,5 +40,9 @@ species Un_Senateur_S (
   let est_un_depute (usen : Self) = false;
 
   let est_un_senateur (usen : Self) = true;
+
+  signature est_le_president_du_senat : Self -> bool;
   
+  signature le_president_du_senat_a_ete_consulte_par_le_president_de_la_republique : Self -> bool;
+
 end;;
