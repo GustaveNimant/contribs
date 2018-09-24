@@ -9,6 +9,7 @@ open "Un_Citoyen_electeur_S";;
 open "Un_Decret_S";;
 open "Un_Depute_S";;
 open "Un_Elu_S";;
+open "Un_Domaine_de_projet_legislatif_S";;
 open "Un_Francais_S";;
 open "Un_Parlementaire_S";;
 open "Un_Scrutin_S";;
@@ -44,6 +45,7 @@ species Un_Projet_legislatif_S (
   UDec is Un_Decret_S,
   UTfr is Un_Territoire_francais_S,
   UScr is Un_Scrutin_S,
+  UDpl is Un_Domaine_de_projet_legislatif_S,
   UBvo is Un_Bureau_de_vote_S (UTfr), 
   UFra is Un_Francais_S (URac, UOri, URel),
   UCel is Un_Citoyen_electeur_S (URac, UOri, URel, UTfr, UScr, UBvo),
@@ -59,21 +61,12 @@ species Un_Projet_legislatif_S (
     
   inherit Un_Texte_legislatif_S;
 
-  signature un_projet_legislatif_portant_sur_l_organisation_des_pouvoirs_publics : Self -> bool;
-  signature un_projet_legislatif_portant_sur_des_reformes_relatives_a_la_politique_economique_sociale_de_la_nation : Self -> bool;
-  signature un_projet_legislatif_portant_sur_des_reformes_relatives_a_la_politique_environnementale_de_la_nation : Self -> bool;
-  signature un_projet_legislatif_portant_sur_des_reformes_relatives_aux_services_publics : Self -> bool;
-  signature un_projet_legislatif_tendant_a_autoriser_la_ratification_d_un_traite_qui_sans_etre_contraire_a_la_constitution_aurait_des_incidences_sur_le_fonctionnement_des_institutions : Self -> bool;
-
-  logical let un_projet_legislatif_est_soumis_a_referendum_par_le_president_de_la_republique (self : Self) =
-    un_projet_legislatif_portant_sur_l_organisation_des_pouvoirs_publics (self) ->
-    un_projet_legislatif_portant_sur_des_reformes_relatives_a_la_politique_economique_sociale_de_la_nation (self) ->
-    un_projet_legislatif_portant_sur_des_reformes_relatives_a_la_politique_environnementale_de_la_nation (self) ->
-    un_projet_legislatif_portant_sur_des_reformes_relatives_aux_services_publics (self) ->
-    un_projet_legislatif_tendant_a_autoriser_la_ratification_d_un_traite_qui_sans_etre_contraire_a_la_constitution_aurait_des_incidences_sur_le_fonctionnement_des_institutions (self);
-
   signature un_projet_legislatif_est_examine_par_l_assemblee_nationale : Self -> LAna -> bool;
 
   signature un_projet_legislatif_est_examine_par_le_senat : Self -> LSen -> bool;
+
+  logical let un_projet_legislatif_est_soumettable_a_referendum_par_le_president_de_la_republique (self : Self) =
+    all udpl : UDpl,
+    UDpl!un_domaine_de_projet_legislatif_est_soumettable_a_referendum_par_le_president_de_la_republique (udpl);
 
 end;;

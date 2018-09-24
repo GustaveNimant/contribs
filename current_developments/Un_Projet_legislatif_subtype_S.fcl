@@ -10,6 +10,7 @@ open "Un_Bureau_de_vote_S";;
 open "Un_Citoyen_electeur_S";;
 open "Un_Decret_S";;
 open "Un_Depute_S";;
+open "Un_Domaine_de_projet_legislatif_S";;
 open "Un_Elu_S";;
 open "Un_Francais_S";;
 open "Un_Parlementaire_S";;
@@ -38,6 +39,7 @@ species Un_Projet_legislatif_subtype_S (
   UDec is Un_Decret_S,
   UTfr is Un_Territoire_francais_S,
   UScr is Un_Scrutin_S,
+  UDpl is Un_Domaine_de_projet_legislatif_S,
   UBvo is Un_Bureau_de_vote_S (UTfr), 
   UFra is Un_Francais_S (URac, UOri, URel),
   UCel is Un_Citoyen_electeur_S (URac, UOri, URel, UTfr, UScr, UBvo),
@@ -49,9 +51,9 @@ species Un_Projet_legislatif_subtype_S (
   LAna is L_Assemblee_nationale_S (URac, UOri, URel, UTfr, UScr, UBvo, UDep, UPar),
   LSen is Le_Senat_S (URac, UOri, URel, UTfr, UScr, UBvo, USen, UPar),
   LPar is Le_Parlement_S (URac, UOri, URel, UTfr, UScr, UBvo, UDep, USen, UElu, UPar, LAna, LSen),
-  Sub is Un_Projet_legislatif_S (URac, UOri, URel, UTle, UOrd, UDec, UTfr, UScr, UBvo, UFra, UCel, UDep, USen, LEle, UElu, UPar, LAna, LSen, LPar),
+  Sub is Un_Projet_legislatif_S (URac, UOri, URel, UTle, UOrd, UDec, UTfr, UScr, UDpl, UBvo, UFra, UCel, UDep, USen, LEle, UElu, UPar, LAna, LSen, LPar),
   Sub_set is Finite_Set_S(Sub),
-  Super is Un_Projet_legislatif_S (URac, UOri, URel, UTle, UOrd, UDec, UTfr, UScr, UBvo, UFra, UCel, UDep, USen, LEle, UElu, UPar, LAna, LSen, LPar),
+  Super is Un_Projet_legislatif_S (URac, UOri, URel, UTle, UOrd, UDec, UTfr, UScr, UDpl, UBvo, UFra, UCel, UDep, USen, LEle, UElu, UPar, LAna, LSen, LPar),
   Super_set is Finite_Set_S(Super)
 ) =
     

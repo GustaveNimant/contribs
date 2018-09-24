@@ -11,12 +11,15 @@ open "Un_Bureau_de_vote_S";;
 open "Un_Citoyen_electeur_S";;
 open "Un_Decret_S";;
 open "Un_Depute_S";;
+open "Un_Domaine_de_projet_legislatif_S";;
 open "Un_Elu_S";;
 open "Un_Francais_S";;
 open "Un_Membre_du_gouvernement_S";;
 open "Un_Organe_deliberant_S";;
 open "Un_Parlementaire_S";;
 open "Un_Projet_de_loi_S";;
+open "Un_Projet_legislatif_S";;
+open "Un_Projet_legislatif_subtype_S";;
 open "Un_Scrutin_S";;
 open "Un_Senateur_S";;
 open "Un_Territoire_francais_S";;
@@ -52,6 +55,7 @@ species Article_11_S (
   UDec is Un_Decret_S,
   UTfr is Un_Territoire_francais_S,
   UScr is Un_Scrutin_S,
+  UDpl is Un_Domaine_de_projet_legislatif_S,
   UBvo is Un_Bureau_de_vote_S (UTfr),
   UOde is Un_Organe_deliberant_S (UTle),
   UFra is Un_Francais_S (URac, UOri, URel),
@@ -67,11 +71,14 @@ species Article_11_S (
   UMgo is Un_Membre_du_gouvernement_S (URac, UOri, URel, UTfr, UScr, UBvo),
   LGou is Le_Gouvernement_S (URac, UOri, URel, UTle, UOrd, UDec, UTfr, UScr, UBvo, UOde, UMgo),
   LPre is Le_President_de_la_republique_S (URac, UOri, URel, UTfr, UScr, UBvo, UFra),
-  UPpl is Une_Proposition_de_loi_S (URac, UOri, URel, UTle, UOrd, UDec, UTfr, UScr, UBvo, UFra, UCel, UDep, USen, LEle, UElu, UPar, LAna, LSen, LPar),
-  UPpl_set is Finite_Set_S (UPpl),
-  UPjl is Un_Projet_de_loi_S (URac, UOri, URel, UTle, UOrd, UDec, UTfr, UScr, UBvo, UOde, UFra, UCel, UDep, USen, LEle, UElu, UPar, LAna, LSen, LPar, UMgo, LGou, LPre),
+  UPjl is Un_Projet_de_loi_S (URac, UOri, URel, UTle, UOrd, UDec, UTfr, UScr, UDpl, UBvo, UOde, UFra, UCel, UDep, USen, LEle, UElu, UPar, LAna, LSen, LPar, UMgo, LGou, LPre),
   UPjl_set is Finite_Set_S (UPjl),
-  UPplOfUPle is Une_Proposition_de_loi_su
+  UPle is Un_Projet_legislatif_S (URac, UOri, URel, UTle, UOrd, UDec, UTfr, UScr, UDpl, UBvo, UFra, UCel, UDep, USen, LEle, UElu, UPar, LAna, LSen, LPar),
+  UPle_set is Finite_Set_S (UPle),
+  UPleOfUPjl is Un_Projet_legislatif_subtype_S (URac, UOri, URel, UTle, UOrd, UDec, UTfr, UScr, UDpl, UBvo, UFra, UCel, UDep, USen, LEle, UElu, UPar, LAna, LSen, LPar, UPjl, UPjl_set, UPle, UPle_set),
+  UPpl is Une_Proposition_de_loi_S (URac, UOri, URel, UTle, UOrd, UDec, UTfr, UScr, UDpl, UBvo, UFra, UCel, UDep, USen, LEle, UElu, UPar, LAna, LSen, LPar),
+  UPpl_set is Finite_Set_S (UPpl),
+  UPleOfUPpl is Un_Projet_legislatif_subtype_S (URac, UOri, URel, UTle, UOrd, UDec, UTfr, UScr, UDpl, UBvo, UFra, UCel, UDep, USen, LEle, UElu, UPar, LAna, LSen, LPar, UPpl, UPpl_set, UPle, UPle_set)
 )=
 
 -- Titre II Article 11 a - Le Président de la République, sur proposition du Gouvernement pendant la durée des sessions ou sur proposition conjointe des deux Assemblées, publiées au Journal Officiel, peut soumettre au référendum tout projet de loi portant sur l'organisation des pouvoirs publics, sur des réformes relatives à la politique économique, sociale ou environnementale de la nation et aux services publics qui y concourent, ou tendant à autoriser la ratification d'un traité qui, sans être contraire à la Constitution, aurait des incidences sur le fonctionnement des institutions.
@@ -80,23 +87,31 @@ species Article_11_S (
 
   signature les_projets_de_loi : Self -> UPjl_set;
 
-  let les_projets_legislatifs (self : Self ) =
-  union (les_projets_de_loi (self), les_propositions_de_loi (self));
+  let les_projets_legislatifs_of_les_projets_de_loi (upjl_set : UPjl_set) =
+    UPleOfUPjl!to_super_set (upjl_set);
 
-  logical let le_president_de_la_republique_a_soumis_un_projet_legislatif_a_referendum (self : Self, upjl : UPjl, lgou : LGou) =
-    UPjl_set!is_a_member_of (upjl, les_projets_de_loi (self)) ->
-    (UPjl!un_projet_legislatif_est_soumis_a_referendum_par_le_president_de_la_republique (upjl)) -> 
+  let un_projet_legislatif_of_une_proposition_de_loi (uppl_set : UPpl_set) =
+    UPleOfUPpl!to_super_set (uppl_set);
+
+  let les_projets_legislatifs (self : Self ) : UPle_set =
+    UPle_set!union (les_projets_legislatifs_of_les_projets_de_loi(les_projets_de_loi (self)), 
+                    un_projet_legislatif_of_une_proposition_de_loi (les_propositions_de_loi (self))
+    );
+  
+  logical let le_president_de_la_republique_a_soumis_un_projet_legislatif_a_referendum (self : Self, uple : UPle, upjl : UPjl, lgou : LGou) =
+    UPle_set!is_a_member_of (uple, les_projets_legislatifs (self)) ->
+    (UPle!un_projet_legislatif_est_soumettable_a_referendum_par_le_president_de_la_republique (uple)) -> 
     (UPjl!un_projet_de_loi_est_fait_par_le_gouvernement (upjl, lgou));
   
-  property article_11_a_1 : all self : Self, all lgou : LGou, all uscr : UScr, all upjl : UPjl,
+  property article_11_a_1 : all self : Self, all lgou : LGou, all uscr : UScr, all upjl : UPjl, all uple : UPle,
   LGou!le_gouvernement_propose_un_referendum (lgou, uscr) ->
   UScr!est_un_referendum (uscr) ->
-  le_president_de_la_republique_a_soumis_un_projet_legislatif_a_referendum (self, upjl, lgou);
+  le_president_de_la_republique_a_soumis_un_projet_legislatif_a_referendum (self, uple, upjl, lgou);
 
-  property article_11_a_2 : all self : Self, all lpar : LPar, all lgou : LGou, all uscr : UScr, all upjl : UPjl,
+  property article_11_a_2 : all self : Self, all lpar : LPar, all lgou : LGou, all uscr : UScr, all upjl : UPjl, all uple : UPle,
   LPar!le_parlement_propose_un_referendum (lpar, uscr) ->
   UScr!est_un_referendum (uscr) ->
-  le_president_de_la_republique_a_soumis_un_projet_legislatif_a_referendum (self, upjl, lgou);
+  le_president_de_la_republique_a_soumis_un_projet_legislatif_a_referendum (self, uple, upjl, lgou);
 
 -- Titre II Article 11 b-1 - Lorsque le référendum est organisé sur proposition du Gouvernement celui-ci fait, devant chaque assemblée, une déclaration qui est suivie d'un débat.
 
