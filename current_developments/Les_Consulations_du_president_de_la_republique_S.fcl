@@ -1,0 +1,32 @@
+open "basics";;
+ 
+open "Un_Bureau_de_vote_S";;
+open "Un_Depute_S";;
+open "Un_Premier_ministre_S";;
+open "Un_Scrutin_S";;
+open "Un_Senateur_S";;
+open "Un_Territoire_francais_S";;
+open "Une_Origine_S";;
+open "Une_Race_S";;
+open "Une_Religion_S";;
+
+-- Documentation : 
+ 
+species Les_Consulations_du_president_de_la_republique_S (
+  URac is Une_Race_S,
+  UOri is Une_Origine_S,
+  URel is Une_Religion_S,
+  UTfr is Un_Territoire_francais_S,
+  UScr is Un_Scrutin_S,
+  UBvo is Un_Bureau_de_vote_S (UTfr),
+  UPmi is Un_Premier_ministre_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UDep is Un_Depute_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  USen is Un_Senateur_S (URac, UOri, URel, UTfr, UScr, UBvo)
+) =
+
+  logical let le_premier_ministre_et_les_presidents_des_assemblees_ont_ete_consulte_par_le_president_de_la_republique (upmi : UPmi, udep : UDep, usen : USen)=
+    UPmi!le_premier_ministre_a_ete_consulte_par_le_president_de_la_republique (upmi) ->
+    USen!le_president_du_senat_a_ete_consulte_par_le_president_de_la_republique (usen) ->
+    UDep!le_president_de_l_assemblee_nationale_a_ete_consulte_par_le_president_de_la_republique (udep);
+
+end;;

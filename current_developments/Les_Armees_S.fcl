@@ -1,0 +1,7 @@
+open "basics";;
+ 
+species Les_Armees_S =
+ 
+  signature le_president_de_la_republique_est_le_chef_des_armees : Self -> bool;
+
+end;;

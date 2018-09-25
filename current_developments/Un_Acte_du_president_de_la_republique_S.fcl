@@ -24,6 +24,8 @@ species Un_Acte_du_president_de_la_republique_S =
 
   inherit Un_Acte_de_l_executif_S;
 
-  signature est_une_nomination : Self -> bool;
+  signature le_president_de_la_republique_procede_a_une_nomination : Self -> bool;
  
+  signature le_president_de_la_republique_prend_les_mesures_exigees_par_l_article_16 : Self -> bool;
+
 end;;

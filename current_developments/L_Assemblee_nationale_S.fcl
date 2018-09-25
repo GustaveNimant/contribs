@@ -41,4 +41,5 @@ species L_Assemblee_nationale_S (
 
   inherit Une_Chambre_legislative_S (URac, UOri, URel, UTfr, UScr, UBvo, UPar);
   
+  signature le_president_de_la_republique_a_dissout_l_assemblee_nationale : Self -> bool;
 end;;

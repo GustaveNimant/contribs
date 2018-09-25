@@ -30,9 +30,10 @@ then
     echo -e "open \"$inherit\";;\n" >> $file
 fi 
 
-echo "species $species (" >> $file
+echo "-- Documentation : " >> $file
 echo ' ' >> $file
-echo ') =' >> $file
+
+echo "species $species =" >> $file
 echo ' ' >> $file
 
 if [ $# -eq 2 ]

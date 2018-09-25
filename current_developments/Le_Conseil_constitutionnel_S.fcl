@@ -1,0 +1,9 @@
+open "basics";;
+ 
+-- Documentation : 
+ 
+species Le_Conseil_constitutionnel_S =
+
+  signature le_president_du_conseil_constitutionnel_a_ete_consulte_par_le_president_de_la_republique : Self -> bool;
+ 
+end;;

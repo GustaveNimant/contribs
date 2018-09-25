@@ -1,14 +1,12 @@
 open "basics";;
-
--- InH: Un_Comite_de_la_defense_nationale_S   Un_Conseil_de_la_defense_nationale_S
--- InH:                    \                                   /
--- InH:                     v                                 v
--- InH:                     Un_Organe_de_la_defense_nationale_S
-
-open "Un_Organe_de_la_defense_nationale_S";;
-
+open "sets";;
+ 
+-- Documentation : 
+ 
 species Un_Comite_de_la_defense_nationale_S =
 
-  inherit Un_Organe_de_la_defense_nationale_S;
+  inherit Setoid;
+
+  signature le_president_de_la_republique_preside_un_comite_de_defense_nationale : Self -> bool;
 
 end;;

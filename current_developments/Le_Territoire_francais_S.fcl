@@ -20,4 +20,6 @@ species Le_Territoire_francais_S (
 
   signature le_territoire_francais_est_un : Self -> bool;
 
+  signature l_integrite_du_territoire_est_menacee : Self -> bool;
+
 end;;

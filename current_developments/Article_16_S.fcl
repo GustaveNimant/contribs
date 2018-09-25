@@ -1,9 +1,19 @@
 open "basics";;
 
-open "Le_President_de_la_republique_S";;
+open "Le_Conseil_constitutionnel_S";;
+open "Le_Peuple_francais_S";;
+open "Le_Territoire_francais_S";;
+open "Les_Consulations_du_president_de_la_republique_S";;
+open "Les_Institutions_de_la_republique_S";;
+open "Les_Pouvoirs_publics_constitutionnels_S";;
+open "Un_Acte_du_president_de_la_republique_S";;
 open "Un_Bureau_de_vote_S";;
+open "Un_Depute_S";;
 open "Un_Francais_S";;
+open "Un_Premier_ministre_S";;
 open "Un_Scrutin_S";;
+open "Un_Senateur_S";;
+open "Un_Territoire_S";;
 open "Un_Territoire_francais_S";;
 open "Une_Origine_S";;
 open "Une_Race_S";;
@@ -25,13 +35,54 @@ species Article_16_S (
   URac is Une_Race_S,
   UOri is Une_Origine_S,
   URel is Une_Religion_S,
-  UTFr is Un_Territoire_francais_S,
+  UTer is Un_Territoire_S,
+  UTfr is Un_Territoire_francais_S,
+  LTfr is Le_Territoire_francais_S (UTer),
   UScr is Un_Scrutin_S,
-  UBvo is Un_Bureau_de_vote_S (UTFr),
+  LPpc is Les_Pouvoirs_publics_constitutionnels_S,
+  UApr is Un_Acte_du_president_de_la_republique_S,
+  LCco is Le_Conseil_constitutionnel_S,
+  LIre is Les_Institutions_de_la_republique_S,
   UFra is Un_Francais_S (URac, UOri, URel),
-  LPre is Le_President_de_la_republique_S (URac, UOri, URel, UTFr, UScr, UBvo, UFra)
-)=
+  LPfr is Le_Peuple_francais_S (URac, UOri, URel, UFra),
+  UBvo is Un_Bureau_de_vote_S (UTfr),
+  UPmi is Un_Premier_ministre_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UDep is Un_Depute_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  USen is Un_Senateur_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  LCpr is Les_Consulations_du_president_de_la_republique_S (URac, UOri, URel, UTfr, UScr, UBvo, UPmi, UDep, USen)
+) =
 
+  logical let les_consultations_du_president (self : Self) =
+    all upmi : UPmi, all udep : UDep, all usen : USen, all lcco : LCco, 
+    LCpr!le_premier_ministre_et_les_presidents_des_assemblees_ont_ete_consulte_par_le_president_de_la_republique (upmi, udep, usen) -> 
+    LCco!le_president_du_conseil_constitutionnel_a_ete_consulte_par_le_president_de_la_republique (lcco);
+  
+  logical let il_existe_des_menaces (self : Self) =
+    all lire : LIre, all ltfr : LTfr, all lppc : LPpc,
+    LIre!les_institutions_de_la_republique_sont_menacees (lire) 
+    \/
+    LTfr!l_integrite_du_territoire_est_menacee (ltfr)
+    \/
+    LPpc!le_fonctionnement_regulier_des_pouvoirs_publics_constitutionnels_est_interrompu (lppc);
+  
+-- Titre II Article 16-a-1 - Lorsque les institutions de la République sont menacées d'une manière grave et immédiate, 
+
+-- Titre II Article 16-a-2 - Lorsque l'indépendance de la nation est menacee, 
+
+-- Titre II Article 16-a-3 - Lorsque l'intégrité du territoire est menacée d'une manière grave et immédiate, 
+
+-- Titre II Article 16-a-4 - Lorsque l'exécution de ses engagements internationaux sont menacés d'une manière grave et immédiate, 
+
+-- Titre II Article 16-a-5 - Lorsque le fonctionnement régulier des pouvoirs publics constitutionnels est interrompu, 
+
+-- Titre II Article 16-a-5 - le Président de la République prend les mesures exigées par ces circonstances, après consultation officielle du Premier ministre, des présidents des assemblées ainsi que du Conseil constitutionnel.
+
+-- Titre II Article 16-b - Il en informe la nation par un message.
+
+  property article_16 : all self : Self, all uapr : UApr, all lpfr : LPfr, 
+  il_existe_des_menaces (self) ->
+  UApr!le_president_de_la_republique_prend_les_mesures_exigees_par_l_article_16 (uapr) ->
+  LPfr!le_president_de_la_republique_informe_la_nation_des_mesures_prises_selon_l_article_16 (lpfr);
 
 end;;
 
