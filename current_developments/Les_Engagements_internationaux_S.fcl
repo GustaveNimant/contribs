@@ -1,0 +1,9 @@
+open "basics";;
+ 
+-- Documentation : 
+ 
+species Les_Engagements_internationaux_S =
+
+  signature l_execution_des_engagements_internationaux_sont_menaces : Self -> bool;
+
+end;;

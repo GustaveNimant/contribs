@@ -1,15 +1,19 @@
 open "basics";;
 
+open "L_Assemblee_nationale_S";;
+open "L_Independance_de_la_nation_S";;
 open "Le_Conseil_constitutionnel_S";;
 open "Le_Peuple_francais_S";;
 open "Le_Territoire_francais_S";;
 open "Les_Consulations_du_president_de_la_republique_S";;
+open "Les_Engagements_internationaux_S";;
 open "Les_Institutions_de_la_republique_S";;
 open "Les_Pouvoirs_publics_constitutionnels_S";;
 open "Un_Acte_du_president_de_la_republique_S";;
 open "Un_Bureau_de_vote_S";;
 open "Un_Depute_S";;
 open "Un_Francais_S";;
+open "Un_Parlementaire_S";;
 open "Un_Premier_ministre_S";;
 open "Un_Scrutin_S";;
 open "Un_Senateur_S";;
@@ -43,12 +47,16 @@ species Article_16_S (
   UApr is Un_Acte_du_president_de_la_republique_S,
   LCco is Le_Conseil_constitutionnel_S,
   LIre is Les_Institutions_de_la_republique_S,
+  LEin is Les_Engagements_internationaux_S,
+  LIna is L_Independance_de_la_nation_S,
   UFra is Un_Francais_S (URac, UOri, URel),
   LPfr is Le_Peuple_francais_S (URac, UOri, URel, UFra),
   UBvo is Un_Bureau_de_vote_S (UTfr),
   UPmi is Un_Premier_ministre_S (URac, UOri, URel, UTfr, UScr, UBvo),
   UDep is Un_Depute_S (URac, UOri, URel, UTfr, UScr, UBvo),
   USen is Un_Senateur_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UPar is Un_Parlementaire_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  LAna is L_Assemblee_nationale_S (URac, UOri, URel, UTfr, UScr, UBvo, UDep, UPar),
   LCpr is Les_Consulations_du_president_de_la_republique_S (URac, UOri, URel, UTfr, UScr, UBvo, UPmi, UDep, USen)
 ) =
 
@@ -58,10 +66,14 @@ species Article_16_S (
     LCco!le_president_du_conseil_constitutionnel_a_ete_consulte_par_le_president_de_la_republique (lcco);
   
   logical let il_existe_des_menaces (self : Self) =
-    all lire : LIre, all ltfr : LTfr, all lppc : LPpc,
+    all lire : LIre, all lina : LIna, all ltfr : LTfr, all lein : LEin, all lppc : LPpc,
     LIre!les_institutions_de_la_republique_sont_menacees (lire) 
     \/
+    LIna!l_independance_de_la_nation_est_menacee (lina)
+    \/
     LTfr!l_integrite_du_territoire_est_menacee (ltfr)
+    \/
+    LEin!l_execution_des_engagements_internationaux_sont_menaces (lein) 
     \/
     LPpc!le_fonctionnement_regulier_des_pouvoirs_publics_constitutionnels_est_interrompu (lppc);
   
@@ -75,14 +87,22 @@ species Article_16_S (
 
 -- Titre II Article 16-a-5 - Lorsque le fonctionnement régulier des pouvoirs publics constitutionnels est interrompu, 
 
--- Titre II Article 16-a-5 - le Président de la République prend les mesures exigées par ces circonstances, après consultation officielle du Premier ministre, des présidents des assemblées ainsi que du Conseil constitutionnel.
+-- Titre II Article 16-a-6 - le Président de la République prend les mesures exigées par ces circonstances, après consultation officielle du Premier ministre, des présidents des assemblées ainsi que du Conseil constitutionnel.
 
 -- Titre II Article 16-b - Il en informe la nation par un message.
 
-  property article_16 : all self : Self, all uapr : UApr, all lpfr : LPfr, 
+-- Titre II Article 16-c-1 - Ces mesures doivent être inspirées par la volonté d'assurer aux pouvoirs publics constitutionnels, dans les moindres délais, les moyens d'accomplir leur mission. 
+
+-- Titre II Article 16-c-2 - Le Conseil constitutionnel est consulté à leur sujet.
+
+  property article_16 : all self : Self, all uapr : UApr, all lpfr : LPfr, all lcco : LCco, all lana : LAna,
   il_existe_des_menaces (self) ->
   UApr!le_president_de_la_republique_prend_les_mesures_exigees_par_l_article_16 (uapr) ->
-  LPfr!le_president_de_la_republique_informe_la_nation_des_mesures_prises_selon_l_article_16 (lpfr);
+  LPfr!le_president_de_la_republique_informe_la_nation_des_mesures_prises_selon_l_article_16 (lpfr) ->
+  LCco!le_conseil_constitutionnel_est_consulte_sur_les_mesures_de_l_article_16 (lcco) ->
+  (~ LAna!le_president_de_la_republique_a_dissout_l_assemblee_nationale (lana)) ->
+  LCco!le_conseil_constitutionnel_se_prononce_par_un_avis_public (lcco) ->
+  LCco!le_conseil_constitutionnel_examine_si_les_conditions_du_premier_alinea_demeurent (lcco);
 
 end;;
 
