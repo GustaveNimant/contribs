@@ -106,7 +106,13 @@ $top = pop @file_l;
 
 print_opens (@open_file_l);
 
-$abbreviated_species_name = abbreviated_name ($species_name);
+if ($species_name eq "Le_Pouvoir_reglementaire_S") {
+    $abbreviated_species_name = "LPrg";
+}
+else {
+    $abbreviated_species_name = abbreviated_name ($species_name);
+}
+
 print "  $abbreviated_species_name is ";
 
 print "${species_name} (";

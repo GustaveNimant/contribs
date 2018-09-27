@@ -1,17 +1,13 @@
 open "basics";;
 
-open "Finite_Set_S";;
 open "Les_Armees_S";;
-open "Le_Conseil_de_defense_et_de_securite_interieure_S";;
-open "Un_Comite_de_la_defense_nationale_S";;
+open "La_Defense_nationale_S";;
 
 -- Le Président de la République est le chef des armées. Il préside les conseils et les comités supérieurs de la défense nationale
 
 species Article_15_S (
   LArm is Les_Armees_S,
-  LCds is Le_Conseil_de_defense_et_de_securite_interieure_S,
-  UCdn is Un_Comite_de_la_defense_nationale_S,
-  UCdn_set is Finite_Set_S (UCdn)
+  LDna is La_Defense_nationale_S
 )=
 
 -- Titre II Article 15-a - Le Président de la République est le chef des armées.
@@ -21,16 +17,13 @@ species Article_15_S (
 
 -- Titre II Article 15-b - Le Président de la République ... préside les conseils de la défense nationale.
 
-  property article_15_b : all lcds : LCds,
-  LCds!le_president_de_la_republique_preside_le_conseil_de_defense_et_de_securite_interieure (lcds);
+  property article_15_b : all ldna : LDna,
+  LDna!le_president_de_la_republique_preside_un_conseil_de_la_defense_nationale (ldna);
 
 -- Titre II Article 15-c - Le Président de la République ... préside les comités supérieurs de la défense nationale.
 
-  signature les_comites_de_la_defense_nationale : Self -> UCdn_set;
-
-  property article_15_c : all self : Self, all ucdn : UCdn,
-  UCdn_set!is_a_member_of (ucdn, les_comites_de_la_defense_nationale (self)) ->
-  UCdn!le_president_de_la_republique_preside_un_comite_de_defense_nationale (ucdn);
+  property article_15_c : all ldna : LDna,
+  LDna!le_president_de_la_republique_preside_un_comite_de_la_defense_nationale (ldna);
 
 end;;
 

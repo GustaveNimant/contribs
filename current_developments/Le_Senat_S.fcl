@@ -48,4 +48,9 @@ species Le_Senat_S (
 
   let ne_peut_pas_etre_dissous (lsen : Self) = false;
 
+  signature le_president_de_la_republique_fait_une_declaration_devant_le_senat : Self -> bool;
+
+  signature le_senat_debat_sur_un_texte : Self -> bool;
+
+  signature le_senat_examine_une_proposition_de_loi : Self -> bool;
 end;;

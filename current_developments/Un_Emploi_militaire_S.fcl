@@ -20,4 +20,5 @@ species Un_Emploi_militaire_S (
 
   signature le_president_de_la_republique_a_nomme_aux_emplois_militaires_de_l_etat : Self -> bool;
 
+  signature le_premier_ministre_a_nomme_aux_emplois_militaires_de_l_etat : Self -> bool;
 end;;

@@ -48,4 +48,14 @@ species Le_Parlement_S (
 
   signature le_parlement_propose_un_referendum : Self -> UScr -> bool;
 
+  signature le_president_de_la_republique_fait_une_declaration_devant_le_congres : Self -> bool;
+
+  signature le_congres_debat_sur_un_texte_hors_la_presence_du_president_de_la_republique : Self -> bool;
+
+  signature le_congres_vote_apres_un_debat : Self -> bool;
+
+  signature le_gouvernement_est_responsable_devant_le_parlement : Self -> bool;
+
+  signature le_parlement_evalue_les_politiques_publiques : Self -> bool;
+
 end;;

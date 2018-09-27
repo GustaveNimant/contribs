@@ -35,7 +35,7 @@ species Un_Francais_subtype_S (
   Super_set is Finite_Set_S(Super)
 ) =
     
-  inherit Un_Etre_humain_subtype_S (URac, UOri, URel, Sub, Sub_set, Super, Super_set);
+  inherit Un_Etre_humain_subtype_S (Sub, Sub_set, Super, Super_set);
 
   let un_francais (sub) =
     to_super (sub);

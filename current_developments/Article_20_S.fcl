@@ -63,22 +63,27 @@ species Article_20_S (
   ) =
 
 -- Titre III Article 20-a-1 - Le Gouvernement détermine la politique de la nation.
-
-  signature le_gouvernement_determine_la_politique_de_la_nation : LGou -> LPna -> bool;
+  property article_20_a_1 : all lpna : LPna,
+  LPna!le_gouvernement_determine_la_politique_de_la_nation (lpna);
 
 -- Titre III Article 20-a-2 - Le Gouvernement conduit la politique de la nation.
 
-  signature le_gouvernement_conduit_la_politique_de_la_nation : LGou -> LPna -> bool;
+  property article_20_a_2 : all lpna : LPna,
+  LPna!le_gouvernement_conduit_la_politique_de_la_nation (lpna);
 
 -- Titre III Article 20-b-1 - Il dispose de l'administration
 
-  signature le_gouvernement_dispose_de_l_administration : LGou -> LAmi -> bool;
+  property article_20_b_1 : all lami : LAmi,
+  LAmi!le_gouvernement_dispose_de_l_administration (lami);
 
 -- Titre III Article 20-b-2 - Il dispose de la force armée.
 
-  signature le_gouvernement_dispose_de_la_force_armee : LGou -> LFar -> bool;
+  property article_20_b_2 : all lfar : LFar,
+  LFar!le_gouvernement_dispose_de_la_force_armee (lfar);
 
 -- Titre III Article 20-c - Il est responsable devant le Parlement dans les conditions et suivant les procédures prévues aux articles 49 et 50.
 
-  signature le_gouvernement_est_responsable_devant_le_parlement : LGou -> LPar -> bool;
+  property article_20_c : all lpar : LPar,
+  LPar!le_gouvernement_est_responsable_devant_le_parlement (lpar);
+
 end;;

@@ -28,4 +28,5 @@ species Un_Acte_du_president_de_la_republique_S =
  
   signature le_president_de_la_republique_prend_les_mesures_exigees_par_l_article_16 : Self -> bool;
 
+  signature un_acte_du_president_de_la_republique_selon_l_article_19 : Self -> bool;
 end;;

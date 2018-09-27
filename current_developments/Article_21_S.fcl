@@ -5,11 +5,10 @@ open "La_Defense_nationale_S";;
 open "La_Politique_de_la_nation_S";;
 open "Le_Gouvernement_S";;
 open "Le_Parlement_S";;
+open "Le_Pouvoir_reglementaire_S";;
 open "Le_Senat_S";;
 open "Un_Acte_de_l_executif_S";;
 open "Un_Bureau_de_vote_S";;
-open "Un_Comite_de_la_defense_nationale_S";;
-open "Un_Conseil_de_la_defense_nationale_S";;
 open "Un_Decret_S";;
 open "Un_Depute_S";;
 open "Un_Elu_S";;
@@ -51,10 +50,9 @@ species Article_21_S (
   UOrd is Une_Ordonnance_S,
   UDec is Un_Decret_S,
   LDna is La_Defense_nationale_S,
-  UCon is Un_Conseil_de_la_defense_nationale_S,
-  UCom is Un_Comite_de_la_defense_nationale_S,
   UTfr is Un_Territoire_francais_S,
   UScr is Un_Scrutin_S,
+  LPrg is Le_Pouvoir_reglementaire_S,
   UBvo is Un_Bureau_de_vote_S (UTfr),
   UAex is Un_Acte_de_l_executif_S,
   LPna is La_Politique_de_la_nation_S (UAex),
@@ -76,42 +74,53 @@ species Article_21_S (
 ) =
 
 -- Titre III Article 21-a-1 - Le Premier ministre dirige l'action du Gouvernement. 
-
-  signature le_premier_ministre_dirige_l_action_du_gouvernement : UPmi -> LPna -> bool; 
+  property article_21_a_1 : all lpna : LPna,
+  LPna!le_premier_ministre_dirige_l_action_du_gouvernement (lpna);
 
 -- Titre III Article 21-a-2 - Il est responsable de la défense nationale. 
 
-  signature le_premier_ministre_est_responsable_de_la_defense_nationale : UPmi -> LDna -> bool; 
+  property article_21_a_2 : all ldna : LDna,
+  LDna!le_premier_ministre_est_responsable_de_la_defense_nationale (ldna);
  
 -- Titre III Article 21-a-3 - Il assure l'exécution des lois. 
 
-  signature le_premier_ministre_assure_l_execution_d_une_loi : UPmi -> ULoi -> bool; 
+  property article_21_a_3 : all uloi : ULoi,
+  ULoi!le_premier_ministre_assure_l_execution_d_une_loi (uloi);
 
 -- Titre III Article 21-a-4-1 - Sous réserve des dispositions de l'article 13, il exerce le pouvoir réglementaire
 
-  signature le_premier_ministre_sous_reserve_de_l_article_13_exerce_le_pouvoir_reglementaire : UPmi -> UReg -> bool; 
+  property article_21_a_4_1 : all lprg : LPrg,
+  LPrg!le_premier_ministre_sous_reserve_de_l_article_13_exerce_le_pouvoir_reglementaire (lprg);
 
 -- Titre III Article 21-a-4-2-1 - Sous réserve des dispositions de l'article 13, il nomme aux emplois civils.
 
-  signature le_premier_ministre_nomme_a_un_emploi_civil_selon_l_article_13 : UPmi -> UEci -> bool;
+  property article_21_a_4_2_1 : all ueci : UEci,
+  UEci!le_premier_ministre_a_nomme_aux_emplois_civils_de_l_etat (ueci) ->
+  (~ UEci!le_president_de_la_republique_a_nomme_aux_emplois_civils_de_l_etat (ueci));
 
 -- Titre III Article 21-a-4-2-2 - Sous réserve des dispositions de l'article 13, il nomme aux emplois militaires.
 
-  signature le_premier_ministre_nomme_a_un_emploi_militaire_selon_l_article_13 : UPmi -> UEmi -> bool;
+  property article_21_a_4_2_2 : all uemi : UEmi,
+  UEmi!le_premier_ministre_a_nomme_aux_emplois_militaires_de_l_etat (uemi) ->
+  (~ UEmi!le_president_de_la_republique_a_nomme_aux_emplois_militaires_de_l_etat (uemi));
 
 -- Titre III Article 21-b - Il peut déléguer certains de ses pouvoirs aux ministres.
 
-  signature le_premier_ministre_delegue_un_pouvoir_a_un_ministre : UPmi -> UMin -> bool;
+  property article_21_b : all upmi : UPmi,
+  UPmi!le_premier_ministre_delegue_un_pouvoir_a_un_ministre (upmi);
 
 -- Titre III Article 21-c-1 - Il supplée, le cas échéant, le Président de la République dans la présidence des conseils prévus à l'article 15.
 
-  signature le_premier_ministre_preside_un_conseil_selon_l_article_15 : UPmi -> UCon -> bool;
+  property article_21_c_1 : all ldna : LDna,
+  LDna!le_premier_ministre_preside_un_conseil_de_la_defense_nationale_selon_l_article_15 (ldna) -> 
+  ~ LDna!le_president_de_la_republique_preside_un_conseil_de_la_defense_nationale (ldna);
 
 -- Titre III Article 21-c-2 - Il supplée, le cas échéant, le Président de la République dans la présidence des comités prévus à l'article 15.
 
-  signature le_premier_ministre_preside_un_comite_selon_l_article_15 : UPmi -> UCom -> bool;
+  property article_21_c_2 : all ldna : LDna,
+  LDna!le_premier_ministre_preside_un_comite_de_la_defense_nationale_selon_l_article_15 (ldna) ->
+  ~ LDna!le_president_de_la_republique_preside_un_comite_de_la_defense_nationale (ldna);
 
--- Titre III Article 21-d-2 - Il peut, à titre exceptionnel, le suppléer pour la présidence d'un conseil des ministres en vertu d'une délégation expresse et pour un ordre du jour déterminé.
-
+-- Titre III Article 21-d - Il peut, à titre exceptionnel, le suppléer pour la présidence d'un conseil des ministres en vertu d'une délégation expresse et pour un ordre du jour déterminé.
 
 end;;

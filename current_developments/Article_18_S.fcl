@@ -42,15 +42,27 @@ species Article_18_S (
   LSen is Le_Senat_S (URac, UOri, URel, UTfr, UScr, UBvo, USen, UPar),
   LPar is Le_Parlement_S (URac, UOri, URel, UTfr, UScr, UBvo, UDep, USen, UElu, UPar, LAna, LSen),
   LPre is Le_President_de_la_republique_S (URac, UOri, URel, UTfr, UScr, UBvo, UFra)
-)=
+) =
 
 -- Titre II Article 18-a-1 - Le Président de la République communique avec les deux assemblées du Parlement par des messages qu'il fait lire
 
 -- Titre II Article 18-a-2 - Le Président de la République communique avec les deux assemblées du Parlement par des messages qui ne donnent lieu à aucun débat.
 
+  property article_18_a_1_2 : all lana : LAna, all lsen : LSen,
+  (LAna!le_president_de_la_republique_fait_une_declaration_devant_l_assemblee_nationale (lana) -> 
+  ~ LAna!l_assemblee_nationale_debat_sur_un_texte (lana)) 
+  \/
+  (LSen!le_president_de_la_republique_fait_une_declaration_devant_le_senat (lsen) -> 
+  ~ LSen!le_senat_debat_sur_un_texte (lsen)) ;
+ 
 -- Titre II Article 18-b-1 - Il peut prendre la parole devant le Parlement réuni à cet effet en Congrès. 
 
 -- Titre II Article 18-b-2 - Sa déclaration peut donner lieu, hors sa présence, à un débat qui ne fait l'objet d'aucun vote.
+
+  property article_18_b_1_2 : all lpar : LPar,
+  LPar!le_congres_debat_sur_un_texte_hors_la_presence_du_president_de_la_republique (lpar) ->
+  LPar!le_president_de_la_republique_fait_une_declaration_devant_le_congres (lpar) -> 
+  ~ LPar!le_congres_vote_apres_un_debat (lpar);
 
 -- Titre II Article 18-c - Hors session, les assemblées parlementaires sont réunies spécialement à cet effet.
 
