@@ -1,3 +1,18 @@
+open "basics";;
+
+open "Finite_Set_S";;
+open "Le_President_de_la_republique_S";;
+open "La_Haute_Cour_S";;
+open "Un_Bureau_de_vote_S";;
+open "Un_Elu_S";;
+open "Un_Francais_S";;
+open "Un_Parlementaire_S";;
+open "Un_Scrutin_S";;
+open "Un_Territoire_francais_S";;
+open "Une_Origine_S";;
+open "Une_Race_S";;
+open "Une_Religion_S";;
+
 -- Titre IX Article 68 a - Le Président de la République ne peut être destitué qu'en cas de manquement à ses devoirs manifestement incompatible avec l'exercice de son mandat. La destitution est prononcée par le Parlement constitué en Haute Cour.
 
 -- Titre IX Article 68 b - La proposition de réunion de la Haute Cour adoptée par une des assemblées du Parlement est aussitôt transmise à l'autre qui se prononce dans les quinze jours.
@@ -7,3 +22,23 @@
 -- Titre IX Article 68 d - Les décisions prises en application du présent article le sont à la majorité des deux tiers des membres composant l'assemblée concernée ou la Haute Cour. Toute délégation de vote est interdite. Seuls sont recensés les votes favorables à la proposition de réunion de la Haute Cour ou à la destitution.
 
 -- Titre IX Article 68 e - Une loi organique fixe les conditions d'application du présent article.
+
+species Article_68_S (
+  URac is Une_Race_S,
+  UOri is Une_Origine_S,
+  URel is Une_Religion_S,
+  UTfr is Un_Territoire_francais_S,
+  UScr is Un_Scrutin_S,
+  UBvo is Un_Bureau_de_vote_S (UTfr),
+  UFra is Un_Francais_S (URac, UOri, URel),
+  UPar is Un_Parlementaire_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  LPre is Le_President_de_la_republique_S (URac, UOri, URel, UTfr, UScr, UBvo, UFra),
+  LHco is La_Haute_Cour_S (URac, UOri, URel, UTfr, UScr, UBvo, UFra, UPar, LPre)
+) =
+
+-- Titre IX Article 68 a - Le Président de la République ne peut être destitué qu'en cas de manquement à ses devoirs manifestement incompatible avec l'exercice de son mandat. La destitution est prononcée par le Parlement constitué en Haute Cour.
+    
+  property article_68_a : all lpre : LPre, all lhco : LHco,
+  LHco!la_haute_cour_destitue_le_president_de_la_republique (lhco, lpre);
+
+end;;

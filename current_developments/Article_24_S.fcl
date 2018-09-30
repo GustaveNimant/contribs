@@ -47,6 +47,7 @@ species Article_24_S (
   UOri is Une_Origine_S,
   URel is Une_Religion_S,
   UFra is Un_Francais_S (URac, UOri, URel),
+  UFra_set is Finite_Set_S (UFra),
   UScr is Un_Scrutin_S,
   UTer is Un_Territoire_S,
   UTfr is Un_Territoire_francais_S,
@@ -54,7 +55,7 @@ species Article_24_S (
   UOrd is Une_Ordonnance_S,
   UDec is Un_Decret_S,
   UDpl is Un_Domaine_de_projet_legislatif_S,
-  UBvo is Un_Bureau_de_vote_S (UTer), 
+  UBvo is Un_Bureau_de_vote_S (UTfr), 
   UCel is Un_Citoyen_electeur_S (URac, UOri, URel, UTfr, UScr, UBvo),
   UCel_set is Finite_Set_S (UCel),
   UElu is Un_Elu_S (URac, UOri, URel, UTfr, UScr, UBvo),
@@ -86,13 +87,8 @@ species Article_24_S (
 
   signature les_senateurs : Self -> USen_set;
 
-  signature le_parlement : Self -> LPar;
+  signature les_francais : Self -> UFra_set;
 
-  logical let examine_une_proposition_de_loi (lpar : Self, uplo : UPlo) =
-    LAna!l_assemblee_nationale_examine_une_proposition_de_loi (l_assemblee_nationale (lpar), uplo)
-    /\ 
-    LSen!le_senat_examine_une_proposition_de_loi (le_senat (lpar), uplo);
-  
   -- Titre IV Article 24-a-1 - Le Parlement vote la uloi. 
 
   property article_24_a_1 : all uloi : ULoi, 
@@ -100,33 +96,21 @@ species Article_24_S (
     /\ 
     ULoi!une_loi_est_adoptee_par_le_senat (uloi);
 
-  -- Titre IV Article 24-a-2 - Il contrôle l'action du Gouvernement. 
+  -- Titre IV Article 24-a-2 - Le Parlement contrôle l'action du Gouvernement. 
 
   property article_24_a_2 : all lpar : LPar,
     LPar!le_gouvernement_est_responsable_devant_le_parlement (lpar); 
 
-  -- Titre IV Article 24-a-3 - Il évalue les politiques publiques.
+  -- Titre IV Article 24-a-3 - Le Parlement évalue les politiques publiques.
 
   property article_24_a_3 : all lpar : LPar,
     LPar!le_parlement_evalue_les_politiques_publiques (lpar); 
 
-  -- Titre IV Article 24-b - Il comprend l'Assemblée nationale et le Sénat.
+  -- Titre IV Article 24-b - Le Parlement comprend l'Assemblée nationale et le Sénat.
 
-  let l_UEluOfUSen (usen : USen) : UElu = 
-    UEluOfUPar!to_super (UParOfUSen!to_super (usen));
-  
-  let l_UEluOfUDep (udep : UDep) : UElu = 
-    UEluOfUPar!to_super (UParOfUDep!to_super (udep));
-
-  let les_deputes_comme_UPar_set (lpar : Self) : UPar_set =
-    UParOfUDep!to_super_set (les_deputes (lpar)); 
-  
-  let les_senateurs_comme_UPar_set (lpar : Self) : UPar_set =
-    UParOfUSen!to_super_set (les_senateurs (lpar)); 
-  
-  let le_parlement (lpar : Self) : UPar_set =
-      UPar_set!union (UParOfUDep!to_super_set (les_deputes (lpar)), 
-             UParOfUSen!to_super_set (les_senateurs (lpar))) ;
+  let le_parlement (self : Self) : UPar_set =
+      UPar_set!union (UParOfUDep!to_super_set (les_deputes (self)), 
+                      UParOfUSen!to_super_set (les_senateurs (self))) ;
 
   -- Titre IV Article 24-c-1 - Les députés à l'Assemblée nationale, dont le nombre ne peut excéder cinq cent soixante-dix-sept, ...
 
@@ -148,51 +132,26 @@ species Article_24_S (
 
   -- Titre IV Article 24-d-2 - [ Le Sénat ] ..., est élu au suffrage indirect.
 
-  logical let est_elu_au_suffrage_indirect (lsen : Self, uelu : UElu) = 
-    all usen : USen,
-    UElu!est_elu_par_un_electeur (uelu, uelu) ->
-    UElu!est_un_grand_electeur (uelu);
-  
   property article_24_d : 
   all lsen : LSen, all uelu : UElu,
   (le_nombre_de_senateur_est_inferieur_ou_egal_a_348 (lsen)) 
   /\
-  (est_elu_au_suffrage_indirect (lsen, uelu));
+  (UElu!est_elu_au_suffrage_indirect (uelu));
 
   -- Titre IV Article 24-c-2 Il assure la représentation des collectivités territoriales de la République.
 
-  -- Titre IV Article 24-e-1 - Les Français établis hors de France sont représentés à l'Assemblée nationale ...
+  -- Titre IV Article 24-e - Les Français établis hors de France sont représentés à l'Assemblée nationale et  au Sénat.
 
-  logical let un_francais_etabli_hors_de_france_est_represente_a_l_assemblee_nationale =
-     all udep : UDep, all ufra : UFra, all uter : UTer,
-     (UFra!reside_en_permanence_a_l_etranger (ufra)) 
-     /\ 
-     (UDep!represente_un_francais (udep, ufra));
+  logical let les_francais_etablis_hors_de_france (self : Self) =
+    all ufra : UFra,
+    UFra_set!is_a_member_of (ufra, les_francais (self))
+    /\
+    UFra!reside_en_permanence_a_l_etranger (ufra);
 
-  property article_24_e_1 : un_francais_etabli_hors_de_france_est_represente_a_l_assemblee_nationale ;
-
-  -- Titre IV Article 24-e-2 - Les Français établis hors de France sont représentés ... au Sénat.
-
-  logical let un_francais_etabli_hors_de_france_est_represente_au_senat =
-     all usen : USen, all ufra : UFra, all uter : UTer,
-     (UFra!reside_en_permanence_a_l_etranger (ufra) 
-     /\ 
-     (USen!represente_un_francais (usen, ufra));
-
-  property article_24_e_1 : un_francais_etabli_hors_de_france_est_represente_au_senat ;
-
-(*
-  property est_elu_par_une_senatoriale : all lsen : Self, all uscr : UScr,
-        est_elu_par_le_scrutin (lsen, uscr) ->
-        UScr!est_une_election_senatoriale (uscr);
-*)
-  
-  -- Titre IV Article 24-e - Les Français établis hors de France sont représentés à l'Assemblée nationale et au Sénat.
-
-  logical let un_francais_etabli_hors_de_france_est_represente_au_parlement =
-     all upar : UPar, all ufra : UFra, all uter : UTer,
-     (UFra!est_etabli_hors_de_france (ufra, uter)) 
-     /\ 
-     (UPar!represente_un_francais (upar, ufra));
+  property article_24_e : all self : Self, all udep : UDep, all usen : USen,
+  les_francais_etablis_hors_de_france (self) ->
+  ((UDep!un_depute_represente_des_francais (udep)) 
+  /\
+  (USen!un_senateur_represente_des_francais (usen)));
 
 end;;
