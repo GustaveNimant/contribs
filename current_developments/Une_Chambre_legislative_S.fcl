@@ -46,4 +46,5 @@ species Une_Chambre_legislative_S (
 
   signature est_le_senat : Self -> bool;
 
+  
 end;;

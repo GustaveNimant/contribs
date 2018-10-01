@@ -48,4 +48,9 @@ species L_Assemblee_nationale_S (
   signature l_assemblee_nationale_debat_sur_un_texte : Self -> bool;
 
   signature l_assemblee_nationale_examine_une_proposition_de_loi : Self -> bool;
+
+  signature l_assemblee_nationale_suspend_les_poursuites_judiciaires_d_un_depute : UDep -> bool;
+
+  signature la_majorite_des_deputes_demande_la_reunion_du_parlement_en_session_extraordinaire : Self -> bool;
+
 end;;

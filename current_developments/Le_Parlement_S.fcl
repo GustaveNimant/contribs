@@ -58,4 +58,6 @@ species Le_Parlement_S (
 
   signature le_parlement_evalue_les_politiques_publiques : Self -> bool;
 
+  signature le_parlement_se_reunit_sur_un_ordre_du_jour_determine : Self -> bool;
+
 end;;

@@ -40,4 +40,25 @@ species Un_Parlementaire_S (
 
   signature est_un_senateur : Self -> bool;
 
+  signature ne_peut_etre_poursuivi_a_l_occasion_des_opinions_emis_par_lui_dans_l_exercice_de_ses_fonctions : Self -> bool;
+
+  signature ne_peut_etre_recherche_a_l_occasion_des_opinions_emis_par_lui_dans_l_exercice_de_ses_fonctions : Self -> bool;
+
+  signature ne_peut_etre_arrete_a_l_occasion_des_opinions_emis_par_lui_dans_l_exercice_de_ses_fonctions : Self -> bool;
+
+  signature ne_peut_etre_detenu_a_l_occasion_des_opinions_emis_par_lui_dans_l_exercice_de_ses_fonctions : Self -> bool;
+
+  signature ne_peut_etre_juge_a_l_occasion_des_opinions_emis_par_lui_dans_l_exercice_de_ses_fonctions : Self -> bool;
+
+  signature ne_peut_etre_poursuivi_a_l_occasion_des_votes_emis_par_lui_dans_l_exercice_de_ses_fonctions : Self -> bool;
+
+  signature ne_peut_etre_recherche_a_l_occasion_des_votes_emis_par_lui_dans_l_exercice_de_ses_fonctions : Self -> bool;
+
+  signature ne_peut_etre_arrete_a_l_occasion_des_votes_emis_par_lui_dans_l_exercice_de_ses_fonctions : Self -> bool;
+
+  signature ne_peut_etre_detenu_a_l_occasion_des_votes_emis_par_lui_dans_l_exercice_de_ses_fonctions : Self -> bool;
+
+  signature ne_peut_etre_juge_a_l_occasion_des_votes_emis_par_lui_dans_l_exercice_de_ses_fonctions : Self -> bool;
+
+
 end;;

@@ -48,6 +48,8 @@ species Un_Depute_S (
 
   signature un_depute_represente_des_francais : Self -> bool; 
 
+  signature un_depute_est_poursuivi_en_justice : Self -> bool; 
+
   signature le_president_de_l_assemblee_nationale_a_ete_consulte_par_le_president_de_la_republique : Self -> bool;
 
   

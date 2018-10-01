@@ -1,0 +1,49 @@
+open "basics";;
+
+open "Finite_Set_S";;
+open "L_Assemblee_nationale_S";;
+open "Le_Parlement_S";;
+open "Le_Senat_S";;
+open "Un_Bureau_de_vote_S";;
+open "Un_Depute_S";;
+open "Un_Elu_S";;
+open "Un_Parlementaire_S";;
+open "Un_Premier_ministre_S";;
+open "Un_Scrutin_S";;
+open "Un_Senateur_S";;
+open "Un_Territoire_francais_S";;
+open "Une_Origine_S";;
+open "Une_Race_S";;
+open "Une_Religion_S";;
+
+-- Documentation : 
+ 
+species Article_29_S (
+  URac is Une_Race_S,
+  UOri is Une_Origine_S,
+  URel is Une_Religion_S,
+  UTfr is Un_Territoire_francais_S,
+  UScr is Un_Scrutin_S,
+  UBvo is Un_Bureau_de_vote_S (UTfr), 
+  UDep is Un_Depute_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  USen is Un_Senateur_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UElu is Un_Elu_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UPar is Un_Parlementaire_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UPmi is Un_Premier_ministre_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  LAna is L_Assemblee_nationale_S (URac, UOri, URel, UTfr, UScr, UBvo, UDep, UPar),
+  LSen is Le_Senat_S (URac, UOri, URel, UTfr, UScr, UBvo, USen, UPar),
+  LPar is Le_Parlement_S (URac, UOri, URel, UTfr, UScr, UBvo, UDep, USen, UElu, UPar, LAna, LSen)
+) =
+-- Titre IV Article 29-a - Le Parlement est réuni en session extraordinaire à la demande du Premier ministre ou de la majorité des membres composant l'Assemblée nationale, sur un ordre du jour déterminé.
+
+  property article_29_a_1 : all lpar : LPar,
+  ((all upmi : UPmi, UPmi!le_premier_ministre_demande_la_reunion_du_parlement_en_session_extraordinaire (upmi))
+  \/
+  (all lana: LAna, LAna!la_majorite_des_deputes_demande_la_reunion_du_parlement_en_session_extraordinaire (lana))) -> 
+  (LPar!le_parlement_se_reunit_sur_un_ordre_du_jour_determine (lpar));
+
+-- Titre IV Article 29-b - Lorsque la session extraordinaire est tenue à la demande des membres de l'Assemblée nationale, le décret de clôture intervient dès que le Parlement a épuisé l'ordre du jour pour lequel il a été convoqué et au plus tard douze jours à compter de sa réunion.
+
+-- Titre IV Article 29-c - Le Premier ministre peut seul demander une nouvelle session avant l'expiration du mois qui suit le décret de clôture.
+
+end;;
