@@ -40,4 +40,13 @@ species Un_Membre_du_gouvernement_S (
   signature est_nomme_par_le_president_de_la_republique : Self -> bool;
 
   signature est_demissionne_par_le_president_de_la_republique : Self -> bool;
+
+  signature un_membre_du_gouvernement_a_acces_au_senat : Self -> bool;
+
+  signature un_membre_du_gouvernement_est_entendu_par_le_senat : Self -> bool;
+
+  signature un_membre_du_gouvernement_a_acces_a_l_assemblee_nationale : Self -> bool;
+
+  signature un_membre_du_gouvernement_est_entendu_par_l_assemblee_nationale : Self -> bool;
+
 end;;

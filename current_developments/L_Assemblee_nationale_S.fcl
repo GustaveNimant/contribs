@@ -52,5 +52,10 @@ species L_Assemblee_nationale_S (
   signature l_assemblee_nationale_suspend_les_poursuites_judiciaires_d_un_depute : UDep -> bool;
 
   signature la_majorite_des_deputes_demande_la_reunion_du_parlement_en_session_extraordinaire : Self -> bool;
+  
+  signature les_seances_de_l_assemblee_nationale_sont_publiques : Self -> bool;
 
+  signature les_comptes_rendus_des_seances_de_l_assemblee_nationale_sont_publies_au_journal_officiel : Self -> bool;
+
+  signature l_assemblee_nationale_vote_des_resolutions_dans_les_conditions_fixees_par_la_loi_organique : Self -> bool;
 end;;

@@ -1,6 +1,6 @@
--- InH: Une_Loi_ordinaire_S  Une_Loi_organique_S  Une_Loi_constitutionnelle_S
--- InH:                    \          |           /
--- InH:                     v         v          v
+-- InH: Une_Loi_ordinaire_S  Une_Loi_organique_S  Une_Loi_de_programmation  Une_Loi_constitutionnelle_S
+-- InH:                    \          |           /                           /
+-- InH:                     v         v          v                           v
 -- InH: Un_Projet_de_loi_S        Une_Loi_S           Une_Proposition_de_loi_S   Un_Acte_de_l_executif_S  
 -- InH:         \                     |               /                              /
 -- InH:          v                    v              v                              v

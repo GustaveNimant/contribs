@@ -1,6 +1,20 @@
 open "basics";;
 
+open "L_Assemblee_nationale_S";;
+open "Le_Parlement_S";;
+open "Le_Senat_S";;
+open "Un_Bureau_de_vote_S";;
+open "Un_Depute_S";;
+open "Un_Elu_S";;
+open "Un_Parlementaire_S";;
+open "Un_Scrutin_S";;
+open "Un_Senateur_S";;
+open "Un_Territoire_francais_S";;
+open "Un_Texte_legislatif_S";;
 open "Une_Loi_S";;
+open "Une_Origine_S";;
+open "Une_Race_S";;
+open "Une_Religion_S";;
 
 -- Documentation : Wikipédia :
 -- Documentation : Une loi organique est une loi relative à l'organisation des pouvoirs administratifs (Wikipédia).
@@ -8,16 +22,32 @@ open "Une_Loi_S";;
 -- Documentation : Une loi organique est, dans la hiérarchie des normes, placée en dessous de la Constitution mais au-dessus des lois ordinaires.
 -- Documentation : Les lois organiques autorisent une rédaction « à trous » de la Constitution qui contribue à sa pérennité. En effet, lorsqu'une disposition constitutionnelle est de nature à changer avec le temps, une loi organique est ainsi prévue pour déléguer au Parlement le pouvoir de la modifier. En ce sens, une loi organique est à la Constitution ce qu'un décret d'application est à une loi.
 
+-- InH: Une_Loi_ordinaire_S  Une_Loi_organique_S  Une_Loi_de_programmation  Une_Loi_constitutionnelle_S
+-- InH:                    \          |           /                           /
+-- InH:                     v         v          v                           v
+-- InH: Un_Projet_de_loi_S        Une_Loi_S           Une_Proposition_de_loi_S   Un_Acte_de_l_executif_S  
+-- InH:         \                     |               /                              /
+-- InH:          v                    v              v                              v
+-- InH:                      Un_Texte_legislatif_S
 
--- InH:            Une_Loi_ordinaire_S  Une_Loi_organique_S  Une_Loi_constitutionnelle_S
--- InH:                             \      /
--- InH:                              v   v
--- InH: Une_Proposition_de_loi_S  Une_Loi_S
--- InH:         \                    /
--- InH:          v                  v
--- InH:          Un_Texte_legislatif_S
-species Une_Loi_ordinaire_S =
+species Une_Loi_ordinaire_S (
+  URac is Une_Race_S,
+  UOri is Une_Origine_S,
+  URel is Une_Religion_S,
+  UTfr is Un_Territoire_francais_S,
+  UScr is Un_Scrutin_S,
+  UBvo is Un_Bureau_de_vote_S (UTfr), 
+  UDep is Un_Depute_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  USen is Un_Senateur_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UElu is Un_Elu_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UPar is Un_Parlementaire_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  LAna is L_Assemblee_nationale_S (URac, UOri, URel, UTfr, UScr, UBvo, UDep, UPar),
+  LSen is Le_Senat_S (URac, UOri, URel, UTfr, UScr, UBvo, USen, UPar),
+  LPar is Le_Parlement_S (URac, UOri, URel, UTfr, UScr, UBvo, UDep, USen, UElu, UPar, LAna, LSen)
+  ) = 
 
-  inherit Une_Loi_S;
+  inherit Une_Loi_S (URac, UOri, URel, UTfr, UScr, UBvo, UDep, USen, UElu, UPar, LAna, LSen, LPar);
+
+  signature une_loi_ordinaire_fixe_les_regles_concernant_les_droits_civiques_accordees_aux_citoyens_pour_l_exercice_des_libertes_publiques : Self -> bool;
 
 end;;

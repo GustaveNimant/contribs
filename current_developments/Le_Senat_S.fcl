@@ -46,7 +46,7 @@ species Le_Senat_S (
     
   inherit Une_Chambre_legislative_S (URac, UOri, URel, UTfr, UScr, UBvo, UPar);
 
-  let le_senat_ne_peut_pas_etre_dissous (lsen : Self) = false;
+  signature le_senat_ne_peut_pas_etre_dissous : Self -> bool;
 
   signature le_president_de_la_republique_fait_une_declaration_devant_le_senat : Self -> bool;
 
@@ -55,5 +55,13 @@ species Le_Senat_S (
   signature le_senat_examine_une_proposition_de_loi : Self -> bool;
 
   signature le_senat_suspend_les_poursuites_judiciaires_d_un_senateur : USen -> bool;
+
+  signature les_seances_du_senat_sont_publiques : Self -> bool;
+
+  signature les_comptes_rendus_des_seances_du_senat_sont_publies_au_journal_officiel : Self -> bool;
+
+  signature le_senat_vote_des_resolutions_dans_les_conditions_fixees_par_la_loi_organique : Self -> bool;
+
+
 
 end;;
