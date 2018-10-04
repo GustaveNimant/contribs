@@ -57,5 +57,6 @@ species L_Assemblee_nationale_S (
 
   signature les_comptes_rendus_des_seances_de_l_assemblee_nationale_sont_publies_au_journal_officiel : Self -> bool;
 
-  signature l_assemblee_nationale_vote_des_resolutions_dans_les_conditions_fixees_par_la_loi_organique : Self -> bool;
+  signature l_assemblee_nationale_autorise_une_declaration_de_guerre : Self -> bool;
+
 end;;

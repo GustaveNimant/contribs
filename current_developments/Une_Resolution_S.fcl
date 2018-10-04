@@ -1,0 +1,45 @@
+open "basics";;
+ 
+open "L_Assemblee_nationale_S";;
+open "Le_Senat_S";;
+open "Un_Bureau_de_vote_S";;
+open "Un_Depute_S";;
+open "Un_Elu_S";;
+open "Un_Parlementaire_S";;
+open "Un_Scrutin_S";;
+open "Un_Senateur_S";;
+open "Un_Territoire_francais_S";;
+open "Un_Texte_legislatif_S";;
+open "Une_Loi_S";;
+open "Une_Loi_ordinaire_S";;
+open "Une_Origine_S";;
+open "Une_Race_S";;
+open "Une_Religion_S";;
+
+-- Documentation : http://www.toupie.org/Dictionnaire/Resolution.htm
+-- Documentation : Une résolution est une proposition retenue ou une décision prise par une assemblée, par exemple par le congrès d'un parti politique, sur un sujet qui lui est soumis.
+
+-- Documentation : Une proposition de résolution est un texte rédigé par une commission qui clôture les débats  d'une assemblée en résumant les débats et qui est soumise à un vote décisif.
+
+-- Documentation : En droit constitutionnel, une résolution est une décision prise ou un avis exprimé par l'une des deux Chambres du Parlement, en dehors de toute procédure législative et n'ayant pas force exécutoire.
+
+species Une_Resolution_S (
+  URac is Une_Race_S,
+  UOri is Une_Origine_S,
+  URel is Une_Religion_S,
+  UTfr is Un_Territoire_francais_S,
+  UScr is Un_Scrutin_S,
+  UBvo is Un_Bureau_de_vote_S (UTfr), 
+  UDep is Un_Depute_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  USen is Un_Senateur_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UElu is Un_Elu_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UPar is Un_Parlementaire_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  LAna is L_Assemblee_nationale_S (URac, UOri, URel, UTfr, UScr, UBvo, UDep, UPar),
+  LSen is Le_Senat_S (URac, UOri, URel, UTfr, UScr, UBvo, USen, UPar)
+) =
+
+  signature l_assemblee_nationale_vote_des_resolutions_dans_les_conditions_fixees_par_la_loi_organique : Self -> LAna -> bool;
+
+  signature le_senat_vote_des_resolutions_dans_les_conditions_fixees_par_la_loi_organique : Self -> LSen -> bool;
+
+end;;

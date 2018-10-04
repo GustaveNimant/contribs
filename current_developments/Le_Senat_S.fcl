@@ -60,8 +60,5 @@ species Le_Senat_S (
 
   signature les_comptes_rendus_des_seances_du_senat_sont_publies_au_journal_officiel : Self -> bool;
 
-  signature le_senat_vote_des_resolutions_dans_les_conditions_fixees_par_la_loi_organique : Self -> bool;
-
-
-
+  signature le_senat_autorise_une_declaration_de_guerre : Self -> bool;
 end;;

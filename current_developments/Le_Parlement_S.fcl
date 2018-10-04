@@ -60,4 +60,11 @@ species Le_Parlement_S (
 
   signature le_parlement_se_reunit_sur_un_ordre_du_jour_determine : Self -> bool;
 
+  signature le_parlement_proroge_un_etat_de_siege : Self -> bool;
+
+  logical let le_parlement_autorise_une_declaration_de_guerre (self : Self) = 
+    LAna!l_assemblee_nationale_autorise_une_declaration_de_guerre (l_assemblee_nationale (self)) 
+    /\
+    LSen!le_senat_autorise_une_declaration_de_guerre (le_senat (self));
+ 
 end;;

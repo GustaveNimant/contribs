@@ -31,4 +31,6 @@ species Le_Conseil_des_ministres_S (
 
   signature le_president_de_la_republique_preside_le_conseil_des_ministres : Self -> bool;
 
+  signature le_conseil_des_ministres_decrete_un_etat_de_siege : Self -> bool;
+
 end;;

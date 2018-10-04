@@ -109,6 +109,9 @@ print_opens (@open_file_l);
 if ($species_name eq "Le_Pouvoir_reglementaire_S") {
     $abbreviated_species_name = "LPrg";
 }
+elsif ($species_name eq "Une_Proposition_de_resolution_S") {
+    $abbreviated_species_name = "UPrs";
+}
 else {
     $abbreviated_species_name = abbreviated_name ($species_name);
 }

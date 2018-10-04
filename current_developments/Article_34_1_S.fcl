@@ -13,8 +13,10 @@ open "Un_Texte_legislatif_S";;
 open "Une_Loi_S";;
 open "Une_Loi_ordinaire_S";;
 open "Une_Origine_S";;
+open "Une_Proposition_de_resolution_S";;
 open "Une_Race_S";;
 open "Une_Religion_S";;
+open "Une_Resolution_S";;
 
 -- Documentation : 
  
@@ -30,18 +32,33 @@ species Article_34_1_S (
   UElu is Un_Elu_S (URac, UOri, URel, UTfr, UScr, UBvo),
   UPar is Un_Parlementaire_S (URac, UOri, URel, UTfr, UScr, UBvo),
   LAna is L_Assemblee_nationale_S (URac, UOri, URel, UTfr, UScr, UBvo, UDep, UPar),
-  LSen is Le_Senat_S (URac, UOri, URel, UTfr, UScr, UBvo, USen, UPar)
+  LSen is Le_Senat_S (URac, UOri, URel, UTfr, UScr, UBvo, USen, UPar),
+  URes is Une_Resolution_S (URac, UOri, URel, UTfr, UScr, UBvo, UDep, USen, UElu, UPar, LAna, LSen),
+  UPrs is Une_Proposition_de_resolution_S (URac, UOri, URel, UTfr, UScr, UBvo, UDep, USen, UElu, UPar, LAna, LSen)
 ) =
 
 -- Titre V Article_34-1-a - Les assemblées peuvent voter des résolutions dans les conditions fixées par la loi organique.
 
-  property article_34_1_a_1 : all lana : LAna,
-  LAna!l_assemblee_nationale_vote_des_resolutions_dans_les_conditions_fixees_par_la_loi_organique (lana);
+  property article_34_1_a_1 : all ures : URes, all lana : LAna,
+  URes!l_assemblee_nationale_vote_des_resolutions_dans_les_conditions_fixees_par_la_loi_organique (ures, lana);
 
-  property article_34_1_2 : all lsen : LSen,
-  LSen!le_senat_vote_des_resolutions_dans_les_conditions_fixees_par_la_loi_organique (lsen);
+  property article_34_1_a_2 : all ures : URes, all lsen : LSen,
+  URes!le_senat_vote_des_resolutions_dans_les_conditions_fixees_par_la_loi_organique (ures, lsen);
   
 -- Titre V Article_34-1-b - Sont irrecevables et ne peuvent être inscrites à l'ordre du jour les propositions de résolution dont le Gouvernement estime que leur adoption ou leur rejet serait de nature à mettre en cause sa responsabilité ou qu'elles contiennent des injonctions à son égard.
 
+  property article_34_1_b_1 : all uprs : UPrs, all lana : LAna, 
+  UPrs!une_proposition_de_resolution_de_l_assemblee_nationale_est_inscrite_a_l_ordre_du_jour (uprs, lana) ->
+  (UPrs!une_proposition_de_resolution_de_l_assemblee_nationale_met_en_cause_la_responsabilite_du_gouvernement (uprs, lana) 
+  \/
+  UPrs!une_proposition_de_resolution_de_l_assemblee_nationale_contient_des_injonctions_l_egard_du_gouvernement (uprs, lana)) ->
+  (~ UPrs!une_proposition_de_resolution_de_l_assemblee_nationale_est_recevable (uprs, lana));
+
+  property article_34_1_b_2 : all uprs : UPrs, all lsen : LSen, 
+  UPrs!une_proposition_de_resolution_du_senat_est_inscrite_a_l_ordre_du_jour (uprs, lsen) ->
+  (UPrs!une_proposition_de_resolution_du_senat_met_en_cause_la_responsabilite_du_gouvernement (uprs, lsen) 
+  \/
+  UPrs!une_proposition_de_resolution_du_senat_contient_des_injonctions_l_egard_du_gouvernement (uprs, lsen)) ->
+  (~ UPrs!une_proposition_de_resolution_du_senat_est_recevable (uprs, lsen));
 
 end;;
