@@ -24,4 +24,5 @@ species Une_Ordonnance_S =
 
   signature le_conseil_des_ministres_a_delibere_sur_une_ordonnance : Self -> bool;
 
+  signature une_ordonnance_est_ratifiee_de_maniere_expresse : Self -> bool;
 end;;

@@ -71,4 +71,7 @@ species Un_Projet_de_loi_S (
   inherit Un_Projet_legislatif_S (URac, UOri, URel, UTle, UOrd, UDec, UTfr, UScr, UDpl, UBvo, UFra, UCel, UDep, USen, LEle, UElu, UPar, LAna, LSen, LPar);
 
   signature un_projet_de_loi_est_fait_par_le_gouvernement : Self -> LGou -> bool;
+
+  signature un_projet_de_loi_de_ratification_d_une_ordonnance_est_fait_par_le_gouvernement : Self -> UOrd -> LGou -> bool;
+
 end;;
