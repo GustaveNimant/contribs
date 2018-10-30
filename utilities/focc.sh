@@ -32,6 +32,6 @@ do
 done
 echo "" >> files_fcl.mk
 
-rm build.bin;make
+rm -f build.bin;make
 exit;
 

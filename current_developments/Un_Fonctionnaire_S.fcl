@@ -10,7 +10,7 @@ species Un_Fonctionnaire_S (
   UOri is Une_Origine_S,
   URel is Une_Religion_S
   ) =
-
-  inherit Un_Francais_S (URac, UOri, URel);
+    
+    inherit Un_Francais_S (URac, UOri, URel);
 
 end;;
