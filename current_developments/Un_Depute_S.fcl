@@ -36,21 +36,19 @@ species Un_Depute_S (
   
   inherit Un_Parlementaire_S (URac, UOri, URel, UTfr, UScr, UBvo);
   
-  let est_un_depute (self : Self) = true;
-
-  let est_un_senateur (self : Self) = false;
-
-  logical let est_elu_au_suffrage_direct (self : Self, uscr : UScr) =
+  logical let un_depute_est_elu_au_suffrage_direct (self : Self, uscr : UScr) =
         est_elu_par_le_scrutin (self, uscr) ->
         UScr!est_une_election_legislative (uscr);
 
-  signature est_le_president_de_l_assemblee_nationale : Self -> bool;
+  signature un_depute_est_le_president_de_l_assemblee_nationale : Self -> bool;
 
   signature un_depute_represente_des_francais : Self -> bool; 
 
   signature un_depute_est_poursuivi_en_justice : Self -> bool; 
 
-  signature le_president_de_l_assemblee_nationale_a_ete_consulte_par_le_president_de_la_republique : Self -> bool;
+  logical let le_president_de_l_assemblee_nationale_a_ete_consulte_par_le_president_de_la_republique (self : Self) =
+    un_depute_est_le_president_de_l_assemblee_nationale (self);
+    
 
   
 end;;

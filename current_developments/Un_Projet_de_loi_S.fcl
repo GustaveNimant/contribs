@@ -85,5 +85,8 @@ species Un_Projet_de_loi_S (
   signature un_projet_de_loi_de_ratification_d_une_ordonnance_est_fait_par_le_gouvernement : Self -> UOrd -> LGou -> bool;
 
   signature un_projet_de_loi_est_delibere_en_conseil_des_ministres_apres_avis_du_conseil_d_etat : Self -> LCmi -> LCet -> bool;
-  
+
+  signature un_projet_de_loi_est_depose_sur_le_bureau_de_l_assemblee_nationale : Self -> LAna -> bool;
+
+  signature un_projet_de_loi_est_depose_sur_le_bureau_du_senat  : Self -> LSen -> bool;
 end;;

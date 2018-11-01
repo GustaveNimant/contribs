@@ -1,0 +1,56 @@
+open "basics";;
+
+open "Le_Conseil_constitutionnel_S";;
+open "Le_Gouvernement_S";;
+open "Les_Finances_publiques_S";;
+open "Un_Amendement_S";;
+open "Un_Bureau_de_vote_S";;
+open "Un_Decret_S";;
+open "Un_Depute_S";;
+open "Un_Membre_du_gouvernement_S";;
+open "Un_Organe_deliberant_S";;
+open "Un_Scrutin_S";;
+open "Un_Senateur_S";;
+open "Un_Territoire_francais_S";;
+open "Un_Texte_legislatif_S";;
+open "Une_Ordonnance_S";;
+open "Une_Origine_S";;
+open "Une_Race_S";;
+open "Une_Religion_S";;
+
+-- Documentation : 
+
+species Article_41_S (
+  URac is Une_Race_S,
+  UOri is Une_Origine_S,
+  URel is Une_Religion_S,
+  UTfr is Un_Territoire_francais_S,
+  UScr is Un_Scrutin_S,
+  UTle is Un_Texte_legislatif_S,
+  UOrd is Une_Ordonnance_S,
+  UDec is Un_Decret_S,
+  LCco is Le_Conseil_constitutionnel_S ,
+  UBvo is Un_Bureau_de_vote_S (UTfr),
+  UDep is Un_Depute_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  USen is Un_Senateur_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UMgo is Un_Membre_du_gouvernement_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UOde is Un_Organe_deliberant_S (UTle),
+  LGou is Le_Gouvernement_S (URac, UOri, URel, UTle, UOrd, UDec, UTfr, UScr, UBvo, UOde, UMgo),
+  UAme is Un_Amendement_S (URac, UOri, URel, UTle, UOrd, UDec, UTfr, UScr, UBvo, UOde, USen, UDep, UMgo, LGou)
+) =
+
+-- Titre V Article 41-a - S'il apparaît au cours de la procédure législative qu'une proposition ou un amendement n'est pas du domaine de la loi ou est contraire à une délégation accordée en vertu de l'article 38, le Gouvernement ou le président de l'assemblée saisie peut opposer l'irrecevabilité.
+  
+  property article_41_a : all uame : UAme, all udep : UDep, all usen : USen,
+  ((~ UAme!un_amendement_est_recevable_par_le_president_de_l_assemblee_nationale (uame, udep))
+  \/
+  (~ UAme!un_amendement_est_recevable_par_le_president_du_senat (uame, usen))) 
+  <-> 
+  ((~ UAme!un_amendement_est_du_domaine_de_la_loi (uame))
+  \/
+  UAme!un_amendement_est_contraire_a_une_delegation_accordee_en_vertu_de_l_article_38 (uame));
+
+-- Titre V Article 41-b - En cas de désaccord entre le Gouvernement et le président de l'assemblée intéressée, le Conseil constitutionnel, à la demande de l'un ou de l'autre, statue dans un délai de huit jours.
+
+
+end;;

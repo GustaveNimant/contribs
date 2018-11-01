@@ -74,14 +74,16 @@ species Article_39_S (
   property article_39_a : all uloi : ULoi, all upmi : UPmi, all upar : UPar,
   ULoi!l_initiative_des_lois_appartient_concurremment_au_premier_ministre_et_aux_membres_du_parlement (uloi, upmi, upar);
 
-
 -- Titre V Article-39-b-1-1 - Les projets de loi sont délibérés en conseil des ministres après avis du Conseil d'État
 
-  property article_39_b_1_1 : all uplo : UPlo, all lcmi : LCmi, all lcet : LCet,
-  UPlo!un_projet_de_loi_est_delibere_en_conseil_des_ministres_apres_avis_du_conseil_d_etat (uplo, lcmi, lcet);
-
-
 -- Titre V Article-39-b-1-2 -   ... et déposés sur le bureau de l'une des deux assemblées. 
+
+  property article_39_b_1 : all uplo : UPlo, all lcmi : LCmi, all lcet : LCet, all lana : LAna, all lsen : LSen,
+  UPlo!un_projet_de_loi_est_delibere_en_conseil_des_ministres_apres_avis_du_conseil_d_etat (uplo, lcmi, lcet)
+  /\
+  ( UPlo!un_projet_de_loi_est_depose_sur_le_bureau_de_l_assemblee_nationale (uplo, lana) 
+    \/
+    UPlo!un_projet_de_loi_est_depose_sur_le_bureau_du_senat (uplo, lsen) );
 
 -- Titre V Article-39-b-2 - Les projets de loi de finances et de loi de financement de la sécurité sociale sont soumis en premier lieu à l'Assemblée nationale. Sans préjudice du premier alinéa de l'article 44, les projets de loi ayant pour principal objet l'organisation des collectivités territoriales sont soumis en premier lieu au Sénat.
 

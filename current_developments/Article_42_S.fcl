@@ -2,7 +2,6 @@ open "basics";;
 
 open "L_Assemblee_nationale_S";;
 open "L_Electorat_S";;
-open "Le_Parlement_S";;
 open "Le_Senat_S";;
 open "Un_Bureau_de_vote_S";;
 open "Un_Citoyen_electeur_S";;
@@ -12,26 +11,21 @@ open "Un_Domaine_de_projet_legislatif_S";;
 open "Un_Elu_S";;
 open "Un_Francais_S";;
 open "Un_Parlementaire_S";;
-open "Un_Projet_legislatif_S";;
 open "Un_Scrutin_S";;
 open "Un_Senateur_S";;
 open "Un_Territoire_francais_S";;
 open "Un_Texte_legislatif_S";;
+open "Une_Commission_parlementaire_S";;
 open "Une_Ordonnance_S";;
 open "Une_Origine_S";;
+open "Une_Proposition_de_loi_S";;
 open "Une_Race_S";;
 open "Une_Religion_S";;
-open "Une_Commission_parlementaire_S";;
+open "Le_Parlement_S";;
 
--- InH: Un_Projet_de_loi_S   Une_Proposition_de_loi_S  
--- InH:         \                  /                 
--- InH:          v                v                 
--- InH: Un_Projet_legislatif_S Une_Loi_S
--- InH:               \                       /                 
--- InH:                v                     v                 
--- InH:                 Un_Texte_legislatif_S
-
-species Une_Proposition_de_loi_S (
+-- Documentation : 
+ 
+species Article_42_S (
   URac is Une_Race_S,
   UOri is Une_Origine_S,
   URel is Une_Religion_S,
@@ -52,18 +46,16 @@ species Une_Proposition_de_loi_S (
   UPar is Un_Parlementaire_S (URac, UOri, URel, UTfr, UScr, UBvo),
   LAna is L_Assemblee_nationale_S (URac, UOri, URel, UTfr, UScr, UBvo, UDep, UPar),
   LSen is Le_Senat_S (URac, UOri, URel, UTfr, UScr, UBvo, USen, UPar),
-  LPar is Le_Parlement_S (URac, UOri, URel, UTfr, UScr, UBvo, UDep, USen, UElu, UPar, LAna, LSen)
-)  = 
-    
-  inherit Un_Projet_legislatif_S (URac, UOri, URel, UTle, UOrd, UDec, UTfr, UScr, UDpl, UBvo, UFra, UCel, UDep, USen, LEle, UElu, UPar, LAna, LSen, LPar);
+  LPar is Le_Parlement_S (URac, UOri, URel, UTfr, UScr, UBvo, UDep, USen, UElu, UPar, LAna, LSen),
+  UPrl is Une_Proposition_de_loi_S (URac, UOri, URel, UTle, UOrd, UDec, UTfr, UScr, UDpl, UCpa, UBvo, UFra, UCel, UDep, USen, LEle, UElu, UPar, LAna, LSen, LPar)
+) =
 
-  signature une_proposition_de_loi_est_discutee_par_l_assemblee_nationale : Self -> LAna -> bool;
+-- Titre V Article_42-a - La discussion des projets et des propositions de loi porte, en séance, sur le texte adopté par la commission saisie en application de l'article 43 ou, à défaut, sur le texte dont l'assemblée a été saisie.
 
-  signature une_proposition_de_loi_est_discutee_par_le_senat : Self -> LSen -> bool;
-  
-  signature une_proposition_de_loi_est_du_domaine_de_la_loi : Self -> bool;
+  property article_42_a : all uprl : UPrl, all lana : LAna, all lsen : LSen, all ucpa : UCpa,
+  (UPrl!une_proposition_de_loi_est_discutee_par_l_assemblee_nationale (uprl, lana)
+  \/
+  UPrl!une_proposition_de_loi_est_discutee_par_le_senat (uprl, lsen)) ->
+  UPrl!une_proposition_de_loi_est_adoptee_par_une_commission_parlementaire (uprl, ucpa);
 
-  signature une_proposition_de_loi_est_contraire_a_une_delegation_accordee_en_vertu_de_l_article_38 : Self -> bool;
-
-  signature une_proposition_de_loi_est_adoptee_par_une_commission_parlementaire : Self -> UCpa -> bool;
 end;;
