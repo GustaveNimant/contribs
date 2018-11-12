@@ -26,6 +26,7 @@ open "Un_Scrutin_S";;
 open "Un_Senateur_S";;
 open "Un_Territoire_francais_S";;
 open "Un_Texte_legislatif_S";;
+open "Une_Commission_parlementaire_S";;
 open "Une_Ordonnance_S";;
 open "Une_Origine_S";;
 open "Une_Race_S";;
@@ -56,6 +57,7 @@ species Un_Projet_de_loi_S (
   UScr is Un_Scrutin_S,
   UDpl is Un_Domaine_de_projet_legislatif_S,
   UTle is Un_Texte_legislatif_S,
+  UCpa is Une_Commission_parlementaire_S ,
   UBvo is Un_Bureau_de_vote_S (UTfr), 
   UOde is Un_Organe_deliberant_S (UTle),
   UFra is Un_Francais_S (URac, UOri, URel),
@@ -89,4 +91,11 @@ species Un_Projet_de_loi_S (
   signature un_projet_de_loi_est_depose_sur_le_bureau_de_l_assemblee_nationale : Self -> LAna -> bool;
 
   signature un_projet_de_loi_est_depose_sur_le_bureau_du_senat  : Self -> LSen -> bool;
+
+signature un_projet_de_loi_est_discute_par_l_assemblee_nationale : Self -> LAna -> bool;
+
+  signature un_projet_de_loi_est_discute_par_le_senat : Self -> LSen -> bool;
+  
+  signature un_projet_de_loi_est_adopte_par_une_commission_parlementaire : Self -> UCpa -> bool;
+
 end;;

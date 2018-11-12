@@ -1,0 +1,17 @@
+open "basics";;
+ 
+-- Documentation : 
+ 
+species Article_43_S =
+
+-- Titre V Article_43-a - Les projets et propositions de loi sont envoyés pour examen à l'une des commissions permanentes dont le nombre est limité à huit dans chaque assemblée.
+
+  property article_42_a : all uprl : UPrl, all lana : LAna, all lsen : LSen, all ucpa : UCpa,
+  (UPrl!une_proposition_de_loi_est_discutee_par_l_assemblee_nationale (uprl, lana)
+  \/
+  UPrl!une_proposition_de_loi_est_discutee_par_le_senat (uprl, lsen)) ->
+  UPrl!une_proposition_de_loi_est_adoptee_par_une_commission_parlementaire (uprl, ucpa);
+
+
+-- Titre V Article_43-b - A la demande du Gouvernement ou de l'assemblée qui en est saisie, les projets ou propositions de loi sont envoyés pour examen à une commission spécialement désignée à cet effet.
+end;;
