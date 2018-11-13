@@ -1,0 +1,7 @@
+open "basics";;
+ 
+-- Documentation : 
+ 
+species Une_Commission_permanente_de_l_assemblee_nationale_S =
+ 
+end;;

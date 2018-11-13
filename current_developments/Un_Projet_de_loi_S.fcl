@@ -27,6 +27,8 @@ open "Un_Senateur_S";;
 open "Un_Territoire_francais_S";;
 open "Un_Texte_legislatif_S";;
 open "Une_Commission_parlementaire_S";;
+open "Une_Commission_permanente_de_l_assemblee_nationale_S";;
+open "Une_Commission_permanente_du_senat_S";;
 open "Une_Ordonnance_S";;
 open "Une_Origine_S";;
 open "Une_Race_S";;
@@ -58,6 +60,8 @@ species Un_Projet_de_loi_S (
   UDpl is Un_Domaine_de_projet_legislatif_S,
   UTle is Un_Texte_legislatif_S,
   UCpa is Une_Commission_parlementaire_S ,
+  UCan is Une_Commission_permanente_de_l_assemblee_nationale_S,
+  UCse is Une_Commission_permanente_du_senat_S,  
   UBvo is Un_Bureau_de_vote_S (UTfr), 
   UOde is Un_Organe_deliberant_S (UTle),
   UFra is Un_Francais_S (URac, UOri, URel),
@@ -98,4 +102,7 @@ signature un_projet_de_loi_est_discute_par_l_assemblee_nationale : Self -> LAna 
   
   signature un_projet_de_loi_est_adopte_par_une_commission_parlementaire : Self -> UCpa -> bool;
 
+  signature un_projet_de_loi_est_envoye_pour_examen_a_une_commission_permanente_de_l_assemblee_nationale : Self -> UCan -> bool;
+
+  signature un_projet_de_loi_est_envoye_pour_examen_a_une_commission_permanente_du_senat : Self -> UCse -> bool;
 end;;

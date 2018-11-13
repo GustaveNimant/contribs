@@ -115,6 +115,12 @@ elsif ($species_name eq "Une_Proposition_de_loi_S") {
 elsif ($species_name eq "Une_Proposition_de_resolution_S") {
     $abbreviated_species_name = "UPrs";
 }
+elsif ($species_name eq "Une_Commission_permanente_de_l_assemblee_nationale_S") {
+    $abbreviated_species_name = "UCan";
+}
+elsif ($species_name eq "Une_Commission_permanente_du_senat_S") {
+    $abbreviated_species_name = "UCse";
+}
 else {
     $abbreviated_species_name = abbreviated_name ($species_name);
 }
