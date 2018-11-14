@@ -89,4 +89,8 @@ species Une_Proposition_de_loi_S (
 
   signature une_proposition_de_loi_est_envoyee_pour_examen_a_une_commission_specialisee_du_senat_a_sa_demande : Self -> UCse -> LSen -> bool;
 
+  signature une_proposition_de_loi_est_amendee_par_un_parlementaire : Self -> UPar -> bool;
+
+  signature une_proposition_de_loi_est_amendee_par_un_membre_du_gouvernement : Self -> UMgo -> bool;
+
 end;;

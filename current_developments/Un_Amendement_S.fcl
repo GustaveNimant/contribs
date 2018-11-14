@@ -14,6 +14,7 @@ open "Une_Ordonnance_S";;
 open "Une_Origine_S";;
 open "Une_Race_S";;
 open "Une_Religion_S";;
+open "Une_Commission_parlementaire_S";;
 
 -- Documentation : 
 
@@ -26,6 +27,7 @@ species Un_Amendement_S (
   UDec is Un_Decret_S,
   UTfr is Un_Territoire_francais_S,
   UScr is Un_Scrutin_S,
+  UCpa is Une_Commission_parlementaire_S,
   UBvo is Un_Bureau_de_vote_S (UTfr),
   UOde is Un_Organe_deliberant_S (UTle),
   USen is Un_Senateur_S (URac, UOri, URel, UTfr, UScr, UBvo),
@@ -39,6 +41,8 @@ species Un_Amendement_S (
   signature un_amendement_est_recevable : Self -> bool;
 
   signature un_amendement_est_recevable_par_le_gouvernement : Self -> LGou -> bool;
+
+  signature le_gouvernement_s_oppose_a_l_examen_d_un_amendement : Self -> LGou -> bool;
 
   logical let un_amendement_est_recevable_par_le_president_du_senat (self : Self, usen : USen) =
     USen!un_senateur_est_le_president_du_senat (usen)
@@ -61,6 +65,8 @@ species Un_Amendement_S (
     un_amendement_est_formule_par_un_depute (self, udep)
     ;
 
+  signature un_amendement_est_soumis_a_une_commission_parlementaire : Self -> UCpa -> bool;
+  
   signature un_amendement_est_du_domaine_de_la_loi : Self -> bool;
 
   signature un_amendement_est_contraire_a_une_delegation_accordee_en_vertu_de_l_article_38 : Self -> bool;
