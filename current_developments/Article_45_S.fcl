@@ -104,4 +104,14 @@ species Article_45_S (
   UAme!un_amendement_presente_un_lien_avec_un_projet_de_loi (uame, uplo) ->
   UAme!un_amendement_est_recevable_en_premiere_lecture (uame);
 
+-- Titre V Article_45-c-1 - Le texte élaboré par la commission mixte peut être soumis par le Gouvernement pour approbation aux deux assemblées.
+
+--   property article_45_c_1 : 
+--   la_commission_mixte_elabore_un_texte_soumis_par_le_gouvernement
+--   le_texte_elabore_par_la_commission_mixte_est_approuve_par_les_deux_assemblees
+   
+
+-- Titre V Article_45-c-2 - Aucun amendement n'est recevable sauf accord du Gouvernement.
+
+
 end;;

@@ -77,6 +77,6 @@ species Article_27_S (
   property article_27_c_1 : all self : Self, all uelu : UElu, ex ulor : ULor, 
   UElu_set!is_a_member_of (uelu, les_elus (self)) ->
   (~ UElu!un_elu_ne_delegue_pas_son_vote (uelu)) ->
-  ULor!la_loi_organique_peut_autoriser_exceptionnellement_la_delegation_de_vote (ulor);
+  ULor!une_loi_organique_peut_autoriser_exceptionnellement_la_delegation_de_vote (ulor);
 
 end;;
