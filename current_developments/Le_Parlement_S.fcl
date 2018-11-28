@@ -2,14 +2,21 @@ open "basics";;
 
 open "Finite_Set_S";;
 open "L_Assemblee_nationale_S";;
+open "La_Cour_des_comptes_S";;
+open "Le_Gouvernement_S";;
 open "Le_Senat_S";;
 open "Un_Bureau_de_vote_S";;
+open "Un_Decret_S";;
 open "Un_Depute_S";;
 open "Un_Elu_S";;
+open "Un_Membre_du_gouvernement_S";;
+open "Un_Organe_deliberant_S";;
 open "Un_Parlementaire_S";;
 open "Un_Scrutin_S";;
 open "Un_Senateur_S";;
 open "Un_Territoire_francais_S";;
+open "Un_Texte_legislatif_S";;
+open "Une_Ordonnance_S";;
 open "Une_Origine_S";;
 open "Une_Race_S";;
 open "Une_Religion_S";;
@@ -29,15 +36,23 @@ species Le_Parlement_S (
   URac is Une_Race_S,
   UOri is Une_Origine_S,
   URel is Une_Religion_S,
+  UTle is Un_Texte_legislatif_S,
+  UOrd is Une_Ordonnance_S,
+  UDec is Un_Decret_S,
   UTfr is Un_Territoire_francais_S,
   UScr is Un_Scrutin_S,
-  UBvo is Un_Bureau_de_vote_S (UTfr), 
+  LCco is La_Cour_des_comptes_S,
+  UBvo is Un_Bureau_de_vote_S (UTfr),
+  UOde is Un_Organe_deliberant_S (UTle),
   UDep is Un_Depute_S (URac, UOri, URel, UTfr, UScr, UBvo),
   USen is Un_Senateur_S (URac, UOri, URel, UTfr, UScr, UBvo),
   UElu is Un_Elu_S (URac, UOri, URel, UTfr, UScr, UBvo),
   UPar is Un_Parlementaire_S (URac, UOri, URel, UTfr, UScr, UBvo),
   LAna is L_Assemblee_nationale_S (URac, UOri, URel, UTfr, UScr, UBvo, UDep, UPar),
-  LSen is Le_Senat_S (URac, UOri, URel, UTfr, UScr, UBvo, USen, UPar)
+  LSen is Le_Senat_S (URac, UOri, URel, UTfr, UScr, UBvo, USen, UPar),
+  UMgo is Un_Membre_du_gouvernement_S (URac, UOri, URel, UTfr, UScr, UBvo),
+
+  LGou is Le_Gouvernement_S (URac, UOri, URel, UTle, UOrd, UDec, UTfr, UScr, UBvo, UOde, UMgo)
 ) = 
 
   inherit Finite_Set_S (UPar);
@@ -54,8 +69,6 @@ species Le_Parlement_S (
 
   signature le_congres_vote_apres_un_debat : Self -> bool;
 
-  signature le_gouvernement_est_responsable_devant_le_parlement : Self -> bool;
-
   signature le_parlement_evalue_les_politiques_publiques : Self -> bool;
 
   signature le_parlement_se_reunit_sur_un_ordre_du_jour_determine : Self -> bool;
@@ -66,5 +79,9 @@ species Le_Parlement_S (
     LAna!l_assemblee_nationale_autorise_une_declaration_de_guerre (l_assemblee_nationale (self)) 
     /\
     LSen!le_senat_autorise_une_declaration_de_guerre (le_senat (self));
- 
+
+  signature le_gouvernement_est_responsable_devant_le_parlement : Self -> LGou -> bool;
+
+  signature le_parlement_controle_le_gouvernement_assiste_par_la_cour_des_comptes : Self -> LCco -> LGou -> bool;
+  
 end;;
