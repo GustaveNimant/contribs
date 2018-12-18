@@ -1,0 +1,10 @@
+open "basics";;
+ 
+-- Documentation : http://www.elysee.fr/la-presidence/les-institutions-de-la-cinquieme-republique/
+ 
+species Les_Institutions_de_la_republique_S =
+
+  signature les_institutions_de_la_republique_sont_menacees : Self -> bool;
+
+end;;
+

@@ -1,0 +1,89 @@
+open "basics";;
+
+open "L_Administration_S";;
+open "L_Assemblee_nationale_S";;
+open "L_Electorat_S";;
+open "La_Politique_de_la_nation_S";;
+open "Le_Gouvernement_S";;
+open "Le_Parlement_S";;
+open "Le_President_de_la_republique_S";;
+open "Le_Senat_S";;
+open "Les_Forces_armees_S";;
+open "Un_Acte_de_l_executif_S";;
+open "Un_Bureau_de_vote_S";;
+open "Un_Citoyen_electeur_S";;
+open "Un_Decret_S";;
+open "Un_Depute_S";;
+open "Un_Elu_S";;
+open "Un_Francais_S";;
+open "Un_Membre_du_gouvernement_S";;
+open "Un_Organe_deliberant_S";;
+open "Un_Parlementaire_S";;
+open "Un_Scrutin_S";;
+open "Un_Senateur_S";;
+open "Un_Territoire_francais_S";;
+open "Un_Texte_legislatif_S";;
+open "Une_Ordonnance_S";;
+open "Une_Origine_S";;
+open "Une_Race_S";;
+open "Une_Religion_S";;
+
+-- Le Gouvernement détermine et conduit la politique de la nation.
+
+-- Il dispose de l'administration et de la force armée.
+
+-- Il est responsable devant le Parlement dans les conditions et suivant les procédures prévues aux articles 49 et 50.
+
+species Article_20_S (
+  URac is Une_Race_S,
+  UOri is Une_Origine_S,
+  URel is Une_Religion_S,
+  UTle is Un_Texte_legislatif_S,
+  UOrd is Une_Ordonnance_S,
+  UDec is Un_Decret_S,
+  LAmi is L_Administration_S,
+  LFar is Les_Forces_armees_S,
+  UAex is Un_Acte_de_l_executif_S,
+  LPna is La_Politique_de_la_nation_S (UAex),
+  UTfr is Un_Territoire_francais_S,
+  UScr is Un_Scrutin_S,
+  UBvo is Un_Bureau_de_vote_S (UTfr),
+  UOde is Un_Organe_deliberant_S (UTle),
+  UCel is Un_Citoyen_electeur_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UDep is Un_Depute_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  USen is Un_Senateur_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UPar is Un_Parlementaire_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  LEle is L_Electorat_S (URac, UOri, URel, UTfr, UScr, UBvo, UCel),
+  UElu is Un_Elu_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  LAna is L_Assemblee_nationale_S (URac, UOri, URel, UTfr, UScr, UBvo, UDep, UPar),
+  LSen is Le_Senat_S (URac, UOri, URel, UTfr, UScr, UBvo, USen, UPar),
+  LPar is Le_Parlement_S (URac, UOri, URel, UTfr, UScr, UBvo, UDep, USen, UElu, UPar, LAna, LSen),
+  UMgo is Un_Membre_du_gouvernement_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  LGou is Le_Gouvernement_S (URac, UOri, URel, UTle, UOrd, UDec, UTfr, UScr, UBvo, UOde, UMgo)
+  ) =
+
+-- Titre III Article 20-a-1 - Le Gouvernement détermine la politique de la nation.
+  property article_20_a_1 : all lpna : LPna,
+  LPna!le_gouvernement_determine_la_politique_de_la_nation (lpna);
+
+-- Titre III Article 20-a-2 - Le Gouvernement conduit la politique de la nation.
+
+  property article_20_a_2 : all lpna : LPna,
+  LPna!le_gouvernement_conduit_la_politique_de_la_nation (lpna);
+
+-- Titre III Article 20-b-1 - Il dispose de l'administration
+
+  property article_20_b_1 : all lami : LAmi,
+  LAmi!le_gouvernement_dispose_de_l_administration (lami);
+
+-- Titre III Article 20-b-2 - Il dispose de la force armée.
+
+  property article_20_b_2 : all lfar : LFar,
+  LFar!le_gouvernement_dispose_de_la_force_armee (lfar);
+
+-- Titre III Article 20-c - Il est responsable devant le Parlement dans les conditions et suivant les procédures prévues aux articles 49 et 50.
+
+  property article_20_c : all lpar : LPar,
+  LPar!le_gouvernement_est_responsable_devant_le_parlement (lpar);
+
+end;;

@@ -1,0 +1,9 @@
+open "basics";;
+
+open "Un_Territoire_francais_S";;
+
+species Un_Bureau_de_vote_S (
+  UTfr is Un_Territoire_francais_S
+) =
+
+end;;

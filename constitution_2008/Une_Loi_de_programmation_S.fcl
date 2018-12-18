@@ -1,0 +1,7 @@
+open "basics";;
+ 
+-- Documentation : Des lois de programmation déterminent les objectifs de l'action de l'État.
+ 
+species Une_Loi_de_programmation_S =
+ 
+end;;

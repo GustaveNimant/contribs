@@ -1,0 +1,18 @@
+open "basics";;
+
+open "Un_Acte_de_l_executif_S";;
+
+-- InH: Une_Proposition_de_loi_S  Une_Loi_S
+-- InH:         \                  /
+-- InH:          v                v
+-- InH:         Un_Texte_legislatif_S
+
+species Un_Decret_S = 
+
+  inherit Un_Acte_de_l_executif_S;
+
+  signature le_president_de_la_republique_a_signe_un_decret : Self -> bool;
+
+  signature le_conseil_des_ministres_a_delibere_sur_un_decret : Self -> bool;
+
+end;;

@@ -1,0 +1,9 @@
+open "basics";;
+
+open "Un_Etre_humain_S";;
+ 
+species Un_Diplomate_S =
+ 
+  inherit Un_Etre_humain_S;
+
+end;;

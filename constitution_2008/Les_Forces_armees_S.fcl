@@ -1,0 +1,7 @@
+open "basics";;
+
+species Les_Forces_armees_S =
+
+  signature le_gouvernement_dispose_de_la_force_armee : Self -> bool;
+
+end;;

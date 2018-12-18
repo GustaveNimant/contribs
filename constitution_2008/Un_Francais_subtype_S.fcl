@@ -1,0 +1,45 @@
+open "basics";;
+open "sets";;
+
+open "Finite_Set_S";;
+open "Un_Etre_humain_subtype_S";;
+open "Un_Francais_S";;
+open "Une_Origine_S";;
+open "Une_Race_S";;
+open "Une_Religion_S";;
+
+-- InH:  Un_Depute_S           Un_Senateur_S
+-- InH:      \                  /
+-- InH:       v                v
+-- InH:       Un_Parlementaire_S  Le_President_de_la_republique_S  Un_Elu_europeen_S  Un_Elu_regional_S  Un_Elu_cantonal_S  Un_Elu_municipal_S  
+-- InH:                |
+-- InH:                v
+-- InH:             Un_Elu_S
+-- InH:                |
+-- InH:                v
+-- InH:        Un_Citoyen_electeur_S
+-- InH:                |
+-- InH:                v
+-- InH:           Un_Francais_S
+-- InH:                |
+-- InH:                v
+-- InH:         Un_Etre_humain_S
+
+species Un_Francais_subtype_S (
+  URac is Une_Race_S,
+  UOri is Une_Origine_S,
+  URel is Une_Religion_S,
+  Sub is Un_Francais_S (URac, UOri, URel),
+  Sub_set is Finite_Set_S(Sub),
+  Super is Un_Francais_S (URac, UOri, URel),
+  Super_set is Finite_Set_S(Super)
+) =
+    
+  inherit Un_Etre_humain_subtype_S (Sub, Sub_set, Super, Super_set);
+
+  let un_francais (sub) =
+    to_super (sub);
+  
+end;;
+
+

@@ -1,0 +1,20 @@
+open "basics";;
+
+-- Documentation : http://www.toupie.org/Dictionnaire/Defense_nationale.htm
+-- Documentation : En France, la politique de défense est définie par l'article Article L. 1111-1 du code de la Défense. Elle "a pour objet d'assurer l'intégrité du territoire et la protection de la population contre les agressions armées. Elle contribue à la lutte contre les autres menaces susceptibles de mettre en cause la sécurité nationale. Elle pourvoit au respect des alliances, des traités et des accords internationaux et participe, dans le cadre des traités européens en vigueur, à la politique européenne de sécurité et de défense commune."
+
+-- Documentation : La défense est dite défense nationale car, dans son approche globale, elle ne concerne pas que les forces armées, mais toutes les administrations concernées par les ressources essentielles à la vie du pays. Fonction régalienne de l'Etat, la Défense nationale est l'une des composantes de la sécurité nationale.
+
+species La_Defense_nationale_S =
+
+ signature le_premier_ministre_est_responsable_de_la_defense_nationale : Self -> bool;
+
+ signature le_premier_ministre_preside_un_conseil_de_la_defense_nationale_selon_l_article_15 : Self -> bool;
+
+ signature le_premier_ministre_preside_un_comite_de_la_defense_nationale_selon_l_article_15 : Self -> bool;
+
+ signature le_president_de_la_republique_preside_un_conseil_de_la_defense_nationale : Self -> bool;
+
+ signature le_president_de_la_republique_preside_un_comite_de_la_defense_nationale : Self -> bool;
+
+end;;

@@ -1,0 +1,66 @@
+open "basics";;
+
+open "Finite_Set_S";;
+open "Le_President_de_la_republique_S";;
+open "Un_Ambassadeur_etranger_S";;
+open "Un_Ambassadeur_francais_S";;
+open "Un_Bureau_de_vote_S";;
+open "Un_Envoye_extraordinaire_etranger_S";;
+open "Un_Envoye_extraordinaire_francais_S";;
+open "Un_Francais_S";;
+open "Un_Scrutin_S";;
+open "Un_Territoire_francais_S";;
+open "Une_Origine_S";;
+open "Une_Race_S";;
+open "Une_Religion_S";;
+
+-- Le Président de la République accrédite les ambassadeurs et les envoyés extraordinaires auprès des puissances étrangères ; les ambassadeurs et les envoyés extraordinaires étrangers sont accrédités auprès de lui.
+
+species Article_14_S (
+  URac is Une_Race_S,
+  UOri is Une_Origine_S,
+  URel is Une_Religion_S,
+  UTfr is Un_Territoire_francais_S,
+  UScr is Un_Scrutin_S,
+  UAfr is Un_Ambassadeur_francais_S,
+  UAfr_set is Finite_Set_S (UAfr),
+  UAet is Un_Ambassadeur_etranger_S,
+  UAet_set is Finite_Set_S (UAet),
+  UEef is Un_Envoye_extraordinaire_francais_S,
+  UEef_set is Finite_Set_S (UEef),
+  UEee is Un_Envoye_extraordinaire_etranger_S,
+  UEee_set is Finite_Set_S (UEee),
+  UBvo is Un_Bureau_de_vote_S (UTfr),
+  UFra is Un_Francais_S (URac, UOri, URel),
+  LPre is Le_President_de_la_republique_S (URac, UOri, URel, UTfr, UScr, UBvo, UFra)
+)=
+
+-- Titre II Article 14-a-1 Le Président de la République accrédite les ambassadeurs et les envoyés extraordinaires auprès des puissances étrangères ; les ambassadeurs et les envoyés extraordinaires étrangers sont accrédités auprès de lui.
+
+  signature les_ambassadeurs_francais : Self -> UAfr_set;
+
+  signature les_envoyes_extraordinaires_francais : Self -> UEef_set;
+
+  signature les_ambassadeurs_etrangers : Self -> UAet_set;
+
+  signature les_envoyes_extraordinaires_etrangers : Self -> UEee_set;
+
+  property article_14_a_1 : all self : Self, all uafr : UAfr,
+  UAfr_set!is_a_member_of (uafr, les_ambassadeurs_francais (self)) ->
+  UAfr!le_president_de_la_republique_accredite_un_ambassadeur_francais (uafr);
+
+  property article_14_a_2 : all self : Self, all ueef : UEef,
+  UEef_set!is_a_member_of (ueef, les_envoyes_extraordinaires_francais (self)) ->
+  UEef!le_president_de_la_republique_accredite_un_envoye_extraordinaire_francais (ueef); 
+
+  property article_14_a_3 : all self : Self, all uaet : UAet,
+  UAet_set!is_a_member_of (uaet, les_ambassadeurs_etrangers (self)) ->
+  UAet!le_president_de_la_republique_accredite_un_ambassadeur_etranger (uaet);
+
+  property article_14_a_4 : all self : Self, all ueee : UEee,
+  UEee_set!is_a_member_of (ueee, les_envoyes_extraordinaires_etrangers (self)) ->
+  UEee!le_president_de_la_republique_accredite_un_envoye_extraordinaire_etranger (ueee); 
+
+end;;
+
+

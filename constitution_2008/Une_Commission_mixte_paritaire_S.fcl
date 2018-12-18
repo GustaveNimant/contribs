@@ -1,0 +1,7 @@
+open "basics";;
+ 
+-- Documentation : 
+ 
+species Une_Commission_mixte_paritaire_S =
+ 
+end;;

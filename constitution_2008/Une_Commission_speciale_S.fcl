@@ -1,0 +1,7 @@
+open "basics";;
+ 
+-- Documentation : 
+ 
+species Une_Commission_speciale_S =
+ 
+end;;

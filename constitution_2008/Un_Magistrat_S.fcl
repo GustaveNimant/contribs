@@ -1,0 +1,11 @@
+open "basics";;
+
+-- Documentation : http://www.vie-publique.fr/decouverte-institutions/justice/personnel-judiciaire/magistrats/comment-sont-recrutes-magistrats.html
+
+-- Documentation : Les magistrats sont ensuite nommés par le président de la République, sur proposition du garde des Sceaux, et après avis "simple" du Conseil supérieur de la magistrature (CSM), que le ministre n’est donc pas tenu de suivre. Si un tel mode de nomination des magistrats par le pouvoir exécutif peut laisser craindre une forme d’ingérence, il permet néanmoins, lorsqu’il se fonde sur des conditions strictement définies par la loi, d’éviter la formation d’une caste judiciaire fermée, telle que celle qui s’était développée sous l’Ancien Régime.
+
+-- Documentation : Un projet de loi constitutionnelle portant réforme du Conseil supérieur de la magistrature prévoyait d’instaurer un avis conforme liant le Garde des sceaux, tenu de faire une autre proposition en cas d’avis non conforme du CSM. Cela alignerait le statut des procureurs sur celui des magistrats du siège. Ce projet de loi, adopté en première lecture par l’Assemblée nationale en juin 2013 et le Sénat en juillet 2013, a été suspendu par le Gouvernement en juillet 2013.
+
+species Un_Magistrat_S =
+
+end;;

@@ -1,0 +1,90 @@
+open "basics";;
+
+open "L_Assemblee_nationale_S";;
+open "L_Electorat_S";;
+open "Le_Conseil_d_etat_S";;
+open "Le_Conseil_des_ministres_S";;
+open "Le_Parlement_S";;
+open "Le_President_de_la_republique_S";;
+open "Le_Senat_S";;
+open "Un_Bureau_de_vote_S";;
+open "Un_Citoyen_electeur_S";;
+open "Un_Decret_S";;
+open "Un_Depute_S";;
+open "Un_Domaine_de_projet_legislatif_S";;
+open "Un_Elu_S";;
+open "Un_Francais_S";;
+open "Un_Membre_du_conseil_d_etat_S";;
+open "Un_Ministre_S";;
+open "Un_Organe_deliberant_S";;
+open "Un_Parlementaire_S";;
+open "Un_Premier_ministre_S";;
+open "Un_Projet_de_loi_S";;
+open "Un_Scrutin_S";;
+open "Un_Senateur_S";;
+open "Un_Territoire_francais_S";;
+open "Un_Texte_legislatif_S";;
+open "Une_Loi_S";;
+open "Une_Ordonnance_S";;
+open "Une_Origine_S";;
+open "Une_Race_S";;
+open "Une_Religion_S";;
+open "Le_Gouvernement_S";;
+open "Un_Membre_du_gouvernement_S";;
+
+
+-- Documentation : 
+ 
+species Article_39_S (
+  URac is Une_Race_S,
+  UOri is Une_Origine_S,
+  URel is Une_Religion_S,
+  UTfr is Un_Territoire_francais_S,
+  UScr is Un_Scrutin_S,
+  UTle is Un_Texte_legislatif_S,
+  UOrd is Une_Ordonnance_S,
+  UDec is Un_Decret_S,
+  UDpl is Un_Domaine_de_projet_legislatif_S,
+  UOde is Un_Organe_deliberant_S (UTle),
+  UBvo is Un_Bureau_de_vote_S (UTfr),
+  UFra is Un_Francais_S (URac, UOri, URel),
+  UCel is Un_Citoyen_electeur_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UDep is Un_Depute_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  USen is Un_Senateur_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UElu is Un_Elu_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UPar is Un_Parlementaire_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UPmi is Un_Premier_ministre_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UMin is Un_Ministre_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UMgo is Un_Membre_du_gouvernement_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  LGou is Le_Gouvernement_S (URac, UOri, URel, UTle, UOrd, UDec, UTfr, UScr, UBvo, UOde, UMgo),
+  LEle is L_Electorat_S (URac, UOri, URel, UTfr, UScr, UBvo, UCel),
+  LAna is L_Assemblee_nationale_S (URac, UOri, URel, UTfr, UScr, UBvo, UDep, UPar),
+  LSen is Le_Senat_S (URac, UOri, URel, UTfr, UScr, UBvo, USen, UPar),
+  LPar is Le_Parlement_S (URac, UOri, URel, UTfr, UScr, UBvo, UDep, USen, UElu, UPar, LAna, LSen),
+  LCmi is Le_Conseil_des_ministres_S (URac, UOri, URel, UTfr, UScr, UBvo, UTle, UMin, UPmi),
+  LPre is Le_President_de_la_republique_S (URac, UOri, URel, UTfr, UScr, UBvo, UFra),
+  UMce is Un_Membre_du_conseil_d_etat_S (URac, UOri, URel, UTfr, UScr, UBvo, UFra, LPre),
+  LCet is Le_Conseil_d_etat_S (URac, UOri, URel, UTfr, UScr, UTle, UBvo, UFra, UMin, UPmi, LPre, UMce),
+  ULoi is Une_Loi_S (URac, UOri, URel, UTfr, UScr, UBvo, UFra, UDep, USen, UElu, UPar, UPmi, LAna, LSen, LPar, LPre),
+  UPlo is Un_Projet_de_loi_S (URac, UOri, URel, UOrd, UDec, UTfr, UScr, UDpl, UTle, UBvo, UOde, UFra, UCel, UDep, USen, LEle, UElu, UPar, LAna, LSen, LPar, UMgo, LGou, LPre, UMin, UPmi, LCmi, UMce, LCet)
+  ) =
+    
+-- Titre V Article-39-a - L'initiative des lois appartient concurremment au Premier ministre et aux membres du Parlement.
+
+  property article_39_a : all uloi : ULoi, all upmi : UPmi, all upar : UPar,
+  ULoi!l_initiative_des_lois_appartient_concurremment_au_premier_ministre_et_aux_membres_du_parlement (uloi, upmi, upar);
+
+-- Titre V Article-39-b-1-1 - Les projets de loi sont délibérés en conseil des ministres après avis du Conseil d'État
+
+-- Titre V Article-39-b-1-2 -   ... et déposés sur le bureau de l'une des deux assemblées. 
+
+  property article_39_b_1 : all uplo : UPlo, all lcmi : LCmi, all lcet : LCet, all lana : LAna, all lsen : LSen,
+  UPlo!un_projet_de_loi_est_delibere_en_conseil_des_ministres_apres_avis_du_conseil_d_etat (uplo, lcmi, lcet)
+  /\
+  ( UPlo!un_projet_de_loi_est_depose_sur_le_bureau_de_l_assemblee_nationale (uplo, lana) 
+    \/
+    UPlo!un_projet_de_loi_est_depose_sur_le_bureau_du_senat (uplo, lsen) );
+
+-- Titre V Article-39-b-2 - Les projets de loi de finances et de loi de financement de la sécurité sociale sont soumis en premier lieu à l'Assemblée nationale. Sans préjudice du premier alinéa de l'article 44, les projets de loi ayant pour principal objet l'organisation des collectivités territoriales sont soumis en premier lieu au Sénat.
+
+end;;

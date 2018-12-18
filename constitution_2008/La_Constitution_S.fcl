@@ -1,0 +1,8 @@
+open "basics";;
+open "Un_Texte_legislatif_S";;
+
+species La_Constitution_S =
+
+  inherit Un_Texte_legislatif_S;
+
+end;;

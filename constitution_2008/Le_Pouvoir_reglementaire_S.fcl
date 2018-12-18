@@ -1,0 +1,20 @@
+open "basics";;
+ 
+-- Documentation : http://www.toupie.org/Dictionnaire/Pouvoir_reglementaire.htm
+-- Documentation : Le pouvoir réglementaire est le pouvoir dont disposent les autorités exécutives pour édicter des règlements, c'est-à-dire des actes exécutoires, de portée générale et impersonnelle. Il s'oppose au pouvoir législatif.
+
+-- Documentation : En France, l'article 37 de la Constitution établit un pouvoir réglementaire autonome (qui ne se limite à l'application des lois) pour les domaines non couverts par la loi. Le pouvoir réglementaire est détenu principalement par le Premier ministre, ainsi que par le Président de la République  pour des textes les plus importants après délibération en Conseil des ministres. 
+
+-- Documentation : Les ministres ne disposent pas du pouvoir réglementaire de par la Constitution. Il est cependant possible au Premier ministre ou au pouvoir législatif de déléguer un pouvoir réglementaire aux ministres pour la mise en application d'une loi. Il est en outre admis que le ministre dispose d'un pouvoir réglementaire pour organiser ses propres services.
+
+-- Documentation : Certaines autorités administratives indépendantes, comme la CNIL (Commission nationale de l'informatique et des libertés) ou le CSA (Conseil supérieur de l'audiovisuel), détiennent également un pouvoir réglementaire afin de pouvoir mener à bien leurs missions.
+
+-- Documentation : Les préfets disposent d'un pouvoir réglementaire pour l'exercice de la police administrative générale et pour celui de polices administratives spéciales (chasse, pêche, etc.).
+
+-- Documentation : Enfin, l'article 72, alinéa 3 de la Constitution, issu de la révision constitutionnelle du 28 mars 2003, attribue aux collectivités territoriales un "pouvoir réglementaire pour l'exercice de leurs compétences".
+
+species Le_Pouvoir_reglementaire_S =
+
+  signature le_premier_ministre_sous_reserve_de_l_article_13_exerce_le_pouvoir_reglementaire : Self -> bool;
+
+end;;

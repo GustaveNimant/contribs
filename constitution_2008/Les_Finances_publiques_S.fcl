@@ -1,0 +1,46 @@
+open "basics";;
+
+open "Le_Gouvernement_S";;
+open "Un_Amendement_S";;
+open "Un_Bureau_de_vote_S";;
+open "Un_Decret_S";;
+open "Un_Depute_S";;
+open "Un_Membre_du_gouvernement_S";;
+open "Un_Organe_deliberant_S";;
+open "Un_Parlementaire_S";;
+open "Un_Scrutin_S";;
+open "Un_Senateur_S";;
+open "Un_Territoire_francais_S";;
+open "Un_Texte_legislatif_S";;
+open "Une_Ordonnance_S";;
+open "Une_Origine_S";;
+open "Une_Race_S";;
+open "Une_Religion_S";;
+
+-- Documentation : 
+ 
+species Les_Finances_publiques_S (
+  URac is Une_Race_S,
+  UOri is Une_Origine_S,
+  URel is Une_Religion_S,
+  UTfr is Un_Territoire_francais_S,
+  UScr is Un_Scrutin_S,
+  UTle is Un_Texte_legislatif_S,
+  UOrd is Une_Ordonnance_S,
+  UDec is Un_Decret_S,
+  UBvo is Un_Bureau_de_vote_S (UTfr),
+  USen is Un_Senateur_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UDep is Un_Depute_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UOde is Un_Organe_deliberant_S (UTle),
+  UMgo is Un_Membre_du_gouvernement_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  LGou is Le_Gouvernement_S (URac, UOri, URel, UTle, UOrd, UDec, UTfr, UScr, UBvo, UOde, UMgo),
+  UAme is Un_Amendement_S (URac, UOri, URel, UTle, UOrd, UDec, UTfr, UScr, UBvo, UOde, USen, UDep, UMgo, LGou)
+) =
+ 
+  signature un_amendement_aggrave_une_charge_publique : Self -> UAme -> bool;
+
+  signature un_amendement_cree_une_charge_publique : Self -> UAme -> bool;
+
+  signature un_amendement_diminue_les_ressources_publiques : Self -> UAme -> bool;
+
+end;;

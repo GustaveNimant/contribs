@@ -1,0 +1,50 @@
+open "basics";;
+open "Finite_Set_S";;
+open "L_Electorat_S";;
+open "La_Souverainete_nationale_S";;
+open "Le_Peuple_francais_S";;
+open "Le_Territoire_francais_S";;
+open "Un_Bureau_de_vote_S";;
+open "Un_Citoyen_electeur_S";;
+open "Un_Elu_S";;
+open "Un_Francais_S";;
+open "Un_Scrutin_S";;
+open "Un_Territoire_francais_S";;
+open "Une_Origine_S";;
+open "Une_Race_S";;
+open "Une_Religion_S";;
+
+-- La souveraineté nationale appartient au peuple qui l'exerce par ses représentants et par la voie du référendum.
+-- Aucune section du peuple ni aucun individu ne peut s'en attribuer l'exercice.
+-- Le suffrage peut être direct ou indirect dans les conditions prévues par la Constitution. Il est toujours universel, égal et secret.
+-- Sont électeurs, dans les conditions déterminées par la loi, tous les nationaux français majeurs des deux sexes, jouissant de leurs droits civils et politiques.
+
+species Article_3_S (
+  URac is Une_Race_S,
+  UOri is Une_Origine_S,
+  URel is Une_Religion_S,
+  UTfr is Un_Territoire_francais_S,
+  UScr is Un_Scrutin_S,
+  UBvo is Un_Bureau_de_vote_S (UTfr),
+  UCel is Un_Citoyen_electeur_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UElu is Un_Elu_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  LEle is L_Electorat_S (URac, UOri, URel, UTfr, UScr, UBvo, UCel),
+  LRpe is Finite_Set_S (UElu), -- REVOIR Les_Representants_du_peuple_S ?
+  LSna is La_Souverainete_nationale_S (URac, UOri, URel, UTfr, UScr, UBvo, UCel, UElu, LEle, LRpe)
+) = 
+
+-- Titre I Article 3-a - La souveraineté nationale appartient au peuple qui l'exerce par ses représentants et par la voie du référendum.
+
+  property article_3_a : 
+  all uelu : UElu, all uscr : UScr, all ucel : UCel,
+  LSna!un_elu_participe_a_l_exercice_de_la_souverainete_nationale (uelu)
+  \/ 
+  LSna!un_citoyen_participe_a_l_exercice_de_la_souverainete_nationale_lors_d_un_referendum (ucel, uscr);
+
+-- Titre I Article 3-b - Aucune section du peuple ni aucun individu ne peut s'en attribuer l'exercice.
+
+-- Titre I Article 3-c - Le suffrage peut être direct ou indirect dans les conditions prévues par la Constitution. Il est toujours universel, égal et secret.
+
+-- Titre I Article 3-d - Sont électeurs, dans les conditions déterminées par la loi, tous les nationaux français majeurs des deux sexes, jouissant de leurs droits civils et politiques.
+
+end;;

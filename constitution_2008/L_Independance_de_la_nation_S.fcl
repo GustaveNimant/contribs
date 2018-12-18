@@ -1,0 +1,9 @@
+open "basics";;
+ 
+-- Documentation : 
+ 
+species L_Independance_de_la_nation_S =
+
+  signature l_independance_de_la_nation_est_menacee : Self -> bool;
+
+end;;

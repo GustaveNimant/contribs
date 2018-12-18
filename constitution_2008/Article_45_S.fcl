@@ -1,0 +1,117 @@
+open "basics";;
+
+open "Finite_Set_S";;
+open "L_Assemblee_nationale_S";;
+open "L_Electorat_S";;
+open "Le_Conseil_d_etat_S";;
+open "Le_Conseil_des_ministres_S";;
+
+open "Le_Gouvernement_S";;
+open "Le_Parlement_S";;
+open "Le_President_de_la_republique_S";;
+open "Le_Senat_S";;
+open "Un_Amendement_S";;
+open "Un_Bureau_de_vote_S";;
+open "Un_Citoyen_electeur_S";;
+open "Un_Decret_S";;
+open "Un_Depute_S";;
+open "Un_Domaine_de_projet_legislatif_S";;
+open "Un_Elu_S";;
+open "Un_Francais_S";;
+open "Un_Membre_du_gouvernement_S";;
+open "Un_Membre_du_conseil_d_etat_S";;
+open "Un_Ministre_S";;
+open "Un_Organe_deliberant_S";;
+open "Un_Parlementaire_S";;
+open "Un_Premier_ministre_S";;
+open "Un_Projet_de_loi_S";;
+open "Un_Scrutin_S";;
+open "Un_Senateur_S";;
+open "Un_Territoire_francais_S";;
+open "Un_Texte_legislatif_S";;
+open "Une_Commission_parlementaire_S";;
+open "Une_Commission_permanente_de_l_assemblee_nationale_S";;
+open "Une_Commission_permanente_du_senat_S";;
+open "Une_Loi_S";;
+open "Une_Ordonnance_S";;
+open "Une_Origine_S";;
+open "Une_Proposition_de_loi_S";;
+open "Une_Race_S";;
+open "Une_Religion_S";;
+
+-- Documentation : 
+ 
+species Article_45_S (
+  URac is Une_Race_S,
+  UOri is Une_Origine_S,
+  URel is Une_Religion_S,
+  UTle is Un_Texte_legislatif_S,
+  UOrd is Une_Ordonnance_S,
+  UDec is Un_Decret_S,
+  UTfr is Un_Territoire_francais_S,
+  UScr is Un_Scrutin_S,
+  UDpl is Un_Domaine_de_projet_legislatif_S,
+  UCpa is Une_Commission_parlementaire_S,
+  UCan is Une_Commission_permanente_de_l_assemblee_nationale_S,
+  UCse is Une_Commission_permanente_du_senat_S,
+  UOde is Un_Organe_deliberant_S (UTle),
+  UBvo is Un_Bureau_de_vote_S (UTfr), 
+  UFra is Un_Francais_S (URac, UOri, URel),
+  UCel is Un_Citoyen_electeur_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UDep is Un_Depute_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  USen is Un_Senateur_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  LEle is L_Electorat_S (URac, UOri, URel, UTfr, UScr, UBvo, UCel),
+  UElu is Un_Elu_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UPar is Un_Parlementaire_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UMin is Un_Ministre_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UPmi is Un_Premier_ministre_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  LCmi is Le_Conseil_des_ministres_S (URac, UOri, URel, UTfr, UScr, UBvo, UTle, UMin, UPmi),
+  LAna is L_Assemblee_nationale_S (URac, UOri, URel, UTfr, UScr, UBvo, UDep, UPar),
+  LSen is Le_Senat_S (URac, UOri, URel, UTfr, UScr, UBvo, USen, UPar),
+  LPar is Le_Parlement_S (URac, UOri, URel, UTfr, UScr, UBvo, UDep, USen, UElu, UPar, LAna, LSen),
+  UMgo is Un_Membre_du_gouvernement_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  LGou is Le_Gouvernement_S (URac, UOri, URel, UTle, UOrd, UDec, UTfr, UScr, UBvo, UOde, UMgo),
+  UPrl is Une_Proposition_de_loi_S (URac, UOri, URel, UTle, UOrd, UDec, UTfr, UScr, UDpl, UCpa, UCan, UCse, UBvo, UOde, UFra, UCel, UDep, USen, LEle, UElu, UPar, LAna, LSen, LPar, UMgo, LGou),
+  LPre is Le_President_de_la_republique_S (URac, UOri, URel, UTfr, UScr, UBvo, UFra),
+  UMce is Un_Membre_du_conseil_d_etat_S (URac, UOri, URel, UTfr, UScr, UBvo, UFra, LPre),
+  LCet is Le_Conseil_d_etat_S (URac, UOri, URel, UTfr, UScr, UTle, UBvo, UFra, UMin, UPmi, LPre, UMce),
+  UPlo is Un_Projet_de_loi_S (URac, UOri, URel, UOrd, UDec, UTfr, UScr, UDpl, UTle, UCpa, UCan, UCse, UBvo, UOde, UFra, UCel, UDep, USen, LEle, UElu, UPar, LAna, LSen, LPar, UMgo, LGou, LPre, UMin, UPmi, LCmi, UMce, LCet),
+  UAme is Un_Amendement_S (URac, UOri, URel, UTle, UOrd, UDec, UTfr, UScr, UCpa, UDpl, UCan, UCse, UBvo, UOde, UFra, USen, UDep, UElu, UPar, UMin, UPmi, LCmi, LAna, LSen, LPar, UMgo, UCel, LEle, LGou, UPrl, LPre, UMce, LCet, UPlo),
+  ULoi is Une_Loi_S (URac, UOri, URel, UTfr, UScr, UBvo, UFra, UDep, USen, UElu, UPar, UPmi, LAna, LSen, LPar, LPre),
+  ULoi_set is Finite_Set_S (ULoi)
+) =
+
+-- Titre V Article_45-a-1 - Tout projet ou proposition de loi est examinée successivement dans les deux assemblées du Parlement en vue de l'adoption d'un texte identique.
+
+  logical let une_loi_est_adoptee_par_le_parlement (uloi : ULoi, lana : LAna, lsen : LSen) =
+    (ULoi!une_loi_est_adoptee_par_l_assemblee_nationale (uloi, lana))
+    <->
+    (ULoi!une_loi_est_adoptee_par_le_senat (uloi, lsen));
+
+  signature les_lois : Self -> ULoi_set;
+
+  property article_45_a_1 : all self : Self, all uloi : ULoi, all lana : LAna, all lsen : LSen,
+  ULoi_set!is_a_member_of (uloi, les_lois (self)) ->
+  une_loi_est_adoptee_par_le_parlement (uloi, lana, lsen);
+
+-- Titre V Article_45-a-2 - Sans préjudice de l'application des articles 40 et 41, tout amendement est recevable en première lecture dès lors qu'il présente un lien, même indirect, avec le texte déposé ou transmis.
+
+  property article_45_a_2_1 : all uame : UAme, all uprl : UPrl, 
+  UAme!un_amendement_presente_un_lien_avec_une_proposition_de_loi (uame, uprl) ->
+  UAme!un_amendement_est_recevable_en_premiere_lecture (uame);
+
+  property article_45_a_2_2 : all uame : UAme, all uplo : UPlo, 
+  UAme!un_amendement_presente_un_lien_avec_un_projet_de_loi (uame, uplo) ->
+  UAme!un_amendement_est_recevable_en_premiere_lecture (uame);
+
+-- Titre V Article_45-c-1 - Le texte élaboré par la commission mixte peut être soumis par le Gouvernement pour approbation aux deux assemblées.
+
+--   property article_45_c_1 : 
+--   la_commission_mixte_elabore_un_texte_soumis_par_le_gouvernement
+--   le_texte_elabore_par_la_commission_mixte_est_approuve_par_les_deux_assemblees
+   
+
+-- Titre V Article_45-c-2 - Aucun amendement n'est recevable sauf accord du Gouvernement.
+
+
+end;;

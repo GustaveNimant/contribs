@@ -1,0 +1,79 @@
+open "basics";;
+
+open "L_Assemblee_nationale_S";;
+open "La_Cour_des_comptes_S";;
+open "Le_Gouvernement_S";;
+open "Le_Parlement_S";;
+open "Le_President_de_la_republique_S";;
+open "Le_Senat_S";;
+open "Un_Bureau_de_vote_S";;
+open "Un_Depute_S";;
+open "Un_Decret_S";;
+open "Un_Elu_S";;
+open "Un_Membre_du_gouvernement_S";;
+open "Un_Organe_deliberant_S";;
+open "Un_Francais_S";;
+open "Un_Parlementaire_S";;
+open "Un_Premier_ministre_S";;
+open "Un_Scrutin_S";;
+open "Un_Senateur_S";;
+open "Un_Territoire_francais_S";;
+open "Un_Texte_legislatif_S";;
+open "Une_Origine_S";;
+open "Une_Ordonnance_S";;
+open "Une_Race_S";;
+open "Une_Religion_S";;
+
+
+-- InH: Une_Loi_ordinaire_S  Une_Loi_organique_S  Une_Loi_de_programmation  Une_Loi_constitutionnelle_S
+-- InH:                    \          |           /                           /
+-- InH:                     v         v          v                           v
+-- InH: Un_Projet_de_loi_S        Une_Loi_S           Une_Proposition_de_loi_S   Un_Acte_de_l_executif_S  
+-- InH:         \                     |               /                              /
+-- InH:          v                    v              v                              v
+-- InH:                      Un_Texte_legislatif_S
+
+species Une_Loi_S (
+  URac is Une_Race_S,
+  UOri is Une_Origine_S,
+  URel is Une_Religion_S,
+  UTle is Un_Texte_legislatif_S,
+  UOrd is Une_Ordonnance_S,
+  UDec is Un_Decret_S,
+  UTfr is Un_Territoire_francais_S,
+  UScr is Un_Scrutin_S,
+  LCco is La_Cour_des_comptes_S,
+  UOde is Un_Organe_deliberant_S (UTle),
+  UBvo is Un_Bureau_de_vote_S (UTfr),
+  UFra is Un_Francais_S (URac, UOri, URel),
+  UDep is Un_Depute_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  USen is Un_Senateur_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UElu is Un_Elu_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UPar is Un_Parlementaire_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UPmi is Un_Premier_ministre_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  LAna is L_Assemblee_nationale_S (URac, UOri, URel, UTfr, UScr, UBvo, UDep, UPar),
+  LSen is Le_Senat_S (URac, UOri, URel, UTfr, UScr, UBvo, USen, UPar),
+  UMgo is Un_Membre_du_gouvernement_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  
+  LGou is Le_Gouvernement_S (URac, UOri, URel, UTle, UOrd, UDec, UTfr, UScr, UBvo, UOde, UMgo),
+  LPar is Le_Parlement_S (URac, UOri, URel, UTle, UOrd, UDec, UTfr, UScr, LCco, UBvo, UOde, UDep, USen, UElu, UPar, LAna, LSen, UMgo, LGou),
+  LPre is Le_President_de_la_republique_S (URac, UOri, URel, UTfr, UScr, UBvo, UFra)
+) =
+
+  inherit Un_Texte_legislatif_S;
+
+  signature une_loi_est_adoptee_par_l_assemblee_nationale : Self -> LAna -> bool;
+
+  signature une_loi_est_adoptee_par_le_senat : Self -> LSen -> bool;
+
+  signature une_loi_est_promulguee_par_le_president_de_la_republique : Self -> LPre -> bool;
+
+  signature le_premier_ministre_assure_l_execution_d_une_loi : Self -> UPmi -> bool;
+
+  signature le_premier_ministre_initie_une_loi : Self -> UPmi -> bool;
+
+  signature un_membre_du_parlement_initie_une_loi : Self -> UPar -> bool;
+
+  signature l_initiative_des_lois_appartient_concurremment_au_premier_ministre_et_aux_membres_du_parlement : Self -> UPmi -> UPar -> bool;
+  
+end;;

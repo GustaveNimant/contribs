@@ -1,0 +1,18 @@
+open "basics";;
+
+open "Finite_Set_S";;
+open "Un_Acte_de_l_executif_S";;
+
+species La_Politique_de_la_nation_S (
+  UAex is Un_Acte_de_l_executif_S
+) =
+
+  inherit Finite_Set_S (UAex); 
+
+  signature le_gouvernement_determine_la_politique_de_la_nation : Self -> bool;
+
+  signature le_gouvernement_conduit_la_politique_de_la_nation : Self -> bool;
+
+  signature le_premier_ministre_dirige_l_action_du_gouvernement : Self -> bool; 
+
+end;;

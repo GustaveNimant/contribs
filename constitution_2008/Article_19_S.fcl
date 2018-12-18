@@ -1,0 +1,18 @@
+open "basics";;
+
+open "Un_Acte_du_president_de_la_republique_S";;
+
+-- Les actes du Président de la République autres que ceux prévus aux articles 8 (1er alinéa), 11, 12, 16, 18, 54, 56 et 61 sont contresignés par le Premier ministre et, le cas échéant, par les ministres responsables.
+
+species Article_19_S (
+  UApr is Un_Acte_du_president_de_la_republique_S
+) =
+
+-- Titre II Article 19 - Les actes du Président de la République autres que ceux prévus aux articles 8 (1er alinéa), 11, 12, 16, 18, 54, 56 et 61 sont contresignés par le Premier ministre et, le cas échéant, par les ministres responsables.
+
+   property article_19 : all uapr : UApr,
+   UApr!un_acte_du_president_de_la_republique_selon_l_article_19 (uapr);
+
+end;;
+
+

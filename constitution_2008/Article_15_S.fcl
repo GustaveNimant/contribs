@@ -1,0 +1,30 @@
+open "basics";;
+
+open "Les_Armees_S";;
+open "La_Defense_nationale_S";;
+
+-- Le Président de la République est le chef des armées. Il préside les conseils et les comités supérieurs de la défense nationale
+
+species Article_15_S (
+  LArm is Les_Armees_S,
+  LDna is La_Defense_nationale_S
+)=
+
+-- Titre II Article 15-a - Le Président de la République est le chef des armées.
+
+  property article_15_a : all larm : LArm,
+  LArm!le_president_de_la_republique_est_le_chef_des_armees (larm);
+
+-- Titre II Article 15-b - Le Président de la République ... préside les conseils de la défense nationale.
+
+  property article_15_b : all ldna : LDna,
+  LDna!le_president_de_la_republique_preside_un_conseil_de_la_defense_nationale (ldna);
+
+-- Titre II Article 15-c - Le Président de la République ... préside les comités supérieurs de la défense nationale.
+
+  property article_15_c : all ldna : LDna,
+  LDna!le_president_de_la_republique_preside_un_comite_de_la_defense_nationale (ldna);
+
+end;;
+
+

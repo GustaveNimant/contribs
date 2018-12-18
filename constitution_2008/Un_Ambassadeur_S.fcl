@@ -1,0 +1,11 @@
+open "basics";;
+ 
+open "Un_Diplomate_S";;
+
+species Un_Ambassadeur_S (
+ 
+) =
+ 
+  inherit Un_Diplomate_S;
+
+end;;

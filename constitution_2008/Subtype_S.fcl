@@ -1,0 +1,46 @@
+open "basics";;
+open "sets";;
+
+open "Finite_Set_S";;
+
+-- Documentation : Subtype_S (Sub, Sub_set, Super, Super_set)
+
+-- InH:  Sub
+-- InH:   |
+-- InH:   v
+-- InH: Super
+
+species Subtype_S (
+  Sub is Setoid, 
+  Sub_set is Finite_Set_S (Sub),
+  Super is Setoid,
+  Super_set is Finite_Set_S (Super)
+) =
+
+  representation = unit;
+  
+  signature to_super : Sub -> Super; 
+
+  signature super_of_sub : Sub -> Super; 
+  
+  property to_super_congruence : all x y : Sub,
+  Sub!equal(x, y) -> 
+  Super!equal(!to_super(x), !to_super(y));
+  
+  signature to_super_set : Sub_set -> Super_set; 
+  
+  property to_super_set_congruence : all x y : Sub_set,
+  Sub_set!equal(x, y) -> Super_set!equal(!to_super_set(x), !to_super_set(y));
+  
+  property to_super_set_const1 : all sub_set : Sub_set, all y : Super,
+  Super_set!is_a_member_of(y, !to_super_set(sub_set)) ->
+  (ex sub : Sub,
+  Sub_set!is_a_member_of(sub, sub_set) /\
+  Super!equal(!to_super(sub), y));
+  
+  property to_super_set_const2 : all sub_set : Sub_set, all sub : Sub,
+  Sub_set!is_a_member_of(sub, sub_set) ->
+  Super_set!is_a_member_of(!to_super(sub), !to_super_set(sub_set));
+  
+end;;
+

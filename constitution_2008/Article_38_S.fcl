@@ -1,0 +1,85 @@
+open "basics";;
+
+open "Finite_Set_S";;
+open "L_Assemblee_nationale_S";;
+open "Le_Gouvernement_S";;
+open "L_Electorat_S";;
+open "Le_Parlement_S";;
+open "Le_Senat_S";;
+open "Le_President_de_la_republique_S";;
+
+open "Un_Bureau_de_vote_S";;
+open "Un_Citoyen_electeur_S";;
+open "Un_Decret_S";;
+open "Un_Depute_S";;
+open "Un_Domaine_de_projet_legislatif_S";;
+open "Un_Elu_S";;
+open "Un_Francais_S";;
+open "Un_Membre_du_gouvernement_S";;
+open "Un_Organe_deliberant_S";;
+open "Un_Parlementaire_S";;
+open "Un_Projet_de_loi_S";;
+open "Un_Scrutin_S";;
+open "Un_Senateur_S";;
+open "Un_Territoire_francais_S";;
+open "Un_Texte_legislatif_S";;
+open "Une_Ordonnance_S";;
+open "Une_Origine_S";;
+open "Une_Race_S";;
+open "Une_Religion_S";;
+
+-- Article 38-a - Le Gouvernement peut, pour l'exÃ©cution de son programme, demander au Parlement l'autorisation de prendre par ordonnances, pendant un dÃ©lai limitÃ©, des mesures qui sont normalement du domaine de la loi.
+
+species Article_38_S (
+  URac is Une_Race_S,
+  UOri is Une_Origine_S,
+  URel is Une_Religion_S,
+  UTle is Un_Texte_legislatif_S,
+  UOrd is Une_Ordonnance_S,
+  UDec is Un_Decret_S,
+  UTfr is Un_Territoire_francais_S,
+  UScr is Un_Scrutin_S,
+  UDpl is Un_Domaine_de_projet_legislatif_S,
+  UBvo is Un_Bureau_de_vote_S (UTfr),
+  UOde is Un_Organe_deliberant_S (UTle),
+  UFra is Un_Francais_S (URac, UOri, URel),
+  UCel is Un_Citoyen_electeur_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UMgo is Un_Membre_du_gouvernement_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UDep is Un_Depute_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  USen is Un_Senateur_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UElu is Un_Elu_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  LEle is L_Electorat_S (URac, UOri, URel, UTfr, UScr, UBvo, UCel),
+  UPar is Un_Parlementaire_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  LAna is L_Assemblee_nationale_S (URac, UOri, URel, UTfr, UScr, UBvo, UDep, UPar),
+  LSen is Le_Senat_S (URac, UOri, URel, UTfr, UScr, UBvo, USen, UPar),
+  LPar is Le_Parlement_S (URac, UOri, URel, UTfr, UScr, UBvo, UDep, USen, UElu, UPar, LAna, LSen),
+  LGou is Le_Gouvernement_S (URac, UOri, URel, UTle, UOrd, UDec, UTfr, UScr, UBvo, UOde, UMgo),
+  LPre is Le_President_de_la_republique_S (URac, UOri, URel, UTfr, UScr, UBvo, UFra), 
+  UPlo is Un_Projet_de_loi_S (URac, UOri, URel, UTle, UOrd, UDec, UTfr, UScr, UDpl, UBvo, UOde, UFra, UCel, UDep, USen, LEle, UElu, UPar, LAna, LSen, LPar, UMgo, LGou, LPre)
+) =
+
+-- Titre V Article 38-a - Le Gouvernement peut, pour l'exécution de son programme, demander au Parlement l'autorisation de prendre par ordonnances, pendant un délai limité, des mesures qui sont normalement du domaine de la loi.
+
+  signature le_gouvernement_est_autorise_par_le_parlement_a_prendre_une_ordonnance : LGou -> LPar -> UOrd -> bool;
+
+  property article_38_a : all lgou : LGou, all lpar : LPar, all uord : UOrd, 
+  LGou!le_gouvernement_prend_une_ordonnance (lgou, uord) ->
+  LGou!le_gouvernement_delibere_sur_une_ordonnance (lgou, uord) ->
+  le_gouvernement_est_autorise_par_le_parlement_a_prendre_une_ordonnance (lgou, lpar, uord);
+
+-- Titre V Article 38-b-1 - Les ordonnances sont prises en conseil des ministres après avis du Conseil d'État.
+
+-- Titre V Article 38-b-2 - Elles entrent en vigueur dès leur publication mais deviennent caduques si le projet de loi de ratification n'est pas déposé devant le Parlement avant la date fixée par la loi d'habilitation.
+
+  property article_38_b_2 : all uplo : UPlo, all uord : UOrd, all lgou : LGou,
+   UPlo!un_projet_de_loi_de_ratification_d_une_ordonnance_est_fait_par_le_gouvernement (uplo, uord, lgou);  
+
+-- Titre V Article 38-b-3 - Elles ne peuvent être ratifiées que de manière expresse.
+
+  property article_38_b_3 : all uord : UOrd,
+  UOrd!une_ordonnance_est_ratifiee_de_maniere_expresse (uord);
+  
+-- Titre V Article 38-c - A l'expiration du délai mentionné au premier alinéa du présent article, les ordonnances ne peuvent plus être modifiées que par la loi dans les matières qui sont du domaine législatif.
+
+
+end;;

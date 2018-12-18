@@ -1,8 +1,0 @@
-
-      Une_Ordonnance_S  Un_Decret_S
-                   \        /
-                    v      v
-      Un_Acte_de_l_executif_S         Une_Loi_S
-                   \                      /
-                    v                    v
-                     Un_Texte_Legislatif_S

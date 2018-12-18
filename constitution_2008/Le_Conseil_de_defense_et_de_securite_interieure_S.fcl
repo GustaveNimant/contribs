@@ -1,0 +1,10 @@
+open "basics";;
+ 
+-- Documentation : https://fr.wikipedia.org/wiki/Conseil_de_Défense_et_de_Sécurité_nationale
+-- Documentation : Le conseil de Défense et de Sécurité nationale (CDSN) est en France une sorte de conseil des ministres restreint présidé par le président de la République ayant pour but de fixer les objectifs et de coordonner la politique de sécurité et de défense.
+
+species Le_Conseil_de_defense_et_de_securite_interieure_S =
+ 
+  signature le_president_de_la_republique_preside_le_conseil_de_defense_et_de_securite_interieure : Self -> bool;
+
+end;;

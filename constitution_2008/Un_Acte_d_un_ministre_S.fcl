@@ -1,0 +1,29 @@
+open "basics";;
+
+open "Un_Acte_de_l_executif_S";;
+
+-- Documentation : http://www.toupie.org/Dictionnaire/Executif.htm
+-- Documentation : En France, le pouvoir exécutif est détenu par le Président de la République, le Premier_ministre et son gouvernement.
+-- Documentation : Principales missions du pouvoir exécutif :
+-- Documentation :   faire respecter la loi et l'ordre public,
+-- Documentation :   édicter des règlements, décrets ou arrêtés,
+-- Documentation :   concevoir et diriger la politique de la nation,
+-- Documentation :   conduire la politique étrangère de l'État,
+-- Documentation :   diriger l'armée,
+-- Documentation :   diriger les services publics…
+
+-- InH: Un_Acte_du_president_de_la_republique_S  Un_Acte_du_premier_ministre_S  Un_Acte_d_un_ministre_S
+-- InH:               \                                       |                          /
+-- InH:                v                                      v                         v
+-- InH:                                           Un_Acte_de_l_executif_S
+-- InH:                                                       |
+-- InH:                                                       v
+-- InH:                                             Un_Texte_legislatif_S
+
+species Un_Acte_d_un_ministre_S =
+
+  inherit Un_Acte_de_l_executif_S;
+
+  signature est_une_nomination : Self -> bool;
+ 
+end;;

@@ -1,0 +1,136 @@
+open "basics";;
+
+open "Finite_Set_S";;
+open "L_Assemblee_nationale_S";;
+open "L_Electorat_S";;
+open "Le_Gouvernement_S";;
+open "Le_Parlement_S";;
+open "Le_President_de_la_republique_S";;
+open "Le_Senat_S";;
+open "Un_Bureau_de_vote_S";;
+open "Un_Citoyen_electeur_S";;
+open "Un_Decret_S";;
+open "Un_Depute_S";;
+open "Un_Domaine_de_projet_legislatif_S";;
+open "Un_Elu_S";;
+open "Un_Francais_S";;
+open "Un_Membre_du_gouvernement_S";;
+open "Un_Organe_deliberant_S";;
+open "Un_Parlementaire_S";;
+open "Un_Projet_de_loi_S";;
+open "Un_Projet_legislatif_S";;
+open "Un_Projet_legislatif_subtype_S";;
+open "Un_Scrutin_S";;
+open "Un_Senateur_S";;
+open "Un_Territoire_francais_S";;
+open "Un_Texte_legislatif_S";;
+open "Une_Ordonnance_S";;
+open "Une_Origine_S";;
+open "Une_Proposition_de_loi_S";;
+open "Une_Race_S";;
+open "Une_Religion_S";;
+
+(* A Compléter *)
+
+-- Le Président de la République, sur proposition du Gouvernement pendant la durée des sessions ou sur proposition conjointe des deux Assemblées, publiées au Journal Officiel, peut soumettre au référendum tout projet de loi portant sur l'organisation des pouvoirs publics, sur des réformes relatives à la politique économique, sociale ou environnementale de la nation et aux services publics qui y concourent, ou tendant à autoriser la ratification d'un traité qui, sans être contraire à la Constitution, aurait des incidences sur le fonctionnement des institutions.
+
+-- Lorsque le référendum est organisé sur proposition du Gouvernement, celui-ci fait, devant chaque assemblée, une déclaration qui est suivie d'un débat.
+
+-- Un référendum portant sur un objet mentionné au premier alinéa peut être organisé à l'initiative d'un cinquième des membres du Parlement, soutenue par un dixième des électeurs inscrits sur les listes électorales. Cette initiative prend la forme d'une proposition de loi et ne peut avoir pour objet l'abrogation d'une disposition législative promulguée depuis moins d'un an.
+
+-- Les conditions de sa présentation et celles dans lesquelles le Conseil constitutionnel contrôle le respect des dispositions de l'alinéa précédent sont déterminées par une loi organique.
+
+-- Si la proposition de loi n'a pas été examinée par les deux assemblées dans un délai fixé par la loi organique, le Président de la République la soumet au référendum.
+
+-- Lorsque la proposition de loi n'est pas adoptée par le peuple français, aucune nouvelle proposition de référendum portant sur le même sujet ne peut être présentée avant l'expiration d'un délai de deux ans suivant la date du scrutin.
+
+-- Lorsque le référendum a conclu à l'adoption du projet ou de la proposition de loi, le Président de la République promulgue la loi dans les quinze jours qui suivent la proclamation des résultats de la consultation.
+
+species Article_11_S (
+  URac is Une_Race_S,
+  UOri is Une_Origine_S,
+  URel is Une_Religion_S,
+  UTle is Un_Texte_legislatif_S,
+  UOrd is Une_Ordonnance_S,
+  UDec is Un_Decret_S,
+  UTfr is Un_Territoire_francais_S,
+  UScr is Un_Scrutin_S,
+  UDpl is Un_Domaine_de_projet_legislatif_S,
+  UBvo is Un_Bureau_de_vote_S (UTfr),
+  UOde is Un_Organe_deliberant_S (UTle),
+  UFra is Un_Francais_S (URac, UOri, URel),
+  UCel is Un_Citoyen_electeur_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UDep is Un_Depute_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  USen is Un_Senateur_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  LEle is L_Electorat_S (URac, UOri, URel, UTfr, UScr, UBvo, UCel),
+  UElu is Un_Elu_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UPar is Un_Parlementaire_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  LAna is L_Assemblee_nationale_S (URac, UOri, URel, UTfr, UScr, UBvo, UDep, UPar),
+  LSen is Le_Senat_S (URac, UOri, URel, UTfr, UScr, UBvo, USen, UPar),
+  LPar is Le_Parlement_S (URac, UOri, URel, UTfr, UScr, UBvo, UDep, USen, UElu, UPar, LAna, LSen),
+  UMgo is Un_Membre_du_gouvernement_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  LGou is Le_Gouvernement_S (URac, UOri, URel, UTle, UOrd, UDec, UTfr, UScr, UBvo, UOde, UMgo),
+  LPre is Le_President_de_la_republique_S (URac, UOri, URel, UTfr, UScr, UBvo, UFra),
+  UPjl is Un_Projet_de_loi_S (URac, UOri, URel, UTle, UOrd, UDec, UTfr, UScr, UDpl, UBvo, UOde, UFra, UCel, UDep, USen, LEle, UElu, UPar, LAna, LSen, LPar, UMgo, LGou, LPre),
+  UPjl_set is Finite_Set_S (UPjl),
+  UPle is Un_Projet_legislatif_S (URac, UOri, URel, UTle, UOrd, UDec, UTfr, UScr, UDpl, UBvo, UFra, UCel, UDep, USen, LEle, UElu, UPar, LAna, LSen, LPar),
+  UPle_set is Finite_Set_S (UPle),
+  UPleOfUPjl is Un_Projet_legislatif_subtype_S (URac, UOri, URel, UTle, UOrd, UDec, UTfr, UScr, UDpl, UBvo, UFra, UCel, UDep, USen, LEle, UElu, UPar, LAna, LSen, LPar, UPjl, UPjl_set, UPle, UPle_set),
+  UPpl is Une_Proposition_de_loi_S (URac, UOri, URel, UTle, UOrd, UDec, UTfr, UScr, UDpl, UBvo, UFra, UCel, UDep, USen, LEle, UElu, UPar, LAna, LSen, LPar),
+  UPpl_set is Finite_Set_S (UPpl),
+  UPleOfUPpl is Un_Projet_legislatif_subtype_S (URac, UOri, URel, UTle, UOrd, UDec, UTfr, UScr, UDpl, UBvo, UFra, UCel, UDep, USen, LEle, UElu, UPar, LAna, LSen, LPar, UPpl, UPpl_set, UPle, UPle_set)
+)=
+
+-- Titre II Article 11 a - Le Président de la République, sur proposition du Gouvernement pendant la durée des sessions ou sur proposition conjointe des deux Assemblées, publiées au Journal Officiel, peut soumettre au référendum tout projet de loi portant sur l'organisation des pouvoirs publics, sur des réformes relatives à la politique économique, sociale ou environnementale de la nation et aux services publics qui y concourent, ou tendant à autoriser la ratification d'un traité qui, sans être contraire à la Constitution, aurait des incidences sur le fonctionnement des institutions.
+
+  signature les_propositions_de_loi : Self -> UPpl_set;
+
+  signature les_projets_de_loi : Self -> UPjl_set;
+
+  let les_projets_legislatifs_of_les_projets_de_loi (upjl_set : UPjl_set) =
+    UPleOfUPjl!to_super_set (upjl_set);
+
+  let les_projets_legislatifs_of_les_propositions_de_loi (uppl_set : UPpl_set) =
+    UPleOfUPpl!to_super_set (uppl_set);
+
+  let les_projets_legislatifs (self : Self ) : UPle_set =
+    UPle_set!union (les_projets_legislatifs_of_les_projets_de_loi(les_projets_de_loi (self)), 
+                    les_projets_legislatifs_of_les_propositions_de_loi (les_propositions_de_loi (self))
+    );
+  
+  logical let le_president_de_la_republique_a_soumis_un_projet_legislatif_a_referendum (self : Self, uple : UPle, upjl : UPjl, lgou : LGou) =
+    UPle_set!is_a_member_of (uple, les_projets_legislatifs (self)) ->
+    (UPle!un_projet_legislatif_est_soumettable_a_referendum_par_le_president_de_la_republique (uple)) -> 
+    (UPjl!un_projet_de_loi_est_fait_par_le_gouvernement (upjl, lgou));
+  
+  property article_11_a_1 : all self : Self, all lgou : LGou, all uscr : UScr, all upjl : UPjl, all uple : UPle,
+  LGou!le_gouvernement_propose_un_referendum (lgou, uscr) ->
+  UScr!est_un_referendum (uscr) ->
+  le_president_de_la_republique_a_soumis_un_projet_legislatif_a_referendum (self, uple, upjl, lgou);
+
+  property article_11_a_2 : all self : Self, all lpar : LPar, all lgou : LGou, all uscr : UScr, all upjl : UPjl, all uple : UPle,
+  LPar!le_parlement_propose_un_referendum (lpar, uscr) ->
+  UScr!est_un_referendum (uscr) ->
+  le_president_de_la_republique_a_soumis_un_projet_legislatif_a_referendum (self, uple, upjl, lgou);
+
+-- Titre II Article 11 b-1 - Lorsque le référendum est organisé sur proposition du Gouvernement celui-ci fait, devant chaque assemblée, une déclaration qui est suivie d'un débat.
+
+  property article_11_b_1 : all lpre : LPre, all lgou : LGou, all uscr : UScr,
+  LGou!le_gouvernement_propose_un_referendum (lgou, uscr) ->
+  UScr!est_un_referendum (uscr) ->
+  LPre!le_president_de_la_republique_fait_une_declaration_devant_l_assemblee_nationale (lpre) ->
+  LPre!le_president_de_la_republique_fait_une_declaration_devant_le_senat (lpre);
+
+-- Titre II Article 11 c - Un référendum portant sur un objet mentionné au premier alinéa peut être organisé à l'initiative d'un cinquième des membres du Parlement, soutenue par un dixième des électeurs inscrits sur les listes électorales. Cette initiative prend la forme d'une proposition de loi et ne peut avoir pour objet l'abrogation d'une disposition législative promulguée depuis moins d'un an.
+
+-- Titre II Article 11 d - Les conditions de sa présentation et celles dans lesquelles le Conseil constitutionnel contrôle le respect des dispositions de l'alinéa précédent sont déterminées par une loi organique.
+
+-- Titre II Article 11 e - Si la proposition de loi n'a pas été examinée par les deux assemblées dans un délai fixé par la loi organique, le Président de la République la soumet au référendum.
+
+-- Titre II Article 11 f - Lorsque la proposition de loi n'est pas adoptée par le peuple français, aucune nouvelle proposition de référendum portant sur le même sujet ne peut être présentée avant l'expiration d'un délai de deux ans suivant la date du scrutin.
+
+-- Titre II Article 11 g - Lorsque le référendum a conclu à l'adoption du projet ou de la proposition de loi, le Président de la République promulgue la loi dans les quinze jours qui suivent la proclamation des résultats de la consultation.
+
+end;;
+
+

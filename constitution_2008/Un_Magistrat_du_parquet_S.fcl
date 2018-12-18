@@ -1,0 +1,16 @@
+open "basics";;
+
+-- Documentation : https://justice.ooreka.fr/astuce/voir/627107/nomination-des-magistrats
+-- Documentation : Nomination des magistrats du parquet
+
+-- Documentation : Depuis la loi constitutionnelle du 27 juillet 1993, les magistrats du parquet sont nommés par décret du président de la République sur proposition du garde des sceaux (ministre de la justice), après avis du conseil supérieur de la magistrature (dans sa formation compétente à l'égard des magistrats du parquet).
+-- Documentation : Cet avis est un avis simple, « favorable » ou « défavorable », que le ministre peut ne pas suivre. En pratique, cet avis est quasiment toujours suivi.
+-- Documentation : Bon à savoir : depuis la loi constitutionnelle du 23 juillet 2008, cet avis concerne tous les magistrats du parquet (y compris les procureurs généraux).
+ 
+open "Un_Magistrat_S";;
+
+species Un_Mag_S =
+ 
+  inherit Un_Magistrat_S;
+
+end;;

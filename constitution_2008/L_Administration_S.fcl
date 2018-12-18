@@ -1,0 +1,7 @@
+open "basics";;
+
+species L_Administration_S =
+
+  signature le_gouvernement_dispose_de_l_administration : Self -> bool;
+
+end;;

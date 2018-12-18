@@ -1,0 +1,17 @@
+open "basics";;
+
+open "Le_Conseil_superieur_de_la_magistrature_S";;
+open "Un_Magistrat_du_siege_S";;
+
+-- Documentation : Hauts magistrats du siège
+-- Documentation : Concernant les hauts magistrats du siège (magistrats du siège à la cour de cassation, premiers présidents de cours d'appel, présidents de tribunaux de grande instance), le conseil supérieur de la magistrature (dans sa formation compétente à l'égard des magistrats du siège) émet des propositions.
+-- Documentation : Le président de la République procède ensuite à la nomination par décret. 
+
+species Un_Haut_magistrat_du_siege_S (
+  LCsm is Le_Conseil_superieur_de_la_magistrature_S
+) =
+  inherit Un_Magistrat_du_siege_S;
+
+  signature le_conseil_superieur_de_la_magistrature_propose_la_nomination_d_un_haut_magistrat_du_siege : Self -> LCsm -> bool; 
+
+end;;

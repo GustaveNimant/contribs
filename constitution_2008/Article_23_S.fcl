@@ -1,0 +1,104 @@
+open "basics";;
+
+open "Finite_Set_S";;
+open "L_Assemblee_nationale_S";;
+open "Le_Gouvernement_S";;
+open "Le_Parlement_S";;
+open "Le_Senat_S";;
+open "Un_Bureau_de_vote_S";;
+open "Un_Citoyen_electeur_S";;
+open "Un_Citoyen_electeur_subtype_S";;
+open "Un_Decret_S";;
+open "Un_Depute_S";;
+open "Un_Elu_S";;
+open "Un_Elu_subtype_S";;
+open "Un_Membre_de_l_executif_S";;
+open "Un_Membre_de_l_executif_subtype_S";;
+open "Un_Membre_du_gouvernement_S";;
+open "Un_Organe_deliberant_S";;
+open "Un_Parlementaire_S";;
+open "Un_Scrutin_S";;
+open "Un_Senateur_S";;
+open "Un_Territoire_francais_S";;
+open "Un_Texte_legislatif_S";;
+open "Une_Ordonnance_S";;
+open "Une_Origine_S";;
+open "Une_Race_S";;
+open "Une_Religion_S";;
+
+-- Les fonctions de membre du Gouvernement sont incompatibles avec l'exercice de tout mandat parlementaire, de toute fonction de représentation professionnelle à caractère national et de tout emploi public ou de toute activité professionnelle.
+
+-- Une loi organique fixe les conditions dans lesquelles il est pourvu au remplacement des titulaires de tels mandats, fonctions ou emplois.
+
+-- Le remplacement des membres du Parlement a lieu conformément aux dispositions de l'article 25.
+
+species Article_23_S (
+  URac is Une_Race_S,
+  UOri is Une_Origine_S,
+  URel is Une_Religion_S,
+  UOrd is Une_Ordonnance_S,
+  UTle is Un_Texte_legislatif_S,
+  UDec is Un_Decret_S,
+  UTfr is Un_Territoire_francais_S,
+  UScr is Un_Scrutin_S,
+  UBvo is Un_Bureau_de_vote_S (UTfr),
+  UCel is Un_Citoyen_electeur_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UCel_set is Finite_Set_S (UCel),
+  UMex is Un_Membre_de_l_executif_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UMex_set is Finite_Set_S (UMex),
+  UMgo is Un_Membre_du_gouvernement_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UMgo_set is Finite_Set_S (UMgo),
+  UElu is Un_Elu_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UElu_set is Finite_Set_S (UElu),
+  UPar is Un_Parlementaire_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UPar_set is Finite_Set_S (UPar),
+  UDep is Un_Depute_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  LAna is L_Assemblee_nationale_S (URac, UOri, URel, UTfr, UScr, UBvo, UDep, UPar),
+  USen is Un_Senateur_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  LSen is Le_Senat_S (URac, UOri, URel, UTfr, UScr, UBvo, USen, UPar),
+  LPar is Le_Parlement_S (URac, UOri, URel, UTfr, UScr, UBvo, UDep, USen, UElu, UPar, LAna, LSen),
+  UOde is Un_Organe_deliberant_S (UTle),
+  UEluOfUPar is Un_Elu_subtype_S (URac, UOri, URel, UTfr, UScr, UBvo, UPar, UPar_set, UElu, UElu_set),
+  UCelOfUElu is Un_Citoyen_electeur_subtype_S (URac, UOri, URel, UTfr, UScr, UBvo, UElu, UElu_set, UCel, UCel_set),
+  LGou is Le_Gouvernement_S (URac, UOri, URel, UTle, UOrd, UDec, UTfr, UScr, UBvo, UOde, UMgo),
+  UMexOfUMgo is Un_Membre_de_l_executif_subtype_S (URac, UOri, URel, UTfr, UScr, UBvo, UMgo, UMgo_set, UMex, UMex_set),
+  UCelOfUMex is Un_Citoyen_electeur_subtype_S (URac, UOri, URel, UTfr, UScr, UBvo, UMex, UMex_set, UCel, UCel_set)
+) =
+
+  let un_elu_of_un_parlementaire (upar : UPar) =
+    UEluOfUPar!un_elu (upar);
+ 
+  let un_citoyen_electeur_of_un_parlementaire (upar : UPar) =
+    UCelOfUElu!to_super (un_elu_of_un_parlementaire (upar));
+
+  let un_membre_de_l_executif_of_un_membre_du_gouvernement (umgo : UMgo) =
+    UMexOfUMgo!un_membre_de_l_executif (umgo);
+ 
+  let un_citoyen_electeur_of_un_membre_du_gouvernement (umgo : UMgo) =
+    UCelOfUMex!to_super (un_membre_de_l_executif_of_un_membre_du_gouvernement (umgo));
+
+-- Titre III Article 23-a-1 - Les fonctions de membre du Gouvernement sont incompatibles avec l'exercice de tout mandat parlementaire...
+
+  signature les_citoyens_electeurs : Self -> UCel_set;
+
+  property les_fonctions_de_membre_du_gouvernement_sont_incompatibles_avec_l_exercice_de_tout_mandat_parlementaire :
+  all umgo : UMgo, all upar : UPar, all self : Self, 
+  UCel_set!is_a_member_of (un_citoyen_electeur_of_un_parlementaire (upar), les_citoyens_electeurs (self)) ->
+     ~ UCel_set!is_a_member_of (un_citoyen_electeur_of_un_membre_du_gouvernement (umgo), les_citoyens_electeurs (self));
+
+-- Titre III Article 23-a-2 - Les fonctions de membre du Gouvernement sont incompatibles avec l'exercice de toute fonction de représentation professionnelle à caractère national
+
+-- Titre III Article 23-a-3 - Les fonctions de membre du Gouvernement sont incompatibles avec l'exercice de tout emploi public ou de toute activité professionnelle.
+
+-- Titre III Article 23-a-4 - Les fonctions de membre du Gouvernement sont incompatibles avec l'exercice de toute activité professionnelle.
+
+-- Titre III Article 23-b-1 - Une loi organique fixe les conditions dans lesquelles il est pourvu au remplacement des titulaires de tels mandats, fonctions ou emplois.
+
+(*
+  property une_loi_organique_fixe_les_conditions_dans_lesquelles_il_est_pourvu_
+           le_remplacement_des_titulaires_de_tels_mandats_fonctions_ou_emplois
+*)
+  
+-- Titre III Article 23-c-1 - Le remplacement des membres du Parlement a lieu conformément aux dispositions de l'article 25.
+
+end;;

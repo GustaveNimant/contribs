@@ -1,0 +1,82 @@
+open "basics";;
+
+open "Finite_Set_S";;
+open "L_Assemblee_nationale_S";;
+open "Le_Gouvernement_S";;
+open "Le_Parlement_S";;
+open "Le_Senat_S";;
+open "Un_Bureau_de_vote_S";;
+open "Un_Citoyen_electeur_S";;
+open "Un_Decret_S";;
+open "Un_Depute_S";;
+open "Un_Elu_S";;
+open "Un_Membre_de_l_executif_S";;
+open "Un_Membre_du_gouvernement_S";;
+open "Un_Organe_deliberant_S";;
+open "Un_Parlementaire_S";;
+open "Un_Scrutin_S";;
+open "Un_Senateur_S";;
+open "Un_Territoire_francais_S";;
+open "Un_Texte_legislatif_S";;
+open "Une_Loi_organique_S";;
+open "Une_Ordonnance_S";;
+open "Une_Origine_S";;
+open "Une_Race_S";;
+open "Une_Religion_S";;
+
+-- Tout mandat impératif est nul.
+
+-- Le droit de vote des membres du Parlement est personnel.
+
+-- La loi organique peut autoriser exceptionnellement la délégation de vote. Dans ce cas, nul ne peut recevoir délégation de plus d'un mandat.
+
+species Article_27_S (
+  URac is Une_Race_S,
+  UOri is Une_Origine_S,
+  URel is Une_Religion_S,
+  UOrd is Une_Ordonnance_S,
+  UTle is Un_Texte_legislatif_S,
+  UDec is Un_Decret_S,
+  UTfr is Un_Territoire_francais_S,
+  UScr is Un_Scrutin_S,
+  UBvo is Un_Bureau_de_vote_S (UTfr),
+  UCel is Un_Citoyen_electeur_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UCel_set is Finite_Set_S (UCel),
+  UMex is Un_Membre_de_l_executif_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UMex_set is Finite_Set_S (UMex),
+  UMgo is Un_Membre_du_gouvernement_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UMgo_set is Finite_Set_S (UMgo),
+  UElu is Un_Elu_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UElu_set is Finite_Set_S (UElu),
+  UPar is Un_Parlementaire_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  UPar_set is Finite_Set_S (UPar),
+  UDep is Un_Depute_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  LAna is L_Assemblee_nationale_S (URac, UOri, URel, UTfr, UScr, UBvo, UDep, UPar),
+  USen is Un_Senateur_S (URac, UOri, URel, UTfr, UScr, UBvo),
+  LSen is Le_Senat_S (URac, UOri, URel, UTfr, UScr, UBvo, USen, UPar),
+  LPar is Le_Parlement_S (URac, UOri, URel, UTfr, UScr, UBvo, UDep, USen, UElu, UPar, LAna, LSen),
+  ULor is Une_Loi_organique_S (URac, UOri, URel, UTfr, UScr, UBvo, UDep, USen, UElu, UPar, LAna, LSen, LPar)
+) =
+
+  signature les_elus : Self -> UElu_set;
+
+-- Titre IV Article_27-a - Tout mandat impératif est nul.
+
+  property article_27_a : all self : Self, all uelu : UElu, 
+  UElu_set!is_a_member_of (uelu, les_elus (self)) ->
+  UElu!un_elu_ne_recoit_pas_de_mandat_imperatif_de_ses_electeurs (uelu);
+
+-- Titre IV Article_27-b - Le droit de vote des membres du Parlement est personnel.
+
+  property article_27_b : all self : Self, all uelu : UElu, 
+  UElu_set!is_a_member_of (uelu, les_elus (self)) ->
+  UElu!un_elu_ne_delegue_pas_son_vote (uelu);
+
+-- Titre IV Article_27-c - La loi organique peut autoriser exceptionnellement la délégation de vote. Dans ce cas, nul ne peut recevoir délégation de plus d'un mandat.
+
+  property article_27_c_1 : all self : Self, all uelu : UElu, ex ulor : ULor, 
+  UElu_set!is_a_member_of (uelu, les_elus (self)) ->
+  (~ UElu!un_elu_ne_delegue_pas_son_vote (uelu)) ->
+  ULor!une_loi_organique_peut_autoriser_exceptionnellement_la_delegation_de_vote (ulor);
+
+end;;

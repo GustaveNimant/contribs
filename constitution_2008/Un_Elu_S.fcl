@@ -1,0 +1,94 @@
+open "basics";;
+open "Un_Bureau_de_vote_S";;
+open "Un_Citoyen_electeur_S";;
+open "Un_Scrutin_S";;
+open "Un_Territoire_francais_S";;
+open "Une_Origine_S";;
+open "Une_Race_S";;
+open "Une_Religion_S";;
+
+-- InH:  Un_Depute_S           Un_Senateur_S
+-- InH:      \                  /
+-- InH:       v                v
+-- InH:       Un_Parlementaire_S  Le_President_de_la_republique_S  Un_Elu_europeen_S  Un_Elu_regional_S  Un_Elu_cantonal_S  Un_Elu_municipal_S  
+-- InH:                |
+-- InH:                v
+-- InH:             Un_Elu_S
+-- InH:                |
+-- InH:                v
+-- InH:        Un_Citoyen_electeur_S
+-- InH:                |
+-- InH:                v
+-- InH:           Un_Francais_S
+-- InH:                |
+-- InH:                v
+-- InH:         Un_Etre_humain_S
+ 
+species Un_Elu_S (
+  URac is Une_Race_S,
+  UOri is Une_Origine_S,
+  URel is Une_Religion_S,
+  UTfr is Un_Territoire_francais_S,
+  UScr is Un_Scrutin_S,
+  UBvo is Un_Bureau_de_vote_S (UTfr)
+) = 
+
+  inherit Un_Citoyen_electeur_S (URac, UOri, URel, UTfr, UScr, UBvo); 
+
+  signature est_eligible_par_le_scrutin : Self -> UScr -> bool;
+
+  signature est_elu_par_le_scrutin : Self -> UScr -> bool;
+
+  signature est_elu_par_un_electeur : Self -> Self -> bool;
+
+  signature est_un_senateur : Self -> bool;
+
+  signature est_un_depute : Self -> bool;
+
+  signature est_un_conseiller_regional : Self -> bool;
+
+  signature est_un_conseiller_departemental : Self -> bool;
+
+  signature est_un_conseiller_municipal : Self -> bool;
+
+  signature est_un_conseiller_municipal_delegue : Self -> bool;
+
+  signature est_elu_sur_un_territoire : Self -> UTfr -> bool;
+
+  signature est_elu_pour_cinq_ans : Self -> bool;
+
+  signature represente_la_nation : Self -> bool;
+
+  signature un_elu_ne_recoit_pas_de_mandat_imperatif_de_ses_electeurs : Self -> bool;
+
+  signature un_elu_recoit_un_mandat_representatif_de_ses_electeurs : Self -> bool;
+
+  signature un_elu_ne_delegue_pas_son_vote : Self -> bool;
+
+  logical let est_elu_au_suffrage_direct (self : Self, uscr : UScr) =
+    UScr!est_un_scrutin_direct (uscr);
+
+  logical let est_elu_au_suffrage_universel (self : Self, uscr : UScr) =
+    UScr!est_un_scrutin_universel (uscr);
+
+  signature est_elu_par_un_grand_electeur : Self -> bool; 
+  
+  logical let est_un_grand_electeur (self : Self) =
+      est_un_depute (self)
+   /\ est_un_senateur (self)
+   /\ est_un_conseiller_regional (self)
+   /\ est_un_conseiller_departemental (self)
+   /\ est_un_conseiller_municipal_delegue (self) ;
+
+ logical let est_elu_au_suffrage_indirect (self : Self) = 
+    est_un_grand_electeur (self) ->
+    est_elu_par_un_grand_electeur (self);
+  
+  logical let est_un_president_de_la_republique (self : Self, uscr : UScr) =
+    est_elu_au_suffrage_direct (self, uscr)
+    /\
+    est_elu_au_suffrage_universel (self, uscr)
+    /\
+   UScr!est_une_election_presidentielle (uscr);
+
+end;;

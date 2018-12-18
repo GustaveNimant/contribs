@@ -1,0 +1,9 @@
+open "basics";;
+ 
+-- Documentation : 
+ 
+species Les_Pouvoirs_publics_constitutionnels_S =
+
+  signature le_fonctionnement_regulier_des_pouvoirs_publics_constitutionnels_est_interrompu : Self -> bool;
+
+end;;

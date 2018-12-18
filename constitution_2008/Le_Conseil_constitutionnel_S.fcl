@@ -1,0 +1,15 @@
+open "basics";;
+ 
+-- Documentation : 
+ 
+species Le_Conseil_constitutionnel_S =
+
+  signature le_president_du_conseil_constitutionnel_a_ete_consulte_par_le_president_de_la_republique : Self -> bool;
+
+  signature le_conseil_constitutionnel_est_consulte_sur_les_mesures_de_l_article_16 : Self -> bool;
+ 
+  signature le_conseil_constitutionnel_se_prononce_par_un_avis_public : Self -> bool;
+
+  signature le_conseil_constitutionnel_examine_si_les_conditions_du_premier_alinea_demeurent : Self -> bool;
+
+end;;

@@ -1,0 +1,11 @@
+open "basics";;
+ 
+open "Un_Diplomate_etranger_S";;
+
+species Un_Envoye_extraordinaire_etranger_S =
+ 
+  inherit Un_Diplomate_etranger_S;
+
+  signature le_president_de_la_republique_accredite_un_envoye_extraordinaire_etranger : Self -> bool;
+
+end;;

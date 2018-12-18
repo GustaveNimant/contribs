@@ -1,0 +1,25 @@
+open "basics";;
+open "sets";;
+
+
+-- InH: La_Metropole_S  Un_Territoire_d_outre_mer
+-- InH:       \                /      
+-- InH:        v              v
+-- InH:      Un_Territoire_francais_S  Un_Territoire_hors_de_france_S
+-- InH:                      \                /      
+-- InH:                       v              v
+-- InH:                        Un_Territoire_S
+ 
+species Un_Territoire_S =
+
+  inherit Setoid;
+
+  signature est_un_territoire_francais : Self -> bool;
+
+  signature est_un_indivisible : Self -> bool;
+
+  signature est_connexe : Self -> bool;
+
+  signature est_une_ile : Self -> bool;
+
+end;;
